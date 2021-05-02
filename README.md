@@ -10,6 +10,12 @@ Modules can plug into the system in a variety of ways and add features to the ov
 
 It can be used as the Basis For many apps.
 
+# Goal
+
+The use-case of this is to create an "app" project, import the extensions you want and set up a runner. This can then be deployed on a variety of platforms (e.g. web/chrome/etc).
+
+The idea is to provide a framdwork that can provide a ecosystem on top of pub that can be used to compose larger applications out of modules and a runner setup.
+
 # Features
 
 - Extensions Support
