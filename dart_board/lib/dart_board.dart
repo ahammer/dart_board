@@ -1,26 +1,40 @@
+import 'package:dart_board_interface/dart_board_core.dart';
 import 'package:dart_board_interface/dart_board_extension.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'impl/widgets/route_not_found.dart';
 
+/// The Dart Board Entry Point
+///
+/// Give it a 404 Widget
+/// Give it Extensions
+/// Give it the InitialRoute
+///
+/// The kernel is designed to stay simple
+///
 class DartBoard extends StatefulWidget {
   /// These are the extensions we'll load
   final List<DartBoardExtension> extensions;
   final Widget pageNotFoundWidget;
-  final Widget home;
+  final String initialRoute;
 
   DartBoard(
-      {Key key,
-      this.extensions,
+      {this.extensions,
       this.pageNotFoundWidget = const RouteNotFound(),
-      @required this.home})
-      : super(key: key);
+      @required this.initialRoute})
+      : super(key: dartBoardKey);
 
   @override
   _DartBoardState createState() => _DartBoardState();
 }
 
+/// The Dart Board State
+/// We unwrap the routes
+/// We also unwrap the decorations
+/// Then we build the MaterialApp()
+///
 class _DartBoardState extends State<DartBoard> {
   List<RouteDefinition> routes;
   List<WidgetWithChildBuilder> pageDecorations;
@@ -45,8 +59,8 @@ class _DartBoardState extends State<DartBoard> {
 
   @override
   Widget build(BuildContext context) => MaterialApp(
+        initialRoute: widget.initialRoute,
         onGenerateRoute: onGenerateRoute,
-        home: widget.home,
       );
 
   /// Generates a route from the extensions
@@ -57,10 +71,7 @@ class _DartBoardState extends State<DartBoard> {
     try {
       return MaterialPageRoute(
           builder: (ctx) => pageDecorations.reversed.fold(
-              routes
-                  .where((it) => it.route == settings.name)
-                  .first
-                  .builder(ctx),
+              routes.where((it) => it.matches(settings)).first.builder(ctx),
               (child, element) => element(ctx, child)));
     } on Exception {
       return MaterialPageRoute(builder: (ctx) => widget.pageNotFoundWidget);

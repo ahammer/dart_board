@@ -41,3 +41,5 @@ Decorations allow you to globally inject widgets on all your navigation routes.
 Occasionally you need long running services, the framework allows you to add new ones to your app.
 
 # State
+
+State "Holder" support.

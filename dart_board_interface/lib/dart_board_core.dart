@@ -1,2 +1,8 @@
+import 'package:flutter/material.dart';
+
 /// Communicates with Core. For extensions
-abstract class DartBoardCore {}
+GlobalKey dartBoardKey = GlobalKey();
+
+abstract class DartBoardCore {
+  static void blah() {}
+}

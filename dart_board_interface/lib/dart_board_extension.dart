@@ -13,15 +13,26 @@ abstract class DartBoardExtension {
 
 typedef Widget WidgetWithChildBuilder(BuildContext context, Widget child);
 
-class RouteDefinition {
+abstract class RouteDefinition {
+  bool matches(RouteSettings settings);
+  WidgetBuilder get builder;
+}
+
+class NamedRouteDefinition implements RouteDefinition {
   final String route;
   final WidgetBuilder builder;
 
-  RouteDefinition({@required this.route, @required this.builder});
+  NamedRouteDefinition({@required this.route, @required this.builder});
+
+  @override
+  bool matches(RouteSettings settings) => settings.name == route;
 }
 
+/// Syntactic Sugar
+/// Extension for <RouteDefinition>[] to add a map of "string" => Builder
 extension DartBoardRouteListExtension on List<RouteDefinition> {
   /// Helper to specify these as a map
-  void addMap(Map<String, WidgetBuilder> items) => items.forEach(
-      (route, builder) => add(RouteDefinition(route: route, builder: builder)));
+  void addMap(Map<String, WidgetBuilder> items) =>
+      items.forEach((route, builder) =>
+          add(NamedRouteDefinition(route: route, builder: builder)));
 }
