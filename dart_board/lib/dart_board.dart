@@ -3,6 +3,7 @@ import 'package:dart_board_interface/dart_board_extension.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'impl/widgets/route_not_found.dart';
 
@@ -21,10 +22,11 @@ class DartBoard extends StatefulWidget {
   final String initialRoute;
 
   DartBoard(
-      {this.extensions,
+      {Key key,
+      this.extensions,
       this.pageNotFoundWidget = const RouteNotFound(),
       @required this.initialRoute})
-      : super(key: dartBoardKey);
+      : super(key: key);
 
   @override
   _DartBoardState createState() => _DartBoardState();
@@ -34,8 +36,7 @@ class DartBoard extends StatefulWidget {
 /// We unwrap the routes
 /// We also unwrap the decorations
 /// Then we build the MaterialApp()
-///
-class _DartBoardState extends State<DartBoard> {
+class _DartBoardState extends State<DartBoard> implements DartBoardCore {
   List<RouteDefinition> routes;
   List<WidgetWithChildBuilder> pageDecorations;
 
@@ -57,10 +58,15 @@ class _DartBoardState extends State<DartBoard> {
             ]);
   }
 
+  /// Simple build
   @override
-  Widget build(BuildContext context) => MaterialApp(
-        initialRoute: widget.initialRoute,
-        onGenerateRoute: onGenerateRoute,
+  Widget build(BuildContext context) => Provider<DartBoardCore>(
+        create: (ctx) => this,
+        child: MaterialApp(
+          key: dartBoardKey,
+          initialRoute: widget.initialRoute,
+          onGenerateRoute: onGenerateRoute,
+        ),
       );
 
   /// Generates a route from the extensions
@@ -77,4 +83,7 @@ class _DartBoardState extends State<DartBoard> {
       return MaterialPageRoute(builder: (ctx) => widget.pageNotFoundWidget);
     }
   }
+
+  @override
+  List<DartBoardExtension> get extensions => widget.extensions;
 }

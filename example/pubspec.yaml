@@ -27,7 +27,9 @@ dependencies:
     path: ../dart_board
   dart_board_interface: 
     path: ../dart_board_interface
-
+  
+  # We'll use this in the Example project
+  flutter_syntax_view: ^4.0.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

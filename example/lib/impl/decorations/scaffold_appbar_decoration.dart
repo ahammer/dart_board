@@ -1,4 +1,6 @@
+import 'package:dart_board_interface/dart_board_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/container.dart';
 
 class ScaffoldWithDrawerDecoration extends StatelessWidget {
   final Widget child;
@@ -9,22 +11,31 @@ class ScaffoldWithDrawerDecoration extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ;
     return Scaffold(
         drawer: Drawer(
           child: Column(
             children: [
-              MaterialButton(
-                child: Text("Go to /hello_word"),
-                onPressed: () {
-                  Navigator.of(context).pushNamed("/hello_world");
-                },
+              Container(
+                width: double.infinity,
+                child: Card(
+                  child: Text(
+                    "SECTIONS",
+                    style: Theme.of(context).textTheme.headline5,
+                  ),
+                ),
               ),
-              MaterialButton(
-                child: Text("Go to /hello_word_2"),
-                onPressed: () {
-                  Navigator.of(context).pushNamed("/hello_world_2");
-                },
-              )
+              ...DartBoardCore.getRoutes().map(
+                (e) => MaterialButton(
+                  child: Text(
+                    "$e",
+                    style: Theme.of(context).textTheme.headline5,
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pushNamed("$e");
+                  },
+                ),
+              ),
             ],
           ),
         ),

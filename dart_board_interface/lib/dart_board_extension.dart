@@ -26,6 +26,9 @@ class NamedRouteDefinition implements RouteDefinition {
 
   @override
   bool matches(RouteSettings settings) => settings.name == route;
+
+  @override
+  String toString() => route;
 }
 
 /// Syntactic Sugar

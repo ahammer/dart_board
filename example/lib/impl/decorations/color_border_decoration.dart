@@ -12,11 +12,7 @@ class DarkColorBorder extends StatelessWidget {
         color: Theme.of(context).colorScheme.secondaryVariant,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Card(
-              child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: child,
-          )),
+          child: Card(child: child),
         ),
       );
 }
