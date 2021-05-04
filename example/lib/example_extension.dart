@@ -5,14 +5,12 @@ import 'package:flutter/material.dart';
 import 'impl/decorations/color_border_decoration.dart';
 import 'impl/decorations/scaffold_appbar_decoration.dart';
 import 'impl/pages/about.dart';
-import 'impl/pages/example.dart';
 
 class ExampleExtension implements DartBoardExtension {
   @override
   get routes => <RouteDefinition>[]..addMap({
       "/": (ctx) => HomePage(),
       "/about": (ctx) => AboutPage(),
-      "/example": (ctx) => ExamplePage()
     });
 
   @override

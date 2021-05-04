@@ -1,9 +1,14 @@
 import 'package:flutter/widgets.dart';
 
+/// Used to "inject" widgets into the tree.
+/// We inject right above/below the nav. E.g. App/Page scope
+///
+/// It is used for the appDecorations and pageDecorations.
+typedef Widget WidgetWithChildBuilder(BuildContext context, Widget child);
+
 /// An extension class
 /// Extensions are hooked up VIA RPC
 /// Core Extension's are extensions that are available on the classpath
-
 abstract class DartBoardExtension {
   /// The route definitions
   List<RouteDefinition> get routes => [];
@@ -14,8 +19,6 @@ abstract class DartBoardExtension {
   /// The page decorations (page level)
   List<WidgetWithChildBuilder> get pageDecorations => [];
 }
-
-typedef Widget WidgetWithChildBuilder(BuildContext context, Widget child);
 
 abstract class RouteDefinition {
   bool matches(RouteSettings settings);

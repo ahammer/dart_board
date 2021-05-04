@@ -85,15 +85,32 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
   ///
   /// It'll also wrap a route with any decorations
   Route onGenerateRoute(RouteSettings settings) => MaterialPageRoute(
-      builder: (ctx) => pageDecorations.reversed.fold(
-          routes
+      settings: settings,
+      builder: (ctx) => ApplyDecorations(
+          decorations: pageDecorations,
+          child: routes
               .firstWhere((it) => it.matches(settings),
                   orElse: () => NamedRouteDefinition(
                       builder: (ctx) => widget.pageNotFoundWidget,
                       route: '/404'))
-              ?.builder(ctx),
-          (child, element) => element(context, child)));
+              ?.builder(ctx)));
 
   @override
   List<DartBoardExtension> get extensions => widget.extensions;
+}
+
+/// This class can apply the page decorations.
+/// E.g. if you are navigating with a non-named route but want them.
+class ApplyDecorations extends StatelessWidget {
+  final Widget child;
+  final List<WidgetWithChildBuilder> decorations;
+
+  const ApplyDecorations({
+    @required this.child,
+    @required this.decorations,
+    Key key,
+  }) : super(key: key);
+  @override
+  Widget build(BuildContext context) => decorations.reversed
+      .fold(child, (previousValue, element) => element(context, previousValue));
 }

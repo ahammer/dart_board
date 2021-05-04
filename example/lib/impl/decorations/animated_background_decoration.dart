@@ -27,7 +27,7 @@ class _AnimatedBackgroundDecorationState
     super.initState();
     animation = AnimationController(vsync: this);
     animation.repeat(
-        min: 0.0, max: 1.0, period: Duration(minutes: 10), reverse: true);
+        min: 0.0, max: 1.0, period: Duration(minutes: 100), reverse: true);
   }
 
   @override
@@ -87,21 +87,31 @@ class BackgroundPainter extends CustomPainter {
                                     cos(value * -305 + value + i / 3.0) +
                                     cos(value * 315 + value + i / 4.0)) /
                                 3.0 +
-                            cos(value * 205 + value + i / 15.0)) /
-                        4 *
+                            cos(value * 205 + value + i / 15.0)) *
                         height *
-                        (i - 16).abs() /
-                        2.0)
-        ],
+                        3)
+        ].convertToSolidLine(),
         Paint()
           ..blendMode = BlendMode.darken
           ..color = color
           ..strokeCap = StrokeCap.round
           ..style = PaintingStyle.stroke
-          ..strokeJoin = StrokeJoin.miter
           ..strokeWidth = width);
   }
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
+}
+
+extension SolidLineExtension on List<Offset> {
+  List<Offset> convertToSolidLine() {
+    final result = <Offset>[];
+    result.add(first);
+    for (int i = 1; i < length - 1; i++) {
+      result.add(this[i]);
+      result.add(this[i]);
+    }
+    result.add(last);
+    return result;
+  }
 }
