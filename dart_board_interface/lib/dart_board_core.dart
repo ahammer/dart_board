@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 /// Communicates with Core. For extensions
 GlobalKey dartBoardKey = GlobalKey();
+GlobalKey<NavigatorState> dartBoardNavKey = GlobalKey();
 
 /// Shortcuts into DartBoard
 abstract class DartBoardCore {

@@ -27,6 +27,8 @@ dependencies:
     path: ../dart_board
   dart_board_interface: 
     path: ../dart_board_interface
+  dart_board_theme_extension:
+    path: ../modules/dart_board_theme_extension
   
   # We'll use this in the Example project
   flutter_syntax_view: ^4.0.0

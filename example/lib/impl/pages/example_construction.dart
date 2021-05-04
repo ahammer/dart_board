@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class AboutPage extends StatelessWidget {
+class ExampleConstruction extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Container(
         width: double.infinity,
@@ -11,7 +11,7 @@ class AboutPage extends StatelessWidget {
             Align(
               alignment: Alignment.topLeft,
               child: Hero(
-                tag: "Title",
+                tag: "Example",
                 child: Card(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -52,34 +52,50 @@ class AboutTextWidget extends StatelessWidget {
           style: Theme.of(context).textTheme.bodyText1,
           children: <TextSpan>[
             TextSpan(
-              text: 'About This Project!\n\n',
+              text: 'How is the Example Made?\n\n',
               style: Theme.of(context).textTheme.headline2,
             ),
             TextSpan(
                 text:
-                    """Have you ever wanted to just "integrate" a 3rd party library?
+                    """This example is the dog-food experience of the platform itself. If you are looking at this, you are looking at Dart Board.
 
-Dart Board is designed exactly for that. The core framework itself is just a blank canvas. You dictate what gets painted there by what you include and how you configure it.                    
+When you first run the app, you launch a main.dart() that calls out to DartBoard.
+It will tell dart board what extensions it's using, and what the default route is.
 
-Adding a Dart Board Extension could expose new State objects, Services, Page Decorations, Routes and Widgets that
-can automatically integrate into your app.
-
-Some example use cases
-- Page decorations for page commonalities (e.g. appbar/scaffold, floating controls, debug windows/frames).
-- Navigation setup and assistance
-- Support for 3rd party packages
-- Plugable features/Feature isolation
+void main() {
+  runApp(DartBoard(
+    extensions: [ExampleExtension()],
+    initialRoute: "/home",
+  ));
 
 
-This is a re-imagining of how we handle things at my work, with a different focus.
-The motivation of the structure is to provide an architecture that allows multiple teams to work on 
-features without stepping on each other's toes. The extension kernel (Dart Board) is responsible 
-for only providing equal access and infrastructure to integrate.
+Note: Without a default route, it'll not be able to show anything. But there is a 404 page
 
-In our context, it was for our Add2App integration, however an extension based approach
-has some advantages over a bare pub approach, in that you can get a certain level of integration
-for free because the kernel knows when and how to delegate to the extensions.
+In this Example, and ExampleExtension.dart is provided.
 
+
+class ExampleExtension implements DartBoardExtension {
+  @override
+  get routes => <RouteDefinition>[]..addMap({
+      "/home": (ctx) => HomePage(),
+      "/about": (ctx) => AboutPage(),
+      "/example": (ctx) => ExampleConstruction()
+    });
+
+  @override
+  get pageDecorations => <WidgetWithChildBuilder>[
+        (context, child) => ScaffoldWithDrawerDecoration(child: child),
+        (context, child) => DarkColorBorder(child: child),
+        (context, child) => AnimatedBackgroundDecoration(
+              color: Theme.of(context).accentColor,
+              child: child,
+            )
+      ];
+}
+
+This extension offers a variety of things. It offers Routes and Decorations.
+
+A larger app can be composed of these Extension out of the functionality provided.                    
 """),
           ],
         ),

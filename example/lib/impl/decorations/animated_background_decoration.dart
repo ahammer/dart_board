@@ -27,20 +27,22 @@ class _AnimatedBackgroundDecorationState
     super.initState();
     animation = AnimationController(vsync: this);
     animation.repeat(
-        min: 0.0, max: 1.0, period: Duration(seconds: 600), reverse: true);
+        min: 0.0, max: 1.0, period: Duration(minutes: 10), reverse: true);
   }
 
   @override
   Widget build(BuildContext context) => Stack(
         children: [
-          AnimatedBuilder(
-              animation: animation,
-              builder: (ctx, child) => Container(
-                  width: double.infinity,
-                  height: double.infinity,
-                  child: CustomPaint(
-                      painter:
-                          BackgroundPainter(animation.value, widget.color)))),
+          Opacity(
+            opacity: 0.3,
+            child: AnimatedBuilder(
+                animation: animation,
+                builder: (ctx, child) => Container(
+                    width: double.infinity,
+                    height: double.infinity,
+                    child: CustomPaint(
+                        painter: BackgroundPainter(animation.value)))),
+          ),
           widget.child,
         ],
       );
@@ -48,40 +50,48 @@ class _AnimatedBackgroundDecorationState
 
 class BackgroundPainter extends CustomPainter {
   final double value;
-  final Color color;
 
-  BackgroundPainter(this.value, this.color);
+  BackgroundPainter(this.value);
 
   @override
   void paint(Canvas canvas, Size size) {
     canvas.clipRect(Rect.fromLTWH(0, 0, size.width, size.height));
 
-    canvas.drawPoints(
+    drawForValue(
+        canvas, size, value, Colors.cyan, size.height / 25, size.height / 10);
+    drawForValue(canvas, size, value * 1.5 + 2231.2, Colors.pink,
+        size.height / 20, size.height / 10);
+    drawForValue(canvas, size, value * 2 + 512.2, Colors.yellow,
+        size.height / 15, size.height / 10);
+  }
+
+  void drawForValue(Canvas canvas, Size size, double value, Color color,
+      double height, double width) {
+    return canvas.drawPoints(
         PointMode.lines,
         [
-          for (int i = 0; i < 200; i++)
+          for (int i = 0; i < 32; i++)
             Offset(
-                size.width / 200.0 * i,
+                size.width / 30.0 * i,
                 size.height / 2 +
                     (cos(value * 100 + value + i / 50.0) +
-                            cos(value * 50 + value + i / 25.0) +
-                            cos(value * 300 + value + i / 50.0) +
-                            (cos(value * -300 + value + i / 10.0) +
-                                    cos(value * -305 + value + i / 5.0) +
-                                    cos(value * 315 + value + i / 6.0)) /
+                            cos(value * 50 + value + i / 15.0) +
+                            cos(value * 300 + value + i / 8.0) +
+                            (cos(value * -300 + value + i / 2.0) +
+                                    cos(value * -305 + value + i / 3.0) +
+                                    cos(value * 315 + value + i / 4.0)) /
                                 3.0 +
-                            cos(value * 205 + value + i / 80.0)) /
+                            cos(value * 205 + value + i / 15.0)) /
                         4 *
-                        size.height /
-                        2)
+                        height)
         ],
         Paint()
-          ..blendMode = BlendMode.multiply
+          ..blendMode = BlendMode.darken
           ..color = color
+          ..strokeCap = StrokeCap.round
           ..style = PaintingStyle.stroke
           ..strokeJoin = StrokeJoin.miter
-          ..strokeCap = StrokeCap.round
-          ..strokeWidth = 100);
+          ..strokeWidth = width);
   }
 
   @override
