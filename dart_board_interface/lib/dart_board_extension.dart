@@ -8,6 +8,7 @@ abstract class DartBoardExtension {
   /// The route builders
   List<RouteDefinition> get routes => [];
 
+  List<WidgetWithChildBuilder> get appDecorations => [];
   List<WidgetWithChildBuilder> get pageDecorations => [];
 }
 

@@ -25,4 +25,7 @@ class ExampleExtension implements DartBoardExtension {
               child: child,
             )
       ];
+
+  @override
+  get appDecorations => [];
 }

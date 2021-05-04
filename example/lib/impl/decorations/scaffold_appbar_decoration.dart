@@ -9,9 +9,8 @@ class ScaffoldWithDrawerDecoration extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => MaterialApp(
-      home: Scaffold(
-          drawer: DartBoardNavDrawer(),
-          appBar: AppBar(title: Text("Example App")),
-          body: child));
+  Widget build(BuildContext context) => Scaffold(
+      drawer: DartBoardNavDrawer(),
+      appBar: AppBar(title: Text("Example App")),
+      body: child);
 }

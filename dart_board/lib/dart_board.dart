@@ -39,6 +39,7 @@ class DartBoard extends StatefulWidget {
 class _DartBoardState extends State<DartBoard> implements DartBoardCore {
   List<RouteDefinition> routes;
   List<WidgetWithChildBuilder> pageDecorations;
+  List<WidgetWithChildBuilder> appDecorations;
 
   @override
   void initState() {
@@ -56,6 +57,13 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
               ...previousValue,
               ...element.pageDecorations
             ]);
+
+    appDecorations = widget.extensions.fold(
+        <WidgetWithChildBuilder>[],
+        (previousValue, element) => <WidgetWithChildBuilder>[
+              ...previousValue,
+              ...element.appDecorations
+            ]);
   }
 
   /// Simple build
@@ -66,7 +74,7 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
           key: dartBoardKey,
           navigatorKey: dartBoardNavKey,
           initialRoute: widget.initialRoute,
-          builder: (context, navigator) => pageDecorations.reversed
+          builder: (context, navigator) => appDecorations.reversed
               .fold(navigator, (child, element) => element(context, child)),
           onGenerateRoute: onGenerateRoute,
         ),
@@ -78,8 +86,12 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
   /// It'll also wrap a route with any decorations
   Route onGenerateRoute(RouteSettings settings) {
     try {
+      final route_builder =
+          routes.where((it) => it.matches(settings)).first.builder;
+
       return MaterialPageRoute(
-          builder: routes.where((it) => it.matches(settings)).first.builder);
+          builder: (ctx) => pageDecorations.reversed.fold(
+              route_builder(ctx), (child, element) => element(context, child)));
     } on Exception {
       return MaterialPageRoute(builder: (ctx) => widget.pageNotFoundWidget);
     }

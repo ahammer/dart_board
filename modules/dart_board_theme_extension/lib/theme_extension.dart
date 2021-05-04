@@ -5,17 +5,12 @@ import 'package:provider/provider.dart';
 class ThemeExtension implements DartBoardExtension {
   @override
   get pageDecorations => [
-        (context, child) => ChangeNotifierProvider<ThemeState>(
-              key: Key("PageDecorator"),
-              create: (ctx) => ThemeState(),
+        (context, child) => Consumer<ThemeState>(
               child: child,
-              builder: (inner, child) => Consumer<ThemeState>(
-                child: child,
-                builder: (ctx, val, child) => Theme(
-                    child: child,
-                    data: val.isLight ? ThemeData.light() : ThemeData.dark()),
-              ),
-            )
+              builder: (ctx, val, child) => Theme(
+                  child: child,
+                  data: val.isLight ? ThemeData.light() : ThemeData.dark()),
+            ),
       ];
 
   @override
@@ -23,6 +18,12 @@ class ThemeExtension implements DartBoardExtension {
 
   static void toggle(BuildContext context) =>
       Provider.of<ThemeState>(context, listen: false).toggleTheme();
+
+  @override
+  get appDecorations => [
+        (context, child) => ChangeNotifierProvider<ThemeState>(
+            create: (ctx) => ThemeState(), child: child)
+      ];
 }
 
 class ThemePage extends StatelessWidget {

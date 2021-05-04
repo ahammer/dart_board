@@ -44,8 +44,7 @@ class DartBoardNavDrawer extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  dartBoardNavKey.currentState.pushNamed("$e");
-                  Navigator.of(context).pop();
+                  Navigator.of(context).pushNamed("$e");
                 },
               ),
             ),
