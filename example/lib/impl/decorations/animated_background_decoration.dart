@@ -31,6 +31,12 @@ class _AnimatedBackgroundDecorationState
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    animation.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) => Stack(
         children: [
           Opacity(

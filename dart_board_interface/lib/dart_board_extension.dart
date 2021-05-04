@@ -5,10 +5,13 @@ import 'package:flutter/widgets.dart';
 /// Core Extension's are extensions that are available on the classpath
 
 abstract class DartBoardExtension {
-  /// The route builders
+  /// The route definitions
   List<RouteDefinition> get routes => [];
 
+  /// The app decorations (global)
   List<WidgetWithChildBuilder> get appDecorations => [];
+
+  /// The page decorations (page level)
   List<WidgetWithChildBuilder> get pageDecorations => [];
 }
 

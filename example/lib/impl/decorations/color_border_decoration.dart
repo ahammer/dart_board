@@ -9,7 +9,7 @@ class DarkColorBorder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        color: Theme.of(context).colorScheme.secondaryVariant,
+        color: Theme.of(context).colorScheme.primaryVariant,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Card(child: child),
