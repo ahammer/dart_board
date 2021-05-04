@@ -10,18 +10,15 @@ class ExampleConstruction extends StatelessWidget {
           children: [
             Align(
               alignment: Alignment.topLeft,
-              child: Hero(
-                tag: "Example",
-                child: Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      "About",
-                      style: Theme.of(context).textTheme.headline3,
-                    ),
+              child: Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "About",
+                    style: Theme.of(context).textTheme.headline3,
                   ),
-                  elevation: 4,
                 ),
+                elevation: 4,
               ),
             ),
             Expanded(

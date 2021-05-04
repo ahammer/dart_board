@@ -83,7 +83,9 @@ class BackgroundPainter extends CustomPainter {
                                 3.0 +
                             cos(value * 205 + value + i / 15.0)) /
                         4 *
-                        height)
+                        height *
+                        (i - 16).abs() /
+                        2.0)
         ],
         Paint()
           ..blendMode = BlendMode.darken
