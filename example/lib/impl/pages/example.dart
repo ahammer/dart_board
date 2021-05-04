@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:easy_rich_text/easy_rich_text.dart';
 import 'package:dart_board/impl/utils/collect.dart';
 
-class AboutPage extends StatelessWidget {
+class ExamplePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Container(
         width: double.infinity,
@@ -64,34 +64,6 @@ on the platform.
 
 Just like flutter, composition is the goal here. Combining extensions
 and features to compose a larger product.
-
-What can an Extension do?
-
-- Provide Screens (routes)
-- Inject app-level widgets
-  - E.g. a service, persistent state, etc.
-- Inject page-level widgets
-  - E.g. An overlay, Frame, Transform Layer (e.g. Screen Shake), Theming and Scaffoling.
-
-Some practical example extensions might be the following.
-
-- Forum addon
-- Authentication
-- Search & Details
-- Debug Frames/Runtime Analysis
-- Theme Changer
-
-How would I build an App with this?
-
-This example is a good starting point. 
-
-Import via pub, add extension via pub
-in main.dart, start the widget with the extensions
-and point it at a route that exists.
-
-There is no 3rd party extensions at the time of writing this, but I'm
-hoping to publish a few basic extensions
-
           """,
             selectable: true,
             patternList: <String, TextStyle>{
@@ -108,8 +80,6 @@ hoping to publish a few basic extensions
               "app": kHighlightStyle,
               "framework": kHighlightStyle,
               "extension": kHighlightStyle,
-              "What can an Extension do?": kHeaderStyle,
-              "How would I build an App with this?": kHeaderStyle,
             }.collect<EasyRichTextPattern>((key, value) =>
                 EasyRichTextPattern(targetString: key, style: value))),
       );

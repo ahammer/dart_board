@@ -6,6 +6,10 @@ class RouteNotFound extends StatelessWidget {
   const RouteNotFound();
 
   @override
-  Widget build(BuildContext context) =>
-      Scaffold(body: Center(child: Text("Route not found")));
+  Widget build(BuildContext context) => Center(
+          child: Card(
+              child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text("404 Not Found\n${ModalRoute.of(context).settings.name}"),
+      )));
 }

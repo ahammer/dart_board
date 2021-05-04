@@ -84,18 +84,15 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
   /// If it can't find, it falls back to route not found
   ///
   /// It'll also wrap a route with any decorations
-  Route onGenerateRoute(RouteSettings settings) {
-    try {
-      final route_builder =
-          routes.where((it) => it.matches(settings)).first.builder;
-
-      return MaterialPageRoute(
-          builder: (ctx) => pageDecorations.reversed.fold(
-              route_builder(ctx), (child, element) => element(context, child)));
-    } on Exception {
-      return MaterialPageRoute(builder: (ctx) => widget.pageNotFoundWidget);
-    }
-  }
+  Route onGenerateRoute(RouteSettings settings) => MaterialPageRoute(
+      builder: (ctx) => pageDecorations.reversed.fold(
+          routes
+              .firstWhere((it) => it.matches(settings),
+                  orElse: () => NamedRouteDefinition(
+                      builder: (ctx) => widget.pageNotFoundWidget,
+                      route: '/404'))
+              ?.builder(ctx),
+          (child, element) => element(context, child)));
 
   @override
   List<DartBoardExtension> get extensions => widget.extensions;
