@@ -10,6 +10,13 @@ Modules can plug into the system in a variety of ways and add features to the ov
 
 It can be used as the Basis For many apps.
 
+# Guiding principles
+
+I want to provide a larger app-framework for composing apps, but leave the freedom
+to extension developers to develop using whatever paradigms they like.
+
+We are just here to give you the hooks, and some basic framework extensions.
+
 # Goal
 
 The use-case of this is to create an "app" project, import the extensions you want and set up a runner. This can then be deployed on a variety of platforms (e.g. web/chrome/etc).

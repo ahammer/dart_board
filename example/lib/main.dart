@@ -9,6 +9,6 @@ import 'example_extension.dart';
 void main() {
   runApp(DartBoard(
     extensions: [ThemeExtension(), ExampleExtension(), DebugRouteExtension()],
-    initialRoute: '/asd',
+    initialRoute: '/about',
   ));
 }
