@@ -91,9 +91,9 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
           child: routes
               .firstWhere((it) => it.matches(settings),
                   orElse: () => NamedRouteDefinition(
-                      builder: (ctx) => widget.pageNotFoundWidget,
+                      builder: (ctx, _) => widget.pageNotFoundWidget,
                       route: '/404'))
-              ?.builder(ctx)));
+              ?.builder(ctx, settings)));
 
   @override
   List<DartBoardExtension> get extensions => widget.extensions;

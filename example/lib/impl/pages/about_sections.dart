@@ -1,6 +1,7 @@
 import 'package:easy_rich_text/easy_rich_text.dart';
 import 'package:flutter/material.dart';
 import 'package:dart_board/impl/utils/collect.dart';
+import 'package:flutter_syntax_view/flutter_syntax_view.dart';
 
 ///
 /// This file is dedicated to the "pages" in the About page slideshow
@@ -60,10 +61,104 @@ class Page1Content extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => PaneModelB(
-        childA: Container(height: double.infinity, child: SystemChart()),
         childB: Padding(
+          padding: const EdgeInsets.fromLTRB(0, 0, 32, 0),
+          child: Container(
+            height: double.infinity,
+            child: SystemChart(),
+          ),
+        ),
+        childA: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: AboutTextWidget(),
+          child: FittedBox(child: AboutTextWidget()),
+        ),
+      );
+}
+
+class Page2Content extends StatelessWidget {
+  const Page2Content({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) => FittedBox(
+        child: SyntaxView(
+          code: """
+import 'package:dart_board/dart_board.dart';
+import 'package:dart_board/impl/debug/debug_route_extension.dart';
+import 'package:dart_board_theme_extension/theme_extension.dart';
+import 'package:flutter/material.dart';
+
+import 'example_extension.dart';
+
+void main() {
+  
+  /// Just Start the DartBoard widget
+  runApp(DartBoard(
+    extensions: [
+
+      /// Give it your Extensions
+      ThemeExtension(),       
+      ExampleExtension(), 
+      DebugRouteExtension()
+      ],
+    
+    /// And an Initial Route
+    initialRoute: '/about',
+  ));
+}
+""",
+          syntax: Syntax.DART,
+          syntaxTheme: getCodeTheme(context),
+          withZoom: false,
+        ),
+      );
+}
+
+class Page3Content extends StatelessWidget {
+  const Page3Content({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) => FittedBox(
+        child: SyntaxView(
+          code: """
+/// The Example Extension
+class ExampleExtension implements DartBoardExtension {
+  @override
+  get routes => <RouteDefinition>[]..addMap({
+      /// Initial Route
+      "/": (ctx, settings) => HomePage(),
+
+      /// About Route
+      "/about": (ctx, settings) => AboutPage(),
+    });
+
+  /// These are page-scoped decorations
+  @override
+  get pageDecorations => <WidgetWithChildBuilder>[
+        /// The AppBar and Nav Drawer
+        (context, child) => ScaffoldWithDrawerDecoration(child: child),
+
+        /// The border around the Body
+        (context, child) => DarkColorBorder(child: child),
+
+        /// The animated background effect
+        (context, child) => AnimatedBackgroundDecoration(
+              color: Theme.of(context).accentColor,
+              child: child,
+            )
+      ];
+
+  /// These are app-level decorations (not needed here)
+  @override
+  get appDecorations => [];
+}
+""",
+          syntax: Syntax.DART,
+          syntaxTheme: getCodeTheme(context),
+          withZoom: false,
         ),
       );
 }
@@ -239,9 +334,43 @@ Theme Extensions
       );
 }
 
+class EntryPointText extends StatelessWidget {
+  const EntryPointText({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) => Center(
+        child: EasyRichText("""
+The main.dart
+
+1) In RunApp, start with the DartBoard() widget
+2) Provide the extensions you are deploying
+3) Provide the initial route
+
+          """,
+            selectable: true,
+            patternList: <String, TextStyle>{
+              "Dart Board Basics": kHeaderStyle.copyWith(
+                  fontSize: 30, decoration: TextDecoration.underline),
+              "Dart Board": kHighlightStyle,
+              "app": kHighlightStyle,
+              "framework": kHighlightStyle,
+              "extension": kHighlightStyle,
+              "based": kHighlightStyle,
+              "Extensions used in this Example": kHeaderStyle,
+            }.collect<EasyRichTextPattern>((key, value) =>
+                EasyRichTextPattern(targetString: key, style: value))),
+      );
+}
+
 const kHeaderStyle = TextStyle(
   color: Colors.blue,
   fontWeight: FontWeight.bold,
 );
-const kHighlightStyle =
-    TextStyle(color: Colors.black54, fontStyle: FontStyle.italic);
+const kHighlightStyle = TextStyle(fontStyle: FontStyle.italic);
+
+getCodeTheme(BuildContext context) =>
+    (Theme.of(context).brightness == Brightness.dark)
+        ? SyntaxTheme.vscodeDark()
+        : SyntaxTheme.vscodeLight();

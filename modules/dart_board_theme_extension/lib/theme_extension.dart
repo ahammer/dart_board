@@ -14,7 +14,8 @@ class ThemeExtension implements DartBoardExtension {
       ];
 
   @override
-  get routes => <RouteDefinition>[]..addMap({"/theme": (ctx) => ThemePage()});
+  get routes =>
+      <RouteDefinition>[]..addMap({"/theme": (ctx, settings) => ThemePage()});
 
   static void toggle(BuildContext context) =>
       Provider.of<ThemeState>(context, listen: false).toggleTheme();

@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 ///
 /// It is used for the appDecorations and pageDecorations.
 typedef Widget WidgetWithChildBuilder(BuildContext context, Widget child);
+typedef RouteWidgetBuilder(BuildContext context, RouteSettings settings);
 
 /// An extension class
 /// Extensions are hooked up VIA RPC
@@ -22,12 +23,12 @@ abstract class DartBoardExtension {
 
 abstract class RouteDefinition {
   bool matches(RouteSettings settings);
-  WidgetBuilder get builder;
+  RouteWidgetBuilder get builder;
 }
 
 class NamedRouteDefinition implements RouteDefinition {
   final String route;
-  final WidgetBuilder builder;
+  final RouteWidgetBuilder builder;
 
   NamedRouteDefinition({@required this.route, @required this.builder});
 
@@ -42,7 +43,7 @@ class NamedRouteDefinition implements RouteDefinition {
 /// Extension for <RouteDefinition>[] to add a map of "string" => Builder
 extension DartBoardRouteListExtension on List<RouteDefinition> {
   /// Helper to specify these as a map
-  void addMap(Map<String, WidgetBuilder> items) =>
+  void addMap(Map<String, RouteWidgetBuilder> items) =>
       items.forEach((route, builder) =>
           add(NamedRouteDefinition(route: route, builder: builder)));
 }

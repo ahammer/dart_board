@@ -1,5 +1,6 @@
 import 'package:example/impl/pages/about_sections.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_syntax_view/flutter_syntax_view.dart';
 
 class AboutPage extends StatelessWidget {
   @override
@@ -32,33 +33,34 @@ class _AboutGalleryState extends State<AboutGallery> {
           key: Key("page1"),
           width: double.infinity,
           height: double.infinity,
-          color: Theme.of(ctx).colorScheme.surface.withOpacity(0.5),
+          color: Theme.of(ctx).colorScheme.surface.withOpacity(0.7),
           child: Page1Content(),
         ),
     (ctx) => Container(
-          key: Key("page2"),
+        key: Key("page2"),
+        width: double.infinity,
+        height: double.infinity,
+        color: Theme.of(ctx).colorScheme.surface.withOpacity(0.7),
+        child: Page2Content()),
+    (ctx) => Container(
+          key: Key("page3"),
           width: double.infinity,
           height: double.infinity,
-          child: PaneModelB(
-            childA: kRedBlock,
-            childB: kBlueBlock,
-          ),
+          child: Page3Content(),
+          color: Theme.of(ctx).colorScheme.surface.withOpacity(0.7),
         ),
     (ctx) => Container(
-        key: Key("page3"),
-        width: double.infinity,
-        height: double.infinity,
-        color: Colors.blue),
+          key: Key("page4"),
+          width: double.infinity,
+          height: double.infinity,
+          color: Theme.of(ctx).colorScheme.surface.withOpacity(0.7),
+        ),
     (ctx) => Container(
-        key: Key("page4"),
-        width: double.infinity,
-        height: double.infinity,
-        color: Colors.yellow),
-    (ctx) => Container(
-        key: Key("page5"),
-        width: double.infinity,
-        height: double.infinity,
-        color: Colors.orange),
+          key: Key("page5"),
+          width: double.infinity,
+          height: double.infinity,
+          color: Theme.of(ctx).colorScheme.surface.withOpacity(0.7),
+        ),
   ];
 
   @override

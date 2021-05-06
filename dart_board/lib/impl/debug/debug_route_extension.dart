@@ -11,8 +11,8 @@ class DebugRouteExtension implements DartBoardExtension {
   get pageDecorations => [];
 
   @override
-  get routes =>
-      <RouteDefinition>[]..addMap({"/debug": (context) => DebugScreen()});
+  get routes => <RouteDefinition>[]
+    ..addMap({"/debug": (context, settings) => DebugScreen()});
 }
 
 class DebugScreen extends StatelessWidget {
