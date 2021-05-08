@@ -2,7 +2,7 @@ import 'package:dart_board_interface/dart_board_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class ThemeExtension implements DartBoardExtension {
+class ThemeExtension extends DartBoardExtension {
   @override
   get pageDecorations => [
         (context, child) => Consumer<ThemeState>(
@@ -25,6 +25,9 @@ class ThemeExtension implements DartBoardExtension {
         (context, child) => ChangeNotifierProvider<ThemeState>(
             create: (ctx) => ThemeState(), child: child)
       ];
+
+  @override
+  String get namespace => "ThemeChooser";
 }
 
 class ThemePage extends StatelessWidget {

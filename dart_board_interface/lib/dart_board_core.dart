@@ -16,4 +16,9 @@ abstract class DartBoardCore {
 
   static List<RouteDefinition> getRoutes() =>
       Provider.of<DartBoardCore>(dartBoardKey.currentContext).routes;
+
+  static DartBoardExtension findByName(String name) =>
+      Provider.of<DartBoardCore>(dartBoardKey.currentContext)
+          .extensions
+          .firstWhere((element) => element.namespace == name);
 }

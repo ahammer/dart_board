@@ -10,7 +10,11 @@ typedef RouteWidgetBuilder(BuildContext context, RouteSettings settings);
 /// An extension class
 /// Extensions are hooked up VIA RPC
 /// Core Extension's are extensions that are available on the classpath
-abstract class DartBoardExtension {
+abstract class DartBoardExtension<T> {
+  /// A namespace to prefix to reference this extension by
+  /// Please make it unique
+  String get namespace;
+
   /// The route definitions
   List<RouteDefinition> get routes => [];
 
@@ -19,6 +23,8 @@ abstract class DartBoardExtension {
 
   /// The page decorations (page level)
   List<WidgetWithChildBuilder> get pageDecorations => [];
+
+  List<DartBoardExtension> get dependencies => [];
 }
 
 abstract class RouteDefinition {

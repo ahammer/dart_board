@@ -275,21 +275,20 @@ class SystemChartPainter extends CustomPainter {
 class WelcomeToAbout extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.all(32.0),
+        padding: const EdgeInsets.all(64.0),
         child: FittedBox(
           child: EasyRichText("""
-About Dart Board
+Dart Board
 
-1) Basics
-2) Entry Point
-3) Extensions
-4) App Design
-5) Extension Design""",
-              textAlign: TextAlign.center,
+Basics
+Entry Point
+Extensions
+App Design
+Extension Design""",
+              textAlign: TextAlign.left,
               patternList: <String, TextStyle>{
-                "About Dart Board": kHeaderStyle.copyWith(
+                "Dart Board": kHeaderStyle.copyWith(
                     fontSize: 30, decoration: TextDecoration.underline),
-                "Dart Board": kHighlightStyle,
                 "app": kHighlightStyle,
                 "framework": kHighlightStyle,
                 "extension": kHighlightStyle,
@@ -399,7 +398,13 @@ const kHeaderStyle = TextStyle(
 );
 const kHighlightStyle = TextStyle(fontStyle: FontStyle.italic);
 
-getCodeTheme(BuildContext context) =>
-    (Theme.of(context).brightness == Brightness.dark)
-        ? SyntaxTheme.vscodeDark()
-        : SyntaxTheme.vscodeLight();
+getCodeTheme(BuildContext context) => SyntaxTheme.dracula()
+  ..commentStyle = Theme.of(context).textTheme.bodyText1.copyWith(
+      fontWeight: FontWeight.bold,
+      fontStyle: FontStyle.italic,
+      decoration: TextDecoration.underline,
+      decorationThickness: 2,
+      shadows: [
+        BoxShadow(color: Colors.black, blurRadius: 8, offset: Offset(4, 4)),
+      ],
+      color: Colors.lightBlue);

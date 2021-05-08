@@ -40,25 +40,30 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
   List<RouteDefinition> routes;
   List<WidgetWithChildBuilder> pageDecorations;
   List<WidgetWithChildBuilder> appDecorations;
+  List<DartBoardExtension> get allExtensions {
+    final result = <DartBoardExtension>[];
+    addAllChildren(result, widget.extensions);
+    return result;
+  }
 
   @override
   void initState() {
     super.initState();
 
     /// We pull out Routes and PageDecorations from the route
-    routes = widget.extensions.fold(
+    routes = allExtensions.fold(
         <RouteDefinition>[],
         (previousValue, element) =>
             <RouteDefinition>[...previousValue, ...element.routes]);
 
-    pageDecorations = widget.extensions.fold(
+    pageDecorations = allExtensions.fold(
         <WidgetWithChildBuilder>[],
         (previousValue, element) => <WidgetWithChildBuilder>[
               ...previousValue,
               ...element.pageDecorations
             ]);
 
-    appDecorations = widget.extensions.fold(
+    appDecorations = allExtensions.fold(
         <WidgetWithChildBuilder>[],
         (previousValue, element) => <WidgetWithChildBuilder>[
               ...previousValue,
@@ -97,6 +102,17 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
 
   @override
   List<DartBoardExtension> get extensions => widget.extensions;
+
+  /// Walks the Extension tree and registers
+  void addAllChildren(
+      List<DartBoardExtension> result, List<DartBoardExtension> extensions) {
+    extensions.forEach((element) {
+      addAllChildren(result, element.dependencies);
+      if (!result.contains(element)) {
+        result.add(element);
+      }
+    });
+  }
 }
 
 /// This class can apply the page decorations.
