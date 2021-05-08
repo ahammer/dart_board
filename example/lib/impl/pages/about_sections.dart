@@ -272,6 +272,35 @@ class SystemChartPainter extends CustomPainter {
   bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
 }
 
+class WelcomeToAbout extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.all(32.0),
+        child: FittedBox(
+          child: EasyRichText("""
+About Dart Board
+
+1) Basics
+2) Entry Point
+3) Extensions
+4) App Design
+5) Extension Design""",
+              textAlign: TextAlign.center,
+              patternList: <String, TextStyle>{
+                "About Dart Board": kHeaderStyle.copyWith(
+                    fontSize: 30, decoration: TextDecoration.underline),
+                "Dart Board": kHighlightStyle,
+                "app": kHighlightStyle,
+                "framework": kHighlightStyle,
+                "extension": kHighlightStyle,
+                "based": kHighlightStyle,
+                "Extensions used in this Example": kHeaderStyle,
+              }.collect<EasyRichTextPattern>((key, value) =>
+                  EasyRichTextPattern(targetString: key, style: value))),
+        ),
+      );
+}
+
 class AboutTextWidget extends StatelessWidget {
   const AboutTextWidget({
     Key key,

@@ -30,6 +30,13 @@ class _AboutGalleryState extends State<AboutGallery> {
   int page = 0;
   List<WidgetBuilder> pageBuilders = [
     (ctx) => Container(
+          key: Key("intro"),
+          width: double.infinity,
+          height: double.infinity,
+          color: Theme.of(ctx).colorScheme.surface.withOpacity(0.7),
+          child: WelcomeToAbout(),
+        ),
+    (ctx) => Container(
           key: Key("page1"),
           width: double.infinity,
           height: double.infinity,
