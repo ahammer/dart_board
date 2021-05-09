@@ -1,4 +1,4 @@
-import 'package:dart_board/impl/widgets/dart_board_nav_drawer.dart';
+import 'package:example/impl/dart_board_nav_drawer.dart';
 import 'package:flutter/material.dart';
 
 class ScaffoldWithDrawerDecoration extends StatelessWidget {
