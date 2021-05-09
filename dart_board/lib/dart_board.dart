@@ -9,6 +9,7 @@ import 'package:logging/logging.dart';
 import 'impl/widgets/route_not_found.dart';
 
 final Logger log = Logger("DartBoard");
+GlobalKey<_DartBoardState> dartBoardKey = GlobalKey();
 
 /// The Dart Board Entry Point
 ///
@@ -118,6 +119,10 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
       }
     });
   }
+
+  @override
+  Widget applyPageDecorations(Widget child) =>
+      ApplyDecorations(decorations: pageDecorations, child: child);
 }
 
 /// This class can apply the page decorations.

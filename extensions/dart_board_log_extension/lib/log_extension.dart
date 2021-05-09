@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:dart_board_interface/dart_board_core.dart';
 import 'package:dart_board_interface/dart_board_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -65,9 +66,9 @@ class LogWrapper extends StatelessWidget {
                 Navigator.of(context).push(PageRouteBuilder(
                   opaque: false,
                   pageBuilder: (context, animation, secondaryAnimation) =>
-                      FullScreenLog(
+                      DartBoardCore.decoratePage(FullScreenLog(
                     fontSize: fontSize,
-                  ),
+                  )),
                   transitionsBuilder:
                       (context, animation, secondaryAnimation, child) {
                     var begin = Offset(0.0, 1.0);

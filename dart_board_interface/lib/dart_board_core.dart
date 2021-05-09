@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 /// Communicates with Core. For extensions
-GlobalKey dartBoardKey = GlobalKey();
 GlobalKey<NavigatorState> dartBoardNavKey = GlobalKey();
 
 /// Shortcuts into DartBoard
@@ -11,14 +10,20 @@ abstract class DartBoardCore {
   List<DartBoardExtension> get extensions;
   List<RouteDefinition> get routes;
 
+  Widget applyPageDecorations(Widget child);
+
+  static Widget decoratePage(Widget child) =>
+      Provider.of<DartBoardCore>(dartBoardNavKey.currentContext)
+          .applyPageDecorations(child);
+
   static List<DartBoardExtension> getExtensions() =>
-      Provider.of<DartBoardCore>(dartBoardKey.currentContext).extensions;
+      Provider.of<DartBoardCore>(dartBoardNavKey.currentContext).extensions;
 
   static List<RouteDefinition> getRoutes() =>
-      Provider.of<DartBoardCore>(dartBoardKey.currentContext).routes;
+      Provider.of<DartBoardCore>(dartBoardNavKey.currentContext).routes;
 
   static DartBoardExtension findByName(String name) =>
-      Provider.of<DartBoardCore>(dartBoardKey.currentContext)
+      Provider.of<DartBoardCore>(dartBoardNavKey.currentContext)
           .extensions
           .firstWhere((element) => element.namespace == name);
 }
