@@ -10,7 +10,7 @@ import 'impl/decorations/scaffold_appbar_decoration.dart';
 import 'impl/pages/about.dart';
 
 /// The Example Extension
-class ExampleExtension implements DartBoardExtension {
+class ExampleExtension extends DartBoardExtension {
   @override
   get routes => <RouteDefinition>[]..addMap({
       "/": (ctx, settings) => HomePage(),
@@ -42,5 +42,5 @@ class ExampleExtension implements DartBoardExtension {
       [ThemeExtension(), DebugRouteExtension(), LogExtension()];
 
   @override
-  String get namespace => "example";
+  get namespace => "Example";
 }

@@ -25,6 +25,9 @@ abstract class DartBoardExtension<T> {
   List<WidgetWithChildBuilder> get pageDecorations => [];
 
   List<DartBoardExtension> get dependencies => [];
+
+  @override
+  String toString() => namespace;
 }
 
 abstract class RouteDefinition {
