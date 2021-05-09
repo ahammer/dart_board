@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 /// This Extension is meant to expose the /Debug route,
 /// that should expose information about the extensions
-class DebugRouteExtension extends DartBoardExtension {
+class DebugExtension extends DartBoardExtension {
   @override
   get appDecorations => [];
 

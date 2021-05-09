@@ -32,8 +32,8 @@ class _AnimatedBackgroundDecorationState
 
   @override
   void dispose() {
-    super.dispose();
     animation.dispose();
+    super.dispose();
   }
 
   @override

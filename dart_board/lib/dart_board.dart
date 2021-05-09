@@ -21,7 +21,13 @@ GlobalKey<_DartBoardState> dartBoardKey = GlobalKey();
 ///
 class DartBoard extends StatefulWidget {
   /// These are the extensions we'll load
+
   final List<DartBoardExtension> extensions;
+
+  /// Blacklist in the format of
+  /// "YourExtension:Decoration"
+  final Map<String, String> pageDecorationBlacklist;
+
   final Widget pageNotFoundWidget;
   final String initialRoute;
 
@@ -29,7 +35,8 @@ class DartBoard extends StatefulWidget {
       {Key key,
       this.extensions,
       this.pageNotFoundWidget = const RouteNotFound(),
-      @required this.initialRoute})
+      @required this.initialRoute,
+      this.pageDecorationBlacklist = const {}})
       : super(key: key);
 
   @override

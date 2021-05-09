@@ -1,4 +1,4 @@
-import 'package:dart_board/impl/debug/debug_route_extension.dart';
+import 'package:dart_board_debug_extension/debug_extension.dart';
 import 'package:dart_board_interface/dart_board_extension.dart';
 import 'package:dart_board_log_extension/log_extension.dart';
 import 'package:dart_board_theme_extension/theme_extension.dart';
@@ -46,7 +46,7 @@ class ExampleExtension extends DartBoardExtension {
 
   @override
   List<DartBoardExtension> get dependencies =>
-      [ThemeExtension(), DebugRouteExtension(), LogExtension()];
+      [ThemeExtension(), DebugExtension(), LogExtension()];
 
   @override
   get namespace => "Example";
