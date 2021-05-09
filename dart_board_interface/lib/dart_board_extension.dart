@@ -1,11 +1,49 @@
 import 'package:flutter/widgets.dart';
 
-/// Used to "inject" widgets into the tree.
-/// We inject right above/below the nav. E.g. App/Page scope
+/// Dart Board Extension and Related interfaces.
 ///
-/// It is used for the appDecorations and pageDecorations.
+/// This interface is the preferable way to create Extension's for
+/// the Dart-Board framework.
+///
+/// This API will remain frozen between major versions
+/// It should provide all the basics for interacting with the framework.
+/// The stability of this API should ensure the stability of extensions
+/// targeting the platform.
+///
+/// It's suggested that when developing an extension, that you bring it into
+/// a "runner"/example project that can bring in DartBoard and include it in the main()
+
+/// Builds a widget with a predetermined child
+/// Used by App/Page decorators.
 typedef Widget WidgetWithChildBuilder(BuildContext context, Widget child);
-typedef RouteWidgetBuilder(BuildContext context, RouteSettings settings);
+
+/// Builds a widget for a route
+typedef Widget RouteWidgetBuilder(BuildContext context, RouteSettings settings);
+
+/// Function to applies to a route
+typedef bool IsValidForRoute(BuildContext context);
+
+bool _alwaysApply(BuildContext context) => true;
+
+///
+/// This specifies a Page Decoration from an extension
+///
+/// It comes with methods to decide if it should apply or not.
+/// and a name so it can be shown in the debug tools
+/// or referenced in allow/deny lists.
+class PageDecoration {
+  final String name;
+  final WidgetWithChildBuilder decoration;
+  final IsValidForRoute isValidForRoute;
+
+  PageDecoration(
+      {@required this.name,
+      @required this.decoration,
+      this.isValidForRoute = _alwaysApply});
+
+  @override
+  String toString() => name;
+}
 
 /// An extension class
 /// Extensions are hooked up VIA RPC
@@ -22,7 +60,7 @@ abstract class DartBoardExtension<T> {
   List<WidgetWithChildBuilder> get appDecorations => [];
 
   /// The page decorations (page level)
-  List<WidgetWithChildBuilder> get pageDecorations => [];
+  List<PageDecoration> get pageDecorations => [];
 
   List<DartBoardExtension> get dependencies => [];
 

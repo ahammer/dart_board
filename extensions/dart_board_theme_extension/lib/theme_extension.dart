@@ -5,12 +5,14 @@ import 'package:provider/provider.dart';
 class ThemeExtension extends DartBoardExtension {
   @override
   get pageDecorations => [
-        (context, child) => Consumer<ThemeState>(
-              child: child,
-              builder: (ctx, val, child) => Theme(
+        PageDecoration(
+            name: "Theme Applicator",
+            decoration: (context, child) => Consumer<ThemeState>(
                   child: child,
-                  data: val.isLight ? ThemeData.light() : ThemeData.dark()),
-            ),
+                  builder: (ctx, val, child) => Theme(
+                      child: child,
+                      data: val.isLight ? ThemeData.light() : ThemeData.dark()),
+                )),
       ];
 
   @override

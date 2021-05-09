@@ -19,18 +19,25 @@ class ExampleExtension extends DartBoardExtension {
 
   /// These are page-scoped decorations
   @override
-  get pageDecorations => <WidgetWithChildBuilder>[
+  get pageDecorations => <PageDecoration>[
         /// The AppBar and Nav Drawer
-        (context, child) => ScaffoldWithDrawerDecoration(child: child),
+        PageDecoration(
+            name: "Scaffold+Drawer",
+            decoration: (context, child) =>
+                ScaffoldWithDrawerDecoration(child: child)),
 
         /// The border around the Body
-        (context, child) => DarkColorBorder(child: child),
+        PageDecoration(
+            name: "Page Border",
+            decoration: (context, child) => DarkColorBorder(child: child)),
 
         /// The animated background effect
-        (context, child) => AnimatedBackgroundDecoration(
-              color: Theme.of(context).accentColor,
-              child: child,
-            )
+        PageDecoration(
+            name: "Animated Background",
+            decoration: (context, child) => AnimatedBackgroundDecoration(
+                  color: Theme.of(context).accentColor,
+                  child: child,
+                ))
       ];
 
   /// These are app-level decorations (not needed here)

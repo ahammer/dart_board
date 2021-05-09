@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:logging/logging.dart';
 
+const kLogBreakoutScreenName = "LogBreakoutScreen";
+
 ///
 /// LogExtension
 ///
@@ -34,7 +36,12 @@ class LogExtension extends DartBoardExtension {
   }
   @override
   get pageDecorations => [
-        (context, child) => LogWrapper(child: child, fontSize: fontSize),
+        PageDecoration(
+            name: "LogWrapper",
+            isValidForRoute: (ctx) =>
+                ModalRoute.of(ctx)?.settings?.name != kLogBreakoutScreenName,
+            decoration: (context, child) =>
+                LogWrapper(child: child, fontSize: fontSize)),
       ];
 
   @override
@@ -65,6 +72,9 @@ class LogWrapper extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).push(PageRouteBuilder(
                   opaque: false,
+
+                  /// We pass a name so we can exclude the debug-log frame
+                  settings: RouteSettings(name: kLogBreakoutScreenName),
                   pageBuilder: (context, animation, secondaryAnimation) =>
                       DartBoardCore.decoratePage(FullScreenLog(
                     fontSize: fontSize,

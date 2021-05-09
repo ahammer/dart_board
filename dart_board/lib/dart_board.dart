@@ -42,7 +42,7 @@ class DartBoard extends StatefulWidget {
 /// Then we build the MaterialApp()
 class _DartBoardState extends State<DartBoard> implements DartBoardCore {
   List<RouteDefinition> routes;
-  List<WidgetWithChildBuilder> pageDecorations;
+  List<PageDecoration> pageDecorations;
   List<WidgetWithChildBuilder> appDecorations;
   List<DartBoardExtension> get allExtensions {
     final result = <DartBoardExtension>[];
@@ -63,11 +63,9 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
             <RouteDefinition>[...previousValue, ...element.routes]);
 
     pageDecorations = extensions.fold(
-        <WidgetWithChildBuilder>[],
-        (previousValue, element) => <WidgetWithChildBuilder>[
-              ...previousValue,
-              ...element.pageDecorations
-            ]);
+        <PageDecoration>[],
+        (previousValue, element) =>
+            <PageDecoration>[...previousValue, ...element.pageDecorations]);
 
     appDecorations = extensions.fold(
         <WidgetWithChildBuilder>[],
@@ -97,7 +95,7 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
   /// It'll also wrap a route with any decorations
   Route onGenerateRoute(RouteSettings settings) => MaterialPageRoute(
       settings: settings,
-      builder: (ctx) => ApplyDecorations(
+      builder: (ctx) => ApplyPageDecorations(
           decorations: pageDecorations,
           child: routes
               .firstWhere((it) => it.matches(settings),
@@ -121,8 +119,11 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
   }
 
   @override
-  Widget applyPageDecorations(Widget child) =>
-      ApplyDecorations(decorations: pageDecorations, child: child);
+  Widget applyPageDecorations(Widget child, {RouteSettings settings}) =>
+      ApplyPageDecorations(
+        decorations: pageDecorations,
+        child: child,
+      );
 }
 
 /// This class can apply the page decorations.
@@ -139,4 +140,25 @@ class ApplyDecorations extends StatelessWidget {
   @override
   Widget build(BuildContext context) => decorations.reversed
       .fold(child, (previousValue, element) => element(context, previousValue));
+}
+
+/// This class can apply the page decorations.
+/// E.g. if you are navigating with a non-named route but want them.
+class ApplyPageDecorations extends StatelessWidget {
+  final Widget child;
+  final List<PageDecoration> decorations;
+  final RouteSettings settings;
+
+  const ApplyPageDecorations({
+    @required this.child,
+    @required this.decorations,
+    Key key,
+    this.settings,
+  }) : super(key: key);
+  @override
+  Widget build(BuildContext context) => decorations.reversed.fold(
+      child,
+      (previousValue, element) => element.isValidForRoute(context)
+          ? element.decoration(context, previousValue)
+          : previousValue);
 }
