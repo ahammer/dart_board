@@ -1,5 +1,6 @@
 import 'package:dart_board/impl/debug/debug_route_extension.dart';
 import 'package:dart_board_interface/dart_board_extension.dart';
+import 'package:dart_board_log_extension/log_extension.dart';
 import 'package:dart_board_theme_extension/theme_extension.dart';
 import 'package:example/impl/decorations/animated_background_decoration.dart';
 import 'package:example/impl/pages/home_page.dart';
@@ -38,7 +39,7 @@ class ExampleExtension implements DartBoardExtension {
 
   @override
   List<DartBoardExtension> get dependencies =>
-      [ThemeExtension(), DebugRouteExtension()];
+      [ThemeExtension(), DebugRouteExtension(), LogExtension()];
 
   @override
   String get namespace => "example";

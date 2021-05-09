@@ -1,6 +1,9 @@
 import 'package:example/impl/pages/about_sections.dart';
 import 'package:flutter/material.dart';
+import 'package:logging/logging.dart';
 import 'package:flutter_syntax_view/flutter_syntax_view.dart';
+
+final Logger log = Logger("About");
 
 class AboutPage extends StatelessWidget {
   @override
@@ -117,10 +120,12 @@ class _AboutGalleryState extends State<AboutGallery> {
 
   incrementPage() => setState(() {
         page--;
+        log.info("Going to page: $page");
         if (page < 0) page = 0;
       });
   decrementPage() => setState(() {
         page++;
+        log.info("Going to page: $page");
         if (page >= pageBuilders.length) page = pageBuilders.length - 1;
       });
 }

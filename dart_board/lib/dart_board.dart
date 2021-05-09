@@ -4,8 +4,11 @@ import 'package:dart_board_interface/dart_board_extension.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:logging/logging.dart';
 
 import 'impl/widgets/route_not_found.dart';
+
+final Logger log = Logger("DartBoard");
 
 /// The Dart Board Entry Point
 ///
@@ -51,19 +54,21 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
     super.initState();
 
     /// We pull out Routes and PageDecorations from the route
-    routes = allExtensions.fold(
+    final extensions = allExtensions;
+    log.info("Loading Extensions: $extensions");
+    routes = extensions.fold(
         <RouteDefinition>[],
         (previousValue, element) =>
             <RouteDefinition>[...previousValue, ...element.routes]);
 
-    pageDecorations = allExtensions.fold(
+    pageDecorations = extensions.fold(
         <WidgetWithChildBuilder>[],
         (previousValue, element) => <WidgetWithChildBuilder>[
               ...previousValue,
               ...element.pageDecorations
             ]);
 
-    appDecorations = allExtensions.fold(
+    appDecorations = extensions.fold(
         <WidgetWithChildBuilder>[],
         (previousValue, element) => <WidgetWithChildBuilder>[
               ...previousValue,
