@@ -16,7 +16,7 @@ class DebugExtension extends DartBoardExtension {
     ..addMap({"/debug": (context, settings) => DebugScreen()});
 
   @override
-  String get namespace => "Debug";
+  String get namespace => "debug";
 }
 
 class DebugScreen extends StatelessWidget {
@@ -56,15 +56,44 @@ class ExtensionList extends StatelessWidget {
             TableCell(child: TitleText("App Decorations")),
             TableCell(child: TitleText("Dependencies")),
           ]),
-          ...DartBoardCore.getExtensions().map((e) => TableRow(children: [
-                TableCell(child: CellText(e.namespace)),
-                TableCell(child: CellText("${e.routes.length}")),
-                TableCell(child: CellText("${e.pageDecorations.length}")),
-                TableCell(child: CellText("${e.appDecorations.length}")),
-                TableCell(child: CellText("${e.dependencies.length}"))
-              ]))
+          ...DartBoardCore.getExtensions().map((e) => TableRow(
+                  decoration: BoxDecoration(
+                      color: Theme.of(context)
+                          .colorScheme
+                          .surface
+                          .withOpacity(0.8),
+                      border: Border(
+                          bottom: BorderSide(width: 2, color: Colors.black12))),
+                  children: [
+                    TableCell(
+                        child: CellText(
+                      e.namespace,
+                      extension: e,
+                    )),
+                    TableCell(child: CellText("${e.routes}", extension: e)),
+                    TableCell(
+                        child: CellText(
+                            "${e.pageDecorations.map((e) => e.name)}",
+                            extension: e)),
+                    TableCell(
+                        child: CellText("${e.appDecorations.length}",
+                            extension: e)),
+                    TableCell(
+                        child: CellText("${e.dependencies}", extension: e))
+                  ]))
         ]);
   }
+}
+
+class ExtensionDetails extends StatelessWidget {
+  final DartBoardExtension extension;
+
+  const ExtensionDetails({Key key, @required this.extension}) : super(key: key);
+  @override
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.all(32.0),
+        child: Material(child: Text(extension.namespace)),
+      );
 }
 
 class TitleText extends StatelessWidget {
@@ -89,21 +118,22 @@ class TitleText extends StatelessWidget {
 }
 
 class CellText extends StatelessWidget {
+  final DartBoardExtension extension;
   final String text;
+
   const CellText(
     this.text, {
     Key key,
+    @required this.extension,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => TableRowInkWell(
-      onTap: () {},
-      child: Center(
+  Widget build(BuildContext context) => Center(
           child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Text(
           text,
           style: Theme.of(context).textTheme.bodyText1,
         ),
-      )));
+      ));
 }
