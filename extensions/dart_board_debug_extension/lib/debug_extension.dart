@@ -16,7 +16,7 @@ class DebugExtension extends DartBoardExtension {
     ..addMap({"/debug": (context, settings) => DebugScreen()});
 
   @override
-  String get namespace => "Debug Route Extension";
+  String get namespace => "Debug";
 }
 
 class DebugScreen extends StatelessWidget {

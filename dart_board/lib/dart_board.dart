@@ -50,6 +50,7 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
   List<RouteDefinition> routes;
   List<PageDecoration> pageDecorations;
   List<WidgetWithChildBuilder> appDecorations;
+
   List<DartBoardExtension> get allExtensions {
     final result = <DartBoardExtension>[];
     addAllChildren(result, widget.extensions);
@@ -111,7 +112,7 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
               ?.builder(ctx, settings)));
 
   @override
-  List<DartBoardExtension> get extensions => widget.extensions;
+  List<DartBoardExtension> get extensions => allExtensions;
 
   /// Walks the Extension tree and registers
   void addAllChildren(
