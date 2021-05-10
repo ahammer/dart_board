@@ -13,7 +13,7 @@ import 'impl/pages/about.dart';
 class ExampleExtension extends DartBoardExtension {
   @override
   get routes => <RouteDefinition>[]..addMap({
-      "/": (ctx, settings) => HomePage(),
+      "/home": (ctx, settings) => HomePage(),
       "/about": (ctx, settings) => AboutPage(),
     });
 
@@ -44,7 +44,7 @@ class ExampleExtension extends DartBoardExtension {
       [ThemeExtension(), DebugExtension(), LogExtension()];
 
   @override
-  get pageDecorationBlacklist => ["/log:scaffold_and_drawer"];
+  get pageDecorationDenyList => ["/log:scaffold_and_drawer"];
 
   @override
   get namespace => "example";

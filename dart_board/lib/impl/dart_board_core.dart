@@ -111,6 +111,7 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
 
   @override
   Widget buildPageRoute(BuildContext context, RouteSettings settings) {
+    log.info("Generating Route: ${settings.name}");
     return ApplyPageDecorations(
         denylist: pageDecorationDenyList,
         decorations: pageDecorations.where((decoration) {
@@ -185,9 +186,5 @@ class ApplyPageDecorations extends StatelessWidget {
   Widget build(BuildContext context) => decorations.reversed.fold(
       child,
       (previousValue, pageDecoration) =>
-          denylist.contains("${settings?.name}:${pageDecoration.name}")
-              ? child
-              : pageDecoration.isValidForRoute(context)
-                  ? pageDecoration.decoration(context, previousValue)
-                  : previousValue);
+          pageDecoration.decoration(context, previousValue));
 }

@@ -20,11 +20,6 @@ typedef Widget WidgetWithChildBuilder(BuildContext context, Widget child);
 /// Builds a widget for a route
 typedef Widget RouteWidgetBuilder(BuildContext context, RouteSettings settings);
 
-/// Function to applies to a route
-typedef bool IsValidForRoute(BuildContext context);
-
-bool _alwaysApply(BuildContext context) => true;
-
 ///
 /// This specifies a Page Decoration from an extension
 ///
@@ -34,12 +29,8 @@ bool _alwaysApply(BuildContext context) => true;
 class PageDecoration {
   final String name;
   final WidgetWithChildBuilder decoration;
-  final IsValidForRoute isValidForRoute;
 
-  PageDecoration(
-      {@required this.name,
-      @required this.decoration,
-      this.isValidForRoute = _alwaysApply});
+  PageDecoration({@required this.name, @required this.decoration});
 
   @override
   String toString() => name;
@@ -69,7 +60,7 @@ abstract class DartBoardExtension<T> {
   ///
   /// Useful when you don't want a decoration on a page
   /// Normally provided in the integration extension
-  List<String> get pageDecorationBlacklist => [];
+  List<String> get pageDecorationDenyList => [];
   @override
   String toString() => namespace;
 }

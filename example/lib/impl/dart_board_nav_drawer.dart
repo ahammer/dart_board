@@ -32,7 +32,7 @@ class DartBoardNavDrawer extends StatelessWidget {
               ),
             ),
           ),
-          ...DartBoardCore.getRoutes().map(
+          ...["/about", "/home", "/debug"].map(
             (e) => Padding(
               padding: const EdgeInsets.all(8.0),
               child: MaterialButton(

@@ -38,8 +38,6 @@ class LogExtension extends DartBoardExtension {
   get pageDecorations => [
         PageDecoration(
             name: "log_frame",
-            isValidForRoute: (ctx) =>
-                ModalRoute.of(ctx)?.settings?.name != kLogRoute,
             decoration: (context, child) =>
                 LogWrapper(child: child, fontSize: fontSize)),
       ];

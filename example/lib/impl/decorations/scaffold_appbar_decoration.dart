@@ -1,3 +1,4 @@
+import 'package:dart_board_theme_extension/theme_extension.dart';
 import 'package:example/impl/dart_board_nav_drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,13 @@ class ScaffoldWithDrawerDecoration extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
       drawer: DartBoardNavDrawer(),
-      appBar: AppBar(title: Text("Example App")),
+      appBar: AppBar(
+        title: Text("Example App"),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.lightbulb),
+              onPressed: () => ThemeExtension.toggle(context))
+        ],
+      ),
       body: child);
 }
