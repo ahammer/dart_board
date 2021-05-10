@@ -11,13 +11,12 @@ import 'impl/widgets/route_not_found.dart';
 final Logger log = Logger("DartBoard");
 GlobalKey<_DartBoardState> dartBoardKey = GlobalKey();
 
-/// The Dart Board Entry Point
+/// The Dart Board Kernel
 ///
-/// Give it a 404 Widget
-/// Give it Extensions
-/// Give it the InitialRoute
+/// It implements DartBoardCore from the interface
+/// and handles the entry point to your app.
 ///
-/// The kernel is designed to stay simple
+/// It'll enable support/integration of extensions
 ///
 class DartBoard extends StatefulWidget {
   /// These are the extensions we'll load

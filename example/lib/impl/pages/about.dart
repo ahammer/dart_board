@@ -7,18 +7,12 @@ final Logger log = Logger("About");
 class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Center(
-        child: Padding(
-          padding: const EdgeInsets.all(32.0),
-          child: AspectRatio(
-            aspectRatio: 1.0,
-            child: Card(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(32)),
-              elevation: 0.5,
-              color: Theme.of(context).colorScheme.surface.withOpacity(0.50),
-              child: AboutGallery(),
-            ),
-          ),
+        child: Card(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
+          elevation: 0.5,
+          color: Theme.of(context).colorScheme.surface.withOpacity(0.50),
+          child: AboutGallery(),
         ),
       );
 }
