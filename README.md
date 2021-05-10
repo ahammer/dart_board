@@ -19,18 +19,16 @@ We are just here to give you the hooks, and some basic framework extensions.
 
 # Goal
 
-The use-case of this is to create an "app" project, import the extensions you want and set up a runner. This can then be deployed on a variety of platforms (e.g. web/chrome/etc).
+The goal is to provide a framework for composite app-development and clean app structure.
 
-The idea is to provide a framdwork that can provide a ecosystem on top of pub that can be used to compose larger applications out of modules and a runner setup.
+Additionally, to easy integration of isolated components.
 
 # Features
 
 - Extensions Support
   - Routing
   - Decorations
-  - Services
-  - State
-
+    
 # Routing 
 
 The ability to find pages and move around.
@@ -39,14 +37,5 @@ Adding an extension should allow exposing new pages.
 
 # Decorations
 
-You want all your pages to share a nav/appbar? Put a fancy frame around them? Add debugging or development tools?
-
-Decorations allow you to globally inject widgets on all your navigation routes.
-
-# Services
-
-Occasionally you need long running services, the framework allows you to add new ones to your app.
-
-# State
-
-State "Holder" support.
+Page and App decorations provide a framework to compose a larger app and embed functionality
+at multiple scopes in your app.
