@@ -22,18 +22,13 @@ class ExampleExtension extends DartBoardExtension {
   get pageDecorations => <PageDecoration>[
         /// The AppBar and Nav Drawer
         PageDecoration(
-            name: "Scaffold+Drawer",
-            decoration: (context, child) =>
-                ScaffoldWithDrawerDecoration(child: child)),
-
-        /// The border around the Body
-        PageDecoration(
-            name: "Page Border",
-            decoration: (context, child) => DarkColorBorder(child: child)),
+            name: "scaffold_and_drawer",
+            decoration: (context, child) => ScaffoldWithDrawerDecoration(
+                child: DarkColorBorder(child: child))),
 
         /// The animated background effect
         PageDecoration(
-            name: "Animated Background",
+            name: "animated_background",
             decoration: (context, child) => AnimatedBackgroundDecoration(
                   color: Theme.of(context).accentColor,
                   child: child,
@@ -49,5 +44,8 @@ class ExampleExtension extends DartBoardExtension {
       [ThemeExtension(), DebugExtension(), LogExtension()];
 
   @override
-  get namespace => "Example";
+  get pageDecorationBlacklist => ["/log:scaffold_and_drawer"];
+
+  @override
+  get namespace => "example";
 }

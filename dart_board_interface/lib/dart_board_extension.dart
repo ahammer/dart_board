@@ -64,6 +64,12 @@ abstract class DartBoardExtension<T> {
 
   List<DartBoardExtension> get dependencies => [];
 
+  /// Blacklists for page decorations in the format
+  /// "/route:page_decoration_name"
+  ///
+  /// Useful when you don't want a decoration on a page
+  /// Normally provided in the integration extension
+  List<String> get pageDecorationBlacklist => [];
   @override
   String toString() => namespace;
 }

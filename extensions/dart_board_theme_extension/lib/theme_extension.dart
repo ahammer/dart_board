@@ -6,7 +6,7 @@ class ThemeExtension extends DartBoardExtension {
   @override
   get pageDecorations => [
         PageDecoration(
-            name: "Theme Applicator",
+            name: "theme_applicator",
             decoration: (context, child) => Consumer<ThemeState>(
                   child: child,
                   builder: (ctx, val, child) => Theme(
@@ -29,7 +29,7 @@ class ThemeExtension extends DartBoardExtension {
       ];
 
   @override
-  String get namespace => "ThemeChooser";
+  String get namespace => "theme";
 }
 
 class ThemePage extends StatelessWidget {

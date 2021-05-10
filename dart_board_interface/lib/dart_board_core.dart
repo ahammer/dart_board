@@ -9,8 +9,8 @@ GlobalKey<NavigatorState> dartBoardNavKey = GlobalKey();
 abstract class DartBoardCore {
   List<DartBoardExtension> get extensions;
   List<RouteDefinition> get routes;
-
   Widget applyPageDecorations(Widget child);
+  Widget buildPageRoute(BuildContext context, RouteSettings settings);
 
   static Widget decoratePage(Widget child, {RouteSettings settings}) =>
       Provider.of<DartBoardCore>(dartBoardNavKey.currentContext)

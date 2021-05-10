@@ -1,12 +1,12 @@
 import 'dart:ui';
 
-import 'package:dart_board_interface/dart_board_core.dart';
-import 'package:dart_board_interface/dart_board_extension.dart';
+import 'package:dart_board_interface/dart_board_interface.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:logging/logging.dart';
 
-const kLogBreakoutScreenName = "LogBreakoutScreen";
+const kLogRoute = "/log";
 
 ///
 /// LogExtension
@@ -37,15 +37,18 @@ class LogExtension extends DartBoardExtension {
   @override
   get pageDecorations => [
         PageDecoration(
-            name: "LogWrapper",
+            name: "log_frame",
             isValidForRoute: (ctx) =>
-                ModalRoute.of(ctx)?.settings?.name != kLogBreakoutScreenName,
+                ModalRoute.of(ctx)?.settings?.name != kLogRoute,
             decoration: (context, child) =>
                 LogWrapper(child: child, fontSize: fontSize)),
       ];
 
   @override
-  get routes => <RouteDefinition>[];
+  get routes => <RouteDefinition>[
+        NamedRouteDefinition(
+            route: kLogRoute, builder: (ctx, settings) => FullScreenLog())
+      ];
 
   /// Here we inject a Log-State into the App Scope
   @override
@@ -55,7 +58,7 @@ class LogExtension extends DartBoardExtension {
       ];
 
   @override
-  String get namespace => "Logging";
+  String get namespace => "logging";
 }
 
 class LogWrapper extends StatelessWidget {
@@ -74,11 +77,9 @@ class LogWrapper extends StatelessWidget {
                   opaque: false,
 
                   /// We pass a name so we can exclude the debug-log frame
-                  settings: RouteSettings(name: kLogBreakoutScreenName),
+                  settings: RouteSettings(name: kLogRoute),
                   pageBuilder: (context, animation, secondaryAnimation) =>
-                      DartBoardCore.decoratePage(FullScreenLog(
-                    fontSize: fontSize,
-                  )),
+                      RouteWidget(settings: RouteSettings(name: "/log")),
                   transitionsBuilder:
                       (context, animation, secondaryAnimation, child) {
                     var begin = Offset(0.0, 1.0);
