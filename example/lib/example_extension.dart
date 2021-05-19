@@ -1,3 +1,4 @@
+import 'package:dart_board/impl/dart_board_core.dart';
 import 'package:dart_board_debug_extension/debug_extension.dart';
 import 'package:dart_board_interface/dart_board_extension.dart';
 import 'package:dart_board_log_extension/log_extension.dart';
@@ -12,10 +13,16 @@ import 'impl/pages/about.dart';
 /// The Example Extension
 class ExampleExtension extends DartBoardExtension {
   @override
-  get routes => <RouteDefinition>[]..addMap({
-      "/home": (ctx, settings) => HomePage(),
-      "/about": (ctx, settings) => AboutPage(),
-    });
+  get routes => <RouteDefinition>[
+        NamedRouteDefinition(
+            routeCreator: kCupertinoRouteResolver,
+            route: "/home",
+            builder: (ctx, settings) => HomePage()),
+        NamedRouteDefinition(
+            routeCreator: kMaterialRouteResolver,
+            route: "/about",
+            builder: (ctx, settings) => AboutPage()),
+      ];
 
   /// These are page-scoped decorations
   @override

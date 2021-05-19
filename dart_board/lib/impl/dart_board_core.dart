@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dart_board_interface/dart_board_core.dart';
 import 'package:dart_board_interface/dart_board_extension.dart';
 
@@ -26,7 +28,8 @@ class DartBoard extends StatefulWidget {
   /// Deny List in the format of
   /// "YourExtension:Decoration"
   final Map<String, String> pageDecorationDenyList;
-
+  final Route Function(RouteSettings settings, WidgetBuilder builder)
+      pageRouteBuilder;
   final Widget pageNotFoundWidget;
   final String initialRoute;
 
@@ -35,7 +38,8 @@ class DartBoard extends StatefulWidget {
       this.extensions,
       this.pageNotFoundWidget = const RouteNotFound(),
       @required this.initialRoute,
-      this.pageDecorationDenyList = const {}})
+      this.pageDecorationDenyList = const {},
+      this.pageRouteBuilder = kCupertinoRouteResolver})
       : super(key: key);
 
   @override
@@ -86,6 +90,9 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
         <String>[],
         (previousValue, element) =>
             <String>[...previousValue, ...element.pageDecorationDenyList]);
+    Timer.run(() {
+      dartBoardNavKey.currentState.pushNamed(widget.initialRoute);
+    });
   }
 
   /// Simple build
@@ -93,9 +100,9 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
   Widget build(BuildContext context) => Provider<DartBoardCore>(
         create: (ctx) => this,
         child: MaterialApp(
+          home: Material(),
           key: dartBoardKey,
           navigatorKey: dartBoardNavKey,
-          initialRoute: widget.initialRoute,
           builder: (context, navigator) => appDecorations.reversed
               .fold(navigator, (child, element) => element(context, child)),
           onGenerateRoute: onGenerateRoute,
@@ -106,26 +113,26 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
   /// If it can't find, it falls back to route not found
   ///
   /// It'll also wrap a route with any decorations
-  Route onGenerateRoute(RouteSettings settings) => MaterialPageRoute(
-      settings: settings, builder: (ctx) => buildPageRoute(ctx, settings));
+  Route onGenerateRoute(RouteSettings settings) {
+    return widget.pageRouteBuilder(
+        settings, (ctx) => buildPageRoute(ctx, settings));
+  }
 
   @override
-  Widget buildPageRoute(BuildContext context, RouteSettings settings) {
-    log.info("Generating Route: ${settings.name}");
-    return ApplyPageDecorations(
-        denylist: pageDecorationDenyList,
-        decorations: pageDecorations.where((decoration) {
-          String route = settings.name;
-          String key = "$route:${decoration.name}";
-          return !pageDecorationDenyList.contains(key);
-        }).toList(),
-        child: routes
-            .firstWhere((it) => it.matches(settings),
-                orElse: () => NamedRouteDefinition(
-                    builder: (ctx, _) => widget.pageNotFoundWidget,
-                    route: '/404'))
-            ?.builder(context, settings));
-  }
+  Widget buildPageRoute(BuildContext context, RouteSettings settings) =>
+      ApplyPageDecorations(
+          denylist: pageDecorationDenyList,
+          decorations: pageDecorations.where((decoration) {
+            String route = settings.name;
+            String key = "$route:${decoration.name}";
+            return !pageDecorationDenyList.contains(key);
+          }).toList(),
+          child: routes
+              .firstWhere((it) => it.matches(settings),
+                  orElse: () => NamedRouteDefinition(
+                      builder: (ctx, _) => widget.pageNotFoundWidget,
+                      route: '/404'))
+              ?.builder(settings, context));
 
   @override
   List<DartBoardExtension> get extensions => allExtensions;
@@ -188,3 +195,14 @@ class ApplyPageDecorations extends StatelessWidget {
       (previousValue, pageDecoration) =>
           pageDecoration.decoration(context, previousValue));
 }
+
+/// Some Route Resolvers to use in your app
+/// These are page transition animations
+
+/// Material
+Route kMaterialRouteResolver(RouteSettings settings, WidgetBuilder builder) =>
+    MaterialPageRoute(builder: builder, settings: settings);
+
+/// Cupertino
+Route kCupertinoRouteResolver(RouteSettings settings, WidgetBuilder builder) =>
+    CupertinoPageRoute(builder: builder, settings: settings);

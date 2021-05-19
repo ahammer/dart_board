@@ -18,7 +18,7 @@ import 'package:flutter/widgets.dart';
 typedef Widget WidgetWithChildBuilder(BuildContext context, Widget child);
 
 /// Builds a widget for a route
-typedef Widget RouteWidgetBuilder(BuildContext context, RouteSettings settings);
+typedef Widget RouteWidgetBuilder(RouteSettings settings, BuildContext context);
 
 ///
 /// This specifies a Page Decoration from an extension
@@ -66,21 +66,36 @@ abstract class DartBoardExtension<T> {
 }
 
 abstract class RouteDefinition {
+  /// If this route definition matches a RouteSettings object
   bool matches(RouteSettings settings);
+
+  /// This is the builder for the content
   RouteWidgetBuilder get builder;
+
+  ///This is an optional RouteBuilder
+  Route routeBuilder(RouteSettings settings, WidgetBuilder builder);
 }
 
+/// This an implementation of the RouteDefinition class
+///
+/// Can be used for simple named routing
 class NamedRouteDefinition implements RouteDefinition {
   final String route;
   final RouteWidgetBuilder builder;
+  Route Function(RouteSettings settings, WidgetBuilder builder) routeCreator;
 
-  NamedRouteDefinition({@required this.route, @required this.builder});
+  NamedRouteDefinition(
+      {@required this.route, @required this.builder, this.routeCreator});
 
   @override
   bool matches(RouteSettings settings) => settings.name == route;
 
   @override
   String toString() => route;
+
+  @override
+  Route routeBuilder(RouteSettings settings, WidgetBuilder builder) =>
+      this.routeCreator?.call(settings, builder);
 }
 
 /// Syntactic Sugar
