@@ -3,6 +3,7 @@ import 'package:dart_board_theme/theme_feature.dart';
 import 'package:dart_board_debug/debug_feature.dart';
 import 'package:dart_board_log/log_feature.dart';
 import 'package:example/impl/decorations/animated_background_decoration.dart';
+import 'package:example/impl/pages/decorations.dart';
 import 'package:example/impl/pages/home_page.dart';
 import 'package:example/impl/routes/custom_routes.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,9 @@ class Examplefeature extends DartBoardFeature {
             route: '/about', builder: (ctx, settings) => AboutPage()),
         NamedRouteDefinition(
             route: '/features', builder: (ctx, settings) => FeaturesPage()),
+        NamedRouteDefinition(
+            route: '/decorations',
+            builder: (ctx, settings) => DecorationsPage()),
       ];
 
   /// These are page-scoped decorations
