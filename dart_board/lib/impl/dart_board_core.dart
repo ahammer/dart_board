@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:dart_board_interface/dart_board_core.dart';
-import 'package:dart_board_interface/dart_board_extension.dart';
+import 'package:dart_board_interface/dart_board_feature.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +23,7 @@ GlobalKey<_DartBoardState> dartBoardKey = GlobalKey();
 class DartBoard extends StatefulWidget {
   /// These are the extensions we'll load
 
-  final List<DartBoardExtension>? extensions;
+  final List<DartBoardFeature>? extensions;
 
   /// Deny List in the format of
   /// "YourExtension:Decoration"
@@ -59,8 +59,8 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
 
   List<String>? pageDecorationDenyList;
 
-  List<DartBoardExtension> get allExtensions {
-    final result = <DartBoardExtension>[];
+  List<DartBoardFeature> get allExtensions {
+    final result = <DartBoardFeature>[];
     addAllChildren(result, widget.extensions!);
     return result;
   }
@@ -140,11 +140,11 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
           child: route.builder(settings, context));
 
   @override
-  List<DartBoardExtension> get extensions => allExtensions;
+  List<DartBoardFeature> get extensions => allExtensions;
 
   /// Walks the Extension tree and registers
   void addAllChildren(
-      List<DartBoardExtension> result, List<DartBoardExtension> extensions) {
+      List<DartBoardFeature> result, List<DartBoardFeature> extensions) {
     extensions.forEach((element) {
       addAllChildren(result, element.dependencies);
       if (!result.contains(element)) {

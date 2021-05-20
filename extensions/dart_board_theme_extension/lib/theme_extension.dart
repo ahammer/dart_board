@@ -1,8 +1,8 @@
-import 'package:dart_board_interface/dart_board_extension.dart';
+import 'package:dart_board_interface/dart_board_feature.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class ThemeExtension extends DartBoardExtension {
+class ThemeExtension extends DartBoardFeature {
   @override
   List<PageDecoration> get pageDecorations => [
         PageDecoration(

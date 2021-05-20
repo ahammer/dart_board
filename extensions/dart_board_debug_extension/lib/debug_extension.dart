@@ -1,12 +1,12 @@
 import 'package:dart_board_interface/dart_board_core.dart';
-import 'package:dart_board_interface/dart_board_extension.dart';
+import 'package:dart_board_interface/dart_board_feature.dart';
 import 'package:flutter/material.dart';
 
 /// This Extension is meant to expose the /Debug route,
 ///
 /// It provides some information about the system
 /// This is a rough first draft.
-class DebugExtension extends DartBoardExtension {
+class DebugExtension extends DartBoardFeature {
   @override
   List<WidgetWithChildBuilder> get appDecorations => [];
 
@@ -89,7 +89,7 @@ class ExtensionList extends StatelessWidget {
 }
 
 class ExtensionDetails extends StatelessWidget {
-  final DartBoardExtension extension;
+  final DartBoardFeature extension;
 
   const ExtensionDetails({Key? key, required this.extension}) : super(key: key);
   @override
@@ -121,7 +121,7 @@ class TitleText extends StatelessWidget {
 }
 
 class CellText extends StatelessWidget {
-  final DartBoardExtension extension;
+  final DartBoardFeature extension;
   final String text;
 
   const CellText(

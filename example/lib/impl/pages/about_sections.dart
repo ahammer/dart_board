@@ -125,7 +125,7 @@ class Page3Content extends StatelessWidget {
         child: SyntaxView(
           code: '''
 /// The Example Extension
-class ExampleExtension implements DartBoardExtension {
+class ExampleExtension implements DartBoardFeature {
   @override
   get routes => <RouteDefinition>[]..addMap({
       /// Initial Route

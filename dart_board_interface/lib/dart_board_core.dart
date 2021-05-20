@@ -1,4 +1,4 @@
-import 'package:dart_board_interface/dart_board_extension.dart';
+import 'package:dart_board_interface/dart_board_feature.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -7,7 +7,7 @@ GlobalKey<NavigatorState> dartBoardNavKey = GlobalKey();
 
 /// Shortcuts into DartBoard
 abstract class DartBoardCore {
-  List<DartBoardExtension> get extensions;
+  List<DartBoardFeature> get extensions;
   List<RouteDefinition> get routes;
 
   /// Apply the page decorations manually to a widget
@@ -23,13 +23,13 @@ abstract class DartBoardCore {
           .applyPageDecorations(child);
 
   /// Helper to get a list of the extensions
-  static List<DartBoardExtension> getExtensions() =>
+  static List<DartBoardFeature> getExtensions() =>
       Provider.of<DartBoardCore>(dartBoardNavKey.currentContext!).extensions;
 
   /// Helper to find an extension by name
-  static DartBoardExtension findByName(String name) =>
+  static DartBoardFeature findByName(String name) =>
       Provider.of<DartBoardCore>(dartBoardNavKey.currentContext!)
           .extensions
           .firstWhere((element) => element.namespace == name,
-              orElse: () => EmptyDartBoardExtension());
+              orElse: () => EmptyDartBoardFeature());
 }

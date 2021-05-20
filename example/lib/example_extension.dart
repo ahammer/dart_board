@@ -1,6 +1,6 @@
 import 'package:dart_board/impl/dart_board_core.dart';
 import 'package:dart_board_debug_extension/debug_extension.dart';
-import 'package:dart_board_interface/dart_board_extension.dart';
+import 'package:dart_board_interface/dart_board_feature.dart';
 import 'package:dart_board_log_extension/log_extension.dart';
 import 'package:dart_board_theme_extension/theme_extension.dart';
 import 'package:example/impl/decorations/animated_background_decoration.dart';
@@ -12,7 +12,7 @@ import 'impl/decorations/scaffold_appbar_decoration.dart';
 import 'impl/pages/about.dart';
 
 /// The Example Extension
-class ExampleExtension extends DartBoardExtension {
+class ExampleExtension extends DartBoardFeature {
   @override
   List<RouteDefinition> get routes => <RouteDefinition>[
         NamedRouteDefinition(
@@ -46,7 +46,7 @@ class ExampleExtension extends DartBoardExtension {
   List<WidgetWithChildBuilder> get appDecorations => [];
 
   @override
-  List<DartBoardExtension> get dependencies =>
+  List<DartBoardFeature> get dependencies =>
       [ThemeExtension(), DebugExtension(), LogExtension()];
 
   @override

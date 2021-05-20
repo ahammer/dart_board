@@ -44,7 +44,7 @@ class PageDecoration {
 /// An extension class
 /// Extensions are hooked up VIA RPC
 /// Core Extension's are extensions that are available on the classpath
-abstract class DartBoardExtension<T> {
+abstract class DartBoardFeature<T> {
   /// A namespace to prefix to reference this extension by
   /// Please make it unique
   String get namespace;
@@ -58,7 +58,7 @@ abstract class DartBoardExtension<T> {
   /// The page decorations (page level)
   List<PageDecoration> get pageDecorations => [];
 
-  List<DartBoardExtension> get dependencies => [];
+  List<DartBoardFeature> get dependencies => [];
 
   /// Blacklists for page decorations in the format
   /// "/route:page_decoration_name"
@@ -104,7 +104,7 @@ class NamedRouteDefinition implements RouteDefinition {
 }
 
 /// An empty extension to use as a default if an extension can't be found
-class EmptyDartBoardExtension extends DartBoardExtension {
+class EmptyDartBoardFeature extends DartBoardFeature {
   @override
   String get namespace => 'EmptyExtension';
 }
