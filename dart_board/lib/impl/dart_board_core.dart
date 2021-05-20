@@ -29,7 +29,7 @@ class DartBoard extends StatefulWidget {
   /// "Yourfeature:Decoration"
   final Map<String, String> pageDecorationDenyList;
   final Route Function(RouteSettings settings, WidgetBuilder builder)
-      pageRouteBuilder;
+      routeBuilder;
   final Widget pageNotFoundWidget;
   final String initialRoute;
 
@@ -39,7 +39,7 @@ class DartBoard extends StatefulWidget {
       this.pageNotFoundWidget = const RouteNotFound(),
       required this.initialRoute,
       this.pageDecorationDenyList = const {},
-      this.pageRouteBuilder = kCupertinoRouteResolver})
+      this.routeBuilder = kCupertinoRouteResolver})
       : super(key: key);
 
   @override
@@ -124,7 +124,7 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
       return definition.routeBuilder!(
           settings, (ctx) => buildPageRoute(ctx, settings, definition));
     }
-    return widget.pageRouteBuilder(
+    return widget.routeBuilder(
         settings, (ctx) => buildPageRoute(ctx, settings, definition));
   }
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 /// Material
-Route kCustomRoute(RouteSettings settings, WidgetBuilder builder) =>
+Route kFadeRouteBuilder(RouteSettings settings, WidgetBuilder builder) =>
     PageRouteBuilder(
       settings: settings,
       pageBuilder: (context, animation, secondaryAnimation) => builder(context),

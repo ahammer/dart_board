@@ -11,9 +11,24 @@ import 'impl/decorations/color_border_decoration.dart';
 import 'impl/decorations/scaffold_appbar_decoration.dart';
 import 'impl/pages/about.dart';
 import 'impl/pages/features.dart';
+import 'impl/pages/haiku_and_code.dart';
 
-/// The Example feature
-class Examplefeature extends DartBoardFeature {
+/// The Example Feature
+///
+/// A feature is a set of capabilities you would like to add to an app.
+/// For this example, we re going to provide a few things.
+///
+/// 1) Routes
+/// 2) Page Decorations and Config
+/// 3) Feature Dependencies
+class ExampleFeature extends DartBoardFeature {
+  /// These are the Routes were are going to Provide.
+  ///
+  /// We can use the NamedRouteDefinition() to provide
+  /// simple named routes
+  ///
+  /// We can also apply custom route builders, e.g. the Spin
+  /// applied to the /home route
   @override
   List<RouteDefinition> get routes => <RouteDefinition>[
         NamedRouteDefinition(
@@ -27,6 +42,11 @@ class Examplefeature extends DartBoardFeature {
         NamedRouteDefinition(
             route: '/decorations',
             builder: (ctx, settings) => DecorationsPage()),
+        NamedRouteDefinition(
+            route: '/routing',
+            builder: (ctx, settings) => HaikuAndCode(
+                  haiku: 'asddsadsa',
+                ))
       ];
 
   /// These are page-scoped decorations
@@ -46,10 +66,6 @@ class Examplefeature extends DartBoardFeature {
                   child: child,
                 ))
       ];
-
-  /// These are app-level decorations (not needed here)
-  @override
-  List<WidgetWithChildBuilder> get appDecorations => [];
 
   @override
   List<DartBoardFeature> get dependencies =>

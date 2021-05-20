@@ -4,12 +4,15 @@ import 'package:flutter/material.dart';
 
 import 'example_feature.dart';
 
-/// This is the entry point, isn't it clean?
+/// This is the entry point. We don't want to pollute
+/// the main with much.
+///
+/// Treat this as a configuration file
 ///
 /// A bit about what is going on here
 ///
-/// 1) We are starting with a DartBoardWidget
-/// 2) We are adding our integration extension
+/// 1) We are starting with a DartBoard Widget
+/// 2) We are adding our integration feature
 /// 3) We are setting an initial route (/home)
 /// 4) We are setting a default "fade" transition for navigation
 ///
