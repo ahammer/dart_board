@@ -38,7 +38,7 @@ class DebugPanel extends StatelessWidget {
   final String title;
   final Widget child;
 
-  const DebugPanel({@required this.title, @required this.child, Key key})
+  const DebugPanel({required this.title, required this.child, Key? key})
       : super(key: key);
 
   @override
@@ -89,7 +89,7 @@ class ExtensionList extends StatelessWidget {
 class ExtensionDetails extends StatelessWidget {
   final DartBoardExtension extension;
 
-  const ExtensionDetails({Key key, @required this.extension}) : super(key: key);
+  const ExtensionDetails({Key? key, required this.extension}) : super(key: key);
   @override
   Widget build(BuildContext context) => Padding(
         padding: const EdgeInsets.all(32.0),
@@ -101,7 +101,7 @@ class TitleText extends StatelessWidget {
   final String text;
   const TitleText(
     this.text, {
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -112,7 +112,7 @@ class TitleText extends StatelessWidget {
           text,
           style: Theme.of(context)
               .textTheme
-              .headline5
+              .headline5!
               .copyWith(fontWeight: FontWeight.bold),
         ),
       ));
@@ -124,8 +124,8 @@ class CellText extends StatelessWidget {
 
   const CellText(
     this.text, {
-    Key key,
-    @required this.extension,
+    Key? key,
+    required this.extension,
   }) : super(key: key);
 
   @override

@@ -10,7 +10,7 @@ class ThemeExtension extends DartBoardExtension {
             decoration: (context, child) => Consumer<ThemeState>(
                   child: child,
                   builder: (ctx, val, child) => Theme(
-                      child: child,
+                      child: child!,
                       data: val.isLight ? ThemeData.light() : ThemeData.dark()),
                 )),
       ];
@@ -34,7 +34,7 @@ class ThemeExtension extends DartBoardExtension {
 
 class ThemePage extends StatelessWidget {
   const ThemePage({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

@@ -60,14 +60,14 @@ class LogExtension extends DartBoardExtension {
 }
 
 class LogWrapper extends StatelessWidget {
-  final Widget child;
-  final double fontSize;
+  final Widget? child;
+  final double? fontSize;
 
-  const LogWrapper({Key key, this.child, this.fontSize}) : super(key: key);
+  const LogWrapper({Key? key, this.child, this.fontSize}) : super(key: key);
   @override
   Widget build(BuildContext context) => Column(
         children: [
-          Expanded(child: child),
+          Expanded(child: child!),
           MaterialButton(
               color: Theme.of(context).colorScheme.surface,
               onPressed: () {
@@ -120,10 +120,10 @@ class LogWrapper extends StatelessWidget {
 }
 
 class FullScreenLog extends StatelessWidget {
-  final double fontSize;
+  final double? fontSize;
 
   const FullScreenLog({
-    Key key,
+    Key? key,
     this.fontSize,
   }) : super(key: key);
 
@@ -160,11 +160,11 @@ class FullScreenLog extends StatelessWidget {
 }
 
 class LogMessageWidget extends StatelessWidget {
-  final LogRecord record;
-  final double fontSize;
+  final LogRecord? record;
+  final double? fontSize;
 
   const LogMessageWidget({
-    Key key,
+    Key? key,
     this.record,
     this.fontSize,
   }) : super(key: key);
@@ -175,22 +175,22 @@ class LogMessageWidget extends StatelessWidget {
     return Row(
       children: [
         Text(
-          "${record.time.hour}:${record.time.minute}:${record.time.second}",
-          style: textTheme.bodyText1.copyWith(
+          "${record!.time.hour}:${record!.time.minute}:${record!.time.second}",
+          style: textTheme.bodyText1!.copyWith(
             fontSize: fontSize,
           ),
         ),
         Container(width: 20),
         Text(
-          record.loggerName,
-          style: textTheme.bodyText1
+          record!.loggerName,
+          style: textTheme.bodyText1!
               .copyWith(fontWeight: FontWeight.bold, fontSize: fontSize),
         ),
         Container(width: 20),
         Expanded(
             child: Text(
-          record.message,
-          style: textTheme.bodyText1.copyWith(
+          record!.message,
+          style: textTheme.bodyText1!.copyWith(
             fontSize: fontSize,
           ),
         )),
