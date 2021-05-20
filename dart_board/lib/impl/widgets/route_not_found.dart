@@ -10,6 +10,6 @@ class RouteNotFound extends StatelessWidget {
           child: Card(
               child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Text("404 Not Found\n${ModalRoute.of(context)!.settings.name}"),
+        child: Text('404 Not Found\n${ModalRoute.of(context)!.settings.name}'),
       )));
 }

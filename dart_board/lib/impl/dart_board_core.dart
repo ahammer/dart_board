@@ -10,7 +10,7 @@ import 'package:logging/logging.dart';
 
 import 'widgets/route_not_found.dart';
 
-final Logger log = Logger("DartBoard");
+final Logger log = Logger('DartBoard');
 GlobalKey<_DartBoardState> dartBoardKey = GlobalKey();
 
 /// The Dart Board Kernel
@@ -51,9 +51,12 @@ class DartBoard extends StatefulWidget {
 /// We also unwrap the decorations
 /// Then we build the MaterialApp()
 class _DartBoardState extends State<DartBoard> implements DartBoardCore {
+  @override
   late List<RouteDefinition> routes;
-  List<PageDecoration>? pageDecorations;
+
+  late List<PageDecoration> pageDecorations;
   late List<WidgetWithChildBuilder> appDecorations;
+
   List<String>? pageDecorationDenyList;
 
   List<DartBoardExtension> get allExtensions {
@@ -68,7 +71,7 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
 
     /// We pull out Routes and PageDecorations from the route
     final extensions = allExtensions;
-    log.info("Loading Extensions: $extensions");
+    log.info('Loading Extensions: $extensions');
     routes = extensions.fold(
         <RouteDefinition>[],
         (previousValue, element) =>
@@ -130,11 +133,10 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
           RouteDefinition route) =>
       ApplyPageDecorations(
           denylist: pageDecorationDenyList,
-          decorations: pageDecorations!.where((decoration) {
-            String? route = settings.name;
-            String key = "$route:${decoration.name}";
-            return !pageDecorationDenyList!.contains(key);
-          }).toList(),
+          decorations: pageDecorations
+              .where((decoration) => !pageDecorationDenyList!
+                  .contains('${settings.name}:${decoration.name}'))
+              .toList(),
           child: route.builder(settings, context));
 
   @override
