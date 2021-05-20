@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:logging/logging.dart';
 
-const kLogRoute = "/log";
+const kLogRoute = '/log';
 
 ///
 /// LogExtension
@@ -34,29 +34,30 @@ class LogExtension extends DartBoardExtension {
     Logger.root.onRecord.listen(logState.onRecord);
     return LogExtension.internal(fontSize);
   }
+
   @override
-  get pageDecorations => [
+  List<PageDecoration> get pageDecorations => [
         PageDecoration(
-            name: "log_frame",
+            name: 'log_frame',
             decoration: (context, child) =>
                 LogWrapper(child: child, fontSize: fontSize)),
       ];
 
   @override
-  get routes => <RouteDefinition>[
+  List<RouteDefinition> get routes => <RouteDefinition>[
         NamedRouteDefinition(
             route: kLogRoute, builder: (ctx, settings) => FullScreenLog())
       ];
 
   /// Here we inject a Log-State into the App Scope
   @override
-  get appDecorations => [
+  List<WidgetWithChildBuilder> get appDecorations => [
         (context, child) => ChangeNotifierProvider<LogState>(
             create: (ctx) => logState, child: child)
       ];
 
   @override
-  String get namespace => "logging";
+  String get namespace => 'logging';
 }
 
 class LogWrapper extends StatelessWidget {
@@ -77,7 +78,7 @@ class LogWrapper extends StatelessWidget {
                   /// We pass a name so we can exclude the debug-log frame
                   settings: RouteSettings(name: kLogRoute),
                   pageBuilder: (context, animation, secondaryAnimation) =>
-                      RouteWidget(settings: RouteSettings(name: "/log")),
+                      RouteWidget(settings: RouteSettings(name: '/log')),
                   transitionsBuilder:
                       (context, animation, secondaryAnimation, child) {
                     var begin = Offset(0.0, 1.0);
@@ -137,7 +138,7 @@ class FullScreenLog extends StatelessWidget {
                 child: Scaffold(
                   backgroundColor: Colors.transparent,
                   appBar: AppBar(
-                    title: Text("Application Log"),
+                    title: Text('Application Log'),
                   ),
                   body: Padding(
                     padding: const EdgeInsets.all(16.0),
@@ -175,7 +176,7 @@ class LogMessageWidget extends StatelessWidget {
     return Row(
       children: [
         Text(
-          "${record!.time.hour}:${record!.time.minute}:${record!.time.second}",
+          '${record!.time.hour}:${record!.time.minute}:${record!.time.second}',
           style: textTheme.bodyText1!.copyWith(
             fontSize: fontSize,
           ),
@@ -203,7 +204,7 @@ class LogState extends ChangeNotifier {
   final messages = <LogRecord>[];
 
   LogRecord get lastLogRecord =>
-      messages.isNotEmpty ? messages.last : LogRecord(Level.INFO, "aa", "aa");
+      messages.isNotEmpty ? messages.last : LogRecord(Level.INFO, 'aa', 'aa');
 
   void onRecord(LogRecord event) {
     messages.add(event);

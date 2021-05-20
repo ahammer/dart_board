@@ -13,29 +13,29 @@ import 'impl/pages/about.dart';
 /// The Example Extension
 class ExampleExtension extends DartBoardExtension {
   @override
-  get routes => <RouteDefinition>[
+  List<RouteDefinition> get routes => <RouteDefinition>[
         NamedRouteDefinition(
             routeBuilder: kCupertinoRouteResolver,
-            route: "/home",
+            route: '/home',
             builder: (ctx, settings) => HomePage()),
         NamedRouteDefinition(
             routeBuilder: kMaterialRouteResolver,
-            route: "/about",
+            route: '/about',
             builder: (ctx, settings) => AboutPage()),
       ];
 
   /// These are page-scoped decorations
   @override
-  get pageDecorations => <PageDecoration>[
+  List<PageDecoration> get pageDecorations => <PageDecoration>[
         /// The AppBar and Nav Drawer
         PageDecoration(
-            name: "scaffold_and_drawer",
+            name: 'scaffold_and_drawer',
             decoration: (context, child) => ScaffoldWithDrawerDecoration(
                 child: DarkColorBorder(child: child))),
 
         /// The animated background effect
         PageDecoration(
-            name: "animated_background",
+            name: 'animated_background',
             decoration: (context, child) => AnimatedBackgroundDecoration(
                   color: Theme.of(context).accentColor,
                   child: child,
@@ -44,15 +44,15 @@ class ExampleExtension extends DartBoardExtension {
 
   /// These are app-level decorations (not needed here)
   @override
-  get appDecorations => [];
+  List<WidgetWithChildBuilder> get appDecorations => [];
 
   @override
   List<DartBoardExtension> get dependencies =>
       [ThemeExtension(), DebugExtension(), LogExtension()];
 
   @override
-  get pageDecorationDenyList => ["/log:scaffold_and_drawer"];
+  List<String> get pageDecorationDenyList => ['/log:scaffold_and_drawer'];
 
   @override
-  get namespace => "example";
+  String get namespace => 'example';
 }

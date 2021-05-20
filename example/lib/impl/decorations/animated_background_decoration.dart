@@ -107,7 +107,7 @@ extension SolidLineExtension on List<Offset> {
   List<Offset> convertToSolidLine() {
     final result = <Offset>[];
     result.add(first);
-    for (int i = 1; i < length - 1; i++) {
+    for (var i = 1; i < length - 1; i++) {
       result.add(this[i]);
       result.add(this[i]);
     }

@@ -8,17 +8,17 @@ import 'package:flutter/material.dart';
 /// This is a rough first draft.
 class DebugExtension extends DartBoardExtension {
   @override
-  get appDecorations => [];
+  List<WidgetWithChildBuilder> get appDecorations => [];
 
   @override
-  get pageDecorations => [];
+  List<PageDecoration> get pageDecorations => [];
 
   @override
-  get routes => <RouteDefinition>[]
-    ..addMap({"/debug": (context, settings) => DebugScreen()});
+  List<RouteDefinition> get routes => <RouteDefinition>[]
+    ..addMap({'/debug': (context, settings) => DebugScreen()});
 
   @override
-  String get namespace => "debug";
+  String get namespace => 'debug';
 }
 
 class DebugScreen extends StatelessWidget {
@@ -27,7 +27,7 @@ class DebugScreen extends StatelessWidget {
         children: [
           Expanded(
               child: DebugPanel(
-            title: "Extensions",
+            title: 'Extensions',
             child: ExtensionList(),
           )),
         ],
@@ -51,11 +51,11 @@ class ExtensionList extends StatelessWidget {
           defaultVerticalAlignment: TableCellVerticalAlignment.middle,
           children: [
             TableRow(children: [
-              TableCell(child: TitleText("Extension")),
-              TableCell(child: TitleText("Routes")),
-              TableCell(child: TitleText("Page Decorations")),
-              TableCell(child: TitleText("App Decorations")),
-              TableCell(child: TitleText("Dependencies")),
+              TableCell(child: TitleText('Extension')),
+              TableCell(child: TitleText('Routes')),
+              TableCell(child: TitleText('Page Decorations')),
+              TableCell(child: TitleText('App Decorations')),
+              TableCell(child: TitleText('Dependencies')),
             ]),
             ...DartBoardCore.getExtensions().map((e) => TableRow(
                     decoration: BoxDecoration(
@@ -72,16 +72,16 @@ class ExtensionList extends StatelessWidget {
                         e.namespace,
                         extension: e,
                       )),
-                      TableCell(child: CellText("${e.routes}", extension: e)),
+                      TableCell(child: CellText('${e.routes}', extension: e)),
                       TableCell(
                           child: CellText(
-                              "${e.pageDecorations.map((e) => e.name)}",
+                              '${e.pageDecorations.map((e) => e.name)}',
                               extension: e)),
                       TableCell(
-                          child: CellText("${e.appDecorations.length}",
+                          child: CellText('${e.appDecorations.length}',
                               extension: e)),
                       TableCell(
-                          child: CellText("${e.dependencies}", extension: e))
+                          child: CellText('${e.dependencies}', extension: e))
                     ]))
           ]);
 }

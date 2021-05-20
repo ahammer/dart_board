@@ -9,20 +9,20 @@ class HomePage extends StatelessWidget {
           children: [
             Center(
                 child: Card(
+              elevation: 4,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  "Dart Board",
+                  'Dart Board',
                   style: Theme.of(context).textTheme.headline1,
                 ),
               ),
-              elevation: 4,
             )),
             Center(
                 child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                "Modular Flutter App Framework",
+                'Modular Flutter App Framework',
                 style: Theme.of(context).textTheme.headline4,
               ),
             ))

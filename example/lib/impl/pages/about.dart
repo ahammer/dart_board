@@ -2,7 +2,7 @@ import 'package:example/impl/pages/about_sections.dart';
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 
-final Logger log = Logger("About");
+final Logger log = Logger('About');
 
 class AboutPage extends StatelessWidget {
   @override
@@ -26,40 +26,40 @@ class _AboutGalleryState extends State<AboutGallery> {
   int page = 0;
   List<WidgetBuilder> pageBuilders = [
     (ctx) => Container(
-          key: Key("intro"),
+          key: Key('intro'),
           width: double.infinity,
           height: double.infinity,
           color: Theme.of(ctx).colorScheme.surface.withOpacity(0.7),
           child: WelcomeToAbout(),
         ),
     (ctx) => Container(
-          key: Key("page1"),
+          key: Key('page1'),
           width: double.infinity,
           height: double.infinity,
           color: Theme.of(ctx).colorScheme.surface.withOpacity(0.7),
           child: Page1Content(),
         ),
     (ctx) => Container(
-        key: Key("page2"),
+        key: Key('page2'),
         width: double.infinity,
         height: double.infinity,
         color: Theme.of(ctx).colorScheme.surface.withOpacity(0.7),
         child: Page2Content()),
     (ctx) => Container(
-          key: Key("page3"),
+          key: Key('page3'),
           width: double.infinity,
           height: double.infinity,
+          color: Theme.of(ctx).colorScheme.surface.withOpacity(0.7),
           child: Page3Content(),
-          color: Theme.of(ctx).colorScheme.surface.withOpacity(0.7),
         ),
     (ctx) => Container(
-          key: Key("page4"),
+          key: Key('page4'),
           width: double.infinity,
           height: double.infinity,
           color: Theme.of(ctx).colorScheme.surface.withOpacity(0.7),
         ),
     (ctx) => Container(
-          key: Key("page5"),
+          key: Key('page5'),
           width: double.infinity,
           height: double.infinity,
           color: Theme.of(ctx).colorScheme.surface.withOpacity(0.7),
@@ -95,7 +95,7 @@ class _AboutGalleryState extends State<AboutGallery> {
                 Expanded(
                     child: Center(
                         child: Text(
-                  "${page + 1}",
+                  '${page + 1}',
                   style: Theme.of(context).textTheme.headline4,
                 ))),
                 MaterialButton(
@@ -111,16 +111,17 @@ class _AboutGalleryState extends State<AboutGallery> {
         ],
       );
 
-  incrementPage() => setState(() {
+  void incrementPage() => setState(() {
         page--;
 
         if (page < 0) page = 0;
-        log.info("Going to page: ${page + 1}");
+        log.info('Going to page: ${page + 1}');
       });
-  decrementPage() => setState(() {
+
+  void decrementPage() => setState(() {
         page++;
 
         if (page >= pageBuilders.length) page = pageBuilders.length - 1;
-        log.info("Going to page: ${page + 1}");
+        log.info('Going to page: ${page + 1}');
       });
 }

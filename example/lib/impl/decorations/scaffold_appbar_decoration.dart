@@ -11,9 +11,9 @@ class ScaffoldWithDrawerDecoration extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-      drawer: DartBoardNavDrawer(),
+      drawer: ExampleNavDrawer(),
       appBar: AppBar(
-        title: Text("Example App"),
+        title: Text('Example App'),
         actions: [
           IconButton(
               icon: Icon(Icons.lightbulb),

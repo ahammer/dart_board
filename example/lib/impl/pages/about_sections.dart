@@ -123,7 +123,7 @@ class Page3Content extends StatelessWidget {
   @override
   Widget build(BuildContext context) => FittedBox(
         child: SyntaxView(
-          code: """
+          code: '''
 /// The Example Extension
 class ExampleExtension implements DartBoardExtension {
   @override
@@ -155,7 +155,7 @@ class ExampleExtension implements DartBoardExtension {
   @override
   get appDecorations => [];
 }
-""",
+''',
           syntax: Syntax.DART,
           syntaxTheme: getCodeTheme(context),
           withZoom: false,
@@ -200,12 +200,11 @@ class SystemChartPainter extends CustomPainter {
     final width = size.width - padding * 2;
     final sectionHeight = size.width / 4.1;
     final left = padding;
-    final right = size.width - padding;
 
     /// Draw feature extensions
-    TextPainter featureExtensionsTitlePainter = TextPainter(
+    final featureExtensionsTitlePainter = TextPainter(
         text: TextSpan(
-            text: "Features", style: Theme.of(context).textTheme.headline4),
+            text: 'Features', style: Theme.of(context).textTheme.headline4),
         textDirection: TextDirection.rtl)
       ..layout();
 
@@ -215,9 +214,9 @@ class SystemChartPainter extends CustomPainter {
             top - 48));
 
     /// Draw feature extensions
-    TextPainter integrationExtensionTitle = TextPainter(
+    final integrationExtensionTitle = TextPainter(
         text: TextSpan(
-            text: "Integration", style: Theme.of(context).textTheme.headline4),
+            text: 'Integration', style: Theme.of(context).textTheme.headline4),
         textDirection: TextDirection.rtl)
       ..layout();
 
@@ -227,9 +226,9 @@ class SystemChartPainter extends CustomPainter {
             (top + sectionHeight * spacing) - 48));
 
     /// Draw feature extensions
-    TextPainter runnerTitle = TextPainter(
+    final runnerTitle = TextPainter(
         text: TextSpan(
-            text: "Runner", style: Theme.of(context).textTheme.headline4),
+            text: 'Runner', style: Theme.of(context).textTheme.headline4),
         textDirection: TextDirection.rtl)
       ..layout();
 
@@ -240,7 +239,7 @@ class SystemChartPainter extends CustomPainter {
 
     final boxWidth = sectionHeight - padding * 2;
 
-    for (int i = 0; i < 4; i++) {
+    for (var i = 0; i < 4; i++) {
       final q = width / 4.0;
 
       [modulePaint, outlinePaint].forEach((p) => canvas.drawRRect(
@@ -277,23 +276,23 @@ class WelcomeToAbout extends StatelessWidget {
   Widget build(BuildContext context) => Padding(
         padding: const EdgeInsets.all(64.0),
         child: FittedBox(
-          child: EasyRichText("""
+          child: EasyRichText('''
 Dart Board
 
 Basics
 Entry Point
 Extensions
 App Design
-Extension Design""",
+Extension Design''',
               textAlign: TextAlign.left,
               patternList: <String, TextStyle>{
-                "Dart Board": kHeaderStyle.copyWith(
+                'Dart Board': kHeaderStyle.copyWith(
                     fontSize: 30, decoration: TextDecoration.underline),
-                "app": kHighlightStyle,
-                "framework": kHighlightStyle,
-                "extension": kHighlightStyle,
-                "based": kHighlightStyle,
-                "Extensions used in this Example": kHeaderStyle,
+                'app': kHighlightStyle,
+                'framework': kHighlightStyle,
+                'extension': kHighlightStyle,
+                'based': kHighlightStyle,
+                'Extensions used in this Example': kHeaderStyle,
               }.collect<EasyRichTextPattern>((key, value) =>
                   EasyRichTextPattern(targetString: key, style: value))),
         ),
@@ -307,7 +306,7 @@ class AboutTextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Center(
-        child: EasyRichText("""
+        child: EasyRichText('''
 Dart Board Basics
 
 Dart board is an extension-based framework.
@@ -346,17 +345,17 @@ Theme Extensions
   - Page Decoration 
 
 
-          """,
+          ''',
             selectable: true,
             patternList: <String, TextStyle>{
-              "Dart Board Basics": kHeaderStyle.copyWith(
+              'Dart Board Basics': kHeaderStyle.copyWith(
                   fontSize: 30, decoration: TextDecoration.underline),
-              "Dart Board": kHighlightStyle,
-              "app": kHighlightStyle,
-              "framework": kHighlightStyle,
-              "extension": kHighlightStyle,
-              "based": kHighlightStyle,
-              "Extensions used in this Example": kHeaderStyle,
+              'Dart Board': kHighlightStyle,
+              'app': kHighlightStyle,
+              'framework': kHighlightStyle,
+              'extension': kHighlightStyle,
+              'based': kHighlightStyle,
+              'Extensions used in this Example': kHeaderStyle,
             }.collect<EasyRichTextPattern>((key, value) =>
                 EasyRichTextPattern(targetString: key, style: value))),
       );
@@ -369,24 +368,24 @@ class EntryPointText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Center(
-        child: EasyRichText("""
+        child: EasyRichText('''
 The main.dart
 
 1) In RunApp, start with the DartBoard() widget
 2) Provide the extensions you are deploying
 3) Provide the initial route
 
-          """,
+          ''',
             selectable: true,
             patternList: <String, TextStyle>{
-              "Dart Board Basics": kHeaderStyle.copyWith(
+              'Dart Board Basics': kHeaderStyle.copyWith(
                   fontSize: 30, decoration: TextDecoration.underline),
-              "Dart Board": kHighlightStyle,
-              "app": kHighlightStyle,
-              "framework": kHighlightStyle,
-              "extension": kHighlightStyle,
-              "based": kHighlightStyle,
-              "Extensions used in this Example": kHeaderStyle,
+              'Dart Board': kHighlightStyle,
+              'app': kHighlightStyle,
+              'framework': kHighlightStyle,
+              'extension': kHighlightStyle,
+              'based': kHighlightStyle,
+              'Extensions used in this Example': kHeaderStyle,
             }.collect<EasyRichTextPattern>((key, value) =>
                 EasyRichTextPattern(targetString: key, style: value))),
       );
@@ -398,7 +397,7 @@ const kHeaderStyle = TextStyle(
 );
 const kHighlightStyle = TextStyle(fontStyle: FontStyle.italic);
 
-getCodeTheme(BuildContext context) => SyntaxTheme.dracula()
+SyntaxTheme getCodeTheme(BuildContext context) => SyntaxTheme.dracula()
   ..commentStyle = Theme.of(context).textTheme.bodyText1!.copyWith(
       fontWeight: FontWeight.bold,
       fontStyle: FontStyle.italic,
