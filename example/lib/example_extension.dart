@@ -5,6 +5,7 @@ import 'package:dart_board_log_extension/log_extension.dart';
 import 'package:dart_board_theme_extension/theme_extension.dart';
 import 'package:example/impl/decorations/animated_background_decoration.dart';
 import 'package:example/impl/pages/home_page.dart';
+import 'package:example/impl/routes/custom_routes.dart';
 import 'package:flutter/material.dart';
 import 'impl/decorations/color_border_decoration.dart';
 import 'impl/decorations/scaffold_appbar_decoration.dart';
@@ -15,13 +16,11 @@ class ExampleExtension extends DartBoardExtension {
   @override
   List<RouteDefinition> get routes => <RouteDefinition>[
         NamedRouteDefinition(
-            routeBuilder: kCupertinoRouteResolver,
+            routeBuilder: kSpinRoute,
             route: '/home',
             builder: (ctx, settings) => HomePage()),
         NamedRouteDefinition(
-            routeBuilder: kMaterialRouteResolver,
-            route: '/about',
-            builder: (ctx, settings) => AboutPage()),
+            route: '/about', builder: (ctx, settings) => AboutPage()),
       ];
 
   /// These are page-scoped decorations

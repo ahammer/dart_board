@@ -13,7 +13,7 @@ class ScaffoldWithDrawerDecoration extends StatelessWidget {
   Widget build(BuildContext context) => Scaffold(
       drawer: ExampleNavDrawer(),
       appBar: AppBar(
-        title: Text('Example App'),
+        title: Text(ModalRoute.of(context)?.settings.name ?? 'Dart Board'),
         actions: [
           IconButton(
               icon: Icon(Icons.lightbulb),
