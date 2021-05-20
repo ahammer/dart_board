@@ -12,9 +12,12 @@ dependencies:
 
   provider: ^5.0.0
   logging: ^1.0.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  pedantic: ^1.11.0
+  
 
 flutter:
   uses-material-design: true

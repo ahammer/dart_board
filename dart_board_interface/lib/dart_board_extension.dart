@@ -15,10 +15,15 @@ import 'package:flutter/widgets.dart';
 
 /// Builds a widget with a predetermined child
 /// Used by App/Page decorators.
-typedef Widget WidgetWithChildBuilder(BuildContext context, Widget child);
+typedef WidgetWithChildBuilder = Widget Function(
+    BuildContext context, Widget child);
 
 /// Builds a widget for a route
-typedef Widget RouteWidgetBuilder(RouteSettings settings, BuildContext context);
+typedef RouteWidgetBuilder = Widget Function(
+    RouteSettings settings, BuildContext context);
+
+typedef RouteBuilder = Route Function(
+    RouteSettings settings, WidgetBuilder builder);
 
 ///
 /// This specifies a Page Decoration from an extension
@@ -73,7 +78,7 @@ abstract class RouteDefinition {
   RouteWidgetBuilder get builder;
 
   ///This is an optional RouteBuilder
-  Route Function(RouteSettings settings, WidgetBuilder builder)? routeBuilder;
+  RouteBuilder? routeBuilder;
 }
 
 /// This an implementation of the RouteDefinition class
@@ -81,8 +86,12 @@ abstract class RouteDefinition {
 /// Can be used for simple named routing
 class NamedRouteDefinition implements RouteDefinition {
   final String route;
+
+  @override
   final RouteWidgetBuilder builder;
-  Route Function(RouteSettings settings, WidgetBuilder builder)? routeBuilder;
+
+  @override
+  RouteBuilder? routeBuilder;
 
   NamedRouteDefinition(
       {required this.route, required this.builder, this.routeBuilder});
