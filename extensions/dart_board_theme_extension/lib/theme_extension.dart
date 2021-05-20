@@ -4,32 +4,32 @@ import 'package:provider/provider.dart';
 
 class ThemeExtension extends DartBoardExtension {
   @override
-  get pageDecorations => [
+  List<PageDecoration> get pageDecorations => [
         PageDecoration(
-            name: "theme_applicator",
+            name: 'theme_applicator',
             decoration: (context, child) => Consumer<ThemeState>(
-                  child: child,
                   builder: (ctx, val, child) => Theme(
-                      child: child!,
-                      data: val.isLight ? ThemeData.light() : ThemeData.dark()),
+                      data: val.isLight ? ThemeData.light() : ThemeData.dark(),
+                      child: child!),
+                  child: child,
                 )),
       ];
 
   @override
-  get routes =>
-      <RouteDefinition>[]..addMap({"/theme": (ctx, settings) => ThemePage()});
+  List<RouteDefinition> get routes =>
+      <RouteDefinition>[]..addMap({'/theme': (ctx, settings) => ThemePage()});
 
   static void toggle(BuildContext context) =>
       Provider.of<ThemeState>(context, listen: false).toggleTheme();
 
   @override
-  get appDecorations => [
+  List<WidgetWithChildBuilder> get appDecorations => [
         (context, child) => ChangeNotifierProvider<ThemeState>(
             create: (ctx) => ThemeState(), child: child)
       ];
 
   @override
-  String get namespace => "theme";
+  String get namespace => 'theme';
 }
 
 class ThemePage extends StatelessWidget {
@@ -45,7 +45,7 @@ class ThemePage extends StatelessWidget {
             Align(
                 alignment: Alignment.bottomLeft,
                 child: Text(
-                  "Theme Selection",
+                  'Theme Selection',
                   style: Theme.of(context).textTheme.headline4,
                 )),
             Consumer<ThemeState>(
@@ -53,7 +53,7 @@ class ThemePage extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
                         children: [
-                          Text("Light Theme? "),
+                          Text('Light Theme? '),
                           Checkbox(
                               value: value.isLight,
                               onChanged: (_) => value.toggleTheme()),
@@ -67,7 +67,7 @@ class ThemePage extends StatelessWidget {
 
 class ThemeState extends ChangeNotifier {
   bool isLight = true;
-  toggleTheme() {
+  void toggleTheme() {
     isLight = !isLight;
     notifyListeners();
   }

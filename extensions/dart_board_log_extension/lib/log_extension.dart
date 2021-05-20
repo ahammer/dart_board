@@ -40,7 +40,7 @@ class LogExtension extends DartBoardExtension {
         PageDecoration(
             name: 'log_frame',
             decoration: (context, child) =>
-                LogWrapper(child: child, fontSize: fontSize)),
+                LogWrapper(fontSize: fontSize, child: child)),
       ];
 
   @override
