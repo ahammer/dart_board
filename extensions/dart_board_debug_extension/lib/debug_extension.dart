@@ -14,8 +14,10 @@ class DebugExtension extends DartBoardExtension {
   List<PageDecoration> get pageDecorations => [];
 
   @override
-  List<RouteDefinition> get routes => <RouteDefinition>[]
-    ..addMap({'/debug': (context, settings) => DebugScreen()});
+  List<RouteDefinition> get routes => <RouteDefinition>[
+        NamedRouteDefinition(
+            route: '/debug', builder: (context, settings) => DebugScreen())
+      ];
 
   @override
   String get namespace => 'debug';

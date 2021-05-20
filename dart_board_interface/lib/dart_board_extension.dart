@@ -103,11 +103,8 @@ class NamedRouteDefinition implements RouteDefinition {
   String toString() => route;
 }
 
-/// Syntactic Sugar
-/// Extension for <RouteDefinition>[] to add a map of "string" => Builder
-extension DartBoardRouteListExtension on List<RouteDefinition> {
-  /// Helper to specify these as a map
-  void addMap(Map<String, RouteWidgetBuilder> items) =>
-      items.forEach((route, builder) =>
-          add(NamedRouteDefinition(route: route, builder: builder)));
+/// An empty extension to use as a default if an extension can't be found
+class EmptyDartBoardExtension extends DartBoardExtension {
+  @override
+  String get namespace => 'EmptyExtension';
 }
