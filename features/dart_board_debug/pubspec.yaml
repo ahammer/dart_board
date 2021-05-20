@@ -1,4 +1,4 @@
-name: dart_board_debug_extension
+name: dart_board_debug
 description: An extension that brings interactive logging to a Dart Board app
 publish_to: none
 

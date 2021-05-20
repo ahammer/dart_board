@@ -1,4 +1,4 @@
-import 'package:dart_board_theme_extension/theme_feature.dart';
+import 'package:dart_board_theme/theme_feature.dart';
 import 'package:example/impl/dart_board_nav_drawer.dart';
 import 'package:flutter/material.dart';
 

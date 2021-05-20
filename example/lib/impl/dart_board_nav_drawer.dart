@@ -27,7 +27,7 @@ class ExampleNavDrawer extends StatelessWidget {
                 ),
               ),
             ),
-            ...['/about', '/home', '/debug'].map(
+            ...['/home', '/about', '/features', '/debug'].map(
               (e) => Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: MaterialButton(

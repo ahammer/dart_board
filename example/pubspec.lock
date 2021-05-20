@@ -57,10 +57,10 @@ packages:
       relative: true
     source: path
     version: "1.0.0+1"
-  dart_board_debug_extension:
+  dart_board_debug:
     dependency: "direct main"
     description:
-      path: "../extensions/dart_board_debug_extension"
+      path: "../features/dart_board_debug"
       relative: true
     source: path
     version: "1.0.0+1"
@@ -71,17 +71,17 @@ packages:
       relative: true
     source: path
     version: "1.0.0+1"
-  dart_board_log_extension:
+  dart_board_log:
     dependency: "direct main"
     description:
-      path: "../extensions/dart_board_log_extension"
+      path: "../features/dart_board_log"
       relative: true
     source: path
     version: "1.0.0+1"
-  dart_board_theme_extension:
+  dart_board_theme:
     dependency: "direct main"
     description:
-      path: "../extensions/dart_board_theme_extension"
+      path: "../features/dart_board_theme"
       relative: true
     source: path
     version: "1.0.0+1"
