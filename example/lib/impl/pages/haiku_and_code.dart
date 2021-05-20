@@ -1,11 +1,29 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_syntax_view/flutter_syntax_view.dart';
 
 // Show a Haiku and some code
-class HaikuAndCode extends StatelessWidget {
+class HaikuAndCode extends StatefulWidget {
   final String haiku;
+  final String filename;
 
-  const HaikuAndCode({Key? key, required this.haiku}) : super(key: key);
+  const HaikuAndCode({Key? key, required this.haiku, required this.filename})
+      : super(key: key);
+
+  @override
+  _HaikuAndCodeState createState() => _HaikuAndCodeState();
+}
+
+class _HaikuAndCodeState extends State<HaikuAndCode> {
+  late final Future<String> fileContents;
+
+  @override
+  void initState() {
+    fileContents = File(widget.filename).readAsString();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +34,7 @@ class HaikuAndCode extends StatelessWidget {
             width: double.infinity,
             child: FittedBox(
               child: Text(
-                haiku,
+                widget.haiku,
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.headline1!.copyWith(
                     shadows: [
@@ -30,28 +48,33 @@ class HaikuAndCode extends StatelessWidget {
       ),
     );
 
-    return LayoutBuilder(builder: (ctx, size) {
-      if (size.maxWidth > size.maxHeight) {
+    return FutureBuilder<String>(
+      future: fileContents,
+      builder: (ctx, snapshot) => LayoutBuilder(builder: (ctx, size) {
         final codeWidget;
         codeWidget = Container(
-            color: Colors.blue,
             height: double.infinity,
-            width: double.infinity);
-        return Row(children: [
-          Expanded(flex: 1, child: haikuWidget),
-          Expanded(flex: 2, child: codeWidget)
-        ]);
-      } else {
-        final codeWidget;
-        codeWidget = Container(
-            color: Colors.blue,
-            height: double.infinity,
-            width: double.infinity);
-        return Column(children: [
-          Expanded(flex: 1, child: haikuWidget),
-          Expanded(flex: 4, child: codeWidget)
-        ]);
-      }
-    });
+            child: snapshot.hasData && snapshot.data != null
+                ? FittedBox(
+                    fit: BoxFit.contain,
+                    child: SyntaxView(
+                      code: snapshot.data!,
+                      syntax: Syntax.DART,
+                      syntaxTheme: SyntaxTheme.ayuDark(),
+                    ),
+                  )
+                : Text('Loading'));
+
+        if (size.maxWidth > size.maxHeight) {
+          return Row(
+              children: [Expanded(flex: 1, child: haikuWidget), codeWidget]);
+        } else {
+          return Column(children: [
+            Expanded(flex: 1, child: haikuWidget),
+            Expanded(flex: 4, child: codeWidget)
+          ]);
+        }
+      }),
+    );
   }
 }

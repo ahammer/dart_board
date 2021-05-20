@@ -34,10 +34,7 @@ dependencies:
   dart_board_log:
     path: ../features/dart_board_log
 
-  easy_rich_text: ^0.5.4
-  # We'll use this in the Example project
   flutter_syntax_view: ^4.0.0
-  animated_text_kit: ^4.2.1
 
 
 dev_dependencies:
