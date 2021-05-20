@@ -2,12 +2,12 @@ import 'package:dart_board_interface/dart_board_feature.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-/// Communicates with Core. For extensions
+/// Communicates with Core. For features
 GlobalKey<NavigatorState> dartBoardNavKey = GlobalKey();
 
 /// Shortcuts into DartBoard
 abstract class DartBoardCore {
-  List<DartBoardFeature> get extensions;
+  List<DartBoardFeature> get features;
   List<RouteDefinition> get routes;
 
   /// Apply the page decorations manually to a widget
@@ -22,14 +22,14 @@ abstract class DartBoardCore {
       Provider.of<DartBoardCore>(dartBoardNavKey.currentContext!)
           .applyPageDecorations(child);
 
-  /// Helper to get a list of the extensions
-  static List<DartBoardFeature> getExtensions() =>
-      Provider.of<DartBoardCore>(dartBoardNavKey.currentContext!).extensions;
+  /// Helper to get a list of the features
+  static List<DartBoardFeature> getfeatures() =>
+      Provider.of<DartBoardCore>(dartBoardNavKey.currentContext!).features;
 
-  /// Helper to find an extension by name
+  /// Helper to find an feature by name
   static DartBoardFeature findByName(String name) =>
       Provider.of<DartBoardCore>(dartBoardNavKey.currentContext!)
-          .extensions
+          .features
           .firstWhere((element) => element.namespace == name,
               orElse: () => EmptyDartBoardFeature());
 }

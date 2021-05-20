@@ -103,7 +103,7 @@ class BackgroundPainter extends CustomPainter {
   bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
 }
 
-extension SolidLineExtension on List<Offset> {
+extension SolidLinefeature on List<Offset> {
   List<Offset> convertToSolidLine() {
     final result = <Offset>[];
     result.add(first);

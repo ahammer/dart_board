@@ -1,8 +1,7 @@
-import 'package:dart_board/impl/dart_board_core.dart';
-import 'package:dart_board_debug_extension/debug_extension.dart';
 import 'package:dart_board_interface/dart_board_feature.dart';
-import 'package:dart_board_log_extension/log_extension.dart';
-import 'package:dart_board_theme_extension/theme_extension.dart';
+import 'package:dart_board_theme_extension/theme_feature.dart';
+import 'package:dart_board_debug_extension/debug_feature.dart';
+import 'package:dart_board_log_extension/log_feature.dart';
 import 'package:example/impl/decorations/animated_background_decoration.dart';
 import 'package:example/impl/pages/home_page.dart';
 import 'package:example/impl/routes/custom_routes.dart';
@@ -11,8 +10,8 @@ import 'impl/decorations/color_border_decoration.dart';
 import 'impl/decorations/scaffold_appbar_decoration.dart';
 import 'impl/pages/about.dart';
 
-/// The Example Extension
-class ExampleExtension extends DartBoardFeature {
+/// The Example feature
+class Examplefeature extends DartBoardFeature {
   @override
   List<RouteDefinition> get routes => <RouteDefinition>[
         NamedRouteDefinition(
@@ -47,7 +46,7 @@ class ExampleExtension extends DartBoardFeature {
 
   @override
   List<DartBoardFeature> get dependencies =>
-      [ThemeExtension(), DebugExtension(), LogExtension()];
+      [ThemeFeature(), DebugFeature(), LogFeature()];
 
   @override
   List<String> get pageDecorationDenyList => ['/log:scaffold_and_drawer'];

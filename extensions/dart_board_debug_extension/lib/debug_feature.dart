@@ -2,11 +2,11 @@ import 'package:dart_board_interface/dart_board_core.dart';
 import 'package:dart_board_interface/dart_board_feature.dart';
 import 'package:flutter/material.dart';
 
-/// This Extension is meant to expose the /Debug route,
+/// This feature is meant to expose the /Debug route,
 ///
 /// It provides some information about the system
 /// This is a rough first draft.
-class DebugExtension extends DartBoardFeature {
+class DebugFeature extends DartBoardFeature {
   @override
   List<WidgetWithChildBuilder> get appDecorations => [];
 
@@ -29,8 +29,8 @@ class DebugScreen extends StatelessWidget {
         children: [
           Expanded(
               child: DebugPanel(
-            title: 'Extensions',
-            child: ExtensionList(),
+            title: 'features',
+            child: featureList(),
           )),
         ],
       );
@@ -47,19 +47,19 @@ class DebugPanel extends StatelessWidget {
   Widget build(BuildContext context) => child;
 }
 
-class ExtensionList extends StatelessWidget {
+class featureList extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Table(
           defaultVerticalAlignment: TableCellVerticalAlignment.middle,
           children: [
             TableRow(children: [
-              TableCell(child: TitleText('Extension')),
+              TableCell(child: TitleText('feature')),
               TableCell(child: TitleText('Routes')),
               TableCell(child: TitleText('Page Decorations')),
               TableCell(child: TitleText('App Decorations')),
               TableCell(child: TitleText('Dependencies')),
             ]),
-            ...DartBoardCore.getExtensions().map((e) => TableRow(
+            ...DartBoardCore.getfeatures().map((e) => TableRow(
                     decoration: BoxDecoration(
                         color: Theme.of(context)
                             .colorScheme
@@ -72,30 +72,30 @@ class ExtensionList extends StatelessWidget {
                       TableCell(
                           child: CellText(
                         e.namespace,
-                        extension: e,
+                        feature: e,
                       )),
-                      TableCell(child: CellText('${e.routes}', extension: e)),
+                      TableCell(child: CellText('${e.routes}', feature: e)),
                       TableCell(
                           child: CellText(
                               '${e.pageDecorations.map((e) => e.name)}',
-                              extension: e)),
+                              feature: e)),
                       TableCell(
                           child: CellText('${e.appDecorations.length}',
-                              extension: e)),
+                              feature: e)),
                       TableCell(
-                          child: CellText('${e.dependencies}', extension: e))
+                          child: CellText('${e.dependencies}', feature: e))
                     ]))
           ]);
 }
 
-class ExtensionDetails extends StatelessWidget {
-  final DartBoardFeature extension;
+class featureDetails extends StatelessWidget {
+  final DartBoardFeature feature;
 
-  const ExtensionDetails({Key? key, required this.extension}) : super(key: key);
+  const featureDetails({Key? key, required this.feature}) : super(key: key);
   @override
   Widget build(BuildContext context) => Padding(
         padding: const EdgeInsets.all(32.0),
-        child: Material(child: Text(extension.namespace)),
+        child: Material(child: Text(feature.namespace)),
       );
 }
 
@@ -121,13 +121,13 @@ class TitleText extends StatelessWidget {
 }
 
 class CellText extends StatelessWidget {
-  final DartBoardFeature extension;
+  final DartBoardFeature feature;
   final String text;
 
   const CellText(
     this.text, {
     Key? key,
-    required this.extension,
+    required this.feature,
   }) : super(key: key);
 
   @override

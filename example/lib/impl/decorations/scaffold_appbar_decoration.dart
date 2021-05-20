@@ -1,4 +1,4 @@
-import 'package:dart_board_theme_extension/theme_extension.dart';
+import 'package:dart_board_theme_extension/theme_feature.dart';
 import 'package:example/impl/dart_board_nav_drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +17,7 @@ class ScaffoldWithDrawerDecoration extends StatelessWidget {
         actions: [
           IconButton(
               icon: Icon(Icons.lightbulb),
-              onPressed: () => ThemeExtension.toggle(context))
+              onPressed: () => ThemeFeature.toggle(context))
         ],
       ),
       body: child);

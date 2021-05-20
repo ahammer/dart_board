@@ -9,9 +9,9 @@ import 'package:logging/logging.dart';
 const kLogRoute = '/log';
 
 ///
-/// LogExtension
+/// Logfeature
 ///
-/// A basic logging extension for Dart Board
+/// A basic logging feature for Dart Board
 ///
 /// Including this will attach to the "Logging" package.
 /// Logger(name)..info..error
@@ -21,18 +21,18 @@ const kLogRoute = '/log';
 
 final logState = LogState();
 
-class LogExtension extends DartBoardExtension {
-  LogExtension.internal(this.fontSize);
+class LogFeature extends DartBoardFeature {
+  LogFeature.internal(this.fontSize);
 
   final double fontSize;
 
-  factory LogExtension({fontSize = 12.0}) {
+  factory LogFeature({fontSize = 12.0}) {
     /// Attach to the Logger at time of construction
     /// Side effect I know, but this is the earlierst
     /// hook. For logging I think it's OK
     Logger.root.level = Level.ALL;
     Logger.root.onRecord.listen(logState.onRecord);
-    return LogExtension.internal(fontSize);
+    return LogFeature.internal(fontSize);
   }
 
   @override

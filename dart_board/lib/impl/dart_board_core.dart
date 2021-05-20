@@ -18,15 +18,15 @@ GlobalKey<_DartBoardState> dartBoardKey = GlobalKey();
 /// It implements DartBoardCore from the interface
 /// and handles the entry point to your app.
 ///
-/// It'll enable support/integration of extensions
+/// It'll enable support/integration of features
 ///
 class DartBoard extends StatefulWidget {
-  /// These are the extensions we'll load
+  /// These are the features we'll load
 
-  final List<DartBoardFeature>? extensions;
+  final List<DartBoardFeature>? features;
 
   /// Deny List in the format of
-  /// "YourExtension:Decoration"
+  /// "Yourfeature:Decoration"
   final Map<String, String> pageDecorationDenyList;
   final Route Function(RouteSettings settings, WidgetBuilder builder)
       pageRouteBuilder;
@@ -35,7 +35,7 @@ class DartBoard extends StatefulWidget {
 
   DartBoard(
       {Key? key,
-      this.extensions,
+      this.features,
       this.pageNotFoundWidget = const RouteNotFound(),
       required this.initialRoute,
       this.pageDecorationDenyList = const {},
@@ -59,9 +59,9 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
 
   List<String>? pageDecorationDenyList;
 
-  List<DartBoardFeature> get allExtensions {
+  List<DartBoardFeature> get allfeatures {
     final result = <DartBoardFeature>[];
-    addAllChildren(result, widget.extensions!);
+    addAllChildren(result, widget.features!);
     return result;
   }
 
@@ -70,26 +70,26 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
     super.initState();
 
     /// We pull out Routes and PageDecorations from the route
-    final extensions = allExtensions;
-    log.info('Loading Extensions: $extensions');
-    routes = extensions.fold(
+    final features = allfeatures;
+    log.info('Loading features: $features');
+    routes = features.fold(
         <RouteDefinition>[],
         (previousValue, element) =>
             <RouteDefinition>[...previousValue, ...element.routes]);
 
-    pageDecorations = extensions.fold<List<PageDecoration>>(
+    pageDecorations = features.fold<List<PageDecoration>>(
         <PageDecoration>[],
         ((previousValue, element) =>
             <PageDecoration>[...previousValue, ...element.pageDecorations]));
 
-    appDecorations = extensions.fold<List<WidgetWithChildBuilder>>(
+    appDecorations = features.fold<List<WidgetWithChildBuilder>>(
         <WidgetWithChildBuilder>[],
         (previousValue, element) => <WidgetWithChildBuilder>[
               ...previousValue,
               ...element.appDecorations
             ]);
 
-    pageDecorationDenyList = extensions.fold<List<String>>(
+    pageDecorationDenyList = features.fold<List<String>>(
         <String>[],
         ((previousValue, element) =>
             <String>[...previousValue, ...element.pageDecorationDenyList]));
@@ -112,7 +112,7 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
         ),
       );
 
-  /// Generates a route from the extensions
+  /// Generates a route from the features
   /// If it can't find, it falls back to route not found
   ///
   /// It'll also wrap a route with any decorations
@@ -140,12 +140,12 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
           child: route.builder(settings, context));
 
   @override
-  List<DartBoardFeature> get extensions => allExtensions;
+  List<DartBoardFeature> get features => allfeatures;
 
-  /// Walks the Extension tree and registers
+  /// Walks the feature tree and registers
   void addAllChildren(
-      List<DartBoardFeature> result, List<DartBoardFeature> extensions) {
-    extensions.forEach((element) {
+      List<DartBoardFeature> result, List<DartBoardFeature> features) {
+    features.forEach((element) {
       addAllChildren(result, element.dependencies);
       if (!result.contains(element)) {
         result.add(element);

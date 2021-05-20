@@ -85,22 +85,22 @@ class Page2Content extends StatelessWidget {
         child: SyntaxView(
           code: """
 import 'package:dart_board/dart_board.dart';
-import 'package:dart_board/impl/debug/debug_route_extension.dart';
-import 'package:dart_board_theme_extension/theme_extension.dart';
+import 'package:dart_board/impl/debug/debug_route_feature.dart';
+import 'package:dart_board_theme_feature/theme_feature.dart';
 import 'package:flutter/material.dart';
 
-import 'example_extension.dart';
+import 'example_feature.dart';
 
 void main() {
   
   /// Just Start the DartBoard widget
   runApp(DartBoard(
-    extensions: [
+    features: [
 
-      /// Give it your Extensions
-      ThemeExtension(),       
-      ExampleExtension(), 
-      DebugRouteExtension()
+      /// Give it your features
+      Themefeature(),       
+      Examplefeature(), 
+      DebugRoutefeature()
       ],
     
     /// And an Initial Route
@@ -124,8 +124,8 @@ class Page3Content extends StatelessWidget {
   Widget build(BuildContext context) => FittedBox(
         child: SyntaxView(
           code: '''
-/// The Example Extension
-class ExampleExtension implements DartBoardFeature {
+/// The Example feature
+class Examplefeature implements DartBoardFeature {
   @override
   get routes => <RouteDefinition>[]..addMap({
       /// Initial Route
@@ -201,31 +201,31 @@ class SystemChartPainter extends CustomPainter {
     final sectionHeight = size.width / 4.1;
     final left = padding;
 
-    /// Draw feature extensions
-    final featureExtensionsTitlePainter = TextPainter(
+    /// Draw feature features
+    final featurefeaturesTitlePainter = TextPainter(
         text: TextSpan(
             text: 'Features', style: Theme.of(context).textTheme.headline4),
         textDirection: TextDirection.rtl)
       ..layout();
 
-    featureExtensionsTitlePainter.paint(
+    featurefeaturesTitlePainter.paint(
         canvas,
-        Offset(size.width / 2 - featureExtensionsTitlePainter.width / 2,
-            top - 48));
+        Offset(
+            size.width / 2 - featurefeaturesTitlePainter.width / 2, top - 48));
 
-    /// Draw feature extensions
-    final integrationExtensionTitle = TextPainter(
+    /// Draw feature features
+    final integrationfeatureTitle = TextPainter(
         text: TextSpan(
             text: 'Integration', style: Theme.of(context).textTheme.headline4),
         textDirection: TextDirection.rtl)
       ..layout();
 
-    integrationExtensionTitle.paint(
+    integrationfeatureTitle.paint(
         canvas,
-        Offset(size.width / 2 - integrationExtensionTitle.width / 2,
+        Offset(size.width / 2 - integrationfeatureTitle.width / 2,
             (top + sectionHeight * spacing) - 48));
 
-    /// Draw feature extensions
+    /// Draw feature features
     final runnerTitle = TextPainter(
         text: TextSpan(
             text: 'Runner', style: Theme.of(context).textTheme.headline4),
@@ -281,18 +281,18 @@ Dart Board
 
 Basics
 Entry Point
-Extensions
+features
 App Design
-Extension Design''',
+feature Design''',
               textAlign: TextAlign.left,
               patternList: <String, TextStyle>{
                 'Dart Board': kHeaderStyle.copyWith(
                     fontSize: 30, decoration: TextDecoration.underline),
                 'app': kHighlightStyle,
                 'framework': kHighlightStyle,
-                'extension': kHighlightStyle,
+                'feature': kHighlightStyle,
                 'based': kHighlightStyle,
-                'Extensions used in this Example': kHeaderStyle,
+                'features used in this Example': kHeaderStyle,
               }.collect<EasyRichTextPattern>((key, value) =>
                   EasyRichTextPattern(targetString: key, style: value))),
         ),
@@ -309,14 +309,14 @@ class AboutTextWidget extends StatelessWidget {
         child: EasyRichText('''
 Dart Board Basics
 
-Dart board is an extension-based framework.
+Dart board is an feature-based framework.
 
 You compose a project for deployment out of a 
-collection of extensions.
+collection of features.
 
-- Official Extensions
-- Community Extensions
-- Internal Extensions
+- Official features
+- Community features
+- Internal features
 
 Dart Board itself is a simple widget at the root 
 of your App. It provides the following.
@@ -328,19 +328,19 @@ of your App. It provides the following.
 This is enough to automatically integrate most 
 flutter functionaly.
 
-Extensions used in this Example
+features used in this Example
 
-Example Extension
+Example feature
   - Routes for Home and About
   - 3x Page Decorations 
       Animated BG
       Border
       AppBarDrawerScaffold
 
-Debug Route Extension
+Debug Route feature
   - Debug Route
 
-Theme Extensions
+Theme features
   - App State Decoration 
   - Page Decoration 
 
@@ -353,9 +353,9 @@ Theme Extensions
               'Dart Board': kHighlightStyle,
               'app': kHighlightStyle,
               'framework': kHighlightStyle,
-              'extension': kHighlightStyle,
+              'feature': kHighlightStyle,
               'based': kHighlightStyle,
-              'Extensions used in this Example': kHeaderStyle,
+              'features used in this Example': kHeaderStyle,
             }.collect<EasyRichTextPattern>((key, value) =>
                 EasyRichTextPattern(targetString: key, style: value))),
       );
@@ -372,7 +372,7 @@ class EntryPointText extends StatelessWidget {
 The main.dart
 
 1) In RunApp, start with the DartBoard() widget
-2) Provide the extensions you are deploying
+2) Provide the features you are deploying
 3) Provide the initial route
 
           ''',
@@ -383,9 +383,9 @@ The main.dart
               'Dart Board': kHighlightStyle,
               'app': kHighlightStyle,
               'framework': kHighlightStyle,
-              'extension': kHighlightStyle,
+              'feature': kHighlightStyle,
               'based': kHighlightStyle,
-              'Extensions used in this Example': kHeaderStyle,
+              'features used in this Example': kHeaderStyle,
             }.collect<EasyRichTextPattern>((key, value) =>
                 EasyRichTextPattern(targetString: key, style: value))),
       );

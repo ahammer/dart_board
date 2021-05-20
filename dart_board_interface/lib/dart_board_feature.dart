@@ -1,16 +1,16 @@
 import 'package:flutter/widgets.dart';
 
-/// Dart Board Extension and Related interfaces.
+/// Dart Board feature and Related interfaces.
 ///
-/// This interface is the preferable way to create Extension's for
+/// This interface is the preferable way to create feature's for
 /// the Dart-Board framework.
 ///
 /// This API will remain frozen between major versions
 /// It should provide all the basics for interacting with the framework.
-/// The stability of this API should ensure the stability of extensions
+/// The stability of this API should ensure the stability of features
 /// targeting the platform.
 ///
-/// It's suggested that when developing an extension, that you bring it into
+/// It's suggested that when developing an feature, that you bring it into
 /// a "runner"/example project that can bring in DartBoard and include it in the main()
 
 /// Builds a widget with a predetermined child
@@ -26,7 +26,7 @@ typedef RouteBuilder = Route Function(
     RouteSettings settings, WidgetBuilder builder);
 
 ///
-/// This specifies a Page Decoration from an extension
+/// This specifies a Page Decoration from an feature
 ///
 /// It comes with methods to decide if it should apply or not.
 /// and a name so it can be shown in the debug tools
@@ -41,11 +41,11 @@ class PageDecoration {
   String toString() => name;
 }
 
-/// An extension class
-/// Extensions are hooked up VIA RPC
-/// Core Extension's are extensions that are available on the classpath
+/// An feature class
+/// features are hooked up VIA RPC
+/// Core feature's are features that are available on the classpath
 abstract class DartBoardFeature<T> {
-  /// A namespace to prefix to reference this extension by
+  /// A namespace to prefix to reference this feature by
   /// Please make it unique
   String get namespace;
 
@@ -64,7 +64,7 @@ abstract class DartBoardFeature<T> {
   /// "/route:page_decoration_name"
   ///
   /// Useful when you don't want a decoration on a page
-  /// Normally provided in the integration extension
+  /// Normally provided in the integration feature
   List<String> get pageDecorationDenyList => [];
   @override
   String toString() => namespace;
@@ -103,8 +103,8 @@ class NamedRouteDefinition implements RouteDefinition {
   String toString() => route;
 }
 
-/// An empty extension to use as a default if an extension can't be found
+/// An empty feature to use as a default if an feature can't be found
 class EmptyDartBoardFeature extends DartBoardFeature {
   @override
-  String get namespace => 'EmptyExtension';
+  String get namespace => 'Emptyfeature';
 }
