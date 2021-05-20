@@ -13,7 +13,7 @@ abstract class DartBoardCore {
   Widget buildPageRoute(
       BuildContext context, RouteSettings settings, RouteDefinition definition);
 
-  static Widget decoratePage(Widget child, {RouteSettings? settings}) =>
+  static Widget decoratePage(Widget child) =>
       Provider.of<DartBoardCore>(dartBoardNavKey.currentContext!)
           .applyPageDecorations(child);
 

@@ -74,22 +74,22 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
         (previousValue, element) =>
             <RouteDefinition>[...previousValue, ...element.routes]);
 
-    pageDecorations = extensions.fold(
+    pageDecorations = extensions.fold<List<PageDecoration>>(
         <PageDecoration>[],
         ((previousValue, element) =>
-            <PageDecoration>[...previousValue, ...element.pageDecorations]) as List<PageDecoration>? Function(List<PageDecoration>?, DartBoardExtension<dynamic>));
+            <PageDecoration>[...previousValue, ...element.pageDecorations]));
 
-    appDecorations = extensions.fold(
+    appDecorations = extensions.fold<List<WidgetWithChildBuilder>>(
         <WidgetWithChildBuilder>[],
         (previousValue, element) => <WidgetWithChildBuilder>[
               ...previousValue,
-              ...element.appDecorations as Iterable<Widget Function(BuildContext, Widget?)>
+              ...element.appDecorations
             ]);
 
-    pageDecorationDenyList = extensions.fold(
+    pageDecorationDenyList = extensions.fold<List<String>>(
         <String>[],
         ((previousValue, element) =>
-            <String>[...previousValue, ...element.pageDecorationDenyList]) as List<String>? Function(List<String>?, DartBoardExtension<dynamic>));
+            <String>[...previousValue, ...element.pageDecorationDenyList]));
     Timer.run(() {
       dartBoardNavKey.currentState!.pushNamed(widget.initialRoute);
     });
@@ -135,7 +135,7 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
             String key = "$route:${decoration.name}";
             return !pageDecorationDenyList!.contains(key);
           }).toList(),
-          child: route?.builder(settings, context));
+          child: route.builder(settings, context));
 
   @override
   List<DartBoardExtension> get extensions => allExtensions;
@@ -152,8 +152,7 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
   }
 
   @override
-  Widget applyPageDecorations(Widget child, {RouteSettings? settings}) =>
-      ApplyPageDecorations(
+  Widget applyPageDecorations(Widget child) => ApplyPageDecorations(
         denylist: pageDecorationDenyList,
         decorations: pageDecorations,
         child: child,
