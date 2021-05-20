@@ -23,7 +23,7 @@ GlobalKey<_DartBoardState> dartBoardKey = GlobalKey();
 class DartBoard extends StatefulWidget {
   /// These are the extensions we'll load
 
-  final List<DartBoardExtension> extensions;
+  final List<DartBoardExtension>? extensions;
 
   /// Deny List in the format of
   /// "YourExtension:Decoration"
@@ -34,10 +34,10 @@ class DartBoard extends StatefulWidget {
   final String initialRoute;
 
   DartBoard(
-      {Key key,
+      {Key? key,
       this.extensions,
       this.pageNotFoundWidget = const RouteNotFound(),
-      @required this.initialRoute,
+      required this.initialRoute,
       this.pageDecorationDenyList = const {},
       this.pageRouteBuilder = kCupertinoRouteResolver})
       : super(key: key);
@@ -51,14 +51,14 @@ class DartBoard extends StatefulWidget {
 /// We also unwrap the decorations
 /// Then we build the MaterialApp()
 class _DartBoardState extends State<DartBoard> implements DartBoardCore {
-  List<RouteDefinition> routes;
-  List<PageDecoration> pageDecorations;
-  List<WidgetWithChildBuilder> appDecorations;
-  List<String> pageDecorationDenyList;
+  late List<RouteDefinition> routes;
+  List<PageDecoration>? pageDecorations;
+  late List<WidgetWithChildBuilder> appDecorations;
+  List<String>? pageDecorationDenyList;
 
   List<DartBoardExtension> get allExtensions {
     final result = <DartBoardExtension>[];
-    addAllChildren(result, widget.extensions);
+    addAllChildren(result, widget.extensions!);
     return result;
   }
 
@@ -76,22 +76,22 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
 
     pageDecorations = extensions.fold(
         <PageDecoration>[],
-        (previousValue, element) =>
-            <PageDecoration>[...previousValue, ...element.pageDecorations]);
+        ((previousValue, element) =>
+            <PageDecoration>[...previousValue, ...element.pageDecorations]) as List<PageDecoration>? Function(List<PageDecoration>?, DartBoardExtension<dynamic>));
 
     appDecorations = extensions.fold(
         <WidgetWithChildBuilder>[],
         (previousValue, element) => <WidgetWithChildBuilder>[
               ...previousValue,
-              ...element.appDecorations
+              ...element.appDecorations as Iterable<Widget Function(BuildContext, Widget?)>
             ]);
 
     pageDecorationDenyList = extensions.fold(
         <String>[],
-        (previousValue, element) =>
-            <String>[...previousValue, ...element.pageDecorationDenyList]);
+        ((previousValue, element) =>
+            <String>[...previousValue, ...element.pageDecorationDenyList]) as List<String>? Function(List<String>?, DartBoardExtension<dynamic>));
     Timer.run(() {
-      dartBoardNavKey.currentState.pushNamed(widget.initialRoute);
+      dartBoardNavKey.currentState!.pushNamed(widget.initialRoute);
     });
   }
 
@@ -104,7 +104,7 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
           key: dartBoardKey,
           navigatorKey: dartBoardNavKey,
           builder: (context, navigator) => appDecorations.reversed
-              .fold(navigator, (child, element) => element(context, child)),
+              .fold(navigator!, (child, element) => element(context, child)),
           onGenerateRoute: onGenerateRoute,
         ),
       );
@@ -118,7 +118,7 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
         orElse: () => NamedRouteDefinition(
             builder: (ctx, _) => widget.pageNotFoundWidget, route: '/404'));
     if (definition.routeBuilder != null) {
-      return definition.routeBuilder(
+      return definition.routeBuilder!(
           settings, (ctx) => buildPageRoute(ctx, settings, definition));
     }
     return widget.pageRouteBuilder(
@@ -130,10 +130,10 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
           RouteDefinition route) =>
       ApplyPageDecorations(
           denylist: pageDecorationDenyList,
-          decorations: pageDecorations.where((decoration) {
-            String route = settings.name;
+          decorations: pageDecorations!.where((decoration) {
+            String? route = settings.name;
             String key = "$route:${decoration.name}";
-            return !pageDecorationDenyList.contains(key);
+            return !pageDecorationDenyList!.contains(key);
           }).toList(),
           child: route?.builder(settings, context));
 
@@ -152,7 +152,7 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
   }
 
   @override
-  Widget applyPageDecorations(Widget child, {RouteSettings settings}) =>
+  Widget applyPageDecorations(Widget child, {RouteSettings? settings}) =>
       ApplyPageDecorations(
         denylist: pageDecorationDenyList,
         decorations: pageDecorations,
@@ -167,9 +167,9 @@ class ApplyDecorations extends StatelessWidget {
   final List<WidgetWithChildBuilder> decorations;
 
   const ApplyDecorations({
-    @required this.child,
-    @required this.decorations,
-    Key key,
+    required this.child,
+    required this.decorations,
+    Key? key,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) => decorations.reversed
@@ -180,20 +180,20 @@ class ApplyDecorations extends StatelessWidget {
 /// E.g. if you are navigating with a non-named route but want them.
 class ApplyPageDecorations extends StatelessWidget {
   final Widget child;
-  final List<PageDecoration> decorations;
-  final List<String> denylist;
+  final List<PageDecoration>? decorations;
+  final List<String>? denylist;
 
-  final RouteSettings settings;
+  final RouteSettings? settings;
 
   const ApplyPageDecorations({
-    @required this.child,
-    @required this.decorations,
-    Key key,
+    required this.child,
+    required this.decorations,
+    Key? key,
     this.settings,
     this.denylist = const [],
   }) : super(key: key);
   @override
-  Widget build(BuildContext context) => decorations.reversed.fold(
+  Widget build(BuildContext context) => decorations!.reversed.fold(
       child,
       (previousValue, pageDecoration) =>
           pageDecoration.decoration(context, previousValue));
