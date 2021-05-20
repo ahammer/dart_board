@@ -17,10 +17,10 @@ class PaneModelA extends StatelessWidget {
   final Widget childA, childB, childC;
 
   const PaneModelA(
-      {Key key,
-      @required this.childA,
-      @required this.childB,
-      @required this.childC})
+      {Key? key,
+      required this.childA,
+      required this.childB,
+      required this.childC})
       : super(key: key);
 
   @override
@@ -40,9 +40,9 @@ class PaneModelB extends StatelessWidget {
   final Widget childA, childB;
 
   const PaneModelB({
-    Key key,
-    @required this.childA,
-    @required this.childB,
+    Key? key,
+    required this.childA,
+    required this.childB,
   }) : super(key: key);
 
   @override
@@ -56,7 +56,7 @@ class PaneModelB extends StatelessWidget {
 
 class Page1Content extends StatelessWidget {
   const Page1Content({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -77,7 +77,7 @@ class Page1Content extends StatelessWidget {
 
 class Page2Content extends StatelessWidget {
   const Page2Content({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -117,7 +117,7 @@ void main() {
 
 class Page3Content extends StatelessWidget {
   const Page3Content({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -302,7 +302,7 @@ Extension Design""",
 
 class AboutTextWidget extends StatelessWidget {
   const AboutTextWidget({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -364,7 +364,7 @@ Theme Extensions
 
 class EntryPointText extends StatelessWidget {
   const EntryPointText({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -399,7 +399,7 @@ const kHeaderStyle = TextStyle(
 const kHighlightStyle = TextStyle(fontStyle: FontStyle.italic);
 
 getCodeTheme(BuildContext context) => SyntaxTheme.dracula()
-  ..commentStyle = Theme.of(context).textTheme.bodyText1.copyWith(
+  ..commentStyle = Theme.of(context).textTheme.bodyText1!.copyWith(
       fontWeight: FontWeight.bold,
       fontStyle: FontStyle.italic,
       decoration: TextDecoration.underline,

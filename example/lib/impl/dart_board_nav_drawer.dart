@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 /// TODO: Add a "current route" screen
 class DartBoardNavDrawer extends StatelessWidget {
   const DartBoardNavDrawer({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

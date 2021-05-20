@@ -9,7 +9,7 @@ class AnimatedBackgroundDecoration extends StatefulWidget {
   final Color color;
 
   const AnimatedBackgroundDecoration(
-      {Key key, @required this.child, @required this.color})
+      {Key? key, required this.child, required this.color})
       : super(key: key);
 
   @override
@@ -20,7 +20,7 @@ class AnimatedBackgroundDecoration extends StatefulWidget {
 class _AnimatedBackgroundDecorationState
     extends State<AnimatedBackgroundDecoration>
     with SingleTickerProviderStateMixin {
-  AnimationController animation;
+  late AnimationController animation;
 
   @override
   void initState() {

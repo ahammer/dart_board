@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 class ScaffoldWithDrawerDecoration extends StatelessWidget {
   final Widget child;
   const ScaffoldWithDrawerDecoration({
-    Key key,
-    @required this.child,
+    Key? key,
+    required this.child,
   }) : super(key: key);
 
   @override

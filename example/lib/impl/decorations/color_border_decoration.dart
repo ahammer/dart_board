@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class DarkColorBorder extends StatelessWidget {
   final Widget child;
   const DarkColorBorder({
-    Key key,
-    @required this.child,
+    Key? key,
+    required this.child,
   }) : super(key: key);
 
   @override
