@@ -15,11 +15,11 @@ class ExampleExtension extends DartBoardExtension {
   @override
   get routes => <RouteDefinition>[
         NamedRouteDefinition(
-            routeCreator: kCupertinoRouteResolver,
+            routeBuilder: kCupertinoRouteResolver,
             route: "/home",
             builder: (ctx, settings) => HomePage()),
         NamedRouteDefinition(
-            routeCreator: kMaterialRouteResolver,
+            routeBuilder: kMaterialRouteResolver,
             route: "/about",
             builder: (ctx, settings) => AboutPage()),
       ];

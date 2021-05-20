@@ -7,6 +7,6 @@ import 'example_extension.dart';
 void main() {
   runApp(DartBoard(
     extensions: [ExampleExtension()],
-    initialRoute: 'debug',
+    initialRoute: '/debug',
   ));
 }

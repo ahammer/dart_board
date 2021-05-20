@@ -114,12 +114,20 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
   ///
   /// It'll also wrap a route with any decorations
   Route onGenerateRoute(RouteSettings settings) {
+    final definition = routes.firstWhere((it) => it.matches(settings),
+        orElse: () => NamedRouteDefinition(
+            builder: (ctx, _) => widget.pageNotFoundWidget, route: '/404'));
+    if (definition.routeBuilder != null) {
+      return definition.routeBuilder(
+          settings, (ctx) => buildPageRoute(ctx, settings, definition));
+    }
     return widget.pageRouteBuilder(
-        settings, (ctx) => buildPageRoute(ctx, settings));
+        settings, (ctx) => buildPageRoute(ctx, settings, definition));
   }
 
   @override
-  Widget buildPageRoute(BuildContext context, RouteSettings settings) =>
+  Widget buildPageRoute(BuildContext context, RouteSettings settings,
+          RouteDefinition route) =>
       ApplyPageDecorations(
           denylist: pageDecorationDenyList,
           decorations: pageDecorations.where((decoration) {
@@ -127,12 +135,7 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
             String key = "$route:${decoration.name}";
             return !pageDecorationDenyList.contains(key);
           }).toList(),
-          child: routes
-              .firstWhere((it) => it.matches(settings),
-                  orElse: () => NamedRouteDefinition(
-                      builder: (ctx, _) => widget.pageNotFoundWidget,
-                      route: '/404'))
-              ?.builder(settings, context));
+          child: route?.builder(settings, context));
 
   @override
   List<DartBoardExtension> get extensions => allExtensions;

@@ -73,7 +73,7 @@ abstract class RouteDefinition {
   RouteWidgetBuilder get builder;
 
   ///This is an optional RouteBuilder
-  Route routeBuilder(RouteSettings settings, WidgetBuilder builder);
+  Route Function(RouteSettings settings, WidgetBuilder builder) routeBuilder;
 }
 
 /// This an implementation of the RouteDefinition class
@@ -82,20 +82,16 @@ abstract class RouteDefinition {
 class NamedRouteDefinition implements RouteDefinition {
   final String route;
   final RouteWidgetBuilder builder;
-  Route Function(RouteSettings settings, WidgetBuilder builder) routeCreator;
+  Route Function(RouteSettings settings, WidgetBuilder builder) routeBuilder;
 
   NamedRouteDefinition(
-      {@required this.route, @required this.builder, this.routeCreator});
+      {@required this.route, @required this.builder, this.routeBuilder});
 
   @override
   bool matches(RouteSettings settings) => settings.name == route;
 
   @override
   String toString() => route;
-
-  @override
-  Route routeBuilder(RouteSettings settings, WidgetBuilder builder) =>
-      this.routeCreator?.call(settings, builder);
 }
 
 /// Syntactic Sugar
