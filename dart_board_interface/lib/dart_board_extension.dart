@@ -30,7 +30,7 @@ class PageDecoration {
   final String name;
   final WidgetWithChildBuilder decoration;
 
-  PageDecoration({@required this.name, @required this.decoration});
+  PageDecoration({required this.name, required this.decoration});
 
   @override
   String toString() => name;
@@ -73,7 +73,7 @@ abstract class RouteDefinition {
   RouteWidgetBuilder get builder;
 
   ///This is an optional RouteBuilder
-  Route Function(RouteSettings settings, WidgetBuilder builder) routeBuilder;
+  Route Function(RouteSettings settings, WidgetBuilder builder)? routeBuilder;
 }
 
 /// This an implementation of the RouteDefinition class
@@ -82,10 +82,10 @@ abstract class RouteDefinition {
 class NamedRouteDefinition implements RouteDefinition {
   final String route;
   final RouteWidgetBuilder builder;
-  Route Function(RouteSettings settings, WidgetBuilder builder) routeBuilder;
+  Route Function(RouteSettings settings, WidgetBuilder builder)? routeBuilder;
 
   NamedRouteDefinition(
-      {@required this.route, @required this.builder, this.routeBuilder});
+      {required this.route, required this.builder, this.routeBuilder});
 
   @override
   bool matches(RouteSettings settings) => settings.name == route;

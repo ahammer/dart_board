@@ -12,7 +12,7 @@ import 'dart_board_extension.dart';
 class RouteWidget extends StatelessWidget {
   final RouteSettings settings;
 
-  const RouteWidget({Key key, @required this.settings}) : super(key: key);
+  const RouteWidget({Key? key, required this.settings}) : super(key: key);
   @override
   Widget build(BuildContext context) =>
       Provider.of<DartBoardCore>(context, listen: false).buildPageRoute(

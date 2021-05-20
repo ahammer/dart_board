@@ -13,18 +13,18 @@ abstract class DartBoardCore {
   Widget buildPageRoute(
       BuildContext context, RouteSettings settings, RouteDefinition definition);
 
-  static Widget decoratePage(Widget child, {RouteSettings settings}) =>
-      Provider.of<DartBoardCore>(dartBoardNavKey.currentContext)
+  static Widget decoratePage(Widget child, {RouteSettings? settings}) =>
+      Provider.of<DartBoardCore>(dartBoardNavKey.currentContext!)
           .applyPageDecorations(child);
 
   static List<DartBoardExtension> getExtensions() =>
-      Provider.of<DartBoardCore>(dartBoardNavKey.currentContext).extensions;
+      Provider.of<DartBoardCore>(dartBoardNavKey.currentContext!).extensions;
 
   static List<RouteDefinition> getRoutes() =>
-      Provider.of<DartBoardCore>(dartBoardNavKey.currentContext).routes;
+      Provider.of<DartBoardCore>(dartBoardNavKey.currentContext!).routes;
 
   static DartBoardExtension findByName(String name) =>
-      Provider.of<DartBoardCore>(dartBoardNavKey.currentContext)
+      Provider.of<DartBoardCore>(dartBoardNavKey.currentContext!)
           .extensions
           .firstWhere((element) => element.namespace == name);
 }
