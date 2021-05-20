@@ -30,5 +30,6 @@ abstract class DartBoardCore {
   static DartBoardExtension findByName(String name) =>
       Provider.of<DartBoardCore>(dartBoardNavKey.currentContext!)
           .extensions
-          .firstWhere((element) => element.namespace == name);
+          .firstWhere((element) => element.namespace == name,
+              orElse: () => EmptyDartBoardExtension());
 }
