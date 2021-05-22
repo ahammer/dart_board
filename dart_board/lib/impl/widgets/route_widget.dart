@@ -2,8 +2,6 @@ import 'package:dart_board/interface/dart_board_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../interface/dart_board_feature.dart';
-
 /// Route Widget
 ///
 /// Inflates a route if possible and decorates it.

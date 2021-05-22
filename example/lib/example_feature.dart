@@ -46,7 +46,8 @@ class ExampleFeature extends DartBoardFeature {
             route: '/routing',
             builder: (ctx, settings) => HaikuAndCode(
                   haiku: 'asddsadsa',
-                  filename: 'lib/main.dart',
+                  url:
+                      'https://raw.githubusercontent.com/ahammer/dart_board/master/example/lib/main.dart',
                 ))
       ];
 

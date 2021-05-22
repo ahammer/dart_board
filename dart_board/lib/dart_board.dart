@@ -4,9 +4,6 @@ library dart_board;
 export 'interface/dart_board_core.dart';
 
 /// The interface for Dart Board
-export 'interface/dart_board_feature.dart';
-
-/// The interface for Dart Board
 export 'impl/dart_board_core.dart';
 
 /// The Route Widget

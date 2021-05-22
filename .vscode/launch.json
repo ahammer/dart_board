@@ -5,18 +5,6 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "dart_board",
-            "cwd": "dart_board",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "dart_board_interface",
-            "cwd": "dart_board_interface",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
             "name": "example",
             "cwd": "example",
             "request": "launch",

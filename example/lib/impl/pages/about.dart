@@ -6,8 +6,10 @@ final Logger log = Logger('About');
 
 class AboutPage extends StatelessWidget {
   @override
-  Widget build(BuildContext context) =>
-      HaikuAndCode(haiku: '''Need to integrate?
+  Widget build(BuildContext context) => HaikuAndCode(
+      haiku: '''Need to integrate?
 Dart board will do that for you
-It will be simple''', filename: 'lib/main.dart');
+It will be simple''',
+      url:
+          'https://raw.githubusercontent.com/ahammer/dart_board/master/example/lib/main.dart');
 }
