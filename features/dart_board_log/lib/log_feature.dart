@@ -69,53 +69,56 @@ class LogWrapper extends StatelessWidget {
   Widget build(BuildContext context) => Column(
         children: [
           Expanded(child: child!),
-          MaterialButton(
-              color: Theme.of(context).colorScheme.surface,
-              onPressed: () {
-                Navigator.of(context).push(PageRouteBuilder(
-                  opaque: false,
+          Hero(
+            tag: 'LOG_FOOTER',
+            child: MaterialButton(
+                color: Theme.of(context).colorScheme.surface,
+                onPressed: () {
+                  Navigator.of(context).push(PageRouteBuilder(
+                    opaque: false,
 
-                  /// We pass a name so we can exclude the debug-log frame
-                  settings: RouteSettings(name: kLogRoute),
-                  pageBuilder: (context, animation, secondaryAnimation) =>
-                      RouteWidget(settings: RouteSettings(name: '/log')),
-                  transitionsBuilder:
-                      (context, animation, secondaryAnimation, child) {
-                    var begin = Offset(0.0, 1.0);
-                    var end = Offset.zero;
-                    var curve = Curves.ease;
+                    /// We pass a name so we can exclude the debug-log frame
+                    settings: RouteSettings(name: kLogRoute),
+                    pageBuilder: (context, animation, secondaryAnimation) =>
+                        RouteWidget(settings: RouteSettings(name: '/log')),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      var begin = Offset(0.0, 1.0);
+                      var end = Offset.zero;
+                      var curve = Curves.ease;
 
-                    var tween = Tween(begin: begin, end: end)
-                        .chain(CurveTween(curve: curve));
+                      var tween = Tween(begin: begin, end: end)
+                          .chain(CurveTween(curve: curve));
 
-                    return SlideTransition(
-                      position: animation.drive(tween),
-                      child: child,
-                    );
-                  },
-                ));
-              },
-              child: Container(
-                child: Consumer<LogState>(
-                    builder: (context, value, child) => AnimatedSwitcher(
-                        duration: Duration(milliseconds: 300),
-                        switchInCurve: Curves.ease,
-                        transitionBuilder:
-                            (Widget child, Animation<double> animation) =>
-                                SlideTransition(
-                                  position: Tween<Offset>(
-                                          begin: Offset(0, 1),
-                                          end: Offset(0, 0))
-                                      .animate(animation),
-                                  child: child,
-                                ),
-                        child: Container(
-                            key: Key(value.lastLogRecord.message),
-                            width: double.infinity,
-                            child: LogMessageWidget(
-                                fontSize: fontSize,
-                                record: value.lastLogRecord)))),
-              )),
+                      return SlideTransition(
+                        position: animation.drive(tween),
+                        child: child,
+                      );
+                    },
+                  ));
+                },
+                child: Container(
+                  child: Consumer<LogState>(
+                      builder: (context, value, child) => AnimatedSwitcher(
+                          duration: Duration(milliseconds: 300),
+                          switchInCurve: Curves.ease,
+                          transitionBuilder:
+                              (Widget child, Animation<double> animation) =>
+                                  SlideTransition(
+                                    position: Tween<Offset>(
+                                            begin: Offset(0, 1),
+                                            end: Offset(0, 0))
+                                        .animate(animation),
+                                    child: child,
+                                  ),
+                          child: Container(
+                              key: Key(value.lastLogRecord.message),
+                              width: double.infinity,
+                              child: LogMessageWidget(
+                                  fontSize: fontSize,
+                                  record: value.lastLogRecord)))),
+                )),
+          ),
         ],
       );
 }

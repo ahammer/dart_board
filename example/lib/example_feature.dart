@@ -10,6 +10,7 @@ import 'impl/decorations/color_border_decoration.dart';
 import 'impl/decorations/scaffold_appbar_decoration.dart';
 
 import 'impl/pages/haiku_and_code.dart';
+import 'impl/state/app_state.dart';
 
 /// The Example Feature
 ///
@@ -87,6 +88,12 @@ Composed, they are strong''',
                   color: Theme.of(context).accentColor,
                   child: child,
                 ))
+      ];
+
+  @override
+  List<WidgetWithChildBuilder> get appDecorations => [
+        (ctx, child) =>
+            Provider<AppState>(create: (ctx) => AppState(), child: child)
       ];
 
   @override

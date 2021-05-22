@@ -1,6 +1,5 @@
-import 'package:dart_board_theme/theme_feature.dart';
-import 'package:example/impl/dart_board_nav_drawer.dart';
 import 'package:flutter/material.dart';
+import '../state/app_state.dart';
 
 class ScaffoldWithDrawerDecoration extends StatelessWidget {
   final Widget child;
@@ -11,14 +10,48 @@ class ScaffoldWithDrawerDecoration extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-      drawer: ExampleNavDrawer(),
-      appBar: AppBar(
-        title: Text(ModalRoute.of(context)?.settings.name ?? 'Dart Board'),
-        actions: [
-          IconButton(
-              icon: Icon(Icons.lightbulb),
-              onPressed: () => ThemeFeature.toggle(context))
-        ],
-      ),
-      body: child);
+        body: child,
+        bottomNavigationBar: Hero(
+          tag: 'EXAMPLE_BOTTOM_TOOLBAR',
+          child: BottomNavigationBar(
+            elevation: 3,
+            type: BottomNavigationBarType.fixed,
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: 'Home',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.info),
+                label: 'About',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.art_track),
+                label: 'Decorations',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.school),
+                label: 'Routing',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.school),
+                label: 'Features',
+              ),
+            ],
+            currentIndex: context.appState.selectedNavTab,
+            selectedItemColor: Colors.amber[800],
+            onTap: (value) {
+              context.appState.selectedNavTab = value;
+
+              Navigator.of(context).pushNamed([
+                '/home',
+                '/about',
+                '/decorations',
+                '/routing',
+                '/features'
+              ][value]);
+            },
+          ),
+        ),
+      );
 }

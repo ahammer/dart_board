@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:dart_board/dart_board.dart';
 import 'package:dart_board_theme/theme_feature.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,9 +23,10 @@ class _HaikuAndCodeState extends State<HaikuAndCode> {
 
   @override
   void initState() {
-    http
+    Future.delayed(Duration(seconds: 1)).then((value) => http
         .get(Uri.parse(widget.url))
-        .then((value) => setState(() => fileContents = value.body));
+        .then((value) => setState(() => fileContents = value.body)));
+
     super.initState();
   }
 
@@ -34,20 +34,23 @@ class _HaikuAndCodeState extends State<HaikuAndCode> {
   Widget build(BuildContext context) {
     final haikuWidget = Center(
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(32.0),
         child: Container(
             width: double.infinity,
-            child: FittedBox(
-              child: Text(
-                widget.haiku,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.headline1!.copyWith(
-                    shadows: [
-                      BoxShadow(
-                          blurRadius: 4,
-                          offset: Offset(1, 1),
-                          color: Colors.black54)
-                    ]),
+            child: Align(
+              alignment: Alignment.center,
+              child: FittedBox(
+                child: Text(
+                  widget.haiku,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.headline1!.copyWith(
+                      shadows: [
+                        BoxShadow(
+                            blurRadius: 4,
+                            offset: Offset(1, 1),
+                            color: Colors.black54)
+                      ]),
+                ),
               ),
             )),
       ),
@@ -61,8 +64,8 @@ class _HaikuAndCodeState extends State<HaikuAndCode> {
               : (size.maxWidth > size.maxHeight)
                   ? min(80 * 10, size.maxWidth - 8)
                   : size.maxWidth,
-          duration: Duration(seconds: 2),
-          curve: Curves.bounceOut,
+          duration: Duration(seconds: 4),
+          curve: Curves.easeInOut,
           child: fileContents.isNotEmpty
               ? Material(
                   elevation: 5,

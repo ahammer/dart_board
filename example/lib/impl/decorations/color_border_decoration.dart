@@ -11,8 +11,13 @@ class DarkColorBorder extends StatelessWidget {
   Widget build(BuildContext context) => Container(
         color: Theme.of(context).colorScheme.primaryVariant,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Card(child: child),
+          padding: const EdgeInsets.all(2.0),
+          child: Card(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+            child: ClipRRect(
+                borderRadius: BorderRadius.circular(16), child: child),
+          ),
         ),
       );
 }
