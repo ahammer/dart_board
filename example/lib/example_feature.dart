@@ -7,10 +7,10 @@ import 'package:example/impl/pages/home_page.dart';
 import 'package:example/impl/routes/custom_routes.dart';
 import 'package:flutter/material.dart';
 import 'impl/decorations/color_border_decoration.dart';
-import 'impl/decorations/scaffold_appbar_decoration.dart';
+import 'impl/pages/main_page.dart';
 
 import 'impl/pages/haiku_and_code.dart';
-import 'impl/state/app_state.dart';
+import 'impl/state/nav_state.dart';
 
 /// The Example Feature
 ///
@@ -34,6 +34,10 @@ class ExampleFeature extends DartBoardFeature {
             routeBuilder: kSpinRoute,
             route: '/home',
             builder: (ctx, settings) => HomePage()),
+        NamedRouteDefinition(
+            routeBuilder: kSpinRoute,
+            route: '/main',
+            builder: (ctx, settings) => MainPage()),
         NamedRouteDefinition(
             route: '/about',
             builder: (ctx, settings) => HaikuAndCode(
@@ -75,11 +79,9 @@ Composed, they are strong''',
   /// These are page-scoped decorations
   @override
   List<PageDecoration> get pageDecorations => <PageDecoration>[
-        /// The AppBar and Nav Drawer
         PageDecoration(
-            name: 'scaffold_and_drawer',
-            decoration: (context, child) => ScaffoldWithDrawerDecoration(
-                child: DarkColorBorder(child: child))),
+            name: 'color_border',
+            decoration: (context, child) => DarkColorBorder(child: child)),
 
         /// The animated background effect
         PageDecoration(
@@ -92,8 +94,8 @@ Composed, they are strong''',
 
   @override
   List<WidgetWithChildBuilder> get appDecorations => [
-        (ctx, child) =>
-            Provider<AppState>(create: (ctx) => AppState(), child: child)
+        (ctx, child) => ChangeNotifierProvider<NavState>(
+            create: (ctx) => NavState(), child: child)
       ];
 
   @override

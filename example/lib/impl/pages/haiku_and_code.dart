@@ -20,19 +20,31 @@ class HaikuAndCode extends StatefulWidget {
 
 class _HaikuAndCodeState extends State<HaikuAndCode> {
   String fileContents = '';
+  String lastLoaded = '';
 
   @override
   void initState() {
-    Future.delayed(Duration(seconds: 1)).then((value) => http
-        .get(Uri.parse(widget.url))
-        .then((value) => setState(() => fileContents = value.body)));
-
+    loadData();
     super.initState();
+  }
+
+  void loadData() {
+    if (lastLoaded == widget.url) return;
+
+    lastLoaded = widget.url;
+    http
+        .get(Uri.parse(widget.url))
+        .then((value) => setState(() => fileContents = value.body));
   }
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance!.scheduleFrameCallback((timeStamp) {
+      //Trigger a data load (if necessary)
+      loadData();
+    });
     final haikuWidget = Center(
+      key: Key('haiku'),
       child: Padding(
         padding: const EdgeInsets.all(32.0),
         child: Container(

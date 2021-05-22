@@ -55,7 +55,7 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
   late List<PageDecoration> pageDecorations;
   late List<WidgetWithChildBuilder> appDecorations;
 
-  List<String>? pageDecorationDenyList;
+  late List<String> pageDecorationDenyList;
 
   List<DartBoardFeature> get allfeatures {
     final result = <DartBoardFeature>[];
@@ -127,13 +127,16 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
   }
 
   @override
-  Widget buildPageRoute(BuildContext context, RouteSettings settings,
-          RouteDefinition route) =>
+  Widget buildPageRoute(
+          BuildContext context, RouteSettings settings, RouteDefinition route,
+          {bool decorate = true}) =>
       ApplyPageDecorations(
           denylist: pageDecorationDenyList,
           decorations: pageDecorations
-              .where((decoration) => !pageDecorationDenyList!
-                  .contains('${settings.name}:${decoration.name}'))
+              .where((decoration) =>
+                  decorate &&
+                  !pageDecorationDenyList
+                      .contains('${settings.name}:${decoration.name}'))
               .toList(),
           child: route.builder(settings, context));
 

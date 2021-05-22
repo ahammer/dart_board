@@ -40,7 +40,8 @@ abstract class DartBoardCore {
   /// Builds a page route
   ///
   Widget buildPageRoute(
-      BuildContext context, RouteSettings settings, RouteDefinition definition);
+      BuildContext context, RouteSettings settings, RouteDefinition definition,
+      {bool decorate = true});
 
   ///------------------------------------------------------------------------------------------------------------
   /// STATIC HELPERS
