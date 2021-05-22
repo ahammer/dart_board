@@ -25,6 +25,6 @@ import 'example_feature.dart';
 ///
 void main() => runApp(DartBoard(
       features: [ExampleFeature()],
-      initialRoute: '/home',
+      initialRoute: '/features',
       routeBuilder: kFadeRouteBuilder,
     ));

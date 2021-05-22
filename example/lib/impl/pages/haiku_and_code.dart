@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_syntax_view/flutter_syntax_view.dart';
@@ -51,16 +53,22 @@ class _HaikuAndCodeState extends State<HaikuAndCode> {
 
     return LayoutBuilder(builder: (ctx, size) {
       final codeWidget;
-      codeWidget = Container(
-          height: double.infinity,
+      codeWidget = AnimatedContainer(
+          width: fileContents.isEmpty
+              ? 0
+              : (size.maxWidth > size.maxHeight)
+                  ? min(80 * 10, size.maxWidth - 8)
+                  : size.maxWidth,
+          duration: Duration(seconds: 2),
+          curve: Curves.bounceOut,
           child: fileContents.isNotEmpty
-              ? FittedBox(
-                  fit: BoxFit.contain,
-                  child: SyntaxView(
-                    code: fileContents,
-                    syntax: Syntax.DART,
-                    syntaxTheme: SyntaxTheme.ayuDark(),
-                  ),
+              ? SyntaxView(
+                  fontSize: 20,
+                  expanded: false,
+                  withZoom: false,
+                  code: fileContents,
+                  syntax: Syntax.DART,
+                  syntaxTheme: SyntaxTheme.ayuDark(),
                 )
               : Text('Loading'));
 

@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'impl/decorations/color_border_decoration.dart';
 import 'impl/decorations/scaffold_appbar_decoration.dart';
 import 'impl/pages/about.dart';
-import 'impl/pages/features.dart';
+
 import 'impl/pages/haiku_and_code.dart';
 
 /// The Example Feature
@@ -38,8 +38,6 @@ class ExampleFeature extends DartBoardFeature {
         NamedRouteDefinition(
             route: '/about', builder: (ctx, settings) => AboutPage()),
         NamedRouteDefinition(
-            route: '/features', builder: (ctx, settings) => FeaturesPage()),
-        NamedRouteDefinition(
             route: '/decorations',
             builder: (ctx, settings) => DecorationsPage()),
         NamedRouteDefinition(
@@ -48,6 +46,15 @@ class ExampleFeature extends DartBoardFeature {
                   haiku: 'asddsadsa',
                   url:
                       'https://raw.githubusercontent.com/ahammer/dart_board/master/example/lib/main.dart',
+                )),
+        NamedRouteDefinition(
+            route: '/features',
+            builder: (ctx, settings) => HaikuAndCode(
+                  haiku: '''Features are code bits
+They hook into your apps quick
+Composed, they are strong''',
+                  url:
+                      'https://raw.githubusercontent.com/ahammer/dart_board/master/example/lib/example_feature.dart',
                 ))
       ];
 
