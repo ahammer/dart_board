@@ -122,6 +122,8 @@ Composed, they are strong''',
         '/decorations:log_frame',
         '/about:color_border',
         '/about:log_frame',
+        '/debug:log_frame',
+        '/debug:color_border',
         '/main:animated_background',
       ];
 

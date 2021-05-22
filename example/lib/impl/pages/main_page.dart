@@ -1,8 +1,16 @@
 import 'package:dart_board/dart_board.dart';
+import 'package:dart_board_theme/theme_feature.dart';
 import 'package:flutter/material.dart';
 import '../state/nav_state.dart';
 
-final routes = ['/home', '/about', '/decorations', '/routing', '/features'];
+final routes = [
+  '/home',
+  '/about',
+  '/decorations',
+  '/routing',
+  '/features',
+  '/debug'
+];
 
 class MainPage extends StatelessWidget {
   const MainPage({
@@ -12,6 +20,11 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Consumer<NavState>(
         builder: (ctx, navstate, child) => Scaffold(
+          floatingActionButton: FloatingActionButton(
+            mini: true,
+            onPressed: () => ThemeFeature.toggle(context),
+            child: Icon(Icons.lightbulb),
+          ),
           body: AnimatedSwitcher(
             duration: Duration(seconds: 1),
             child: RouteWidget(
@@ -45,13 +58,18 @@ class MainPage extends StatelessWidget {
                     label: 'Routing',
                     backgroundColor: Colors.cyan),
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.plumbing),
+                    icon: Icon(Icons.ac_unit),
                     label: 'Features',
+                    backgroundColor: Colors.amber),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.plumbing),
+                    label: 'Debug',
                     backgroundColor: Colors.amber),
               ],
               currentIndex: navstate.selectedNavTab,
-              selectedItemColor: Colors.white,
-              unselectedItemColor: Colors.white54,
+              selectedItemColor: Theme.of(context).colorScheme.onSurface,
+              unselectedItemColor:
+                  Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
               onTap: (value) {
                 navstate.selectedNavTab = value;
               },

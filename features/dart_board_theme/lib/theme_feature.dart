@@ -2,6 +2,8 @@ import 'package:dart_board/dart_board.dart';
 import 'package:flutter/material.dart';
 
 class ThemeFeature extends DartBoardFeature {
+  ThemeFeature();
+
   @override
   List<PageDecoration> get pageDecorations => [
         PageDecoration(
