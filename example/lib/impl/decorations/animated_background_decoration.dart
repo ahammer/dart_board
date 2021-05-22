@@ -21,10 +21,11 @@ class _AnimatedBackgroundDecorationState
     extends State<AnimatedBackgroundDecoration>
     with SingleTickerProviderStateMixin {
   late AnimationController animation;
-
+  late double random;
   @override
   void initState() {
     super.initState();
+    random = Random().nextDouble() * 100;
     animation = AnimationController(vsync: this);
     animation.repeat(
         min: 0.0, max: 1.0, period: Duration(minutes: 100), reverse: true);
@@ -47,7 +48,7 @@ class _AnimatedBackgroundDecorationState
                     width: double.infinity,
                     height: double.infinity,
                     child: CustomPaint(
-                        painter: BackgroundPainter(animation.value)))),
+                        painter: BackgroundPainter(animation.value + random)))),
           ),
           widget.child,
         ],
