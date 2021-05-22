@@ -15,7 +15,7 @@ class MainPage extends StatelessWidget {
           body: AnimatedSwitcher(
             duration: Duration(seconds: 1),
             child: RouteWidget(
-              decorate: false,
+              decorate: true,
               key: Key('tab_${navstate.selectedNavTab}'),
               settings: RouteSettings(name: routes[navstate.selectedNavTab]),
             ),
@@ -31,8 +31,8 @@ class MainPage extends StatelessWidget {
                     label: 'Home',
                     backgroundColor: Colors.red),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.info),
-                  label: 'About',
+                  icon: Icon(Icons.call_merge),
+                  label: 'Integrate',
                   backgroundColor: Colors.green,
                 ),
                 BottomNavigationBarItem(
@@ -50,7 +50,8 @@ class MainPage extends StatelessWidget {
                     backgroundColor: Colors.amber),
               ],
               currentIndex: navstate.selectedNavTab,
-              selectedItemColor: Colors.black,
+              selectedItemColor: Colors.white,
+              unselectedItemColor: Colors.white54,
               onTap: (value) {
                 navstate.selectedNavTab = value;
               },
