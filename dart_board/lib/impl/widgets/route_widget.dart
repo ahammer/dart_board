@@ -1,6 +1,4 @@
-import 'package:dart_board/interface/dart_board_core.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:dart_board/dart_board.dart';
 
 /// Route Widget
 ///
