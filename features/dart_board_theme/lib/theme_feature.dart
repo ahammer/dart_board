@@ -31,6 +31,9 @@ class ThemeFeature extends DartBoardFeature {
 
   @override
   String get namespace => 'theme';
+
+  static bool get isLight =>
+      Provider.of<ThemeState>(dartBoardNavKey.currentContext!).isLight;
 }
 
 class ThemePage extends StatelessWidget {

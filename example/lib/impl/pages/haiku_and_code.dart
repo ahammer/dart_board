@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:dart_board/dart_board.dart';
+import 'package:dart_board_theme/theme_feature.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_syntax_view/flutter_syntax_view.dart';
@@ -62,13 +64,18 @@ class _HaikuAndCodeState extends State<HaikuAndCode> {
           duration: Duration(seconds: 2),
           curve: Curves.bounceOut,
           child: fileContents.isNotEmpty
-              ? SyntaxView(
-                  fontSize: 20,
-                  expanded: false,
-                  withZoom: false,
-                  code: fileContents,
-                  syntax: Syntax.DART,
-                  syntaxTheme: SyntaxTheme.ayuDark(),
+              ? Material(
+                  elevation: 5,
+                  child: SyntaxView(
+                    fontSize: 14,
+                    expanded: true,
+                    withZoom: false,
+                    code: fileContents,
+                    syntax: Syntax.DART,
+                    syntaxTheme: ThemeFeature.isLight
+                        ? SyntaxTheme.gravityLight()
+                        : SyntaxTheme.gravityDark(),
+                  ),
                 )
               : Text('Loading'));
 
