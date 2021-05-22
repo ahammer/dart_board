@@ -25,8 +25,6 @@ dependencies:
     sdk: flutter
   dart_board:
     path: ../dart_board
-  dart_board_interface: 
-    path: ../dart_board_interface
   dart_board_theme:
     path: ../features/dart_board_theme
   dart_board_debug:
@@ -45,5 +43,4 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-  assets:
-    - lib/
+  

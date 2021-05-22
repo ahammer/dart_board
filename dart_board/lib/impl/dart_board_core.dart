@@ -1,13 +1,13 @@
 import 'dart:async';
 
-import 'package:dart_board_interface/dart_board_core.dart';
-import 'package:dart_board_interface/dart_board_feature.dart';
+import 'package:dart_board/interface/dart_board_feature.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:logging/logging.dart';
 
+import '../dart_board.dart';
 import 'widgets/route_not_found.dart';
 
 final Logger log = Logger('DartBoard');

@@ -43,10 +43,10 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.15.0"
-  dart_board_interface:
+  dart_board:
     dependency: "direct main"
     description:
-      path: "../../dart_board_interface"
+      path: "../../dart_board"
       relative: true
     source: path
     version: "1.0.0+1"

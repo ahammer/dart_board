@@ -1,6 +1,7 @@
-import 'package:dart_board_interface/dart_board_feature.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'dart_board_feature.dart';
 
 /// Communicates with Core. For features
 GlobalKey<NavigatorState> dartBoardNavKey = GlobalKey();
@@ -9,7 +10,11 @@ GlobalKey<NavigatorState> dartBoardNavKey = GlobalKey();
 ///
 /// This is the basic interface into DartBoard
 ///
-/// It stores the Features,
+/// The core itself doesn't expose many features
+/// However, this basic interface will allow extensions
+/// to probe into the system. E.g. check if a module or route is active.
+///
+///
 abstract class DartBoardCore {
   /// These are the Features
   ///
@@ -27,26 +32,26 @@ abstract class DartBoardCore {
   /// child:
   ///
   /// E.g. if you use RouteWidget with like a dialog, but want the decorations
-  Widget applyPageDecorations(Widget child);
+  Widget applyPageDecorations(Widget child) => child;
 
   /// Builds a page route
   ///
-  /// This is in the interface
   Widget buildPageRoute(
       BuildContext context, RouteSettings settings, RouteDefinition definition);
 
   ///------------------------------------------------------------------------------------------------------------
   /// STATIC HELPERS
 
+  /// Decorate a page.
   static Widget decoratePage(Widget child) =>
       Provider.of<DartBoardCore>(dartBoardNavKey.currentContext!)
           .applyPageDecorations(child);
 
-  /// Helper to get a list of the features
+  /// Gets a list of all features
   static List<DartBoardFeature> get featureList =>
       Provider.of<DartBoardCore>(dartBoardNavKey.currentContext!).features;
 
-  /// Helper to find an feature by name
+  /// Finds a Feature by it's name
   static DartBoardFeature findByName(String name) =>
       Provider.of<DartBoardCore>(dartBoardNavKey.currentContext!)
           .features

@@ -1,5 +1,4 @@
-import 'package:dart_board_interface/dart_board_core.dart';
-import 'package:dart_board_interface/dart_board_feature.dart';
+import 'package:dart_board/dart_board.dart';
 import 'package:flutter/material.dart';
 
 /// This feature is meant to expose the /Debug route,

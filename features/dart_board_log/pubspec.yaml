@@ -25,8 +25,8 @@ dependencies:
   flutter:
     sdk: flutter
   
-  dart_board_interface:
-    path: ../../dart_board_interface
+  dart_board:
+    path: ../../dart_board
 
 dev_dependencies:
   flutter_test:

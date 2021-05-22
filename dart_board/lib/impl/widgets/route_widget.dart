@@ -1,8 +1,8 @@
-import 'package:dart_board_interface/dart_board_core.dart';
+import 'package:dart_board/interface/dart_board_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'dart_board_feature.dart';
+import '../../interface/dart_board_feature.dart';
 
 /// Route Widget
 ///

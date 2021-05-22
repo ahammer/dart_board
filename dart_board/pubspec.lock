@@ -43,13 +43,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.15.0"
-  dart_board_interface:
-    dependency: "direct main"
-    description:
-      path: "../dart_board_interface"
-      relative: true
-    source: path
-    version: "1.0.0+1"
   fake_async:
     dependency: transitive
     description:
@@ -68,7 +61,7 @@ packages:
     source: sdk
     version: "0.0.0"
   logging:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: logging
       url: "https://pub.dartlang.org"
@@ -110,7 +103,7 @@ packages:
     source: hosted
     version: "1.11.0"
   provider:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: provider
       url: "https://pub.dartlang.org"

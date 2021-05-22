@@ -23,10 +23,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  dart_board_interface: 
-    path: ../dart_board_interface
-    
- 
+  provider: ^5.0.0
+  logging:
 
 dev_dependencies:
   flutter_test:

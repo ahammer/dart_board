@@ -1,6 +1,6 @@
 import 'package:example/impl/pages/haiku_and_code.dart';
 import 'package:flutter/material.dart';
-import 'package:logging/logging.dart';
+import 'package:dart_board/dart_board.dart';
 
 final Logger log = Logger('About');
 
