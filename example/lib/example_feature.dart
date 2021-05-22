@@ -3,13 +3,11 @@ import 'package:dart_board_theme/theme_feature.dart';
 import 'package:dart_board_debug/debug_feature.dart';
 import 'package:dart_board_log/log_feature.dart';
 import 'package:example/impl/decorations/animated_background_decoration.dart';
-import 'package:example/impl/pages/decorations.dart';
 import 'package:example/impl/pages/home_page.dart';
 import 'package:example/impl/routes/custom_routes.dart';
 import 'package:flutter/material.dart';
 import 'impl/decorations/color_border_decoration.dart';
 import 'impl/decorations/scaffold_appbar_decoration.dart';
-import 'impl/pages/about.dart';
 
 import 'impl/pages/haiku_and_code.dart';
 
@@ -36,14 +34,29 @@ class ExampleFeature extends DartBoardFeature {
             route: '/home',
             builder: (ctx, settings) => HomePage()),
         NamedRouteDefinition(
-            route: '/about', builder: (ctx, settings) => AboutPage()),
+            route: '/about',
+            builder: (ctx, settings) => HaikuAndCode(
+                haiku: '''Need to integrate?
+Dart board will do that for you
+It will be simple''',
+                url:
+                    'https://raw.githubusercontent.com/ahammer/dart_board/master/example/lib/main.dart')),
         NamedRouteDefinition(
             route: '/decorations',
-            builder: (ctx, settings) => DecorationsPage()),
+            builder: (ctx, settings) => HaikuAndCode(
+                  haiku: '''Painting your project
+At the app and page level
+is quick and easy''',
+                  url:
+                      'https://raw.githubusercontent.com/ahammer/dart_board/master/example/lib/impl/decorations/scaffold_appbar_decoration.dart',
+                )),
         NamedRouteDefinition(
             route: '/routing',
             builder: (ctx, settings) => HaikuAndCode(
-                  haiku: 'asddsadsa',
+                  haiku: '''Navigate your app
+Features provide named pages
+Custom transitions
+''',
                   url:
                       'https://raw.githubusercontent.com/ahammer/dart_board/master/example/lib/main.dart',
                 )),
