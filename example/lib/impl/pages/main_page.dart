@@ -67,9 +67,9 @@ class MainPage extends StatelessWidget {
                     backgroundColor: Colors.amber),
               ],
               currentIndex: navstate.selectedNavTab,
-              selectedItemColor: Theme.of(context).colorScheme.onSurface,
+              selectedItemColor: Theme.of(context).colorScheme.surface,
               unselectedItemColor:
-                  Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
+                  Theme.of(context).colorScheme.surface.withOpacity(0.8),
               onTap: (value) {
                 navstate.selectedNavTab = value;
               },
