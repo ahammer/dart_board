@@ -73,8 +73,6 @@ abstract class DartBoardCore {
               orElse: () => EmptyDartBoardFeature());
 }
 
-
-
 ///
 /// This specifies a Page Decoration from an feature
 ///
@@ -110,12 +108,25 @@ abstract class DartBoardFeature<T> {
 
   List<DartBoardFeature> get dependencies => [];
 
-  /// Blacklists for page decorations in the format
+  /// Deny list for page decorations in the format
   /// "/route:page_decoration_name"
   ///
   /// Useful when you don't want a decoration on a page
   /// Normally provided in the integration feature
   List<String> get pageDecorationDenyList => [];
+
+  /// Allow list for page decorations in the format
+  /// "/route:page_decoration_name"
+  ///
+  /// Userful when you want a page decoration on a specific
+  /// set of pages
+  ///
+  /// If the allow list is used for a decoration, the deny list is ignored
+  /// E.g. if the Same entry is in both lists, Allow takes priority
+  /// Having one entry in allow is the same as having
+  /// a deny for everything else.
+  List<String> get pageDecorationAllowList => [];
+
   @override
   String toString() => namespace;
 }
@@ -130,8 +141,6 @@ abstract class RouteDefinition {
   ///This is an optional RouteBuilder
   RouteBuilder? routeBuilder;
 }
-
-
 
 /// An empty feature to use as a default if an feature can't be found
 class EmptyDartBoardFeature extends DartBoardFeature {
