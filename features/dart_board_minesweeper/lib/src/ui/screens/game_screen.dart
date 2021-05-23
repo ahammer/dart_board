@@ -39,30 +39,6 @@ class GameScreen extends StatelessWidget {
       body: GameBoard());
 }
 
-class ThemeSelectWidget extends StatelessWidget {
-  const ThemeSelectWidget({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return StoreConnector<AppState, String?>(
-        distinct: true,
-        converter: (store) => store.state.theme,
-        builder: (ctx, value) => DropdownButton(
-              value: value,
-              items: <DropdownMenuItem>[
-                ...["Light", "Dark"]
-                    .map((s) => DropdownMenuItem(value: s, child: Text(s)))
-              ],
-              onChanged: (dynamic value) {
-                Provider.of<Store<AppState>>(context)
-                    .dispatch(SetThemeAction(value));
-              },
-            ));
-  }
-}
-
 class GameDifficultyWidget extends StatelessWidget {
   const GameDifficultyWidget({
     Key? key,
