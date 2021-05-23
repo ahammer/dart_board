@@ -4,53 +4,23 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class AnimatedBackgroundDecoration extends StatefulWidget {
+class AnimatedBackgroundDecoration extends StatelessWidget {
   final Widget child;
-  final Color color;
+  final double rand = Random().nextDouble();
 
-  const AnimatedBackgroundDecoration(
-      {Key? key, required this.child, required this.color})
+  AnimatedBackgroundDecoration({Key? key, required this.child})
       : super(key: key);
-
-  @override
-  _AnimatedBackgroundDecorationState createState() =>
-      _AnimatedBackgroundDecorationState();
-}
-
-class _AnimatedBackgroundDecorationState
-    extends State<AnimatedBackgroundDecoration>
-    with SingleTickerProviderStateMixin {
-  late AnimationController animation;
-  late double random;
-  @override
-  void initState() {
-    super.initState();
-    random = Random().nextDouble() * 100;
-    animation = AnimationController(vsync: this);
-    animation.repeat(
-        min: 0.0, max: 1.0, period: Duration(minutes: 100), reverse: true);
-  }
-
-  @override
-  void dispose() {
-    animation.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) => Stack(
         children: [
           Opacity(
-            opacity: 0.3,
-            child: AnimatedBuilder(
-                animation: animation,
-                builder: (ctx, child) => Container(
-                    width: double.infinity,
-                    height: double.infinity,
-                    child: CustomPaint(
-                        painter: BackgroundPainter(animation.value + random)))),
-          ),
-          widget.child,
+              opacity: 0.3,
+              child: Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  child: CustomPaint(painter: BackgroundPainter(rand)))),
+          child,
         ],
       );
 }
