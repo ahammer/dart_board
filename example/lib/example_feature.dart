@@ -111,21 +111,17 @@ Composed, they are strong''',
   @override
   List<String> get pageDecorationDenyList => [
         '/log:scaffold_and_drawer',
-        '/home:color_border',
         '/home:log_frame',
-        '/features:color_border',
         '/features:log_frame',
-        '/routing:color_border',
         '/routing:log_frame',
-        '/decorations:color_border',
         '/decorations:log_frame',
-        '/about:color_border',
         '/about:log_frame',
         '/debug:log_frame',
-        '/debug:color_border',
         '/main:animated_background',
       ];
 
+  @override
+  List<String> get pageDecorationAllowList => ['/main:color_border'];
   @override
   String get namespace => 'example';
 }

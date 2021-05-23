@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+/// Interfaces for Dart Board
+///
+/// - Global Key used by navigator
+///   (gives an app-state friendly context, and access to the Navigator)
+///
+/// - Typedefs used by the Extensions
+
 /// Communicates with Core. For features
 GlobalKey<NavigatorState> dartBoardNavKey = GlobalKey();
 
@@ -11,6 +18,7 @@ typedef WidgetWithChildBuilder = Widget Function(
 typedef RouteWidgetBuilder = Widget Function(
     RouteSettings settings, BuildContext context);
 
+/// Builds a Route itself (e.g. MaterialPageRoute, CupertinoPageRoute or other)
 typedef RouteBuilder = Route Function(
     RouteSettings settings, WidgetBuilder builder);
 

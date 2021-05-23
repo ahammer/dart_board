@@ -100,12 +100,15 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
           BuildContext context, RouteSettings settings, RouteDefinition route,
           {bool decorate = true}) =>
       ApplyPageDecorations(
-          denylist: pageDecorationDenyList,
           decorations: pageDecorations
               .where((decoration) =>
                   decorate &&
-                  !pageDecorationDenyList
-                      .contains('${settings.name}:${decoration.name}'))
+                  ((!whitelistedPageDecorations.contains(decoration.name) &&
+                          !pageDecorationDenyList.contains(
+                              '${settings.name}:${decoration.name}')) ||
+                      ((whitelistedPageDecorations.contains(decoration.name) &&
+                          pageDecorationAllowList.contains(
+                              '${settings.name}:${decoration.name}')))))
               .toList(),
           child: route.builder(settings, context));
 
@@ -186,7 +189,6 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
 
   @override
   Widget applyPageDecorations(Widget child) => ApplyPageDecorations(
-        denylist: pageDecorationDenyList,
         decorations: pageDecorations,
         child: child,
       );
@@ -213,8 +215,6 @@ class ApplyDecorations extends StatelessWidget {
 class ApplyPageDecorations extends StatelessWidget {
   final Widget child;
   final List<PageDecoration>? decorations;
-  final List<String>? denylist;
-
   final RouteSettings? settings;
 
   const ApplyPageDecorations({
@@ -222,7 +222,6 @@ class ApplyPageDecorations extends StatelessWidget {
     required this.decorations,
     Key? key,
     this.settings,
-    this.denylist = const [],
   }) : super(key: key);
   @override
   Widget build(BuildContext context) => decorations!.reversed.fold(
