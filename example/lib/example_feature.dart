@@ -101,27 +101,16 @@ Composed, they are strong''',
   List<DartBoardFeature> get dependencies =>
       [ThemeFeature(), DebugFeature(), LogFeature(), MinesweeperFeature()];
 
-  /// In the example I block a bunch of page decorations for routes
-  ///
-  /// Since the Tabs I use in a RouteWidget() I don't want the border/log frame
-  /// But I do want the animated background
-  ///
-  /// However, in MainWidget, I don't want animated background
-  /// because it's not visible
   @override
   List<String> get pageDecorationDenyList => [
-        '/log:scaffold_and_drawer',
-        '/home:log_frame',
-        '/features:log_frame',
-        '/routing:log_frame',
-        '/decorations:log_frame',
-        '/about:log_frame',
-        '/debug:log_frame',
+        /// Since on Main, the background isn't visible, we block
         '/main:animated_background',
       ];
 
   @override
-  List<String> get pageDecorationAllowList => ['/main:color_border'];
+  List<String> get pageDecorationAllowList =>
+      ['/main:color_border', '/main:log_frame'];
+
   @override
   String get namespace => 'example';
 }
