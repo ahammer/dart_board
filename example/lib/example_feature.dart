@@ -3,13 +3,13 @@ import 'package:dart_board_minesweeper/minesweeper_feature.dart';
 import 'package:dart_board_theme/theme_feature.dart';
 import 'package:dart_board_debug/debug_feature.dart';
 import 'package:dart_board_log/log_feature.dart';
-import 'package:example/impl/decorations/wavy_lines_background.dart';
-import 'package:example/impl/pages/home_page.dart';
-import 'package:example/impl/routes/custom_routes.dart';
 import 'impl/decorations/color_border_decoration.dart';
+import 'impl/decorations/wavy_lines_background.dart';
+import 'impl/pages/home_page.dart';
 import 'impl/pages/main_page.dart';
 
 import 'impl/pages/haiku_and_code.dart';
+import 'impl/routes/custom_routes.dart';
 import 'impl/state/nav_state.dart';
 
 /// The Example Feature
@@ -87,6 +87,7 @@ Composed, they are strong''',
         PageDecoration(
             name: 'animated_background',
             decoration: (context, child) => AnimatedBackgroundDecoration(
+                  color: Theme.of(context).colorScheme.surface,
                   child: child,
                 ))
       ];

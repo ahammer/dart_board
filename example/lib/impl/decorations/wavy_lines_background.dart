@@ -1,39 +1,71 @@
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class AnimatedBackgroundDecoration extends StatelessWidget {
+class AnimatedBackgroundDecoration extends StatefulWidget {
   final Widget child;
-  final double rand = Random().nextDouble();
+  final Color color;
 
-  AnimatedBackgroundDecoration({Key? key, required this.child})
+  const AnimatedBackgroundDecoration(
+      {Key? key, required this.child, required this.color})
       : super(key: key);
+
+  @override
+  _AnimatedBackgroundDecorationState createState() =>
+      _AnimatedBackgroundDecorationState();
+}
+
+class _AnimatedBackgroundDecorationState
+    extends State<AnimatedBackgroundDecoration>
+    with SingleTickerProviderStateMixin {
+  late AnimationController animation;
+  late double random;
+  @override
+  void initState() {
+    super.initState();
+    random = Random().nextDouble() * 100;
+    animation = AnimationController(vsync: this);
+    animation.repeat(
+        min: 0.0, max: 1.0, period: Duration(minutes: 100), reverse: true);
+  }
+
+  @override
+  void dispose() {
+    animation.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) => Stack(
         children: [
           Opacity(
-              opacity: 0.3,
-              child: Container(
-                  width: double.infinity,
-                  height: double.infinity,
-                  child: CustomPaint(painter: BackgroundPainter(rand)))),
-          child,
+            opacity: 0.3,
+            child: AnimatedBuilder(
+                animation: animation,
+                builder: (ctx, child) => Container(
+                    width: double.infinity,
+                    height: double.infinity,
+                    child: CustomPaint(
+                        painter: BackgroundPainter(
+                            animation.value + random, widget.color)))),
+          ),
+          widget.child,
         ],
       );
 }
 
 class BackgroundPainter extends CustomPainter {
   final double value;
+  final Color backgroundColor;
 
-  BackgroundPainter(this.value);
+  BackgroundPainter(this.value, this.backgroundColor);
 
   @override
   void paint(Canvas canvas, Size size) {
     canvas.clipRect(Rect.fromLTWH(0, 0, size.width, size.height));
-
+    canvas.drawRect(Rect.fromLTWH(0, 0, size.width, size.height),
+        Paint()..color = backgroundColor);
     drawForValue(
         canvas, size, value, Colors.cyan, size.height / 25, size.height / 10);
     drawForValue(canvas, size, value * 1.5 + 2231.2, Colors.pink,
