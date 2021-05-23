@@ -80,38 +80,6 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
     });
   }
 
-  void buildFeatures() {
-    allFeatures = buildDependencyList(widget.features!);
-
-    /// We pull out Routes and PageDecorations from the route
-    routes = allFeatures.fold(
-        <RouteDefinition>[],
-        (previousValue, element) =>
-            <RouteDefinition>[...previousValue, ...element.routes]);
-
-    pageDecorations = allFeatures.fold<List<PageDecoration>>(
-        <PageDecoration>[],
-        ((previousValue, element) =>
-            <PageDecoration>[...previousValue, ...element.pageDecorations]));
-
-    appDecorations = allFeatures.fold<List<WidgetWithChildBuilder>>(
-        <WidgetWithChildBuilder>[],
-        (previousValue, element) => <WidgetWithChildBuilder>[
-              ...previousValue,
-              ...element.appDecorations
-            ]);
-
-    pageDecorationDenyList = allFeatures.fold<List<String>>(
-        <String>[],
-        ((previousValue, element) =>
-            <String>[...previousValue, ...element.pageDecorationDenyList]));
-
-    pageDecorationAllowList = allFeatures.fold<List<String>>(
-        <String>[],
-        ((previousValue, element) =>
-            <String>[...previousValue, ...element.pageDecorationAllowList]));
-  }
-
   /// Simple build
   @override
   Widget build(BuildContext context) => Provider<DartBoardCore>(
@@ -126,22 +94,7 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
         ),
       );
 
-  /// Generates a route from the features
-  /// If it can't find, it falls back to route not found
-  ///
-  /// It'll also wrap a route with any decorations
-  Route onGenerateRoute(RouteSettings settings) {
-    final definition = routes.firstWhere((it) => it.matches(settings),
-        orElse: () => NamedRouteDefinition(
-            builder: (ctx, _) => widget.pageNotFoundWidget, route: '/404'));
-    if (definition.routeBuilder != null) {
-      return definition.routeBuilder!(
-          settings, (ctx) => buildPageRoute(ctx, settings, definition));
-    }
-    return widget.routeBuilder(
-        settings, (ctx) => buildPageRoute(ctx, settings, definition));
-  }
-
+  /// Dart Board Core Overrides
   @override
   Widget buildPageRoute(
           BuildContext context, RouteSettings settings, RouteDefinition route,
@@ -158,6 +111,66 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
 
   @override
   List<DartBoardFeature> get features => allFeatures;
+
+  /// buildFeatures()
+  ///
+  /// This collects all the features into
+  /// formats we can use.
+  ///
+  /// Usually run at init()
+  /// If the features change, this can be rebuilt
+  void buildFeatures() {
+    setState(() {
+      allFeatures = buildDependencyList(widget.features!);
+
+      /// We pull out Routes and PageDecorations from the route
+      routes = allFeatures.fold(
+          <RouteDefinition>[],
+          (previousValue, element) =>
+              <RouteDefinition>[...previousValue, ...element.routes]);
+
+      pageDecorations = allFeatures.fold<List<PageDecoration>>(
+          <PageDecoration>[],
+          ((previousValue, element) =>
+              <PageDecoration>[...previousValue, ...element.pageDecorations]));
+
+      appDecorations = allFeatures.fold<List<WidgetWithChildBuilder>>(
+          <WidgetWithChildBuilder>[],
+          (previousValue, element) => <WidgetWithChildBuilder>[
+                ...previousValue,
+                ...element.appDecorations
+              ]);
+
+      pageDecorationDenyList = allFeatures.fold<List<String>>(
+          <String>[],
+          ((previousValue, element) =>
+              <String>[...previousValue, ...element.pageDecorationDenyList]));
+
+      pageDecorationAllowList = allFeatures.fold<List<String>>(
+          <String>[],
+          ((previousValue, element) =>
+              <String>[...previousValue, ...element.pageDecorationAllowList]));
+
+      whitelistedPageDecorations =
+          pageDecorationAllowList.map((e) => e.split(':')[1]).toSet();
+    });
+  }
+
+  /// Generates a route from the features
+  /// If it can't find, it falls back to route not found
+  ///
+  /// It'll also wrap a route with any decorations
+  Route onGenerateRoute(RouteSettings settings) {
+    final definition = routes.firstWhere((it) => it.matches(settings),
+        orElse: () => NamedRouteDefinition(
+            builder: (ctx, _) => widget.pageNotFoundWidget, route: '/404'));
+    if (definition.routeBuilder != null) {
+      return definition.routeBuilder!(
+          settings, (ctx) => buildPageRoute(ctx, settings, definition));
+    }
+    return widget.routeBuilder(
+        settings, (ctx) => buildPageRoute(ctx, settings, definition));
+  }
 
   /// Walks the feature tree and registers
   List<DartBoardFeature> buildDependencyList(List<DartBoardFeature> features,
