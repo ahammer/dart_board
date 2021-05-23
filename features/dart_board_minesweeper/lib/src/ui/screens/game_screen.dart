@@ -12,10 +12,9 @@ class GameScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         actions: <Widget>[
           // This is the AppBar Action list
-          Container(width: 20),
-          Center(child: ThemeSelectWidget()),
           Container(width: 20),
           Center(child: GameDifficultyWidget()),
           Center(
