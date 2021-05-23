@@ -6,8 +6,19 @@ A modular designed UI framework for flutter
 
 It is a framework for Flutter architecture/integration.
 
-The best way to learn is via the interactive example.
-It is a way to demonstrate the platform and it's abilities.
+It can be considered a "feature management" solution.
+
+# What is Feature Management?
+
+The goal here is to keep features loosely coupled, so they can be easily 
+developed in isolation and mixed/matched.
+
+This means that you are provided a lot of flexibility in what
+the integration would look like, and don't have to handle
+nearly as much boilerplate.
+
+Existing projects can be easily adapted and contained inside a Dart Board
+feature.
 
 # Short Technical Version
 
@@ -16,6 +27,30 @@ Integrations and Features are delivered as "feature modules"
 These are Flutter modules that provide the DartBoardFeature interface.
 
 This interface provides multiple integration points to apps built on DartBoard.
+Such as App and Page decorations + Routing, as well as a the DartBoard() entry point widget.
+
+# How it works
+
+First it takes your extensions.
+
+Then it walks the dependency tree and collects an ordered list of what to init.
+
+It then collects all the routes and decorations. It creates the MaterialApp()
+for you, and sets up the routing and decoration features, as well as injecting all your App Decoration's near the trunk of the Tree.
+
+From here, you can use named routing to access any registered feature route, or
+RouteView. Additionally features can provide API's to the app and page level components.
+
+# Component Walkthrough
+
+There is a dart board theme extension. This is really basic and allows switching between light and dark. It's implemented as a Dart Board Feature. It is as follows.
+
+1) App Decoration provides a State object that holds the isLight boolean.
+2) Page Decoration listens to that State and applies the correct theme
+3) Developer calls ThemeFeature.toggle() to turn the lights on/off
+
+With a very simple, 2 point integration, we are able to add theming to any app that simply registers the extension and calls the toggle() method.
+
 
 # Integrating existing code
 
