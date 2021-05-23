@@ -4,6 +4,16 @@ import 'package:provider/provider.dart';
 /// Communicates with Core. For features
 GlobalKey<NavigatorState> dartBoardNavKey = GlobalKey();
 
+typedef WidgetWithChildBuilder = Widget Function(
+    BuildContext context, Widget child);
+
+/// Builds a widget for a route
+typedef RouteWidgetBuilder = Widget Function(
+    RouteSettings settings, BuildContext context);
+
+typedef RouteBuilder = Route Function(
+    RouteSettings settings, WidgetBuilder builder);
+
 /// Dart Board Core Interfaces
 ///
 ///
@@ -63,30 +73,7 @@ abstract class DartBoardCore {
               orElse: () => EmptyDartBoardFeature());
 }
 
-/// Dart Board feature and Related interfaces.
-///
-/// This interface is the preferable way to create feature's for
-/// the Dart-Board framework.
-///
-/// This API will remain frozen between major versions
-/// It should provide all the basics for interacting with the framework.
-/// The stability of this API should ensure the stability of features
-/// targeting the platform.
-///
-/// It's suggested that when developing an feature, that you bring it into
-/// a "runner"/example project that can bring in DartBoard and include it in the main()
 
-/// Builds a widget with a predetermined child
-/// Used by App/Page decorators.
-typedef WidgetWithChildBuilder = Widget Function(
-    BuildContext context, Widget child);
-
-/// Builds a widget for a route
-typedef RouteWidgetBuilder = Widget Function(
-    RouteSettings settings, BuildContext context);
-
-typedef RouteBuilder = Route Function(
-    RouteSettings settings, WidgetBuilder builder);
 
 ///
 /// This specifies a Page Decoration from an feature
@@ -144,27 +131,7 @@ abstract class RouteDefinition {
   RouteBuilder? routeBuilder;
 }
 
-/// This an implementation of the RouteDefinition class
-///
-/// Can be used for simple named routing
-class NamedRouteDefinition implements RouteDefinition {
-  final String route;
 
-  @override
-  final RouteWidgetBuilder builder;
-
-  @override
-  RouteBuilder? routeBuilder;
-
-  NamedRouteDefinition(
-      {required this.route, required this.builder, this.routeBuilder});
-
-  @override
-  bool matches(RouteSettings settings) => settings.name == route;
-
-  @override
-  String toString() => route;
-}
 
 /// An empty feature to use as a default if an feature can't be found
 class EmptyDartBoardFeature extends DartBoardFeature {

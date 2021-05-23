@@ -31,6 +31,8 @@ dependencies:
     path: ../features/dart_board_debug
   dart_board_log:
     path: ../features/dart_board_log
+  dart_board_minesweeper:
+    path: ../features/dart_board_minesweeper
 
   flutter_syntax_view: ^4.0.0
 

@@ -9,7 +9,8 @@ final routes = [
   '/decorations',
   '/routing',
   '/features',
-  '/debug'
+  '/debug',
+  '/minesweep'
 ];
 
 class MainPage extends StatelessWidget {
@@ -64,6 +65,10 @@ class MainPage extends StatelessWidget {
                 BottomNavigationBarItem(
                     icon: Icon(Icons.plumbing),
                     label: 'Debug',
+                    backgroundColor: Colors.amber),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.gamepad_outlined),
+                    label: 'Minesweep',
                     backgroundColor: Colors.amber),
               ],
               currentIndex: navstate.selectedNavTab,

@@ -1,4 +1,5 @@
 import 'package:dart_board/dart_board.dart';
+import 'package:dart_board_minesweeper/minesweeper_feature.dart';
 import 'package:dart_board_theme/theme_feature.dart';
 import 'package:dart_board_debug/debug_feature.dart';
 import 'package:dart_board_log/log_feature.dart';
@@ -100,7 +101,7 @@ Composed, they are strong''',
 
   @override
   List<DartBoardFeature> get dependencies =>
-      [ThemeFeature(), DebugFeature(), LogFeature()];
+      [ThemeFeature(), DebugFeature(), LogFeature(), MinesweeperFeature()];
 
   /// In the example I block a bunch of page decorations for routes
   ///
