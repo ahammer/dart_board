@@ -52,48 +52,64 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
   @override
   late List<RouteDefinition> routes;
 
+  // All Page Decorations
   late List<PageDecoration> pageDecorations;
+
+  // All App Decorations
   late List<WidgetWithChildBuilder> appDecorations;
 
+  // Deny list for decorations (e.g. "/route:decoration_name")
   late List<String> pageDecorationDenyList;
 
-  List<DartBoardFeature> get allfeatures {
-    final result = <DartBoardFeature>[];
-    addAllChildren(result, widget.features!);
-    return result;
-  }
+  // Allow list for page decorations (e.g. "/route:decoration_name")
+  late List<String> pageDecorationAllowList;
+
+  // Recognized page decorations with a allow list (e.g. "decoration_name")
+  late Set<String> whitelistedPageDecorations;
+
+  late List<DartBoardFeature> allFeatures;
 
   @override
   void initState() {
     super.initState();
+    buildFeatures();
+
+    /// Navigate to the initial route
+    Timer.run(() {
+      dartBoardNavKey.currentState!.pushNamed(widget.initialRoute);
+    });
+  }
+
+  void buildFeatures() {
+    allFeatures = buildDependencyList(widget.features!);
 
     /// We pull out Routes and PageDecorations from the route
-    final features = allfeatures;
-    log.info('Loading features: $features');
-    routes = features.fold(
+    routes = allFeatures.fold(
         <RouteDefinition>[],
         (previousValue, element) =>
             <RouteDefinition>[...previousValue, ...element.routes]);
 
-    pageDecorations = features.fold<List<PageDecoration>>(
+    pageDecorations = allFeatures.fold<List<PageDecoration>>(
         <PageDecoration>[],
         ((previousValue, element) =>
             <PageDecoration>[...previousValue, ...element.pageDecorations]));
 
-    appDecorations = features.fold<List<WidgetWithChildBuilder>>(
+    appDecorations = allFeatures.fold<List<WidgetWithChildBuilder>>(
         <WidgetWithChildBuilder>[],
         (previousValue, element) => <WidgetWithChildBuilder>[
               ...previousValue,
               ...element.appDecorations
             ]);
 
-    pageDecorationDenyList = features.fold<List<String>>(
+    pageDecorationDenyList = allFeatures.fold<List<String>>(
         <String>[],
         ((previousValue, element) =>
             <String>[...previousValue, ...element.pageDecorationDenyList]));
-    Timer.run(() {
-      dartBoardNavKey.currentState!.pushNamed(widget.initialRoute);
-    });
+
+    pageDecorationAllowList = allFeatures.fold<List<String>>(
+        <String>[],
+        ((previousValue, element) =>
+            <String>[...previousValue, ...element.pageDecorationAllowList]));
   }
 
   /// Simple build
@@ -141,17 +157,18 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
           child: route.builder(settings, context));
 
   @override
-  List<DartBoardFeature> get features => allfeatures;
+  List<DartBoardFeature> get features => allFeatures;
 
   /// Walks the feature tree and registers
-  void addAllChildren(
-      List<DartBoardFeature> result, List<DartBoardFeature> features) {
+  List<DartBoardFeature> buildDependencyList(List<DartBoardFeature> features,
+      {List<DartBoardFeature> result = const <DartBoardFeature>[]}) {
     features.forEach((element) {
-      addAllChildren(result, element.dependencies);
+      result = buildDependencyList(element.dependencies, result: result);
       if (!result.contains(element)) {
-        result.add(element);
+        result = [...result, element];
       }
     });
+    return result;
   }
 
   @override
