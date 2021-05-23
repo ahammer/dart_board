@@ -4,38 +4,29 @@ A modular designed UI framework for flutter
 
 # What is it?
 
-It's a framework designed to be extended by adding modules or combining them.
+It is a framework for Flutter architecture/integration.
 
-Modules can plug into the system in a variety of ways and add features to the overal system.
+The best way to learn is via the interactive example.
+It is a way to demonstrate the platform and it's abilities.
 
-It can be used as the Basis For many apps.
+# Short Technical Version
 
-# Guiding principles
+Integrations and Features are delivered as "feature modules"
 
-I want to provide a larger app-framework for composing apps, but leave the freedom
-to extension developers to develop using whatever paradigms they like.
+These are Flutter modules that provide the DartBoardFeature interface.
 
-We are just here to give you the hooks, and some basic framework extensions.
+This interface provides multiple integration points to apps built on DartBoard.
 
-# Goal
+# Integrating existing code
 
-The goal is to provide a framework for composite app-development and clean app structure.
+As long as the interface is supplied, it can integrate.
 
-Additionally, to easy integration of isolated components.
+1) Extends DartBoardFeature
+2) Provide routes (NamedRouteDefinition is the current only supported option)
+3) Create an AppDecorator widget to define app level state.
+4) Create any PageDecorators to decorate the named routes
 
-# Features
+At this point a user of your Feature can navigate to your route with RouteWidget or pushNamed()
+If necessary, the Feature can provide additional API to interact with it's app state via the tree.
 
-- Extensions Support
-  - Routing
-  - Decorations
-    
-# Routing 
 
-The ability to find pages and move around.
-
-Adding an extension should allow exposing new pages.
-
-# Decorations
-
-Page and App decorations provide a framework to compose a larger app and embed functionality
-at multiple scopes in your app.
