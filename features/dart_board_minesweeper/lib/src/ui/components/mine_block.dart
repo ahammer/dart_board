@@ -102,7 +102,7 @@ unknownBox(BuildContext context) => BoxDecoration(
     );
 
 cleanBox(BuildContext context) => BoxDecoration(
-      color: Theme.of(context).colorScheme.surface,
+      color: Theme.of(context).colorScheme.surface.withOpacity(0.3),
       border:
           Border.all(color: Theme.of(context).colorScheme.primary, width: 1),
     );

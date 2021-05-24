@@ -11,6 +11,7 @@ import 'package:redux/redux.dart';
 class GameScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         actions: <Widget>[
