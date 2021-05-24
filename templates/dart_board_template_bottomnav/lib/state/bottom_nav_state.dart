@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 ///
 /// It tracks the active tab at the app level
 class BottomNavTemplateState extends ChangeNotifier {
+  /// We take the Config into the State so we can access it easily
   final List<Map<String, dynamic>> config;
+
   int _selectedNavTab = 0;
 
   BottomNavTemplateState(this.config);

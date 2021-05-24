@@ -1,5 +1,5 @@
 import 'package:dart_board/dart_board.dart';
-import 'state/nav_state.dart';
+import 'state/bottom_nav_state.dart';
 
 /// This Feature provides a Template/Starting point
 /// for a Dart Board UI
@@ -41,22 +41,20 @@ class BottomNavTemplateFeature extends DartBoardFeature {
 
   /// This is a runtime safety check to ensure that the config looks valid
   /// Additional checks can be added here (e.g. regex, length checks, etc)
-  void validateConfig() {
-    config.forEach((element) {
-      if (!(element["route"] is String)) {
-        throw Exception("route must be a String");
-      }
-      if (!(element["label"] is String)) {
-        throw Exception("label must be a String");
-      }
-      if (!(element["color"] is Color)) {
-        throw Exception("color must be a Color");
-      }
-      if (!(element["icon"] is IconData)) {
-        throw Exception("icon must be IconData");
-      }
-    });
-  }
+  void validateConfig() => config.forEach((element) {
+        if (!(element["route"] is String)) {
+          throw Exception("route must be a String");
+        }
+        if (!(element["label"] is String)) {
+          throw Exception("label must be a String");
+        }
+        if (!(element["color"] is Color)) {
+          throw Exception("color must be a Color");
+        }
+        if (!(element["icon"] is IconData)) {
+          throw Exception("icon must be IconData");
+        }
+      });
 }
 
 class BottomNavTemplate extends StatelessWidget {
@@ -64,7 +62,7 @@ class BottomNavTemplate extends StatelessWidget {
   Widget build(BuildContext context) => Consumer<BottomNavTemplateState>(
         builder: (ctx, navstate, child) => Scaffold(
           body: AnimatedSwitcher(
-            duration: Duration(milliseconds: 300),
+            duration: Duration(milliseconds: 200),
             child: RouteWidget(
               decorate: true,
               key: Key('tab_${navstate.selectedNavTab}'),
