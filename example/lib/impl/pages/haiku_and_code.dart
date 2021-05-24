@@ -32,9 +32,9 @@ class _HaikuAndCodeState extends State<HaikuAndCode> {
     if (lastLoaded == widget.url) return;
 
     lastLoaded = widget.url;
-    http
+    Future.delayed(Duration(milliseconds: 500)).then((value) => http
         .get(Uri.parse(widget.url))
-        .then((value) => setState(() => fileContents = value.body));
+        .then((value) => setState(() => fileContents = value.body)));
   }
 
   @override
@@ -71,11 +71,7 @@ class _HaikuAndCodeState extends State<HaikuAndCode> {
     return LayoutBuilder(builder: (ctx, size) {
       final codeWidget;
       codeWidget = AnimatedContainer(
-          width: fileContents.isEmpty
-              ? 0
-              : (size.maxWidth > size.maxHeight)
-                  ? min(80 * 10, size.maxWidth - 8)
-                  : size.maxWidth,
+          width: fileContents.isEmpty ? 0 : size.maxWidth,
           duration: Duration(seconds: 4),
           curve: Curves.easeInOut,
           child: fileContents.isNotEmpty
