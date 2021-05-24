@@ -1,0 +1,22 @@
+name: dart_board_template_bottomnav
+description: A template for a bottom-nav screen. Used by the example
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  dart_board:
+    path: ../../dart_board
+
+
+flutter:
+  uses-material-design: true
+  module:
+    androidX: true
+    androidPackage: com.example.dart_board_template_bottomnav
+    iosBundleIdentifier: com.example.dartBoardTemplateBottomnav

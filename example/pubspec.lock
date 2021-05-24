@@ -190,6 +190,13 @@ packages:
       relative: true
     source: path
     version: "1.0.1+2"
+  dart_board_template_bottomnav:
+    dependency: "direct main"
+    description:
+      path: "../templates/dart_board_template_bottomnav"
+      relative: true
+    source: path
+    version: "1.0.0+1"
   dart_board_theme:
     dependency: "direct main"
     description:

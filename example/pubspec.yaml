@@ -34,6 +34,9 @@ dependencies:
   dart_board_minesweeper:
     path: ../features/dart_board_minesweeper
 
+  dart_board_template_bottomnav:
+    path: ../templates/dart_board_template_bottomnav
+
   flutter_syntax_view: ^4.0.0
 
   http: ^0.13.3

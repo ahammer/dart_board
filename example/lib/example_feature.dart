@@ -6,11 +6,9 @@ import 'package:dart_board_log/log_feature.dart';
 import 'impl/decorations/color_border_decoration.dart';
 import 'impl/decorations/wavy_lines_background.dart';
 import 'impl/pages/home_page.dart';
-import 'impl/pages/main_page.dart';
-
+import 'package:dart_board_template_bottomnav/bottom_nav_template.dart';
 import 'impl/pages/haiku_and_code.dart';
 import 'impl/routes/custom_routes.dart';
-import 'impl/state/nav_state.dart';
 
 /// The Example Feature
 ///
@@ -34,10 +32,6 @@ class ExampleFeature extends DartBoardFeature {
             routeBuilder: kSpinRoute,
             route: '/home',
             builder: (ctx, settings) => HomePage()),
-        NamedRouteDefinition(
-            routeBuilder: kSpinRoute,
-            route: '/main',
-            builder: (ctx, settings) => MainPage()),
         NamedRouteDefinition(
             route: '/about',
             builder: (ctx, settings) => HaikuAndCode(
@@ -93,14 +87,13 @@ Composed, they are strong''',
       ];
 
   @override
-  List<WidgetWithChildBuilder> get appDecorations => [
-        (ctx, child) => ChangeNotifierProvider<NavState>(
-            create: (ctx) => NavState(), child: child)
+  List<DartBoardFeature> get dependencies => [
+        ThemeFeature(),
+        DebugFeature(),
+        LogFeature(),
+        MinesweeperFeature(),
+        BottomNavTemplateFeature('/main')
       ];
-
-  @override
-  List<DartBoardFeature> get dependencies =>
-      [ThemeFeature(), DebugFeature(), LogFeature(), MinesweeperFeature()];
 
   @override
   List<String> get pageDecorationDenyList => [
