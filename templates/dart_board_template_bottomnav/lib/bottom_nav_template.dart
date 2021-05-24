@@ -1,97 +1,95 @@
 import 'package:dart_board/dart_board.dart';
-
 import 'state/nav_state.dart';
-
-final routes = [
-  '/home',
-  '/about',
-  '/decorations',
-  '/routing',
-  '/features',
-  '/debug',
-  '/minesweep'
-];
 
 /// This Feature provides a Template/Starting point
 /// for a Dart Board UI
+///
+/// Config is a map
+/// {'/route': {'title': 'Icon Title', 'color': Colors.blue, 'icon', Icons.ac_unit}}
+///
+/// It will be validated at startup. Keep an eye for errors in your logs
+/// The types are important. (String, Color, IconData).
+///
+/// You can add as many /routes as you want to the config.
+///
+/// if you don't get an exception, your config should be safe
+///
 class BottomNavTemplateFeature extends DartBoardFeature {
-  final String route_name;
+  final String route;
+  final List<Map<String, dynamic>> config;
 
   @override
   String get namespace => "BottomNavTemplate";
 
-  BottomNavTemplateFeature(this.route_name);
+  BottomNavTemplateFeature(this.route, this.config);
 
   @override
   List<WidgetWithChildBuilder> get appDecorations => [
-        (ctx, child) => ChangeNotifierProvider<NavState>(
-            create: (ctx) => NavState(), child: child)
+        (ctx, child) => ChangeNotifierProvider<BottomNavTemplateState>(
+            create: (ctx) {
+              validateConfig();
+              return BottomNavTemplateState(config);
+            },
+            child: child)
       ];
 
   @override
   List<RouteDefinition> get routes => [
         NamedRouteDefinition(
-            route: route_name, builder: (ctx, settings) => BottomNavTemplate())
+            route: route, builder: (ctx, settings) => BottomNavTemplate())
       ];
+
+  /// This is a runtime safety check to ensure that the config looks valid
+  /// Additional checks can be added here (e.g. regex, length checks, etc)
+  void validateConfig() {
+    config.forEach((element) {
+      if (!(element["route"] is String)) {
+        throw Exception("route must be a String");
+      }
+      if (!(element["label"] is String)) {
+        throw Exception("label must be a String");
+      }
+      if (!(element["color"] is Color)) {
+        throw Exception("color must be a Color");
+      }
+      if (!(element["icon"] is IconData)) {
+        throw Exception("icon must be IconData");
+      }
+    });
+  }
 }
 
 class BottomNavTemplate extends StatelessWidget {
   @override
-  Widget build(BuildContext context) => Consumer<NavState>(
+  Widget build(BuildContext context) => Consumer<BottomNavTemplateState>(
         builder: (ctx, navstate, child) => Scaffold(
           body: AnimatedSwitcher(
-            duration: Duration(seconds: 1),
+            duration: Duration(milliseconds: 300),
             child: RouteWidget(
               decorate: true,
               key: Key('tab_${navstate.selectedNavTab}'),
-              settings: RouteSettings(name: routes[navstate.selectedNavTab]),
+              settings: RouteSettings(
+                  name: navstate.config[navstate.selectedNavTab]['route']),
             ),
           ),
-          bottomNavigationBar: Hero(
-            tag: 'EXAMPLE_BOTTOM_TOOLBAR',
-            child: BottomNavigationBar(
-              elevation: 3,
-              type: BottomNavigationBarType.shifting,
-              items: const <BottomNavigationBarItem>[
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.home),
-                    label: 'Home',
-                    backgroundColor: Colors.red),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.call_merge),
-                  label: 'Integrate',
-                  backgroundColor: Colors.green,
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.brush),
-                  label: 'Decorations',
-                  backgroundColor: Colors.orange,
-                ),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.navigation),
-                    label: 'Routing',
-                    backgroundColor: Colors.cyan),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.ac_unit),
-                    label: 'Features',
-                    backgroundColor: Colors.amber),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.plumbing),
-                    label: 'Debug',
-                    backgroundColor: Colors.amber),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.gamepad_outlined),
-                    label: 'Minesweep',
-                    backgroundColor: Colors.amber),
-              ],
-              currentIndex: navstate.selectedNavTab,
-              selectedItemColor: Theme.of(context).colorScheme.surface,
-              unselectedItemColor:
-                  Theme.of(context).colorScheme.surface.withOpacity(0.8),
-              onTap: (value) {
-                navstate.selectedNavTab = value;
-              },
-            ),
+          bottomNavigationBar: BottomNavigationBar(
+            elevation: 3,
+            type: BottomNavigationBarType.shifting,
+            items: <BottomNavigationBarItem>[
+              ...navstate.config
+                  .map((e) => BottomNavigationBarItem(
+                      icon: Icon(e['icon']),
+                      label: e['label'],
+                      backgroundColor: e['color']))
+                  .toList(),
+            ],
+            currentIndex: navstate.selectedNavTab,
+            selectedItemColor: Theme.of(context).colorScheme.surface,
+            unselectedItemColor:
+                Theme.of(context).colorScheme.surface.withOpacity(0.8),
+            onTap: (value) {
+              navstate.selectedNavTab = value;
+            },
           ),
         ),
       );

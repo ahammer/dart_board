@@ -3,6 +3,7 @@ import 'package:dart_board_minesweeper/minesweeper_feature.dart';
 import 'package:dart_board_theme/theme_feature.dart';
 import 'package:dart_board_debug/debug_feature.dart';
 import 'package:dart_board_log/log_feature.dart';
+import 'data/constants.dart';
 import 'impl/decorations/color_border_decoration.dart';
 import 'impl/decorations/wavy_lines_background.dart';
 import 'impl/pages/home_page.dart';
@@ -32,42 +33,10 @@ class ExampleFeature extends DartBoardFeature {
             routeBuilder: kSpinRoute,
             route: '/home',
             builder: (ctx, settings) => HomePage()),
-        NamedRouteDefinition(
-            route: '/about',
-            builder: (ctx, settings) => HaikuAndCode(
-                haiku: '''Need to integrate?
-Dart board will do that for you
-It will be simple''',
-                url:
-                    'https://raw.githubusercontent.com/ahammer/dart_board/master/example/lib/main.dart')),
-        NamedRouteDefinition(
-            route: '/decorations',
-            builder: (ctx, settings) => HaikuAndCode(
-                  haiku: '''Painting your project
-At the app and page level
-is quick and easy''',
-                  url:
-                      'https://raw.githubusercontent.com/ahammer/dart_board/master/example/lib/impl/decorations/scaffold_appbar_decoration.dart',
-                )),
-        NamedRouteDefinition(
-            route: '/routing',
-            builder: (ctx, settings) => HaikuAndCode(
-                  haiku: '''Navigate your app
-Features provide named pages
-Custom transitions
-''',
-                  url:
-                      'https://raw.githubusercontent.com/ahammer/dart_board/master/example/lib/main.dart',
-                )),
-        NamedRouteDefinition(
-            route: '/features',
-            builder: (ctx, settings) => HaikuAndCode(
-                  haiku: '''Features are code bits
-They hook into your apps quick
-Composed, they are strong''',
-                  url:
-                      'https://raw.githubusercontent.com/ahammer/dart_board/master/example/lib/example_feature.dart',
-                ))
+        ...codeRoutes.map((e) => NamedRouteDefinition(
+            route: e['route']!,
+            builder: (ctx, setting) =>
+                HaikuAndCode(haiku: e['haiku']!, url: e['url']!))),
       ];
 
   /// These are page-scoped decorations
@@ -92,12 +61,11 @@ Composed, they are strong''',
         DebugFeature(),
         LogFeature(),
         MinesweeperFeature(),
-        BottomNavTemplateFeature('/main')
+        BottomNavTemplateFeature('/main', kMainPageConfig)
       ];
 
   @override
   List<String> get pageDecorationDenyList => [
-        /// Since on Main, the background isn't visible, we block
         '/main:animated_background',
       ];
 
