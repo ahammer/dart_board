@@ -20,6 +20,7 @@ class _CodeOverviewState extends State<CodeOverview>
 
   @override
   Widget build(BuildContext context) => Scaffold(
+        backgroundColor: Colors.transparent,
         body: Column(
           children: [
             Expanded(

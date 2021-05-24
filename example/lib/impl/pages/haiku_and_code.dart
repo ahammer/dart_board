@@ -32,9 +32,9 @@ class _HaikuAndCodeState extends State<HaikuAndCode> {
     if (lastLoaded == widget.url) return;
 
     lastLoaded = widget.url;
-    Future.delayed(Duration(milliseconds: 500)).then((value) => http
+    http
         .get(Uri.parse(widget.url))
-        .then((value) => setState(() => fileContents = value.body)));
+        .then((value) => setState(() => fileContents = value.body));
   }
 
   @override
@@ -72,7 +72,8 @@ class _HaikuAndCodeState extends State<HaikuAndCode> {
       final codeWidget;
       codeWidget = AnimatedContainer(
           width: fileContents.isEmpty ? 0 : size.maxWidth,
-          duration: Duration(seconds: 4),
+          height: fileContents.isEmpty ? 0 : size.maxHeight,
+          duration: Duration(seconds: 10),
           curve: Curves.easeInOut,
           child: fileContents.isNotEmpty
               ? Material(
@@ -94,10 +95,8 @@ class _HaikuAndCodeState extends State<HaikuAndCode> {
         return Row(
             children: [Expanded(flex: 1, child: haikuWidget), codeWidget]);
       } else {
-        return Column(children: [
-          Expanded(flex: 1, child: haikuWidget),
-          Expanded(flex: 4, child: codeWidget)
-        ]);
+        return Column(
+            children: [Expanded(flex: 1, child: haikuWidget), codeWidget]);
       }
     });
   }

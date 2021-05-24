@@ -68,9 +68,7 @@ class ExampleFeature extends DartBoardFeature {
       ];
 
   @override
-  List<String> get pageDecorationDenyList => [
-        '/main:animated_background',
-      ];
+  List<String> get pageDecorationDenyList => ['/main:animated_background'];
 
   @override
   List<String> get pageDecorationAllowList =>
