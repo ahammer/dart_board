@@ -3,6 +3,7 @@ import 'package:dart_board_minesweeper/minesweeper_feature.dart';
 import 'package:dart_board_theme/theme_feature.dart';
 import 'package:dart_board_debug/debug_feature.dart';
 import 'package:dart_board_log/log_feature.dart';
+import 'package:example/impl/pages/code_overview.dart';
 import 'data/constants.dart';
 import 'impl/decorations/color_border_decoration.dart';
 import 'impl/decorations/wavy_lines_background.dart';
@@ -33,7 +34,9 @@ class ExampleFeature extends DartBoardFeature {
             routeBuilder: kSpinRoute,
             route: '/home',
             builder: (ctx, settings) => HomePage()),
-        ...codeRoutes.map((e) => NamedRouteDefinition(
+        NamedRouteDefinition(
+            route: '/code', builder: (ctx, settings) => CodeOverview()),
+        ...kCodeRoutes.map((e) => NamedRouteDefinition(
             route: e['route']!,
             builder: (ctx, setting) =>
                 HaikuAndCode(haiku: e['haiku']!, url: e['url']!))),

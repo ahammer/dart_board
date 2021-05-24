@@ -4,7 +4,7 @@ import 'package:dart_board/dart_board.dart';
 /// Since they are similar, I store them as data if I want to create more
 ///
 /// And to keep the data outside the widgets to ease comprehension
-const codeRoutes = <Map<String, String>>[
+const kCodeRoutes = <Map<String, String>>[
   {
     'route': '/about',
     'haiku': '''Need to integrate?
@@ -49,30 +49,7 @@ const kMainPageConfig = [
     'color': Colors.orange,
     'icon': Icons.home,
   },
-  {
-    'route': '/about',
-    'label': 'About',
-    'color': Colors.blue,
-    'icon': Icons.help
-  },
-  {
-    'route': '/decorations',
-    'label': 'Decorations',
-    'color': Colors.amber,
-    'icon': Icons.brush
-  },
-  {
-    'route': '/routing',
-    'label': 'Routing',
-    'color': Colors.green,
-    'icon': Icons.call_merge
-  },
-  {
-    'route': '/features',
-    'label': 'Features',
-    'color': Colors.orange,
-    'icon': Icons.add_box
-  },
+  {'route': '/code', 'label': 'Code', 'color': Colors.blue, 'icon': Icons.help},
   {
     'route': '/debug',
     'label': 'Debug',
