@@ -38,16 +38,25 @@ typedef RouteBuilder = Route Function(
 /// When working with DartBoard, use these interfaces to access it.
 ///
 abstract class DartBoardCore {
+  static DartBoardCore get instance =>
+      Provider.of<DartBoardCore>(dartBoardNavKey.currentContext!,
+          listen: false);
+
   /// These are the Features
   ///
   /// The implementation is responsible for managing this list
   List<DartBoardFeature> get features;
+  List<PageDecoration> get pageDecorations;
+  List<WidgetWithChildBuilder> get appDecorations;
+  List<String> get pageDecorationDenyList;
+  List<String> get pageDecorationAllowList;
+  Set<String> get whitelistedPageDecorations;
+  List<DartBoardFeature> get allFeatures;
+  List<RouteDefinition> get routes;
 
   /// These are the RouteDefinitions
   ///
   /// They are exposed for debug/info purposes primarily
-  List<RouteDefinition> get routes => features.fold(
-      [], (previousValue, element) => [...previousValue, ...element.routes]);
 
   /// Apply Page Decorations to a widget.
   ///

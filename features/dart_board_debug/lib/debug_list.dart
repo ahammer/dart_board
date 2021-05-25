@@ -52,8 +52,21 @@ class CollapsingList extends StatelessWidget {
   Widget build(BuildContext context) {
     final routes = DartBoardCore.featureList.namedRoutes
       ..sort((a, b) => a.route.compareTo(b.route));
+
     return CustomScrollView(
       slivers: <Widget>[
+        makeHeader(context, 'Extensions'),
+        SliverGrid.extent(
+          childAspectRatio: 3,
+          maxCrossAxisExtent: 200,
+          children: [
+            ...DartBoardCore.featureList.map((e) => Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: MaterialButton(
+                      onPressed: () {}, child: Text(e.namespace)),
+                ))
+          ],
+        ),
         makeHeader(context, 'Routes'),
         SliverGrid.extent(
           childAspectRatio: 3,
@@ -77,50 +90,20 @@ class CollapsingList extends StatelessWidget {
                 ))
           ],
         ),
-        makeHeader(context, 'Header Section 2'),
-        SliverFixedExtentList(
-          itemExtent: 150.0,
-          delegate: SliverChildListDelegate(
-            [
-              Container(color: Colors.red),
-              Container(color: Colors.purple),
-              Container(color: Colors.green),
-              Container(color: Colors.orange),
-              Container(color: Colors.yellow),
-            ],
-          ),
-        ),
-        makeHeader(context, 'Header Section 3'),
-        SliverGrid(
-          gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 200.0,
-            mainAxisSpacing: 10.0,
-            crossAxisSpacing: 10.0,
-            childAspectRatio: 4.0,
-          ),
-          delegate: SliverChildBuilderDelegate(
-            (BuildContext context, int index) {
-              return Container(
-                alignment: Alignment.center,
-                color: Colors.teal[100 * (index % 9)],
-                child: Text('grid item $index'),
-              );
-            },
-            childCount: 20,
-          ),
-        ),
-        makeHeader(context, 'Header Section 4'),
-        // Yes, this could also be a SliverFixedExtentList. Writing
-        // this way just for an example of SliverList construction.
-        SliverList(
-          delegate: SliverChildListDelegate(
-            [
-              Container(color: Colors.pink, height: 150.0),
-              Container(color: Colors.cyan, height: 150.0),
-              Container(color: Colors.indigo, height: 150.0),
-              Container(color: Colors.blue, height: 150.0),
-            ],
-          ),
+        makeHeader(context, 'Page Decorations'),
+        SliverGrid.extent(
+          childAspectRatio: 3,
+          maxCrossAxisExtent: 300,
+          children: [
+            ...DartBoardCore.instance.pageDecorations.map((e) => Material(
+                  child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: e.decoration(
+                        context,
+                        MaterialButton(onPressed: () {}, child: Text(e.name)),
+                      )),
+                ))
+          ],
         ),
       ],
     );

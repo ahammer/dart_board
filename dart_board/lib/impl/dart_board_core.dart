@@ -52,21 +52,27 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
   @override
   late List<RouteDefinition> routes;
 
+  @override
   // All Page Decorations
   late List<PageDecoration> pageDecorations;
 
+  @override
   // All App Decorations
   late List<WidgetWithChildBuilder> appDecorations;
 
+  @override
   // Deny list for decorations (e.g. "/route:decoration_name")
   late List<String> pageDecorationDenyList;
 
+  @override
   // Allow list for page decorations (e.g. "/route:decoration_name")
   late List<String> pageDecorationAllowList;
 
+  @override
   // Recognized page decorations with a allow list (e.g. "decoration_name")
   late Set<String> whitelistedPageDecorations;
 
+  @override
   late List<DartBoardFeature> allFeatures;
 
   @override
