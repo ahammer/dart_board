@@ -1,4 +1,5 @@
 import 'package:dart_board/dart_board.dart';
+import 'package:dart_board_minesweeper/src/state/actions/minesweeper_actions.dart';
 import 'package:dart_board_minesweeper/src/state/app_state.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
@@ -30,6 +31,15 @@ class MinesweeperFeature extends DartBoardFeature {
   @override
   List<WidgetWithChildBuilder> get appDecorations => [
         (context, child) => Provider.value(
-            value: store, child: StoreProvider(store: store, child: child))
+            value: store, child: StoreProvider(store: store, child: child)),
+        (context, child) => InitWidget(
+            child: child,
+            initHook: (ctx) {
+              final query = MediaQuery.of(context);
+              store.dispatch(NewGameAction(
+                  difficulty: store.state.difficulty,
+                  width: query.size.width.toInt(),
+                  height: query.size.height.toInt()));
+            }),
       ];
 }

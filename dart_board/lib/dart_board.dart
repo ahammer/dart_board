@@ -8,6 +8,7 @@ export 'impl/dart_board_core.dart';
 
 /// The Route Widget
 export 'impl/widgets/route_widget.dart';
+export 'impl/widgets/init_widget.dart';
 export 'impl/route_types/named_route.dart';
 
 /// These are incredibly common exports
