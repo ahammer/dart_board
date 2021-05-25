@@ -3,7 +3,16 @@ import 'dart:math' as math;
 
 class DebugList extends StatelessWidget {
   @override
-  Widget build(BuildContext context) => CollapsingList();
+  Widget build(BuildContext context) => Stack(
+        children: [
+          Container(
+            width: double.infinity,
+            height: double.infinity,
+            color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.8),
+          ),
+          CollapsingList(),
+        ],
+      );
 }
 
 class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
@@ -57,16 +66,12 @@ class CollapsingList extends StatelessWidget {
       slivers: <Widget>[
         makeHeader(context, 'Extensions'),
         SliverGrid.extent(
-          childAspectRatio: 3,
-          maxCrossAxisExtent: 200,
+          childAspectRatio: 6,
+          maxCrossAxisExtent: 300,
           children: [
-            ...DartBoardCore.instance.allFeatures.map((e) => Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: MaterialButton(
-                      elevation: 1,
-                      onPressed: () {},
-                      child: FittedBox(
-                          fit: BoxFit.scaleDown, child: Text(e.namespace))),
+            ...DartBoardCore.instance.allFeatures.map((e) => Card(
+                  child: FittedBox(
+                      fit: BoxFit.scaleDown, child: Text(e.namespace)),
                 ))
           ],
         ),
@@ -75,10 +80,9 @@ class CollapsingList extends StatelessWidget {
           childAspectRatio: 3,
           maxCrossAxisExtent: 150,
           children: [
-            ...routes.map((e) => Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: MaterialButton(
-                      onPressed: () {
+            ...routes.map((e) => Card(
+                  child: InkWell(
+                      onTap: () {
                         showDialog(
                             context: context,
                             builder: (ctx) => Padding(
@@ -92,6 +96,15 @@ class CollapsingList extends StatelessWidget {
                       child: FittedBox(
                           fit: BoxFit.scaleDown, child: Text(e.route))),
                 ))
+          ],
+        ),
+        makeHeader(context, 'App Decorations'),
+        SliverGrid.extent(
+          childAspectRatio: 4,
+          maxCrossAxisExtent: 300,
+          children: [
+            ...DartBoardCore.instance.appDecorations
+                .map((e) => DebugLabelText(e.name))
           ],
         ),
         makeHeader(context, 'Page Decorations'),
@@ -115,24 +128,24 @@ class CollapsingList extends StatelessWidget {
         ),
         makeHeader(context, 'Page Decorations - Allow List'),
         SliverGrid.extent(
-            childAspectRatio: 6,
-            maxCrossAxisExtent: 400,
+            childAspectRatio: 4,
+            maxCrossAxisExtent: 300,
             children: [
               ...DartBoardCore.instance.pageDecorationAllowList
                   .map((e) => DebugLabelText(e))
             ]),
         makeHeader(context, 'Page Decorations - Deny List'),
         SliverGrid.extent(
-            childAspectRatio: 6,
-            maxCrossAxisExtent: 400,
+            childAspectRatio: 4,
+            maxCrossAxisExtent: 300,
             children: [
               ...DartBoardCore.instance.pageDecorationDenyList
                   .map((e) => DebugLabelText(e))
             ]),
         makeHeader(context, 'Page Decorations - Allow List Activated'),
         SliverGrid.extent(
-            childAspectRatio: 6,
-            maxCrossAxisExtent: 400,
+            childAspectRatio: 4,
+            maxCrossAxisExtent: 300,
             children: [
               ...DartBoardCore.instance.whitelistedPageDecorations
                   .map((e) => DebugLabelText(e))
@@ -148,13 +161,12 @@ class DebugLabelText extends StatelessWidget {
   const DebugLabelText(this.text, {Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.all(4.0),
-        child: Padding(
-          padding: const EdgeInsets.all(4.0),
-          child: FittedBox(
-            fit: BoxFit.scaleDown,
-            child: Center(
+  Widget build(BuildContext context) => FittedBox(
+        fit: BoxFit.scaleDown,
+        child: Center(
+          child: Card(
+            child: Padding(
+              padding: const EdgeInsets.all(4.0),
               child: Text(
                 text,
                 style: Theme.of(context).textTheme.headline5,
