@@ -45,7 +45,7 @@ abstract class DartBoardCore {
   /// These are the Features
   ///
   /// The implementation is responsible for managing this list
-  List<DartBoardFeature> get features;
+
   List<PageDecoration> get pageDecorations;
   List<WidgetWithChildBuilder> get appDecorations;
   List<String> get pageDecorationDenyList;
@@ -79,14 +79,10 @@ abstract class DartBoardCore {
       Provider.of<DartBoardCore>(dartBoardNavKey.currentContext!)
           .applyPageDecorations(child);
 
-  /// Gets a list of all features
-  static List<DartBoardFeature> get featureList =>
-      Provider.of<DartBoardCore>(dartBoardNavKey.currentContext!).features;
-
   /// Finds a Feature by it's name
   static DartBoardFeature findByName(String name) =>
       Provider.of<DartBoardCore>(dartBoardNavKey.currentContext!)
-          .features
+          .allFeatures
           .firstWhere((element) => element.namespace == name,
               orElse: () => EmptyDartBoardFeature());
 }

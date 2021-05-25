@@ -60,7 +60,7 @@ class featureList extends StatelessWidget {
               TableCell(child: TitleText('App Decorations')),
               TableCell(child: TitleText('Dependencies')),
             ]),
-            ...DartBoardCore.featureList.map((e) => TableRow(
+            ...DartBoardCore.instance.allFeatures.map((e) => TableRow(
                     decoration: BoxDecoration(
                         color: Theme.of(context)
                             .colorScheme

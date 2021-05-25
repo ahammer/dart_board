@@ -50,7 +50,7 @@ class CollapsingList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final routes = DartBoardCore.featureList.namedRoutes
+    final routes = DartBoardCore.instance.allFeatures.namedRoutes
       ..sort((a, b) => a.route.compareTo(b.route));
 
     return CustomScrollView(
@@ -60,7 +60,7 @@ class CollapsingList extends StatelessWidget {
           childAspectRatio: 3,
           maxCrossAxisExtent: 200,
           children: [
-            ...DartBoardCore.featureList.map((e) => Padding(
+            ...DartBoardCore.instance.allFeatures.map((e) => Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: MaterialButton(
                       elevation: 1,

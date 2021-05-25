@@ -32,9 +32,9 @@ class MinesweeperFeature extends DartBoardFeature {
   List<WidgetWithChildBuilder> get appDecorations => [
         (context, child) => Provider.value(
             value: store, child: StoreProvider(store: store, child: child)),
-        (context, child) => InitWidget(
+        (context, child) => LifeCycleWidget(
             child: child,
-            initHook: (ctx) {
+            init: (ctx) {
               final query = MediaQuery.of(context);
               store.dispatch(NewGameAction(
                   difficulty: store.state.difficulty,

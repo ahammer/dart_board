@@ -2,23 +2,32 @@ import 'dart:async';
 
 import 'package:dart_board/dart_board.dart';
 
-/// This widget can be used to install hooks into app init quickly
-class InitWidget extends StatefulWidget {
+// This widget can tap into life cycle
+//
+class LifeCycleWidget extends StatefulWidget {
   final Widget child;
-  final Function(BuildContext context) initHook;
+  final Function(BuildContext context)? init;
+  final Function(BuildContext context)? dispose;
 
-  const InitWidget({Key? key, required this.child, required this.initHook})
+  const LifeCycleWidget(
+      {Key? key, required this.child, required this.init, this.dispose})
       : super(key: key);
 
   @override
-  _InitWidgetState createState() => _InitWidgetState();
+  _LifeCycleWidgetState createState() => _LifeCycleWidgetState();
 }
 
-class _InitWidgetState extends State<InitWidget> {
+class _LifeCycleWidgetState extends State<LifeCycleWidget> {
   @override
   void initState() {
-    Timer.run(() => widget.initHook(context));
+    Timer.run(() => widget.init?.call(context));
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    widget.dispose?.call(context);
+    super.dispose();
   }
 
   @override
