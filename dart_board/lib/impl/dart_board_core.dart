@@ -79,11 +79,6 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
   void initState() {
     super.initState();
     buildFeatures();
-
-    /// Navigate to the initial route
-    Timer.run(() {
-      dartBoardNavKey.currentState!.pushNamed(widget.initialRoute);
-    });
   }
 
   /// Simple build
@@ -91,7 +86,8 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
   Widget build(BuildContext context) => Provider<DartBoardCore>(
         create: (ctx) => this,
         child: MaterialApp(
-          home: Material(),
+          home: applyPageDecorations(
+              RouteWidget(settings: RouteSettings(name: widget.initialRoute))),
           key: dartBoardKey,
           navigatorKey: dartBoardNavKey,
           builder: (context, navigator) => appDecorations.reversed

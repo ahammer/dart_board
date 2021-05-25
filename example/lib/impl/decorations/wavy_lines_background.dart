@@ -26,8 +26,8 @@ class _AnimatedBackgroundDecorationState
     super.initState();
     random = Random().nextDouble() * 100;
     animation = AnimationController(vsync: this);
-    animation.repeat(
-        min: 0.0, max: 1.0, period: Duration(minutes: 100), reverse: true);
+    //animation.repeat(
+    //min: 0.0, max: 1.0, period: Duration(minutes: 100), reverse: true);
   }
 
   @override
@@ -39,17 +39,14 @@ class _AnimatedBackgroundDecorationState
   @override
   Widget build(BuildContext context) => Stack(
         children: [
-          Opacity(
-            opacity: 0.3,
-            child: AnimatedBuilder(
-                animation: animation,
-                builder: (ctx, child) => Container(
-                    width: double.infinity,
-                    height: double.infinity,
-                    child: CustomPaint(
-                        painter: BackgroundPainter(
-                            animation.value + random, widget.color)))),
-          ),
+          AnimatedBuilder(
+              animation: animation,
+              builder: (ctx, child) => Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  child: CustomPaint(
+                      painter: BackgroundPainter(
+                          animation.value + random, widget.color)))),
           widget.child,
         ],
       );
@@ -103,7 +100,7 @@ class BackgroundPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
 
 extension SolidLinefeature on List<Offset> {
