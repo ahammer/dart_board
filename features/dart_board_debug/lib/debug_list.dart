@@ -63,7 +63,10 @@ class CollapsingList extends StatelessWidget {
             ...DartBoardCore.featureList.map((e) => Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: MaterialButton(
-                      elevation: 1, onPressed: () {}, child: Text(e.namespace)),
+                      elevation: 1,
+                      onPressed: () {},
+                      child: FittedBox(
+                          fit: BoxFit.scaleDown, child: Text(e.namespace))),
                 ))
           ],
         ),
@@ -86,7 +89,8 @@ class CollapsingList extends StatelessWidget {
                                   ),
                                 ));
                       },
-                      child: Text(e.route)),
+                      child: FittedBox(
+                          fit: BoxFit.scaleDown, child: Text(e.route))),
                 ))
           ],
         ),
@@ -149,9 +153,12 @@ class DebugLabelText extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(4.0),
           child: FittedBox(
-            fit: BoxFit.fitHeight,
+            fit: BoxFit.scaleDown,
             child: Center(
-              child: Text(text),
+              child: Text(
+                text,
+                style: Theme.of(context).textTheme.headline5,
+              ),
             ),
           ),
         ),
