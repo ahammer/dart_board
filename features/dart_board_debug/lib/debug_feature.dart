@@ -1,6 +1,8 @@
 import 'package:dart_board/dart_board.dart';
 import 'package:flutter/material.dart';
 
+import 'debug_list.dart';
+
 /// This feature is meant to expose the /Debug route,
 ///
 /// It provides some information about the system
@@ -15,7 +17,7 @@ class DebugFeature extends DartBoardFeature {
   @override
   List<RouteDefinition> get routes => <RouteDefinition>[
         NamedRouteDefinition(
-            route: '/debug', builder: (context, settings) => DebugScreen())
+            route: '/debug', builder: (context, settings) => DebugList())
       ];
 
   @override
