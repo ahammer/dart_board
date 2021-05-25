@@ -50,7 +50,8 @@ class CollapsingList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final routes = DartBoardCore.featureList.namedRoutes;
+    final routes = DartBoardCore.featureList.namedRoutes
+      ..sort((a, b) => a.route.compareTo(b.route));
     return CustomScrollView(
       slivers: <Widget>[
         makeHeader(context, 'Routes'),
