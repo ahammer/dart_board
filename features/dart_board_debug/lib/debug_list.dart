@@ -33,7 +33,12 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   }
 }
 
-class CollapsingList extends StatelessWidget {
+class CollapsingList extends StatefulWidget {
+  @override
+  _CollapsingListState createState() => _CollapsingListState();
+}
+
+class _CollapsingListState extends State<CollapsingList> {
   SliverPersistentHeader makeHeader(BuildContext context, String headerText) {
     return SliverPersistentHeader(
       pinned: true,
@@ -92,20 +97,68 @@ class CollapsingList extends StatelessWidget {
         ),
         makeHeader(context, 'Page Decorations'),
         SliverGrid.extent(
-          childAspectRatio: 3,
+          childAspectRatio: 2,
           maxCrossAxisExtent: 300,
           children: [
-            ...DartBoardCore.instance.pageDecorations.map((e) => Material(
-                  child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: e.decoration(
+            ...DartBoardCore.instance.pageDecorations.map((e) => Card(
+                  child: Column(
+                    children: [
+                      Text(e.name),
+                      Expanded(
+                          child: e.decoration(
                         context,
-                        MaterialButton(onPressed: () {}, child: Text(e.name)),
+                        Container(),
                       )),
-                ))
+                    ],
+                  ),
+                )),
           ],
         ),
+        makeHeader(context, 'Page Decorations - Allow List'),
+        SliverGrid.extent(
+            childAspectRatio: 6,
+            maxCrossAxisExtent: 400,
+            children: [
+              ...DartBoardCore.instance.pageDecorationAllowList
+                  .map((e) => DebugLabelText(e))
+            ]),
+        makeHeader(context, 'Page Decorations - Deny List'),
+        SliverGrid.extent(
+            childAspectRatio: 6,
+            maxCrossAxisExtent: 400,
+            children: [
+              ...DartBoardCore.instance.pageDecorationDenyList
+                  .map((e) => DebugLabelText(e))
+            ]),
+        makeHeader(context, 'Page Decorations - Allow List Activated'),
+        SliverGrid.extent(
+            childAspectRatio: 6,
+            maxCrossAxisExtent: 400,
+            children: [
+              ...DartBoardCore.instance.whitelistedPageDecorations
+                  .map((e) => DebugLabelText(e))
+            ])
       ],
     );
   }
+}
+
+class DebugLabelText extends StatelessWidget {
+  final String text;
+
+  const DebugLabelText(this.text, {Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: FittedBox(
+            fit: BoxFit.fitHeight,
+            child: Center(
+              child: Text(text),
+            ),
+          ),
+        ),
+      );
 }
