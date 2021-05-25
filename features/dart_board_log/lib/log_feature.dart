@@ -33,8 +33,8 @@ class LogFeature extends DartBoardFeature {
   }
 
   @override
-  List<PageDecoration> get pageDecorations => [
-        PageDecoration(
+  List<DartBoardDecoration> get pageDecorations => [
+        DartBoardDecoration(
             name: 'log_frame',
             decoration: (context, child) =>
                 LogWrapper(fontSize: fontSize, child: child)),
@@ -48,9 +48,11 @@ class LogFeature extends DartBoardFeature {
 
   /// Here we inject a Log-State into the App Scope
   @override
-  List<WidgetWithChildBuilder> get appDecorations => [
-        (context, child) => ChangeNotifierProvider<LogState>(
-            create: (ctx) => logState, child: child)
+  List<DartBoardDecoration> get appDecorations => [
+        DartBoardDecoration(
+            name: 'log_state_provider',
+            decoration: (context, child) => ChangeNotifierProvider<LogState>(
+                create: (ctx) => logState, child: child))
       ];
 
   @override

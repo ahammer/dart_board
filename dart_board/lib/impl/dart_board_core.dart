@@ -54,11 +54,11 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
 
   @override
   // All Page Decorations
-  late List<PageDecoration> pageDecorations;
+  late List<DartBoardDecoration> pageDecorations;
 
   @override
   // All App Decorations
-  late List<WidgetWithChildBuilder> appDecorations;
+  late List<DartBoardDecoration> appDecorations;
 
   @override
   // Deny list for decorations (e.g. "/route:decoration_name")
@@ -95,7 +95,9 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
           key: dartBoardKey,
           navigatorKey: dartBoardNavKey,
           builder: (context, navigator) => appDecorations.reversed
-              .fold(navigator!, (child, element) => element(context, child)),
+              .where((element) => element.enabled)
+              .fold(navigator!,
+                  (child, element) => element.decoration(context, child)),
           onGenerateRoute: onGenerateRoute,
         ),
       );
@@ -109,6 +111,7 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
           decorations: pageDecorations
               .where((decoration) =>
                   decorate &&
+                  decoration.enabled &&
                   ((!whitelistedPageDecorations.contains(decoration.name) &&
                           !pageDecorationDenyList.contains(
                               '${settings.name}:${decoration.name}')) ||
@@ -117,9 +120,6 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
                               '${settings.name}:${decoration.name}')))))
               .toList(),
           child: route.builder(settings, context));
-
-  @override
-  List<DartBoardFeature> get features => allFeatures;
 
   /// buildFeatures()
   ///
@@ -138,14 +138,16 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
           (previousValue, element) =>
               <RouteDefinition>[...previousValue, ...element.routes]);
 
-      pageDecorations = allFeatures.fold<List<PageDecoration>>(
-          <PageDecoration>[],
-          ((previousValue, element) =>
-              <PageDecoration>[...previousValue, ...element.pageDecorations]));
+      pageDecorations = allFeatures.fold<List<DartBoardDecoration>>(
+          <DartBoardDecoration>[],
+          ((previousValue, element) => <DartBoardDecoration>[
+                ...previousValue,
+                ...element.pageDecorations
+              ]));
 
-      appDecorations = allFeatures.fold<List<WidgetWithChildBuilder>>(
-          <WidgetWithChildBuilder>[],
-          (previousValue, element) => <WidgetWithChildBuilder>[
+      appDecorations = allFeatures.fold<List<DartBoardDecoration>>(
+          <DartBoardDecoration>[],
+          (previousValue, element) => <DartBoardDecoration>[
                 ...previousValue,
                 ...element.appDecorations
               ]);
@@ -220,7 +222,7 @@ class ApplyDecorations extends StatelessWidget {
 /// E.g. if you are navigating with a non-named route but want them.
 class ApplyPageDecorations extends StatelessWidget {
   final Widget child;
-  final List<PageDecoration>? decorations;
+  final List<DartBoardDecoration>? decorations;
   final RouteSettings? settings;
 
   const ApplyPageDecorations({

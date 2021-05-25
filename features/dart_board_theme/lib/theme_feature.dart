@@ -5,8 +5,8 @@ class ThemeFeature extends DartBoardFeature {
   ThemeFeature();
 
   @override
-  List<PageDecoration> get pageDecorations => [
-        PageDecoration(
+  List<DartBoardDecoration> get pageDecorations => [
+        DartBoardDecoration(
             name: 'theme_applicator',
             decoration: (context, child) => Consumer<ThemeState>(
                   builder: (ctx, val, child) => Theme(
@@ -26,9 +26,11 @@ class ThemeFeature extends DartBoardFeature {
       Provider.of<ThemeState>(context, listen: false).toggleTheme();
 
   @override
-  List<WidgetWithChildBuilder> get appDecorations => [
-        (context, child) => ChangeNotifierProvider<ThemeState>(
-            create: (ctx) => ThemeState(), child: child)
+  List<DartBoardDecoration> get appDecorations => [
+        DartBoardDecoration(
+            name: 'theme_state_holder',
+            decoration: (context, child) => ChangeNotifierProvider<ThemeState>(
+                create: (ctx) => ThemeState(), child: child))
       ];
 
   @override

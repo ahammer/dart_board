@@ -29,17 +29,22 @@ class MinesweeperFeature extends DartBoardFeature {
       ];
 
   @override
-  List<WidgetWithChildBuilder> get appDecorations => [
-        (context, child) => Provider.value(
-            value: store, child: StoreProvider(store: store, child: child)),
-        (context, child) => LifeCycleWidget(
-            child: child,
-            init: (ctx) {
-              final query = MediaQuery.of(context);
-              store.dispatch(NewGameAction(
-                  difficulty: store.state.difficulty,
-                  width: query.size.width.toInt(),
-                  height: query.size.height.toInt()));
-            }),
+  List<DartBoardDecoration> get appDecorations => [
+        DartBoardDecoration(
+            name: 'minesweeper_redux',
+            decoration: (context, child) => Provider.value(
+                value: store,
+                child: StoreProvider(store: store, child: child))),
+        DartBoardDecoration(
+            name: 'minesweeper_lifecycle',
+            decoration: (context, child) => LifeCycleWidget(
+                child: child,
+                init: (ctx) {
+                  final query = MediaQuery.of(context);
+                  store.dispatch(NewGameAction(
+                      difficulty: store.state.difficulty,
+                      width: query.size.width.toInt(),
+                      height: query.size.height.toInt()));
+                })),
       ];
 }

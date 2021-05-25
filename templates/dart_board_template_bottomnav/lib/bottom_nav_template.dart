@@ -24,13 +24,16 @@ class BottomNavTemplateFeature extends DartBoardFeature {
   BottomNavTemplateFeature(this.route, this.config);
 
   @override
-  List<WidgetWithChildBuilder> get appDecorations => [
-        (ctx, child) => ChangeNotifierProvider<BottomNavTemplateState>(
-            create: (ctx) {
-              validateConfig();
-              return BottomNavTemplateState(config);
-            },
-            child: child)
+  List<DartBoardDecoration> get appDecorations => [
+        DartBoardDecoration(
+            name: 'bottom_nav_state',
+            decoration: (ctx, child) =>
+                ChangeNotifierProvider<BottomNavTemplateState>(
+                    create: (ctx) {
+                      validateConfig();
+                      return BottomNavTemplateState(config);
+                    },
+                    child: child))
       ];
 
   @override

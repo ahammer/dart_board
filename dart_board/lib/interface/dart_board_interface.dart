@@ -46,8 +46,8 @@ abstract class DartBoardCore {
   ///
   /// The implementation is responsible for managing this list
 
-  List<PageDecoration> get pageDecorations;
-  List<WidgetWithChildBuilder> get appDecorations;
+  List<DartBoardDecoration> get pageDecorations;
+  List<DartBoardDecoration> get appDecorations;
   List<String> get pageDecorationDenyList;
   List<String> get pageDecorationAllowList;
   Set<String> get whitelistedPageDecorations;
@@ -102,11 +102,13 @@ extension DartBoardFeatureListExtension on List<DartBoardFeature> {
 /// It comes with methods to decide if it should apply or not.
 /// and a name so it can be shown in the debug tools
 /// or referenced in allow/deny lists.
-class PageDecoration {
+class DartBoardDecoration {
+  final bool enabled;
   final String name;
   final WidgetWithChildBuilder decoration;
 
-  PageDecoration({required this.name, required this.decoration});
+  DartBoardDecoration(
+      {required this.name, required this.decoration, this.enabled = true});
 
   @override
   String toString() => name;
@@ -124,10 +126,10 @@ abstract class DartBoardFeature<T> {
   List<RouteDefinition> get routes => [];
 
   /// The app decorations (global)
-  List<WidgetWithChildBuilder> get appDecorations => [];
+  List<DartBoardDecoration> get appDecorations => [];
 
   /// The page decorations (page level)
-  List<PageDecoration> get pageDecorations => [];
+  List<DartBoardDecoration> get pageDecorations => [];
 
   List<DartBoardFeature> get dependencies => [];
 

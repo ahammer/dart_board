@@ -9,10 +9,10 @@ import 'debug_list.dart';
 /// This is a rough first draft.
 class DebugFeature extends DartBoardFeature {
   @override
-  List<WidgetWithChildBuilder> get appDecorations => [];
+  List<DartBoardDecoration> get appDecorations => [];
 
   @override
-  List<PageDecoration> get pageDecorations => [];
+  List<DartBoardDecoration> get pageDecorations => [];
 
   @override
   List<RouteDefinition> get routes => <RouteDefinition>[

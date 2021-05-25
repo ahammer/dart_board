@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dart_board/dart_board.dart';
 import 'package:dart_board_minesweeper/minesweeper_feature.dart';
 import 'package:dart_board_theme/theme_feature.dart';
@@ -11,6 +13,7 @@ import 'impl/pages/home_page.dart';
 import 'package:dart_board_template_bottomnav/bottom_nav_template.dart';
 import 'impl/pages/haiku_and_code.dart';
 import 'impl/routes/custom_routes.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 /// The Example Feature
 ///
@@ -44,13 +47,16 @@ class ExampleFeature extends DartBoardFeature {
 
   /// These are page-scoped decorations
   @override
-  List<PageDecoration> get pageDecorations => <PageDecoration>[
-        PageDecoration(
+  List<DartBoardDecoration> get pageDecorations => <DartBoardDecoration>[
+        DartBoardDecoration(
             name: 'color_border',
             decoration: (context, child) => DarkColorBorder(child: child)),
 
         /// The animated background effect
-        PageDecoration(
+
+        DartBoardDecoration(
+            enabled: !kIsWeb &&
+                (Platform.isMacOS || Platform.isLinux || Platform.isWindows),
             name: 'animated_background',
             decoration: (context, child) => AnimatedBackgroundDecoration(
                   color: Theme.of(context).colorScheme.surface,
