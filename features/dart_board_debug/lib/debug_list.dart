@@ -33,12 +33,7 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   }
 }
 
-class CollapsingList extends StatefulWidget {
-  @override
-  _CollapsingListState createState() => _CollapsingListState();
-}
-
-class _CollapsingListState extends State<CollapsingList> {
+class CollapsingList extends StatelessWidget {
   SliverPersistentHeader makeHeader(BuildContext context, String headerText) {
     return SliverPersistentHeader(
       pinned: true,
@@ -68,7 +63,7 @@ class _CollapsingListState extends State<CollapsingList> {
             ...DartBoardCore.featureList.map((e) => Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: MaterialButton(
-                      onPressed: () {}, child: Text(e.namespace)),
+                      elevation: 1, onPressed: () {}, child: Text(e.namespace)),
                 ))
           ],
         ),
