@@ -1,3 +1,4 @@
+import 'package:dart_board/dart_board.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -79,6 +80,15 @@ abstract class DartBoardCore {
           .features
           .firstWhere((element) => element.namespace == name,
               orElse: () => EmptyDartBoardFeature());
+}
+
+extension DartBoardFeatureListExtension on List<DartBoardFeature> {
+  List<NamedRouteDefinition> get namedRoutes => fold<List<RouteDefinition>>(
+      <RouteDefinition>[],
+      (previousValue, element) => <RouteDefinition>[
+            ...previousValue,
+            ...element.routes
+          ]).whereType<NamedRouteDefinition>().toList();
 }
 
 ///

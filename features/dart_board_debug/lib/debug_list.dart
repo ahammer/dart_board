@@ -50,21 +50,30 @@ class CollapsingList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final routes = DartBoardCore.featureList.namedRoutes;
     return CustomScrollView(
       slivers: <Widget>[
         makeHeader(context, 'Routes'),
-        SliverGrid.count(
-          crossAxisCount: 3,
+        SliverGrid.extent(
+          childAspectRatio: 3,
+          maxCrossAxisExtent: 150,
           children: [
-            Container(color: Colors.red, height: 150.0),
-            Container(color: Colors.purple, height: 150.0),
-            Container(color: Colors.green, height: 150.0),
-            Container(color: Colors.orange, height: 150.0),
-            Container(color: Colors.yellow, height: 150.0),
-            Container(color: Colors.pink, height: 150.0),
-            Container(color: Colors.cyan, height: 150.0),
-            Container(color: Colors.indigo, height: 150.0),
-            Container(color: Colors.blue, height: 150.0),
+            ...routes.map((e) => Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: MaterialButton(
+                      onPressed: () {
+                        showDialog(
+                            context: context,
+                            builder: (ctx) => Padding(
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: Material(
+                                    child: RouteWidget(
+                                        settings: RouteSettings(name: e.route)),
+                                  ),
+                                ));
+                      },
+                      child: Text(e.route)),
+                ))
           ],
         ),
         makeHeader(context, 'Header Section 2'),
