@@ -65,3 +65,15 @@ At this point a user of your Feature can navigate to your route with RouteWidget
 If necessary, the Feature can provide additional API to interact with it's app state via the tree.
 
 
+Release Checklist
+1) AppDecoration class, names, and debug frame
+2) Pick code files/config for sample
+3) Fix CSS for comments to make them stand out
+4) AB test example for background
+5) Commands
+6) Enable/Disable Feature
+7) Decoration Priority
+8) Logging Everywhere
+9) Document at least the files in the Demo
+10) Share for feedback
+11) Implement immediate feedback
