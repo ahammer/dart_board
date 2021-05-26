@@ -38,7 +38,7 @@ dependencies:
     path: ../templates/dart_board_template_bottomnav
 
   flutter_syntax_view: ^4.0.0
-
+  flutter_markdown: ^0.6.2
   http: ^0.13.3
 
 dev_dependencies:

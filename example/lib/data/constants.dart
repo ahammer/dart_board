@@ -6,18 +6,20 @@ import 'package:dart_board/dart_board.dart';
 /// And to keep the data outside the widgets to ease comprehension
 const kCodeRoutes = <Map<String, String>>[
   {
+    'route': '/readme',
+    'haiku': 'Readme.md',
+    'url':
+        'https://raw.githubusercontent.com/ahammer/dart_board/master/README.md',
+  },
+  {
     'route': '/code_main',
-    'haiku': '''Need to integrate?
-Dart board will do that for you
-It will be simple''',
+    'haiku': '''A basic entry point''',
     'url':
         'https://raw.githubusercontent.com/ahammer/dart_board/master/example/lib/main.dart',
   },
   {
     'route': '/code_features',
-    'haiku': '''Features are code bits
-They hook into your apps quick
-Composed, they are strong''',
+    'haiku': '''Extension Overview''',
     'url':
         'https://raw.githubusercontent.com/ahammer/dart_board/master/example/lib/example_feature.dart',
   },

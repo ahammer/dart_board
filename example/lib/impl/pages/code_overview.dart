@@ -1,6 +1,5 @@
 import 'package:dart_board/dart_board.dart';
 import 'package:example/data/constants.dart';
-import 'package:example/impl/pages/haiku_and_code.dart';
 import 'package:flutter/cupertino.dart';
 
 class CodeOverview extends StatefulWidget {
