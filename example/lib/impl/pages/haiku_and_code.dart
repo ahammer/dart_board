@@ -1,5 +1,5 @@
 import 'dart:math';
-
+import 'dart:ui' as ui;
 import 'package:dart_board_theme/theme_feature.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -43,38 +43,15 @@ class _HaikuAndCodeState extends State<HaikuAndCode> {
       //Trigger a data load (if necessary)
       loadData();
     });
-    final haikuWidget = Center(
-      key: Key('haiku'),
-      child: Padding(
-        padding: const EdgeInsets.all(32.0),
-        child: Container(
-            width: double.infinity,
-            child: Align(
-              alignment: Alignment.center,
-              child: FittedBox(
-                child: Text(
-                  widget.haiku,
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.headline1!.copyWith(
-                      shadows: [
-                        BoxShadow(
-                            blurRadius: 4,
-                            offset: Offset(1, 1),
-                            color: Colors.black54)
-                      ]),
-                ),
-              ),
-            )),
-      ),
-    );
 
     return LayoutBuilder(builder: (ctx, size) {
+      final theme = Theme.of(context);
       final codeWidget;
       codeWidget = AnimatedContainer(
-          width: fileContents.isEmpty ? 0 : size.maxWidth,
+          width: size.maxWidth,
           height: fileContents.isEmpty ? 0 : size.maxHeight,
-          duration: Duration(seconds: 10),
-          curve: Curves.easeInOut,
+          duration: Duration(milliseconds: 500),
+          curve: Curves.easeInExpo,
           child: fileContents.isNotEmpty
               ? Material(
                   elevation: 5,
@@ -84,20 +61,36 @@ class _HaikuAndCodeState extends State<HaikuAndCode> {
                     withZoom: false,
                     code: fileContents,
                     syntax: Syntax.DART,
-                    syntaxTheme: ThemeFeature.isLight
+                    syntaxTheme: (ThemeFeature.isLight
                         ? SyntaxTheme.gravityLight()
-                        : SyntaxTheme.gravityDark(),
-                  ),
-                )
-              : Text('Loading'));
+                        : SyntaxTheme.gravityDark())
+                      ..commentStyle = Theme.of(context)
+                          .textTheme
+                          .bodyText2
+                          ?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              shadows: [
+                                BoxShadow(
+                                    offset: Offset(2, 2),
+                                    color: theme.colorScheme.primaryVariant,
+                                    blurRadius: 4,
+                                    spreadRadius: 2),
+                                BoxShadow(
+                                    offset: Offset(2, 2),
+                                    color: theme.colorScheme.primary,
+                                    blurRadius: 8,
+                                    spreadRadius: 4)
+                              ],
+                              background: Paint()
+                                ..shader = ui.Gradient.linear(
+                                    Offset(0, 0), Offset(50, 0), [
+                                  theme.colorScheme.primaryVariant,
+                                  theme.colorScheme.secondary.withOpacity(0.2)
+                                ])),
+                  ))
+              : Center(child: CircularProgressIndicator()));
 
-      if (size.maxWidth > size.maxHeight) {
-        return Row(
-            children: [Expanded(flex: 1, child: haikuWidget), codeWidget]);
-      } else {
-        return Column(
-            children: [Expanded(flex: 1, child: haikuWidget), codeWidget]);
-      }
+      return Align(alignment: Alignment.center, child: codeWidget);
     });
   }
 }

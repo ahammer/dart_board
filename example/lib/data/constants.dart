@@ -6,7 +6,7 @@ import 'package:dart_board/dart_board.dart';
 /// And to keep the data outside the widgets to ease comprehension
 const kCodeRoutes = <Map<String, String>>[
   {
-    'route': '/about',
+    'route': '/code_main',
     'haiku': '''Need to integrate?
 Dart board will do that for you
 It will be simple''',
@@ -14,23 +14,7 @@ It will be simple''',
         'https://raw.githubusercontent.com/ahammer/dart_board/master/example/lib/main.dart',
   },
   {
-    'route': '/decorations',
-    'haiku': '''Painting your project
-At the app and page level
-is quick and easy''',
-    'url':
-        'https://raw.githubusercontent.com/ahammer/dart_board/master/example/lib/impl/decorations/scaffold_appbar_decoration.dart',
-  },
-  {
-    'route': '/routing',
-    'haiku': '''Navigate your app
-Features provide named pages
-Custom transitions''',
-    'url':
-        'https://raw.githubusercontent.com/ahammer/dart_board/master/example/lib/main.dart',
-  },
-  {
-    'route': '/features',
+    'route': '/code_features',
     'haiku': '''Features are code bits
 They hook into your apps quick
 Composed, they are strong''',
