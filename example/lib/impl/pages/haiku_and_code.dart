@@ -69,23 +69,13 @@ class _HaikuAndCodeState extends State<HaikuAndCode> {
                           .bodyText2
                           ?.copyWith(
                               fontWeight: FontWeight.bold,
-                              shadows: [
-                                BoxShadow(
-                                    offset: Offset(2, 2),
-                                    color: theme.colorScheme.primaryVariant,
-                                    blurRadius: 4,
-                                    spreadRadius: 2),
-                                BoxShadow(
-                                    offset: Offset(2, 2),
-                                    color: theme.colorScheme.primary,
-                                    blurRadius: 8,
-                                    spreadRadius: 4)
-                              ],
+                              letterSpacing: 1.1,
                               background: Paint()
                                 ..shader = ui.Gradient.linear(
-                                    Offset(0, 0), Offset(50, 0), [
-                                  theme.colorScheme.primaryVariant,
-                                  theme.colorScheme.secondary.withOpacity(0.2)
+                                    Offset(20, 0), Offset(50, 0), [
+                                  Colors.transparent,
+                                  theme.colorScheme.primaryVariant
+                                      .withOpacity(0.3)
                                 ])),
                   ))
               : Center(child: CircularProgressIndicator()));
