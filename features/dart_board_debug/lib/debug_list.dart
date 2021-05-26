@@ -64,17 +64,33 @@ class CollapsingList extends StatelessWidget {
 
     return CustomScrollView(
       slivers: <Widget>[
+        ///-------------------------------------------------------------------
         makeHeader(context, 'Extensions'),
         SliverGrid.extent(
-          childAspectRatio: 6,
+          childAspectRatio: 3,
           maxCrossAxisExtent: 300,
           children: [
-            ...DartBoardCore.instance.allFeatures.map((e) => Card(
-                  child: FittedBox(
-                      fit: BoxFit.scaleDown, child: Text(e.namespace)),
-                ))
+            ...DartBoardCore.instance.allFeatures.map((e) {
+              final implementations =
+                  DartBoardCore.instance.detectedImplementations[e.namespace]!;
+
+              return Card(
+                child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Column(
+                      children: [
+                        Text('Namespace: ${e.namespace}'),
+                        if (implementations.length > 1)
+                          Text('${implementations.length} choices'),
+                        Text('Active: ${implementations[0]}'),
+                      ],
+                    )),
+              );
+            })
           ],
         ),
+
+        ///-------------------------------------------------------------------
         makeHeader(context, 'Routes'),
         SliverGrid.extent(
           childAspectRatio: 3,
@@ -98,6 +114,8 @@ class CollapsingList extends StatelessWidget {
                 ))
           ],
         ),
+
+        ///-------------------------------------------------------------------
         makeHeader(context, 'App Decorations'),
         SliverGrid.extent(
           childAspectRatio: 4,
@@ -107,6 +125,8 @@ class CollapsingList extends StatelessWidget {
                 .map((e) => DebugLabelText(e.name))
           ],
         ),
+
+        ///-------------------------------------------------------------------
         makeHeader(context, 'Page Decorations'),
         SliverGrid.extent(
           childAspectRatio: 2,
@@ -126,6 +146,8 @@ class CollapsingList extends StatelessWidget {
                 )),
           ],
         ),
+
+        ///-------------------------------------------------------------------
         makeHeader(context, 'Page Decorations - Allow List'),
         SliverGrid.extent(
             childAspectRatio: 4,
@@ -134,6 +156,8 @@ class CollapsingList extends StatelessWidget {
               ...DartBoardCore.instance.pageDecorationAllowList
                   .map((e) => DebugLabelText(e))
             ]),
+
+        ///-------------------------------------------------------------------
         makeHeader(context, 'Page Decorations - Deny List'),
         SliverGrid.extent(
             childAspectRatio: 4,
@@ -142,6 +166,8 @@ class CollapsingList extends StatelessWidget {
               ...DartBoardCore.instance.pageDecorationDenyList
                   .map((e) => DebugLabelText(e))
             ]),
+
+        ///-------------------------------------------------------------------
         makeHeader(context, 'Page Decorations - Allow List Activated'),
         SliverGrid.extent(
             childAspectRatio: 4,
