@@ -75,6 +75,8 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
   @override
   late List<DartBoardFeature> allFeatures;
 
+  Set<String> loadedFeatures = {};
+
   @override
   void initState() {
     super.initState();
@@ -126,7 +128,17 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
   /// If the features change, this can be rebuilt
   void buildFeatures() {
     setState(() {
-      allFeatures = buildDependencyList(widget.features!);
+      loadedFeatures.clear();
+      final dependencies = buildDependencyList(widget.features!);
+
+      allFeatures = <DartBoardFeature>[];
+
+      dependencies.forEach((element) {
+        if (!loadedFeatures.contains(element.namespace)) {
+          loadedFeatures.add(element.namespace);
+          allFeatures.add(element);
+        }
+      });
 
       /// We pull out Routes and PageDecorations from the route
       routes = allFeatures.fold(
