@@ -66,9 +66,6 @@ If necessary, the Feature can provide additional API to interact with it's app s
 
 
 Release Checklist
-1) AppDecoration class, names, and debug frame [X]
-2) Pick code files/config for sample
-3) Fix CSS for comments to make them stand out
 4) AB test example for background
 5) Commands
 6) Enable/Disable Feature

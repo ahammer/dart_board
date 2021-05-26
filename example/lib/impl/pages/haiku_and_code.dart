@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_syntax_view/flutter_syntax_view.dart';
 import 'package:http/http.dart' as http;
-import 'package:markdown/markdown.dart';
+import 'package:markdown/markdown.dart' as md;
 
 // Show a Haiku and some code
 class HaikuAndCode extends StatefulWidget {
@@ -71,7 +71,7 @@ class _HaikuAndCodeState extends State<HaikuAndCode> {
                                 .textTheme
                                 .bodyText2
                                 ?.copyWith(
-                                    fontWeight: FontWeight.bold,
+                                    fontWeight: FontWeight.normal,
                                     letterSpacing: 1.1,
                                     background: Paint()
                                       ..shader = ui.Gradient.linear(
@@ -83,7 +83,15 @@ class _HaikuAndCodeState extends State<HaikuAndCode> {
                         ))
               : Center(child: CircularProgressIndicator()));
 
-      return Align(alignment: Alignment.center, child: codeWidget);
+      return Column(
+        children: [
+          Container(
+            child: Text(widget.haiku),
+          ),
+          Expanded(
+              child: Align(alignment: Alignment.center, child: codeWidget)),
+        ],
+      );
     });
   }
 }

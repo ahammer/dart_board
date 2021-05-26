@@ -38,8 +38,8 @@ void main() => runApp(DartBoard(
 /// Where do we go from here?
 /// ----------------------------------------------------------
 /// 
-/// The meat of the platform is in the features.
-/// The next page will outline what a feature can do
+/// The bulk of the example is in the features.
+/// See the "features" page for more information
 /// 
 /// 
 /// How can I see it?

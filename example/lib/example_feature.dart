@@ -44,7 +44,9 @@ class ExampleFeature extends DartBoardFeature {
         DebugFeature(),
         LogFeature(),
         MinesweeperFeature(),
-        BottomNavTemplateFeature('/main', kMainPageConfig)
+        BottomNavTemplateFeature('/main', kMainPageConfig),
+        BackgroundAFeature(),
+        BackgroundBFeature(),
       ];
 
   /// Navigation entry points
@@ -80,16 +82,6 @@ class ExampleFeature extends DartBoardFeature {
         DartBoardDecoration(
             name: 'color_border',
             decoration: (context, child) => DarkColorBorder(child: child)),
-
-        /// The background effect (disabled on some platforms for performance)
-        DartBoardDecoration(
-            enabled: !kIsWeb &&
-                (Platform.isMacOS || Platform.isLinux || Platform.isWindows),
-            name: 'animated_background',
-            decoration: (context, child) => AnimatedBackgroundDecoration(
-                  color: Theme.of(context).colorScheme.surface,
-                  child: child,
-                ))
       ];
 
   @override
@@ -98,4 +90,40 @@ class ExampleFeature extends DartBoardFeature {
   @override
   List<String> get pageDecorationAllowList =>
       ['/main:color_border', '/main:log_frame'];
+}
+
+class BackgroundAFeature extends DartBoardFeature {
+  @override
+  String get namespace => 'background';
+
+  @override
+  List<DartBoardDecoration> get pageDecorations => <DartBoardDecoration>[
+        DartBoardDecoration(
+            enabled: !kIsWeb &&
+                (Platform.isMacOS || Platform.isLinux || Platform.isWindows),
+            name: 'background',
+            decoration: (context, child) => AnimatedBackgroundDecoration(
+                  color: Theme.of(context).colorScheme.surface,
+                  child: child,
+                ))
+      ];
+}
+
+class BackgroundBFeature extends DartBoardFeature {
+  @override
+  String get namespace => 'background';
+
+  @override
+  List<DartBoardDecoration> get pageDecorations => <DartBoardDecoration>[
+        DartBoardDecoration(
+            enabled: !kIsWeb &&
+                (Platform.isMacOS || Platform.isLinux || Platform.isWindows),
+            name: 'background',
+            decoration: (context, child) => Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  color: Colors.red,
+                  child: child,
+                ))
+      ];
 }
