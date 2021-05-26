@@ -15,13 +15,18 @@ void main() => runApp(DartBoard(
 /// -----------------------
 /// 
 /// When you start the App, you specify the features
-/// you'd like to support.
+/// you'd like to support. Even though we only specify one here
+/// we are actually bringing in 6 Features, most come as Dependencies in the 
+/// Extension itself.
 /// 
-/// You then point an entry point.
+/// The features we ultimately bring in to the example.
+/// [Theme, Debug, Logging, MineSweeper, BottomNavTemplate, Example]
 /// 
-/// Dart board handles loading your features, named route navigation, 
-/// and app and page decorations.
+/// Dart board handles loading your features, named routes, 
+/// and app and page decorations. 
 /// 
+/// It manages your MaterialApp for you, freeing you up to hook features
+/// up easily and quickly.
 /// 
 /// What else would go in this file?
 /// --------------------------------
