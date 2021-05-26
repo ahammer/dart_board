@@ -1,5 +1,6 @@
 name: dart_board_minesweeper
 description: A new Flutter project.
+publish_to: none
 
 version: 1.0.1+2
 

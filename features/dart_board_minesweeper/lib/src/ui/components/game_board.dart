@@ -68,7 +68,7 @@ class _GameTimerState extends State<GameTimer> {
           "⏲️${(store.state.mineSweeper!.gameOverTime ?? DateTime.now()).difference(store.state.mineSweeper!.startTime!).inSeconds}";
     }
 
-    return Text(value, style: Theme.of(context).textTheme.title);
+    return Text(value, style: Theme.of(context).textTheme.headline5);
   }
 }
 
@@ -83,7 +83,7 @@ class BombsRemaining extends StatelessWidget {
       },
       distinct: true,
       builder: (ctx, value) =>
-          Text(value, style: Theme.of(context).textTheme.title));
+          Text(value, style: Theme.of(context).textTheme.headline5));
 }
 
 class MineField extends StatelessWidget {
@@ -172,7 +172,7 @@ class GameInfoOverlay extends StatelessWidget {
                                     : "💩Game Over💩"
                                 : ""
                             : "Flutter Minesweeper",
-                        style: Theme.of(context).textTheme.display1,
+                        style: Theme.of(context).textTheme.headline3,
                       ),
                     ),
                   ),

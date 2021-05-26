@@ -1,6 +1,6 @@
 name: dart_board_template_bottomnav
 description: A template for a bottom-nav screen. Used by the example
-
+publish_to: none
 
 version: 1.0.0+1
 

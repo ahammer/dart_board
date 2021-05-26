@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_syntax_view/flutter_syntax_view.dart';
 import 'package:http/http.dart' as http;
-import 'package:markdown/markdown.dart' as md;
 
 // Show a Haiku and some code
 class HaikuAndCode extends StatefulWidget {

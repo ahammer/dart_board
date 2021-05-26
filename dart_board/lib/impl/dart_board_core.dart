@@ -73,7 +73,8 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
   @override
   late List<DartBoardFeature> allFeatures;
 
-  Set<String> loadedFeatures = {};
+  @override
+  late Map<String, List<Type>> detectedImplementations;
 
   @override
   void initState() {
@@ -125,13 +126,22 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
   /// Usually run at init()
   /// If the features change, this can be rebuilt
   void buildFeatures() {
+    log.info('Bulding features');
     setState(() {
-      loadedFeatures.clear();
+      var loadedFeatures = <String>{};
+      detectedImplementations = {};
       final dependencies = buildDependencyList(widget.features!);
 
       allFeatures = <DartBoardFeature>[];
 
       dependencies.forEach((element) {
+        if (!detectedImplementations.containsKey(element.namespace)) {
+          detectedImplementations[element.namespace] = [element.runtimeType];
+        } else {
+          //log.info('Detected duplicated extension ${element.namespace}');
+          detectedImplementations[element.namespace]?.add(element.runtimeType);
+        }
+
         if (!loadedFeatures.contains(element.namespace)) {
           loadedFeatures.add(element.namespace);
           allFeatures.add(element);

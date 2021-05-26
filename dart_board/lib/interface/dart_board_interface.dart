@@ -54,6 +54,10 @@ abstract class DartBoardCore {
   List<DartBoardFeature> get allFeatures;
   List<RouteDefinition> get routes;
 
+  /// Each time a feature is detected, it's Name and Implementation
+  /// is registered here. This is so we can do AB testing
+  Map<String, List<Type>> get detectedImplementations;
+
   /// These are the RouteDefinitions
   ///
   /// They are exposed for debug/info purposes primarily
