@@ -67,7 +67,6 @@ If necessary, the Feature can provide additional API to interact with it's app s
 
 Release Checklist
 4) AB test example for background
-5) Commands
 6) Enable/Disable Feature
 7) Decoration Priority
 8) Logging Everywhere
