@@ -16,20 +16,15 @@ const kLogRoute = '/log';
 /// The last message will show up in a frame in the bottom
 /// Touching the frame will bring up the logging overlay panel
 
-final logState = LogState();
-
 class LogFeature extends DartBoardFeature {
-  LogFeature.internal(this.fontSize);
+  LogFeature._internal(this.fontSize);
 
   final double fontSize;
-
   factory LogFeature({fontSize = 12.0}) {
     /// Attach to the Logger at time of construction
     /// Side effect I know, but this is the earlierst
     /// hook. For logging I think it's OK
-    Logger.root.level = Level.ALL;
-    Logger.root.onRecord.listen(logState.onRecord);
-    return LogFeature.internal(fontSize);
+    return LogFeature._internal(fontSize);
   }
 
   @override
@@ -52,7 +47,7 @@ class LogFeature extends DartBoardFeature {
         DartBoardDecoration(
             name: 'log_state_provider',
             decoration: (context, child) => ChangeNotifierProvider<LogState>(
-                create: (ctx) => logState, child: child))
+                create: (ctx) => LogState(), child: child))
       ];
 
   @override
@@ -211,7 +206,15 @@ class LogMessageWidget extends StatelessWidget {
 }
 
 class LogState extends ChangeNotifier {
+  LogState.internal();
   final messages = <LogRecord>[];
+
+  factory LogState() {
+    Logger.root.level = Level.ALL;
+    final instance = LogState.internal();
+    Logger.root.onRecord.listen(instance.onRecord);
+    return instance;
+  }
 
   LogRecord get lastLogRecord =>
       messages.isNotEmpty ? messages.last : LogRecord(Level.INFO, 'aa', 'aa');
