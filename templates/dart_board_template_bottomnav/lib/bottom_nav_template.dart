@@ -29,6 +29,7 @@ class BottomNavTemplateFeature extends DartBoardFeature {
             name: 'bottom_nav_state',
             decoration: (ctx, child) =>
                 ChangeNotifierProvider<BottomNavTemplateState>(
+                    key: Key('bottom_nav_state'),
                     create: (ctx) {
                       validateConfig();
                       return BottomNavTemplateState(config);

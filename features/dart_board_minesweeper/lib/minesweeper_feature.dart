@@ -33,11 +33,13 @@ class MinesweeperFeature extends DartBoardFeature {
         DartBoardDecoration(
             name: 'minesweeper_redux',
             decoration: (context, child) => Provider.value(
+                key: Key('minesweeper_redux'),
                 value: store,
                 child: StoreProvider(store: store, child: child))),
         DartBoardDecoration(
             name: 'minesweeper_lifecycle',
             decoration: (context, child) => LifeCycleWidget(
+                key: Key("minesweeper_lifecycle"),
                 child: child,
                 init: (ctx) {
                   final query = MediaQuery.of(context);

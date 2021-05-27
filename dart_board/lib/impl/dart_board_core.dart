@@ -131,12 +131,12 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
   /// Usually run at init()
   /// If the features change, this can be rebuilt
   void buildFeatures() {
-    log.info('Bulding features');
     setState(() {
       var loadedFeatures = <String>{};
       detectedImplementations = {};
       final dependencies = buildDependencyList(widget.features!);
 
+      log.info('Bulding features');
       allFeatures = <DartBoardFeature>[];
 
       dependencies.forEach((element) {

@@ -66,8 +66,6 @@ If necessary, the Feature can provide additional API to interact with it's app s
 
 
 Release Checklist
-6) Enable/Disable Feature
-7) Decoration Priority
 8) Logging Everywhere
 9) Document at least the files in the Demo
 10) Share for feedback

@@ -30,7 +30,9 @@ class ThemeFeature extends DartBoardFeature {
         DartBoardDecoration(
             name: 'theme_state_holder',
             decoration: (context, child) => ChangeNotifierProvider<ThemeState>(
-                create: (ctx) => ThemeState(), child: child))
+                key: Key('theme_state_holder'),
+                create: (ctx) => ThemeState(),
+                child: child))
       ];
 
   @override
