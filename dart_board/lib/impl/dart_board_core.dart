@@ -77,6 +77,9 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
   late Map<String, List<Type>> detectedImplementations;
 
   @override
+  Map<String, Type> selectedImplementations = {};
+
+  @override
   void initState() {
     super.initState();
     buildFeatures();
@@ -180,6 +183,11 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
 
       whitelistedPageDecorations =
           pageDecorationAllowList.map((e) => e.split(':')[1]).toSet();
+
+      /// register the selected implementation for each
+      allFeatures.forEach((element) {
+        selectedImplementations[element.namespace] = element.runtimeType;
+      });
     });
   }
 

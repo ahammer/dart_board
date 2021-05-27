@@ -80,9 +80,16 @@ class CollapsingList extends StatelessWidget {
                     child: Column(
                       children: [
                         Text('Namespace: ${e.namespace}'),
-                        if (implementations.length > 1)
-                          Text('${implementations.length} choices'),
                         Text('Active: ${implementations[0]}'),
+                        if (implementations.length > 1)
+                          DropdownButton(
+                              onChanged: (value) {},
+                              value: DartBoardCore.instance
+                                  .selectedImplementations[e.namespace],
+                              items: implementations
+                                  .map((e) => DropdownMenuItem(
+                                      value: e, child: Text('$e')))
+                                  .toList()),
                       ],
                     )),
               );
