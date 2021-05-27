@@ -66,10 +66,8 @@ If necessary, the Feature can provide additional API to interact with it's app s
 
 
 Release Checklist
+1) Fix Android URL loader
 8) Logging Everywhere
 9) Document at least the files in the Demo
-10) Share for feedback
-11) Implement immediate feedback
-12) Update license
 13) Put up all the demo's on dart-board.io
 14) Publish all to pub
