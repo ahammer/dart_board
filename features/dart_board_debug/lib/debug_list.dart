@@ -70,27 +70,30 @@ class CollapsingList extends StatelessWidget {
           childAspectRatio: 3,
           maxCrossAxisExtent: 300,
           children: [
-            ...DartBoardCore.instance.allFeatures.map((e) {
+            ...DartBoardCore.instance.detectedImplementations.keys.map((e) {
               final implementations =
-                  DartBoardCore.instance.detectedImplementations[e.namespace]!;
+                  DartBoardCore.instance.detectedImplementations[e]!;
 
               return Card(
                 child: FittedBox(
                     fit: BoxFit.scaleDown,
                     child: Column(
                       children: [
-                        Text('Namespace: ${e.namespace}'),
+                        Text('Namespace: ${e}'),
                         Text('Active: ${implementations[0]}'),
-                        if (implementations.length > 1)
-                          DropdownButton<Type>(
-                              onChanged: (value) => DartBoardCore.instance
-                                  .setFeatureImplementation(e.namespace, value),
-                              value: DartBoardCore
-                                  .instance.activeImplementations[e.namespace],
-                              items: implementations
+                        DropdownButton<Type?>(
+                            onChanged: (value) => DartBoardCore.instance
+                                .setFeatureImplementation(e, value),
+                            value:
+                                DartBoardCore.instance.activeImplementations[e],
+                            items: [
+                              DropdownMenuItem(
+                                  value: null, child: Text('Disabled')),
+                              ...implementations
                                   .map((e) => DropdownMenuItem(
                                       value: e, child: Text('$e')))
-                                  .toList()),
+                                  .toList()
+                            ]),
                       ],
                     )),
               );

@@ -190,6 +190,7 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
           pageDecorationAllowList.map((e) => e.split(':')[1]).toSet();
 
       /// register the selected implementation for each
+      activeImplementations.clear();
       allFeatures.forEach((element) {
         activeImplementations[element.namespace] = element.runtimeType;
       });
