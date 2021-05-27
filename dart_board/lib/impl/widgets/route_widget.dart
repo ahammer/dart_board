@@ -1,4 +1,5 @@
 import 'package:dart_board/dart_board.dart';
+import 'package:dart_board/impl/widgets/route_not_found.dart';
 
 /// Route Widget
 ///
@@ -19,6 +20,6 @@ class RouteWidget extends StatelessWidget {
           Provider.of<DartBoardCore>(context, listen: false).routes.firstWhere(
               (it) => it.matches(settings),
               orElse: () => NamedRouteDefinition(
-                  builder: (ctx, _) => Text('404'), route: '/404')),
+                  builder: (ctx, _) => RouteNotFound(), route: '/404')),
           decorate: decorate);
 }
