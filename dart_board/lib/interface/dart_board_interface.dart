@@ -58,7 +58,7 @@ abstract class DartBoardCore {
   Map<String, List<Type>> get detectedImplementations;
 
   /// These are the currently active implementations for each feature
-  Map<String, Type> get selectedImplementations;
+  Map<String, Type> get activeImplementations;
 
   /// These are the RouteDefinitions
   ///
@@ -91,6 +91,12 @@ abstract class DartBoardCore {
           .allFeatures
           .firstWhere((element) => element.namespace == name,
               orElse: () => EmptyDartBoardFeature());
+
+  /// When multiple implementations for a feature are registered
+  /// You can change at runtime with this
+  ///
+  /// Set value == null to disable
+  void setFeatureImplementation(String namespace, Type? value);
 }
 
 extension DartBoardFeatureListExtension on List<DartBoardFeature> {

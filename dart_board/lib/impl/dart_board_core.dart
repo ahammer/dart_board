@@ -77,7 +77,9 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
   late Map<String, List<Type>> detectedImplementations;
 
   @override
-  Map<String, Type> selectedImplementations = {};
+  Map<String, Type> activeImplementations = {};
+
+  Map<String, Type?> featureOverrides = {};
 
   @override
   void initState() {
@@ -145,7 +147,10 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
           detectedImplementations[element.namespace]?.add(element.runtimeType);
         }
 
-        if (!loadedFeatures.contains(element.namespace)) {
+        if ((!loadedFeatures.contains(element.namespace) &&
+                !(featureOverrides.containsKey(element.namespace)) ||
+            (featureOverrides.containsKey(element.namespace) &&
+                featureOverrides[element.namespace] == element.runtimeType))) {
           loadedFeatures.add(element.namespace);
           allFeatures.add(element);
         }
@@ -186,7 +191,7 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
 
       /// register the selected implementation for each
       allFeatures.forEach((element) {
-        selectedImplementations[element.namespace] = element.runtimeType;
+        activeImplementations[element.namespace] = element.runtimeType;
       });
     });
   }
@@ -224,6 +229,12 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
         decorations: pageDecorations,
         child: child,
       );
+
+  @override
+  void setFeatureImplementation(String namespace, Type? value) => setState(() {
+        featureOverrides[namespace] = value;
+        buildFeatures();
+      });
 }
 
 /// This class can apply the page decorations.
