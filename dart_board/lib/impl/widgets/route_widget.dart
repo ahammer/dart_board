@@ -20,6 +20,7 @@ class RouteWidget extends StatelessWidget {
           Provider.of<DartBoardCore>(context, listen: false).routes.firstWhere(
               (it) => it.matches(settings),
               orElse: () => NamedRouteDefinition(
-                  builder: (ctx, _) => RouteNotFound(), route: '/404')),
+                  builder: (ctx, _) => RouteNotFound(settings.name!),
+                  route: '/404')),
           decorate: decorate);
 }

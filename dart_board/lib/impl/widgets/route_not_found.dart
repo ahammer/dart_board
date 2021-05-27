@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 
 /// What we show when a route is not found
 class RouteNotFound extends StatelessWidget {
-  const RouteNotFound();
+  final String route;
+  const RouteNotFound(this.route);
 
   @override
   Widget build(BuildContext context) => Container(
@@ -13,7 +14,7 @@ class RouteNotFound extends StatelessWidget {
           fit: BoxFit.contain,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text('404 Not Found'),
+            child: Text('"$route" Not Found'),
           ),
         ),
       );

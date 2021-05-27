@@ -9,6 +9,9 @@ import 'widgets/route_not_found.dart';
 final Logger log = Logger('DartBoard');
 GlobalKey<_DartBoardState> dartBoardKey = GlobalKey();
 
+Widget _pageNoteFound(BuildContext context) =>
+    RouteNotFound(ModalRoute.of(context)!.settings.name!);
+
 /// The Dart Board Kernel
 ///
 /// It implements DartBoardCore from the interface
@@ -26,13 +29,13 @@ class DartBoard extends StatefulWidget {
   final Map<String, String> pageDecorationDenyList;
   final Route Function(RouteSettings settings, WidgetBuilder builder)
       routeBuilder;
-  final Widget pageNotFoundWidget;
+  final WidgetBuilder pageNotFoundWidget;
   final String initialRoute;
 
   DartBoard(
       {Key? key,
       this.features,
-      this.pageNotFoundWidget = const RouteNotFound(),
+      this.pageNotFoundWidget = _pageNoteFound,
       required this.initialRoute,
       this.pageDecorationDenyList = const {},
       this.routeBuilder = kCupertinoRouteResolver})
@@ -204,7 +207,8 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
   Route onGenerateRoute(RouteSettings settings) {
     final definition = routes.firstWhere((it) => it.matches(settings),
         orElse: () => NamedRouteDefinition(
-            builder: (ctx, _) => widget.pageNotFoundWidget, route: '/404'));
+            builder: (settings, ctx) => widget.pageNotFoundWidget(ctx),
+            route: '/404'));
     if (definition.routeBuilder != null) {
       return definition.routeBuilder!(
           settings, (ctx) => buildPageRoute(ctx, settings, definition));
