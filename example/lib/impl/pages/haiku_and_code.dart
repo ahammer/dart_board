@@ -71,22 +71,8 @@ class _HaikuAndCodeState extends State<HaikuAndCode> {
                               code: fileContents,
                               syntax: Syntax.DART,
                               syntaxTheme: (ThemeFeature.isLight
-                                  ? SyntaxTheme.gravityLight()
-                                  : SyntaxTheme.gravityDark())
-                                ..commentStyle = Theme.of(context)
-                                    .textTheme
-                                    .bodyText2
-                                    ?.copyWith(
-                                        fontWeight: FontWeight.normal,
-                                        letterSpacing: 1.1,
-                                        background: Paint()
-                                          ..shader = ui.Gradient.linear(
-                                              Offset(20, 0), Offset(50, 0), [
-                                            Colors.transparent,
-                                            theme.colorScheme.primaryVariant
-                                                .withOpacity(0.3)
-                                          ])),
-                            )),
+                                  ? SyntaxTheme.vscodeLight()
+                                  : SyntaxTheme.vscodeDark()))),
                 )
               : Center(child: CircularProgressIndicator()));
 

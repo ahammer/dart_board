@@ -64,10 +64,13 @@ As long as the interface is supplied, it can integrate.
 At this point a user of your Feature can navigate to your route with RouteWidget or pushNamed()
 If necessary, the Feature can provide additional API to interact with it's app state via the tree.
 
+# Some things to try in this Example
 
-Release Checklist
-1) Fix Android URL loader
-8) Logging Everywhere
-9) Document at least the files in the Demo
-13) Put up all the demo's on dart-board.io
-14) Publish all to pub
+- Check out the documentation and Github links
+- Look at the Debug Frame (And enable/disable features at runtime)
+  * Disabling a feature you are using may leave you in a broken state (as expected)
+    E.g.
+      - You disable "debug" from within the /debug route. You lose access to the route and can't turn things back on.
+      - You disable the Template while using it. You'll also 404 and won't be able to navigate
+  * Disabling/Re-enabling some extensions can trigger a state rebuild (clearing the app state).
+- Play Minesweepers
