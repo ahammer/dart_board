@@ -1,5 +1,8 @@
 import 'package:dart_board/dart_board.dart';
 import 'state/bottom_nav_state.dart';
+import 'package:logging/logging.dart';
+
+final log = Logger('BottomNavTemplateFeature');
 
 /// This Feature provides a Template/Starting point
 /// for a Dart Board UI
@@ -90,6 +93,7 @@ class BottomNavTemplate extends StatelessWidget {
             unselectedItemColor:
                 Theme.of(context).colorScheme.surface.withOpacity(0.8),
             onTap: (value) {
+              log.info('Changing tab to $value');
               navstate.selectedNavTab = value;
             },
           ),

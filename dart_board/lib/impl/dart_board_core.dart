@@ -156,9 +156,11 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
                 featureOverrides[element.namespace] == element.runtimeType))) {
           loadedFeatures.add(element.namespace);
           allFeatures.add(element);
+          log.info('Loaded: ${element.runtimeType} AKA "${element.namespace}"');
         } else if (!loadedFeatures.contains(element.namespace) &&
             featureOverrides[element.namespace] == null) {
           /// "Disabled" install stab instead
+          log.info('Disabled: ${element.namespace} disabled, getting stubbed');
           final feat = StubFeature(element.namespace);
           allFeatures.add(feat);
           loadedFeatures.add(element.namespace);
@@ -171,12 +173,16 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
           (previousValue, element) =>
               <RouteDefinition>[...previousValue, ...element.routes]);
 
+      log.info('Available Routes: $routes');
+
       pageDecorations = allFeatures.fold<List<DartBoardDecoration>>(
           <DartBoardDecoration>[],
           ((previousValue, element) => <DartBoardDecoration>[
                 ...previousValue,
                 ...element.pageDecorations
               ]));
+
+      log.info('Available Page Decorations: $pageDecorations');
 
       appDecorations = allFeatures.fold<List<DartBoardDecoration>>(
           <DartBoardDecoration>[],
@@ -185,16 +191,18 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
                 ...element.appDecorations
               ]);
 
+      log.info('Available App Decorations: $appDecorations');
+
       pageDecorationDenyList = allFeatures.fold<List<String>>(
           <String>[],
           ((previousValue, element) =>
               <String>[...previousValue, ...element.pageDecorationDenyList]));
-
+      log.info('Deny List: $pageDecorationDenyList');
       pageDecorationAllowList = allFeatures.fold<List<String>>(
           <String>[],
           ((previousValue, element) =>
               <String>[...previousValue, ...element.pageDecorationAllowList]));
-
+      log.info('Allow List: $pageDecorationAllowList');
       whitelistedPageDecorations =
           pageDecorationAllowList.map((e) => e.split(':')[1]).toSet();
 
