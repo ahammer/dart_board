@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui' as ui;
 import 'package:dart_board_theme/theme_feature.dart';
 import 'package:flutter/cupertino.dart';
@@ -48,7 +49,7 @@ class _HaikuAndCodeState extends State<HaikuAndCode> {
       final theme = Theme.of(context);
       final codeWidget;
       codeWidget = AnimatedContainer(
-          width: size.maxWidth,
+          width: min(size.maxWidth, 800),
           height: fileContents.isEmpty ? 0 : size.maxHeight,
           duration: Duration(milliseconds: 500),
           curve: Curves.easeInExpo,
@@ -82,15 +83,7 @@ class _HaikuAndCodeState extends State<HaikuAndCode> {
                         ))
               : Center(child: CircularProgressIndicator()));
 
-      return Column(
-        children: [
-          Container(
-            child: Text(widget.haiku),
-          ),
-          Expanded(
-              child: Align(alignment: Alignment.center, child: codeWidget)),
-        ],
-      );
+      return Align(alignment: Alignment.center, child: codeWidget);
     });
   }
 }

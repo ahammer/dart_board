@@ -6,18 +6,28 @@ import 'package:dart_board/dart_board.dart';
 /// And to keep the data outside the widgets to ease comprehension
 const kCodeRoutes = <Map<String, String>>[
   {
+    'title': 'Project',
     'route': '/readme',
     'haiku': 'Readme.md',
     'url':
         'https://raw.githubusercontent.com/ahammer/dart_board/master/README.md',
   },
   {
+    'title': 'Example',
+    'route': '/readme_example',
+    'haiku': 'Readme.md',
+    'url':
+        'https://raw.githubusercontent.com/ahammer/dart_board/master/README.md',
+  },
+  {
+    'title': 'main.dart',
     'route': '/code_main',
     'haiku': '''A basic entry point''',
     'url':
         'https://raw.githubusercontent.com/ahammer/dart_board/master/example/lib/main.dart',
   },
   {
+    'title': 'example_feature.dart',
     'route': '/code_features',
     'haiku': '''Extension Overview''',
     'url':
@@ -29,13 +39,7 @@ const kCodeRoutes = <Map<String, String>>[
 /// It indicates the bottom buttons, labels icons and routes for the screen
 ///
 const kMainPageConfig = [
-  {
-    'route': '/home',
-    'label': 'Home',
-    'color': Colors.orange,
-    'icon': Icons.home,
-  },
-  {'route': '/code', 'label': 'Code', 'color': Colors.blue, 'icon': Icons.help},
+  {'route': '/code', 'label': 'Code', 'color': Colors.blue, 'icon': Icons.code},
   {
     'route': '/debug',
     'label': 'Debug',

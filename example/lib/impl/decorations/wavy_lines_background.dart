@@ -26,8 +26,8 @@ class _AnimatedBackgroundDecorationState
     super.initState();
     random = Random().nextDouble() * 100;
     animation = AnimationController(vsync: this);
-    //animation.repeat(
-    //min: 0.0, max: 1.0, period: Duration(minutes: 100), reverse: true);
+    animation.repeat(
+        min: 0.0, max: 1.0, period: Duration(minutes: 100), reverse: true);
   }
 
   @override
@@ -100,7 +100,7 @@ class BackgroundPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
 }
 
 extension SolidLinefeature on List<Offset> {
