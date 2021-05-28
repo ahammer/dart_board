@@ -156,6 +156,12 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
                 featureOverrides[element.namespace] == element.runtimeType))) {
           loadedFeatures.add(element.namespace);
           allFeatures.add(element);
+        } else if (!loadedFeatures.contains(element.namespace) &&
+            featureOverrides[element.namespace] == null) {
+          /// "Disabled" install stab instead
+          final feat = StubFeature(element.namespace);
+          allFeatures.add(feat);
+          loadedFeatures.add(element.namespace);
         }
       });
 
@@ -195,7 +201,9 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
       /// register the selected implementation for each
       activeImplementations.clear();
       allFeatures.forEach((element) {
-        activeImplementations[element.namespace] = element.runtimeType;
+        if (!(element is StubFeature)) {
+          activeImplementations[element.namespace] = element.runtimeType;
+        }
       });
     });
   }
@@ -288,3 +296,10 @@ Route kMaterialRouteResolver(RouteSettings settings, WidgetBuilder builder) =>
 /// Cupertino
 Route kCupertinoRouteResolver(RouteSettings settings, WidgetBuilder builder) =>
     CupertinoPageRoute(builder: builder, settings: settings);
+
+class StubFeature extends DartBoardFeature {
+  @override
+  final String namespace;
+
+  StubFeature(this.namespace);
+}
