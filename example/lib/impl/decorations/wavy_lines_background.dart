@@ -76,9 +76,9 @@ class BackgroundPainter extends CustomPainter {
     return canvas.drawPoints(
         PointMode.lines,
         [
-          for (int i = 0; i < 32; i++)
+          for (int i = 0; i < 20; i++)
             Offset(
-                size.width / 30.0 * i,
+                size.width / 19.0 * i,
                 size.height / 2 +
                     (cos(value * 100 + value + i / 50.0) +
                             cos(value * 50 + value + i / 15.0) +

@@ -6,7 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_syntax_view/flutter_syntax_view.dart';
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
 
+//https://github.com/ahammer/dart_board/blob/master/README.md
+//'https://raw.githubusercontent.com/ahammer/dart_board/master/README.md'
 // Show a Haiku and some code
 class HaikuAndCode extends StatefulWidget {
   final String haiku;
@@ -34,7 +37,8 @@ class _HaikuAndCodeState extends State<HaikuAndCode> {
 
     lastLoaded = widget.url;
     http
-        .get(Uri.parse(widget.url))
+        .get(Uri.parse(
+            'https://raw.githubusercontent.com/ahammer/dart_board/master/${widget.url}'))
         .then((value) => setState(() => fileContents = value.body));
   }
 
@@ -54,36 +58,60 @@ class _HaikuAndCodeState extends State<HaikuAndCode> {
           duration: Duration(milliseconds: 500),
           curve: Curves.easeInExpo,
           child: fileContents.isNotEmpty
-              ? Material(
-                  elevation: 5,
-                  child: widget.url.endsWith('.md')
-                      ? Markdown(data: fileContents)
-                      : SyntaxView(
-                          fontSize: 14,
-                          expanded: true,
-                          withZoom: false,
-                          code: fileContents,
-                          syntax: Syntax.DART,
-                          syntaxTheme: (ThemeFeature.isLight
-                              ? SyntaxTheme.gravityLight()
-                              : SyntaxTheme.gravityDark())
-                            ..commentStyle = Theme.of(context)
-                                .textTheme
-                                .bodyText2
-                                ?.copyWith(
-                                    fontWeight: FontWeight.normal,
-                                    letterSpacing: 1.1,
-                                    background: Paint()
-                                      ..shader = ui.Gradient.linear(
-                                          Offset(20, 0), Offset(50, 0), [
-                                        Colors.transparent,
-                                        theme.colorScheme.primaryVariant
-                                            .withOpacity(0.3)
-                                      ])),
-                        ))
+              ? Padding(
+                  padding: const EdgeInsets.all(32.0),
+                  child: Material(
+                      elevation: 2,
+                      child: widget.url.endsWith('.md')
+                          ? Markdown(data: fileContents)
+                          : SyntaxView(
+                              fontSize: 14,
+                              expanded: true,
+                              withZoom: false,
+                              code: fileContents,
+                              syntax: Syntax.DART,
+                              syntaxTheme: (ThemeFeature.isLight
+                                  ? SyntaxTheme.gravityLight()
+                                  : SyntaxTheme.gravityDark())
+                                ..commentStyle = Theme.of(context)
+                                    .textTheme
+                                    .bodyText2
+                                    ?.copyWith(
+                                        fontWeight: FontWeight.normal,
+                                        letterSpacing: 1.1,
+                                        background: Paint()
+                                          ..shader = ui.Gradient.linear(
+                                              Offset(20, 0), Offset(50, 0), [
+                                            Colors.transparent,
+                                            theme.colorScheme.primaryVariant
+                                                .withOpacity(0.3)
+                                          ])),
+                            )),
+                )
               : Center(child: CircularProgressIndicator()));
 
-      return Align(alignment: Alignment.center, child: codeWidget);
+      return Stack(
+        children: [
+          Align(alignment: Alignment.center, child: codeWidget),
+          Align(
+            alignment: Alignment.topRight,
+            child: Padding(
+              padding: const EdgeInsets.all(32.0),
+              child: Material(
+                  elevation: 2,
+                  borderRadius: BorderRadius.circular(32),
+                  child: InkWell(
+                      borderRadius: BorderRadius.circular(32),
+                      onTap: () => launch(
+                          'https://github.com/ahammer/dart_board/blob/master/${widget.url}'),
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Text('Open in GitHub'),
+                      ))),
+            ),
+          )
+        ],
+      );
     });
   }
 }
