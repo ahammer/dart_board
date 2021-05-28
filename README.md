@@ -73,4 +73,5 @@ If necessary, the Feature can provide additional API to interact with it's app s
       - You disable "debug" from within the /debug route. You lose access to the route and can't turn things back on.
       - You disable the Template while using it. You'll also 404 and won't be able to navigate
   * Disabling/Re-enabling some extensions can trigger a state rebuild (clearing the app state).
+  * Recommended extension to toggle AB/Disable (Background)
 - Play Minesweepers

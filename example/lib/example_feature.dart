@@ -99,8 +99,6 @@ class BackgroundAFeature extends DartBoardFeature {
   @override
   List<DartBoardDecoration> get pageDecorations => <DartBoardDecoration>[
         DartBoardDecoration(
-            enabled: !kIsWeb &&
-                (Platform.isMacOS || Platform.isLinux || Platform.isWindows),
             name: 'background',
             decoration: (context, child) => AnimatedBackgroundDecoration(
                   color: Theme.of(context).colorScheme.surface,
@@ -116,8 +114,6 @@ class BackgroundBFeature extends DartBoardFeature {
   @override
   List<DartBoardDecoration> get pageDecorations => <DartBoardDecoration>[
         DartBoardDecoration(
-            enabled: !kIsWeb &&
-                (Platform.isMacOS || Platform.isLinux || Platform.isWindows),
             name: 'background',
             decoration: (context, child) => Container(
                   width: double.infinity,
