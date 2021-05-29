@@ -69,5 +69,5 @@ flutter:
   # identifiers, which may be completely independent or the same as these.
   module:
     androidX: true
-    androidPackage: com.example.dart_board
-    iosBundleIdentifier: com.example.dartBoard
+    androidPackage: io.dart-board.core
+    iosBundleIdentifier: io.dart-board.core

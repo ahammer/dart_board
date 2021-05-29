@@ -1,6 +1,5 @@
 name: dart_board_theme
-description: A new flutter module project.
-publish_to: none
+description: Basic theme selection for dart-board, allows changing between dark/light themes programmatically or through a /theme route.
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -16,7 +15,7 @@ publish_to: none
 # This version is used _only_ for the Runner app, which is used if you just do
 # a `flutter run` or a `flutter make-host-app-editable`. It has no impact
 # on any other native host app that you embed your Flutter project into.
-version: 1.0.0+1
+version: 0.9.0
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
@@ -25,8 +24,8 @@ dependencies:
   flutter:
     sdk: flutter
   
-  dart_board_core:
-    path: ../../dart_board_core
+  dart_board_core: ^0.9.3
+    
 
 dev_dependencies:
   flutter_test:

@@ -1,8 +1,7 @@
 name: dart_board_template_bottomnav
-description: A template for a bottom-nav screen. Used by the example
-publish_to: none
+description: A basic template example that works with the Bottom Nav and registered DartBoard routes using RouteView.
 
-version: 1.0.0+1
+version: 0.9.0
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -17,5 +16,5 @@ flutter:
   uses-material-design: true
   module:
     androidX: true
-    androidPackage: com.example.dart_board_template_bottomnav
-    iosBundleIdentifier: com.example.dartBoardTemplateBottomnav
+    androidPackage: io.dart-board.bottom_nav
+    iosBundleIdentifier: io.dart-board.bottom_nav
