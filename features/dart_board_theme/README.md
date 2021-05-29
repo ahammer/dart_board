@@ -1,11 +1,6 @@
 # dart_board_theme_extension
 
-A new flutter module project.
+Basic theme capabilities for dart board (light/dark)
 
-## Getting Started
-
-For help getting started with Flutter, view our online
-[documentation](https://flutter.dev/).
-
-For instructions integrating Flutter modules to your existing applications,
-see the [add-to-app documentation](https://flutter.dev/docs/development/add-to-app).
+Provides ThemeFeature.toggle()
+Also state for the selected theme, as well as page decoration to apply the theme.
