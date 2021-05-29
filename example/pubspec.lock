@@ -189,14 +189,21 @@ packages:
       path: "../features/dart_board_minesweeper"
       relative: true
     source: path
-    version: "0.9.0"
+    version: "0.9.1"
+  dart_board_template_app_bar_sidenav:
+    dependency: "direct main"
+    description:
+      path: "../templates/dart_board_template_app_bar_sidenav"
+      relative: true
+    source: path
+    version: "0.9.1"
   dart_board_template_bottomnav:
     dependency: "direct main"
     description:
       path: "../templates/dart_board_template_bottomnav"
       relative: true
     source: path
-    version: "0.9.0"
+    version: "0.9.1"
   dart_board_theme:
     dependency: "direct main"
     description:

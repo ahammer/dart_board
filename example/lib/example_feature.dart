@@ -1,5 +1,6 @@
 import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_minesweeper/dart_board_minesweeper.dart';
+import 'package:dart_board_template_app_bar_sidenav/dart_board_template_app_bar_sidenav.dart';
 import 'package:dart_board_theme/dart_board_theme.dart';
 import 'package:dart_board_debug/debug_feature.dart';
 import 'package:dart_board_log/dart_board_log.dart';
@@ -9,6 +10,7 @@ import 'impl/decorations/color_border_decoration.dart';
 import 'impl/decorations/wavy_lines_background.dart';
 import 'impl/pages/home_page.dart';
 import 'package:dart_board_template_bottomnav/dart_board_template_bottomnav.dart';
+
 import 'impl/pages/haiku_and_code.dart';
 
 /// The Example Feature
@@ -41,7 +43,13 @@ class ExampleFeature extends DartBoardFeature {
         DebugFeature(),
         LogFeature(),
         MinesweeperFeature(),
-        BottomNavTemplateFeature(route: '/main', config: kMainPageConfig),
+        BottomNavTemplateFeature(
+            route: '/main', config: kMainPageConfig, namespace: 'entry_point'),
+        AppBarSideNavTemplateFeature(
+            route: '/main',
+            config: kMainPageConfig,
+            title: 'Example App',
+            namespace: 'entry_point'),
         BackgroundAFeature(),
         BackgroundBFeature(),
       ];

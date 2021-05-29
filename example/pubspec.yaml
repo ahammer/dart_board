@@ -30,6 +30,7 @@ dependencies:
   dart_board_log:
   dart_board_minesweeper:
   dart_board_template_bottomnav:
+  dart_board_template_app_bar_sidenav:
 
 
   flutter_syntax_view: ^4.0.0
@@ -50,6 +51,8 @@ dependency_overrides:
     path: ../features/dart_board_minesweeper
   dart_board_template_bottomnav:
     path: ../templates/dart_board_template_bottomnav
+  dart_board_template_app_bar_sidenav:
+    path: ../templates/dart_board_template_app_bar_sidenav
 
 
 dev_dependencies:
