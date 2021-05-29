@@ -1,10 +1,8 @@
-import 'dart:io';
-
 import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_minesweeper/minesweeper_feature.dart';
 import 'package:dart_board_theme/theme_feature.dart';
 import 'package:dart_board_debug/debug_feature.dart';
-import 'package:dart_board_log/log_feature.dart';
+import 'package:dart_board_log/dart_board_log.dart';
 import 'package:example/impl/pages/code_overview.dart';
 import 'data/constants.dart';
 import 'impl/decorations/color_border_decoration.dart';
@@ -12,7 +10,6 @@ import 'impl/decorations/wavy_lines_background.dart';
 import 'impl/pages/home_page.dart';
 import 'package:dart_board_template_bottomnav/bottom_nav_template.dart';
 import 'impl/pages/haiku_and_code.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
 
 /// The Example Feature
 ///
