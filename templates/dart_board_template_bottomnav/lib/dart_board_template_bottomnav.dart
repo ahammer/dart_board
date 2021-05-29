@@ -21,10 +21,13 @@ class BottomNavTemplateFeature extends DartBoardFeature {
   final String route;
   final List<Map<String, dynamic>> config;
 
-  @override
-  String get namespace => "BottomNavTemplate";
+  ///Expose namespace/implementation name so we can AB test layouts easily
+  final String namespace;
+  final String implementationName;
 
-  BottomNavTemplateFeature(this.route, this.config);
+  BottomNavTemplateFeature(this.route, this.config,
+      {this.namespace = 'bottom_nav_template_feature',
+      this.implementationName = 'default'});
 
   @override
   List<DartBoardDecoration> get appDecorations => [
