@@ -2,6 +2,9 @@
 An extensible flutter-framework
 
 
-For more info see 
-dart-board-core/README.md for information about the kernel and basic usage info.
-example/README.md for detailed usage info.
+For more info see:
+
+
+[dart-board-core/README.md](Core documentation)
+
+[example/README.md](Example/Integration documentation)
