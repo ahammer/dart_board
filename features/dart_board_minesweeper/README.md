@@ -1,6 +1,6 @@
 # mine_sweeper
 
-Mine Sweeper in Flutter
+Mine Sweeper in Flutter, presented as a Dart Board Feature
 
 # Instructions
 
@@ -16,6 +16,8 @@ This route is exposed.
 /minesweep
 
 Either navigate to it, or use RouteWidget("/minesweep")
+
+For more information  [dart-board.io](https://dart-board.io)
 
 # Run Directly
 
