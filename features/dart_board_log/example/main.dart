@@ -1,5 +1,5 @@
 import 'package:dart_board_core/dart_board.dart';
-import 'package:dart_board_log/log_feature.dart';
+import 'package:dart_board_log/dart_board_log.dart';
 
 /// Minimal Dart Board example + Logging
 void main() => runApp(DartBoard(

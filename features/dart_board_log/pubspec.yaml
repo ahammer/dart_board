@@ -24,5 +24,5 @@ flutter:
   uses-material-design: true
   module:
     androidX: true
-    androidPackage: com.metalrain.dart_board_theme_extension
-    iosBundleIdentifier: com.metalrain.dartBoardThemeExtension
+    androidPackage: io.dart-board.log_extension
+    iosBundleIdentifier: io.dart-board.log_extension
