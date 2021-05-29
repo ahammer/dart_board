@@ -1,6 +1,5 @@
 import 'dart:math';
-import 'dart:ui' as ui;
-import 'package:dart_board_theme/theme_feature.dart';
+import 'package:dart_board_theme/dart_board_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
