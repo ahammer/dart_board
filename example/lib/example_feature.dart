@@ -8,7 +8,7 @@ import 'data/constants.dart';
 import 'impl/decorations/color_border_decoration.dart';
 import 'impl/decorations/wavy_lines_background.dart';
 import 'impl/pages/home_page.dart';
-import 'package:dart_board_template_bottomnav/bottom_nav_template.dart';
+import 'package:dart_board_template_bottomnav/dart_board_template_bottomnav.dart';
 import 'impl/pages/haiku_and_code.dart';
 
 /// The Example Feature
