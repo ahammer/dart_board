@@ -2,5 +2,5 @@
 - Initial Release
 
 # 0.9.1
-- Switched to all named params with required
+- Fixed description
 
