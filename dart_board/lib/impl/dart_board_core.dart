@@ -99,10 +99,9 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
               RouteWidget(settings: RouteSettings(name: widget.initialRoute))),
           key: dartBoardKey,
           navigatorKey: dartBoardNavKey,
-          builder: (context, navigator) => appDecorations.reversed
-              .where((element) => element.enabled)
-              .fold(navigator!,
-                  (child, element) => element.decoration(context, child)),
+          builder: (context, navigator) => appDecorations.reversed.fold(
+              navigator!,
+              (child, element) => element.decoration(context, child)),
           onGenerateRoute: onGenerateRoute,
         ),
       );
@@ -116,7 +115,6 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
           decorations: pageDecorations
               .where((decoration) =>
                   decorate &&
-                  decoration.enabled &&
                   ((!whitelistedPageDecorations.contains(decoration.name) &&
                           !pageDecorationDenyList.contains(
                               '${settings.name}:${decoration.name}')) ||

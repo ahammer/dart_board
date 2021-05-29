@@ -115,12 +115,10 @@ extension DartBoardFeatureListExtension on List<DartBoardFeature> {
 /// and a name so it can be shown in the debug tools
 /// or referenced in allow/deny lists.
 class DartBoardDecoration {
-  final bool enabled;
   final String name;
   final WidgetWithChildBuilder decoration;
 
-  DartBoardDecoration(
-      {required this.name, required this.decoration, this.enabled = true});
+  DartBoardDecoration({required this.name, required this.decoration});
 
   @override
   String toString() => name;

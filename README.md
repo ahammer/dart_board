@@ -31,7 +31,6 @@ You can play around with the framework by adding `Page/App Decoration` and `Rout
 
 
 ### Feature Developer
-
 - Make a new flutter module or plugin project (e.g. `flutter create -t module my_feature)
 - Add *Dart Board* to your `pubspec.yaml`
 - Create your Feature
@@ -44,7 +43,6 @@ Setting up an Example will let you instrument your Feature and also enable Featu
 Generally it's a good idea to also set up routes dedicated to development tasks and portions of the app, since you can change the initialRoute in the main, it's easy to jump around parts of a feature while doing development.
 
 ### Porting/Adapting existing libraries
-
 - Extends DartBoardFeature
 - Provide routes (NamedRouteDefinition is the current only supported option)
 - Create an AppDecorator widget to define app level state.
@@ -56,7 +54,6 @@ If necessary, the Feature can provide additional API to interact with it's app s
 Routes do not need to be used full-screen by integrators, they can also use RouteWidget anywhere in the UI tree
 
 ## How it works
-
 You give it extensions, it unwraps, sorts and organizes them, then injects them back into your app.
 
 First it walks the dependency tree and collects an ordered list of what to init.
@@ -67,11 +64,42 @@ for you, and sets up the routing and decoration features, as well as injecting a
 From here, you can use named routing to access any registered feature route, or
 RouteView. Additionally features can provide API's to the app and page level components.
 
-
-
-
 ## Some things to try in this Example
-
 - Play with the Debug Screen (Caution, you can break the app if you disable something you need).
 - Play MineSweeper
 - Read the Documentation (This File + Example Readme + Selected Files)
+
+## What is in the Repo
+### ./dart_board
+
+The core framework, brought in by all Features and Apps
+
+### ./example
+
+The integration example, documentation of all features.
+visible at https://dartboard.io
+
+### ./features/dart_board_debug
+
+Debug feature. Includes the /debug route that gives you insight into DartBoard
+and it's current integration.
+
+It also allows you to toggle variants of features, and disable features at run time.
+
+### ./features/dart_board_log
+
+Basic logging features. Includes a PageDecoration that will show the last log message
+as a toolbar.
+
+Tapping the toolbar will open the larger log.
+
+### ./features/dart_board_minesweeper
+
+A minesweeper implementation in Dart. This is a standalone redux application. It's been ported
+to a feature container so that you can play Minesweeper, and persist it's state through the app.
+
+### ./features/dart_board_theme
+
+Minimal theming feature, supports a boolean for light/dark
+
+
