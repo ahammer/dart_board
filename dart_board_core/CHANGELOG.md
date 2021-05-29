@@ -6,3 +6,10 @@
 
 # 0.9.2
  - Wrong website in the README
+
+# 0.9.3
+ - Doing what is required for 130/130 pub points
+   * minimal, no-deps example in dart_board_core
+   * fixed formatting in 1 file
+   * fix package description
+   
