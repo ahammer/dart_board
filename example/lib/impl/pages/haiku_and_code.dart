@@ -49,7 +49,6 @@ class _HaikuAndCodeState extends State<HaikuAndCode> {
     });
 
     return LayoutBuilder(builder: (ctx, size) {
-      final theme = Theme.of(context);
       final codeWidget;
       codeWidget = AnimatedContainer(
           width: min(size.maxWidth, 800),
