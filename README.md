@@ -74,4 +74,4 @@ RouteView. Additionally features can provide API's to the app and page level com
 
 - Play with the Debug Screen (Caution, you can break the app if you disable something you need).
 - Play MineSweeper
-- Read the Documentation
+- Read the Documentation (This File + Example Readme + Selected Files)
