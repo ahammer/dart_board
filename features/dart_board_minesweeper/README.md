@@ -16,3 +16,7 @@ This route is exposed.
 /minesweep
 
 Either navigate to it, or use RouteWidget("/minesweep")
+
+# Run Directly
+
+`flutter run -t example/main.dart`
