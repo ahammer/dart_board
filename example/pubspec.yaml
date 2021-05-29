@@ -23,8 +23,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  dart_board:
-    path: ../dart_board
+  dart_board_core:
+    path: ../dart_board_core
   dart_board_theme:
     path: ../features/dart_board_theme
   dart_board_debug:

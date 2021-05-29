@@ -10,8 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  dart_board:
-    path: ../../dart_board
+  dart_board_core:
+    path: ../../dart_board_core
 
 
 flutter:

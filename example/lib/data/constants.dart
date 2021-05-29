@@ -1,4 +1,4 @@
-import 'package:dart_board/dart_board.dart';
+import 'package:dart_board_core/dart_board.dart';
 
 /// These are the routes that show the code and give haiku's
 /// Since they are similar, I store them as data if I want to create more

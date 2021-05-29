@@ -1,4 +1,4 @@
-import 'package:dart_board/dart_board.dart';
+import 'package:dart_board_core/dart_board.dart';
 import 'state/bottom_nav_state.dart';
 import 'package:logging/logging.dart';
 

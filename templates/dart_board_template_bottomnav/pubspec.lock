@@ -15,13 +15,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.15.0"
-  dart_board:
+  dart_board_core:
     dependency: "direct main"
     description:
-      path: "../../dart_board"
+      path: "../../dart_board_core"
       relative: true
     source: path
-    version: "1.0.0+1"
+    version: "0.9.0"
   flutter:
     dependency: "direct main"
     description: flutter

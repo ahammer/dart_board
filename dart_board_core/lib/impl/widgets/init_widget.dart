@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:dart_board/dart_board.dart';
+import 'package:dart_board_core/dart_board.dart';
 
 // This widget can tap into life cycle
 //

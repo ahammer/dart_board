@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:dart_board/dart_board.dart';
+import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_minesweeper/minesweeper_feature.dart';
 import 'package:dart_board_theme/theme_feature.dart';
 import 'package:dart_board_debug/debug_feature.dart';
