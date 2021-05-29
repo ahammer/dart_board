@@ -1,11 +1,6 @@
-# dart_board_theme_extension
+# dart_board_log
 
-A new flutter module project.
+Logging Features for Dart Board
 
-## Getting Started
+provides a /log route and a Toolbar to see the last log message/start the route.
 
-For help getting started with Flutter, view our online
-[documentation](https://flutter.dev/).
-
-For instructions integrating Flutter modules to your existing applications,
-see the [add-to-app documentation](https://flutter.dev/docs/development/add-to-app).
