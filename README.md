@@ -5,6 +5,6 @@ An extensible flutter-framework
 For more info see:
 
 
-[dart-board-core/README.md](Core documentation)
+[Core documentation](dart_board_core/README.md)
 
-[example/README.md](Example/Integration documentation)
+[Example/Integration documentation](example/README.md)
