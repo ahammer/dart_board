@@ -3,19 +3,13 @@ description: A minesweeper implementation ported to DartBoard.
 homepage: https://dart-board.io
 issue_tracker: https://github.com/ahammer/dart_board/issues
 repository: https://github.com/ahammer/dart_board
+
 version: 0.9.0
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
-  # Note: This feature was imported from another project 
-  # and runs in a feature container.
-  #
-  # It is not an endorsement of proper Feature Design
-  # More of a proof of concept to show dropping an existing 
-  # app into a feature container. 
-
   flutter:
     sdk: flutter
 
@@ -40,10 +34,14 @@ dependencies:
   pedantic: ^1.11.0
 
   dart_board_core: ^0.9.3    
-    
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
 flutter:
   uses-material-design: true
+  module:
+    androidX: true
+    androidPackage: io.dartboard.dart_board_minesweeper
+    iosBundleIdentifier: io.dart-board.dartBoardMinesweeper
