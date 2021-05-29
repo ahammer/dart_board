@@ -11,7 +11,7 @@ import 'package:dart_board_template_bottomnav/dart_board_template_bottomnav.dart
 void main() => runApp(DartBoard(
       initialRoute: '/home',
       features: [
-        BottomNavTemplateFeature('/home', [
+        BottomNavTemplateFeature(route: '/home', config: [
           {
             'route': '/first',
             'label': 'First',

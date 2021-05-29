@@ -41,7 +41,7 @@ class ExampleFeature extends DartBoardFeature {
         DebugFeature(),
         LogFeature(),
         MinesweeperFeature(),
-        BottomNavTemplateFeature('/main', kMainPageConfig),
+        BottomNavTemplateFeature(route: '/main', config: kMainPageConfig),
         BackgroundAFeature(),
         BackgroundBFeature(),
       ];
