@@ -9,7 +9,7 @@ const kCodeRoutes = <Map<String, String>>[
     'title': 'Project',
     'route': '/readme',
     'haiku': 'Readme.md',
-    'url': 'README.md',
+    'url': 'dart_board_core/README.md',
   },
   {
     'title': 'Example',
