@@ -10,4 +10,4 @@ For more info see:
 [Example/Integration documentation](example/README.md)
 
 
-or play with the sample at [https://dart-board.io](dart-board.io)
+or play with the sample at [dart-board.io](https://dart-board.io)
