@@ -25,8 +25,7 @@ dependencies:
   flutter:
     sdk: flutter
   
-  dart_board_core:
-    path: ../../dart_board_core
+  dart_board_core: ^0.9.3
 
 dev_dependencies:
   flutter_test:

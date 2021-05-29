@@ -18,10 +18,10 @@ packages:
   dart_board_core:
     dependency: "direct main"
     description:
-      path: "../../dart_board_core"
-      relative: true
-    source: path
-    version: "0.9.0"
+      name: dart_board_core
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.9.3"
   flutter:
     dependency: "direct main"
     description: flutter

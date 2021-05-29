@@ -2,12 +2,19 @@ name: dart_board_minesweeper
 description: A new Flutter project.
 publish_to: none
 
-version: 1.0.1+2
+version: 1.0.0
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
+  # Note: This feature was imported from another project 
+  # and runs in a feature container.
+  #
+  # It is not an endorsement of proper Feature Design
+  # More of a proof of concept to show dropping an existing 
+  # app into a feature container. 
+
   flutter:
     sdk: flutter
 
@@ -30,8 +37,7 @@ dependencies:
   #For stricter static analysis
   pedantic: ^1.11.0
 
-  dart_board_core: 
-    path: ../../dart_board_core
+  dart_board_core: ^0.9.3    
     
 dev_dependencies:
   flutter_test:
