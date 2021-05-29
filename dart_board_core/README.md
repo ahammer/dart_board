@@ -77,7 +77,7 @@ The core framework, brought in by all Features and Apps
 ### ./example
 
 The integration example, documentation of all features.
-visible at https://dartboard.io
+visible at https://dart-board.io
 
 ### ./features/dart_board_debug
 
