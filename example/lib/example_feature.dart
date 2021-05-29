@@ -1,5 +1,5 @@
 import 'package:dart_board_core/dart_board.dart';
-import 'package:dart_board_minesweeper/minesweeper_feature.dart';
+import 'package:dart_board_minesweeper/dart_board_minesweeper.dart';
 import 'package:dart_board_theme/dart_board_theme.dart';
 import 'package:dart_board_debug/debug_feature.dart';
 import 'package:dart_board_log/dart_board_log.dart';
