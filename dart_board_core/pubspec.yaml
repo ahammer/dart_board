@@ -1,7 +1,8 @@
 name: dart_board_core
 description: Feature Framework for Flutter. Provides a kernel that allows feature encapsulation, isolation and integration.
 homepage: https://dart-board.io
-
+issue_tracker: https://github.com/ahammer/dart_board/issues
+repository: https://github.com/ahammer/dart_board
 version: 0.9.3
 
 environment:
