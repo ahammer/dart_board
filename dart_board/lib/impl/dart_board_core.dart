@@ -77,12 +77,12 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
   late List<DartBoardFeature> allFeatures;
 
   @override
-  late Map<String, List<Type>> detectedImplementations;
+  late Map<String, List<String>> detectedImplementations;
 
   @override
-  Map<String, Type> activeImplementations = {};
+  Map<String, String> activeImplementations = {};
 
-  Map<String, Type?> featureOverrides = {};
+  Map<String, String?> featureOverrides = {};
 
   @override
   void initState() {
@@ -142,19 +142,24 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
 
       dependencies.forEach((element) {
         if (!detectedImplementations.containsKey(element.namespace)) {
-          detectedImplementations[element.namespace] = [element.runtimeType];
+          detectedImplementations[element.namespace] = [
+            element.implementationName
+          ];
         } else {
           //log.info('Detected duplicated extension ${element.namespace}');
-          detectedImplementations[element.namespace]?.add(element.runtimeType);
+          detectedImplementations[element.namespace]
+              ?.add(element.implementationName);
         }
 
         if ((!loadedFeatures.contains(element.namespace) &&
                 !(featureOverrides.containsKey(element.namespace)) ||
             (featureOverrides.containsKey(element.namespace) &&
-                featureOverrides[element.namespace] == element.runtimeType))) {
+                featureOverrides[element.namespace] ==
+                    element.implementationName))) {
           loadedFeatures.add(element.namespace);
           allFeatures.add(element);
-          log.info('Loaded: ${element.runtimeType} AKA "${element.namespace}"');
+          log.info(
+              'Loaded: ${element.implementationName} AKA "${element.namespace}"');
         } else if (!loadedFeatures.contains(element.namespace) &&
             featureOverrides[element.namespace] == null) {
           /// "Disabled" install stab instead
@@ -208,7 +213,7 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
       activeImplementations.clear();
       allFeatures.forEach((element) {
         if (!(element is StubFeature)) {
-          activeImplementations[element.namespace] = element.runtimeType;
+          activeImplementations[element.namespace] = element.implementationName;
         }
       });
     });
@@ -250,7 +255,8 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
       );
 
   @override
-  void setFeatureImplementation(String namespace, Type? value) => setState(() {
+  void setFeatureImplementation(String namespace, String? value) =>
+      setState(() {
         featureOverrides[namespace] = value;
         buildFeatures();
       });

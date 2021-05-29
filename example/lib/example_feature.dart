@@ -97,6 +97,9 @@ class BackgroundAFeature extends DartBoardFeature {
   String get namespace => 'background';
 
   @override
+  String get implementationName => 'Relaxing Waves';
+
+  @override
   List<DartBoardDecoration> get pageDecorations => <DartBoardDecoration>[
         DartBoardDecoration(
             name: 'background',
@@ -110,6 +113,9 @@ class BackgroundAFeature extends DartBoardFeature {
 class BackgroundBFeature extends DartBoardFeature {
   @override
   String get namespace => 'background';
+
+  @override
+  String get implementationName => 'Red';
 
   @override
   List<DartBoardDecoration> get pageDecorations => <DartBoardDecoration>[

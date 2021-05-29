@@ -55,10 +55,10 @@ abstract class DartBoardCore {
   List<RouteDefinition> get routes;
 
   /// This is all detected implementations for each feature namespace
-  Map<String, List<Type>> get detectedImplementations;
+  Map<String, List<String>> get detectedImplementations;
 
   /// These are the currently active implementations for each feature
-  Map<String, Type> get activeImplementations;
+  Map<String, String> get activeImplementations;
 
   /// These are the RouteDefinitions
   ///
@@ -96,7 +96,7 @@ abstract class DartBoardCore {
   /// You can change at runtime with this
   ///
   /// Set value == null to disable
-  void setFeatureImplementation(String namespace, Type? value);
+  void setFeatureImplementation(String namespace, String? value);
 }
 
 extension DartBoardFeatureListExtension on List<DartBoardFeature> {
@@ -132,6 +132,11 @@ abstract class DartBoardFeature<T> {
   /// Please make it unique
   String get namespace;
 
+  // An implementation name, this should be unique for each implementation used
+  // When AB testing, share the namespace, make implementationName unique
+  // E.g. namespace 'background', implementations: ['background_red', 'background_blue']
+  String get implementationName => 'default';
+
   /// The route definitions
   List<RouteDefinition> get routes => [];
 
@@ -141,6 +146,7 @@ abstract class DartBoardFeature<T> {
   /// The page decorations (page level)
   List<DartBoardDecoration> get pageDecorations => [];
 
+  // Other features this one depends on
   List<DartBoardFeature> get dependencies => [];
 
   /// Deny list for page decorations in the format

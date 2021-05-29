@@ -103,3 +103,10 @@ to a feature container so that you can play Minesweeper, and persist it's state 
 Minimal theming feature, supports a boolean for light/dark
 
 
+## How to help.
+
+1) Contribute via Patreon (https://www.patreon.com/AdamHammer), pledging support 
+2) Contribute Code
+  - New features (E.g. Auth would be a huge next target)
+  - Build out core features (Log, Debug, Theme) could all use significant work.
+  - Tests (I'll get to them eventually, but if you want to help, please do)

@@ -79,9 +79,9 @@ class CollapsingList extends StatelessWidget {
                     fit: BoxFit.scaleDown,
                     child: Column(
                       children: [
-                        Text('Namespace: ${e}'),
+                        Text('Namespace: $e'),
                         Text('Active: ${implementations[0]}'),
-                        DropdownButton<Type?>(
+                        DropdownButton<String>(
                             onChanged: (value) => DartBoardCore.instance
                                 .setFeatureImplementation(e, value),
                             value:
