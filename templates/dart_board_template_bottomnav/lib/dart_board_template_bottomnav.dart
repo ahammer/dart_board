@@ -29,7 +29,7 @@ class BottomNavTemplateFeature extends DartBoardFeature {
       {required this.route,
       required this.config,
       this.namespace = 'bottom_nav_template_feature',
-      this.implementationName = 'default'});
+      this.implementationName = 'Bottom Navigation'});
 
   @override
   List<DartBoardDecoration> get appDecorations => [

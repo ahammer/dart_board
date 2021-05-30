@@ -44,14 +44,15 @@ class ExampleFeature extends DartBoardFeature {
         LogFeature(),
         MinesweeperFeature(),
         BottomNavTemplateFeature(
-            route: '/main', config: kMainPageConfig, namespace: 'entry_point'),
+            route: '/main', config: kMainPageConfig, namespace: 'template'),
         AppBarSideNavTemplateFeature(
             route: '/main',
             config: kMainPageConfig,
             title: 'Example App',
-            namespace: 'entry_point'),
+            namespace: 'template'),
         BackgroundAFeature(),
         BackgroundBFeature(),
+        FrameFeature(),
       ];
 
   /// Navigation entry points
@@ -77,16 +78,6 @@ class ExampleFeature extends DartBoardFeature {
             route: e['route']!,
             builder: (ctx, setting) =>
                 HaikuAndCode(haiku: e['haiku']!, url: e['url']!))),
-      ];
-
-  /// Some examples of Page Decorations
-  /// These are widgets that get applied to the top of every page
-  @override
-  List<DartBoardDecoration> get pageDecorations => <DartBoardDecoration>[
-        /// A simple Color Border applied to a Page Route
-        DartBoardDecoration(
-            name: 'color_border',
-            decoration: (context, child) => DarkColorBorder(child: child)),
       ];
 
   @override
@@ -132,5 +123,21 @@ class BackgroundBFeature extends DartBoardFeature {
                   color: Colors.red,
                   child: child,
                 ))
+      ];
+}
+
+/// Isolate the Frame/Border into it's own feature so it can be disabled
+class FrameFeature extends DartBoardFeature {
+  @override
+  String get namespace => 'app_border';
+
+  /// Some examples of Page Decorations
+  /// These are widgets that get applied to the top of every page
+  @override
+  List<DartBoardDecoration> get pageDecorations => <DartBoardDecoration>[
+        /// A simple Color Border applied to a Page Route
+        DartBoardDecoration(
+            name: 'color_border',
+            decoration: (context, child) => DarkColorBorder(child: child)),
       ];
 }
