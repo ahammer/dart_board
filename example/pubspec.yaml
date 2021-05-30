@@ -32,8 +32,7 @@ dependencies:
   dart_board_template_bottomnav:
   dart_board_template_app_bar_sidenav:
   dart_board_image_background:
-    path: ../features/dart_board_image_background
-
+  
   flutter_syntax_view: ^4.0.0
   flutter_markdown: ^0.6.2
   http: ^0.13.3
@@ -54,6 +53,8 @@ dependency_overrides:
     path: ../templates/dart_board_template_bottomnav
   dart_board_template_app_bar_sidenav:
     path: ../templates/dart_board_template_app_bar_sidenav
+  dart_board_image_background:
+    path: ../features/dart_board_image_background
 
 
 dev_dependencies:
