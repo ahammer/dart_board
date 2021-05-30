@@ -1,5 +1,7 @@
 # Example: How it's Made  
 
+![Demo](https://media3.giphy.com/media/Yo9eqMoEBYB1S45A92/giphy.gif)
+
 The example doubles as documentation. The development of Dart Board was done via 
 Example Drive Development. Essentially I structured the app the way I wanted, and have built the core around it.
 
