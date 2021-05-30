@@ -27,3 +27,5 @@ flutter:
     androidX: true
     androidPackage: com.metalrain.dart_board_image_background_feature
     iosBundleIdentifier: com.metalrain.dartBoardImageBackgroundFeature
+  assets:
+    - assets/
