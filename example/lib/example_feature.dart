@@ -10,7 +10,7 @@ import 'impl/decorations/color_border_decoration.dart';
 import 'impl/decorations/wavy_lines_background.dart';
 import 'impl/pages/home_page.dart';
 import 'package:dart_board_template_bottomnav/dart_board_template_bottomnav.dart';
-
+import 'package:dart_board_image_background/dart_board_image_background.dart';
 import 'impl/pages/haiku_and_code.dart';
 
 /// The Example Feature
@@ -43,6 +43,9 @@ class ExampleFeature extends DartBoardFeature {
         DebugFeature(),
         LogFeature(),
         MinesweeperFeature(),
+
+        /// Add 2 template's
+        /// can toggle in debug
         BottomNavTemplateFeature(
             route: '/main', config: kMainPageConfig, namespace: 'template'),
         AppBarSideNavTemplateFeature(
@@ -50,8 +53,20 @@ class ExampleFeature extends DartBoardFeature {
             config: kMainPageConfig,
             title: 'Example App',
             namespace: 'template'),
-        BackgroundAFeature(),
-        BackgroundBFeature(),
+
+        /// Register 3 Backgrounds
+        /// can toggle in debug
+        ImageBackgroundFeature(
+            filename: 'assets/sunset_painting.jpg',
+            namespace: 'background',
+            implementationName: 'City Image'),
+        AnimatedBackgroundFeature(),
+        ImageBackgroundFeature(
+            filename: 'assets/mush.jpg',
+            namespace: 'background',
+            implementationName: 'Mushroom Image'),
+
+        /// Isolate the frame into a feature so it can be disabled
         FrameFeature(),
       ];
 
@@ -88,7 +103,7 @@ class ExampleFeature extends DartBoardFeature {
       ['/main:color_border', '/main:log_frame'];
 }
 
-class BackgroundAFeature extends DartBoardFeature {
+class AnimatedBackgroundFeature extends DartBoardFeature {
   @override
   String get namespace => 'background';
 
@@ -101,26 +116,6 @@ class BackgroundAFeature extends DartBoardFeature {
             name: 'background',
             decoration: (context, child) => AnimatedBackgroundDecoration(
                   color: Theme.of(context).colorScheme.surface,
-                  child: child,
-                ))
-      ];
-}
-
-class BackgroundBFeature extends DartBoardFeature {
-  @override
-  String get namespace => 'background';
-
-  @override
-  String get implementationName => 'Red';
-
-  @override
-  List<DartBoardDecoration> get pageDecorations => <DartBoardDecoration>[
-        DartBoardDecoration(
-            name: 'background',
-            decoration: (context, child) => Container(
-                  width: double.infinity,
-                  height: double.infinity,
-                  color: Colors.red,
                   child: child,
                 ))
       ];

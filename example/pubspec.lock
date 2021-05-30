@@ -176,6 +176,13 @@ packages:
       relative: true
     source: path
     version: "0.9.1"
+  dart_board_image_background:
+    dependency: "direct main"
+    description:
+      path: "../features/dart_board_image_background"
+      relative: true
+    source: path
+    version: "0.9.0"
   dart_board_log:
     dependency: "direct main"
     description:
