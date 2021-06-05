@@ -28,41 +28,39 @@ class ExampleRedux extends DartBoardFeature {
 
 class ReduxScreen extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        body: Center(
-      child: ReduxStateUpdater<ExampleState>(
-        (ctx, state) => AnimatedContainer(
-          decoration: BoxDecoration(
-              color: state.count % 2 == 0
-                  ? Colors.lightBlueAccent
-                  : Colors.lightGreenAccent,
-              borderRadius: BorderRadius.circular((state.count % 5) * 15)),
-          duration: Duration(milliseconds: 200),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text("Count: ${state.count}"),
-                MaterialButton(
-                  elevation: 2,
-                  onPressed: () => dispatch<ExampleState>(increment),
-                  child: Text("Increment Function"),
-                ),
-                MaterialButton(
-                  elevation: 2,
-                  onPressed: () => dispatch<ExampleState>(IncrementAction()),
-                  child: Text("Increment Object"),
-                ),
-              ],
+  Widget build(BuildContext context) => Scaffold(
+          body: Center(
+        child: ReduxStateUpdater<ExampleState>(
+          (ctx, state) => AnimatedContainer(
+            decoration: BoxDecoration(
+                color: state.count % 2 == 0
+                    ? Colors.lightBlueAccent
+                    : Colors.lightGreenAccent,
+                borderRadius: BorderRadius.circular((state.count % 5) * 15)),
+            duration: Duration(milliseconds: 200),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text("Count: ${state.count}"),
+                  MaterialButton(
+                    elevation: 2,
+                    onPressed: () => dispatch<ExampleState>(increment),
+                    child: Text("Increment Function"),
+                  ),
+                  MaterialButton(
+                    elevation: 2,
+                    onPressed: () => dispatch<ExampleState>(IncrementAction()),
+                    child: Text("Increment Object"),
+                  ),
+                ],
+              ),
             ),
           ),
+          distinct: true,
         ),
-        distinct: true,
-      ),
-    ));
-  }
+      ));
 }
 
 class ExampleState {
