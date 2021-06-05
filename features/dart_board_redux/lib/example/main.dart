@@ -21,6 +21,12 @@ class ExampleRedux extends DartBoardFeature {
         ReduxStateProviderDecoration<ExampleState>(
             factory: () => ExampleState(count: 0), name: "Example Redux State")
       ];
+
+  @override
+  List<DartBoardDecoration> get pageDecorations => [
+        ReduxStateNotifierDecoration<ExampleState>(
+            "Example Redux State Notifier")
+      ];
   @override
   List<DartBoardFeature> get dependencies => [DartBoardRedux()];
 }
@@ -36,12 +42,12 @@ class ReduxScreen extends StatelessWidget {
         Text("Count: ${store.state.getState<ExampleState>().count}"),
         MaterialButton(
           elevation: 2,
-          onPressed: () => dispatch(increment),
+          onPressed: () => dispatch<ExampleState>(increment),
           child: Text("Increment Function"),
         ),
         MaterialButton(
           elevation: 2,
-          onPressed: () => dispatch(increment),
+          onPressed: () => dispatch<ExampleState>(IncrementAction()),
           child: Text("Increment Object"),
         ),
       ],
@@ -52,6 +58,8 @@ class ReduxScreen extends StatelessWidget {
 class ExampleState {
   final int count;
   ExampleState({this.count = 0});
+  @override
+  String toString() => "ExampleState($count)";
 }
 
 ExampleState increment(ExampleState oldState) =>

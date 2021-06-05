@@ -73,13 +73,61 @@ final Store<DartBoardState> store =
 DartBoardState _reducer(DartBoardState state, action) {
   if (action is ReductionDelegate<DartBoardState>) {
     return action(state);
+  } else if (action is Reducable<DartBoardState>) {
+    return action.reduce(state);
   }
   return state;
 }
 
 // Dynamic Dispatch
-void dispatch<T>(dynamic dispatchable, {String instance = ""}) {
+void dispatch<T>(dynamic dispatchable, {String instance_id = ""}) {
   if (Object() is T) throw Exception("Can't take dynamic here");
+
+  if (dispatchable is ReductionDelegate<T>) {
+    /// We reduce here and just install the new State
+    store.dispatch(_InstallNewFeatureState(
+        state: dispatchable(store.state.getState<T>(instance_id: instance_id)),
+        instance_id: instance_id));
+  } else if (dispatchable is Reducable<T>) {
+    store.dispatch(_InstallNewFeatureState(
+        state: dispatchable
+            .reduce(store.state.getState<T>(instance_id: instance_id)),
+        instance_id: instance_id));
+  }
+}
+
+class _InstallNewFeatureState<T> extends Reducable<DartBoardState> {
+  final T state;
+  final String instance_id;
+
+  _InstallNewFeatureState({required this.state, this.instance_id = ""});
+
+  @override
+  ReductionDelegate<DartBoardState> get reduce => (oldState) {
+        final data = <Type, Map<String, dynamic>>{}
+          ..addAll(oldState.data)
+          ..putIfAbsent(T, () => <String, dynamic>{});
+        data[T]?[instance_id] = state;
+        return DartBoardState(data: data);
+      };
+}
+
+///----------------------------------------------------------------------------
+/// Page Decoration to get notified of state changes
+
+class ReduxStateNotifierDecoration<T> extends DartBoardDecoration {
+  final String name;
+
+  ReduxStateNotifierDecoration(this.name)
+      : super(
+            name: name,
+            decoration: (ctx, child) => StoreConnector<DartBoardState, T>(
+                  converter: (Store<DartBoardState> store) =>
+                      store.state.getState(),
+                  distinct: false,
+                  builder: (ctx, state) =>
+                      Container(key: ValueKey(state), child: child),
+                ));
 }
 
 ///----------------------------------------------------------------------------
