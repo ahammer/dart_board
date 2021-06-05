@@ -3,8 +3,8 @@ import 'package:dart_board_redux/dart_board_redux.dart';
 import 'package:flutter/material.dart';
 
 /// Simple minesweep runner
-void main() => runApp(DartBoard(
-    initialRoute: '/redux', features: [DartBoardRedux(), ExampleRedux()]));
+void main() =>
+    runApp(DartBoard(initialRoute: '/redux', features: [ExampleRedux()]));
 
 class ExampleRedux extends DartBoardFeature {
   @override
@@ -15,6 +15,14 @@ class ExampleRedux extends DartBoardFeature {
         NamedRouteDefinition(
             route: "/redux", builder: (ctx, settings) => ReduxScreen())
       ];
+
+  @override
+  List<DartBoardDecoration> get appDecorations => [
+        ReduxStateProviderDecoration<ExampleState>(
+            factory: () => ExampleState(count: 0), name: "Example Redux State")
+      ];
+  @override
+  List<DartBoardFeature> get dependencies => [DartBoardRedux()];
 }
 
 class ReduxScreen extends StatelessWidget {
@@ -25,12 +33,17 @@ class ReduxScreen extends StatelessWidget {
             child: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text("Count: 0"),
+        Text("Count: ${store.state.getState<ExampleState>().count}"),
         MaterialButton(
           elevation: 2,
           onPressed: () => dispatch(increment),
-          child: Text("Increment"),
-        )
+          child: Text("Increment Function"),
+        ),
+        MaterialButton(
+          elevation: 2,
+          onPressed: () => dispatch(increment),
+          child: Text("Increment Object"),
+        ),
       ],
     )));
   }
@@ -43,3 +56,9 @@ class ExampleState {
 
 ExampleState increment(ExampleState oldState) =>
     ExampleState(count: oldState.count + 1);
+
+class IncrementAction extends Reducable<ExampleState> {
+  @override
+  ReductionDelegate<ExampleState> get reduce =>
+      (state) => ExampleState(count: state.count + 1);
+}
