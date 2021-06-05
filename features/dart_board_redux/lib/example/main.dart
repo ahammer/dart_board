@@ -33,9 +33,11 @@ class ReduxScreen extends StatelessWidget {
         body: Center(
       child: ReduxStateUpdater<ExampleState>(
         (ctx, state) => AnimatedContainer(
-          color: state.count % 2 == 0
-              ? Colors.lightBlueAccent
-              : Colors.lightGreenAccent,
+          decoration: BoxDecoration(
+              color: state.count % 2 == 0
+                  ? Colors.lightBlueAccent
+                  : Colors.lightGreenAccent,
+              borderRadius: BorderRadius.circular((state.count % 5) * 15)),
           duration: Duration(milliseconds: 200),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
