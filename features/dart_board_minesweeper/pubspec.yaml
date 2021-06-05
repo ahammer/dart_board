@@ -14,9 +14,9 @@ dependencies:
     sdk: flutter
 
   #Redux for general global state
-  redux: ^5.0.0 
-  flutter_redux: ^0.8.2 
-  redux_thunk: ^0.4.0 
+  redux: 
+  flutter_redux: 
+  redux_thunk: 
   
   #For provider, for local component with more state  
   provider: ^5.0.0 
@@ -34,6 +34,8 @@ dependencies:
   pedantic: ^1.11.0
 
   dart_board_core: ^0.9.3    
+  dart_board_redux: 
+    path: ../dart_board_redux
 
 dev_dependencies:
   flutter_test:

@@ -1,0 +1,29 @@
+name: dart_board_redux
+description: Redux extensions for Dart Board, exposes flutter_redux and dart redux, and wraps them in a decoration based API, allowing features their own Redux stores
+
+version: 1.0.0
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+    #Redux for general global state
+  redux: 
+  flutter_redux: 
+  redux_thunk: 
+
+  dart_board_core:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  module:
+    androidX: true
+    androidPackage: com.example.dart_board_redux
+    iosBundleIdentifier: com.example.dartBoardRedux
