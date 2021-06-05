@@ -57,6 +57,7 @@ class ReduxScreen extends StatelessWidget {
             ),
           ),
         ),
+        distinct: true,
       ),
     ));
   }
