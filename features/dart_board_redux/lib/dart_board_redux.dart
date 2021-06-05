@@ -112,22 +112,19 @@ class _InstallNewFeatureState<T> extends Reducable<DartBoardState> {
       };
 }
 
-///----------------------------------------------------------------------------
-/// Page Decoration to get notified of state changes
+/// Widget to hook up a state object
+class ReduxStateUpdater<T> extends StatelessWidget {
+  final Widget Function(BuildContext context, T state) builder;
+  final bool distinct;
 
-class ReduxStateNotifierDecoration<T> extends DartBoardDecoration {
-  final String name;
+  const ReduxStateUpdater(this.builder, {Key? key, this.distinct = false})
+      : super(key: key);
 
-  ReduxStateNotifierDecoration(this.name)
-      : super(
-            name: name,
-            decoration: (ctx, child) => StoreConnector<DartBoardState, T>(
-                  converter: (Store<DartBoardState> store) =>
-                      store.state.getState(),
-                  distinct: false,
-                  builder: (ctx, state) =>
-                      Container(key: ValueKey(state), child: child),
-                ));
+  @override
+  Widget build(BuildContext context) => StoreConnector<DartBoardState, T>(
+      converter: (store) => store.state.getState(),
+      distinct: distinct,
+      builder: builder);
 }
 
 ///----------------------------------------------------------------------------
@@ -142,14 +139,14 @@ class ReduxStateProviderDecoration<T> extends DartBoardDecoration {
       : super(
             name: name,
             decoration: (ctx, child) =>
-                StateFactoryConnector<T>(factory: factory, child: child));
+                _StateFactoryConnector<T>(factory: factory, child: child));
 }
 
-class StateFactoryConnector<T> extends StatefulWidget {
+class _StateFactoryConnector<T> extends StatefulWidget {
   final Widget child;
   final StateFactory<T> factory;
 
-  const StateFactoryConnector(
+  const _StateFactoryConnector(
       {Key? key, required this.factory, required this.child})
       : super(key: key);
 
@@ -158,7 +155,7 @@ class StateFactoryConnector<T> extends StatefulWidget {
       _StateFactoryConnectorState<T>();
 }
 
-class _StateFactoryConnectorState<T> extends State<StateFactoryConnector<T>> {
+class _StateFactoryConnectorState<T> extends State<_StateFactoryConnector<T>> {
   @override
   Widget build(BuildContext context) => widget.child;
 

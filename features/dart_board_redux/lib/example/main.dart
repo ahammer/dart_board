@@ -23,11 +23,6 @@ class ExampleRedux extends DartBoardFeature {
       ];
 
   @override
-  List<DartBoardDecoration> get pageDecorations => [
-        ReduxStateNotifierDecoration<ExampleState>(
-            "Example Redux State Notifier")
-      ];
-  @override
   List<DartBoardFeature> get dependencies => [DartBoardRedux()];
 }
 
@@ -36,22 +31,34 @@ class ReduxScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Center(
+      child: ReduxStateUpdater<ExampleState>(
+        (ctx, state) => AnimatedContainer(
+          color: state.count % 2 == 0
+              ? Colors.lightBlueAccent
+              : Colors.lightGreenAccent,
+          duration: Duration(milliseconds: 200),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
             child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text("Count: ${store.state.getState<ExampleState>().count}"),
-        MaterialButton(
-          elevation: 2,
-          onPressed: () => dispatch<ExampleState>(increment),
-          child: Text("Increment Function"),
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text("Count: ${state.count}"),
+                MaterialButton(
+                  elevation: 2,
+                  onPressed: () => dispatch<ExampleState>(increment),
+                  child: Text("Increment Function"),
+                ),
+                MaterialButton(
+                  elevation: 2,
+                  onPressed: () => dispatch<ExampleState>(IncrementAction()),
+                  child: Text("Increment Object"),
+                ),
+              ],
+            ),
+          ),
         ),
-        MaterialButton(
-          elevation: 2,
-          onPressed: () => dispatch<ExampleState>(IncrementAction()),
-          child: Text("Increment Object"),
-        ),
-      ],
-    )));
+      ),
+    ));
   }
 }
 
