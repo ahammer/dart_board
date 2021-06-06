@@ -45,6 +45,53 @@ class ReduxStateProviderDecoration<T> extends DartBoardDecoration {
                 _StateFactoryConnector<T>(factory: factory, child: child));
 }
 
+class ReduxMiddlewareProviderDecoration extends DartBoardDecoration {
+  final String name;
+  final Middleware<DartBoardState> middleware;
+
+  ReduxMiddlewareProviderDecoration(
+      {required this.name, required this.middleware})
+      : super(
+            name: name,
+            decoration: (context, child) => _MiddlewareInjector(
+                name: name, middleware: middleware, child: child));
+}
+
+/// Used to manage the life-cycle, inject Middleware into Redux
+class _MiddlewareInjector extends StatefulWidget {
+  final String name;
+  final Widget child;
+  final Middleware<DartBoardState> middleware;
+
+  const _MiddlewareInjector(
+      {Key? key,
+      required this.name,
+      required this.middleware,
+      required this.child})
+      : super(key: key);
+
+  @override
+  __MiddlewareInjectorState createState() => __MiddlewareInjectorState();
+}
+
+class __MiddlewareInjectorState extends State<_MiddlewareInjector> {
+  @override
+  void initState() {
+    _dartBoardReduxKey.currentState
+        ?.registerMiddleware(widget.name, widget.middleware);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _dartBoardReduxKey.currentState?.unregisterMiddleware(widget.name);
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => widget.child;
+}
+
 /// Widget to hook up a state object
 /// Users can use this to update their UI as a State object changes
 class ReduxStateUpdater<T> extends StatelessWidget {
@@ -62,21 +109,8 @@ class ReduxStateUpdater<T> extends StatelessWidget {
 }
 
 /// Call Dispatch(action) from anywhere
-void dispatch<T>(dynamic dispatchable, {String instance_id = ""}) {
-  if (Object() is T) throw Exception("Can't take dynamic here");
-  final store = _dartBoardReduxKey.currentState!.store;
-  if (dispatchable is ReductionDelegate<T>) {
-    /// We reduce here and just install the new State
-    store.dispatch(_InstallNewFeatureState(
-        state: dispatchable(store.state.getState<T>(instance_id: instance_id)),
-        instance_id: instance_id));
-  } else if (dispatchable is Reducable<T>) {
-    store.dispatch(_InstallNewFeatureState(
-        state: dispatchable
-            .reduce(store.state.getState<T>(instance_id: instance_id)),
-        instance_id: instance_id));
-  }
-}
+void dispatch(dynamic dispatchable) =>
+    _dartBoardReduxKey.currentState!.store.dispatch(dispatchable);
 
 /// T getState<T>()
 ///
@@ -115,6 +149,11 @@ class _DartBoardStoreWidgetState extends State<DartBoardStoreWidget> {
     setState(() => initStore());
   }
 
+  /// Make this safe
+  @override
+  void setState(VoidCallback fn) => WidgetsBinding.instance
+      ?.scheduleFrameCallback((timeStamp) => super.setState(fn));
+
   void unregisterMiddleware(String name) {
     middleware.remove(name);
 
@@ -143,11 +182,6 @@ class _DartBoardStoreWidgetState extends State<DartBoardStoreWidget> {
 /// A type to indicate a function that constructs an initial state
 typedef StateFactory<T> = T Function();
 
-/// This is a delegate for Reducing.
-///
-/// This is actually what we'll dispatch
-typedef ReductionDelegate<T> = T Function(T oldState);
-
 /// State Factories
 ///
 /// These are the Types supported by Redux
@@ -158,8 +192,27 @@ final Map<Type, StateFactory<dynamic>> _factories = {};
 /// This is useful if you like to wrap you Actions in objects
 /// Which can be useful if you want to leverage the type
 /// system when handling redux
-abstract class Reducable<T> {
-  abstract final ReductionDelegate<T> reduce;
+abstract class BaseReducable {
+  DartBoardState reduce(DartBoardState oldState);
+}
+
+abstract class FeatureReducable<T> extends BaseReducable {
+  final String instance_id;
+
+  FeatureReducable({this.instance_id = ""});
+
+  @override
+  DartBoardState reduce(DartBoardState oldState) {
+    final state = featureReduce(oldState.getState(instance_id: instance_id));
+
+    final data = <Type, Map<String, dynamic>>{}
+      ..addAll(oldState.data)
+      ..putIfAbsent(T, () => <String, dynamic>{});
+    data[T]?[instance_id] = state;
+    return DartBoardState(data: data);
+  }
+
+  T featureReduce(T state);
 }
 
 ///-----------------------------------------------------------------------------
@@ -189,29 +242,10 @@ class DartBoardState {
 
 /// This is the main reducer, It'll handle creating a new DartBoardState
 DartBoardState _reducer(DartBoardState state, action) {
-  if (action is ReductionDelegate<DartBoardState>) {
-    return action(state);
-  } else if (action is Reducable<DartBoardState>) {
+  if (action is BaseReducable) {
     return action.reduce(state);
   }
   return state;
-}
-
-/// After we Reduce a feature's state, we install it with this reducable
-class _InstallNewFeatureState<T> extends Reducable<DartBoardState> {
-  final T state;
-  final String instance_id;
-
-  _InstallNewFeatureState({required this.state, this.instance_id = ""});
-
-  @override
-  ReductionDelegate<DartBoardState> get reduce => (oldState) {
-        final data = <Type, Map<String, dynamic>>{}
-          ..addAll(oldState.data)
-          ..putIfAbsent(T, () => <String, dynamic>{});
-        data[T]?[instance_id] = state;
-        return DartBoardState(data: data);
-      };
 }
 
 class _StateFactoryConnector<T> extends StatefulWidget {

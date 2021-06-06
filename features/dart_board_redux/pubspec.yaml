@@ -13,6 +13,7 @@ dependencies:
     #Redux for general global state
   redux: 
   flutter_redux: 
+  redux_epics: 
   redux_thunk: 
 
   dart_board_core:

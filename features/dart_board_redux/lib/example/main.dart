@@ -1,6 +1,8 @@
 import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_redux/dart_board_redux.dart';
+import 'package:redux_epics/redux_epics.dart';
 import 'package:flutter/material.dart';
+import 'package:rxdart/rxdart.dart';
 
 /// Simple minesweep runner
 void main() =>
@@ -19,7 +21,10 @@ class ExampleRedux extends DartBoardFeature {
   @override
   List<DartBoardDecoration> get appDecorations => [
         ReduxStateProviderDecoration<ExampleState>(
-            factory: () => ExampleState(count: 0), name: "Example Redux State")
+            factory: () => ExampleState(count: 0), name: "Example Redux State"),
+        ReduxMiddlewareProviderDecoration(
+            name: "ExampleEpic",
+            middleware: EpicMiddleware(delayedIncrementEpic))
       ];
 
   @override
@@ -47,17 +52,12 @@ class ReduxScreen extends StatelessWidget {
                 Text("Count: ${state.count}"),
                 MaterialButton(
                   elevation: 2,
-                  onPressed: () => dispatch<ExampleState>(increment),
-                  child: Text("Increment Function"),
-                ),
-                MaterialButton(
-                  elevation: 2,
-                  onPressed: () => dispatch<ExampleState>(IncrementAction()),
+                  onPressed: () => dispatch(IncrementAction()),
                   child: Text("Increment Object"),
                 ),
                 MaterialButton(
                   elevation: 2,
-                  onPressed: () => dispatch<ExampleState>(DelayedIncrement()),
+                  onPressed: () => dispatch(DelayedIncrement()),
                   child: Text("Increment vis Async Epic"),
                 ),
               ],
@@ -83,8 +83,21 @@ class DelayedIncrement {}
 ExampleState increment(ExampleState oldState) =>
     ExampleState(count: oldState.count + 1);
 
-class IncrementAction extends Reducable<ExampleState> {
+class IncrementAction extends FeatureReducable<ExampleState> {
   @override
-  ReductionDelegate<ExampleState> get reduce =>
-      (state) => ExampleState(count: state.count + 1);
+  ExampleState featureReduce(ExampleState state) =>
+      ExampleState(count: state.count + 1);
+}
+
+Stream<dynamic> delayedIncrementEpic(
+    Stream<dynamic> actions, EpicStore<DartBoardState> store) {
+  // Wrap our actions Stream as an Observable. This will enhance the stream with
+  // a bit of extra functionality.
+  return actions
+      // Use `whereType` to narrow down to PerformSearchAction
+      .whereType<DelayedIncrement>()
+      .asyncMap((action) =>
+          // No need to cast the action to extract the search term!
+          Future.delayed(Duration(seconds: 1))
+              .then((results) => IncrementAction()));
 }
