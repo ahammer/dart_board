@@ -55,6 +55,11 @@ class ReduxScreen extends StatelessWidget {
                   onPressed: () => dispatch<ExampleState>(IncrementAction()),
                   child: Text("Increment Object"),
                 ),
+                MaterialButton(
+                  elevation: 2,
+                  onPressed: () => dispatch<ExampleState>(DelayedIncrement()),
+                  child: Text("Increment vis Async Epic"),
+                ),
               ],
             ),
           ),
@@ -71,6 +76,9 @@ class ExampleState {
   @override
   String toString() => "ExampleState($count)";
 }
+
+/// Type Marker for a Async Epic
+class DelayedIncrement {}
 
 ExampleState increment(ExampleState oldState) =>
     ExampleState(count: oldState.count + 1);

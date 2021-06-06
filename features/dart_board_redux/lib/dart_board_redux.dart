@@ -2,7 +2,19 @@ import 'package:dart_board_core/dart_board.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
+final _dartBoardReduxKey = GlobalKey<_DartBoardStoreWidgetState>();
+
 ///-----------------------------------------------------------------------------
+///                    PUBLIC API
+///
+/// Usage:
+///  Include the Feature
+///  Use: ReduxStateProviderDecoration() App Decoration
+///    e.g. `ReduxStateProviderDecoration<FeatureState>(name: 'feature_state`, factory: () => FeatureState())`
+///    for features to provide state objects.
+///
+///  FeatureState state = getState<FeatureState>();
+///
 /// The extension itself. It provides a Redux store to access as a App Decoration
 /// Generally this should end up near the root of the tree
 class DartBoardRedux extends DartBoardFeature {
@@ -13,9 +25,99 @@ class DartBoardRedux extends DartBoardFeature {
   List<DartBoardDecoration> get appDecorations => [
         DartBoardDecoration(
             name: "redux store",
-            decoration: (ctx, child) => StoreProvider(
-                key: Key("redux_store"), store: store, child: child))
+            decoration: (ctx, child) =>
+                DartBoardStoreWidget(key: _dartBoardReduxKey, child: child))
       ];
+}
+
+///----------------------------------------------------------------------------
+/// App Decoration API to hook up state objects
+///
+/// Usage: StateFactoryConnector<type>(name: "your state label", ()=>YourState(initial_settings))
+class ReduxStateProviderDecoration<T> extends DartBoardDecoration {
+  final String name;
+  final StateFactory<T> factory;
+
+  ReduxStateProviderDecoration({required this.factory, required this.name})
+      : super(
+            name: name,
+            decoration: (ctx, child) =>
+                _StateFactoryConnector<T>(factory: factory, child: child));
+}
+
+/// Widget to hook up a state object
+/// Users can use this to update their UI as a State object changes
+class ReduxStateUpdater<T> extends StatelessWidget {
+  final Widget Function(BuildContext context, T state) builder;
+  final bool distinct;
+
+  const ReduxStateUpdater(this.builder, {Key? key, this.distinct = false})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) => StoreConnector<DartBoardState, T>(
+      converter: (store) => store.state.getState(),
+      distinct: distinct,
+      builder: builder);
+}
+
+/// Call Dispatch(action) from anywhere
+void dispatch<T>(dynamic dispatchable, {String instance_id = ""}) {
+  if (Object() is T) throw Exception("Can't take dynamic here");
+  final store = _dartBoardReduxKey.currentState!.store;
+  if (dispatchable is ReductionDelegate<T>) {
+    /// We reduce here and just install the new State
+    store.dispatch(_InstallNewFeatureState(
+        state: dispatchable(store.state.getState<T>(instance_id: instance_id)),
+        instance_id: instance_id));
+  } else if (dispatchable is Reducable<T>) {
+    store.dispatch(_InstallNewFeatureState(
+        state: dispatchable
+            .reduce(store.state.getState<T>(instance_id: instance_id)),
+        instance_id: instance_id));
+  }
+}
+
+/// T getState<T>()
+///
+/// Can use this anywhere to pull a state
+T getState<T>({String instance_id = ""}) =>
+    _dartBoardReduxKey.currentState!.store.state
+        .getState<T>(instance_id: instance_id);
+
+/// Holds the store and provides it
+class DartBoardStoreWidget extends StatefulWidget {
+  final Widget child;
+
+  const DartBoardStoreWidget({
+    Key? key,
+    required this.child,
+  }) : super(key: key);
+
+  @override
+  _DartBoardStoreWidgetState createState() => _DartBoardStoreWidgetState();
+}
+
+class _DartBoardStoreWidgetState extends State<DartBoardStoreWidget> {
+  /// This is our store in global scope accessible everywhere
+  late Store<DartBoardState> store;
+
+  /// Snapshot for when we rebuild the store. Starts out blank
+  var _snapshot = <Type, Map<String, dynamic>>{};
+
+  @override
+  void initState() {
+    initStore();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) =>
+      StoreProvider(key: Key("redux_store"), store: store, child: widget.child);
+
+  void initStore() {
+    store = Store(_reducer, initialState: DartBoardState(data: _snapshot));
+  }
 }
 
 /// A type to indicate a function that constructs an initial state
@@ -65,10 +167,6 @@ class DartBoardState {
   }
 }
 
-/// This is our store in global scope accessible everywhere
-final Store<DartBoardState> store =
-    Store(_reducer, initialState: DartBoardState(data: {}));
-
 /// This is the main reducer, It'll handle creating a new DartBoardState
 DartBoardState _reducer(DartBoardState state, action) {
   if (action is ReductionDelegate<DartBoardState>) {
@@ -79,23 +177,7 @@ DartBoardState _reducer(DartBoardState state, action) {
   return state;
 }
 
-// Dynamic Dispatch
-void dispatch<T>(dynamic dispatchable, {String instance_id = ""}) {
-  if (Object() is T) throw Exception("Can't take dynamic here");
-
-  if (dispatchable is ReductionDelegate<T>) {
-    /// We reduce here and just install the new State
-    store.dispatch(_InstallNewFeatureState(
-        state: dispatchable(store.state.getState<T>(instance_id: instance_id)),
-        instance_id: instance_id));
-  } else if (dispatchable is Reducable<T>) {
-    store.dispatch(_InstallNewFeatureState(
-        state: dispatchable
-            .reduce(store.state.getState<T>(instance_id: instance_id)),
-        instance_id: instance_id));
-  }
-}
-
+/// After we Reduce a feature's state, we install it with this reducable
 class _InstallNewFeatureState<T> extends Reducable<DartBoardState> {
   final T state;
   final String instance_id;
@@ -110,36 +192,6 @@ class _InstallNewFeatureState<T> extends Reducable<DartBoardState> {
         data[T]?[instance_id] = state;
         return DartBoardState(data: data);
       };
-}
-
-/// Widget to hook up a state object
-class ReduxStateUpdater<T> extends StatelessWidget {
-  final Widget Function(BuildContext context, T state) builder;
-  final bool distinct;
-
-  const ReduxStateUpdater(this.builder, {Key? key, this.distinct = false})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) => StoreConnector<DartBoardState, T>(
-      converter: (store) => store.state.getState(),
-      distinct: distinct,
-      builder: builder);
-}
-
-///----------------------------------------------------------------------------
-/// App Decoration API to hook up state objects
-///
-/// Usage: StateFactoryConnector<type>(name: "your state label", ()=>YourState(initial_settings))
-class ReduxStateProviderDecoration<T> extends DartBoardDecoration {
-  final String name;
-  final StateFactory<T> factory;
-
-  ReduxStateProviderDecoration({required this.factory, required this.name})
-      : super(
-            name: name,
-            decoration: (ctx, child) =>
-                _StateFactoryConnector<T>(factory: factory, child: child));
 }
 
 class _StateFactoryConnector<T> extends StatefulWidget {
