@@ -4,9 +4,9 @@ import 'package:redux_epics/redux_epics.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 
-/// Simple minesweep runner
+/// Loading up the Example Extension + Redux
 void main() =>
-    runApp(DartBoard(initialRoute: '/redux', features: [ExampleRedux()]));
+    runApp(DartBoard(initialRoute: '/example', features: [ExampleRedux()]));
 
 class ExampleRedux extends DartBoardFeature {
   @override
@@ -15,15 +15,18 @@ class ExampleRedux extends DartBoardFeature {
   @override
   List<RouteDefinition> get routes => [
         NamedRouteDefinition(
-            route: "/redux", builder: (ctx, settings) => ReduxScreen())
+            route: "/example", builder: (ctx, settings) => ReduxScreen())
       ];
 
   @override
   List<DartBoardDecoration> get appDecorations => [
-        ReduxStateProviderDecoration<ExampleState>(
-            factory: () => ExampleState(count: 0), name: "Example Redux State"),
-        ReduxMiddlewareProviderDecoration(
-            name: "ExampleEpic",
+        /// This is our State object
+        ReduxStateDecoration<ExampleState>(
+            factory: () => ExampleState(count: 0), name: "ExampleReduxState"),
+
+        /// This is our middleware (Epic)
+        ReduxMiddlewareDecoration(
+            name: "ButtonDebouncerEpic",
             middleware: EpicMiddleware(delayedIncrementEpic))
       ];
 
@@ -36,7 +39,7 @@ class ReduxScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Center(
-      child: ReduxStateUpdater<ExampleState>(
+      child: ReduxBuilder<ExampleState>(
         (ctx, state) => AnimatedContainer(
           decoration: BoxDecoration(
               color: state.count % 2 == 0
@@ -57,8 +60,13 @@ class ReduxScreen extends StatelessWidget {
                 ),
                 MaterialButton(
                   elevation: 2,
+                  onPressed: () => dispatchFunc(increment),
+                  child: Text("Functional Dispatch"),
+                ),
+                MaterialButton(
+                  elevation: 2,
                   onPressed: () => dispatch(DelayedIncrement()),
-                  child: Text("Increment vis Async Epic"),
+                  child: Text("Debounced Epic"),
                 ),
               ],
             ),
@@ -80,24 +88,25 @@ class ExampleState {
 /// Type Marker for a Async Epic
 class DelayedIncrement {}
 
+/// We can do our Actions as Functions
 ExampleState increment(ExampleState oldState) =>
     ExampleState(count: oldState.count + 1);
 
-class IncrementAction extends FeatureReducable<ExampleState> {
+/// We can bundle our Actions as ReduxAction<Type>
+class IncrementAction extends ReduxAction<ExampleState> {
   @override
   ExampleState featureReduce(ExampleState state) =>
       ExampleState(count: state.count + 1);
 }
 
+/// Demonstrate a epic that delays an increment
+///
+/// This would be used to hook up network calls
+/// or other long running operations
 Stream<dynamic> delayedIncrementEpic(
-    Stream<dynamic> actions, EpicStore<DartBoardState> store) {
-  // Wrap our actions Stream as an Observable. This will enhance the stream with
-  // a bit of extra functionality.
-  return actions
-      // Use `whereType` to narrow down to PerformSearchAction
-      .whereType<DelayedIncrement>()
-      .asyncMap((action) =>
-          // No need to cast the action to extract the search term!
-          Future.delayed(Duration(seconds: 1))
-              .then((results) => IncrementAction()));
-}
+        Stream<dynamic> actions, EpicStore<DartBoardState> store) =>
+    actions
+        .whereType<DelayedIncrement>()
+        .debounceTime(Duration(milliseconds: 400))
+        .asyncMap((action) => Future.delayed(Duration(seconds: 1))
+            .then((results) => IncrementAction()));
