@@ -127,16 +127,22 @@ class ReduxScreen extends StatelessWidget {
                   Text("Count: ${state.count}"),
                   MaterialButton(
                     elevation: 2,
+
+                    ///---------------------- OBJECT DISPATCH
                     onPressed: () => dispatch(IncrementAction()),
                     child: Text("Increment Object"),
                   ),
                   MaterialButton(
                     elevation: 2,
+
+                    ///---------------------- FUNCTION DISPATCH
                     onPressed: () => dispatchFunc(increment),
                     child: Text("Functional Dispatch"),
                   ),
                   MaterialButton(
                     elevation: 2,
+
+                    ///---------------------- EPIC HOOK
                     onPressed: () => dispatch(DelayedIncrement()),
                     child: Text("Debounced Epic"),
                   ),
