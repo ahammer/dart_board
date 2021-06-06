@@ -105,6 +105,24 @@ class _DartBoardStoreWidgetState extends State<DartBoardStoreWidget> {
   /// Snapshot for when we rebuild the store. Starts out blank
   var _snapshot = <Type, Map<String, dynamic>>{};
 
+  Map<String, Middleware<DartBoardState>> middleware = {};
+
+  void registerMiddleware(String name, Middleware<DartBoardState> entry) {
+    middleware[name] = entry;
+
+    /// Take a snapshot before we re-init the store
+    _snapshot = store.state.data;
+    setState(() => initStore());
+  }
+
+  void unregisterMiddleware(String name) {
+    middleware.remove(name);
+
+    /// Take a snapshot before we re-init the store
+    _snapshot = store.state.data;
+    setState(() => initStore());
+  }
+
   @override
   void initState() {
     initStore();
@@ -116,7 +134,9 @@ class _DartBoardStoreWidgetState extends State<DartBoardStoreWidget> {
       StoreProvider(key: Key("redux_store"), store: store, child: widget.child);
 
   void initStore() {
-    store = Store(_reducer, initialState: DartBoardState(data: _snapshot));
+    store = Store(_reducer,
+        initialState: DartBoardState(data: _snapshot),
+        middleware: middleware.values.toList());
   }
 }
 
