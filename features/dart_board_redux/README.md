@@ -1,11 +1,30 @@
 # dart_board_redux
 
-A new flutter module project.
+Redux Capabilities for Dart Board
 
-## Getting Started
+## Usage
 
-For help getting started with Flutter, view our online
-[documentation](https://flutter.dev/).
+Expose States and Middleware with Decorations in features
+Dispatch as necessary. Use FeatureStateBuilder<T> to hook into UI.
 
-For instructions integrating Flutter modules to your existing applications,
-see the [add-to-app documentation](https://flutter.dev/docs/development/add-to-app).
+## API
+
+ API:
+ # Functions
+ T getState<T>()
+ dispatch(FeatureAction<T>())
+ dispatchFunc(T action(T))
+
+ # Classes
+ class FeatureAction<T>
+
+ # Decorations
+ ReduxStateDecoration
+ ReduxMiddlewareDecoration
+
+ # Widget
+ FeatureStateBuilder<T>(builder:(ctx, t) => YourBuilder)
+
+## Usage
+
+For usage, see Example
