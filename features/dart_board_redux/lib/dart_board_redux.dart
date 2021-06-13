@@ -1,5 +1,6 @@
 import 'package:dart_board_core/dart_board.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:redux_thunk/redux_thunk.dart';
 import 'package:redux/redux.dart';
 
 ///-----------------------------------------------------------------------------
@@ -50,15 +51,22 @@ import 'package:redux/redux.dart';
 /// It uses a global key so we can wire things up internally
 /// but kept private so others don't abuse it.
 class DartBoardRedux extends DartBoardFeature {
+  DartBoardRedux({this.includeThunk = true});
+
   @override
   String get namespace => "redux";
+
+  final bool includeThunk;
 
   @override
   List<DartBoardDecoration> get appDecorations => [
         DartBoardDecoration(
             name: "redux_store",
-            decoration: (ctx, child) =>
-                _DartBoardStoreWidget(key: _dartBoardReduxKey, child: child))
+            decoration: (ctx, child) => _DartBoardStoreWidget(
+                  key: _dartBoardReduxKey,
+                  child: child,
+                  includeThunk: includeThunk,
+                ))
       ];
 }
 
@@ -112,7 +120,7 @@ class ReduxMiddlewareDecoration extends DartBoardDecoration {
           name: name,
           decoration: (context, child) => LifeCycleWidget(
               child: child,
-              init: (ctx) => _dartBoardReduxKey.currentState
+              preInit: () => _dartBoardReduxKey.currentState
                   ?._registerMiddleware(name, middleware),
               dispose: (ctx) =>
                   _dartBoardReduxKey.currentState?._unregisterMiddleware(name)),
@@ -289,10 +297,12 @@ DartBoardState _reducer(DartBoardState state, action) {
 ///
 class _DartBoardStoreWidget extends StatefulWidget {
   final Widget child;
+  final bool includeThunk;
 
   const _DartBoardStoreWidget({
     Key? key,
     required this.child,
+    required this.includeThunk,
   }) : super(key: key);
 
   @override
@@ -379,6 +389,7 @@ class _DartBoardStoreWidgetState extends State<_DartBoardStoreWidget> {
     store = Store(_reducer,
         initialState: DartBoardState(data: _snapshot, factories: _factories),
         middleware: [
+          if (widget.includeThunk) thunkMiddleware,
           ..._middleware.values,
         ]);
   }

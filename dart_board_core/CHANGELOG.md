@@ -12,4 +12,7 @@
    * minimal, no-deps example in dart_board_core
    * fixed formatting in 1 file
    * fix package description
-   
+
+# 0.9.4
+ - Introduced BuildConvertor widget for casting builder functions
+   E.g. Data->ViewModel

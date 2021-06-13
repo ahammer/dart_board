@@ -84,10 +84,14 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
 
   Map<String, String?> featureOverrides = {};
 
+  bool _init = false;
+
   @override
   void initState() {
     super.initState();
     buildFeatures();
+    WidgetsBinding.instance
+        ?.scheduleFrameCallback((timeStamp) => setState(() => _init = true));
   }
 
   /// Simple build
@@ -95,8 +99,10 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
   Widget build(BuildContext context) => Provider<DartBoardCore>(
         create: (ctx) => this,
         child: MaterialApp(
-          home: applyPageDecorations(
-              RouteWidget(settings: RouteSettings(name: widget.initialRoute))),
+          home: _init
+              ? applyPageDecorations(RouteWidget(
+                  settings: RouteSettings(name: widget.initialRoute)))
+              : CircularProgressIndicator(),
           key: dartBoardKey,
           navigatorKey: dartBoardNavKey,
           builder: (context, navigator) => appDecorations.reversed.fold(

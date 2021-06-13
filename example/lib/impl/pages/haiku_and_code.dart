@@ -42,6 +42,12 @@ class _HaikuAndCodeState extends State<HaikuAndCode> {
   }
 
   @override
+  void setState(VoidCallback fn) {
+    /// Safe setState
+    if (mounted) super.setState(fn);
+  }
+
+  @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance!.scheduleFrameCallback((timeStamp) {
       //Trigger a data load (if necessary)
