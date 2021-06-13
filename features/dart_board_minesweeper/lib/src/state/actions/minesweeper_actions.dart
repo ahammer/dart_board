@@ -143,7 +143,7 @@ void flipSurroundingNodes(
 
 //Flip or Tag a node
 //If flip = false, a tag will be done
-MineSweeperNode? flipNode(
+MineSweeperNode flipNode(
     MinesweeperState oldState, MinesweeperStateBuilder b, int x, int? y,
     {bool flip = true}) {
   //Bounds check

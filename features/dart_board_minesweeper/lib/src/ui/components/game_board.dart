@@ -16,6 +16,15 @@ const kBoardEdgePadding = 1.0;
 ///The game timer
 ///The bomb counter
 
+MineFieldViewModel buildVm(MinesweeperState state) {
+  return MineFieldViewModel(
+      width: state.mineSweeper.width,
+      height: state.mineSweeper.height,
+      gameOver: state.mineSweeper.isGameOver,
+      win: state.mineSweeper.isWin,
+      started: true);
+}
+
 ///
 ///Mine Field
 class GameBoard extends StatelessWidget {
@@ -28,7 +37,7 @@ class GameBoard extends StatelessWidget {
     return Center(
       child: AspectRatio(
         aspectRatio: 1.0,
-        child: Card(child: MineField()),
+        child: Card(child: MineField(vm: buildVm(getState()))),
       ),
     );
   }
@@ -74,51 +83,32 @@ class BombsRemaining extends StatelessWidget {
   @override
   Widget build(BuildContext context) =>
       FeatureStateBuilder<MinesweeperState>((ctx, state) => Text(
-          (state.mineSweeper == null)
-              ? ""
-              : "💣${state.mineSweeper!.bombs! - state.mineSweeper!.flagCount}",
+          "💣${state.mineSweeper.bombs - state.mineSweeper.flagCount}",
           style: Theme.of(context).textTheme.headline5));
 }
 
 class MineField extends StatelessWidget {
-  const MineField({
-    Key? key,
-  }) : super(key: key);
+  final MineFieldViewModel vm;
+  const MineField({Key? key, required this.vm}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) => FeatureStateBuilder<MinesweeperState>(
-      (ctx, state) => BuilderConvertor<MinesweeperState, MineFieldViewModel>(
-          convertor: buildVm,
-          input: state,
-          builder: (ctx, vm) {
-            List<Widget> children = [];
-            for (int y = 0; y < vm.height; y++) {
-              for (int x = 0; x < vm.width; x++) {
-                children.add(MineBlock(x: x, y: y));
-              }
-            }
+  Widget build(BuildContext context) {
+    List<Widget> children = [];
+    for (int y = 0; y < vm.height; y++) {
+      for (int x = 0; x < vm.width; x++) {
+        children.add(MineBlock(x: x, y: y));
+      }
+    }
 
-            return LayoutBuilder(
-                builder: (context, constraints) => Stack(children: <Widget>[
-                      ...vm.started
-                          ? [
-                              CustomMultiChildLayout(
-                                  delegate: GameBoardLayoutDelegate(
-                                      vm.width, vm.height),
-                                  children: children),
-                            ]
-                          : [],
-                      GameInfoOverlay(vm: vm)
-                    ]));
-          }));
-
-  MineFieldViewModel buildVm(MinesweeperState state) {
-    return MineFieldViewModel(
-        width: state.mineSweeper.width,
-        height: state.mineSweeper.height,
-        gameOver: state.mineSweeper.isGameOver,
-        win: state.mineSweeper.isWin,
-        started: true);
+    return Stack(children: <Widget>[
+      ...vm.started
+          ? [
+              CustomMultiChildLayout(
+                  delegate: GameBoardLayoutDelegate(vm.width, vm.height),
+                  children: children),
+            ]
+          : [],
+      GameInfoOverlay(vm: vm)
+    ]);
   }
 }
 

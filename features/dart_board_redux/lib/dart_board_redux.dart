@@ -51,7 +51,11 @@ import 'package:redux/redux.dart';
 /// It uses a global key so we can wire things up internally
 /// but kept private so others don't abuse it.
 class DartBoardRedux extends DartBoardFeature {
-  DartBoardRedux({this.includeThunk = true});
+  DartBoardRedux(
+      {
+
+      /// If you want the Thunk Middleware attached
+      this.includeThunk = true});
 
   @override
   String get namespace => "redux";
