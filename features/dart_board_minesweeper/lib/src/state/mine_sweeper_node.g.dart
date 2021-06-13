@@ -16,7 +16,7 @@ class _$MineSweeperNode extends MineSweeperNode {
   @override
   final double random;
   @override
-  final bool isBomb;
+  final bool? isBomb;
 
   factory _$MineSweeperNode([void Function(MineSweeperNodeBuilder)? updates]) =>
       (new MineSweeperNodeBuilder()..update(updates)).build();
@@ -26,7 +26,7 @@ class _$MineSweeperNode extends MineSweeperNode {
       required this.isTagged,
       required this.neighbours,
       required this.random,
-      required this.isBomb})
+      this.isBomb})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         isVisible, 'MineSweeperNode', 'isVisible');
@@ -35,7 +35,6 @@ class _$MineSweeperNode extends MineSweeperNode {
     BuiltValueNullFieldError.checkNotNull(
         neighbours, 'MineSweeperNode', 'neighbours');
     BuiltValueNullFieldError.checkNotNull(random, 'MineSweeperNode', 'random');
-    BuiltValueNullFieldError.checkNotNull(isBomb, 'MineSweeperNode', 'isBomb');
   }
 
   @override
@@ -141,8 +140,7 @@ class MineSweeperNodeBuilder
                 neighbours, 'MineSweeperNode', 'neighbours'),
             random: BuiltValueNullFieldError.checkNotNull(
                 random, 'MineSweeperNode', 'random'),
-            isBomb: BuiltValueNullFieldError.checkNotNull(
-                isBomb, 'MineSweeperNode', 'isBomb'));
+            isBomb: isBomb);
     replace(_$result);
     return _$result;
   }

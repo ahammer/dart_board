@@ -213,7 +213,8 @@ int _countNeighbours(
   neighbours.add(_getNode(x - 1, y + 1, width, height, nodes) ?? emptyNode);
   neighbours.add(_getNode(x - 1, y, width, height, nodes) ?? emptyNode);
   neighbours.add(_getNode(x - 1, y - 1, width, height, nodes) ?? emptyNode);
-  return neighbours.fold(0, (value, node) => value + (node.isBomb! ? 1 : 0));
+  return neighbours.fold(
+      0, (value, node) => value + (node.isBomb ?? false ? 1 : 0));
 }
 
 MineSweeperNode _getNode(

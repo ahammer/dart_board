@@ -52,7 +52,9 @@ class _MineBlockState extends State<MineBlock> {
                 onExit: (_) => setState(() => hover = false),
                 child: AnimatedContainer(
                   decoration: vm.isVisible
-                      ? (vm.isBomb ? bombBox(context) : cleanBox(context))
+                      ? (vm.isBomb ?? false
+                          ? bombBox(context)
+                          : cleanBox(context))
                       : hover
                           ? hoverBox(context)
                           : vm.isTagged
@@ -64,12 +66,12 @@ class _MineBlockState extends State<MineBlock> {
                           : (250 + vm.random * 500).toInt()),
                   child: Center(
                       child: Text(vm.isVisible
-                          ? (vm.isBomb)
+                          ? (vm.isBomb ?? false)
                               ? "💣"
                               : "${vm.neighbours == 0 ? "" : vm.neighbours}"
                           : (vm.isTagged
                               ? "🏳"
-                              : (isGameOver && vm.isBomb)
+                              : (isGameOver && (vm.isBomb ?? false))
                                   ? "💣"
                                   : ""))),
                 ),

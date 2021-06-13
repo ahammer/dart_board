@@ -1,4 +1,3 @@
-import 'package:dart_board_minesweeper/src/scaffolding/mine_redux.dart';
 import 'package:dart_board_minesweeper/src/state/app_state.dart';
 import 'package:dart_board_redux/dart_board_redux.dart';
 
