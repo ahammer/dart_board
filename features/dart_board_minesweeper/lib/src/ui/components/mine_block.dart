@@ -9,9 +9,10 @@ import 'package:provider/provider.dart';
 import 'package:redux/redux.dart';
 
 class MineBlock extends StatefulWidget {
-  final int? x, y;
+  final int x, y;
 
-  const MineBlock({Key? key, this.x, this.y}) : super(key: key);
+  const MineBlock({Key? key, required this.x, required this.y})
+      : super(key: key);
 
   @override
   _MineBlockState createState() => _MineBlockState();
@@ -23,7 +24,7 @@ class _MineBlockState extends State<MineBlock> {
   @override
   Widget build(BuildContext context) {
     final state = getState<MinesweeperState>();
-    bool isGameOver = state.mineSweeper!.isGameOver;
+    bool isGameOver = state.mineSweeper.isGameOver;
     return LayoutId(
         id: "grid:${widget.x}:${widget.y}",
         child: FeatureStateBuilder<MinesweeperState>(
@@ -34,7 +35,7 @@ class _MineBlockState extends State<MineBlock> {
           (context, state) =>
               BuilderConvertor<MinesweeperState, MineSweeperNode>(
             convertor: (state) =>
-                state.mineSweeper!.getNode(x: widget.x!, y: widget.y!),
+                state.mineSweeper.getNode(x: widget.x, y: widget.y),
             input: state,
             builder: (ctx, vm) => GestureDetector(
               onTap: () {
@@ -50,23 +51,23 @@ class _MineBlockState extends State<MineBlock> {
                 }),
                 onExit: (_) => setState(() => hover = false),
                 child: AnimatedContainer(
-                  decoration: vm!.isVisible!
-                      ? (vm.isBomb! ? bombBox(context) : cleanBox(context))
+                  decoration: vm.isVisible
+                      ? (vm.isBomb ? bombBox(context) : cleanBox(context))
                       : hover
                           ? hoverBox(context)
-                          : vm.isTagged!
+                          : vm.isTagged
                               ? flagBox(context)
                               : unknownBox(context),
                   duration: Duration(
                       milliseconds: hover
-                          ? (100 * vm.random!).toInt()
-                          : (250 + vm.random! * 500).toInt()),
+                          ? (100 * vm.random).toInt()
+                          : (250 + vm.random * 500).toInt()),
                   child: Center(
-                      child: Text(vm.isVisible!
-                          ? (vm.isBomb ?? false)
+                      child: Text(vm.isVisible
+                          ? (vm.isBomb)
                               ? "💣"
                               : "${vm.neighbours == 0 ? "" : vm.neighbours}"
-                          : (vm.isTagged!
+                          : (vm.isTagged
                               ? "🏳"
                               : (isGameOver && vm.isBomb)
                                   ? "💣"

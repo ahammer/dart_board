@@ -70,6 +70,8 @@ abstract class MineSweeper implements Built<MineSweeper, MineSweeperBuilder> {
       x >= 0 && y! >= 0 && x < width && y < height;
 
   MineSweeperNode getNode({required int x, required int y}) {
+    final idx = x + y * width;
+    if (idx >= nodes.length) return emptyNode;
     return nodes[x + y * width];
   }
 }

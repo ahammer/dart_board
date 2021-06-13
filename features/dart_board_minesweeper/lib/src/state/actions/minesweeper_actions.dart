@@ -25,7 +25,7 @@ const kMaxCells1D = 20;
 ThunkAction<DartBoardState> clearTiles = (store) async {
   MineSweeper game = store.state.getState<MinesweeperState>().mineSweeper;
 
-  for (int i = 0; i < game.width! + game.height!; i++) {
+  for (int i = 0; i < game.width + game.height; i++) {
     await Future.delayed(Duration(milliseconds: 100));
     dispatch(CleanBlanksAction());
   }
@@ -78,14 +78,14 @@ class CleanBlanksAction extends FeatureAction<MinesweeperState> {
 }
 
 class TouchMineSweeperTileAction extends FeatureAction<MinesweeperState> {
-  final int? x, y;
+  final int x, y;
 
-  TouchMineSweeperTileAction({this.x, this.y});
+  TouchMineSweeperTileAction({required this.x, required this.y});
 
   MinesweeperState Function(MinesweeperState oldState) get reducer =>
       (oldState) => oldState.rebuild((b) {
-            if (!oldState.mineSweeper!.isInBounds(x!, y) ||
-                oldState.mineSweeper!.isGameOver) {
+            if (!oldState.mineSweeper.isInBounds(x, y) ||
+                oldState.mineSweeper.isGameOver) {
               return b;
             }
 

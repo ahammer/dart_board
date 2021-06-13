@@ -1,7 +1,6 @@
 import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_minesweeper/src/state/app_state.dart';
 import 'package:dart_board_redux/dart_board_redux.dart';
-import 'package:redux_thunk/redux_thunk.dart';
 import 'src/ui/screens/game_screen.dart';
 
 /// This is a very simple integration
@@ -19,7 +18,6 @@ class MinesweeperFeature extends DartBoardFeature {
 
   @override
   List<DartBoardDecoration> get appDecorations => [
-        ReduxMiddlewareDecoration(name: "thunk", middleware: thunkMiddleware),
         ReduxStateDecoration<MinesweeperState>(
             factory: () => MinesweeperState.getDefault(),
             name: "minesweeper_state"),
