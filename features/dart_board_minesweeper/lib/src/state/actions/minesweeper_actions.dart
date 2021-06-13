@@ -21,8 +21,10 @@ final sizes = {
 //Max cells in one dimension
 const kMaxCells1D = 20;
 
-ThunkAction<MinesweeperState> clearTiles = (store) async {
-  var game = store.state.mineSweeper!;
+/// Thunks need to be with DartBoardState (because that's the store type)
+ThunkAction<DartBoardState> clearTiles = (store) async {
+  MineSweeper game = store.state.getState<MinesweeperState>().mineSweeper;
+
   for (int i = 0; i < game.width! + game.height!; i++) {
     await Future.delayed(Duration(milliseconds: 100));
     dispatch(CleanBlanksAction());
