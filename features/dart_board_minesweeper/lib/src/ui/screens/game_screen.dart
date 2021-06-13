@@ -1,12 +1,10 @@
+import 'package:dart_board_redux/dart_board_redux.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
 import 'package:dart_board_minesweeper/src/state/actions/game_actions.dart';
 import 'package:dart_board_minesweeper/src/state/actions/minesweeper_actions.dart';
 import 'package:dart_board_minesweeper/src/state/app_state.dart';
 import 'package:dart_board_minesweeper/src/ui/components/game_board.dart';
-import 'package:provider/provider.dart';
-import 'package:redux/redux.dart';
 
 class GameScreen extends StatelessWidget {
   @override
@@ -21,15 +19,9 @@ class GameScreen extends StatelessWidget {
           Center(
               child: IconButton(
                   icon: Icon(Icons.play_arrow),
-                  onPressed: () {
-                    final store =
-                        Provider.of<Store<AppState>>(context, listen: false);
-                    final query = MediaQuery.of(context);
-                    store.dispatch(NewGameAction(
-                        difficulty: store.state.difficulty,
-                        width: query.size.width.toInt(),
-                        height: query.size.height.toInt()));
-                  })),
+                  onPressed: () => dispatch(NewGameAction(
+                        difficulty: getState<MinesweeperState>().difficulty,
+                      )))),
           Expanded(child: Container()),
           Center(child: Container(child: BombsRemaining())),
           Container(width: 20),
@@ -46,20 +38,16 @@ class GameDifficultyWidget extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return StoreConnector<AppState, String?>(
-        distinct: true,
-        converter: (store) => store.state.difficulty,
-        builder: (ctx, value) => DropdownButton(
-              value: value,
-              items: <DropdownMenuItem>[
-                ...["Easy", "Medium", "Hard"]
-                    .map((s) => DropdownMenuItem(value: s, child: Text(s)))
-              ],
-              onChanged: (dynamic value) {
-                Provider.of<Store<AppState>>(context, listen: false)
-                    .dispatch(SetDifficultyAction(value));
-              },
-            ));
-  }
+  Widget build(BuildContext context) => FeatureStateBuilder<MinesweeperState>(
+      (ctx, value) => DropdownButton<String>(
+            value: value.difficulty,
+            items: <DropdownMenuItem<String>>[
+              ...[
+                "Easy",
+                "Medium",
+                "Hard"
+              ].map((s) => DropdownMenuItem<String>(value: s, child: Text(s)))
+            ],
+            onChanged: (dynamic value) => dispatch(SetDifficultyAction(value)),
+          ));
 }

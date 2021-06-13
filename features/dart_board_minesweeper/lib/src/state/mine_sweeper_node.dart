@@ -17,9 +17,9 @@ abstract class MineSweeperNode
     ..neighbours = 1
     ..random = 0);
 
-  bool? get isVisible;
-  bool? get isTagged;
-  int? get neighbours;
-  double? get random;
-  bool? get isBomb;
+  bool get isVisible;
+  bool get isTagged;
+  int get neighbours;
+  double get random;
+  bool get isBomb;
 }

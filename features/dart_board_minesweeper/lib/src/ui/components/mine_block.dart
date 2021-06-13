@@ -1,6 +1,8 @@
+import 'package:dart_board_core/impl/widgets/convertor_widget.dart';
 import 'package:dart_board_minesweeper/src/state/actions/minesweeper_actions.dart';
 import 'package:dart_board_minesweeper/src/state/app_state.dart';
 import 'package:dart_board_minesweeper/src/state/mine_sweeper_node.dart';
+import 'package:dart_board_redux/dart_board_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:provider/provider.dart';
@@ -20,58 +22,56 @@ class _MineBlockState extends State<MineBlock> {
 
   @override
   Widget build(BuildContext context) {
-    bool isGameOver = Provider.of<Store<AppState>>(context, listen: false)
-        .state
-        .mineSweeper!
-        .isGameOver;
+    final state = getState<MinesweeperState>();
+    bool isGameOver = state.mineSweeper!.isGameOver;
     return LayoutId(
         id: "grid:${widget.x}:${widget.y}",
-        child: StoreConnector<AppState, MineSweeperNode?>(
-          converter: (state) =>
+        child: FeatureStateBuilder<MinesweeperState>(
+          /*converter: (state) =>
               state.state.mineSweeper!.getNode(x: widget.x!, y: widget.y!),
           distinct: true,
-          builder: (context, vm) => GestureDetector(
-            onTap: () {
-              final store =
-                  Provider.of<Store<AppState>>(context, listen: false);
-              store.dispatch(
-                  TouchMineSweeperTileAction(x: widget.x, y: widget.y));
-              store.dispatch(clearTiles);
-            },
-            onLongPress: () {
-              Provider.of<Store<AppState>>(context, listen: false).dispatch(
-                  FlagMineSweeperTileAction(x: widget.x, y: widget.y));
-            },
-            child: MouseRegion(
-              onEnter: (_) => setState(() {
-                hover = !Provider.of<Store<AppState>>(context, listen: false)
-                    .state
-                    .mineSweeper!
-                    .isGameOver;
-              }),
-              onExit: (_) => setState(() => hover = false),
-              child: AnimatedContainer(
-                decoration: vm!.isVisible!
-                    ? (vm.isBomb! ? bombBox(context) : cleanBox(context))
-                    : hover
-                        ? hoverBox(context)
-                        : vm.isTagged!
-                            ? flagBox(context)
-                            : unknownBox(context),
-                duration: Duration(
-                    milliseconds: hover
-                        ? (100 * vm.random!).toInt()
-                        : (250 + vm.random! * 500).toInt()),
-                child: Center(
-                    child: Text(vm.isVisible!
-                        ? (vm.isBomb ?? false)
-                            ? "💣"
-                            : "${vm.neighbours == 0 ? "" : vm.neighbours}"
-                        : (vm.isTagged!
-                            ? "🏳"
-                            : (isGameOver && vm.isBomb!)
-                                ? "💣"
-                                : ""))),
+          builder: */
+          (context, state) =>
+              BuilderConvertor<MinesweeperState, MineSweeperNode>(
+            convertor: (state) =>
+                state.mineSweeper!.getNode(x: widget.x!, y: widget.y!),
+            input: state,
+            builder: (ctx, vm) => GestureDetector(
+              onTap: () {
+                dispatch(TouchMineSweeperTileAction(x: widget.x, y: widget.y));
+                dispatch(clearTiles);
+              },
+              onLongPress: () {
+                dispatch(FlagMineSweeperTileAction(x: widget.x, y: widget.y));
+              },
+              child: MouseRegion(
+                onEnter: (_) => setState(() {
+                  getState<MinesweeperState>().mineSweeper.isGameOver;
+                }),
+                onExit: (_) => setState(() => hover = false),
+                child: AnimatedContainer(
+                  decoration: vm!.isVisible!
+                      ? (vm.isBomb! ? bombBox(context) : cleanBox(context))
+                      : hover
+                          ? hoverBox(context)
+                          : vm.isTagged!
+                              ? flagBox(context)
+                              : unknownBox(context),
+                  duration: Duration(
+                      milliseconds: hover
+                          ? (100 * vm.random!).toInt()
+                          : (250 + vm.random! * 500).toInt()),
+                  child: Center(
+                      child: Text(vm.isVisible!
+                          ? (vm.isBomb ?? false)
+                              ? "💣"
+                              : "${vm.neighbours == 0 ? "" : vm.neighbours}"
+                          : (vm.isTagged!
+                              ? "🏳"
+                              : (isGameOver && vm.isBomb)
+                                  ? "💣"
+                                  : ""))),
+                ),
               ),
             ),
           ),

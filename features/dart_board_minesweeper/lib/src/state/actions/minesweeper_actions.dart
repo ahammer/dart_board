@@ -1,16 +1,10 @@
 import 'dart:math';
 import 'package:built_collection/built_collection.dart';
-import 'package:dart_board_minesweeper/src/scaffolding/mine_redux.dart';
 import 'package:dart_board_minesweeper/src/state/app_state.dart';
 import 'package:dart_board_minesweeper/src/state/mine_sweeper.dart';
 import 'package:dart_board_minesweeper/src/state/mine_sweeper_node.dart';
+import 'package:dart_board_redux/dart_board_redux.dart';
 import 'package:redux_thunk/redux_thunk.dart';
-
-final difficultySizes = {
-  "Easy": 70,
-  "Medium": 50,
-  "Hard": 40,
-};
 
 final difficultyBombPercentages = {
   "Easy": 0.1,
@@ -18,63 +12,48 @@ final difficultyBombPercentages = {
   "Hard": 0.2,
 };
 
+final sizes = {
+  "Easy": 10,
+  "Medium": 15,
+  "Hard": 20,
+};
+
 //Max cells in one dimension
 const kMaxCells1D = 20;
 
-ThunkAction<AppState> clearTiles = (store) async {
+ThunkAction<MinesweeperState> clearTiles = (store) async {
   var game = store.state.mineSweeper!;
   for (int i = 0; i < game.width! + game.height!; i++) {
     await Future.delayed(Duration(milliseconds: 100));
-    store.dispatch(CleanBlanksAction());
+    dispatch(CleanBlanksAction());
   }
 };
 
-class NewGameAction extends Reducer {
-  final String? difficulty;
-  final int? width;
-  final int? height;
+class NewGameAction extends FeatureAction<MinesweeperState> {
+  final String difficulty;
 
-  NewGameAction({this.difficulty, this.width, this.height});
+  NewGameAction({required this.difficulty});
 
-  @override
   get reducer {
-    var w = (width! ~/ difficultySizes[difficulty!]!);
-    var h = (height! ~/ difficultySizes[difficulty!]!);
-
-    //Clamp to a max size (for performance)
-    //Basically, if one aspect ratio, scale down the kMaxCells1D on X, otherwise do on Y
-    //Maintains aspect ratio, which I want to be squareish.
-
-    if (w > kMaxCells1D) {
-      final r = kMaxCells1D / w;
-      w = kMaxCells1D;
-      h = (h * r).toInt();
-    }
-
-    /*
-    if (w > h) {
-    } else {
-      if (h > kMaxCells1D) {
-        final r = kMaxCells1D / h;
-        h = kMaxCells1D;
-        w = (r * kMaxCells1D).toInt();
-      } 
-    }
-    */
+    final size = sizes[difficulty]!;
 
     return (oldState) => oldState.rebuild((b) {
           return b
             ..mineSweeper.replace(MineSweeper.newGame(
-                width: w,
-                height: h,
-                bombs: ((w * h) * difficultyBombPercentages[difficulty!]!)
+                width: size,
+                height: size,
+                bombs: ((size * size) * difficultyBombPercentages[difficulty]!)
                     .toInt()));
         });
   }
+
+  @override
+  MinesweeperState featureReduce(MinesweeperState state) {
+    return reducer(state);
+  }
 }
 
-class CleanBlanksAction extends Reducer {
-  @override
+class CleanBlanksAction extends FeatureAction<MinesweeperState> {
   get reducer => (oldState) => oldState.rebuild((b) {
         if (oldState.mineSweeper == null) return oldState;
         for (int x = 0; x < oldState.mineSweeper!.width!; x++) {
@@ -91,14 +70,17 @@ class CleanBlanksAction extends Reducer {
 
         return b;
       });
+
+  @override
+  MinesweeperState featureReduce(MinesweeperState state) => reducer(state);
 }
 
-class TouchMineSweeperTileAction extends Reducer {
+class TouchMineSweeperTileAction extends FeatureAction<MinesweeperState> {
   final int? x, y;
 
   TouchMineSweeperTileAction({this.x, this.y});
-  @override
-  AppState Function(AppState oldState) get reducer =>
+
+  MinesweeperState Function(MinesweeperState oldState) get reducer =>
       (oldState) => oldState.rebuild((b) {
             if (!oldState.mineSweeper!.isInBounds(x!, y) ||
                 oldState.mineSweeper!.isGameOver) {
@@ -120,14 +102,17 @@ class TouchMineSweeperTileAction extends Reducer {
             }
             return b;
           });
+
+  @override
+  MinesweeperState featureReduce(MinesweeperState state) => reducer(state);
 }
 
-class FlagMineSweeperTileAction extends Reducer {
+class FlagMineSweeperTileAction extends FeatureAction<MinesweeperState> {
   final int? x, y;
 
   FlagMineSweeperTileAction({this.x, this.y});
-  @override
-  AppState Function(AppState oldState) get reducer =>
+
+  MinesweeperState Function(MinesweeperState oldState) get reducer =>
       (oldState) => oldState.rebuild((b) {
             if (!oldState.mineSweeper!.isInBounds(x!, y) ||
                 oldState.mineSweeper!.isGameOver) {
@@ -137,9 +122,13 @@ class FlagMineSweeperTileAction extends Reducer {
             flipNode(oldState, b, x!, y, flip: false);
             return b;
           });
+
+  @override
+  MinesweeperState featureReduce(MinesweeperState state) => reducer(state);
 }
 
-void flipSurroundingNodes(AppState oldState, AppStateBuilder b, int x, int y) {
+void flipSurroundingNodes(
+    MinesweeperState oldState, MinesweeperStateBuilder b, int x, int y) {
   flipNode(oldState, b, x + 1, y + 1);
   flipNode(oldState, b, x + 1, y);
   flipNode(oldState, b, x + 1, y - 1);
@@ -152,7 +141,8 @@ void flipSurroundingNodes(AppState oldState, AppStateBuilder b, int x, int y) {
 
 //Flip or Tag a node
 //If flip = false, a tag will be done
-MineSweeperNode? flipNode(AppState oldState, AppStateBuilder b, int x, int? y,
+MineSweeperNode? flipNode(
+    MinesweeperState oldState, MinesweeperStateBuilder b, int x, int? y,
     {bool flip = true}) {
   //Bounds check
   if ((x >= oldState.mineSweeper!.width!) ||
@@ -162,19 +152,19 @@ MineSweeperNode? flipNode(AppState oldState, AppStateBuilder b, int x, int? y,
 
   final nodeIdx = y * oldState.mineSweeper!.width! + x;
   final node = oldState.mineSweeper!.nodes![nodeIdx];
-  MineSweeperNode? newNode;
+  late MineSweeperNode newNode;
   if (flip) {
-    if (!node!.isTagged!) {
+    if (!node.isTagged!) {
       newNode = node.rebuild((b) => b..isVisible = true);
     }
   } else {
-    newNode = node!.rebuild((b) => b..isTagged = !b.isTagged!);
+    newNode = node.rebuild((b) => b..isTagged = !b.isTagged!);
   }
   b.mineSweeper.nodes[nodeIdx] = newNode;
   return newNode;
 }
 
-void _assignBombs(AppStateBuilder b) {
+void _assignBombs(MinesweeperStateBuilder b) {
   final nodes = b.mineSweeper.nodes;
   final bombCount = b.mineSweeper.bombs!;
   final width = b.mineSweeper.width!;
@@ -211,7 +201,7 @@ void _assignBombs(AppStateBuilder b) {
 }
 
 int _countNeighbours(
-    int x, int y, int width, int height, ListBuilder<MineSweeperNode?> nodes) {
+    int x, int y, int width, int height, ListBuilder<MineSweeperNode> nodes) {
   List<MineSweeperNode> neighbours = [];
   neighbours.add(_getNode(x + 1, y + 1, width, height, nodes) ?? emptyNode);
   neighbours.add(_getNode(x + 1, y, width, height, nodes) ?? emptyNode);
@@ -224,13 +214,10 @@ int _countNeighbours(
   return neighbours.fold(0, (value, node) => value + (node.isBomb! ? 1 : 0));
 }
 
-MineSweeperNode? _getNode(
-    int x, int y, int width, int height, ListBuilder<MineSweeperNode?> nodes) {
+MineSweeperNode _getNode(
+    int x, int y, int width, int height, ListBuilder<MineSweeperNode> nodes) {
   if (x < 0 || y < 0 || x >= width || y >= height) return emptyNode;
   int idx = x + y * width;
-  try {
-    return nodes[idx];
-  } catch (e) {
-    return emptyNode;
-  }
+
+  return nodes[idx];
 }

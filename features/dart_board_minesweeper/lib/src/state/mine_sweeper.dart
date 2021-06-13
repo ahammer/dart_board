@@ -22,6 +22,7 @@ abstract class MineSweeper implements Built<MineSweeper, MineSweeperBuilder> {
     for (int i = 0; i < width * height; i++) {
       nodes.add(MineSweeperNode((b) => b
         ..neighbours = 0
+        ..isBomb = false
         ..isVisible = false
         ..isTagged = false
         ..random = Random().nextDouble()));
@@ -36,20 +37,20 @@ abstract class MineSweeper implements Built<MineSweeper, MineSweeperBuilder> {
       ..nodes.replace(nodes));
   }
 
-  int? get width;
-  int? get height;
-  int? get bombs;
-  DateTime? get startTime;
+  int get width;
+  int get height;
+  int get bombs;
+  DateTime get startTime;
 
   DateTime? get gameOverTime;
 
-  BuiltList<MineSweeperNode?>? get nodes;
+  BuiltList<MineSweeperNode> get nodes;
 
   int get flagCount =>
-      nodes!.fold(0, (value, node) => value + (node!.isTagged! ? 1 : 0));
+      nodes!.fold(0, (value, node) => value + (node.isTagged! ? 1 : 0));
 
   int get notFlipped =>
-      nodes!.fold(0, (value, node) => value + (node!.isVisible! ? 0 : 1));
+      nodes!.fold(0, (value, node) => value + (node.isVisible! ? 0 : 1));
   //Check for Visible Bombs (That's game over)
 
   bool get isWin => flagCount == bombs && notFlipped == bombs;
@@ -66,14 +67,10 @@ abstract class MineSweeper implements Built<MineSweeper, MineSweeperBuilder> {
   }
 
   bool isInBounds(int x, int? y) =>
-      x >= 0 && y! >= 0 && x < width! && y < height!;
+      x >= 0 && y! >= 0 && x < width && y < height;
 
-  MineSweeperNode? getNode({required int x, required int y}) {
-    try {
-      return nodes![x + y * width!];
-    } catch (exception) {
-      return emptyNode;
-    }
+  MineSweeperNode getNode({required int x, required int y}) {
+    return nodes[x + y * width];
   }
 }
 

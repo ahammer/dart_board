@@ -8,26 +8,35 @@ part of 'mine_sweeper_node.dart';
 
 class _$MineSweeperNode extends MineSweeperNode {
   @override
-  final bool? isVisible;
+  final bool isVisible;
   @override
-  final bool? isTagged;
+  final bool isTagged;
   @override
-  final int? neighbours;
+  final int neighbours;
   @override
-  final double? random;
+  final double random;
   @override
-  final bool? isBomb;
+  final bool isBomb;
 
   factory _$MineSweeperNode([void Function(MineSweeperNodeBuilder)? updates]) =>
       (new MineSweeperNodeBuilder()..update(updates)).build();
 
   _$MineSweeperNode._(
-      {this.isVisible,
-      this.isTagged,
-      this.neighbours,
-      this.random,
-      this.isBomb})
-      : super._();
+      {required this.isVisible,
+      required this.isTagged,
+      required this.neighbours,
+      required this.random,
+      required this.isBomb})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        isVisible, 'MineSweeperNode', 'isVisible');
+    BuiltValueNullFieldError.checkNotNull(
+        isTagged, 'MineSweeperNode', 'isTagged');
+    BuiltValueNullFieldError.checkNotNull(
+        neighbours, 'MineSweeperNode', 'neighbours');
+    BuiltValueNullFieldError.checkNotNull(random, 'MineSweeperNode', 'random');
+    BuiltValueNullFieldError.checkNotNull(isBomb, 'MineSweeperNode', 'isBomb');
+  }
 
   @override
   MineSweeperNode rebuild(void Function(MineSweeperNodeBuilder) updates) =>
@@ -124,11 +133,16 @@ class MineSweeperNodeBuilder
   _$MineSweeperNode build() {
     final _$result = _$v ??
         new _$MineSweeperNode._(
-            isVisible: isVisible,
-            isTagged: isTagged,
-            neighbours: neighbours,
-            random: random,
-            isBomb: isBomb);
+            isVisible: BuiltValueNullFieldError.checkNotNull(
+                isVisible, 'MineSweeperNode', 'isVisible'),
+            isTagged: BuiltValueNullFieldError.checkNotNull(
+                isTagged, 'MineSweeperNode', 'isTagged'),
+            neighbours: BuiltValueNullFieldError.checkNotNull(
+                neighbours, 'MineSweeperNode', 'neighbours'),
+            random: BuiltValueNullFieldError.checkNotNull(
+                random, 'MineSweeperNode', 'random'),
+            isBomb: BuiltValueNullFieldError.checkNotNull(
+                isBomb, 'MineSweeperNode', 'isBomb'));
     replace(_$result);
     return _$result;
   }

@@ -1,11 +1,10 @@
 import 'dart:async';
 
+import 'package:dart_board_core/impl/widgets/convertor_widget.dart';
 import 'package:dart_board_minesweeper/src/state/app_state.dart';
+import 'package:dart_board_redux/dart_board_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_redux/flutter_redux.dart';
-import 'package:provider/provider.dart';
-import 'package:redux/redux.dart';
 
 import 'mine_block.dart';
 
@@ -26,11 +25,10 @@ class GameBoard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      child: Padding(
-        padding: const EdgeInsets.all(kBoardEdgePadding),
-        child: MineField(),
+    return Center(
+      child: AspectRatio(
+        aspectRatio: 1.0,
+        child: Card(child: MineField()),
       ),
     );
   }
@@ -60,13 +58,11 @@ class _GameTimerState extends State<GameTimer> {
 
   @override
   Widget build(BuildContext context) {
-    String value = "";
-    Store<AppState> store = Provider.of(context, listen: false);
+    var value = "";
+    final state = getState<MinesweeperState>();
 
-    if (store.state.mineSweeper != null) {
-      value =
-          "⏲️${(store.state.mineSweeper!.gameOverTime ?? DateTime.now()).difference(store.state.mineSweeper!.startTime!).inSeconds}";
-    }
+    //value =
+//        "⏲️${(state.mineSweeper.gameOverTime ?? DateTime.now()).difference(state.mineSweeper.startTime).inSeconds}";
 
     return Text(value, style: Theme.of(context).textTheme.headline5);
   }
@@ -76,14 +72,12 @@ class BombsRemaining extends StatelessWidget {
   const BombsRemaining();
 
   @override
-  Widget build(BuildContext context) => StoreConnector<AppState, String>(
-      converter: (store) {
-        if (store.state.mineSweeper == null) return "";
-        return "💣${store.state.mineSweeper!.bombs! - store.state.mineSweeper!.flagCount}";
-      },
-      distinct: true,
-      builder: (ctx, value) =>
-          Text(value, style: Theme.of(context).textTheme.headline5));
+  Widget build(BuildContext context) =>
+      FeatureStateBuilder<MinesweeperState>((ctx, state) => Text(
+          (state.mineSweeper == null)
+              ? ""
+              : "💣${state.mineSweeper!.bombs! - state.mineSweeper!.flagCount}",
+          style: Theme.of(context).textTheme.headline5));
 }
 
 class MineField extends StatelessWidget {
@@ -92,49 +86,40 @@ class MineField extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => LayoutBuilder(
-      builder: (context, constraints) =>
-          StoreConnector<AppState, MineFieldViewModel>(
-              converter: (store) {
-                if (store.state.mineSweeper != null) {
-                  return MineFieldViewModel(
-                      width: store.state.mineSweeper!.width,
-                      height: store.state.mineSweeper!.height,
-                      gameOver: store.state.mineSweeper!.isGameOver,
-                      win: store.state.mineSweeper!.isWin,
-                      started: true);
-                } else {
-                  return MineFieldViewModel(
-                      width: 0,
-                      height: 0,
-                      gameOver: true,
-                      win: false,
-                      started: false);
-                }
-              },
-              distinct: true,
-              builder: (ctx, vm) {
-                List<Widget> children = [];
-                for (int y = 0; y < vm.height!; y++) {
-                  for (int x = 0; x < vm.width!; x++) {
-                    children.add(MineBlock(x: x, y: y));
-                  }
-                }
+  Widget build(BuildContext context) => FeatureStateBuilder<MinesweeperState>(
+      (ctx, state) => BuilderConvertor<MinesweeperState, MineFieldViewModel>(
+          convertor: buildVm,
+          input: state,
+          builder: (ctx, vm) {
+            List<Widget> children = [];
+            for (int y = 0; y < vm.height; y++) {
+              for (int x = 0; x < vm.width; x++) {
+                children.add(MineBlock(x: x, y: y));
+              }
+            }
 
-                return Stack(
-                  children: <Widget>[
-                    ...vm.started!
-                        ? [
-                            CustomMultiChildLayout(
-                                delegate: GameBoardLayoutDelegate(
-                                    vm.width, vm.height),
-                                children: children),
-                          ]
-                        : [],
-                    GameInfoOverlay(vm: vm)
-                  ],
-                );
-              }));
+            return LayoutBuilder(
+                builder: (context, constraints) => Stack(children: <Widget>[
+                      ...vm.started
+                          ? [
+                              CustomMultiChildLayout(
+                                  delegate: GameBoardLayoutDelegate(
+                                      vm.width, vm.height),
+                                  children: children),
+                            ]
+                          : [],
+                      GameInfoOverlay(vm: vm)
+                    ]));
+          }));
+
+  MineFieldViewModel buildVm(MinesweeperState state) {
+    return MineFieldViewModel(
+        width: state.mineSweeper.width,
+        height: state.mineSweeper.height,
+        gameOver: state.mineSweeper.isGameOver,
+        win: state.mineSweeper.isWin,
+        started: true);
+  }
 }
 
 class GameInfoOverlay extends StatelessWidget {
@@ -149,7 +134,7 @@ class GameInfoOverlay extends StatelessWidget {
   Widget build(BuildContext context) {
     return IgnorePointer(
         child: AnimatedOpacity(
-            opacity: vm.gameOver! ? 1 : 0,
+            opacity: vm.gameOver ? 1 : 0,
             duration: Duration(seconds: 1),
             child: Container(
                 width: double.infinity,
@@ -157,7 +142,7 @@ class GameInfoOverlay extends StatelessWidget {
                 color: Theme.of(context).colorScheme.surface.withOpacity(0.4),
                 child: Center(
                     child: Visibility(
-                  visible: !vm.started! || vm.gameOver!,
+                  visible: !vm.started || vm.gameOver,
                   child: Container(
                     decoration: BoxDecoration(
                         color: Theme.of(context).colorScheme.surface,
@@ -166,8 +151,8 @@ class GameInfoOverlay extends StatelessWidget {
                       padding: const EdgeInsets.all(32.0),
                       child: Text(
                         vm.started!
-                            ? vm.gameOver!
-                                ? vm.win!
+                            ? vm.gameOver
+                                ? vm.win
                                     ? "🔥You Win🔥"
                                     : "💩Game Over💩"
                                 : ""
@@ -181,14 +166,18 @@ class GameInfoOverlay extends StatelessWidget {
 }
 
 class MineFieldViewModel {
-  final bool? started;
-  final int? width;
-  final int? height;
-  final bool? gameOver;
-  final bool? win;
+  final bool started;
+  final int width;
+  final int height;
+  final bool gameOver;
+  final bool win;
 
   MineFieldViewModel(
-      {this.width, this.height, this.gameOver, this.win, this.started});
+      {required this.width,
+      required this.height,
+      required this.gameOver,
+      required this.win,
+      required this.started});
 
   //Equals and Hashcode
   bool operator ==(o) =>
@@ -202,17 +191,17 @@ class MineFieldViewModel {
 }
 
 class GameBoardLayoutDelegate extends MultiChildLayoutDelegate {
-  final int? width;
-  final int? height;
+  final int width;
+  final int height;
 
   GameBoardLayoutDelegate(this.width, this.height);
   @override
   void performLayout(Size size) {
-    final cw = size.width / width!;
-    final ch = size.height / height!;
+    final cw = size.width / width;
+    final ch = size.height / height;
 
-    for (int y = 0; y < height!; y++) {
-      for (int x = 0; x < width!; x++) {
+    for (int y = 0; y < height; y++) {
+      for (int x = 0; x < width; x++) {
         String id = "grid:$x:$y";
         layoutChild(id, BoxConstraints.expand(width: cw, height: ch));
         positionChild(id, Offset(x * cw, y * ch));
