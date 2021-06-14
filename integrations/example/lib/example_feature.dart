@@ -47,7 +47,7 @@ class ExampleFeature extends DartBoardFeature {
         /// Add 2 template's
         /// can toggle in debug
         BottomNavTemplateFeature(
-            '/main', kMainPageConfig, namespace: 'template'),
+            route:'/main', config:kMainPageConfig, namespace: 'template'),
         AppBarSideNavTemplateFeature(
             route: '/main',
             config: kMainPageConfig,
