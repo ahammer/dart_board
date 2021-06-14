@@ -21,7 +21,7 @@ packages:
       path: "../../core/dart_board_core"
       relative: true
     source: path
-    version: "0.9.4"
+    version: "0.9.5"
   flutter:
     dependency: "direct main"
     description: flutter
