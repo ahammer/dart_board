@@ -1,4 +1,5 @@
 packages:
+  - integrations/**
   - core/**
   - templates/**
   - features/**
