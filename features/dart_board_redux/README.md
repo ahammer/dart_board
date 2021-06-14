@@ -27,4 +27,4 @@ Dispatch as necessary. Use FeatureStateBuilder<T> to hook into UI.
 
 ## Usage
 
-For usage, see Example
+For usage, see Exampl

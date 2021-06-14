@@ -8,13 +8,13 @@ part of 'mine_sweeper_node.dart';
 
 class _$MineSweeperNode extends MineSweeperNode {
   @override
-  final bool? isVisible;
+  final bool isVisible;
   @override
-  final bool? isTagged;
+  final bool isTagged;
   @override
-  final int? neighbours;
+  final int neighbours;
   @override
-  final double? random;
+  final double random;
   @override
   final bool? isBomb;
 
@@ -22,12 +22,20 @@ class _$MineSweeperNode extends MineSweeperNode {
       (new MineSweeperNodeBuilder()..update(updates)).build();
 
   _$MineSweeperNode._(
-      {this.isVisible,
-      this.isTagged,
-      this.neighbours,
-      this.random,
+      {required this.isVisible,
+      required this.isTagged,
+      required this.neighbours,
+      required this.random,
       this.isBomb})
-      : super._();
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        isVisible, 'MineSweeperNode', 'isVisible');
+    BuiltValueNullFieldError.checkNotNull(
+        isTagged, 'MineSweeperNode', 'isTagged');
+    BuiltValueNullFieldError.checkNotNull(
+        neighbours, 'MineSweeperNode', 'neighbours');
+    BuiltValueNullFieldError.checkNotNull(random, 'MineSweeperNode', 'random');
+  }
 
   @override
   MineSweeperNode rebuild(void Function(MineSweeperNodeBuilder) updates) =>
@@ -124,10 +132,14 @@ class MineSweeperNodeBuilder
   _$MineSweeperNode build() {
     final _$result = _$v ??
         new _$MineSweeperNode._(
-            isVisible: isVisible,
-            isTagged: isTagged,
-            neighbours: neighbours,
-            random: random,
+            isVisible: BuiltValueNullFieldError.checkNotNull(
+                isVisible, 'MineSweeperNode', 'isVisible'),
+            isTagged: BuiltValueNullFieldError.checkNotNull(
+                isTagged, 'MineSweeperNode', 'isTagged'),
+            neighbours: BuiltValueNullFieldError.checkNotNull(
+                neighbours, 'MineSweeperNode', 'neighbours'),
+            random: BuiltValueNullFieldError.checkNotNull(
+                random, 'MineSweeperNode', 'random'),
             isBomb: isBomb);
     replace(_$result);
     return _$result;

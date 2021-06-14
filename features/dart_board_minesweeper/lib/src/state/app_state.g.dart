@@ -6,57 +6,57 @@ part of 'app_state.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-class _$AppState extends AppState {
+class _$MinesweeperState extends MinesweeperState {
   @override
-  final String? theme;
+  final String difficulty;
   @override
-  final String? difficulty;
-  @override
-  final MineSweeper? mineSweeper;
+  final MineSweeper mineSweeper;
 
-  factory _$AppState([void Function(AppStateBuilder)? updates]) =>
-      (new AppStateBuilder()..update(updates)).build();
+  factory _$MinesweeperState(
+          [void Function(MinesweeperStateBuilder)? updates]) =>
+      (new MinesweeperStateBuilder()..update(updates)).build();
 
-  _$AppState._({this.theme, this.difficulty, this.mineSweeper}) : super._();
+  _$MinesweeperState._({required this.difficulty, required this.mineSweeper})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        difficulty, 'MinesweeperState', 'difficulty');
+    BuiltValueNullFieldError.checkNotNull(
+        mineSweeper, 'MinesweeperState', 'mineSweeper');
+  }
 
   @override
-  AppState rebuild(void Function(AppStateBuilder) updates) =>
+  MinesweeperState rebuild(void Function(MinesweeperStateBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  AppStateBuilder toBuilder() => new AppStateBuilder()..replace(this);
+  MinesweeperStateBuilder toBuilder() =>
+      new MinesweeperStateBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is AppState &&
-        theme == other.theme &&
+    return other is MinesweeperState &&
         difficulty == other.difficulty &&
         mineSweeper == other.mineSweeper;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc($jc(0, theme.hashCode), difficulty.hashCode),
-        mineSweeper.hashCode));
+    return $jf($jc($jc(0, difficulty.hashCode), mineSweeper.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('AppState')
-          ..add('theme', theme)
+    return (newBuiltValueToStringHelper('MinesweeperState')
           ..add('difficulty', difficulty)
           ..add('mineSweeper', mineSweeper))
         .toString();
   }
 }
 
-class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
-  _$AppState? _$v;
-
-  String? _theme;
-  String? get theme => _$this._theme;
-  set theme(String? theme) => _$this._theme = theme;
+class MinesweeperStateBuilder
+    implements Builder<MinesweeperState, MinesweeperStateBuilder> {
+  _$MinesweeperState? _$v;
 
   String? _difficulty;
   String? get difficulty => _$this._difficulty;
@@ -68,47 +68,46 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
   set mineSweeper(MineSweeperBuilder? mineSweeper) =>
       _$this._mineSweeper = mineSweeper;
 
-  AppStateBuilder();
+  MinesweeperStateBuilder();
 
-  AppStateBuilder get _$this {
+  MinesweeperStateBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _theme = $v.theme;
       _difficulty = $v.difficulty;
-      _mineSweeper = $v.mineSweeper?.toBuilder();
+      _mineSweeper = $v.mineSweeper.toBuilder();
       _$v = null;
     }
     return this;
   }
 
   @override
-  void replace(AppState other) {
+  void replace(MinesweeperState other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$AppState;
+    _$v = other as _$MinesweeperState;
   }
 
   @override
-  void update(void Function(AppStateBuilder)? updates) {
+  void update(void Function(MinesweeperStateBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$AppState build() {
-    _$AppState _$result;
+  _$MinesweeperState build() {
+    _$MinesweeperState _$result;
     try {
       _$result = _$v ??
-          new _$AppState._(
-              theme: theme,
-              difficulty: difficulty,
-              mineSweeper: _mineSweeper?.build());
+          new _$MinesweeperState._(
+              difficulty: BuiltValueNullFieldError.checkNotNull(
+                  difficulty, 'MinesweeperState', 'difficulty'),
+              mineSweeper: mineSweeper.build());
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'mineSweeper';
-        _mineSweeper?.build();
+        mineSweeper.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'AppState', _$failedField, e.toString());
+            'MinesweeperState', _$failedField, e.toString());
       }
       rethrow;
     }

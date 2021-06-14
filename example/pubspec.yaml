@@ -27,6 +27,7 @@ dependencies:
   dart_board_core:
   dart_board_theme:
   dart_board_debug:
+  dart_board_redux:
   dart_board_log:
   dart_board_minesweeper:
   dart_board_template_bottomnav:
@@ -39,6 +40,8 @@ dependencies:
   url_launcher: ^6.0.4
 
 dependency_overrides:
+  dart_board_redux:
+    path: ../features/dart_board_redux
   dart_board_core:
     path: ../dart_board_core
   dart_board_theme:

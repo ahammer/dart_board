@@ -1,0 +1,5 @@
+packages:
+  - dart_board_core
+  - example
+  - templates/**
+  - features/**
