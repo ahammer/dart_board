@@ -1,5 +1,4 @@
 packages:
-  - dart_board_core
-  - example
+  - core/**
   - templates/**
   - features/**

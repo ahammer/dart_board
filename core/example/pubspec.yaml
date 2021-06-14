@@ -3,7 +3,6 @@ description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -38,26 +37,6 @@ dependencies:
   flutter_markdown: ^0.6.2
   http: ^0.13.3
   url_launcher: ^6.0.4
-
-dependency_overrides:
-  dart_board_redux:
-    path: ../features/dart_board_redux
-  dart_board_core:
-    path: ../dart_board_core
-  dart_board_theme:
-    path: ../features/dart_board_theme
-  dart_board_debug:
-    path: ../features/dart_board_debug
-  dart_board_log:
-    path: ../features/dart_board_log
-  dart_board_minesweeper:
-    path: ../features/dart_board_minesweeper
-  dart_board_template_bottomnav:
-    path: ../templates/dart_board_template_bottomnav
-  dart_board_template_app_bar_sidenav:
-    path: ../templates/dart_board_template_app_bar_sidenav
-  dart_board_image_background:
-    path: ../features/dart_board_image_background
 
 
 dev_dependencies:

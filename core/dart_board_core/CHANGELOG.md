@@ -16,3 +16,7 @@
 # 0.9.4
  - Introduced BuildConvertor widget for casting builder functions
    E.g. Data->ViewModel
+
+# 0.9.5
+- Introduced Convertor Widget to handle VM generation
+
