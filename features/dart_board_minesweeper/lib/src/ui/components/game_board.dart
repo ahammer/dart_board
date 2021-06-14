@@ -36,9 +36,13 @@ class GameBoard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: AspectRatio(
-        aspectRatio: 1.0,
-        child: Card(child: MineField(vm: buildVm(getState()))),
-      ),
+          aspectRatio: 1.0,
+          child: Card(
+              child: FeatureStateBuilder<MinesweeperState>((ctx, state) =>
+                  BuilderConvertor<MinesweeperState, MineFieldViewModel>(
+                      convertor: (input) => buildVm(input),
+                      builder: (ctx, out) => MineField(vm: out),
+                      input: state)))),
     );
   }
 }
@@ -68,7 +72,7 @@ class _GameTimerState extends State<GameTimer> {
   @override
   Widget build(BuildContext context) {
     var value = "";
-    final state = getState<MinesweeperState>();
+    //final state = getState<MinesweeperState>();
 
     //value =
 //        "⏲️${(state.mineSweeper.gameOverTime ?? DateTime.now()).difference(state.mineSweeper.startTime).inSeconds}";
