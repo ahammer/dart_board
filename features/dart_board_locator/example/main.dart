@@ -20,16 +20,22 @@ import 'package:dart_board_locator/dart_board_locator.dart';
 
 /// Our entry point, Starts DartBoard at the /example route
 void main() =>
-    runApp(DartBoard(initialRoute: '/example', features: [ExampleRedux()]));
+    runApp(DartBoard(initialRoute: '/example', features: [ExampleLocator()]));
 
-class ExampleState {
-  final int count;
+class ExampleState extends ChangeNotifier {
+  int count;
   ExampleState({this.count = 123});
+
+  void increment() {
+    count++;
+    notifyListeners();
+  }
+
   @override
   String toString() => "ExampleState($count)";
 }
 
-class ExampleRedux extends DartBoardFeature {
+class ExampleLocator extends DartBoardFeature {
   /// All features have a namespace, it should be unique "per feature"
   @override
   String get namespace => "redux_example";
@@ -38,7 +44,7 @@ class ExampleRedux extends DartBoardFeature {
   @override
   List<RouteDefinition> get routes => [
         NamedRouteDefinition(
-            route: "/example", builder: (ctx, settings) => ReduxScreen())
+            route: "/example", builder: (ctx, settings) => LocatorScreen())
       ];
 
   /// We provide our Redux State Object (ExampleState) as an App Decoration
@@ -54,14 +60,46 @@ class ExampleRedux extends DartBoardFeature {
   List<DartBoardFeature> get dependencies => [DartBoardLocatorFeature()];
 }
 
-class ReduxScreen extends StatelessWidget {
+class LocatorScreen extends StatefulWidget {
+  @override
+  _LocatorScreenState createState() => _LocatorScreenState();
+}
+
+class _LocatorScreenState extends State<LocatorScreen> {
+  late ExampleState state;
+  @override
+  void initState() {
+    super.initState();
+    state = locate();
+    state.addListener(onChange);
+  }
+
+  /// On change's let's set state
+  void onChange() => setState(() {});
+
+  @override
+  void dispose() {
+    state.removeListener(onChange);
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    ExampleState state = locate();
-
     return Scaffold(
         body: Center(
-      child: Text("hello: ${state.count}"),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text("hello: ${state.count}"),
+          MaterialButton(
+            onPressed: () {
+              /// Can also use like this
+              locate<ExampleState>().increment();
+            },
+            child: Text("Press Me"),
+          )
+        ],
+      ),
     ));
   }
 }
