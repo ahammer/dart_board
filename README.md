@@ -39,22 +39,33 @@ Core provide integration and manages features. It is able to facilitate features
   - LifecycleWidget
 
 
-## Features
+## Repo Structure
 
-Features all implement DartBoardFeature class. They can include other features in their usage.
+### core
 
-## How to use it?
+Contain's core framework features. Currently 1 library. dart_board_core
 
+### features
 
+Contain's reusable features that can be included in your integrations (or other features)
 
-or play with the sample at [dart-board.io](https://dart-board.io)
+### templates
 
+Contain's features that are designed to be UI templates
 
+They are pre-made templates that get filled in via config.
 
-### Why 0.9.x for now
+- Configurable Route
+- Configurable Feature Name
+- UI Config (e.g. Embedded Route Names, or Widgets, etc).
 
-I think the API and basic features are complete for a 1.0 release.
+The idea being that you should be able to register a Temlate multiple times, for multiple screens with varying configs.
 
-However, until test coverage it won't be marked 1.x. Use at your own risk.
+You access the template by navigating to the route you select.
 
-Tests will come soon, or feel free to contribute.
+### integrations
+
+This is a place to see Integrations of multiple features into a larger app.
+
+The only "example" right now is dart-board.io website, and the official example for the platform
+
