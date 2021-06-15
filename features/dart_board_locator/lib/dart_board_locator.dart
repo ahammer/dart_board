@@ -1,5 +1,27 @@
 import 'package:dart_board_core/dart_board.dart';
 
+/// Simple Locator/DI/Service Injector for DartBoard
+///
+/// In your Features.
+///
+/// Register Factories in the AppDecorations
+///   [LocatorDecoration(()=>YourType())];
+///
+/// Use YourType Anywhere
+///
+/// YourType obj = locate();
+///
+/// or
+///
+/// locate<YourType>()
+///   ..width = 10
+///   ..doSomethingElse()
+///
+///
+/// Optionally, with instanceId
+///
+/// locate<YourType>(instance_id: "unique state id")
+///
 class DartBoardLocatorFeature extends DartBoardFeature {
   @override
   String get namespace => "locator";
@@ -38,7 +60,7 @@ class _Locator extends StatefulWidget {
 }
 
 class _LocatorState extends State<_Locator> {
-  final Map<Type, dynamic> objectCache = {};
+  final Map<Type, Map<String, dynamic>> objectCache = {};
   final Map<Type, dynamic Function()> builders = {};
 
   @override
@@ -48,17 +70,20 @@ class _LocatorState extends State<_Locator> {
     super.initState();
   }
 
-  T _locate<T>(Type type) {
+  T _locate<T>(Type type, {String instance_id = ""}) {
     /// Return from cache
-    if (objectCache.containsKey(T)) {
-      return objectCache[T] as T;
+    if (objectCache.containsKey(T) &&
+        objectCache[T]!.containsKey(instance_id)) {
+      return objectCache[T]![instance_id] as T;
     }
 
-    ///
+    /// Build it if we can
     if (builders.containsKey(T)) {
-      objectCache[T] = builders[T]!.call() as T;
-      return objectCache[T] as T;
+      objectCache.putIfAbsent(T, () => {});
+      objectCache[T]![instance_id] = builders[T]!.call() as T;
+      return objectCache[T]![instance_id] as T;
     }
+
     throw Exception("Can not instantiate $T");
   }
 
@@ -67,8 +92,9 @@ class _LocatorState extends State<_Locator> {
   }
 }
 
+/// Global Key we use to Track the store.
 final _locatorKey = GlobalKey<_LocatorState>();
 
-T locate<T>() {
-  return _locatorKey.currentState!._locate(T);
-}
+/// Globally Locate a type
+T locate<T>({String instance_id = ""}) =>
+    _locatorKey.currentState!._locate(T, instance_id: instance_id);

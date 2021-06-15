@@ -22,19 +22,6 @@ import 'package:dart_board_locator/dart_board_locator.dart';
 void main() =>
     runApp(DartBoard(initialRoute: '/example', features: [ExampleLocator()]));
 
-class ExampleState extends ChangeNotifier {
-  int count;
-  ExampleState({this.count = 123});
-
-  void increment() {
-    count++;
-    notifyListeners();
-  }
-
-  @override
-  String toString() => "ExampleState($count)";
-}
-
 class ExampleLocator extends DartBoardFeature {
   /// All features have a namespace, it should be unique "per feature"
   @override
@@ -44,7 +31,19 @@ class ExampleLocator extends DartBoardFeature {
   @override
   List<RouteDefinition> get routes => [
         NamedRouteDefinition(
-            route: "/example", builder: (ctx, settings) => LocatorScreen())
+            route: "/example",
+            builder: (ctx, settings) => Row(
+                  children: [
+                    Expanded(
+                        child: LocatorDemo(
+                      instance_id: "Instance 1",
+                    )),
+                    Expanded(
+                        child: LocatorDemo(
+                      instance_id: "Instance 2",
+                    )),
+                  ],
+                ))
       ];
 
   /// We provide our Redux State Object (ExampleState) as an App Decoration
@@ -58,22 +57,48 @@ class ExampleLocator extends DartBoardFeature {
   List<DartBoardFeature> get dependencies => [DartBoardLocatorFeature()];
 }
 
-class LocatorScreen extends StatefulWidget {
+/// This is our State object
+///
+/// We'll use a ChangeNotifier and hook it up to a StatefulWidget
+///
+class ExampleState extends ChangeNotifier {
+  int _count = 1;
+  ExampleState();
+
+  int get count => _count;
+
+  void increment() {
+    _count++;
+    notifyListeners();
+  }
+
   @override
-  _LocatorScreenState createState() => _LocatorScreenState();
+  String toString() => "ExampleState($count)";
 }
 
-class _LocatorScreenState extends State<LocatorScreen> {
-  late ExampleState state;
+/// The Locator Demo Screen
+///
+/// We'll show a count and have a button to modify state
+class LocatorDemo extends StatefulWidget {
+  final String instance_id;
+
+  const LocatorDemo({Key? key, this.instance_id = ""}) : super(key: key);
   @override
-  void initState() {
-    super.initState();
-    state = locate();
-    state.addListener(onChange);
-  }
+  _LocatorDemoState createState() => _LocatorDemoState();
+}
+
+/// We are going to bind this State to the ChangeNotifier based state
+class _LocatorDemoState extends State<LocatorDemo> {
+  late ExampleState state;
 
   /// On change's let's set state
   void onChange() => setState(() {});
+
+  @override
+  void initState() {
+    super.initState();
+    state = locate(instance_id: widget.instance_id)..addListener(onChange);
+  }
 
   @override
   void dispose() {
@@ -82,22 +107,25 @@ class _LocatorScreenState extends State<LocatorScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        body: Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text("hello: ${state.count}"),
-          MaterialButton(
-            onPressed: () {
-              /// Can also use like this
-              locate<ExampleState>().increment();
-            },
-            child: Text("Press Me"),
-          )
-        ],
-      ),
-    ));
-  }
+  Widget build(BuildContext context) => Scaffold(
+          body: Center(
+        child: Card(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(widget.instance_id),
+              Divider(),
+              Text("hello: ${state.count}"),
+              MaterialButton(
+                onPressed: () {
+                  /// Can also use like this
+                  locate<ExampleState>(instance_id: widget.instance_id)
+                      .increment();
+                },
+                child: Text("Press Me"),
+              )
+            ],
+          ),
+        ),
+      ));
 }
