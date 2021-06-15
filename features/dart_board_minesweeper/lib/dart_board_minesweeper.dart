@@ -24,6 +24,5 @@ class MinesweeperFeature extends DartBoardFeature {
       ];
 
   @override
-  List<DartBoardFeature> get dependencies =>
-      [DartBoardRedux(includeThunk: true)];
+  List<DartBoardFeature> get dependencies => [DartBoardRedux()];
 }

@@ -165,65 +165,65 @@ packages:
   dart_board_core:
     dependency: "direct main"
     description:
-      path: "../../core/dart_board_core"
-      relative: true
-    source: path
-    version: "0.9.5"
+      name: dart_board_core
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.9.6"
   dart_board_debug:
     dependency: "direct main"
     description:
-      path: "../../features/dart_board_debug"
-      relative: true
-    source: path
+      name: dart_board_debug
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.9.1"
   dart_board_image_background:
     dependency: "direct main"
     description:
-      path: "../../features/dart_board_image_background"
-      relative: true
-    source: path
+      name: dart_board_image_background
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.9.0"
   dart_board_log:
     dependency: "direct main"
     description:
-      path: "../../features/dart_board_log"
-      relative: true
-    source: path
+      name: dart_board_log
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.9.0"
   dart_board_minesweeper:
     dependency: "direct main"
     description:
-      path: "../../features/dart_board_minesweeper"
-      relative: true
-    source: path
+      name: dart_board_minesweeper
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.9.2"
   dart_board_redux:
     dependency: "direct main"
     description:
-      path: "../../features/dart_board_redux"
-      relative: true
-    source: path
+      name: dart_board_redux
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.9.0"
   dart_board_template_app_bar_sidenav:
     dependency: "direct main"
     description:
-      path: "../../templates/dart_board_template_app_bar_sidenav"
-      relative: true
-    source: path
+      name: dart_board_template_app_bar_sidenav
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.9.1"
   dart_board_template_bottomnav:
     dependency: "direct main"
     description:
-      path: "../../templates/dart_board_template_bottomnav"
-      relative: true
-    source: path
+      name: dart_board_template_bottomnav
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.9.1"
   dart_board_theme:
     dependency: "direct main"
     description:
-      path: "../../features/dart_board_theme"
-      relative: true
-    source: path
+      name: dart_board_theme
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.9.0"
   dart_style:
     dependency: transitive
