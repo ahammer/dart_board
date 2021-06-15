@@ -32,8 +32,7 @@ class _MineBlockState extends State<MineBlock> {
               state.state.mineSweeper!.getNode(x: widget.x!, y: widget.y!),
           distinct: true,
           builder: */
-          (context, state) =>
-              BuilderConvertor<MinesweeperState, MineSweeperNode>(
+          (context, state) => Convertor<MinesweeperState, MineSweeperNode>(
             convertor: (state) =>
                 state.mineSweeper.getNode(x: widget.x, y: widget.y),
             input: state,
