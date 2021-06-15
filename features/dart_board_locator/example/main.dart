@@ -51,10 +51,8 @@ class ExampleLocator extends DartBoardFeature {
   /// We also provide an Epic, delayedIncrementEpic that debounces
   /// the action so you mash the button but only get an action when you stop
   @override
-  List<DartBoardDecoration> get appDecorations => [
-        LocatorDecoration<ExampleState>(
-            name: "example_state", builder: () => ExampleState())
-      ];
+  List<DartBoardDecoration> get appDecorations =>
+      [LocatorDecoration(() => ExampleState())];
 
   @override
   List<DartBoardFeature> get dependencies => [DartBoardLocatorFeature()];

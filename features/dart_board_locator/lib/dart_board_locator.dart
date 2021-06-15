@@ -15,13 +15,13 @@ class DartBoardLocatorFeature extends DartBoardFeature {
       ];
 }
 
+/// This decoration applies
 class LocatorDecoration<T> extends DartBoardDecoration {
-  final String name;
   final T Function() builder;
 
-  LocatorDecoration({required this.name, required this.builder})
+  LocatorDecoration(this.builder)
       : super(
-            name: name,
+            name: "LocatorDecoration_${T.toString()}",
             decoration: (BuildContext context, Widget child) => LifeCycleWidget(
                 preInit: () =>
                     _locatorKey.currentState!.registerBuilder<T>(builder),

@@ -1,30 +1,21 @@
-# dart_board_redux
+# dart_board_locator
 
-Redux Capabilities for Dart Board
+Service/State Locator Service
 
 ## Usage
 
-Expose States and Middleware with Decorations in features
-Dispatch as necessary. Use FeatureStateBuilder<T> to hook into UI.
+Provide factories to construct your objects.
+Find with Locate<T>()
+
+They will be lazily loaded and initialized.
 
 ## API
 
- API:
- # Functions
- T getState<T>()
- dispatch(FeatureAction<T>())
- dispatchFunc(T action(T))
+T locate<T>()
 
- # Classes
- class FeatureAction<T>
+get an object.
 
- # Decorations
- ReduxStateDecoration
- ReduxMiddlewareDecoration
 
- # Widget
- FeatureStateBuilder<T>(builder:(ctx, t) => YourBuilder)
+LocatorDecoration<T>(name, builder)
 
-## Usage
-
-For usage, see Exampl
+Supply an object
