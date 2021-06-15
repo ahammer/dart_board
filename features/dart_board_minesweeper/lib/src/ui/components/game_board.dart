@@ -39,7 +39,7 @@ class GameBoard extends StatelessWidget {
           aspectRatio: 1.0,
           child: Card(
               child: FeatureStateBuilder<MinesweeperState>((ctx, state) =>
-                  BuilderConvertor<MinesweeperState, MineFieldViewModel>(
+                  Convertor<MinesweeperState, MineFieldViewModel>(
                       convertor: (input) => buildVm(input),
                       builder: (ctx, out) => MineField(vm: out),
                       input: state)))),

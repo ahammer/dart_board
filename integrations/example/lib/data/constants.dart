@@ -9,25 +9,25 @@ const kCodeRoutes = <Map<String, String>>[
     'title': 'Project',
     'route': '/readme',
     'haiku': 'Readme.md',
-    'url': 'dart_board_core/README.md',
+    'url': 'README.md',
   },
   {
     'title': 'Example',
     'route': '/readme_example',
     'haiku': 'Readme.md',
-    'url': 'example/README.md',
+    'url': 'integrations/example/README.md',
   },
   {
     'title': 'main.dart',
     'route': '/code_main',
     'haiku': '''A basic entry point''',
-    'url': 'example/lib/main.dart',
+    'url': 'integrations/example/lib/main.dart',
   },
   {
     'title': 'example_feature.dart',
     'route': '/code_features',
     'haiku': '''Extension Overview''',
-    'url': 'example/lib/example_feature.dart',
+    'url': 'integrations/example/lib/example_feature.dart',
   },
 ];
 

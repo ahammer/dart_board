@@ -1,15 +1,18 @@
 import 'package:dart_board_core/dart_board.dart';
 
-/// Converts a Builder from One type into Another
-/// Caches values and doesn't rebuild unless model or conversion
-/// changes
-/// E.g. To generate a View Model
-class BuilderConvertor<In, Out> extends StatefulWidget {
+/// Type conversion widget
+///
+/// Takes an Input (From another Builder widget usually)
+/// Gives an Output which is a chained callback
+///
+/// If Input doesn't change, or Output doesn't change, rebuild is avoided.
+///
+class Convertor<In, Out> extends StatefulWidget {
   final In input;
   final Out Function(In input) convertor;
   final Widget Function(BuildContext context, Out model) builder;
 
-  const BuilderConvertor(
+  const Convertor(
       {Key? key,
       required this.convertor,
       required this.builder,
@@ -17,16 +20,15 @@ class BuilderConvertor<In, Out> extends StatefulWidget {
       : super(key: key);
 
   @override
-  _BuilderConvertorState<In, Out> createState() =>
-      _BuilderConvertorState<In, Out>();
+  _ConvertorState<In, Out> createState() => _ConvertorState<In, Out>();
 }
 
-class _BuilderConvertorState<In, Out> extends State<BuilderConvertor<In, Out>> {
+class _ConvertorState<In, Out> extends State<Convertor<In, Out>> {
   late In _current;
   late Out _value;
 
   @override
-  void didUpdateWidget(covariant BuilderConvertor<In, Out> oldWidget) {
+  void didUpdateWidget(covariant Convertor<In, Out> oldWidget) {
     if (_current == widget.input) return;
     final _newValue = widget.convertor(widget.input);
     if (_newValue == _value) return;
