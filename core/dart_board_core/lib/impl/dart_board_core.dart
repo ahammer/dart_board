@@ -22,7 +22,7 @@ Widget _pageNoteFound(BuildContext context) =>
 class DartBoard extends StatefulWidget {
   /// These are the features we'll load
 
-  final List<DartBoardFeature>? features;
+  final List<DartBoardFeature> features;
 
   /// Deny List in the format of
   /// "Yourfeature:Decoration"
@@ -34,7 +34,7 @@ class DartBoard extends StatefulWidget {
 
   DartBoard(
       {Key? key,
-      this.features,
+      required this.features,
       this.pageNotFoundWidget = _pageNoteFound,
       required this.initialRoute,
       this.pageDecorationDenyList = const {},
