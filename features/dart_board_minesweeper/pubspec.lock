@@ -168,14 +168,14 @@ packages:
       path: "../../core/dart_board_core"
       relative: true
     source: path
-    version: "0.9.5"
+    version: "0.9.6"
   dart_board_redux:
     dependency: "direct main"
     description:
       path: "../dart_board_redux"
       relative: true
     source: path
-    version: "0.9.0"
+    version: "0.9.0+3"
   dart_style:
     dependency: transitive
     description:
