@@ -18,7 +18,11 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   pedantic: ^1.11.0
-  
+
+dependency_overrides: 
+  dart_board_core:
+    path: ../../core/dart_board_core
+
 flutter:
   uses-material-design: true
   module:

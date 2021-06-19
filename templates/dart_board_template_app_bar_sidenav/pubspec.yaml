@@ -15,6 +15,10 @@ dependencies:
   dart_board_core: ^0.9.6
   logging: ^1.0.1
 
+dependency_override:
+  dart_board_core:
+    path: ../../core/dart_board_core
+
 flutter:
   uses-material-design: true
   module:

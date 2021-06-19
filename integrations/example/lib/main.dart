@@ -7,7 +7,7 @@ import 'example_feature.dart';
 /// Use the DartBoard widget as your Route Widget
 
 void main() => runApp(DartBoard(
-      features: [ExampleFeature()],
+      features: [],
       initialRoute: '/main',
     ));
 

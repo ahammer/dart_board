@@ -14,6 +14,11 @@ dependencies:
     sdk: flutter
   
   dart_board_core: ^0.9.6
+
+dependency_overrides: 
+  dart_board_core:
+    path: ../../core/dart_board_core
+    
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -18,7 +18,11 @@ dependencies:
   flutter_redux: ^0.8.2 
   dart_board_core: ^0.9.6
   redux_thunk: ^0.4.0
-  
+
+dependency_overrides:  
+  dart_board_core:
+    path: ../../core/dart_board_core
+
 dev_dependencies:
   redux_epics: ^0.15.0
   rxdart:
