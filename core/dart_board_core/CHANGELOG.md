@@ -1,3 +1,8 @@
+## 0.9.6+1
+
+ - **FIX**: fixed dependency_overrides back in place.
+ - **FIX**: made `features` a required parameter, non-nullable.
+
 ## 0.9.6
 
  - **FEAT**: change notifier builder.

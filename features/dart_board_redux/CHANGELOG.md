@@ -1,3 +1,7 @@
+## 0.9.0+4
+
+ - **FIX**: fixed dependency_overrides back in place.
+
 ## 0.9.0+3
 
  - **FIX**: added licenses.
