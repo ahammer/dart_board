@@ -37,18 +37,18 @@ class SimpleRouteFeature extends DartBoardFeature {
 
   @override
   List<RouteDefinition> get routes => [
-        NamedRouteDefinition(
-            route: '/home',
-            builder: (settings, ctx) => Card(
-                    child: Column(
-                  children: [
-                    Text('Home Page'),
-                    MaterialButton(
-                      onPressed: () => Navigator.of(ctx).pushNamed('/second'),
-                      child: Text('push another route'),
-                    ),
-                  ],
-                ))),
+        MapRouteDefinition(routeMap: {
+          '/home': (settings, ctx) => Card(
+                  child: Column(
+                children: [
+                  Text('Home Page'),
+                  MaterialButton(
+                    onPressed: () => Navigator.of(ctx).pushNamed('/second'),
+                    child: Text('push another route'),
+                  ),
+                ],
+              ))
+        }),
         NamedRouteDefinition(
             route: '/second',
             builder: (settings, ctx) => Card(

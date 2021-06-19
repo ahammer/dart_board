@@ -20,3 +20,5 @@
 # 0.9.5
 - Introduced Convertor Widget to handle VM generation
 
+# 0.9.6
+- Introduced ChangeNotifier.builder((ctx, val)={});

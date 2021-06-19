@@ -8,6 +8,7 @@ import '../../dart_board.dart';
 ///
 /// That's what this is for, so you can convert ChangeNotifiers into widgets
 ///
+///
 extension ChangeNotifierBuilderExtension on ChangeNotifier {
   Widget builder<T extends ChangeNotifier>(
           Widget Function(BuildContext context, T value) handler) =>

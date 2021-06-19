@@ -34,6 +34,7 @@ class ExampleLocator extends DartBoardFeature {
             route: "/example",
             builder: (ctx, settings) => Row(
                   children: [
+                    /// We will show 2 instances of this state
                     Expanded(
                         child: LocatorDemo(
                       instance_id: "Instance 1",
@@ -79,53 +80,32 @@ class ExampleState extends ChangeNotifier {
 /// The Locator Demo Screen
 ///
 /// We'll show a count and have a button to modify state
-class LocatorDemo extends StatefulWidget {
+class LocatorDemo extends StatelessWidget {
   final String instance_id;
 
   const LocatorDemo({Key? key, this.instance_id = ""}) : super(key: key);
-  @override
-  _LocatorDemoState createState() => _LocatorDemoState();
-}
 
-/// We are going to bind this State to the ChangeNotifier based state
-class _LocatorDemoState extends State<LocatorDemo> {
-  late ExampleState state;
-
-  /// On change's let's set state
-  void onChange() => setState(() {});
-
-  @override
-  void initState() {
-    super.initState();
-    state = locate(instance_id: widget.instance_id)..addListener(onChange);
-  }
-
-  @override
-  void dispose() {
-    state.removeListener(onChange);
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) => Scaffold(
-          body: Center(
-        child: Card(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(widget.instance_id),
-              Divider(),
-              Text("hello: ${state.count}"),
-              MaterialButton(
-                onPressed: () {
-                  /// Can also use like this
-                  locate<ExampleState>(instance_id: widget.instance_id)
-                      .increment();
-                },
-                child: Text("Press Me"),
-              )
-            ],
-          ),
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Center(
+      child: Card(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(instance_id),
+            Divider(),
+            Text(
+                "hello: ${locate<ExampleState>(instance_id: instance_id).count}"),
+            MaterialButton(
+              onPressed: () {
+                /// Can also use like this
+                locate<ExampleState>(instance_id: instance_id).increment();
+              },
+              child: Text("Press Me"),
+            )
+          ],
         ),
-      ));
+      ),
+    ));
+  }
 }
