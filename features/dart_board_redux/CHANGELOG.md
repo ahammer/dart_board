@@ -1,3 +1,7 @@
+## 0.9.0+3
+
+ - **FIX**: added licenses.
+
 ## 0.9.0+2
 
  - **FIX**: set version's in yaml for publishing.
