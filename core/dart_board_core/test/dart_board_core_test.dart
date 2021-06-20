@@ -40,7 +40,7 @@ class TestFeature extends DartBoardFeature {
         NamedRouteDefinition(
             route: '/main',
             builder: (settings, ctx) =>
-                Container(child: Text('main displayed')))
+                Material(child: Text('main displayed')))
       ];
 
   @override
@@ -56,7 +56,7 @@ DartBoardDecoration getTestDecoration(String label) => DartBoardDecoration(
     decoration: (ctx, child) => Column(
           children: [
             Text(label),
-            child,
+            Expanded(child:child),
           ],
         ),
     name: 'tester');
