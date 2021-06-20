@@ -22,7 +22,7 @@ jobs:
       - name: Melos run all tests
         run: melos exec -- flutter test --coverage      
       - name: Upload coverage to codecov
-        uses: actions/Codecov@v1.5.2
+        uses: codecov/codecov-action@v1
         
         
       
