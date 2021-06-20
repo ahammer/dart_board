@@ -16,7 +16,7 @@ jobs:
       - name: Install and set Flutter version
         uses: subosito/flutter-action@v1.5.3
         with:
-          flutter-version: '2.2.2'
+          flutter-version: '2.2.0'
       - name: Switch to Core
         run: cd core/dart_board_core
       - name: Packages get
