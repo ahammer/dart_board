@@ -49,7 +49,7 @@ packages:
       path: "../../core/dart_board_core"
       relative: true
     source: path
-    version: "0.9.6+1"
+    version: "0.9.7"
   fake_async:
     dependency: transitive
     description:
