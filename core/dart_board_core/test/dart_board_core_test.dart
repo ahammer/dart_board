@@ -33,7 +33,7 @@ void main() {
 
 class TestFeature extends DartBoardFeature {
   @override
-  String get namespace => 'test feature';
+  String get namespace => 'test_feature';
 
   @override
   List<RouteDefinition> get routes => [
@@ -42,6 +42,14 @@ class TestFeature extends DartBoardFeature {
             builder: (settings, ctx) =>
                 Container(child: Text('main displayed')))
       ];
+
+  @override
+  List<DartBoardDecoration> get appDecorations =>
+      [getTestDecoration('app_decoration')];
+
+  @override
+  List<DartBoardDecoration> get pageDecorations =>
+      [getTestDecoration('page_decoration')];
 }
 
 DartBoardDecoration getTestDecoration(String label) => DartBoardDecoration(

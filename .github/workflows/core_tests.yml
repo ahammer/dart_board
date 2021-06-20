@@ -1,0 +1,28 @@
+name: Flutter_Core_Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+      - name: Install and set Flutter version
+        uses: subosito/flutter-action@v1.4.0
+        with:
+          flutter-version: '2.2.2'
+      - name: Switch to Core
+        run: cd core/dart_board_core
+      - name: Packages get
+        run: flutter packages get
+      - name: Analyze
+        run: flutter analyze
+      - name: Run tests
+        run: flutter test --coverage
+        
