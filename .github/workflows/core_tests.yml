@@ -14,15 +14,15 @@ jobs:
       - name: Checkout the code
         uses: actions/checkout@v2
       - name: Install and set Flutter version
-        uses: subosito/flutter-action@v1.4.0
+        uses: subosito/flutter-action@v1.5.3
         with:
-          flutter-version: '2.2.2'
-      - name: Switch to Core
-        run: cd core/dart_board_core
-      - name: Packages get
-        run: flutter packages get
-      - name: Analyze
-        run: flutter analyze
-      - name: Run tests
-        run: flutter test --coverage
+          flutter-version: '2.2.0'
+      - name: Install MELOS
+        run: flutter pub global activate melos
+      - name: Melos run all tests
+        run: melos exec -- flutter test --coverage      
+      - name: Upload coverage to codecov
+        uses: codecov/codecov-action@v1
         
+        
+      

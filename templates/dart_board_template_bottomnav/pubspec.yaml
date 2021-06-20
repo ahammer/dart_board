@@ -15,6 +15,10 @@ dependencies:
   dart_board_core: ^0.9.7
   logging: ^1.0.1
 
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+    
 flutter:
   uses-material-design: true
   module:
