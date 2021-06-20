@@ -17,12 +17,10 @@ jobs:
         uses: subosito/flutter-action@v1.5.3
         with:
           flutter-version: '2.2.0'
-      - name: cd core/dart_board_core && Packages get
-        run: flutter packages get
-      - name: Analyze
-        run: cd core/dart_board_core && flutter analyze
-      - name: Run tests
-        run: cd core/dart_board_core && flutter test --coverage
+      - name: Install MELOS
+      - run: flutter pub global activate melos
+      - name: Melos run all tests
+      - run: melos exec -- flutter test --coverage
       - name: Upload coverage to codecov
         run: curl -s https://codecov.io/bash
         shell: bash
