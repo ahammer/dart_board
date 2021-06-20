@@ -22,5 +22,6 @@ jobs:
       - name: Melos run all tests
         run: melos exec -- flutter test --coverage      
       - name: Upload coverage to codecov
-        run: bash <(curl -s https://codecov.io/bash)
+        run: curl -s https://codecov.io/bash -t $
+        shell: bash
       
