@@ -14,7 +14,7 @@ jobs:
       - name: Checkout the code
         uses: actions/checkout@v2
       - name: Install and set Flutter version
-        uses: subosito/flutter-action@v1.4.0
+        uses: subosito/flutter-action@v1.5.3
         with:
           flutter-version: '2.2.2'
       - name: Switch to Core
@@ -25,4 +25,6 @@ jobs:
         run: flutter analyze
       - name: Run tests
         run: flutter test --coverage
-        
+      - name: Upload coverage to codecov
+        run: curl -s https://codecov.io/bash
+        shell: bash
