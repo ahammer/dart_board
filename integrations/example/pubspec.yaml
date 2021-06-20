@@ -39,26 +39,6 @@ dependencies:
   http: ^0.13.3
   url_launcher: ^6.0.4
 
-dependency_overrides:
-  dart_board_core:
-    path: ../../core/dart_board_core    
-  dart_board_theme:
-    path: ../../features/dart_board_theme
-  dart_board_debug:
-    path: ../../features/dart_board_debug
-  dart_board_redux:
-    path: ../../features/dart_board_redux
-  dart_board_log:
-    path: ../../features/dart_board_log
-  dart_board_minesweeper:
-    path: ../../features/dart_board_minesweeper
-  dart_board_template_bottomnav:
-    path: ../../templates/dart_board_template_bottomnav
-  dart_board_template_app_bar_sidenav:
-    path: ../../templates/dart_board_template_app_bar_sidenav
-  dart_board_image_background:
-    path: ../../features/dart_board_image_background
-  
 dev_dependencies:
   flutter_test:
     sdk: flutter
