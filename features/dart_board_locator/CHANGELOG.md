@@ -1,3 +1,13 @@
+## 0.9.2
+
+ - **FIX**: fixed dependency_overrides back in place.
+ - **FIX**: added licenses.
+ - **FIX**: Fix dependency for publishing.
+ - **FEAT**: change notifier builder.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+
 ## 0.9.1+2
 
  - **FIX**: fixed dependency_overrides back in place.

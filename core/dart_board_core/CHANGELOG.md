@@ -1,3 +1,11 @@
+## 0.9.7
+
+ - **FIX**: fixed dependency_overrides back in place.
+ - **FIX**: made `features` a required parameter, non-nullable.
+ - **FEAT**: change notifier builder.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+
 ## 0.9.6+1
 
  - **FIX**: fixed dependency_overrides back in place.
