@@ -9,7 +9,16 @@ Dart Board lets you combine and build features to integrate into a larger app.
 
 ## How it works?
 
-It starts with the `DartBoard` widget. Initialize this with your `Features` and their associated config.
+```
+void main() => runApp(DartBoard(
+  features:[YourIntegration()], 
+  initialRoute: '/main']))
+```
+
+
+When you Launch your app, you Launch DartBoard() widget, provide it your Features and your initial route and you are good to go.
+
+Dart board loads your features and installs them as you go.
 
 ## What is a Feature?
 
