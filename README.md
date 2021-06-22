@@ -1,7 +1,7 @@
 # Dart Board
 ### An extensible flutter-framework
 
-! [Demo](https://media3.giphy.com/media/Yo9eqMoEBYB1S45A92/giphy.gif)
+![Demo](https://media3.giphy.com/media/Yo9eqMoEBYB1S45A92/giphy.gif)
 
 ## Summary
 
