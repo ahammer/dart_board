@@ -16,6 +16,21 @@ void main() {
     expect(find.text('"/a" Not Found'), findsOneWidget);
   });
 
+ testWidgets('Page and App Decoration Check', (tester) async {
+    await tester.pumpWidget(DartBoard(
+      initialRoute: '/main',
+      features: [TestFeature(namespace: 'default', route: '/main')],
+    ));
+
+    // Make sure DartBoard as started fully
+    await tester.pumpAndSettle();
+
+    // Nothing is registered, so this should be 404 message
+    // Checking for default
+    expect(find.text('app_decoration'), findsOneWidget);
+    expect(find.text('page_decoration'), findsOneWidget);
+  });
+
   testWidgets('Feature Toggle and Routing', (tester) async {
     await tester.pumpWidget(DartBoard(
       initialRoute: '/main',
