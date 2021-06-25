@@ -144,7 +144,7 @@ class GameInfoOverlay extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(32.0),
                       child: Text(
-                        vm.started!
+                        vm.started
                             ? vm.gameOver
                                 ? vm.win
                                     ? "🔥You Win🔥"
@@ -181,7 +181,7 @@ class MineFieldViewModel {
       o.gameOver == gameOver;
 
   @override
-  int get hashCode => (width! + height! + (gameOver! ? 1 : 0)).hashCode;
+  int get hashCode => (width + height + (gameOver ? 1 : 0)).hashCode;
 }
 
 class GameBoardLayoutDelegate extends MultiChildLayoutDelegate {

@@ -46,10 +46,10 @@ abstract class MineSweeper implements Built<MineSweeper, MineSweeperBuilder> {
   BuiltList<MineSweeperNode> get nodes;
 
   int get flagCount =>
-      nodes!.fold(0, (value, node) => value + (node.isTagged! ? 1 : 0));
+      nodes.fold(0, (value, node) => value + (node.isTagged ? 1 : 0));
 
   int get notFlipped =>
-      nodes!.fold(0, (value, node) => value + (node.isVisible! ? 0 : 1));
+      nodes.fold(0, (value, node) => value + (node.isVisible ? 0 : 1));
   //Check for Visible Bombs (That's game over)
 
   bool get isWin => flagCount == bombs && notFlipped == bombs;

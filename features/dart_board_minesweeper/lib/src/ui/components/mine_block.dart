@@ -4,9 +4,6 @@ import 'package:dart_board_minesweeper/src/state/app_state.dart';
 import 'package:dart_board_minesweeper/src/state/mine_sweeper_node.dart';
 import 'package:dart_board_redux/dart_board_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
-import 'package:provider/provider.dart';
-import 'package:redux/redux.dart';
 
 class MineBlock extends StatefulWidget {
   final int x, y;

@@ -47,7 +47,7 @@ class ExampleFeature extends DartBoardFeature {
         /// Add 2 template's
         /// can toggle in debug
         BottomNavTemplateFeature(
-            route:'/main', config:kMainPageConfig, namespace: 'template'),
+            route: '/main', config: kMainPageConfig, namespace: 'template'),
         AppBarSideNavTemplateFeature(
             route: '/main',
             config: kMainPageConfig,
@@ -68,6 +68,25 @@ class ExampleFeature extends DartBoardFeature {
 
         /// Isolate the frame into a feature so it can be disabled
         FrameFeature(),
+      ];
+
+  @override
+  List<DartBoardDecoration> get appDecorations => <DartBoardDecoration>[
+        DartBoardDecoration(
+            name: 'Example Initializer',
+            decoration: (ctx, child) => LifeCycleWidget(
+                  init: (ctx) => <String>[
+                    'theme',
+                    'logging',
+                    'debug',
+                    'redux',
+                    'MineSweeper',
+                    'background',
+                    'app_border'
+                  ].forEach((element) => DartBoardCore.instance
+                      .setFeatureImplementation(element, null)),
+                  child: child,
+                ))
       ];
 
   /// Navigation entry points
