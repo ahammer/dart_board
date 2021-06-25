@@ -82,9 +82,9 @@ class AppBarSideNavTemplate extends StatelessWidget {
           body: AnimatedSwitcher(
             duration: Duration(milliseconds: 200),
             child: RouteWidget(
+              navstate.selectedNavTab,
               decorate: true,
               key: Key('tab_${navstate.selectedNavTab}'),
-              settings: RouteSettings(name: navstate.selectedNavTab),
             ),
           ),
           drawer: Drawer(

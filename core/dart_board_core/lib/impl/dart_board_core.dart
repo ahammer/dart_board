@@ -100,8 +100,7 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
         create: (ctx) => this,
         child: MaterialApp(
           home: _init
-              ? applyPageDecorations(RouteWidget(
-                  settings: RouteSettings(name: widget.initialRoute)))
+              ? applyPageDecorations(RouteWidget(widget.initialRoute))
               : CircularProgressIndicator(),
           key: dartBoardKey,
           navigatorKey: dartBoardNavKey,

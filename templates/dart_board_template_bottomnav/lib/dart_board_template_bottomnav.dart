@@ -76,10 +76,9 @@ class BottomNavTemplate extends StatelessWidget {
           body: AnimatedSwitcher(
             duration: Duration(milliseconds: 200),
             child: RouteWidget(
+              navstate.config[navstate.selectedNavTab]['route'],
               decorate: true,
               key: Key('tab_${navstate.selectedNavTab}'),
-              settings: RouteSettings(
-                  name: navstate.config[navstate.selectedNavTab]['route']),
             ),
           ),
           bottomNavigationBar: BottomNavigationBar(

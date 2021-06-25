@@ -87,7 +87,7 @@ class LogWrapper extends StatelessWidget {
                       /// We pass a name so we can exclude the debug-log frame
                       settings: RouteSettings(name: kLogRoute),
                       pageBuilder: (context, animation, secondaryAnimation) =>
-                          RouteWidget(settings: RouteSettings(name: '/log')),
+                          RouteWidget('/log'),
                       transitionsBuilder:
                           (context, animation, secondaryAnimation, child) {
                         var begin = Offset(0.0, 1.0);

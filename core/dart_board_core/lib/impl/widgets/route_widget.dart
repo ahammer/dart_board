@@ -10,8 +10,17 @@ class RouteWidget extends StatelessWidget {
   final bool decorate;
   final RouteSettings settings;
 
-  const RouteWidget({Key? key, required this.settings, this.decorate = false})
+  const RouteWidget._internal(
+      {Key? key, required this.settings, this.decorate = false})
       : super(key: key);
+
+  factory RouteWidget(String initialRoute,
+          {dynamic args, bool decorate = false, Key? key}) =>
+      RouteWidget._internal(
+          settings: RouteSettings(name: initialRoute, arguments: args),
+          decorate: decorate,
+          key: key);
+
   @override
   Widget build(BuildContext context) =>
       Provider.of<DartBoardCore>(context, listen: false).buildPageRoute(
