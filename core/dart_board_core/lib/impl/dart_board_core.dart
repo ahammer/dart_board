@@ -265,6 +265,14 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
         featureOverrides[namespace] = value;
         buildFeatures();
       });
+
+  @override
+  bool confirmRouteExists(String route) {
+    return routes.fold(
+        false,
+        (previousValue, element) =>
+            previousValue || element.matches(RouteSettings(name: route)));
+  }
 }
 
 /// This class can apply the page decorations.

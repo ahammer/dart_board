@@ -71,36 +71,43 @@ class BottomNavTemplateFeature extends DartBoardFeature {
 
 class BottomNavTemplate extends StatelessWidget {
   @override
-  Widget build(BuildContext context) => Consumer<BottomNavTemplateState>(
-        builder: (ctx, navstate, child) => Scaffold(
+  Widget build(BuildContext context) {
+    return Consumer<BottomNavTemplateState>(
+      builder: (ctx, navstate, child) {
+        final active = navstate.config.where(
+            (e) => DartBoardCore.instance.confirmRouteExists(e["route"]));
+
+        return Scaffold(
           body: AnimatedSwitcher(
             duration: Duration(milliseconds: 200),
             child: RouteWidget(
-              navstate.config[navstate.selectedNavTab]['route'],
+              navstate.selectedRoute,
               decorate: true,
-              key: Key('tab_${navstate.selectedNavTab}'),
+              key: Key(navstate.selectedRoute),
             ),
           ),
           bottomNavigationBar: BottomNavigationBar(
             elevation: 3,
             type: BottomNavigationBarType.shifting,
             items: <BottomNavigationBarItem>[
-              ...navstate.config
+              ...active
                   .map((e) => BottomNavigationBarItem(
                       icon: Icon(e['icon']),
                       label: e['label'],
                       backgroundColor: e['color']))
                   .toList(),
             ],
-            currentIndex: navstate.selectedNavTab,
+            currentIndex: navstate.selectedTab,
             selectedItemColor: Theme.of(context).colorScheme.surface,
             unselectedItemColor:
                 Theme.of(context).colorScheme.surface.withOpacity(0.8),
             onTap: (value) {
-              log.info('Changing tab to $value');
-              navstate.selectedNavTab = value;
+              navstate.selectedTabIndex = value;
+              navstate.selectedRoute = active.toList()[value]["route"];
             },
           ),
-        ),
-      );
+        );
+      },
+    );
+  }
 }

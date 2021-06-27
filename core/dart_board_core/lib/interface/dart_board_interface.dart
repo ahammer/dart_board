@@ -97,6 +97,8 @@ abstract class DartBoardCore {
   ///
   /// Set value == null to disable
   void setFeatureImplementation(String namespace, String? value);
+
+  bool confirmRouteExists(String route);
 }
 
 extension DartBoardFeatureListExtension on List<DartBoardFeature> {

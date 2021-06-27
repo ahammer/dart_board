@@ -22,6 +22,16 @@ class EmptyHomePage extends StatelessWidget {
                 .setFeatureImplementation('template', 'bottomNav'),
             child: Text('Enable Template'),
           ),
+          MaterialButton(
+            onPressed: () => DartBoardCore.instance
+                .setFeatureImplementation('logging', 'default'),
+            child: Text('Enable Logging'),
+          ),
+          MaterialButton(
+            onPressed: () => DartBoardCore.instance
+                .setFeatureImplementation('MineSweeper', 'default'),
+            child: Text('Enable Minesweeper'),
+          ),
         ],
       )));
 }

@@ -88,21 +88,29 @@ class ExampleFeature extends DartBoardFeature {
         FrameFeature(),
       ];
 
+  bool _init = false;
+
   @override
   List<DartBoardDecoration> get appDecorations => <DartBoardDecoration>[
         DartBoardDecoration(
             name: 'Example Initializer',
             decoration: (ctx, child) => LifeCycleWidget(
-                  init: (ctx) => <String>[
-                    'theme',
-                    'logging',
-                    //'debug',
-                    'redux',
-                    'MineSweeper',
-                    'background',
-                    'app_border'
-                  ].forEach((element) => DartBoardCore.instance
-                      .setFeatureImplementation(element, null)),
+                  init: (ctx) {
+                    if (_init) return;
+
+                    <String>[
+                      'theme',
+                      'logging',
+                      //'debug',
+                      'redux',
+                      'MineSweeper',
+                      'background',
+                      'app_border'
+                    ].forEach((element) => DartBoardCore.instance
+                        .setFeatureImplementation(element, null));
+
+                    _init = true;
+                  },
                   child: child,
                 ))
       ];

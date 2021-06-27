@@ -37,9 +37,9 @@ const kCodeRoutes = <Map<String, String>>[
 const kMainPageConfig = [
   {
     'route': '/homepage',
-    'label': 'Code',
+    'label': 'Main',
     'color': Colors.blue,
-    'icon': Icons.code
+    'icon': Icons.home
   },
   {
     'route': '/debug',
