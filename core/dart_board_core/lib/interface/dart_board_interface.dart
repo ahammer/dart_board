@@ -98,6 +98,10 @@ abstract class DartBoardCore {
   /// Set value == null to disable
   void setFeatureImplementation(String namespace, String? value);
 
+  /// Feature gating
+  bool isFeatureActive(String namespace);
+
+  /// Check if this route can be resolved
   bool confirmRouteExists(String route);
 }
 
