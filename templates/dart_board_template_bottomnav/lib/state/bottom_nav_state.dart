@@ -10,7 +10,7 @@ class BottomNavTemplateState extends ChangeNotifier {
   String? _selectedRoute;
   int? _selectedTab;
 
-  BottomNavTemplateState(this.config);
+  BottomNavTemplateState(this.config) : _selectedRoute = config[0]["route"];
 
   String get selectedRoute => _selectedRoute ?? "404";
   int get selectedTab => _selectedTab ?? 0;
