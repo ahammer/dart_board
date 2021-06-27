@@ -35,7 +35,12 @@ const kCodeRoutes = <Map<String, String>>[
 /// It indicates the bottom buttons, labels icons and routes for the screen
 ///
 const kMainPageConfig = [
-  {'route': '/code', 'label': 'Code', 'color': Colors.blue, 'icon': Icons.code},
+  {
+    'route': '/homepage',
+    'label': 'Code',
+    'color': Colors.blue,
+    'icon': Icons.code
+  },
   {
     'route': '/debug',
     'label': 'Debug',

@@ -1,10 +1,12 @@
 import 'package:dart_board_core/dart_board.dart';
+import 'package:dart_board_core/impl/features/generic_features.dart';
 import 'package:dart_board_minesweeper/dart_board_minesweeper.dart';
 import 'package:dart_board_template_app_bar_sidenav/dart_board_template_app_bar_sidenav.dart';
 import 'package:dart_board_theme/dart_board_theme.dart';
 import 'package:dart_board_debug/debug_feature.dart';
 import 'package:dart_board_log/dart_board_log.dart';
 import 'package:example/impl/pages/code_overview.dart';
+import 'package:example/impl/pages/empty_home_page.dart';
 import 'data/constants.dart';
 import 'impl/decorations/color_border_decoration.dart';
 import 'impl/decorations/wavy_lines_background.dart';
@@ -46,10 +48,26 @@ class ExampleFeature extends DartBoardFeature {
 
         /// Add 2 template's
         /// can toggle in debug
+        BasicRouteFeature(
+            namespace: 'homepage',
+            targetRoute: '/homepage',
+            builder: (ctx) => EmptyHomePage()),
+
+        MirrorRouteFeature(
+            implementationName: 'direct',
+            namespace: 'template',
+            sourceRoute: '/homepage',
+            targetRoute: '/main'),
+
         BottomNavTemplateFeature(
-            route: '/main', config: kMainPageConfig, namespace: 'template'),
+            implementationName: 'bottomNav',
+            route: '/main',
+            config: kMainPageConfig,
+            namespace: 'template'),
+
         AppBarSideNavTemplateFeature(
             route: '/main',
+            implementationName: 'sideNav',
             config: kMainPageConfig,
             title: 'Example App',
             namespace: 'template'),
@@ -78,7 +96,7 @@ class ExampleFeature extends DartBoardFeature {
                   init: (ctx) => <String>[
                     'theme',
                     'logging',
-                    'debug',
+                    //'debug',
                     'redux',
                     'MineSweeper',
                     'background',
