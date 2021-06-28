@@ -7,13 +7,20 @@ class BottomNavTemplateState extends ChangeNotifier {
   /// We take the Config into the State so we can access it easily
   final List<Map<String, dynamic>> config;
 
-  int _selectedNavTab = 0;
+  String? _selectedRoute;
+  int? _selectedTab;
 
-  BottomNavTemplateState(this.config);
+  BottomNavTemplateState(this.config) : _selectedRoute = config[0]["route"];
 
-  int get selectedNavTab => _selectedNavTab;
-  set selectedNavTab(int idx) {
-    _selectedNavTab = idx;
+  String get selectedRoute => _selectedRoute ?? "404";
+  int get selectedTab => _selectedTab ?? 0;
+  set selectedRoute(String route) {
+    _selectedRoute = route;
+    notifyListeners();
+  }
+
+  set selectedTabIndex(int index) {
+    _selectedTab = index;
     notifyListeners();
   }
 }

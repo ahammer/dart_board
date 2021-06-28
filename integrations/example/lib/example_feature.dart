@@ -1,10 +1,12 @@
 import 'package:dart_board_core/dart_board.dart';
+import 'package:dart_board_core/impl/features/generic_features.dart';
 import 'package:dart_board_minesweeper/dart_board_minesweeper.dart';
 import 'package:dart_board_template_app_bar_sidenav/dart_board_template_app_bar_sidenav.dart';
 import 'package:dart_board_theme/dart_board_theme.dart';
 import 'package:dart_board_debug/debug_feature.dart';
 import 'package:dart_board_log/dart_board_log.dart';
 import 'package:example/impl/pages/code_overview.dart';
+import 'package:example/impl/pages/home_page_with_toggles.dart';
 import 'data/constants.dart';
 import 'impl/decorations/color_border_decoration.dart';
 import 'impl/decorations/wavy_lines_background.dart';
@@ -39,17 +41,33 @@ class ExampleFeature extends DartBoardFeature {
   ///
   @override
   List<DartBoardFeature> get dependencies => [
-        ThemeFeature(),
+        ThemeFeature(isDarkByDefault: true),
         DebugFeature(),
         LogFeature(),
         MinesweeperFeature(),
 
         /// Add 2 template's
         /// can toggle in debug
+        BasicRouteFeature(
+            namespace: 'homepage',
+            targetRoute: '/homepage',
+            builder: (ctx) => HomePageWithToggles()),
+
+        MirrorRouteFeature(
+            implementationName: 'direct',
+            namespace: 'template',
+            sourceRoute: '/homepage',
+            targetRoute: '/main'),
+
         BottomNavTemplateFeature(
-            route:'/main', config:kMainPageConfig, namespace: 'template'),
+            implementationName: 'bottomNav',
+            route: '/main',
+            config: kMainPageConfig,
+            namespace: 'template'),
+
         AppBarSideNavTemplateFeature(
             route: '/main',
+            implementationName: 'sideNav',
             config: kMainPageConfig,
             title: 'Example App',
             namespace: 'template'),
@@ -68,6 +86,32 @@ class ExampleFeature extends DartBoardFeature {
 
         /// Isolate the frame into a feature so it can be disabled
         FrameFeature(),
+      ];
+
+  bool _init = false;
+
+  @override
+  List<DartBoardDecoration> get appDecorations => <DartBoardDecoration>[
+        DartBoardDecoration(
+            name: 'Example Initializer',
+            decoration: (ctx, child) => LifeCycleWidget(
+                  init: (ctx) {
+                    if (_init) return;
+
+                    <String>[
+                      'theme',
+                      'logging',
+                      'redux',
+                      'MineSweeper',
+                      'background',
+                      'app_border'
+                    ].forEach((element) => DartBoardCore.instance
+                        .setFeatureImplementation(element, null));
+
+                    _init = true;
+                  },
+                  child: child,
+                ))
       ];
 
   /// Navigation entry points

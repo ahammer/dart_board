@@ -17,25 +17,18 @@ const kCodeRoutes = <Map<String, String>>[
     'haiku': 'Readme.md',
     'url': 'integrations/example/README.md',
   },
-  {
-    'title': 'main.dart',
-    'route': '/code_main',
-    'haiku': '''A basic entry point''',
-    'url': 'integrations/example/lib/main.dart',
-  },
-  {
-    'title': 'example_feature.dart',
-    'route': '/code_features',
-    'haiku': '''Extension Overview''',
-    'url': 'integrations/example/lib/example_feature.dart',
-  },
 ];
 
 /// This is the config for the bottom nav template
 /// It indicates the bottom buttons, labels icons and routes for the screen
 ///
 const kMainPageConfig = [
-  {'route': '/code', 'label': 'Code', 'color': Colors.blue, 'icon': Icons.code},
+  {
+    'route': '/homepage',
+    'label': 'Main',
+    'color': Colors.blue,
+    'icon': Icons.home
+  },
   {
     'route': '/debug',
     'label': 'Debug',

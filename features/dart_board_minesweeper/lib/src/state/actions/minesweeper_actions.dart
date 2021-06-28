@@ -90,12 +90,12 @@ class TouchMineSweeperTileAction extends FeatureAction<MinesweeperState> {
             }
 
             //Index position of the node
-            final newNode = flipNode(oldState, b, x!, y)!;
+            final newNode = flipNode(oldState, b, x, y);
 
             //No bombs yet, lets assign now
             if (newNode.isBomb == null) {
               //Flip the surrounding nodes (so we are in a blank space)
-              flipSurroundingNodes(oldState, b, x!, y!);
+              flipSurroundingNodes(oldState, b, x, y);
               _assignBombs(b);
             }
 
@@ -116,8 +116,8 @@ class FlagMineSweeperTileAction extends FeatureAction<MinesweeperState> {
 
   MinesweeperState Function(MinesweeperState oldState) get reducer =>
       (oldState) => oldState.rebuild((b) {
-            if (!oldState.mineSweeper!.isInBounds(x!, y) ||
-                oldState.mineSweeper!.isGameOver) {
+            if (!oldState.mineSweeper.isInBounds(x!, y) ||
+                oldState.mineSweeper.isGameOver) {
               return b;
             }
 
@@ -147,16 +147,16 @@ MineSweeperNode flipNode(
     MinesweeperState oldState, MinesweeperStateBuilder b, int x, int? y,
     {bool flip = true}) {
   //Bounds check
-  if ((x >= oldState.mineSweeper!.width!) ||
-      (y! >= oldState.mineSweeper!.height!) ||
+  if ((x >= oldState.mineSweeper.width) ||
+      (y! >= oldState.mineSweeper.height) ||
       (x < 0) ||
       (y < 0)) return MineSweeperNode.emptyNode();
 
-  final nodeIdx = y * oldState.mineSweeper!.width! + x;
-  final node = oldState.mineSweeper!.nodes![nodeIdx];
+  final nodeIdx = y * oldState.mineSweeper.width + x;
+  final node = oldState.mineSweeper.nodes[nodeIdx];
   late MineSweeperNode newNode;
   if (flip) {
-    if (!node.isTagged!) {
+    if (!node.isTagged) {
       newNode = node.rebuild((b) => b..isVisible = true);
     }
   } else {
@@ -177,7 +177,7 @@ void _assignBombs(MinesweeperStateBuilder b) {
 
   //Set all the bombs to false
   for (int i = 0; i < width * height; i++) {
-    nodes[i] = nodes[i]!.rebuild((b) => b..isBomb = false);
+    nodes[i] = nodes[i].rebuild((b) => b..isBomb = false);
   }
 
   //Assign bombCount at random
@@ -185,7 +185,7 @@ void _assignBombs(MinesweeperStateBuilder b) {
     int x = random.nextInt(width);
     int y = random.nextInt(height);
     final idx = x + y * width;
-    final node = nodes[idx]!;
+    final node = nodes[idx];
     if (node.isVisible != true && node.isBomb != true) {
       nodes[idx] = node.rebuild((b) => b..isBomb = true);
       remaining--;
@@ -196,7 +196,7 @@ void _assignBombs(MinesweeperStateBuilder b) {
     for (int y = 0; y < height; y++) {
       int count = _countNeighbours(x, y, width, height, nodes);
       final idx = x + y * width;
-      final node = nodes[idx]!;
+      final node = nodes[idx];
       nodes[idx] = node.rebuild((b) => b..neighbours = count);
     }
   }
@@ -205,14 +205,14 @@ void _assignBombs(MinesweeperStateBuilder b) {
 int _countNeighbours(
     int x, int y, int width, int height, ListBuilder<MineSweeperNode> nodes) {
   List<MineSweeperNode> neighbours = [];
-  neighbours.add(_getNode(x + 1, y + 1, width, height, nodes) ?? emptyNode);
-  neighbours.add(_getNode(x + 1, y, width, height, nodes) ?? emptyNode);
-  neighbours.add(_getNode(x + 1, y - 1, width, height, nodes) ?? emptyNode);
-  neighbours.add(_getNode(x, y + 1, width, height, nodes) ?? emptyNode);
-  neighbours.add(_getNode(x, y - 1, width, height, nodes) ?? emptyNode);
-  neighbours.add(_getNode(x - 1, y + 1, width, height, nodes) ?? emptyNode);
-  neighbours.add(_getNode(x - 1, y, width, height, nodes) ?? emptyNode);
-  neighbours.add(_getNode(x - 1, y - 1, width, height, nodes) ?? emptyNode);
+  neighbours.add(_getNode(x + 1, y + 1, width, height, nodes));
+  neighbours.add(_getNode(x + 1, y, width, height, nodes));
+  neighbours.add(_getNode(x + 1, y - 1, width, height, nodes));
+  neighbours.add(_getNode(x, y + 1, width, height, nodes));
+  neighbours.add(_getNode(x, y - 1, width, height, nodes));
+  neighbours.add(_getNode(x - 1, y + 1, width, height, nodes));
+  neighbours.add(_getNode(x - 1, y, width, height, nodes));
+  neighbours.add(_getNode(x - 1, y - 1, width, height, nodes));
   return neighbours.fold(
       0, (value, node) => value + (node.isBomb ?? false ? 1 : 0));
 }

@@ -112,17 +112,13 @@ class CollapsingList extends StatelessWidget {
           children: [
             ...routes.map((e) => Card(
                   child: InkWell(
-                      onTap: () {
-                        showDialog(
-                            context: context,
-                            builder: (ctx) => Padding(
-                                  padding: const EdgeInsets.all(16.0),
-                                  child: Material(
-                                    child: RouteWidget(
-                                        settings: RouteSettings(name: e.route)),
-                                  ),
-                                ));
-                      },
+                      onTap: () => showDialog(
+                          context: context,
+                          builder: (ctx) => Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Material(
+                                child: RouteWidget(e.route),
+                              ))),
                       child: FittedBox(
                           fit: BoxFit.scaleDown, child: Text(e.route))),
                 ))

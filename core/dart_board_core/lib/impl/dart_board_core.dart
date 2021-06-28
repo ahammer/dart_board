@@ -100,8 +100,7 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
         create: (ctx) => this,
         child: MaterialApp(
           home: _init
-              ? applyPageDecorations(RouteWidget(
-                  settings: RouteSettings(name: widget.initialRoute)))
+              ? applyPageDecorations(RouteWidget(widget.initialRoute))
               : CircularProgressIndicator(),
           key: dartBoardKey,
           navigatorKey: dartBoardNavKey,
@@ -266,6 +265,33 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
         featureOverrides[namespace] = value;
         buildFeatures();
       });
+
+  @override
+  bool confirmRouteExists(String route) {
+    return routes.fold(
+        false,
+        (previousValue, element) =>
+            previousValue || element.matches(RouteSettings(name: route)));
+  }
+
+  @override
+  bool isFeatureActive(String namespace) {
+    if (featureOverrides.containsKey(namespace) &&
+        featureOverrides[namespace] == null) {
+      //Explicitly Disabled
+      return false;
+    }
+
+    final count =
+        allFeatures.where((element) => element.namespace == namespace).length;
+
+    if (count == 0) {
+      /// Not detected
+      return false;
+    }
+
+    return true;
+  }
 }
 
 /// This class can apply the page decorations.

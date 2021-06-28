@@ -82,21 +82,21 @@ class AppBarSideNavTemplate extends StatelessWidget {
           body: AnimatedSwitcher(
             duration: Duration(milliseconds: 200),
             child: RouteWidget(
+              navstate.selectedNavTab,
               decorate: true,
               key: Key('tab_${navstate.selectedNavTab}'),
-              settings: RouteSettings(name: navstate.selectedNavTab),
             ),
           ),
           drawer: Drawer(
               elevation: 1,
               child: Column(
                   children: navstate.config
-                      .map((config) => MaterialButton(
-                            child: Row(children: [
-                              Icon(config['icon']),
-                              Text(config['label'])
-                            ]),
-                            onPressed: () {
+                      .where((e) =>
+                          DartBoardCore.instance.confirmRouteExists(e['route']))
+                      .map((config) => ListTile(
+                            leading: Text(config['label']),
+                            trailing: Icon(config['icon']),
+                            onTap: () {
                               navstate.selectedNavTab = config['route'];
                               Navigator.of(context).pop();
                             },

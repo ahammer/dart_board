@@ -26,9 +26,7 @@ class _CodeOverviewState extends State<CodeOverview>
               child: TabBarView(
                   controller: _controller,
                   children: kCodeRoutes
-                      .map((e) => RouteWidget(
-                            settings: RouteSettings(name: e['route']),
-                          ))
+                      .map((e) => RouteWidget(e['route']!))
                       .toList()),
             ),
             Material(

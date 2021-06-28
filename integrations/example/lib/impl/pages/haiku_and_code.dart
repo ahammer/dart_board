@@ -57,27 +57,12 @@ class _HaikuAndCodeState extends State<HaikuAndCode> {
     return LayoutBuilder(builder: (ctx, size) {
       final codeWidget;
       codeWidget = AnimatedContainer(
-          width: min(size.maxWidth, 800),
+          width: size.maxWidth,
           height: fileContents.isEmpty ? 0 : size.maxHeight,
           duration: Duration(milliseconds: 500),
           curve: Curves.easeInExpo,
           child: fileContents.isNotEmpty
-              ? Padding(
-                  padding: const EdgeInsets.all(32.0),
-                  child: Material(
-                      elevation: 2,
-                      child: widget.url.endsWith('.md')
-                          ? Markdown(data: fileContents)
-                          : SyntaxView(
-                              fontSize: 14,
-                              expanded: true,
-                              withZoom: false,
-                              code: fileContents,
-                              syntax: Syntax.DART,
-                              syntaxTheme: (ThemeFeature.isLight
-                                  ? SyntaxTheme.vscodeLight()
-                                  : SyntaxTheme.vscodeDark()))),
-                )
+              ? Markdown(data: fileContents)
               : Center(child: CircularProgressIndicator()));
 
       return Stack(
@@ -90,14 +75,31 @@ class _HaikuAndCodeState extends State<HaikuAndCode> {
               child: Material(
                   elevation: 2,
                   borderRadius: BorderRadius.circular(32),
-                  child: InkWell(
-                      borderRadius: BorderRadius.circular(32),
-                      onTap: () => launch(
-                          'https://github.com/ahammer/dart_board/blob/master/${widget.url}'),
-                      child: Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Text('Open in GitHub'),
-                      ))),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      InkWell(
+                          borderRadius: BorderRadius.circular(16),
+                          onTap: () =>
+                              launch('https://github.com/ahammer/dart_board/'),
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: Text('GitHub'),
+                          )),
+                      Container(
+                        width: 100,
+                        child: Divider(),
+                      ),
+                      InkWell(
+                          borderRadius: BorderRadius.circular(16),
+                          onTap: () => launch(
+                              'https://pub.dev/publishers/dart-board.io/packages/'),
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: Text('Pub.dev'),
+                          )),
+                    ],
+                  )),
             ),
           )
         ],

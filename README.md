@@ -1,11 +1,12 @@
 # Dart Board
-### An extensible flutter-framework
 
-![Demo](https://media3.giphy.com/media/Yo9eqMoEBYB1S45A92/giphy.gif)
+Flutter Architecture/Framework for Feature based development
 
-## Summary
+## How it got started
 
-Dart Board lets you combine and build features to integrate into a larger app. 
+This is a clean room build of some of the best techniques I've used over the years adapted to flutter.
+
+It's an architecture that isn't designed around `state management` or anything like that. It's based around a product and the features you deploy. Features are given a large amount of freedom to be developed however they want.
 
 ## How it works?
 
@@ -56,6 +57,8 @@ The integration feature specifies the other Features you use, Configure's them a
 
 
 ## What features are included?
+
+https://pub.dev/publishers/dart-board.io/packages
 
 As of now, some basic features are implemented with more to come.
 
