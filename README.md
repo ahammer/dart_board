@@ -2,11 +2,22 @@
 
 Flutter Architecture/Framework for Feature based development
 
-## How it got started
+# What is it? 
 
-This is a clean room build of some of the best techniques I've used over the years adapted to flutter.
+- It is a high level architecture pattern and framework.
 
-It's an architecture that isn't designed around `state management` or anything like that. It's based around a product and the features you deploy. Features are given a large amount of freedom to be developed however they want.
+- It is not a state management solution, at least not directly.
+
+- It is a feature management framework.
+
+In the simplest terms, Dart Board starts blank, and you throw features at it to build your app.
+
+The core library itself only provides common utilities and the core set of widgets. Everything from Content, State Management and more advanced features come in the form of external `Features`. Features are isolated chunks of code built on dart_board that can be easily integrated together.
+
+Internally mechanisms in flutter such as `named routes` are utilized to loosely couple things together. Dart Board owns your MaterialApp and Navigator, we are able to expose integration points for features to utilize in their integartion.
+
+TLDR: Dart Board owns your MaterialApp() and manages features for you (AB Testing, Feature Flags).
+
 
 ## How it works?
 
