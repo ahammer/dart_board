@@ -2,7 +2,8 @@ import 'package:dart_board_core/dart_board.dart';
 import 'package:flutter/material.dart';
 
 class ThemeFeature extends DartBoardFeature {
-  ThemeFeature();
+  final bool isDarkByDefault;
+  ThemeFeature({this.isDarkByDefault = false});
 
   @override
   List<DartBoardDecoration> get pageDecorations => [
@@ -31,7 +32,7 @@ class ThemeFeature extends DartBoardFeature {
             name: 'theme_state_holder',
             decoration: (context, child) => ChangeNotifierProvider<ThemeState>(
                 key: Key('theme_state_holder'),
-                create: (ctx) => ThemeState(),
+                create: (ctx) => ThemeState(isLight: !isDarkByDefault),
                 child: child))
       ];
 
@@ -76,7 +77,10 @@ class ThemePage extends StatelessWidget {
 }
 
 class ThemeState extends ChangeNotifier {
-  bool isLight = true;
+  bool isLight;
+
+  ThemeState({this.isLight = true});
+
   void toggleTheme() {
     isLight = !isLight;
     notifyListeners();

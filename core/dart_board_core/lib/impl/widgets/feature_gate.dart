@@ -1,6 +1,10 @@
 import '../../dart_board.dart';
 
-/// When you want to ensure a feature is gated behind a widget
+/// FeatureGate Widget
+///
+/// When you know a feature will fail if a namespace isn't filled
+/// you can use FeatureGate to sort that out.
+///
 class FeatureGate extends StatelessWidget {
   /// The list of features we require
   final String gatedFeature;

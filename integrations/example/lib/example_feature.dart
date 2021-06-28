@@ -41,7 +41,7 @@ class ExampleFeature extends DartBoardFeature {
   ///
   @override
   List<DartBoardFeature> get dependencies => [
-        ThemeFeature(),
+        ThemeFeature(isDarkByDefault: true),
         DebugFeature(),
         LogFeature(),
         MinesweeperFeature(),
@@ -51,7 +51,7 @@ class ExampleFeature extends DartBoardFeature {
         BasicRouteFeature(
             namespace: 'homepage',
             targetRoute: '/homepage',
-            builder: (ctx) => EmptyHomePage()),
+            builder: (ctx) => HomePageWithToggles()),
 
         MirrorRouteFeature(
             implementationName: 'direct',
