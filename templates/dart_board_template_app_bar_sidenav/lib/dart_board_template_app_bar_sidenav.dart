@@ -91,12 +91,12 @@ class AppBarSideNavTemplate extends StatelessWidget {
               elevation: 1,
               child: Column(
                   children: navstate.config
-                      .map((config) => MaterialButton(
-                            child: Row(children: [
-                              Icon(config['icon']),
-                              Text(config['label'])
-                            ]),
-                            onPressed: () {
+                      .where((e) =>
+                          DartBoardCore.instance.confirmRouteExists(e['route']))
+                      .map((config) => ListTile(
+                            leading: Text(config['label']),
+                            trailing: Icon(config['icon']),
+                            onTap: () {
                               navstate.selectedNavTab = config['route'];
                               Navigator.of(context).pop();
                             },

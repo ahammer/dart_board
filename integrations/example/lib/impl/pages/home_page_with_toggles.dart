@@ -57,7 +57,7 @@ class HomePageWithToggles extends StatelessWidget {
                           ),
                           const PopupMenuItem<TemplateOptions>(
                             value: TemplateOptions.side_nav,
-                            child: Text('Side Navigation'),
+                            child: Text('AppBar+Drawer Nav'),
                           ),
                           const PopupMenuItem<TemplateOptions>(
                             value: TemplateOptions.bottom_nav,
@@ -127,7 +127,7 @@ class HomePageWithToggles extends StatelessWidget {
                                   'MineSweeper', result ? 'default' : null)
                             }),
                     SwitchListTile.adaptive(
-                        title: Text('theme'),
+                        title: Text('Theme'),
                         value: DartBoardCore.instance.isFeatureActive('theme'),
                         onChanged: (result) => DartBoardCore.instance
                             .setFeatureImplementation(

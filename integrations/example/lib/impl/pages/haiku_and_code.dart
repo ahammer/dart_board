@@ -75,14 +75,31 @@ class _HaikuAndCodeState extends State<HaikuAndCode> {
               child: Material(
                   elevation: 2,
                   borderRadius: BorderRadius.circular(32),
-                  child: InkWell(
-                      borderRadius: BorderRadius.circular(32),
-                      onTap: () => launch(
-                          'https://github.com/ahammer/dart_board/blob/master/${widget.url}'),
-                      child: Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Text('Open in GitHub'),
-                      ))),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      InkWell(
+                          borderRadius: BorderRadius.circular(16),
+                          onTap: () =>
+                              launch('https://github.com/ahammer/dart_board/'),
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: Text('GitHub'),
+                          )),
+                      Container(
+                        width: 100,
+                        child: Divider(),
+                      ),
+                      InkWell(
+                          borderRadius: BorderRadius.circular(16),
+                          onTap: () => launch(
+                              'https://pub.dev/publishers/dart-board.io/packages/'),
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: Text('Pub.dev'),
+                          )),
+                    ],
+                  )),
             ),
           )
         ],

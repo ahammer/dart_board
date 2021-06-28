@@ -101,7 +101,6 @@ class ExampleFeature extends DartBoardFeature {
                     <String>[
                       'theme',
                       'logging',
-                      //'debug',
                       'redux',
                       'MineSweeper',
                       'background',
