@@ -6,7 +6,7 @@ import 'package:dart_board_theme/dart_board_theme.dart';
 import 'package:dart_board_debug/debug_feature.dart';
 import 'package:dart_board_log/dart_board_log.dart';
 import 'package:example/impl/pages/code_overview.dart';
-import 'package:example/impl/pages/empty_home_page.dart';
+import 'package:example/impl/pages/home_page_with_toggles.dart';
 import 'data/constants.dart';
 import 'impl/decorations/color_border_decoration.dart';
 import 'impl/decorations/wavy_lines_background.dart';

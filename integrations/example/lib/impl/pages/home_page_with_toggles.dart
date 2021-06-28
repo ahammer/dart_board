@@ -25,6 +25,10 @@ class HomePageWithToggles extends StatelessWidget {
                       'Flutter Feature Framework',
                       style: Theme.of(context).textTheme.headline5,
                     ),
+                    Text(
+                      '[ Self Guided Tour ]',
+                      style: Theme.of(context).textTheme.subtitle2,
+                    ),
                     ListTile(
                       title: Text('Template'),
                       trailing: PopupMenuButton<TemplateOptions>(
@@ -128,6 +132,17 @@ class HomePageWithToggles extends StatelessWidget {
                         onChanged: (result) => DartBoardCore.instance
                             .setFeatureImplementation(
                                 'theme', result ? 'default' : null)),
+                    ListTile(
+                      title: Text('Readme'),
+                      onTap: () {
+                        showDialog(
+                            barrierDismissible: true,
+                            context: context,
+                            useSafeArea: true,
+                            builder: (ctx) => Dialog(
+                                child: Card(child: RouteWidget('/readme'))));
+                      },
+                    )
                   ],
                 ),
               ),
