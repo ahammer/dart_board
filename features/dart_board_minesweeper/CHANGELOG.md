@@ -1,3 +1,7 @@
+## 0.9.3
+
+ - **FEAT**: Feature Gate widget and Page Decoration.
+
 ## 0.9.2+5
 
  - **FIX**: fixed dependency_overrides back in place.

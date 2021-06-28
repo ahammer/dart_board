@@ -1,3 +1,11 @@
+## 0.9.8
+
+ - **FIX**: another test.
+ - **FIX**: adding tests.
+ - **FIX**: adding tests and coverage.
+ - **FEAT**: updated entry point.
+ - **FEAT**: Feature Gate widget and Page Decoration.
+
 ## 0.9.7
 
  - **FIX**: fixed dependency_overrides back in place.

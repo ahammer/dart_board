@@ -1,3 +1,7 @@
+## 0.9.1
+
+ - **FEAT**: updated entry point.
+
 ## 0.9.0+3
 
  - **FIX**: fixed dependency_overrides back in place.

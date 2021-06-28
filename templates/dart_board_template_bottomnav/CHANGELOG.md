@@ -1,3 +1,7 @@
+## 0.9.1+5
+
+ - **FIX**: make sure to load initial route correctly in the template.
+
 ## 0.9.1+4
 
  - **FIX**: cleaned up yaml.
