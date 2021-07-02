@@ -1,3 +1,7 @@
+## 0.9.1+4
+
+ - Update a dependency to the latest release.
+
 ## 0.9.1+3
 
  - **FIX**: fixed dependency_overrides back in place.
