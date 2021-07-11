@@ -257,12 +257,6 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
   }
 
   @override
-  Widget applyPageDecorations(Widget child) => ApplyPageDecorations(
-        decorations: pageDecorations,
-        child: child,
-      );
-
-  @override
   void setFeatureImplementation(String namespace, String? value) =>
       setState(() {
         featureOverrides[namespace] = value;

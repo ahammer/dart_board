@@ -64,13 +64,6 @@ abstract class DartBoardCore {
   ///
   /// They are exposed for debug/info purposes primarily
 
-  /// Apply Page Decorations to a widget.
-  ///
-  /// child:
-  ///
-  /// E.g. if you use RouteWidget with like a dialog, but want the decorations
-  Widget applyPageDecorations(Widget child) => child;
-
   /// Builds a page route
   ///
   Widget buildPageRoute(
@@ -79,11 +72,6 @@ abstract class DartBoardCore {
 
   ///------------------------------------------------------------------------------------------------------------
   /// STATIC HELPERS
-
-  /// Decorate a page.
-  static Widget decoratePage(Widget child) =>
-      Provider.of<DartBoardCore>(dartBoardNavKey.currentContext!)
-          .applyPageDecorations(child);
 
   /// Finds a Feature by it's name
   static DartBoardFeature findByName(String name) =>
