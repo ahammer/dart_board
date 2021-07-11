@@ -121,7 +121,7 @@ void main() {
 
     // Make sure DartBoard as started fully
     await tester.pumpAndSettle();
-
+    expect(DartBoardCore.instance.isFeatureActive('Primary'), equals(true));
     // Nothing is registered, so this should be 404 message
     // Checking for default
     expect(find.text('Primary:a'), findsOneWidget);
@@ -129,11 +129,15 @@ void main() {
     /// Select "B" and verify it's what we see
     DartBoardCore.instance.setFeatureImplementation('Primary', 'b');
     await tester.pumpAndSettle();
+    expect(DartBoardCore.instance.isFeatureActive('Primary'), equals(true));
     expect(find.text('Primary:b'), findsOneWidget);
 
     /// Disable "Primary" and verify it's what we see
     DartBoardCore.instance.setFeatureImplementation('Primary', null);
+
     await tester.pumpAndSettle();
+    expect(DartBoardCore.instance.isFeatureActive('Primary'), equals(false));
+
     expect(find.text('Secondary:c'), findsOneWidget);
   });
 }
