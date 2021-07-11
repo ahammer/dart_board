@@ -264,12 +264,10 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
       });
 
   @override
-  bool confirmRouteExists(String route) {
-    return routes.fold(
-        false,
-        (previousValue, element) =>
-            previousValue || element.matches(RouteSettings(name: route)));
-  }
+  bool confirmRouteExists(String route) => routes.fold(
+      false,
+      (previousValue, element) =>
+          previousValue || element.matches(RouteSettings(name: route)));
 
   @override
   bool isFeatureActive(String namespace) {

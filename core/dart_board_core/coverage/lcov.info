@@ -166,11 +166,11 @@ DA:266,0
 DA:268,0
 DA:270,0
 DA:271,0
-DA:274,0
-DA:276,0
-DA:277,0
-DA:283,0
-DA:285,0
+DA:274,1
+DA:276,2
+DA:277,2
+DA:283,6
+DA:285,1
 DA:300,0
 DA:304,0
 DA:305,0
@@ -189,7 +189,7 @@ DA:338,0
 DA:339,0
 DA:345,1
 LF:140
-LH:111
+LH:116
 end_of_record
 SF:lib\impl\widgets\convertor_widget.dart
 DA:15,1

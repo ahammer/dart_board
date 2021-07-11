@@ -31,6 +31,25 @@ void main() {
     expect(find.text('page_decoration'), findsOneWidget);
   });
 
+  testWidgets('Check Route Exists', (tester) async {
+    await tester.pumpWidget(DartBoard(initialRoute: '/main', features: [
+      TestFeature(
+        namespace: 'default',
+        route1: '/main',
+      )
+    ]));
+
+    // Make sure DartBoard as started fully
+    await tester.pumpAndSettle();
+
+    // Nothing is registered, so this should be 404 message
+    // Checking for default
+
+    expect(DartBoardCore.instance.confirmRouteExists('/main'), equals(true));
+    expect(DartBoardCore.instance.confirmRouteExists('/does_not_exist'),
+        equals(false));
+  });
+
   testWidgets('Page and App Decoration Check - AllowList:Pass', (tester) async {
     await tester.pumpWidget(DartBoard(
       initialRoute: '/main',
@@ -121,7 +140,7 @@ void main() {
 
     // Make sure DartBoard as started fully
     await tester.pumpAndSettle();
-
+    expect(DartBoardCore.instance.isFeatureActive('Primary'), equals(true));
     // Nothing is registered, so this should be 404 message
     // Checking for default
     expect(find.text('Primary:a'), findsOneWidget);
@@ -129,11 +148,15 @@ void main() {
     /// Select "B" and verify it's what we see
     DartBoardCore.instance.setFeatureImplementation('Primary', 'b');
     await tester.pumpAndSettle();
+    expect(DartBoardCore.instance.isFeatureActive('Primary'), equals(true));
     expect(find.text('Primary:b'), findsOneWidget);
 
     /// Disable "Primary" and verify it's what we see
     DartBoardCore.instance.setFeatureImplementation('Primary', null);
+
     await tester.pumpAndSettle();
+    expect(DartBoardCore.instance.isFeatureActive('Primary'), equals(false));
+
     expect(find.text('Secondary:c'), findsOneWidget);
   });
 }
