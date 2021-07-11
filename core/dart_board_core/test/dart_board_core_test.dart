@@ -31,6 +31,25 @@ void main() {
     expect(find.text('page_decoration'), findsOneWidget);
   });
 
+  testWidgets('Check Route Exists', (tester) async {
+    await tester.pumpWidget(DartBoard(initialRoute: '/main', features: [
+      TestFeature(
+        namespace: 'default',
+        route1: '/main',
+      )
+    ]));
+
+    // Make sure DartBoard as started fully
+    await tester.pumpAndSettle();
+
+    // Nothing is registered, so this should be 404 message
+    // Checking for default
+
+    expect(DartBoardCore.instance.confirmRouteExists('/main'), equals(true));
+    expect(DartBoardCore.instance.confirmRouteExists('/does_not_exist'),
+        equals(false));
+  });
+
   testWidgets('Page and App Decoration Check - AllowList:Pass', (tester) async {
     await tester.pumpWidget(DartBoard(
       initialRoute: '/main',
