@@ -16,10 +16,10 @@ void main() {
     expect(find.text('"/a" Not Found'), findsOneWidget);
   });
 
- testWidgets('Page and App Decoration Check', (tester) async {
+  testWidgets('Page and App Decoration Check', (tester) async {
     await tester.pumpWidget(DartBoard(
       initialRoute: '/main',
-      features: [TestFeature(namespace: 'default', route: '/main')],
+      features: [TestFeature(namespace: 'default', route1: '/main')],
     ));
 
     // Make sure DartBoard as started fully
@@ -31,15 +31,60 @@ void main() {
     expect(find.text('page_decoration'), findsOneWidget);
   });
 
+  testWidgets('Page and App Decoration Check - AllowList:Pass', (tester) async {
+    await tester.pumpWidget(DartBoard(
+      initialRoute: '/main',
+      features: [
+        TestFeature(
+            namespace: 'default',
+            route1: '/main',
+            pageDecorationAllowList: ['/main:page_decoration'])
+      ],
+    ));
+
+    // Make sure DartBoard as started fully
+    await tester.pumpAndSettle();
+
+    // Nothing is registered, so this should be 404 message
+    // Checking for default
+
+    expect(find.text('page_decoration'), findsOneWidget);
+  });
+
+  testWidgets('Page and App Decoration Check - AllowList:Fail', (tester) async {
+    await tester.pumpWidget(DartBoard(
+      initialRoute: '/main',
+      features: [
+        TestFeature(
+            namespace: 'default',
+            route1: '/main',
+            pageDecorationAllowList: ['/does_not_exist:page_decoration'])
+      ],
+    ));
+
+    // Make sure DartBoard as started fully
+    await tester.pumpAndSettle();
+
+    // Nothing is registered, so this should be 404 message
+    // Checking for default
+
+    expect(find.text('page_decoration'), findsNothing);
+  });
+
+  /// This test verifies that Features can be enabled/disabled and that Routing
+  /// updated correspondingly.
   testWidgets('Feature Toggle and Routing', (tester) async {
     await tester.pumpWidget(DartBoard(
       initialRoute: '/main',
       features: [
         /// We register 3 test features
-        TestFeature(namespace: 'Primary', route: 'a'),
-        TestFeature(namespace: 'Primary', route: 'b'),
-        TestFeature(namespace: 'Secondary', route: 'c'),
-        ],
+        TestFeature(
+            namespace: 'Primary', route1: '/main', implementationName: 'a'),
+        TestFeature(
+            namespace: 'Primary', route1: '/main', implementationName: 'b'),
+        TestFeature(
+            namespace: 'Secondary', route1: '/main', implementationName: 'c'),
+      ],
     ));
 
     // Make sure DartBoard as started fully
@@ -54,32 +99,48 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('Primary:b'), findsOneWidget);
 
-
     /// Disable "Primary" and verify it's what we see
     DartBoardCore.instance.setFeatureImplementation('Primary', null);
     await tester.pumpAndSettle();
     expect(find.text('Secondary:c'), findsOneWidget);
-
   });
 }
 
 class TestFeature extends DartBoardFeature {
-  final String route;
+  @override
+  final String implementationName;
+  final String route1;
+  final String? route2;
 
   @override
   final String namespace;
-  
-  @override
-  String get implementationName => route;
 
-  TestFeature({required this.namespace, required this.route});
-  
+  @override
+  final List<String> pageDecorationAllowList;
+
+  @override
+  final List<String> pageDecorationDenyList;
+
+  TestFeature({
+    required this.namespace,
+    required this.route1,
+    this.route2,
+    this.implementationName = 'default',
+    this.pageDecorationAllowList = const [],
+    this.pageDecorationDenyList = const [],
+  });
+
   @override
   List<RouteDefinition> get routes => [
         NamedRouteDefinition(
-            route: '/main',
+            route: route1,
             builder: (settings, ctx) =>
-                Material(child: Text('$namespace:$route')))
+                Material(child: Text('$namespace:$implementationName'))),
+        if (route2 != null)
+          NamedRouteDefinition(
+              route: route2!,
+              builder: (settings, ctx) =>
+                  Material(child: Text('$namespace:$implementationName:B')))
       ];
 
   @override
@@ -95,7 +156,7 @@ DartBoardDecoration getTestDecoration(String label) => DartBoardDecoration(
     decoration: (ctx, child) => Column(
           children: [
             Text(label),
-            Expanded(child:child),
+            Expanded(child: child),
           ],
         ),
-    name: 'tester');
+    name: label);

@@ -46,10 +46,10 @@ packages:
   dart_board_core:
     dependency: "direct main"
     description:
-      path: "../../core/dart_board_core"
-      relative: true
-    source: path
-    version: "0.9.7"
+      name: dart_board_core
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.9.8"
   fake_async:
     dependency: transitive
     description:
