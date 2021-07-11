@@ -20,16 +20,44 @@ Widget _pageNoteFound(BuildContext context) =>
 /// It'll enable support/integration of features
 ///
 class DartBoard extends StatefulWidget {
-  /// These are the features we'll load
-
+  /// A list of features and their configuration's
+  /// e.g. [FeatureA(config), FeatureB(config)]
+  ///
+  /// These features will all be loaded
   final List<DartBoardFeature> features;
 
   /// Deny List in the format of
-  /// "Yourfeature:Decoration"
+  ///
+  /// ["Yourfeature:Decoration"]
+  ///
+  /// When a Page Decoration hits a Route in the Deny List, it will be
+  /// excluded.
+  ///
+  /// Typical use case is to omit a decoration from a screen. For example
+  /// if you had a page decoration you wanted globally except on particular
+  /// screens. E.g. the Log Page doesn't show the Log Border.
   final Map<String, String> pageDecorationDenyList;
+
+  /// The "Route" builder. This is an over-ride for how page routing
+  /// is handled internally
+  ///
+  /// E.g. Material/Cupertino or Custom page Routing
+  /// constants
+  ///  - `kMaterialPageRouteResolver`
+  ///  - `kCupertinoPageRouteResolver`
+  ///  are available as platform defaults.
   final Route Function(RouteSettings settings, WidgetBuilder builder)
       routeBuilder;
+
+  /// pageNotFound widget builder is essentially the `404` builder
+  /// Not required, but if you expect 404's maybe you want to
+  /// implement this.
+  ///
+  /// A basic debug one is provided out of the box
   final WidgetBuilder pageNotFoundWidget;
+
+  /// The initial route, where you want your app entry point to be
+  /// doesn't have to be "/", can be any registered route.
   final String initialRoute;
 
   DartBoard(
@@ -94,7 +122,11 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
         ?.scheduleFrameCallback((timeStamp) => setState(() => _init = true));
   }
 
-  /// Simple build
+  /// Build Dart-Board Core
+  ///
+  /// 1) First we Provide DartBoardCore to the tree
+  /// 2) Then provide a MaterialApp + Customizations
+  ///
   @override
   Widget build(BuildContext context) => Provider<DartBoardCore>(
         create: (ctx) => this,

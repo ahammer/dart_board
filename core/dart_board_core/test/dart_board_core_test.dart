@@ -187,10 +187,10 @@ class TestFeature extends DartBoardFeature {
 
   @override
   List<RouteDefinition> get routes => [
-        NamedRouteDefinition(
-            route: route1,
-            builder: (settings, ctx) =>
-                Material(child: Text('$namespace:$implementationName'))),
+        MapRouteDefinition(routeMap: {
+          route1: (settings, ctx) =>
+              Material(child: Text('$namespace:$implementationName'))
+        }),
         if (route2 != null)
           NamedRouteDefinition(
               route: route2!,
