@@ -62,6 +62,22 @@ void main() {
       ],
     ));
 
+    await tester.pumpAndSettle();
+    expect(find.text('page_decoration'), findsNothing);
+  });
+
+  testWidgets('Page and App Decoration Check - DenyList:Match and Block',
+      (tester) async {
+    await tester.pumpWidget(DartBoard(
+      initialRoute: '/main',
+      features: [
+        TestFeature(
+            namespace: 'default',
+            route1: '/main',
+            pageDecorationDenyList: ['/main:page_decoration'])
+      ],
+    ));
+
     // Make sure DartBoard as started fully
     await tester.pumpAndSettle();
 
@@ -69,6 +85,22 @@ void main() {
     // Checking for default
 
     expect(find.text('page_decoration'), findsNothing);
+  });
+
+  testWidgets('Page and App Decoration Check - DenyList:Does Not Match',
+      (tester) async {
+    await tester.pumpWidget(DartBoard(
+      initialRoute: '/main',
+      features: [
+        TestFeature(
+            namespace: 'default',
+            route1: '/main',
+            pageDecorationDenyList: ['/does_not_exist:page_decoration'])
+      ],
+    ));
+
+    await tester.pumpAndSettle();
+    expect(find.text('page_decoration'), findsOneWidget);
   });
 
   /// This test verifies that Features can be enabled/disabled and that Routing
