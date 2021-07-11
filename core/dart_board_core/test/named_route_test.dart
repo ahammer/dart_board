@@ -10,7 +10,11 @@ void main() {
     await tester.pumpWidget(Builder(
         builder: (ctx) => def.builder(RouteSettings(name: 'test'), ctx)));
     await tester.pumpAndSettle();
+
+    expect(def.matches(RouteSettings(name: 'test')), equals(true));
+    expect(def.matches(RouteSettings(name: 'asdsadsa')), equals(false));
     expect(def.toString(), equals('test'));
+
     expect(find.text('visible'), findsOneWidget);
   });
 }
