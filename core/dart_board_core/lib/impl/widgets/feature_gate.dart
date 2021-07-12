@@ -39,10 +39,12 @@ class FeatureGate extends StatelessWidget {
       return Card(
         child: Center(
           child: MaterialButton(
+              key: ValueKey('EnableFeatureButton'),
               onPressed: () => DartBoardCore.instance
                   .setFeatureImplementation(gatedFeature, 'default'),
               child: Text(
-                  '$gatedFeature is required for this\nclick to attempt to enable')),
+                  '$gatedFeature is required for this\nclick to attempt to enable',
+                  key: ValueKey('RequiredFeatureText'))),
         ),
       );
     }
@@ -81,9 +83,13 @@ class __FeatureEnablerState extends State<_FeatureEnabler> {
 ///
 /// The name (for filtering will be `FeatureGate+namespace`)
 class FeatureGatePageDecoration extends DartBoardDecoration {
-  FeatureGatePageDecoration(String feature)
+  final bool autoEnable;
+  FeatureGatePageDecoration(String feature, {this.autoEnable = true})
       : super(
-            decoration: (ctx, child) =>
-                FeatureGate(gatedFeature: feature, child: child),
+            decoration: (ctx, child) => FeatureGate(
+                  gatedFeature: feature,
+                  autoEnable: autoEnable,
+                  child: child,
+                ),
             name: 'FeatureGate+$feature');
 }
