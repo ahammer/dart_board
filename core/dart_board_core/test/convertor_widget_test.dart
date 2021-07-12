@@ -4,14 +4,26 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   testWidgets('test Convertor widget', (tester) async {
+    final key = ValueKey('key');
     await tester.pumpWidget(Convertor<int, String>(
-        convertor: intToString, builder: (ctx, val) {
-          return MaterialApp(home:Text(val));
-        }, input: 10));
+        key: key,
+        convertor: intToString,
+        builder: (ctx, val) {
+          return MaterialApp(home: Text(val));
+        },
+        input: 10));
     await tester.pumpAndSettle();
-    expect(find.text('5'), findsOneWidget);
+    await tester.pumpWidget(Convertor<int, String>(
+        key: key,
+        convertor: intToString,
+        builder: (ctx, val) {
+          return MaterialApp(home: Text(val));
+        },
+        input: 20));
+
+    expect(find.text('10'), findsOneWidget);
   });
 }
 
 /// We divide by 2 to make sure we are gettting the string and not casting another way
-String intToString(int val) => '${val~/2}';
+String intToString(int val) => '${val ~/ 2}';
