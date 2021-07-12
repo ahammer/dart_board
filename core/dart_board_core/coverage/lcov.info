@@ -21,9 +21,9 @@ SF:lib\interface\dart_board_interface.dart
 DA:13,6
 DA:41,2
 DA:42,6
-DA:77,0
-DA:78,0
-DA:79,0
+DA:77,1
+DA:78,5
+DA:79,2
 DA:104,2
 DA:106,2
 DA:107,2
@@ -38,7 +38,7 @@ DA:154,0
 DA:155,0
 DA:171,0
 LF:19
-LH:13
+LH:16
 end_of_record
 SF:lib\impl\dart_board_core.dart
 DA:9,6
