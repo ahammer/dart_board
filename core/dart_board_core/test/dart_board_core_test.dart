@@ -121,6 +121,28 @@ void main() {
     expect(find.text('namespace:default_secondary'), findsOneWidget);
   });
 
+  testWidgets('Test Find Feature', (tester) async {
+    await tester.pumpWidget(DartBoard(
+      initialRoute: '/main',
+      routeBuilder: kMaterialRouteResolver,
+      features: [
+        TestFeature(
+            namespace: 'namespace', route1: '/main', route2: '/secondary')
+      ],
+    ));
+
+    // Make sure DartBoard as started fully
+    await tester.pumpAndSettle();
+    final feature = DartBoardCore.instance.findByName('namespace');
+
+    expect(feature is TestFeature, equals(true));
+
+    final emptyFeature =
+        DartBoardCore.instance.findByName('namespace_not_found');
+
+    expect(emptyFeature is EmptyDartBoardFeature, equals(true));
+  });
+
   testWidgets('Check page navigation to a 404', (tester) async {
     await tester.pumpWidget(DartBoard(
       initialRoute: '/main',
