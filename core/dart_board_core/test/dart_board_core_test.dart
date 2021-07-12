@@ -1,6 +1,94 @@
 import 'package:dart_board_core/dart_board.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+/// Test Setup
+///
+
+/// TestFeature allows a variety of registrations
+/// with varying features.
+///
+/// This lets me excercise DartBoardCore by registering the features
+/// making sure they work, and manipulating the interface
+/// to see ithings update correctly.
+///
+class TestFeature extends DartBoardFeature {
+  @override
+  final String implementationName;
+  final String route1;
+  final String? route2;
+
+  @override
+  final String namespace;
+
+  @override
+  final List<String> pageDecorationAllowList;
+
+  @override
+  final List<String> pageDecorationDenyList;
+
+  TestFeature({
+    required this.namespace,
+    required this.route1,
+    this.route2,
+    this.implementationName = 'default',
+    this.pageDecorationAllowList = const [],
+    this.pageDecorationDenyList = const [],
+  });
+
+  /// We register 2 routes, using the 2 classes
+  /// available
+  ///
+  /// Route2 is optional if it's given a name or not.
+  @override
+  List<RouteDefinition> get routes => [
+        MapRouteDefinition(routeMap: {
+          route1: (settings, ctx) => Material(
+                  child: Column(
+                children: [
+                  MaterialButton(
+                      onPressed: () {
+                        if (route2 != null) {
+                          /// If we have a second route, this will push to it
+                          Navigator.of(ctx).pushNamed(route2!);
+                        } else {
+                          // If not, lets 404
+                          Navigator.of(ctx).pushNamed('/expected404');
+                        }
+                      },
+                      child: Text('$namespace:$implementationName')),
+                ],
+              ))
+        }),
+        if (route2 != null)
+          NamedRouteDefinition(
+              routeBuilder: kMaterialRouteResolver,
+              route: route2!,
+              builder: (settings, ctx) => Material(
+                  child: Text('$namespace:${implementationName}_secondary')))
+      ];
+
+  /// A decoration we install
+  @override
+  List<DartBoardDecoration> get appDecorations =>
+      [getTestDecoration('app_decoration')];
+
+  /// Another decoration we install (page)
+  @override
+  List<DartBoardDecoration> get pageDecorations =>
+      [getTestDecoration('page_decoration')];
+}
+
+DartBoardDecoration getTestDecoration(String label) => DartBoardDecoration(
+    decoration: (ctx, child) => Column(
+          children: [
+            Text(label),
+            Expanded(child: child),
+          ],
+        ),
+    name: label);
+
+///----------------------------------------------------------------------------
+/// Tests
 void main() {
   testWidgets('404 With no Features', (tester) async {
     await tester.pumpWidget(DartBoard(
@@ -14,6 +102,36 @@ void main() {
     // Nothing is registered, so this should be 404 message
     // Checking for default
     expect(find.text('"/a" Not Found'), findsOneWidget);
+  });
+
+  testWidgets('Check page navigation', (tester) async {
+    await tester.pumpWidget(DartBoard(
+      initialRoute: '/main',
+      routeBuilder: kMaterialRouteResolver,
+      features: [
+        TestFeature(
+            namespace: 'namespace', route1: '/main', route2: '/secondary')
+      ],
+    ));
+
+    // Make sure DartBoard as started fully
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('namespace:default'));
+    await tester.pumpAndSettle();
+    expect(find.text('namespace:default_secondary'), findsOneWidget);
+  });
+
+  testWidgets('Check page navigation to a 404', (tester) async {
+    await tester.pumpWidget(DartBoard(
+      initialRoute: '/main',
+      features: [TestFeature(namespace: 'namespace', route1: '/main')],
+    ));
+
+    // Make sure DartBoard as started fully
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('namespace:default'));
+    await tester.pumpAndSettle();
+    expect(find.text('"/expected404" Not Found'), findsOneWidget);
   });
 
   testWidgets('Page and App Decoration Check', (tester) async {
@@ -160,58 +278,3 @@ void main() {
     expect(find.text('Secondary:c'), findsOneWidget);
   });
 }
-
-class TestFeature extends DartBoardFeature {
-  @override
-  final String implementationName;
-  final String route1;
-  final String? route2;
-
-  @override
-  final String namespace;
-
-  @override
-  final List<String> pageDecorationAllowList;
-
-  @override
-  final List<String> pageDecorationDenyList;
-
-  TestFeature({
-    required this.namespace,
-    required this.route1,
-    this.route2,
-    this.implementationName = 'default',
-    this.pageDecorationAllowList = const [],
-    this.pageDecorationDenyList = const [],
-  });
-
-  @override
-  List<RouteDefinition> get routes => [
-        MapRouteDefinition(routeMap: {
-          route1: (settings, ctx) =>
-              Material(child: Text('$namespace:$implementationName'))
-        }),
-        if (route2 != null)
-          NamedRouteDefinition(
-              route: route2!,
-              builder: (settings, ctx) =>
-                  Material(child: Text('$namespace:$implementationName:B')))
-      ];
-
-  @override
-  List<DartBoardDecoration> get appDecorations =>
-      [getTestDecoration('app_decoration')];
-
-  @override
-  List<DartBoardDecoration> get pageDecorations =>
-      [getTestDecoration('page_decoration')];
-}
-
-DartBoardDecoration getTestDecoration(String label) => DartBoardDecoration(
-    decoration: (ctx, child) => Column(
-          children: [
-            Text(label),
-            Expanded(child: child),
-          ],
-        ),
-    name: label);
