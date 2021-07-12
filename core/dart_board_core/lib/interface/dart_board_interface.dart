@@ -74,11 +74,9 @@ abstract class DartBoardCore {
   /// STATIC HELPERS
 
   /// Finds a Feature by it's name
-  static DartBoardFeature findByName(String name) =>
-      Provider.of<DartBoardCore>(dartBoardNavKey.currentContext!)
-          .allFeatures
-          .firstWhere((element) => element.namespace == name,
-              orElse: () => EmptyDartBoardFeature());
+  DartBoardFeature findByName(String name) =>
+      allFeatures.firstWhere((element) => element.namespace == name,
+          orElse: () => EmptyDartBoardFeature());
 
   /// When multiple implementations for a feature are registered
   /// You can change at runtime with this
@@ -91,15 +89,6 @@ abstract class DartBoardCore {
 
   /// Check if this route can be resolved
   bool confirmRouteExists(String route);
-}
-
-extension DartBoardFeatureListExtension on List<DartBoardFeature> {
-  List<NamedRouteDefinition> get namedRoutes => fold<List<RouteDefinition>>(
-      <RouteDefinition>[],
-      (previousValue, element) => <RouteDefinition>[
-            ...previousValue,
-            ...element.routes
-          ]).whereType<NamedRouteDefinition>().toList();
 }
 
 ///

@@ -212,3 +212,12 @@ class DebugLabelText extends StatelessWidget {
         ),
       );
 }
+
+extension DartBoardFeatureListExtension on List<DartBoardFeature> {
+  List<NamedRouteDefinition> get namedRoutes => fold<List<RouteDefinition>>(
+      <RouteDefinition>[],
+      (previousValue, element) => <RouteDefinition>[
+            ...previousValue,
+            ...element.routes
+          ]).whereType<NamedRouteDefinition>().toList();
+}

@@ -54,7 +54,7 @@ class DartBoard extends StatefulWidget {
   /// implement this.
   ///
   /// A basic debug one is provided out of the box
-  final WidgetBuilder pageNotFoundWidget;
+  final WidgetBuilder pageNotFoundWidgetBuilder;
 
   /// The initial route, where you want your app entry point to be
   /// doesn't have to be "/", can be any registered route.
@@ -63,7 +63,7 @@ class DartBoard extends StatefulWidget {
   DartBoard(
       {Key? key,
       required this.features,
-      this.pageNotFoundWidget = _pageNoteFound,
+      this.pageNotFoundWidgetBuilder = _pageNoteFound,
       required this.initialRoute,
       this.pageDecorationDenyList = const {},
       this.routeBuilder = kCupertinoRouteResolver})
@@ -77,7 +77,7 @@ class DartBoard extends StatefulWidget {
 /// We unwrap the routes
 /// We also unwrap the decorations
 /// Then we build the MaterialApp()
-class _DartBoardState extends State<DartBoard> implements DartBoardCore {
+class _DartBoardState extends State<DartBoard> with DartBoardCore {
   @override
   late List<RouteDefinition> routes;
 
@@ -266,7 +266,7 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
   Route onGenerateRoute(RouteSettings settings) {
     final definition = routes.firstWhere((it) => it.matches(settings),
         orElse: () => NamedRouteDefinition(
-            builder: (settings, ctx) => widget.pageNotFoundWidget(ctx),
+            builder: (settings, ctx) => widget.pageNotFoundWidgetBuilder(ctx),
             route: '/404'));
     if (definition.routeBuilder != null) {
       return definition.routeBuilder!(
@@ -319,22 +319,6 @@ class _DartBoardState extends State<DartBoard> implements DartBoardCore {
 
     return true;
   }
-}
-
-/// This class can apply the page decorations.
-/// E.g. if you are navigating with a non-named route but want them.
-class ApplyDecorations extends StatelessWidget {
-  final Widget child;
-  final List<WidgetWithChildBuilder> decorations;
-
-  const ApplyDecorations({
-    required this.child,
-    required this.decorations,
-    Key? key,
-  }) : super(key: key);
-  @override
-  Widget build(BuildContext context) => decorations.reversed
-      .fold(child, (previousValue, element) => element(context, previousValue));
 }
 
 /// This class can apply the page decorations.
