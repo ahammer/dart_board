@@ -1,6 +1,7 @@
 import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_core/impl/features/generic_features.dart';
 import 'package:dart_board_minesweeper/dart_board_minesweeper.dart';
+import 'package:dart_board_particles/dart_board_particle_extension.dart';
 import 'package:dart_board_template_app_bar_sidenav/dart_board_template_app_bar_sidenav.dart';
 import 'package:dart_board_theme/dart_board_theme.dart';
 import 'package:dart_board_debug/debug_feature.dart';
@@ -86,6 +87,7 @@ class ExampleFeature extends DartBoardFeature {
 
         /// Isolate the frame into a feature so it can be disabled
         FrameFeature(),
+        DartBoardParticleFeature(),
       ];
 
   bool _init = false;

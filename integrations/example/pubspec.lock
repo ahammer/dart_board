@@ -197,6 +197,13 @@ packages:
       relative: true
     source: path
     version: "0.9.3"
+  dart_board_particles:
+    dependency: "direct main"
+    description:
+      path: "../../features/dart_board_particles"
+      relative: true
+    source: path
+    version: "1.0.0+1"
   dart_board_redux:
     dependency: "direct main"
     description:

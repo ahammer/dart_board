@@ -1,0 +1,22 @@
+name: dart_board_particles
+description: A new flutter module project.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  dart_board_core: ^0.9.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  module:
+    androidX: true
+    androidPackage: com.example.dart_board_particles
+    iosBundleIdentifier: com.example.dartBoardParticles

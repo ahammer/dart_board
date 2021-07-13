@@ -210,7 +210,7 @@ packages:
     source: sdk
     version: "0.0.0"
   flutter_redux:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: flutter_redux
       url: "https://pub.dartlang.org"
@@ -376,14 +376,14 @@ packages:
     source: hosted
     version: "3.0.1"
   redux:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: redux
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.0.0"
   redux_thunk:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: redux_thunk
       url: "https://pub.dartlang.org"
