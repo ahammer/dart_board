@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 
 /// This is an App decoration for particle effects
 /// It'll overlay all your screens and give you access to a full screen canvas
-class DartBoardParticleFeature extends DartBoardFeature implements Particles {
+class DartBoardParticleFeature extends DartBoardFeature with Particles {
   @override
   String get namespace => "Particles";
+
 
   @override
   List<DartBoardDecoration> get appDecorations => [
@@ -60,6 +61,8 @@ class _DartBoardParticleDecorationState
       );
 }
 
+typedef void BackgroundPainter(Canvas canvas, Size size);
+
 class ParticlePainter extends CustomPainter {
   final Particles interface;
 
@@ -67,15 +70,30 @@ class ParticlePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    canvas.drawLine(Offset(0, 0), Offset(size.width, size.height),
-        Paint()..color = Colors.green);
+
+    interface.backgroundPainters.forEach((element) => element(canvas, size));
   }
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
 }
 
+void saveBackground(Canvas canvas, Size size) {
+}
+
+void clearBackground(Canvas canvas, Size size) {
+  canvas.saveLayer(Rect.largest, Paint());
+  canvas.drawRect(Rect.fromLTWH(0, 0, size.width, size.height), Paint()..color = Colors.black87);
+  canvas.drawCircle(Offset(size.width/2, size.height/2), 240, Paint()..shader=RadialGradient(
+    radius:0.95,colors: [Colors.transparent, Colors.black87]).createShader(Rect.fromCenter(center: Offset(size.width/2, size.height/2), width: 240, height:240))
+  ..blendMode = BlendMode.dstATop);
+  canvas.restore();
+}
+
 abstract class Particles {
+  final List<BackgroundPainter> backgroundPainters = [
+    clearBackground
+  ];
   /// We are going to get the interface for the particles data here.
 
   static Particles get instance => DartBoardCore.instance.allFeatures
