@@ -105,10 +105,12 @@ class ExampleFeature extends DartBoardFeature {
                       'logging',
                       'redux',
                       'MineSweeper',
-                      'background',
                       'app_border'
                     ].forEach((element) => DartBoardCore.instance
                         .setFeatureImplementation(element, null));
+
+                    DartBoardCore.instance
+                        .setFeatureImplementation("Background", 'image');
 
                     _init = true;
                   },
