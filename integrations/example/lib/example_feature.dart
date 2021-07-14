@@ -2,6 +2,7 @@ import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_core/impl/features/generic_features.dart';
 import 'package:dart_board_minesweeper/dart_board_minesweeper.dart';
 import 'package:dart_board_particles/dart_board_particle_extension.dart';
+import 'package:dart_board_particles/presets/lighting_particle.dart';
 import 'package:dart_board_template_app_bar_sidenav/dart_board_template_app_bar_sidenav.dart';
 import 'package:dart_board_theme/dart_board_theme.dart';
 import 'package:dart_board_debug/debug_feature.dart';
@@ -87,16 +88,18 @@ class ExampleFeature extends DartBoardFeature {
 
         /// Isolate the frame into a feature so it can be disabled
         FrameFeature(),
-        DartBoardParticleFeature(),
+        particleFeature,
       ];
 
   bool _init = false;
-
+  final particleFeature = DartBoardParticleFeature()
+    ..addLayer(LightingParticleLayer());
   @override
   List<DartBoardDecoration> get appDecorations => <DartBoardDecoration>[
         DartBoardDecoration(
             name: 'Example Initializer',
             decoration: (ctx, child) => LifeCycleWidget(
+                  key: ValueKey('Example Initializer'),
                   init: (ctx) {
                     if (_init) return;
 
@@ -110,7 +113,7 @@ class ExampleFeature extends DartBoardFeature {
                         .setFeatureImplementation(element, null));
 
                     DartBoardCore.instance
-                        .setFeatureImplementation("Background", 'image');
+                        .setFeatureImplementation('Background', 'image');
 
                     _init = true;
                   },

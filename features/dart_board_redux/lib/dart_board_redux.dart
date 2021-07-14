@@ -107,6 +107,7 @@ class ReduxStateDecoration<T> extends DartBoardDecoration {
       : super(
             name: name,
             decoration: (ctx, child) => LifeCycleWidget(
+                key: ValueKey("ReduxLifecycle"),
                 child: child,
                 init: (ctx) => _dartBoardReduxKey.currentState
                     ?._registerFactory(factory)));
@@ -123,6 +124,7 @@ class ReduxMiddlewareDecoration extends DartBoardDecoration {
       : super(
           name: name,
           decoration: (context, child) => LifeCycleWidget(
+              key: ValueKey("ReduxMiddleware+$name"),
               child: child,
               preInit: () => _dartBoardReduxKey.currentState
                   ?._registerMiddleware(name, middleware),

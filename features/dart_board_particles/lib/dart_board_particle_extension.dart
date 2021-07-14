@@ -1,12 +1,17 @@
-import 'dart:math';
-
 import 'package:dart_board_core/interface/dart_board_interface.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 /// This is an App decoration for particle effects
 /// It'll overlay all your screens and give you access to a full screen canvas
 class DartBoardParticleFeature extends DartBoardFeature with Particles {
+  static final DartBoardParticleFeature _singleton =
+      DartBoardParticleFeature._internal();
+
+  factory DartBoardParticleFeature() => _singleton;
+
+  DartBoardParticleFeature._internal();
   @override
   String get namespace => "Particles";
 
@@ -15,6 +20,7 @@ class DartBoardParticleFeature extends DartBoardFeature with Particles {
         DartBoardDecoration(
             name: "ParticleLayer",
             decoration: (context, child) => DartBoardParticleDecoration(
+                  key: ValueKey("ParticleLayer"),
                   child: child,
                   interface: this,
                 ))
@@ -39,7 +45,6 @@ class _DartBoardParticleDecorationState
     extends State<DartBoardParticleDecoration>
     with SingleTickerProviderStateMixin {
   late final ParticlePainter painter;
-
   late final AnimationController _controller;
 
   @override
@@ -94,8 +99,9 @@ class ParticlePainter extends CustomPainter {
 
     lastFrame = now;
 
-    interface.backgroundPainters.forEach((element) => element(canvas, size));
-    interface.layers.forEach((element) {
+    interface._backgroundPainters.forEach((element) => element(canvas, size));
+    interface._layers.forEach((element) {
+      element.step(delta / 1000.0);
       element.before(canvas, size);
       element.particles.forEach((particle) {
         particle.step(delta / 1000.0, size);
@@ -120,115 +126,27 @@ abstract class Particle {
 }
 
 abstract class ParticleLayer<T extends Particle> {
+  double time = 0.0;
   List<T> get particles;
   void before(Canvas canvas, Size size);
   void after(Canvas canvas, Size size);
   void drawParticle(Canvas canvs, Size size, T particle);
+
+  /// Track the time a Layer has been active
+  void step(double d) {
+    time = time + d;
+  }
 }
 
 abstract class Particles {
-  final backgroundPainters = <BackgroundPainter>[clearBackground];
-  final layers = <ParticleLayer>[LightingParticleLayer()];
+  final _backgroundPainters = <BackgroundPainter>[clearBackground];
+  final _layers = <ParticleLayer>[];
 
   /// We are going to get the interface for the particles data here.
 
   static Particles get instance => DartBoardCore.instance.allFeatures
-      .where((element) => element.namespace == "Particles") as Particles;
-}
+      .where((element) => element.namespace == "Particles")
+      .first as Particles;
 
-class LightingParticle extends Particle {
-  double r = Random().nextDouble();
-  double r2 = Random().nextDouble();
-  double r3 = Random().nextDouble();
-  bool cw = Random().nextBool();
-  double t = 0.0;
-  double x = 0;
-  double y = 0.0;
-  double s = 0.0;
-
-  @override
-  void step(double time, Size size) {
-    t = t + (time * 5);
-    x = size.width / 2 +
-        cos((cw ? -1 : 1) * t * r) *
-            min((r * r2) * (t * t) + (r + r2 + r3) * size.width * 2,
-                t * 10 * (r + r2 + r3));
-    y = size.height / 2 +
-        sin((cw ? -1 : 1) * t * r2) *
-            min((r2 * r3) * (t * t) + (r + r2 + r3) * size.height,
-                t * 10 * (r + r2 + r3));
-    s = min<double>(
-            t * r3 * r2 * r * (t < 5 ? 1.0 : (pow(t / 5, 5))) / 5, 2000.0) +
-        r +
-        r2 +
-        r3 +
-        3;
-  }
-}
-
-class LightingParticleLayer extends ParticleLayer<LightingParticle> {
-  final _particleList = <LightingParticle>[
-    LightingParticle(),
-    LightingParticle(),
-    LightingParticle(),
-    LightingParticle(),
-    LightingParticle(),
-    LightingParticle(),
-    LightingParticle(),
-    LightingParticle(),
-    LightingParticle(),
-    LightingParticle(),
-    LightingParticle(),
-    LightingParticle(),
-    LightingParticle(),
-    LightingParticle(),
-    LightingParticle(),
-    LightingParticle(),
-    LightingParticle(),
-    LightingParticle(),
-    LightingParticle(),
-    LightingParticle(),
-    LightingParticle(),
-    LightingParticle(),
-    LightingParticle(),
-    LightingParticle(),
-    LightingParticle(),
-    LightingParticle(),
-    LightingParticle(),
-    LightingParticle(),
-    LightingParticle(),
-    LightingParticle(),
-    LightingParticle(),
-    LightingParticle(),
-    LightingParticle()
-  ];
-
-  @override
-  void before(Canvas canvas, Size size) {
-    canvas.saveLayer(Rect.largest, Paint());
-    canvas.drawRect(Rect.fromLTWH(0, 0, size.width, size.height),
-        Paint()..color = Colors.black);
-  }
-
-  @override
-  void after(Canvas canvas, Size size) {
-    canvas.restore();
-  }
-
-  @override
-  void drawParticle(Canvas canvas, Size size, LightingParticle particle) {
-    canvas.save();
-    canvas.translate(particle.x, particle.y);
-    canvas.scale(particle.s, particle.s);
-    canvas.drawCircle(
-        Offset.zero,
-        0.5,
-        Paint()
-          ..blendMode = BlendMode.clear
-          ..maskFilter = MaskFilter.blur(BlurStyle.normal, particle.r / 50));
-    canvas.restore();
-  }
-
-  @override
-  List<LightingParticle> get particles => _particleList;
+  void addLayer(ParticleLayer layer) => _layers.add(layer);
 }

@@ -45,6 +45,7 @@ class LocatorDecoration<T> extends DartBoardDecoration {
       : super(
             name: "LocatorDecoration_${T.toString()}",
             decoration: (BuildContext context, Widget child) => LifeCycleWidget(
+                key: ValueKey("LocatorDecoration_${T.toString()}"),
                 preInit: () =>
                     _locatorKey.currentState!.registerBuilder<T>(builder),
                 child: child));

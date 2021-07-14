@@ -6,6 +6,7 @@ void main() {
   testWidgets('test the life cycle widget', (tester) async {
     var started = false;
     await tester.pumpWidget(LifeCycleWidget(
+        key: ValueKey('test'),
         preInit: () => started = true,
         dispose: (ctx) => started = false,
         child: Container()));
@@ -17,8 +18,9 @@ void main() {
   });
 
   testWidgets('test the life cycle widget - all null', (tester) async {
-    await tester.pumpWidget(
-        LifeCycleWidget(child: MaterialApp(home: Card(child: Text('hello')))));
+    await tester.pumpWidget(LifeCycleWidget(
+        key: ValueKey('test'),
+        child: MaterialApp(home: Card(child: Text('hello')))));
     await tester.pumpAndSettle();
     expect(find.text('hello'), findsOneWidget);
   });

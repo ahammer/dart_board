@@ -29,7 +29,7 @@ class LifeCycleWidget extends StatefulWidget {
   final Function(BuildContext context) dispose;
 
   const LifeCycleWidget(
-      {Key? key,
+      {required Key key,
       required this.child,
       this.init = _stub,
       this.preInit = _stub2,
