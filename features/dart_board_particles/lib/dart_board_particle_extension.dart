@@ -138,20 +138,51 @@ abstract class Particles {
 
 class LightingParticle extends Particle {
   double r = Random().nextDouble();
-  double t = Random().nextDouble() * 5000;
+  double r2 = Random().nextDouble();
+  double r3 = Random().nextDouble();
+  bool cw = Random().nextBool();
+  double t = 0.0;
   double x = 0;
-  double y = Random().nextDouble() * 1000;
-  double get size => 200;
+  double y = 0.0;
+  double s = 0.0;
 
   @override
   void step(double time, Size size) {
-    t = t + (time / 10);
-    x = size.width / 2 + cos(t * r * 3) * size.width / 2;
+    t = t + (time * 5);
+    x = size.width / 2 +
+        cos((cw ? -1 : 1) * t * r) *
+            min((r * r2) * (t * t) + (r + r2 + r3) * size.width * 2,
+                t * 10 * (r + r2 + r3));
+    y = size.height / 2 +
+        sin((cw ? -1 : 1) * t * r2) *
+            min((r2 * r3) * (t * t) + (r + r2 + r3) * size.height,
+                t * 10 * (r + r2 + r3));
+    s = min<double>(
+            t * r3 * r2 * r * (t < 5 ? 1.0 : (pow(t / 5, 5))) / 5, 2000.0) +
+        r +
+        r2 +
+        r3 +
+        3;
   }
 }
 
 class LightingParticleLayer extends ParticleLayer<LightingParticle> {
   final _particleList = <LightingParticle>[
+    LightingParticle(),
+    LightingParticle(),
+    LightingParticle(),
+    LightingParticle(),
+    LightingParticle(),
+    LightingParticle(),
+    LightingParticle(),
+    LightingParticle(),
+    LightingParticle(),
+    LightingParticle(),
+    LightingParticle(),
+    LightingParticle(),
+    LightingParticle(),
+    LightingParticle(),
+    LightingParticle(),
     LightingParticle(),
     LightingParticle(),
     LightingParticle(),
@@ -176,7 +207,7 @@ class LightingParticleLayer extends ParticleLayer<LightingParticle> {
   void before(Canvas canvas, Size size) {
     canvas.saveLayer(Rect.largest, Paint());
     canvas.drawRect(Rect.fromLTWH(0, 0, size.width, size.height),
-        Paint()..color = Colors.black87);
+        Paint()..color = Colors.black);
   }
 
   @override
@@ -188,14 +219,13 @@ class LightingParticleLayer extends ParticleLayer<LightingParticle> {
   void drawParticle(Canvas canvas, Size size, LightingParticle particle) {
     canvas.save();
     canvas.translate(particle.x, particle.y);
-    canvas.scale(particle.size, particle.size);
+    canvas.scale(particle.s, particle.s);
     canvas.drawCircle(
         Offset.zero,
         0.5,
         Paint()
           ..blendMode = BlendMode.clear
-          ..maskFilter =
-              MaskFilter.blur(BlurStyle.normal, particle.t / 10000.0));
+          ..maskFilter = MaskFilter.blur(BlurStyle.normal, particle.r / 50));
     canvas.restore();
   }
 
