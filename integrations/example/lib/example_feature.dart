@@ -1,7 +1,8 @@
 import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_core/impl/features/generic_features.dart';
 import 'package:dart_board_minesweeper/dart_board_minesweeper.dart';
-import 'package:dart_board_particles/dart_board_particle_extension.dart';
+import 'package:dart_board_particles/dart_board_particle_feature.dart';
+import 'package:dart_board_particles/features/cursor_particle_features.dart';
 import 'package:dart_board_particles/presets/lighting_particle.dart';
 import 'package:dart_board_template_app_bar_sidenav/dart_board_template_app_bar_sidenav.dart';
 import 'package:dart_board_theme/dart_board_theme.dart';
@@ -10,7 +11,6 @@ import 'package:dart_board_log/dart_board_log.dart';
 import 'package:example/impl/pages/code_overview.dart';
 import 'package:example/impl/pages/home_page_with_toggles.dart';
 import 'data/constants.dart';
-import 'impl/decorations/color_border_decoration.dart';
 import 'impl/decorations/wavy_lines_background.dart';
 import 'impl/pages/home_page.dart';
 import 'package:dart_board_template_bottomnav/dart_board_template_bottomnav.dart';
@@ -47,6 +47,8 @@ class ExampleFeature extends DartBoardFeature {
         DebugFeature(),
         LogFeature(),
         MinesweeperFeature(),
+        FireCursorFeature(),
+        RainbowCursorFeature(),
 
         /// Add 2 template's
         /// can toggle in debug
@@ -87,7 +89,6 @@ class ExampleFeature extends DartBoardFeature {
             implementationName: 'Mushroom Image'),
 
         /// Isolate the frame into a feature so it can be disabled
-        FrameFeature(),
         particleFeature,
       ];
 
@@ -106,9 +107,8 @@ class ExampleFeature extends DartBoardFeature {
                     <String>[
                       'theme',
                       'logging',
-                      'redux',
-                      'MineSweeper',
-                      'app_border'
+                      'FireCursor',
+                      'RainbowCursor',
                     ].forEach((element) => DartBoardCore.instance
                         .setFeatureImplementation(element, null));
 
@@ -152,38 +152,4 @@ class ExampleFeature extends DartBoardFeature {
   @override
   List<String> get pageDecorationAllowList =>
       ['/main:color_border', '/main:log_frame'];
-}
-
-class AnimatedBackgroundFeature extends DartBoardFeature {
-  @override
-  String get namespace => 'background';
-
-  @override
-  String get implementationName => 'Relaxing Waves';
-
-  @override
-  List<DartBoardDecoration> get pageDecorations => <DartBoardDecoration>[
-        DartBoardDecoration(
-            name: 'background',
-            decoration: (context, child) => AnimatedBackgroundDecoration(
-                  color: Theme.of(context).colorScheme.surface,
-                  child: child,
-                ))
-      ];
-}
-
-/// Isolate the Frame/Border into it's own feature so it can be disabled
-class FrameFeature extends DartBoardFeature {
-  @override
-  String get namespace => 'app_border';
-
-  /// Some examples of Page Decorations
-  /// These are widgets that get applied to the top of every page
-  @override
-  List<DartBoardDecoration> get pageDecorations => <DartBoardDecoration>[
-        /// A simple Color Border applied to a Page Route
-        DartBoardDecoration(
-            name: 'color_border',
-            decoration: (context, child) => DarkColorBorder(child: child)),
-      ];
 }

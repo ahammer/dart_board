@@ -1,4 +1,6 @@
 import 'package:dart_board_core/dart_board.dart';
+import 'package:dart_board_particles/dart_board_particle_feature.dart';
+import 'package:dart_board_particles/presets/lighting_particle.dart';
 
 enum TemplateOptions { plain, bottom_nav, side_nav }
 enum BackgroundOptions { white, image, animated }
@@ -26,7 +28,7 @@ class HomePageWithToggles extends StatelessWidget {
                       style: Theme.of(context).textTheme.headline5,
                     ),
                     Text(
-                      '[ Self Guided Tour ]',
+                      '[ Sandbox / Playground ]',
                       style: Theme.of(context).textTheme.subtitle2,
                     ),
                     ListTile(
@@ -111,27 +113,33 @@ class HomePageWithToggles extends StatelessWidget {
                                   'logging', result ? 'default' : null)
                             }),
                     SwitchListTile.adaptive(
-                        title: Text('Border'),
+                        title: Text('Rainbow Cursor'),
                         value: DartBoardCore.instance
-                            .isFeatureActive('app_border'),
+                            .isFeatureActive('RainbowCursor'),
                         onChanged: (result) => {
                               DartBoardCore.instance.setFeatureImplementation(
-                                  'app_border', result ? 'default' : null)
+                                  'RainbowCursor', result ? 'default' : null)
                             }),
                     SwitchListTile.adaptive(
-                        title: Text('MineSweeper'),
+                        title: Text('Fire Cursor'),
                         value: DartBoardCore.instance
-                            .isFeatureActive('MineSweeper'),
+                            .isFeatureActive('FireCursor'),
                         onChanged: (result) => {
                               DartBoardCore.instance.setFeatureImplementation(
-                                  'MineSweeper', result ? 'default' : null)
+                                  'FireCursor', result ? 'default' : null)
                             }),
                     SwitchListTile.adaptive(
-                        title: Text('Theme'),
+                        title: Text('Dark Theme'),
                         value: DartBoardCore.instance.isFeatureActive('theme'),
                         onChanged: (result) => DartBoardCore.instance
                             .setFeatureImplementation(
                                 'theme', result ? 'default' : null)),
+                    ListTile(
+                      title: Text('Show Intro Particles'),
+                      onTap: () {
+                        Particles.instance.addLayer(LightingParticleLayer());
+                      },
+                    ),
                     ListTile(
                       title: Text('Readme'),
                       onTap: () {

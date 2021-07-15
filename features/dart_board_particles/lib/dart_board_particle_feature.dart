@@ -56,7 +56,7 @@ class _DartBoardParticleDecorationState
       duration: Duration(seconds: 1000),
       vsync: this,
     );
-    _controller.forward();
+    _controller.repeat(min: 1, max: 2);
   }
 
   @override
@@ -99,25 +99,25 @@ class ParticlePainter extends CustomPainter {
 
     lastFrame = now;
 
-    interface._backgroundPainters.forEach((element) => element(canvas, size));
     interface._layers.forEach((element) {
       element.step(delta / 1000.0);
-      element.before(canvas, size);
-      element.particles.forEach((particle) {
-        particle.step(delta / 1000.0, size);
-        element.drawParticle(canvas, size, particle);
-      });
-      element.after(canvas, size);
+      if (!element.isDead) {
+        element.before(canvas, size);
+        element.particles.forEach((particle) {
+          particle.step(delta / 1000.0, size);
+          element.drawParticle(canvas, size, particle);
+        });
+        element.after(canvas, size);
+      }
     });
+
+    // Clean dead layers
+    interface._layers.removeWhere((element) => element.isDead);
   }
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
 }
-
-void saveBackground(Canvas canvas, Size size) {}
-
-void clearBackground(Canvas canvas, Size size) {}
 
 typedef void BackgroundPainter(Canvas canvas, Size size);
 
@@ -125,28 +125,41 @@ abstract class Particle {
   void step(double time, Size size);
 }
 
+/// A "Layer" of particles. Represents a fixed number of particles on the screen
+///
+/// Remove a layer by marking it dead (return true in isDead)
 abstract class ParticleLayer<T extends Particle> {
+  /// Current runtime of this layer
   double time = 0.0;
+
+  /// Particles we are going to render
   List<T> get particles;
+
+  /// Has this layer died yet? True will automatically be pruned
+  bool get isDead;
+
+  /// Before we draw this layer
   void before(Canvas canvas, Size size);
-  void after(Canvas canvas, Size size);
+
+  /// During
   void drawParticle(Canvas canvs, Size size, T particle);
 
+  /// After we draw this layer
+  void after(Canvas canvas, Size size);
+
   /// Track the time a Layer has been active
-  void step(double d) {
-    time = time + d;
-  }
+  void step(double d) => time += d;
 }
 
+/// The interface and code for the Particles layer itself
+/// we apply this to the Extension for easy access. It's also a singleton
+/// by design.
 abstract class Particles {
-  final _backgroundPainters = <BackgroundPainter>[clearBackground];
   final _layers = <ParticleLayer>[];
 
   /// We are going to get the interface for the particles data here.
 
-  static Particles get instance => DartBoardCore.instance.allFeatures
-      .where((element) => element.namespace == "Particles")
-      .first as Particles;
+  static Particles get instance => DartBoardParticleFeature();
 
   void addLayer(ParticleLayer layer) => _layers.add(layer);
 }
