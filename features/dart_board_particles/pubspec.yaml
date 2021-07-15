@@ -1,5 +1,8 @@
 name: dart_board_particles
-description: A new flutter module project.
+description: A particle system for dart-board.
+homepage: https://dart-board.io
+issue_tracker: https://github.com/ahammer/dart_board/issues
+repository: https://github.com/ahammer/dart_board
 version: 1.0.0+1
 
 environment:
