@@ -57,12 +57,6 @@ class ExampleFeature extends DartBoardFeature {
             targetRoute: '/homepage',
             builder: (ctx) => HomePageWithToggles()),
 
-        MirrorRouteFeature(
-            implementationName: 'direct',
-            namespace: 'template',
-            sourceRoute: '/homepage',
-            targetRoute: '/main'),
-
         BottomNavTemplateFeature(
             implementationName: 'bottomNav',
             route: '/main',
@@ -108,7 +102,6 @@ class ExampleFeature extends DartBoardFeature {
                       'theme',
                       'logging',
                       'FireCursor',
-                      'RainbowCursor',
                     ].forEach((element) => DartBoardCore.instance
                         .setFeatureImplementation(element, null));
 

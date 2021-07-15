@@ -102,7 +102,7 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
   late Set<String> whitelistedPageDecorations;
 
   @override
-  late List<DartBoardFeature> allFeatures;
+  List<DartBoardFeature> allFeatures = <DartBoardFeature>[];
 
   @override
   late Map<String, List<String>> detectedImplementations;
@@ -178,6 +178,8 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
       final dependencies = buildDependencyList(widget.features);
 
       log.info('Bulding features');
+
+      /// Lets keep the old features and check if we can restore instead of rebuild
       allFeatures = <DartBoardFeature>[];
 
       dependencies.forEach((element) {
