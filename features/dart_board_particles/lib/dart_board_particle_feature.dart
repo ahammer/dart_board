@@ -1,4 +1,5 @@
 import 'package:dart_board_core/interface/dart_board_interface.dart';
+import 'package:dart_board_particles/presets/snow_particle.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -102,12 +103,12 @@ class ParticlePainter extends CustomPainter {
     interface._layers.forEach((element) {
       element.step(delta / 1000.0);
       if (!element.isDead) {
-        element.before(canvas, size);
+        if (element.needsBefore) element.before(canvas, size);
         element.particles.forEach((particle) {
           particle.step(delta / 1000.0, size);
-          element.drawParticle(canvas, size, particle);
+        if (element.needsParticlePaint)   element.drawParticle(canvas, size, particle);
         });
-        element.after(canvas, size);
+        if (!element.needsAfter) element.after(canvas, size);
       }
     });
 
@@ -138,6 +139,18 @@ abstract class ParticleLayer<T extends Particle> {
   /// Has this layer died yet? True will automatically be pruned
   bool get isDead;
 
+  /// To optimize I'll provide these options
+  /// Not all system need before/after and per-particle paint
+  /// 
+  /// E.g. if you use drawPoints you might just need before.
+  /// If you don't compose or saveLayer() you might only need 
+  /// particle paint.
+  /// 
+  /// All enabled by default
+  bool get needsBefore => true;
+  bool get needsAfter => true;
+  bool get needsParticlePaint => true;
+
   /// Before we draw this layer
   void before(Canvas canvas, Size size);
 
@@ -161,5 +174,9 @@ abstract class Particles {
 
   static Particles get instance => DartBoardParticleFeature();
 
+  /// Add a layer
   void addLayer(ParticleLayer layer) => _layers.add(layer);
+
+  /// Remove a layer
+  void removeLayer(ParticleLayer layer) => _layers.remove(layer);
 }
