@@ -37,13 +37,11 @@ class RainbowParticleLayer extends ParticleLayer<RainbowParticle> {
     canvas.save();
     canvas.translate(particle.x + screenX, particle.y + screenY);
     canvas.scale(particle.s, particle.s);
-    canvas.drawCircle(
-        Offset.zero,
-        0.5,
-        Paint()
-          ..color = particle.c.withOpacity(1 - particle.t / 0.5)
-          ..maskFilter =
-              MaskFilter.blur(BlurStyle.normal, (particle.t * 5) / 1));
+    canvas.drawCircle(Offset.zero, 0.5,
+        Paint()..color = particle.c.withOpacity(1 - particle.t / 0.5)
+        //..maskFilter =
+        //MaskFilter.blur(BlurStyle.normal, (particle.t * 5) / 1));
+        );
     canvas.restore();
   }
 

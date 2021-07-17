@@ -6,14 +6,16 @@ import '../dart_board_particle_feature.dart';
 
 /// This class provides a generic
 class FireParticle extends Particle {
-  HSLColor c = HSLColor.fromAHSL(
-      1.0, (DateTime.now().millisecondsSinceEpoch) % 32, 1.0, 0.3);
-
+  final c = HSLColor.fromAHSL(
+          0.8, (DateTime.now().millisecondsSinceEpoch) % 48, 1.0, 0.6)
+      .toColor();
+  bool m = Random().nextDouble() > 0.5;
   double r = Random().nextDouble() / 2;
   double r2 = (Random().nextDouble() - 0.5);
+  double r3 = Random().nextDouble() + 0.5;
   double t = 0.0;
-  double x = 0.0;
-  double y = 0.0;
+  double x = Random().nextDouble() * 4 - 2;
+  double y = Random().nextDouble() * 4 - 2;
   double s = 10.0;
 
   @override
@@ -43,13 +45,15 @@ class FireParticleLayer extends ParticleLayer<FireParticle> {
     canvas.save();
     canvas.translate(particle.x + screenX, particle.y + screenY);
     final s = particle.s * pow((particle.t + 1), 2);
-    canvas.scale(s, s);
+    canvas.scale(s * particle.r3, s * particle.r3);
+    double o = (1 - particle.t) / 5;
+
     canvas.drawCircle(
         Offset.zero,
         0.5,
         Paint()
-          ..color = particle.c.toColor().withOpacity((1 - particle.t) / 2)
-          ..blendMode = BlendMode.colorDodge
+          ..color = particle.c.withOpacity(o)
+          ..blendMode = particle.m ? BlendMode.plus : BlendMode.colorBurn
           ..maskFilter = MaskFilter.blur(BlurStyle.normal, (particle.t) / 4));
     canvas.restore();
   }
