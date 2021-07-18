@@ -14,8 +14,8 @@ class SnowParticle extends Particle {
   double r2 = (Random().nextDouble() - 0.5);
   double t = 0.0;
   double x = Random().nextDouble() * 2000;
-  double old_x = -1;
-  double old_y = -1;
+  double oldX = -1;
+  double oldY = -1;
 
   double y = -1500 * Random().nextDouble();
   double ys = 0.0;
@@ -33,9 +33,9 @@ class SnowParticle extends Particle {
     if (x > size.width) x -= size.width;
     if (x < 0) x += size.width;
 
-    old_x = x;
-    old_y = y;
-    x += (cos(r*t*3)*sin(r2*t*10))/30 * t;
+    oldX = x;
+    oldY = y;
+    x += (cos(r * t * 3) * sin(r2 * t * 10)) / 30 * t;
     ys += t / 100 * (1 + r);
     if (ys > 80 * (2 + r)) ys = 80 * (2 + r);
 
@@ -57,7 +57,9 @@ class SnowParticleLayer extends ParticleLayer<SnowParticle> {
     canvas.drawPoints(
         PointMode.points,
         _particleList.map((e) => Offset(e.x, e.y)).toList(),
-        Paint()..color = Colors.white..strokeWidth=1);
+        Paint()
+          ..color = Colors.white
+          ..strokeWidth = 1);
   }
 
   @override

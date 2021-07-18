@@ -1,7 +1,4 @@
-import 'dart:math';
-
 import 'package:dart_board_core/dart_board.dart';
-
 import '../dart_board_particle_feature.dart';
 
 /// This class provides a generic
