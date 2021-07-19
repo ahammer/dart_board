@@ -71,18 +71,17 @@ class _LocatorState extends State<_Locator> {
     super.initState();
   }
 
-  T _locate<T>(Type type, {String instance_id = ""}) {
+  T _locate<T>(Type type, {String instanceId = ""}) {
     /// Return from cache
-    if (objectCache.containsKey(T) &&
-        objectCache[T]!.containsKey(instance_id)) {
-      return objectCache[T]![instance_id] as T;
+    if (objectCache.containsKey(T) && objectCache[T]!.containsKey(instanceId)) {
+      return objectCache[T]![instanceId] as T;
     }
 
     /// Build it if we can
     if (builders.containsKey(T)) {
       objectCache.putIfAbsent(T, () => {});
-      objectCache[T]![instance_id] = builders[T]!.call() as T;
-      return objectCache[T]![instance_id] as T;
+      objectCache[T]![instanceId] = builders[T]!.call() as T;
+      return objectCache[T]![instanceId] as T;
     }
 
     throw Exception("Can not instantiate $T");
@@ -97,5 +96,5 @@ class _LocatorState extends State<_Locator> {
 final _locatorKey = GlobalKey<_LocatorState>();
 
 /// Globally Locate a type
-T locate<T>({String instance_id = ""}) =>
-    _locatorKey.currentState!._locate(T, instance_id: instance_id);
+T locate<T>({String instanceId = ""}) =>
+    _locatorKey.currentState!._locate(T, instanceId: instanceId);
