@@ -1,3 +1,7 @@
+## 0.9.2
+
+ - **FEAT**: example for particles.
+
 ## 0.9.1+5
 
  - **FIX**: make sure to load initial route correctly in the template.

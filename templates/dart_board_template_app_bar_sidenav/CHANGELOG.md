@@ -1,3 +1,7 @@
+## 0.9.2
+
+ - **FEAT**: example for particles.
+
 ## 0.9.1+5
 
  - **FIX**: clean up example.

@@ -1,3 +1,9 @@
+## 0.9.9
+
+ - **TEST**: verify findFeature code works.
+ - **FIX**: improvements to example.
+ - **FEAT**: example for particles.
+
 ## 0.9.8
 
  - **FIX**: another test.

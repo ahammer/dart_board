@@ -1,3 +1,7 @@
+## 0.9.4
+
+ - **FEAT**: example for particles.
+
 ## 0.9.3
 
  - **FEAT**: Feature Gate widget and Page Decoration.
