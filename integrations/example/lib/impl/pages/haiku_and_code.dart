@@ -1,9 +1,6 @@
-import 'dart:math';
-import 'package:dart_board_theme/dart_board_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
-import 'package:flutter_syntax_view/flutter_syntax_view.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 

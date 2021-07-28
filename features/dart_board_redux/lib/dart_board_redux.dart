@@ -86,9 +86,9 @@ class DartBoardRedux extends DartBoardFeature {
 ///
 ///  FeatureState state = getState<FeatureState>();
 
-T getState<T>({String instance_id = ""}) =>
+T getState<T>({String instanceId = ""}) =>
     _dartBoardReduxKey.currentState!.store.state
-        .getState<T>(instance_id: instance_id);
+        .getState<T>(instanceId: instanceId);
 
 ///  # Decorations
 ///  These can help integrate Redux into your feature
@@ -107,6 +107,7 @@ class ReduxStateDecoration<T> extends DartBoardDecoration {
       : super(
             name: name,
             decoration: (ctx, child) => LifeCycleWidget(
+                key: ValueKey("ReduxLifecycle"),
                 child: child,
                 init: (ctx) => _dartBoardReduxKey.currentState
                     ?._registerFactory(factory)));
@@ -123,6 +124,7 @@ class ReduxMiddlewareDecoration extends DartBoardDecoration {
       : super(
           name: name,
           decoration: (context, child) => LifeCycleWidget(
+              key: ValueKey("ReduxMiddleware+$name"),
               child: child,
               preInit: () => _dartBoardReduxKey.currentState
                   ?._registerMiddleware(name, middleware),
@@ -140,12 +142,12 @@ class ReduxMiddlewareDecoration extends DartBoardDecoration {
 //setState(() => _initStore());
 
 class FeatureStateBuilder<T> extends StatelessWidget {
-  final String instance_id;
+  final String instanceId;
   final Widget Function(BuildContext context, T state) builder;
   final bool distinct;
 
   const FeatureStateBuilder(this.builder,
-      {Key? key, this.distinct = false, this.instance_id = ""})
+      {Key? key, this.distinct = false, this.instanceId = ""})
       : super(key: key);
 
   @override
@@ -177,18 +179,18 @@ abstract class BaseAction {
 
 // # Abstract class to reduce a specific state in the store
 abstract class FeatureAction<T> extends BaseAction {
-  final String instance_id;
+  final String instanceId;
 
-  FeatureAction({this.instance_id = ""});
+  FeatureAction({this.instanceId = ""});
 
   @override
   DartBoardState reduce(DartBoardState oldState) {
-    final state = featureReduce(oldState.getState(instance_id: instance_id));
+    final state = featureReduce(oldState.getState(instanceId: instanceId));
 
     final data = <Type, Map<String, dynamic>>{}
       ..addAll(oldState.data)
       ..putIfAbsent(T, () => <String, dynamic>{});
-    data[T]?[instance_id] = state;
+    data[T]?[instanceId] = state;
     return DartBoardState(data: data, factories: oldState.factories);
   }
 
@@ -248,7 +250,7 @@ class DartBoardState {
   DartBoardState({required this.data, required this.factories});
 
   /// Gets a state object, or builds it if it doesn't exist
-  T getState<T>({String instance_id = ""}) {
+  T getState<T>({String instanceId = ""}) {
     /// GetState won't work without a registered factory.
     /// We won't even look for data.
     ///
@@ -259,7 +261,7 @@ class DartBoardState {
     }
 
     /// Return the data or generate the default
-    return data[T]?[instance_id] ?? factories[T]!.call() as T;
+    return data[T]?[instanceId] ?? factories[T]!.call() as T;
   }
 }
 

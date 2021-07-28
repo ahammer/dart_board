@@ -1,7 +1,26 @@
 import 'dart:math';
 import 'dart:ui';
 
+import 'package:dart_board_core/dart_board.dart';
 import 'package:flutter/material.dart';
+
+class AnimatedBackgroundFeature extends DartBoardFeature {
+  @override
+  String get namespace => 'background';
+
+  @override
+  String get implementationName => 'Relaxing Waves';
+
+  @override
+  List<DartBoardDecoration> get pageDecorations => <DartBoardDecoration>[
+        DartBoardDecoration(
+            name: 'background',
+            decoration: (context, child) => AnimatedBackgroundDecoration(
+                  color: Theme.of(context).colorScheme.surface,
+                  child: child,
+                ))
+      ];
+}
 
 class AnimatedBackgroundDecoration extends StatefulWidget {
   final Widget child;

@@ -37,11 +37,11 @@ class ExampleLocator extends DartBoardFeature {
                     /// We will show 2 instances of this state
                     Expanded(
                         child: LocatorDemo(
-                      instance_id: "Instance 1",
+                      instanceId: "Instance 1",
                     )),
                     Expanded(
                         child: LocatorDemo(
-                      instance_id: "Instance 2",
+                      instanceId: "Instance 2",
                     )),
                   ],
                 ))
@@ -81,9 +81,9 @@ class ExampleState extends ChangeNotifier {
 ///
 /// We'll show a count and have a button to modify state
 class LocatorDemo extends StatelessWidget {
-  final String instance_id;
+  final String instanceId;
 
-  const LocatorDemo({Key? key, this.instance_id = ""}) : super(key: key);
+  const LocatorDemo({Key? key, this.instanceId = ""}) : super(key: key);
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,14 +92,14 @@ class LocatorDemo extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(instance_id),
+            Text(instanceId),
             Divider(),
             Text(
-                "hello: ${locate<ExampleState>(instance_id: instance_id).count}"),
+                "hello: ${locate<ExampleState>(instanceId: instanceId).count}"),
             MaterialButton(
               onPressed: () {
                 /// Can also use like this
-                locate<ExampleState>(instance_id: instance_id).increment();
+                locate<ExampleState>(instanceId: instanceId).increment();
               },
               child: Text("Press Me"),
             )
