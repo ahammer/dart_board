@@ -104,6 +104,7 @@ class ExampleFeature extends DartBoardFeature {
                       'theme',
                       'logging',
                       'FireCursor',
+                      'Snow',
                       //'Snow'
                     ].forEach((element) => DartBoardCore.instance
                         .setFeatureImplementation(element, null));

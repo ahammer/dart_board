@@ -128,6 +128,14 @@ class HomePageWithToggles extends StatelessWidget {
                               DartBoardCore.instance.setFeatureImplementation(
                                   'FireCursor', result ? 'default' : null)
                             }),
+                                          SwitchListTile.adaptive(
+                        title: Text('Snow Overlay'),
+                        value: DartBoardCore.instance
+                            .isFeatureActive('Snow'),
+                        onChanged: (result) => {
+                              DartBoardCore.instance.setFeatureImplementation(
+                                  'Snow', result ? 'default' : null)
+                            }),
                     SwitchListTile.adaptive(
                         title: Text('Dark Theme'),
                         value: DartBoardCore.instance.isFeatureActive('theme'),

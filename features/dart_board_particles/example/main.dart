@@ -56,6 +56,8 @@ class SimpleRouteFeature extends DartBoardFeature {
                           Particles.instance.addLayer(RainbowParticleLayer(
                             cos(t + 3.15) * r + hw,
                             sin(t + 3.15) * r + hh,
+                            cos((t-1) + 3.15) * r + hw,
+                            sin((t-1) + 3.15) * r + hh,
                           ));
                         },
                         duration: Duration(milliseconds: 1),

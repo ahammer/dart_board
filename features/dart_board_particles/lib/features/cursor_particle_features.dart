@@ -33,9 +33,18 @@ class FireCursorFeature extends CursorFeature {
 }
 
 class RainbowCursorFeature extends CursorFeature {
+  double? oldY;
+  double? oldX;
+
   @override
   String get namespace => 'RainbowCursor';
   @override
-  ParticleLayer<Particle> generateParticleLayer(double x, double y) =>
-      RainbowParticleLayer(x, y);
+  ParticleLayer<Particle> generateParticleLayer(double x, double y) {
+
+    final layer = RainbowParticleLayer(x, y, oldX??x, oldY??y);
+    oldX = x;
+    oldY = y;
+    
+    return layer;
+  }
 }

@@ -7,8 +7,6 @@ class RainbowParticle extends Particle {
           1.0, (DateTime.now().millisecondsSinceEpoch) % 360, 1.0, 0.75)
       .toColor();
   double t = 0.0;
-  double x = 0.0;
-  double y = 0.0;
   double s = 10.0;
 
   @override
@@ -17,11 +15,14 @@ class RainbowParticle extends Particle {
 
 class RainbowParticleLayer extends ParticleLayer<RainbowParticle> {
   final double screenX, screenY;
+  final double lastScreenX, lastScreenY;
+
   final _particleList = <RainbowParticle>[
     RainbowParticle(),
   ];
 
-  RainbowParticleLayer(this.screenX, this.screenY);
+  RainbowParticleLayer(
+      this.screenX, this.screenY, this.lastScreenX, this.lastScreenY);
 
   @override
   void before(Canvas canvas, Size size) {}
@@ -30,17 +31,12 @@ class RainbowParticleLayer extends ParticleLayer<RainbowParticle> {
   void after(Canvas canvas, Size size) {}
 
   @override
-  void drawParticle(Canvas canvas, Size size, RainbowParticle particle) {
-    canvas.save();
-    canvas.translate(particle.x + screenX, particle.y + screenY);
-    canvas.scale(particle.s, particle.s);
-    canvas.drawCircle(Offset.zero, 0.5,
-        Paint()..color = particle.c.withOpacity(1 - particle.t / 0.5)
-        //..maskFilter =
-        //MaskFilter.blur(BlurStyle.normal, (particle.t * 5) / 1));
-        );
-    canvas.restore();
-  }
+  void drawParticle(Canvas canvas, Size size, RainbowParticle particle) => canvas.drawLine(
+        Offset(screenX, screenY),
+        Offset(lastScreenX, lastScreenY),
+        Paint()
+          ..color = particle.c.withOpacity(1 - particle.t / 0.5)
+          ..strokeWidth = 10.0 * 1 / (1 + particle.t * 5));
 
   @override
   List<RainbowParticle> get particles => _particleList;
