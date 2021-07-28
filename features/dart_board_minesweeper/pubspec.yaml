@@ -31,6 +31,8 @@ dependencies:
 
   dart_board_core: ^0.9.9
   dart_board_redux: ^0.9.1
+  redux_thunk: ^0.4.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
