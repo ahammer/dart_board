@@ -34,7 +34,8 @@ dependencies:
   dart_board_template_app_bar_sidenav:
   dart_board_image_background:
   dart_board_particles:
-    path: ../../features/dart_board_particles
+  dart_board_authentication: 
+    path: ../../features/dart_board_authentication
   
   flutter_syntax_view: ^4.0.0
   flutter_markdown: ^0.6.2

@@ -165,17 +165,17 @@ packages:
   dart_board_core:
     dependency: "direct main"
     description:
-      path: "../../core/dart_board_core"
-      relative: true
-    source: path
-    version: "0.9.8"
+      name: dart_board_core
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.9.9"
   dart_board_redux:
     dependency: "direct main"
     description:
-      path: "../dart_board_redux"
-      relative: true
-    source: path
-    version: "0.9.0+6"
+      name: dart_board_redux
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.9.1"
   dart_style:
     dependency: transitive
     description:
@@ -383,7 +383,7 @@ packages:
     source: hosted
     version: "5.0.0"
   redux_thunk:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: redux_thunk
       url: "https://pub.dartlang.org"
