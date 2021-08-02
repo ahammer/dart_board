@@ -57,20 +57,7 @@ class MainWidget extends StatelessWidget {
             child: Card(
                 child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: AuthenticationGate(
-            signedIn: (ctx) => Text("Signed in"),
-            signedOut: (ctx) => Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text("Not logged in"),
-                MaterialButton(
-                    onPressed: () {
-                      AuthenticationState.requestSignIn();
-                    },
-                    child: Text("Sign In")),
-              ],
-            ),
-          ),
+          child: LoginButton(),
         ))),
       );
 }

@@ -1,5 +1,5 @@
-name: dart_board_authentication_google
-description: A new flutter module project.
+name: dart_board_authentication_flutter_fire
+description: Flutter Fire authentication support for dart board (Web, MacOS, Android, iOS).
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -23,10 +23,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
+  dart_board_authentication:
+    path: ../dart_board_authentication
+  firebase_auth: ^3.0.1
 
 dev_dependencies:
   flutter_test:

@@ -158,3 +158,28 @@ class _AuthenticationGateState extends State<AuthenticationGate> {
 
   void onAuthStateChanged() => setState(() {});
 }
+
+/// A Login button
+class LoginButton extends StatelessWidget {
+  const LoginButton({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AuthenticationGate(
+      signedIn: (ctx) => Text("Signed in"),
+      signedOut: (ctx) => Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text("Not logged in"),
+          MaterialButton(
+              onPressed: () {
+                AuthenticationState.requestSignIn();
+              },
+              child: Text("Sign In")),
+        ],
+      ),
+    );
+  }
+}
