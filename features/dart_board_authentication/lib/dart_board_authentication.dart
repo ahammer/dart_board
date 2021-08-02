@@ -18,41 +18,58 @@ class DartBoardAuthenticationFeature extends DartBoardFeature {
   List<DartBoardFeature> get dependencies => [DartBoardLocatorFeature()];
 }
 
+class DartBoardAuthenticationProviderAppDecoration extends DartBoardDecoration {
+  final String name;
+  final AuthenticationDelegate delegate;
+
+  DartBoardAuthenticationProviderAppDecoration(this.name, this.delegate)
+      : super(
+            name: name,
+            decoration: (ctx, child) => LifeCycleWidget(
+                init: (ctx) {
+                  AuthenticationState.registerDelegate(delegate);
+                },
+                key: ValueKey("auth_plugin_$name"),
+                child: child));
+}
+
 class AuthSignInDialog extends StatelessWidget {
-  const AuthSignInDialog({
+  AuthSignInDialog({
     Key? key,
   }) : super(key: key);
 
+  late final authState = locate<AuthenticationState>();
+
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      child: Center(
-        child: Card(
-            child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  width: 200,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text("Choose Provider"),
-                      Divider(),
-                      ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: 5,
-                          itemBuilder: (ctx, idx) => ListTile(
-                                title: Text("asdb"),
-                              )),
-                    ],
-                  ),
-                ))),
-      ),
+    return Center(
+      child: Card(
+          child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                width: 200,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text("Choose Provider"),
+                    Divider(),
+                    ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: authState._delegates.length,
+                        itemBuilder: (ctx, idx) => ListTile(
+                              title: Text(authState._delegates[idx].name),
+                              onTap: () {},
+                            )),
+                  ],
+                ),
+              ))),
     );
   }
 }
 
 class AuthenticationState extends ChangeNotifier {
+  final _delegates = <AuthenticationDelegate>[];
+
   bool signedIn = false;
 
   static void requestSignIn() {
@@ -65,6 +82,9 @@ class AuthenticationState extends ChangeNotifier {
         barrierDismissible: true,
         builder: (ctx) => RouteWidget("/request_login"));
   }
+
+  static void registerDelegate(AuthenticationDelegate delegate) =>
+      locate<AuthenticationState>()._delegates.add(delegate);
 }
 
 abstract class AuthenticationDelegate {
