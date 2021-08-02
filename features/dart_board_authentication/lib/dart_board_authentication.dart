@@ -33,12 +33,18 @@ class DartBoardAuthenticationProviderAppDecoration extends DartBoardDecoration {
                 child: child));
 }
 
-class AuthSignInDialog extends StatelessWidget {
+class AuthSignInDialog extends StatefulWidget {
   AuthSignInDialog({
     Key? key,
   }) : super(key: key);
 
+  @override
+  _AuthSignInDialogState createState() => _AuthSignInDialogState();
+}
+
+class _AuthSignInDialogState extends State<AuthSignInDialog> {
   late final authState = locate<AuthenticationState>();
+  AuthenticationDelegate? _selected;
 
   @override
   Widget build(BuildContext context) {
@@ -50,17 +56,28 @@ class AuthSignInDialog extends StatelessWidget {
                 width: 200,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text("Choose Provider"),
-                    Divider(),
-                    ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: authState._delegates.length,
-                        itemBuilder: (ctx, idx) => ListTile(
-                              title: Text(authState._delegates[idx].name),
-                              onTap: () {},
-                            )),
-                  ],
+                  children: _selected == null
+                      ? [
+                          Text("Choose Provider"),
+                          Divider(),
+                          ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: authState._delegates.length,
+                              itemBuilder: (ctx, idx) => ListTile(
+                                    title: Text(authState._delegates[idx].name),
+                                    onTap: () {
+                                      setState(() {
+                                        /// We've selected an Auth Provider
+                                        _selected = authState._delegates[idx];
+                                      });
+                                    },
+                                  )),
+                        ]
+                      : [
+                          Text(_selected?.name ?? ""),
+                          Divider(),
+                          _selected?.buildAuthWidget() ?? Container()
+                        ],
                 ),
               ))),
     );
@@ -70,7 +87,19 @@ class AuthSignInDialog extends StatelessWidget {
 class AuthenticationState extends ChangeNotifier {
   final _delegates = <AuthenticationDelegate>[];
 
-  bool signedIn = false;
+  AuthenticationDelegate? _activeDelegate;
+
+  bool get signedIn => _activeDelegate != null;
+
+  /// Delegates should call this when authenticated
+  void setSignedIn(bool val, AuthenticationDelegate delegate) {
+    if (val) {
+      _activeDelegate = delegate;
+    } else {
+      _activeDelegate = null;
+    }
+    notifyListeners();
+  }
 
   static void requestSignIn() {
     final authState = locate<AuthenticationState>();
@@ -88,8 +117,9 @@ class AuthenticationState extends ChangeNotifier {
 }
 
 abstract class AuthenticationDelegate {
+  /// The name of this authentication widget
   String get name;
-  Future<void> authenticate();
+  Widget buildAuthWidget();
 }
 
 // A widget that shows 1 of two widgets, signed in or out.

@@ -36,10 +36,18 @@ class DartBoardFakeAuthProvider extends DartBoardFeature {
 
 class MockAuthenticationDelegate extends AuthenticationDelegate {
   @override
-  Future<void> authenticate() async {}
+  String get name => "Mock Authenticator";
 
   @override
-  String get name => "Mock Authenticator";
+  Widget buildAuthWidget() => MaterialButton(
+      onPressed: () {
+        /// This is called to set that we are now signed in with this delegate
+        locate<AuthenticationState>().setSignedIn(true, this);
+
+        /// Pop the auth dialog
+        navigator.pop();
+      },
+      child: Text("Click to sign in"));
 }
 
 class MainWidget extends StatelessWidget {
