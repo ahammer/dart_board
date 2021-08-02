@@ -9,11 +9,62 @@ class DartBoardAuthenticationFeature extends DartBoardFeature {
       [LocatorDecoration<AuthenticationState>(() => AuthenticationState())];
 
   @override
+  List<RouteDefinition> get routes => [
+        NamedRouteDefinition(
+            route: "/request_login",
+            builder: (builder, settings) => AuthSignInDialog())
+      ];
+  @override
   List<DartBoardFeature> get dependencies => [DartBoardLocatorFeature()];
+}
+
+class AuthSignInDialog extends StatelessWidget {
+  const AuthSignInDialog({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: Center(
+        child: Card(
+            child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  width: 200,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text("Choose Provider"),
+                      Divider(),
+                      ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: 5,
+                          itemBuilder: (ctx, idx) => ListTile(
+                                title: Text("asdb"),
+                              )),
+                    ],
+                  ),
+                ))),
+      ),
+    );
+  }
 }
 
 class AuthenticationState extends ChangeNotifier {
   bool signedIn = false;
+
+  static void requestSignIn() {
+    final authState = locate<AuthenticationState>();
+    if (authState.signedIn) throw Exception("Already signed in");
+
+    showDialog(
+        useSafeArea: true,
+        context: navigatorContext,
+        barrierDismissible: true,
+        builder: (ctx) => RouteWidget("/request_login"));
+  }
 }
 
 abstract class AuthenticationDelegate {
