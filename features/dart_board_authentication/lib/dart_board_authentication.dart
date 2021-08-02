@@ -47,6 +47,17 @@ class _AuthSignInDialogState extends State<AuthSignInDialog> {
   AuthenticationDelegate? _selected;
 
   @override
+  void initState() {
+    super.initState();
+    if (authState._delegates.length == 1) {
+      setState(() {
+        /// We've selected an Auth Provider
+        _selected = authState._delegates[0];
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Center(
       child: Card(

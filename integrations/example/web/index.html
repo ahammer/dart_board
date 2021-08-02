@@ -76,6 +76,26 @@
   </style>
 </head>
 <body>
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+   <!-- Firebase Configuration -->
+   <script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyAopDwP4dgPBBiBO5pQVhJbiHNJh7uIlIA",
+    authDomain: "dart-board-59f93.firebaseapp.com",
+    projectId: "dart-board-59f93",
+    storageBucket: "dart-board-59f93.appspot.com",
+    messagingSenderId: "911356575335",
+    appId: "1:911356575335:web:19bd8deac9e8569e279ec2",
+    measurementId: "G-5XP59PKL4G"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+  </script>
+
   <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->

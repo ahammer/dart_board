@@ -1,4 +1,4 @@
-import 'package:dart_board_authentication_flutter_fire/dart_board_authentication_flutter_fire.dart';
+import 'package:dart_board_firebase_authentication/dart_board_firebase_authentication.dart';
 import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_core/impl/features/generic_features.dart';
 import 'package:dart_board_minesweeper/dart_board_minesweeper.dart';

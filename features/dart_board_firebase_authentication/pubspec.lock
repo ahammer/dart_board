@@ -60,16 +60,23 @@ packages:
   dart_board_core:
     dependency: transitive
     description:
-      path: "../../core/dart_board_core"
+      name: dart_board_core
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.9.9"
+  dart_board_firebase_core:
+    dependency: "direct main"
+    description:
+      path: "../dart_board_firebase_core"
       relative: true
     source: path
-    version: "0.9.9"
+    version: "1.0.0+1"
   dart_board_locator:
     dependency: transitive
     description:
-      path: "../dart_board_locator"
-      relative: true
-    source: path
+      name: dart_board_locator
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.9.3"
   fake_async:
     dependency: transitive
