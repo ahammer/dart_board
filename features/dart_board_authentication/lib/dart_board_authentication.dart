@@ -7,6 +7,9 @@ class DartBoardAuthenticationFeature extends DartBoardFeature {
   @override
   List<DartBoardDecoration> get appDecorations =>
       [LocatorDecoration<AuthenticationState>(() => AuthenticationState())];
+
+  @override
+  List<DartBoardFeature> get dependencies => [DartBoardLocatorFeature()];
 }
 
 class AuthenticationState extends ChangeNotifier {
