@@ -3,7 +3,7 @@ description: Flutter Fire authentication support for dart board (Web, MacOS, And
 
 # Configure firebase as per firebase documents
 # E.g. configure the runner's with your keys
-
+publish_to: none
 version: 1.0.0+1
 
 environment:
