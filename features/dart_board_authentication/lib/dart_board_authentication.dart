@@ -103,7 +103,7 @@ class AuthenticationState extends ChangeNotifier {
   bool get signedIn => _activeDelegate != null;
 
   /// Delegates should call this when authenticated
-  void setSignedIn(bool val, AuthenticationDelegate delegate) {
+  void setSignedIn(bool val, AuthenticationDelegate? delegate) {
     if (val) {
       _activeDelegate = delegate;
     } else {
@@ -179,7 +179,11 @@ class LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AuthenticationGate(
-      signedIn: (ctx) => Text("Signed in"),
+      signedIn: (ctx) => MaterialButton(
+          onPressed: () {
+            locate<AuthenticationState>().setSignedIn(false, null);
+          },
+          child: Text("Log Out")),
       signedOut: (ctx) => Column(
         mainAxisSize: MainAxisSize.min,
         children: [
