@@ -104,6 +104,7 @@ class AuthenticationState extends ChangeNotifier {
   AuthenticationDelegate? _activeDelegate;
 
   bool get signedIn => _activeDelegate != null;
+  String get username => _activeDelegate?.username ?? "anon";
 
   /// Delegates should call this when authenticated
   void setSignedIn(bool val, AuthenticationDelegate? delegate) {
@@ -133,6 +134,8 @@ class AuthenticationState extends ChangeNotifier {
 abstract class AuthenticationDelegate {
   /// The name of this authentication widget
   String get name;
+
+  String get username;
   Widget buildAuthWidget();
 }
 

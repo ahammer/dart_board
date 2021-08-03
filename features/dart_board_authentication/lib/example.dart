@@ -54,6 +54,9 @@ class MockAuthenticationDelegate extends AuthenticationDelegate {
         navigator.pop();
       },
       child: Text("Click to sign in"));
+
+  @override
+  String get username => "MockUser";
 }
 
 class MainWidget extends StatelessWidget {

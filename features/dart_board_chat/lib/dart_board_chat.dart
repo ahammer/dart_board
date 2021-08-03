@@ -1,14 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dart_board_authentication/dart_board_authentication.dart';
 import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_core/interface/dart_board_interface.dart';
 import 'package:dart_board_firebase_database/dart_board_firebase_database.dart';
+import 'package:dart_board_locator/dart_board_locator.dart';
 
+/// Chat functionality for Dart Board.
+///
 class DartBoardChatFeature extends DartBoardFeature {
   @override
   get namespace => "chat";
 
   @override
-  get dependencies => [DartBoardFirebaseDatabaseFeature()];
+  get dependencies =>
+      [DartBoardFirebaseDatabaseFeature(), DartBoardAuthenticationFeature()];
 
   @override
   get routes => [
@@ -98,13 +103,30 @@ class _MessageWidgetState extends State<MessageWidget> {
   Widget build(BuildContext context) => Column(
         children: [
           Expanded(
-            child: CollectionView(
-                builder: (idx, ctx, snapshot) => ListTile(
-                      title: Text("${snapshot.docs[idx].get("message")}"),
-                      onTap: () {},
-                    ),
-                ref: FirebaseFirestore.instance
-                    .collection("channels/${widget.channel_id}/messages")),
+            child: Card(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: QueryView(
+                    builder: (idx, ctx, snapshot) => Row(
+                          children: [
+                            Container(
+                                width: 100,
+                                child: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Text(
+                                      "${snapshot.docs[idx].get("author") ?? "Unknown"}:"),
+                                )),
+                            Container(width: 16),
+                            Expanded(
+                                child: Text(
+                                    "${snapshot.docs[idx].get("message")}")),
+                          ],
+                        ),
+                    ref: FirebaseFirestore.instance
+                        .collection("channels/${widget.channel_id}/messages")
+                        .orderBy('date', descending: false)),
+              ),
+            ),
           ),
           Card(
               child: Container(
@@ -119,10 +141,14 @@ class _MessageWidgetState extends State<MessageWidget> {
                         )),
                         MaterialButton(
                           onPressed: () async {
-                            final collection = await FirebaseFirestore.instance
+                            await FirebaseFirestore.instance
                                 .collection(
                                     "channels/${widget.channel_id}/messages")
-                                .add({"message": _controller.text});
+                                .add({
+                              "message": _controller.text,
+                              "date": DateTime.now().millisecondsSinceEpoch,
+                              "author": locate<AuthenticationState>().username
+                            });
                             _controller.text = "";
                           },
                           child: Text("Post"),

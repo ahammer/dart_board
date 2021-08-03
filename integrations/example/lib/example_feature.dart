@@ -1,7 +1,7 @@
 import 'package:dart_board_firebase_authentication/dart_board_firebase_authentication.dart';
 import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_core/impl/features/generic_features.dart';
-import 'package:dart_board_firebase_database/dart_board_chat_feature.dart';
+import 'package:dart_board_chat/dart_board_chat.dart';
 import 'package:dart_board_minesweeper/dart_board_minesweeper.dart';
 import 'package:dart_board_particles/dart_board_particle_feature.dart';
 import 'package:dart_board_particles/features/cursor_particle_features.dart';

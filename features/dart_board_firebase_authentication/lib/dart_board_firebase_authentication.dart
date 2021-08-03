@@ -35,4 +35,8 @@ class FlutterFireAuthenticationDelegate extends AuthenticationDelegate {
       );
   @override
   String get name => "Flutter Fire - Auth Adapter";
+
+  @override
+  String get username =>
+      FirebaseAuth.instance.currentUser?.displayName ?? "unknown";
 }

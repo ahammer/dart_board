@@ -36,3 +36,29 @@ class CollectionView extends StatelessWidget {
         },
       );
 }
+
+class QueryView extends StatelessWidget {
+  final Query ref;
+  final Widget Function(int, BuildContext, QuerySnapshot) builder;
+
+  const QueryView({Key? key, required this.ref, required this.builder})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) => StreamBuilder<QuerySnapshot>(
+        stream: ref.snapshots(),
+        builder: (ctx, snapshot) {
+          if (snapshot.hasData) {
+            return ListView.builder(
+                itemBuilder: (
+                  ctx,
+                  idx,
+                ) =>
+                    builder(idx, ctx, snapshot.data!),
+                itemCount: snapshot.data!.docs.length);
+          } else {
+            return CircularProgressIndicator();
+          }
+        },
+      );
+}
