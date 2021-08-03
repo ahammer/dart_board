@@ -48,7 +48,7 @@ class LocatorDecoration<T> extends DartBoardDecoration {
                 key: ValueKey("LocatorDecoration_${T.toString()}"),
                 preInit: () =>
                     _locatorKey.currentState!.registerBuilder<T>(builder),
-                child: child));
+                child: Builder(builder: (ctx) => child)));
 }
 
 class _Locator extends StatefulWidget {

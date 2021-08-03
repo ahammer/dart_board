@@ -6,7 +6,11 @@ import 'package:logging/logging.dart';
 import '../dart_board.dart';
 import 'widgets/route_not_found.dart';
 
-final Logger log = Logger('DartBoard');
+/// Some helpers
+late final Logger log = Logger('DartBoard');
+late final NavigatorState navigator = dartBoardNavKey.currentState!;
+late final BuildContext navigatorContext = dartBoardNavKey.currentContext!;
+
 GlobalKey<_DartBoardState> dartBoardKey = GlobalKey();
 
 Widget _pageNoteFound(BuildContext context) =>

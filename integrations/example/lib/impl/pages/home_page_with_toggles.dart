@@ -1,3 +1,4 @@
+import 'package:dart_board_authentication/dart_board_authentication.dart';
 import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_particles/dart_board_particle_feature.dart';
 import 'package:dart_board_particles/presets/lighting_particle.dart';
@@ -31,6 +32,7 @@ class HomePageWithToggles extends StatelessWidget {
                       '[ Sandbox / Playground ]',
                       style: Theme.of(context).textTheme.subtitle2,
                     ),
+                    LoginButton(),
                     ListTile(
                       title: Text('Template'),
                       trailing: PopupMenuButton<TemplateOptions>(
@@ -128,10 +130,9 @@ class HomePageWithToggles extends StatelessWidget {
                               DartBoardCore.instance.setFeatureImplementation(
                                   'FireCursor', result ? 'default' : null)
                             }),
-                                          SwitchListTile.adaptive(
+                    SwitchListTile.adaptive(
                         title: Text('Snow Overlay'),
-                        value: DartBoardCore.instance
-                            .isFeatureActive('Snow'),
+                        value: DartBoardCore.instance.isFeatureActive('Snow'),
                         onChanged: (result) => {
                               DartBoardCore.instance.setFeatureImplementation(
                                   'Snow', result ? 'default' : null)
