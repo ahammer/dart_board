@@ -1,3 +1,8 @@
+## 0.9.2
+
+ - **FIX**: cursor mode for rainbows now draws solid lines.
+ - **FEAT**: adding authentication feature and registering in the example.
+
 ## 0.9.1
 
  - **FEAT**: example for particles.

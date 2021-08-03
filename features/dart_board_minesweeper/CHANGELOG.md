@@ -1,3 +1,7 @@
+## 0.9.5
+
+ - **FEAT**: adding authentication feature and registering in the example.
+
 ## 0.9.4
 
  - **FEAT**: example for particles.
