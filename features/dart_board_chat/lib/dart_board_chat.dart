@@ -28,6 +28,15 @@ class ChatWidget extends StatefulWidget {
 }
 
 class _ChatWidgetState extends State<ChatWidget> {
+  @override
+  void initState() {
+    super.initState();
+    FirebaseFirestore.instance
+        .collection("channels")
+        .get()
+        .then((value) => setState(() => _id = value.docs[0].id));
+  }
+
   String? _id;
   @override
   Widget build(BuildContext context) => Row(
@@ -48,6 +57,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                         child: Container(
                   width: double.infinity,
                   child: ChannelWidget(
+                    selection: _id ?? "",
                     onTapped: (String id) => setState(() => _id = id),
                   ),
                 ))),
@@ -66,16 +76,19 @@ class _ChatWidgetState extends State<ChatWidget> {
 }
 
 class ChannelWidget extends StatelessWidget {
+  final String selection;
   final Function(String id) onTapped;
   const ChannelWidget({
     Key? key,
     required this.onTapped,
+    required this.selection,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return CollectionView(
       builder: (idx, ctx, snapshot) => ListTile(
+        selected: snapshot.docs[idx].reference.id == selection,
         title: Text("${snapshot.docs[idx].get("name")}"),
         onTap: () => this.onTapped(snapshot.docs[idx].reference.id),
       ),
