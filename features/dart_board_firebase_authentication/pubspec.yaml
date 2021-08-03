@@ -7,7 +7,6 @@ repository: https://github.com/ahammer/dart_board
 # Configure firebase as per firebase documents
 # E.g. configure the runner's with your keys for this to work
 
-publish_to: none
 version: 1.0.0+1
 
 environment:
@@ -17,9 +16,7 @@ dependencies:
   flutter:
     sdk: flutter
   dart_board_authentication:
-    path: ../dart_board_authentication
   dart_board_firebase_core:
-    path: ../dart_board_firebase_core
   firebase_auth: ^3.0.1
 
 dev_dependencies:
