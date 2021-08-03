@@ -113,7 +113,7 @@ class DartBoardDecoration {
 abstract class DartBoardFeature<T> {
   /// A namespace to prefix to reference this feature by
   /// Please make it unique
-  String get namespace => runtimeType.toString();
+  String get namespace;
 
   // An implementation name, this should be unique for each implementation used
   // When AB testing, share the namespace, make implementationName unique
@@ -167,4 +167,7 @@ abstract class RouteDefinition {
 }
 
 /// An empty feature to use as a default if an feature can't be found
-class EmptyDartBoardFeature extends DartBoardFeature {}
+class EmptyDartBoardFeature extends DartBoardFeature {
+  @override
+  String get namespace => 'Empty';
+}

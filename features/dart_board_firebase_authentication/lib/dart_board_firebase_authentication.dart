@@ -16,6 +16,9 @@ class DartBoardAuthenticationFlutterFireFeature extends DartBoardFeature {
   @override
   List<DartBoardDecoration> get appDecorations =>
       [DartBoardAuthenticationProviderAppDecoration("Flutter-Fire", delegate)];
+
+  @override
+  String get namespace => "FirebaseAuth";
 }
 
 /// This is the authentication delegate for firebase

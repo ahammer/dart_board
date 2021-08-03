@@ -16,6 +16,9 @@ class DartBoardAuthenticationFeature extends DartBoardFeature {
       ];
   @override
   List<DartBoardFeature> get dependencies => [DartBoardLocatorFeature()];
+
+  @override
+  String get namespace => "DartBoardAuthenticationFeature";
 }
 
 class DartBoardAuthenticationProviderAppDecoration extends DartBoardDecoration {

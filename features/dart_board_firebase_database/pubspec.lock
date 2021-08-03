@@ -74,16 +74,16 @@ packages:
   dart_board_core:
     dependency: "direct main"
     description:
-      name: dart_board_core
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "../../core/dart_board_core"
+      relative: true
+    source: path
     version: "0.9.9"
   dart_board_firebase_core:
     dependency: "direct main"
     description:
-      name: dart_board_firebase_core
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "../dart_board_firebase_core"
+      relative: true
+    source: path
     version: "1.0.0+1"
   fake_async:
     dependency: transitive

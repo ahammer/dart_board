@@ -15,4 +15,7 @@ class DartBoardFirebaseAppFeature extends DartBoardFeature {
                 },
                 child: child))
       ];
+
+  @override
+  String get namespace => "DartBoardFirebaseCore";
 }
