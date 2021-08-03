@@ -95,6 +95,17 @@ Provides a AppDecoration API + Function API to Create and Dispatch states.
 
 Object/Service Locator Framework. Lazy loading + Caching. App Decoration based API to register types and services to the App.
 
+- [Authentication](features/dart_board_authentication/README.md)
+
+Auth Facade that allows registration/interfacing with Auth Providers (e.g. Firebase, or your own).
+
+- [Firebase Authentication](features/dart_board_firebase_authentication)
+
+Firebase plugin for auth-layer (initialize Firebase with standard FlutterFire docs, e.g. include Firebase JS in your html, or set up your Mobile Runners) Web + Mobile + MacOS is suppoerted by flutter fire.
+
+- [Firebase Core](features/dart_board_firebase_core)
+
+Marker/init package for Firebase Core. Dependency for all Firebase/FlutterFire projects.
 
 
 - [Theme](features/dart_board_theme/README.md)
