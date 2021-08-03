@@ -8,6 +8,6 @@ import 'example_feature.dart';
 void main() {
   runApp(DartBoard(
     features: [ExampleFeature()],
-    initialRoute: '/chat',
+    initialRoute: '/main',
   ));
 }

@@ -4,6 +4,7 @@ import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_core/interface/dart_board_interface.dart';
 import 'package:dart_board_firebase_database/dart_board_firebase_database.dart';
 import 'package:dart_board_locator/dart_board_locator.dart';
+import 'package:intl/intl.dart';
 
 /// Chat functionality for Dart Board.
 ///
@@ -39,39 +40,48 @@ class _ChatWidgetState extends State<ChatWidget> {
 
   String? _id;
   @override
-  Widget build(BuildContext context) => Row(
-        children: [
-          Expanded(
-            flex: 1,
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    "Channels",
-                    style: Theme.of(context).textTheme.headline3,
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(
+          actions: [LoginButton()],
+          title: Text(
+            "Chat: " + (_id ?? ""),
+          ),
+        ),
+        drawer: Container(
+          width: 200,
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Card(
+                  child: FittedBox(
+                    child: Text(
+                      "Channels",
+                      style: Theme.of(context).textTheme.headline5,
+                    ),
                   ),
                 ),
-                Expanded(
-                    child: Card(
-                        child: Container(
-                  width: double.infinity,
-                  child: ChannelWidget(
-                    selection: _id ?? "",
-                    onTapped: (String id) => setState(() => _id = id),
-                  ),
-                ))),
-              ],
-            ),
+              ),
+              Expanded(
+                  child: Card(
+                      child: Container(
+                width: double.infinity,
+                child: ChannelWidget(
+                  selection: _id ?? "",
+                  onTapped: (String id) {
+                    Navigator.of(context).pop();
+                    setState(() => _id = id);
+                  },
+                ),
+              ))),
+            ],
           ),
-          Expanded(
-              flex: 8,
-              child: (_id != null)
-                  ? MessageWidget(channel_id: _id!)
-                  : Container(
-                      child: Text("No channel selected"),
-                    ))
-        ],
+        ),
+        body: (_id != null)
+            ? MessageWidget(channel_id: _id!)
+            : Container(
+                child: Text("No channel selected"),
+              ),
       );
 }
 
@@ -116,29 +126,49 @@ class _MessageWidgetState extends State<MessageWidget> {
   Widget build(BuildContext context) => Column(
         children: [
           Expanded(
-            child: Card(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: QueryView(
-                    builder: (idx, ctx, snapshot) => Row(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: QueryView(
+                  builder: (idx, ctx, snapshot) => Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
                           children: [
-                            Container(
-                                width: 100,
-                                child: Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Text(
-                                      "${snapshot.docs[idx].get("author") ?? "Unknown"}:"),
-                                )),
-                            Container(width: 16),
-                            Expanded(
-                                child: Text(
-                                    "${snapshot.docs[idx].get("message")}")),
+                            Row(
+                              children: [
+                                Container(
+                                    width: 100,
+                                    child: Align(
+                                      alignment: Alignment.centerRight,
+                                      child: FittedBox(
+                                        child: Text(
+                                            "${DateFormat.Hms().format(DateTime.fromMillisecondsSinceEpoch(snapshot.docs[idx].get("date")))}"),
+                                      ),
+                                    )),
+                                Container(width: 8),
+                                Container(width: 8),
+                                Expanded(
+                                    child: Text(
+                                        "${snapshot.docs[idx].get("message")}")),
+                                Card(
+                                    elevation: 3,
+                                    child: Align(
+                                      alignment: Alignment.centerRight,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(2.0),
+                                        child: Text(
+                                            "${snapshot.docs[idx].get("author") ?? "Unknown"}"),
+                                      ),
+                                    )),
+                              ],
+                            ),
+                            Divider(),
                           ],
                         ),
-                    ref: FirebaseFirestore.instance
-                        .collection("channels/${widget.channel_id}/messages")
-                        .orderBy('date', descending: false)),
-              ),
+                      ),
+                  ref: FirebaseFirestore.instance
+                      .collection("channels/${widget.channel_id}/messages")
+                      .orderBy('date', descending: false)),
             ),
           ),
           Card(
