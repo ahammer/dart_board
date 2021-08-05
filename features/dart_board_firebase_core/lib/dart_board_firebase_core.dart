@@ -8,14 +8,30 @@ class DartBoardFirebaseAppFeature extends DartBoardFeature {
   List<DartBoardDecoration> get appDecorations => [
         DartBoardDecoration(
             name: "FirebaseApp",
-            decoration: (ctx, child) => LifeCycleWidget(
-                key: ValueKey("FirebaseApp"),
-                preInit: () async {
-                  await Firebase.initializeApp();
-                },
-                child: child))
+            decoration: (ctx, child) => FirebaseGateway(child: child))
       ];
 
   @override
   String get namespace => "DartBoardFirebaseCore";
+}
+
+class FirebaseGateway extends StatefulWidget {
+  final Widget child;
+
+  FirebaseGateway({required this.child})
+      : super(key: ValueKey("FirebaseGateway"));
+
+  @override
+  _FirebaseGatewayState createState() => _FirebaseGatewayState();
+}
+
+class _FirebaseGatewayState extends State<FirebaseGateway> {
+  final initFuture = Firebase.initializeApp();
+  @override
+  Widget build(BuildContext context) => FutureBuilder(
+      future: initFuture,
+      builder: (ctx, snapshot) =>
+          snapshot.connectionState == ConnectionState.done
+              ? widget.child
+              : Container());
 }

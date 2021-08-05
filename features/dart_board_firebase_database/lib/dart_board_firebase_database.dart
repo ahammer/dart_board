@@ -38,10 +38,15 @@ class CollectionView extends StatelessWidget {
 }
 
 class QueryView extends StatelessWidget {
+  final bool reversed;
   final Query ref;
   final Widget Function(int, BuildContext, QuerySnapshot) builder;
 
-  const QueryView({Key? key, required this.ref, required this.builder})
+  const QueryView(
+      {Key? key,
+      required this.ref,
+      required this.builder,
+      this.reversed = false})
       : super(key: key);
 
   @override
@@ -50,6 +55,7 @@ class QueryView extends StatelessWidget {
         builder: (ctx, snapshot) {
           if (snapshot.hasData) {
             return ListView.builder(
+                reverse: reversed,
                 itemBuilder: (
                   ctx,
                   idx,

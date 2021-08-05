@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:dart_board_core/impl/widgets/life_cycle_widget.dart';
 import 'package:dart_board_locator/dart_board_locator.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 late final delegate = FlutterFireAuthenticationDelegate();
 
@@ -28,7 +29,24 @@ class FlutterFireAuthenticationDelegate extends AuthenticationDelegate {
         key: ValueKey("GoogleAuthLifeCycle"),
         child: CircularProgressIndicator(),
         init: (ctx) async {
-          await FirebaseAuth.instance.signInWithPopup(GoogleAuthProvider());
+          // Trigger the authentication flow
+          final GoogleSignInAccount googleUser =
+              (await GoogleSignIn().signIn())!;
+
+          // Obtain the auth details from the request
+          final GoogleSignInAuthentication googleAuth =
+              await googleUser.authentication;
+
+          // Create a new credential
+          final credential = GoogleAuthProvider.credential(
+            accessToken: googleAuth.accessToken,
+            idToken: googleAuth.idToken,
+          );
+
+          // Once signed in, return the UserCredential
+          await FirebaseAuth.instance.signInWithCredential(credential);
+          // //await FirebaseAuth.instance.signInWithPopup(GoogleAuthProvider());
+          // await FirebaseAuth.instance.si(GoogleAuthProvider());
           locate<AuthenticationState>().setSignedIn(true, this);
           navigator.pop();
         },

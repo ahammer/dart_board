@@ -4,6 +4,7 @@ import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_core/interface/dart_board_interface.dart';
 import 'package:dart_board_firebase_database/dart_board_firebase_database.dart';
 import 'package:dart_board_locator/dart_board_locator.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 
 /// Chat functionality for Dart Board.
@@ -122,83 +123,58 @@ class MessageWidget extends StatefulWidget {
 class _MessageWidgetState extends State<MessageWidget> {
   final _controller = TextEditingController();
 
+//
+//
+//,
   @override
-  Widget build(BuildContext context) => Column(
-        children: [
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: QueryView(
-                  builder: (idx, ctx, snapshot) => Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Row(
-                              children: [
-                                Container(
-                                    width: 100,
-                                    child: Align(
-                                      alignment: Alignment.centerRight,
-                                      child: FittedBox(
-                                        child: Text(
-                                            "${DateFormat.Hms().format(DateTime.fromMillisecondsSinceEpoch(snapshot.docs[idx].get("date")))}"),
-                                      ),
-                                    )),
-                                Container(width: 8),
-                                Container(width: 8),
-                                Expanded(
-                                    child: Text(
-                                        "${snapshot.docs[idx].get("message")}")),
-                                Card(
-                                    elevation: 3,
-                                    child: Align(
-                                      alignment: Alignment.centerRight,
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(2.0),
-                                        child: Text(
-                                            "${snapshot.docs[idx].get("author") ?? "Unknown"}"),
-                                      ),
-                                    )),
-                              ],
-                            ),
-                            Divider(),
-                          ],
-                        ),
-                      ),
-                  ref: FirebaseFirestore.instance
-                      .collection("channels/${widget.channel_id}/messages")
-                      .orderBy('date', descending: false)),
-            ),
-          ),
-          Card(
-              child: Container(
-                  height: 64,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
+  Widget build(BuildContext context) => QueryView(
+      builder: (idx, ctx, snapshot) => Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  width: 32,
+                  height: 32,
+                  color: Colors.blue,
+                ),
+              ),
+              Expanded(
+                child: Column(
+                  children: [
+                    Row(
                       children: [
-                        Expanded(
-                            child: TextField(
-                          controller: _controller,
-                        )),
-                        MaterialButton(
-                          onPressed: () async {
-                            await FirebaseFirestore.instance
-                                .collection(
-                                    "channels/${widget.channel_id}/messages")
-                                .add({
-                              "message": _controller.text,
-                              "date": DateTime.now().millisecondsSinceEpoch,
-                              "author": locate<AuthenticationState>().username
-                            });
-                            _controller.text = "";
-                          },
-                          child: Text("Post"),
-                        )
+                        Text(
+                          "${snapshot.docs[idx].get("author") ?? "Unknown"}",
+                          style: Theme.of(context)
+                              .textTheme
+                              .subtitle2!
+                              .copyWith(fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                            "${DateFormat.Hm().format(DateTime.fromMillisecondsSinceEpoch(snapshot.docs[idx].get("date")))}")
                       ],
                     ),
-                  ))),
-        ],
-      );
+                    Align(
+                        alignment: Alignment.topLeft,
+                        child: Text("${snapshot.docs[idx].get("message")}"))
+                  ],
+                ),
+              )
+            ]),
+          ),
+      ref: FirebaseFirestore.instance
+          .collection("channels/${widget.channel_id}/messages")
+          .orderBy('date', descending: false));
+
+  Future<void> submitMessage() async {
+    await FirebaseFirestore.instance
+        .collection("channels/${widget.channel_id}/messages")
+        .add({
+      "message": _controller.text,
+      "date": DateTime.now().millisecondsSinceEpoch,
+      "author": locate<AuthenticationState>().username
+    });
+    _controller.text = "";
+  }
 }

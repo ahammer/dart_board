@@ -104,6 +104,7 @@ class AuthenticationState extends ChangeNotifier {
   AuthenticationDelegate? _activeDelegate;
 
   bool get signedIn => _activeDelegate != null;
+  String get photoUrl => _activeDelegate?.photoUrl ?? "";
   String get username => _activeDelegate?.username ?? "anon";
 
   /// Delegates should call this when authenticated
@@ -136,6 +137,8 @@ abstract class AuthenticationDelegate {
   String get name;
 
   String get username;
+
+  get photoUrl => "";
   Widget buildAuthWidget();
 }
 
