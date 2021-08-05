@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:dart_board_authentication/dart_board_authentication.dart';
 import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_firebase_core/dart_board_firebase_core.dart';
@@ -29,26 +31,32 @@ class FlutterFireAuthenticationDelegate extends AuthenticationDelegate {
         key: ValueKey("GoogleAuthLifeCycle"),
         child: CircularProgressIndicator(),
         init: (ctx) async {
-          // Trigger the authentication flow
-          final GoogleSignInAccount googleUser =
-              (await GoogleSignIn().signIn())!;
+          if (kIsWeb) {
+            /// Web authentication via popup
+            await FirebaseAuth.instance.signInWithPopup(GoogleAuthProvider());
+            locate<AuthenticationState>().setSignedIn(true, this);
+            navigator.pop();
+          } else {
+            // Trigger the authentication flow for mobile and other
+            final GoogleSignInAccount googleUser =
+                (await GoogleSignIn().signIn())!;
 
-          // Obtain the auth details from the request
-          final GoogleSignInAuthentication googleAuth =
-              await googleUser.authentication;
+            // Obtain the auth details from the request
+            final GoogleSignInAuthentication googleAuth =
+                await googleUser.authentication;
 
-          // Create a new credential
-          final credential = GoogleAuthProvider.credential(
-            accessToken: googleAuth.accessToken,
-            idToken: googleAuth.idToken,
-          );
+            // Create a new credential
+            final credential = GoogleAuthProvider.credential(
+              accessToken: googleAuth.accessToken,
+              idToken: googleAuth.idToken,
+            );
 
-          // Once signed in, return the UserCredential
-          await FirebaseAuth.instance.signInWithCredential(credential);
-          // //await FirebaseAuth.instance.signInWithPopup(GoogleAuthProvider());
-          // await FirebaseAuth.instance.si(GoogleAuthProvider());
-          locate<AuthenticationState>().setSignedIn(true, this);
-          navigator.pop();
+            // Once signed in, return the UserCredential
+            await FirebaseAuth.instance.signInWithCredential(credential);
+            // await FirebaseAuth.instance.si(GoogleAuthProvider());
+            locate<AuthenticationState>().setSignedIn(true, this);
+            navigator.pop();
+          }
         },
       );
   @override
@@ -57,4 +65,7 @@ class FlutterFireAuthenticationDelegate extends AuthenticationDelegate {
   @override
   String get username =>
       FirebaseAuth.instance.currentUser?.displayName ?? "unknown";
+
+  @override
+  get photoUrl => FirebaseAuth.instance.currentUser?.photoURL ?? "";   
 }

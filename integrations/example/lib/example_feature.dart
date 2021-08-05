@@ -93,8 +93,8 @@ class ExampleFeature extends DartBoardFeature {
       ];
 
   bool _init = false;
-  final particleFeature = DartBoardParticleFeature()
-    ..addLayer(LightingParticleLayer());
+  final particleFeature = DartBoardParticleFeature();
+    //..addLayer(LightingParticleLayer());
   @override
   List<DartBoardDecoration> get appDecorations => <DartBoardDecoration>[
         DartBoardDecoration(

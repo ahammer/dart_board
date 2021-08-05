@@ -127,45 +127,73 @@ class _MessageWidgetState extends State<MessageWidget> {
 //
 //,
   @override
-  Widget build(BuildContext context) => QueryView(
-      builder: (idx, ctx, snapshot) => Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  width: 32,
-                  height: 32,
-                  color: Colors.blue,
-                ),
-              ),
-              Expanded(
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Text(
-                          "${snapshot.docs[idx].get("author") ?? "Unknown"}",
-                          style: Theme.of(context)
-                              .textTheme
-                              .subtitle2!
-                              .copyWith(fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                            "${DateFormat.Hm().format(DateTime.fromMillisecondsSinceEpoch(snapshot.docs[idx].get("date")))}")
-                      ],
+  Widget build(BuildContext context) => Column(
+    children: [
+      Expanded(
+        child: QueryView(
+            builder: (idx, ctx, snapshot) {
+              final String photoUrl = snapshot.docs[idx].get("profilePhoto");
+              return Padding(
+                  padding: const EdgeInsets.fromLTRB(12,0,0,0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+      
+                    Container(
+                      width: 48,
+                      height: 48,
+                      color: Colors.blue,
+                      child: photoUrl.isEmpty?Container():Image.network(photoUrl),
                     ),
-                    Align(
-                        alignment: Alignment.topLeft,
-                        child: Text("${snapshot.docs[idx].get("message")}"))
-                  ],
-                ),
-              )
-            ]),
-          ),
-      ref: FirebaseFirestore.instance
-          .collection("channels/${widget.channel_id}/messages")
-          .orderBy('date', descending: false));
+                    Container(width:8),
+                    Expanded(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                "${snapshot.docs[idx].get("author") ?? "Unknown"}",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .subtitle2!
+                                    .copyWith(fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                  "${DateFormat.Hm().format(DateTime.fromMillisecondsSinceEpoch(snapshot.docs[idx].get("date")))}")
+                            ],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0,8,0,32),
+                            child: Align(
+                                alignment: Alignment.topLeft,
+                                child: Text("${snapshot.docs[idx].get("message")}")),
+                          )
+                        ],
+                      ),
+                    )
+                  ]),
+                );
+            },
+            ref: FirebaseFirestore.instance
+                .collection("channels/${widget.channel_id}/messages")
+                .orderBy('date', descending: false)),
+      ),
+      Material(
+        elevation: 3,
+        child: Row(children: [Expanded(
+          child: TextField(maxLines: 3,
+            controller: _controller, onSubmitted: (_) async => await submitMessage(),),
+        )]),
+      ),
+      MaterialButton(child:Container(
+        width:double.infinity,
+        child:
+          Center(child: Text("Post")),
+        
+      ), onPressed: submitMessage,)
+    ],
+  );
 
   Future<void> submitMessage() async {
     await FirebaseFirestore.instance
@@ -173,7 +201,8 @@ class _MessageWidgetState extends State<MessageWidget> {
         .add({
       "message": _controller.text,
       "date": DateTime.now().millisecondsSinceEpoch,
-      "author": locate<AuthenticationState>().username
+      "author": locate<AuthenticationState>().username,
+      "profilePhoto": locate<AuthenticationState>().photoUrl
     });
     _controller.text = "";
   }
