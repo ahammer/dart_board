@@ -57,6 +57,9 @@ class MockAuthenticationDelegate extends AuthenticationDelegate {
 
   @override
   String get username => "MockUser";
+
+  @override
+  String get userId => "user_id";
 }
 
 class MainWidget extends StatelessWidget {

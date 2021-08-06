@@ -107,6 +107,8 @@ class AuthenticationState extends ChangeNotifier {
   String get photoUrl => _activeDelegate?.photoUrl ?? "";
   String get username => _activeDelegate?.username ?? "anon";
 
+  get userId => _activeDelegate?.userId ?? "";
+
   /// Delegates should call this when authenticated
   void setSignedIn(bool val, AuthenticationDelegate? delegate) {
     if (val) {
@@ -137,6 +139,8 @@ abstract class AuthenticationDelegate {
   String get name;
 
   String get username;
+
+  String get userId;
 
   get photoUrl => "";
   Widget buildAuthWidget();
@@ -193,17 +197,11 @@ class LoginButton extends StatelessWidget {
             locate<AuthenticationState>().setSignedIn(false, null);
           },
           child: Text("Log Out")),
-      signedOut: (ctx) => Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text("Not logged in"),
-          MaterialButton(
-              onPressed: () {
-                AuthenticationState.requestSignIn();
-              },
-              child: Text("Sign In")),
-        ],
-      ),
+      signedOut: (ctx) => MaterialButton(
+          onPressed: () {
+            AuthenticationState.requestSignIn();
+          },
+          child: Text("Sign In")),
     );
   }
 }

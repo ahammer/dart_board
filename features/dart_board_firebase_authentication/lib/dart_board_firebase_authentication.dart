@@ -67,5 +67,8 @@ class FlutterFireAuthenticationDelegate extends AuthenticationDelegate {
       FirebaseAuth.instance.currentUser?.displayName ?? "unknown";
 
   @override
-  get photoUrl => FirebaseAuth.instance.currentUser?.photoURL ?? "";   
+  get photoUrl => FirebaseAuth.instance.currentUser?.photoURL ?? "";
+
+  @override
+  String get userId => FirebaseAuth.instance.currentUser?.uid ?? "";
 }

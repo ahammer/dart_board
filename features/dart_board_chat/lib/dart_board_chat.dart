@@ -127,73 +127,47 @@ class _MessageWidgetState extends State<MessageWidget> {
 //
 //,
   @override
-  Widget build(BuildContext context) => Column(
-    children: [
-      Expanded(
-        child: QueryView(
-            builder: (idx, ctx, snapshot) {
-              final String photoUrl = snapshot.docs[idx].get("profilePhoto");
-              return Padding(
-                  padding: const EdgeInsets.fromLTRB(12,0,0,0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-      
-                    Container(
-                      width: 48,
-                      height: 48,
-                      color: Colors.blue,
-                      child: photoUrl.isEmpty?Container():Image.network(photoUrl),
-                    ),
-                    Container(width:8),
-                    Expanded(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Row(
-                            children: [
-                              Text(
-                                "${snapshot.docs[idx].get("author") ?? "Unknown"}",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .subtitle2!
-                                    .copyWith(fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                  "${DateFormat.Hm().format(DateTime.fromMillisecondsSinceEpoch(snapshot.docs[idx].get("date")))}")
-                            ],
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(0,8,0,32),
-                            child: Align(
-                                alignment: Alignment.topLeft,
-                                child: Text("${snapshot.docs[idx].get("message")}")),
-                          )
-                        ],
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Expanded(
+              child: QueryView(
+                  builder: (idx, ctx, snapshot) {
+                    return Padding(
+                      padding: const EdgeInsets.fromLTRB(12, 0, 0, 0),
+                      child: MessageRow(
+                        channel_id: widget.channel_id,
+                        data: snapshot.docs[idx],
                       ),
-                    )
-                  ]),
-                );
-            },
-            ref: FirebaseFirestore.instance
-                .collection("channels/${widget.channel_id}/messages")
-                .orderBy('date', descending: false)),
-      ),
-      Material(
-        elevation: 3,
-        child: Row(children: [Expanded(
-          child: TextField(maxLines: 3,
-            controller: _controller, onSubmitted: (_) async => await submitMessage(),),
-        )]),
-      ),
-      MaterialButton(child:Container(
-        width:double.infinity,
-        child:
-          Center(child: Text("Post")),
-        
-      ), onPressed: submitMessage,)
-    ],
-  );
+                    );
+                  },
+                  ref: FirebaseFirestore.instance
+                      .collection("channels/${widget.channel_id}/messages")
+                      .orderBy('date', descending: false)),
+            ),
+            Material(
+              elevation: 3,
+              child: Row(children: [
+                Expanded(
+                  child: TextField(
+                    maxLines: 3,
+                    controller: _controller,
+                    onSubmitted: (_) async => await submitMessage(),
+                  ),
+                ),
+              ]),
+            ),
+            MaterialButton(
+              child: Container(
+                width: double.infinity,
+                child: Center(child: Text("Post")),
+              ),
+              onPressed: submitMessage,
+            )
+          ],
+        ),
+      );
 
   Future<void> submitMessage() async {
     await FirebaseFirestore.instance
@@ -202,8 +176,98 @@ class _MessageWidgetState extends State<MessageWidget> {
       "message": _controller.text,
       "date": DateTime.now().millisecondsSinceEpoch,
       "author": locate<AuthenticationState>().username,
-      "profilePhoto": locate<AuthenticationState>().photoUrl
+      "profilePhoto": locate<AuthenticationState>().photoUrl,
+      "uid": locate<AuthenticationState>().userId
     });
     _controller.text = "";
+  }
+}
+
+class MessageRow extends StatelessWidget {
+  final QueryDocumentSnapshot<Object?> data;
+  final String channel_id;
+
+  const MessageRow({
+    Key? key,
+    required this.data,
+    required this.channel_id,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final String photoUrl = data.get("profilePhoto");
+
+    return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      /// Profile Image
+      Container(
+        width: 48,
+        height: 48,
+        decoration: BoxDecoration(
+            color: photoUrl.isEmpty ? Colors.blue : null,
+            borderRadius: BorderRadius.circular(8),
+            boxShadow: [
+              BoxShadow(
+                  blurRadius: 6, offset: Offset(3, 3), color: Colors.black26)
+            ],
+            image: photoUrl.isEmpty
+                ? null
+                : DecorationImage(image: NetworkImage(photoUrl))),
+      ),
+      Container(width: 8),
+      Expanded(
+        child: Card(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      "${data.get("author") ?? "Unknown"}",
+                      style: Theme.of(context)
+                          .textTheme
+                          .subtitle2!
+                          .copyWith(fontWeight: FontWeight.bold, fontSize: 18),
+                    ),
+                    Container(width: 16),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+                      child: Text(
+                        "${DateFormat.Hm().format(DateTime.fromMillisecondsSinceEpoch(data.get("date")))}",
+                        style: Theme.of(context).textTheme.caption,
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(),
+                    ),
+                    if (!data.get("uid").isEmpty &&
+                        data.get("uid") == locate<AuthenticationState>().userId)
+                      IconButton(
+                        iconSize: 16,
+                        splashRadius: 16,
+                        icon: Icon(Icons.delete),
+                        onPressed: () async {
+                          //await FirebaseFirestore.instance.
+                          FirebaseFirestore.instance
+                              .collection("channels/${channel_id}/messages")
+                              .doc(data.id)
+                              .delete();
+                        },
+                      )
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 16, 0, 15),
+                  child: Align(
+                      alignment: Alignment.topLeft,
+                      child: Text("${data.get("message")}")),
+                )
+              ],
+            ),
+          ),
+        ),
+      )
+    ]);
   }
 }
