@@ -37,15 +37,18 @@ class CollectionView extends StatelessWidget {
       );
 }
 
-class QueryView extends StatelessWidget {
+/// Widget to render a Query to a ListView
+class QueryListView extends StatelessWidget {
   final bool reversed;
   final Query ref;
   final Widget Function(int, BuildContext, QuerySnapshot) builder;
+  final Widget Function(BuildContext)? footerBuilder;
 
-  const QueryView(
+  const QueryListView(
       {Key? key,
       required this.ref,
       required this.builder,
+      this.footerBuilder,
       this.reversed = false})
       : super(key: key);
 
@@ -59,9 +62,17 @@ class QueryView extends StatelessWidget {
                 itemBuilder: (
                   ctx,
                   idx,
-                ) =>
-                    builder(idx, ctx, snapshot.data!),
-                itemCount: snapshot.data!.docs.length);
+                ) {
+                  if (idx < snapshot.data!.docs.length) {
+                    return builder(idx, ctx, snapshot.data!);
+                  } else {
+                    // We know footerBuilder is not null, because
+                    // it's the condition for the extra item
+                    return footerBuilder!(ctx);
+                  }
+                },
+                itemCount: snapshot.data!.docs.length +
+                    (footerBuilder != null ? 1 : 0));
           } else {
             return CircularProgressIndicator();
           }

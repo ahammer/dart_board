@@ -128,58 +128,43 @@ class _MessageWidgetState extends State<MessageWidget> {
 //,
   @override
   Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Expanded(
-              child: QueryView(
-                  builder: (idx, ctx, snapshot) {
-                    return Padding(
-                      padding: const EdgeInsets.fromLTRB(12, 0, 0, 0),
-                      child: MessageRow(
-                        channel_id: widget.channel_id,
-                        data: snapshot.docs[idx],
-                      ),
-                    );
-                  },
-                  ref: FirebaseFirestore.instance
-                      .collection("channels/${widget.channel_id}/messages")
-                      .orderBy('date', descending: false)),
-            ),
-            Material(
-              elevation: 3,
-              child: Row(children: [
-                Expanded(
-                  child: TextField(
-                    maxLines: 3,
-                    controller: _controller,
-                    onSubmitted: (_) async => await submitMessage(),
-                  ),
-                ),
-              ]),
-            ),
-            MaterialButton(
-              child: Container(
-                width: double.infinity,
-                child: Center(child: Text("Post")),
-              ),
-              onPressed: submitMessage,
-            )
-          ],
+      padding: const EdgeInsets.all(8.0),
+      child: Column(children: [
+        Expanded(
+          child: AuthenticationGate(
+            signedIn: (ctx) => buildMessageListView(true),
+            signedOut: (ctx) => buildMessageListView(false),
+          ),
         ),
-      );
+      ]));
 
-  Future<void> submitMessage() async {
-    await FirebaseFirestore.instance
-        .collection("channels/${widget.channel_id}/messages")
-        .add({
-      "message": _controller.text,
-      "date": DateTime.now().millisecondsSinceEpoch,
-      "author": locate<AuthenticationState>().username,
-      "profilePhoto": locate<AuthenticationState>().photoUrl,
-      "uid": locate<AuthenticationState>().userId
-    });
-    _controller.text = "";
+  Widget buildMessageListView(bool showFooter) {
+    return QueryListView(
+        footerBuilder: showFooter
+            ? (ctx) {
+                return Padding(
+                  padding: const EdgeInsets.fromLTRB(12, 0, 0, 0),
+                  child: Column(
+                    children: [
+                      Divider(),
+                      NewMessageRow(channel_id: widget.channel_id),
+                    ],
+                  ),
+                );
+              }
+            : (ctx) => Center(child: Text("Sign in to post")),
+        builder: (idx, ctx, snapshot) {
+          return Padding(
+            padding: const EdgeInsets.fromLTRB(12, 0, 0, 0),
+            child: MessageRow(
+              channel_id: widget.channel_id,
+              data: snapshot.docs[idx],
+            ),
+          );
+        },
+        ref: FirebaseFirestore.instance
+            .collection("channels/${widget.channel_id}/messages")
+            .orderBy('date', descending: false));
   }
 }
 
@@ -200,8 +185,8 @@ class MessageRow extends StatelessWidget {
     return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
       /// Profile Image
       Container(
-        width: 48,
-        height: 48,
+        width: 64,
+        height: 64,
         decoration: BoxDecoration(
             color: photoUrl.isEmpty ? Colors.blue : null,
             borderRadius: BorderRadius.circular(8),
@@ -269,5 +254,105 @@ class MessageRow extends StatelessWidget {
         ),
       )
     ]);
+  }
+}
+
+class NewMessageRow extends StatefulWidget {
+  final String channel_id;
+
+  const NewMessageRow({
+    Key? key,
+    required this.channel_id,
+  }) : super(key: key);
+
+  @override
+  _NewMessageRowState createState() => _NewMessageRowState();
+}
+
+class _NewMessageRowState extends State<NewMessageRow> {
+  final _controller = TextEditingController();
+  @override
+  Widget build(BuildContext context) {
+    final String photoUrl = locate<AuthenticationState>().photoUrl;
+
+    return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      /// Profile Image
+      Container(
+        width: 64,
+        height: 64,
+        decoration: BoxDecoration(
+            color: photoUrl.isEmpty ? Colors.blue : null,
+            borderRadius: BorderRadius.circular(8),
+            boxShadow: [
+              BoxShadow(
+                  blurRadius: 6, offset: Offset(3, 3), color: Colors.black26)
+            ],
+            image: photoUrl.isEmpty
+                ? null
+                : DecorationImage(image: NetworkImage(photoUrl))),
+      ),
+      Container(width: 8),
+      Expanded(
+        child: Card(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      locate<AuthenticationState>().username,
+                      style: Theme.of(context)
+                          .textTheme
+                          .subtitle2!
+                          .copyWith(fontWeight: FontWeight.bold, fontSize: 18),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 16, 0, 15),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          minLines: 1,
+                          maxLines: 50,
+                          controller: _controller,
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.bottomRight,
+                        child: MaterialButton(
+                          child: Container(
+                            width: 100,
+                            child: Center(child: Text("Post")),
+                          ),
+                          onPressed: submitMessage,
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+      )
+    ]);
+  }
+
+  Future<void> submitMessage() async {
+    await FirebaseFirestore.instance
+        .collection("channels/${widget.channel_id}/messages")
+        .add({
+      "message": _controller.text,
+      "date": DateTime.now().millisecondsSinceEpoch,
+      "author": locate<AuthenticationState>().username,
+      "profilePhoto": locate<AuthenticationState>().photoUrl,
+      "uid": locate<AuthenticationState>().userId
+    });
+    _controller.text = "";
   }
 }
