@@ -138,34 +138,34 @@ class _MessageWidgetState extends State<MessageWidget> {
         ),
       ]));
 
-  Widget buildMessageListView(bool showFooter) {
-    return QueryListView(
-        footerBuilder: showFooter
-            ? (ctx) {
-                return Padding(
-                  padding: const EdgeInsets.fromLTRB(12, 0, 0, 0),
-                  child: Column(
-                    children: [
-                      Divider(),
-                      NewMessageRow(channel_id: widget.channel_id),
-                    ],
-                  ),
-                );
-              }
-            : (ctx) => Center(child: Text("Sign in to post")),
-        builder: (idx, ctx, snapshot) {
-          return Padding(
-            padding: const EdgeInsets.fromLTRB(12, 0, 0, 0),
-            child: MessageRow(
-              channel_id: widget.channel_id,
-              data: snapshot.docs[idx],
-            ),
-          );
-        },
-        ref: FirebaseFirestore.instance
-            .collection("channels/${widget.channel_id}/messages")
-            .orderBy('date', descending: false));
-  }
+  Widget buildMessageListView(bool showFooter) => QueryListView(
+      reversed: true,
+      autoScroll: true,
+      headerBuilder: showFooter
+          ? (ctx) {
+              return Padding(
+                padding: const EdgeInsets.fromLTRB(12, 0, 0, 0),
+                child: Column(
+                  children: [
+                    Divider(),
+                    NewMessageRow(channel_id: widget.channel_id),
+                  ],
+                ),
+              );
+            }
+          : (ctx) => Center(child: Text("Sign in to post")),
+      builder: (idx, ctx, snapshot) {
+        return Padding(
+          padding: const EdgeInsets.fromLTRB(12, 0, 0, 0),
+          child: MessageRow(
+            channel_id: widget.channel_id,
+            data: snapshot.docs[idx],
+          ),
+        );
+      },
+      ref: FirebaseFirestore.instance
+          .collection("channels/${widget.channel_id}/messages")
+          .orderBy('date', descending: true));
 }
 
 class MessageRow extends StatelessWidget {

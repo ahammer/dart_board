@@ -38,41 +38,64 @@ class CollectionView extends StatelessWidget {
 }
 
 /// Widget to render a Query to a ListView
-class QueryListView extends StatelessWidget {
+class QueryListView extends StatefulWidget {
   final bool reversed;
   final Query ref;
   final Widget Function(int, BuildContext, QuerySnapshot) builder;
   final Widget Function(BuildContext)? footerBuilder;
+  final Widget Function(BuildContext)? headerBuilder;
+  final bool autoScroll;
 
   const QueryListView(
       {Key? key,
       required this.ref,
       required this.builder,
       this.footerBuilder,
-      this.reversed = false})
+      this.headerBuilder,
+      this.reversed = false,
+      this.autoScroll = false})
       : super(key: key);
 
   @override
+  _QueryListViewState createState() => _QueryListViewState();
+}
+
+class _QueryListViewState extends State<QueryListView> {
+  final _controller = ScrollController();
+
+  @override
   Widget build(BuildContext context) => StreamBuilder<QuerySnapshot>(
-        stream: ref.snapshots(),
+        stream: widget.ref.snapshots(),
         builder: (ctx, snapshot) {
           if (snapshot.hasData) {
+            WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+              _controller.animateTo(0,
+                  duration: Duration(seconds: 1), curve: Curves.easeInOut);
+            });
+
             return ListView.builder(
-                reverse: reversed,
+                controller: _controller,
+                reverse: widget.reversed,
                 itemBuilder: (
                   ctx,
                   idx,
                 ) {
-                  if (idx < snapshot.data!.docs.length) {
-                    return builder(idx, ctx, snapshot.data!);
+                  final trueIdx =
+                      (widget.headerBuilder != null) ? idx - 1 : idx;
+
+                  if (trueIdx == -1) {
+                    return widget.headerBuilder!(ctx);
+                  } else if (trueIdx < snapshot.data!.docs.length) {
+                    return widget.builder(trueIdx, ctx, snapshot.data!);
                   } else {
                     // We know footerBuilder is not null, because
                     // it's the condition for the extra item
-                    return footerBuilder!(ctx);
+                    return widget.footerBuilder!(ctx);
                   }
                 },
                 itemCount: snapshot.data!.docs.length +
-                    (footerBuilder != null ? 1 : 0));
+                    (widget.footerBuilder != null ? 1 : 0) +
+                    (widget.headerBuilder != null ? 1 : 0));
           } else {
             return CircularProgressIndicator();
           }
