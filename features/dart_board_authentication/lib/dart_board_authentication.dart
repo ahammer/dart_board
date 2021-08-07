@@ -99,6 +99,7 @@ class _AuthSignInDialogState extends State<AuthSignInDialog> {
 }
 
 class AuthenticationState extends ChangeNotifier {
+  static AuthenticationState get instance => locate();
   final _delegates = <AuthenticationDelegate>[];
 
   AuthenticationDelegate? _activeDelegate;
