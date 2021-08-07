@@ -31,6 +31,14 @@ class FlutterFireAuthenticationDelegate extends AuthenticationDelegate {
         key: ValueKey("GoogleAuthLifeCycle"),
         child: CircularProgressIndicator(),
         init: (ctx) async {
+          FirebaseAuth.instance.userChanges().listen((User? user) {
+            if (user != null) {
+              locate<AuthenticationState>().setSignedIn(true, this);
+            } else {
+              locate<AuthenticationState>().setSignedIn(false, null);
+            }
+          });
+
           if (kIsWeb) {
             /// Web authentication via popup
             await FirebaseAuth.instance.signInWithPopup(GoogleAuthProvider());
@@ -54,7 +62,7 @@ class FlutterFireAuthenticationDelegate extends AuthenticationDelegate {
             // Once signed in, return the UserCredential
             await FirebaseAuth.instance.signInWithCredential(credential);
             // await FirebaseAuth.instance.si(GoogleAuthProvider());
-            locate<AuthenticationState>().setSignedIn(true, this);
+
             navigator.pop();
           }
         },
