@@ -133,7 +133,7 @@ class _MessageWidgetState extends State<MessageWidget> {
         Expanded(
           child: AuthenticationGate(
             signedIn: (ctx) => buildMessageListView(true),
-            signedOut: (ctx) => buildMessageListView(false),
+            signedOut: (ctx) => buildMessageListView(true),
           ),
         ),
       ]));

@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:dart_board_authentication/dart_board_authentication.dart';
 import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_firebase_core/dart_board_firebase_core.dart';
@@ -8,8 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:dart_board_core/impl/widgets/life_cycle_widget.dart';
 import 'package:dart_board_locator/dart_board_locator.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:logging/logging.dart';
 
 late final delegate = FlutterFireAuthenticationDelegate();
+late final _logger = Logger("FirebaseAuth");
 
 class DartBoardAuthenticationFlutterFireFeature extends DartBoardFeature {
   @override
@@ -17,8 +17,23 @@ class DartBoardAuthenticationFlutterFireFeature extends DartBoardFeature {
       [DartBoardAuthenticationFeature(), DartBoardFirebaseAppFeature()];
 
   @override
-  List<DartBoardDecoration> get appDecorations =>
-      [DartBoardAuthenticationProviderAppDecoration("Flutter-Fire", delegate)];
+  List<DartBoardDecoration> get appDecorations => [
+        DartBoardAuthenticationProviderAppDecoration("Flutter-Fire", delegate),
+        DartBoardDecoration(
+            name: "FirebaseListener",
+            decoration: (ctx, child) => LifeCycleWidget(
+                init: (ctx) {
+                  FirebaseAuth.instance.userChanges().listen((User? user) {
+                    if (user != null) {
+                      locate<AuthenticationState>().setSignedIn(true, delegate);
+                    } else {
+                      locate<AuthenticationState>().setSignedIn(false, null);
+                    }
+                  });
+                },
+                key: ValueKey("FirebaseListener"),
+                child: child))
+      ];
 
   @override
   String get namespace => "FirebaseAuth";
@@ -29,21 +44,15 @@ class FlutterFireAuthenticationDelegate extends AuthenticationDelegate {
   @override
   Widget buildAuthWidget() => LifeCycleWidget(
         key: ValueKey("GoogleAuthLifeCycle"),
-        child: CircularProgressIndicator(),
+        child: Container(),
         init: (ctx) async {
-          FirebaseAuth.instance.userChanges().listen((User? user) {
-            if (user != null) {
-              locate<AuthenticationState>().setSignedIn(true, this);
-            } else {
-              locate<AuthenticationState>().setSignedIn(false, null);
-            }
-          });
+          navigator.pop();
 
           if (kIsWeb) {
             /// Web authentication via popup
-            await FirebaseAuth.instance.signInWithPopup(GoogleAuthProvider());
+            final result = await FirebaseAuth.instance
+                .signInWithPopup(GoogleAuthProvider());
             locate<AuthenticationState>().setSignedIn(true, this);
-            navigator.pop();
           } else {
             // Trigger the authentication flow for mobile and other
             final GoogleSignInAccount googleUser =
@@ -60,10 +69,11 @@ class FlutterFireAuthenticationDelegate extends AuthenticationDelegate {
             );
 
             // Once signed in, return the UserCredential
-            await FirebaseAuth.instance.signInWithCredential(credential);
+            final result =
+                await FirebaseAuth.instance.signInWithCredential(credential);
+
             // await FirebaseAuth.instance.si(GoogleAuthProvider());
 
-            navigator.pop();
           }
         },
       );
