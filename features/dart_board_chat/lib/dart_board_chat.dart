@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dart_board_authentication/dart_board_authentication.dart';
 import 'package:dart_board_core/dart_board.dart';
@@ -22,6 +24,10 @@ class DartBoardChatFeature extends DartBoardFeature {
         NamedRouteDefinition(
             route: "/chat", builder: (ctx, settings) => ChatWidget())
       ];
+
+  /// Enabled for Web, Android and iOS
+  @override
+  bool get enabled => kIsWeb || Platform.isAndroid || Platform.isIOS;
 }
 
 class ChatWidget extends StatefulWidget {
@@ -121,11 +127,6 @@ class MessageWidget extends StatefulWidget {
 }
 
 class _MessageWidgetState extends State<MessageWidget> {
-  final _controller = TextEditingController();
-
-//
-//
-//,
   @override
   Widget build(BuildContext context) => Padding(
       padding: const EdgeInsets.all(8.0),
@@ -133,7 +134,7 @@ class _MessageWidgetState extends State<MessageWidget> {
         Expanded(
           child: AuthenticationGate(
             signedIn: (ctx) => buildMessageListView(true),
-            signedOut: (ctx) => buildMessageListView(true),
+            signedOut: (ctx) => buildMessageListView(false),
           ),
         ),
       ]));
@@ -142,8 +143,7 @@ class _MessageWidgetState extends State<MessageWidget> {
       reversed: true,
       autoScroll: true,
       headerBuilder: showFooter
-          ? (ctx) {
-              return Padding(
+          ? (ctx) => Padding(
                 padding: const EdgeInsets.fromLTRB(12, 0, 0, 0),
                 child: Column(
                   children: [
@@ -151,18 +151,15 @@ class _MessageWidgetState extends State<MessageWidget> {
                     NewMessageRow(channel_id: widget.channel_id),
                   ],
                 ),
-              );
-            }
+              )
           : (ctx) => Center(child: Text("Sign in to post")),
-      builder: (idx, ctx, snapshot) {
-        return Padding(
-          padding: const EdgeInsets.fromLTRB(12, 0, 0, 0),
-          child: MessageRow(
-            channel_id: widget.channel_id,
-            data: snapshot.docs[idx],
+      builder: (idx, ctx, snapshot) => Padding(
+            padding: const EdgeInsets.fromLTRB(12, 0, 0, 0),
+            child: MessageRow(
+              channel_id: widget.channel_id,
+              data: snapshot.docs[idx],
+            ),
           ),
-        );
-      },
       ref: FirebaseFirestore.instance
           .collection("channels/${widget.channel_id}/messages")
           .orderBy('date', descending: true));

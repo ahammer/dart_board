@@ -151,6 +151,10 @@ abstract class DartBoardFeature<T> {
   /// a deny for everything else.
   List<String> get pageDecorationAllowList => [];
 
+  /// This can be used to allow an extension to exclude itself.
+  /// E.g. Based on platform
+  bool get enabled => true;
+
   @override
   String toString() => namespace;
 }

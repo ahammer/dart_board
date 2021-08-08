@@ -141,7 +141,7 @@ void main() {
         DartBoardCore.instance.findByName('namespace_not_found');
 
     expect(emptyFeature is EmptyDartBoardFeature, equals(true));
-    expect(emptyFeature.toString(), equals('EmptyDartBoardFeature'));
+    expect(emptyFeature.toString(), equals('Empty'));
   });
 
   testWidgets('Check page navigation to a 404', (tester) async {

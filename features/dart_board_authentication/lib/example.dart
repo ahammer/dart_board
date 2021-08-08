@@ -60,6 +60,9 @@ class MockAuthenticationDelegate extends AuthenticationDelegate {
 
   @override
   String get userId => "user_id";
+
+  @override
+  Widget get loginButtonWidget => Text("mock auth sign in");
 }
 
 class MainWidget extends StatelessWidget {

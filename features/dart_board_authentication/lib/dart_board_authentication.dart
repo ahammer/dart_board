@@ -98,8 +98,12 @@ class _AuthSignInDialogState extends State<AuthSignInDialog> {
   }
 }
 
+/// Current Authentication State of the app
+///
+/// Delegates are registered for various "authenticators"
 class AuthenticationState extends ChangeNotifier {
   static AuthenticationState get instance => locate();
+
   final _delegates = <AuthenticationDelegate>[];
 
   AuthenticationDelegate? _activeDelegate;
@@ -136,15 +140,27 @@ class AuthenticationState extends ChangeNotifier {
 }
 
 abstract class AuthenticationDelegate {
-  /// The name of this authentication widget
+  /// The name of this authentication delegate
   String get name;
 
+  /// The username of the logged in user
   String get username;
 
+  /// The user ID of the logged in user
   String get userId;
 
+  /// The photo URL to their avatar for this Delegate
   get photoUrl => "";
+
+  /// This can be used to show either the Auth Widget directly, or trigger
+  /// the auth flow (e.g. popup)
   Widget buildAuthWidget();
+
+  /// This is a widget that will be child to the Login Body, or Login selector
+  /// list item.
+  ///
+  /// E.g. [Google Sign In] or [Facebook Sign in] buttons
+  Widget get loginButtonWidget;
 }
 
 // A widget that shows 1 of two widgets, signed in or out.

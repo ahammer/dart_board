@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dart_board_authentication/dart_board_authentication.dart';
 import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_firebase_core/dart_board_firebase_core.dart';
@@ -6,10 +8,14 @@ import 'package:flutter/material.dart';
 import 'package:dart_board_core/impl/widgets/life_cycle_widget.dart';
 import 'package:dart_board_locator/dart_board_locator.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:logging/logging.dart';
 
-late final delegate = FlutterFireAuthenticationDelegate();
-late final _logger = Logger("FirebaseAuth");
+/// This is the firebase Delegate
+late final _firebaseDelegate = FlutterFireAuthenticationDelegate();
+
+/// Firebase Authentication Feature
+///
+/// 1) Setup firebase (web/android/iOS/macOS)
+/// 2) web: Ensure your domains are registered in developer console as auth redirect domains
 
 class DartBoardAuthenticationFlutterFireFeature extends DartBoardFeature {
   @override
@@ -18,14 +24,16 @@ class DartBoardAuthenticationFlutterFireFeature extends DartBoardFeature {
 
   @override
   List<DartBoardDecoration> get appDecorations => [
-        DartBoardAuthenticationProviderAppDecoration("Flutter-Fire", delegate),
+        DartBoardAuthenticationProviderAppDecoration(
+            "Flutter-Fire", _firebaseDelegate),
         DartBoardDecoration(
             name: "FirebaseListener",
             decoration: (ctx, child) => LifeCycleWidget(
                 init: (ctx) {
                   FirebaseAuth.instance.userChanges().listen((User? user) {
                     if (user != null) {
-                      locate<AuthenticationState>().setSignedIn(true, delegate);
+                      locate<AuthenticationState>()
+                          .setSignedIn(true, _firebaseDelegate);
                     } else {
                       locate<AuthenticationState>().setSignedIn(false, null);
                     }
@@ -37,6 +45,10 @@ class DartBoardAuthenticationFlutterFireFeature extends DartBoardFeature {
 
   @override
   String get namespace => "FirebaseAuth";
+
+  /// Firebase Auth is only supported by these platforms
+  @override
+  bool get enabled => kIsWeb || Platform.isAndroid || Platform.isIOS;
 }
 
 /// This is the authentication delegate for firebase
@@ -50,8 +62,7 @@ class FlutterFireAuthenticationDelegate extends AuthenticationDelegate {
 
           if (kIsWeb) {
             /// Web authentication via popup
-            final result = await FirebaseAuth.instance
-                .signInWithPopup(GoogleAuthProvider());
+            await FirebaseAuth.instance.signInWithPopup(GoogleAuthProvider());
             locate<AuthenticationState>().setSignedIn(true, this);
           } else {
             // Trigger the authentication flow for mobile and other
@@ -69,8 +80,7 @@ class FlutterFireAuthenticationDelegate extends AuthenticationDelegate {
             );
 
             // Once signed in, return the UserCredential
-            final result =
-                await FirebaseAuth.instance.signInWithCredential(credential);
+            await FirebaseAuth.instance.signInWithCredential(credential);
 
             // await FirebaseAuth.instance.si(GoogleAuthProvider());
 
@@ -90,4 +100,7 @@ class FlutterFireAuthenticationDelegate extends AuthenticationDelegate {
 
   @override
   String get userId => FirebaseAuth.instance.currentUser?.uid ?? "";
+
+  @override
+  Widget get loginButtonWidget => Text("Google Sign In");
 }
