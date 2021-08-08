@@ -77,6 +77,7 @@ class FlutterFireAuthenticationDelegate extends AuthenticationDelegate {
           }
         },
       );
+
   @override
   String get name => "Flutter Fire - Auth Adapter";
 

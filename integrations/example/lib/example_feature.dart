@@ -47,6 +47,7 @@ class ExampleFeature extends DartBoardFeature {
   @override
   List<DartBoardFeature> get dependencies => [
         ThemeFeature(isDarkByDefault: true),
+        RainbowThemeFeature(),
         DebugFeature(),
         LogFeature(),
         MinesweeperFeature(),
@@ -94,7 +95,7 @@ class ExampleFeature extends DartBoardFeature {
 
   bool _init = false;
   final particleFeature = DartBoardParticleFeature();
-    //..addLayer(LightingParticleLayer());
+  //..addLayer(LightingParticleLayer());
   @override
   List<DartBoardDecoration> get appDecorations => <DartBoardDecoration>[
         DartBoardDecoration(

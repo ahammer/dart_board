@@ -38,7 +38,7 @@ class SimpleRouteFeature extends DartBoardFeature {
                   color: Color.fromARGB(255, 48, 48, 72),
                   child: LayoutBuilder(
                     builder: (ctx, constraints) => PeriodicWidget(
-                        callback: () {
+                        callback: (idx) {
                           final t =
                               DateTime.now().millisecondsSinceEpoch / 500.0;
                           final w = constraints.maxWidth;
@@ -56,8 +56,8 @@ class SimpleRouteFeature extends DartBoardFeature {
                           Particles.instance.addLayer(RainbowParticleLayer(
                             cos(t + 3.15) * r + hw,
                             sin(t + 3.15) * r + hh,
-                            cos((t-1) + 3.15) * r + hw,
-                            sin((t-1) + 3.15) * r + hh,
+                            cos((t - 1) + 3.15) * r + hw,
+                            sin((t - 1) + 3.15) * r + hh,
                           ));
                         },
                         duration: Duration(milliseconds: 1),

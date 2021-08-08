@@ -1,11 +1,18 @@
 # dart_board_authentication_google
 
-A new flutter module project.
+Firebase authentication delegate/support for firebase.
 
 ## Getting Started
 
-For help getting started with Flutter, view our online
-[documentation](https://flutter.dev/).
+Make sure to include Firebase in your app. This does not perform any config.
 
-For instructions integrating Flutter modules to your existing applications,
-see the [add-to-app documentation](https://flutter.dev/docs/development/add-to-app).
+Follow googles instructions.
+
+dart_board_firebase_core dependency will handle the firebase init for you.
+
+## Usage
+
+Just include it, and place a LoginButton();
+
+Otherwise, standard dart_board_authentication usage for auth updates and user info.
+

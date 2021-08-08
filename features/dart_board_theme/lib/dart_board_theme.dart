@@ -1,7 +1,11 @@
 import 'package:dart_board_core/dart_board.dart';
+import 'package:dart_board_core/impl/widgets/timer_widgets.dart';
 import 'package:flutter/material.dart';
 
 class ThemeFeature extends DartBoardFeature {
+  @override
+  String get implementationName => 'Theme';
+
   final bool isDarkByDefault;
   ThemeFeature({this.isDarkByDefault = false});
 
@@ -85,4 +89,38 @@ class ThemeState extends ChangeNotifier {
     isLight = !isLight;
     notifyListeners();
   }
+}
+
+class RainbowThemeFeature extends DartBoardFeature {
+  @override
+  String get namespace => 'theme';
+
+  @override
+  String get implementationName => 'rainbowTheme';
+
+  @override
+  List<DartBoardDecoration> get pageDecorations => [
+        DartBoardDecoration(
+            name: 'RainbowTheme',
+            decoration: (ctx, child) {
+              return RainbowApplier(child: child);
+            })
+      ];
+}
+
+class RainbowApplier extends StatelessWidget {
+  final Widget child;
+  const RainbowApplier({
+    Key? key,
+    required this.child,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) => PeriodicWidget(
+      builder: (ctx, child, idx) => Theme(
+          data: idx % 2 == 0 ? ThemeData.dark() : ThemeData.light(),
+          child: child),
+      duration: Duration(seconds: 1),
+      callback: (idx) {},
+      child: child);
 }
