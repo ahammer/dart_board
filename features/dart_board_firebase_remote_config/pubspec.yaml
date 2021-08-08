@@ -1,9 +1,11 @@
-name: dart_board_firebase_core
-description: A new flutter module project.
-
+name: dart_board_firebase_remote_config
+description: Firebase Remote Config for Feature Management
 homepage: https://dart-board.io
 issue_tracker: https://github.com/ahammer/dart_board/issues
 repository: https://github.com/ahammer/dart_board
+
+# Configure firebase as per firebase documents
+# E.g. configure the runner's with your keys for this to work
 
 version: 1.0.0+1
 
@@ -14,14 +16,21 @@ dependencies:
   flutter:
     sdk: flutter
   dart_board_core: ^0.9.9
-  firebase_core: ^1.4.0
+  dart_board_firebase_core: ^1.0.0+1
+  firebase_remote_config:
+  
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
 
 flutter:
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
   uses-material-design: true
 
   # To add Flutter specific assets to your application, add an assets section,
@@ -65,5 +74,5 @@ flutter:
   # identifiers, which may be completely independent or the same as these.
   module:
     androidX: true
-    androidPackage: com.example.dart_board_firebase_app
-    iosBundleIdentifier: com.example.dartBoardFirebaseApp
+    androidPackage: com.example.dart_board_authentication_google
+    iosBundleIdentifier: com.example.dartBoardAuthenticationGoogle

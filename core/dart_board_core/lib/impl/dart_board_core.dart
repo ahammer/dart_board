@@ -285,10 +285,10 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
   /// Walks the feature tree and registers
   List<DartBoardFeature> buildDependencyList(List<DartBoardFeature> features,
       {List<DartBoardFeature> result = const <DartBoardFeature>[]}) {
-    features.forEach((element) {
-      result = buildDependencyList(element.dependencies, result: result);
-      if (!result.contains(element)) {
-        result = [...result, element];
+    features.forEach((feature) {
+      result = buildDependencyList(feature.dependencies, result: result);
+      if (!result.contains(feature)) {
+        result = [...result, if (feature.enabled) feature];
       }
     });
     return result;

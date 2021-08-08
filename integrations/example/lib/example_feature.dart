@@ -1,3 +1,4 @@
+import 'package:dart_board_authentication/dart_board_authentication.dart';
 import 'package:dart_board_firebase_authentication/dart_board_firebase_authentication.dart';
 import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_core/impl/features/generic_features.dart';
@@ -46,7 +47,6 @@ class ExampleFeature extends DartBoardFeature {
   @override
   List<DartBoardFeature> get dependencies => [
         ThemeFeature(isDarkByDefault: true),
-        RainbowThemeFeature(),
         DebugFeature(),
         LogFeature(),
         MinesweeperFeature(),
