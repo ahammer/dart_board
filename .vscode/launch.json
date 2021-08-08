@@ -6,20 +6,23 @@
     "configurations": [
         {
             "name": "example - profile",
-            "cwd": "example",
+            "cwd": "integration/example",
             "request": "launch",
+            "program": "lib/main.dart",
             "flutterMode": "profile",
             "type": "dart"
         },
         {
             "name": "example - debug",
-            "cwd": "example",
+            "cwd": "integration/example",
+            "program": "lib/main.dart",
             "request": "launch",          
             "type": "dart"
         },
         {
             "name": "example - release",
-            "cwd": "example",
+            "program": "lib/main.dart",
+            "cwd": "integration/example",
             "request": "launch",          
             "flutterMode": "release",
             "type": "dart"

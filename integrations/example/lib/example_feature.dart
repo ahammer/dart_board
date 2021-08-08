@@ -1,11 +1,11 @@
 import 'package:dart_board_firebase_authentication/dart_board_firebase_authentication.dart';
 import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_core/impl/features/generic_features.dart';
+import 'package:dart_board_chat/dart_board_chat.dart';
 import 'package:dart_board_minesweeper/dart_board_minesweeper.dart';
 import 'package:dart_board_particles/dart_board_particle_feature.dart';
 import 'package:dart_board_particles/features/cursor_particle_features.dart';
 import 'package:dart_board_particles/features/snow_feature.dart';
-import 'package:dart_board_particles/presets/lighting_particle.dart';
 import 'package:dart_board_template_app_bar_sidenav/dart_board_template_app_bar_sidenav.dart';
 import 'package:dart_board_theme/dart_board_theme.dart';
 import 'package:dart_board_debug/debug_feature.dart';
@@ -46,12 +46,14 @@ class ExampleFeature extends DartBoardFeature {
   @override
   List<DartBoardFeature> get dependencies => [
         ThemeFeature(isDarkByDefault: true),
+        RainbowThemeFeature(),
         DebugFeature(),
         LogFeature(),
         MinesweeperFeature(),
         FireCursorFeature(),
         RainbowCursorFeature(),
         DartBoardAuthenticationFlutterFireFeature(),
+        DartBoardChatFeature(),
 
         /// Add 2 template's
         /// can toggle in debug
@@ -91,8 +93,8 @@ class ExampleFeature extends DartBoardFeature {
       ];
 
   bool _init = false;
-  final particleFeature = DartBoardParticleFeature()
-    ..addLayer(LightingParticleLayer());
+  final particleFeature = DartBoardParticleFeature();
+  //..addLayer(LightingParticleLayer());
   @override
   List<DartBoardDecoration> get appDecorations => <DartBoardDecoration>[
         DartBoardDecoration(

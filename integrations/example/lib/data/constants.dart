@@ -30,6 +30,12 @@ const kMainPageConfig = [
     'icon': Icons.home
   },
   {
+    'route': '/chat',
+    'label': 'Chat',
+    'color': Colors.blue,
+    'icon': Icons.chat,
+  },
+  {
     'route': '/debug',
     'label': 'Debug',
     'color': Colors.purple,

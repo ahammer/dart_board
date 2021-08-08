@@ -19,6 +19,9 @@ class DartBoardAuthenticationExample extends DartBoardFeature {
   @override
   List<DartBoardFeature> get dependencies =>
       [DartBoardAuthenticationFeature(), DartBoardFakeAuthProvider()];
+
+  @override
+  String get namespace => "Auth Example";
 }
 
 /// This is a mock auth provider that can just flip the state to signed in
@@ -32,6 +35,9 @@ class DartBoardFakeAuthProvider extends DartBoardFeature {
 
   @override
   List<DartBoardFeature> get dependencies => [DartBoardLocatorFeature()];
+
+  @override
+  String get namespace => "FakeAuthDelegate";
 }
 
 class MockAuthenticationDelegate extends AuthenticationDelegate {
@@ -48,6 +54,15 @@ class MockAuthenticationDelegate extends AuthenticationDelegate {
         navigator.pop();
       },
       child: Text("Click to sign in"));
+
+  @override
+  String get username => "MockUser";
+
+  @override
+  String get userId => "user_id";
+
+  @override
+  Widget get loginButtonWidget => Text("mock auth sign in");
 }
 
 class MainWidget extends StatelessWidget {

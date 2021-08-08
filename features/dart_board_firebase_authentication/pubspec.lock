@@ -53,30 +53,30 @@ packages:
   dart_board_authentication:
     dependency: "direct main"
     description:
-      name: dart_board_authentication
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "../dart_board_authentication"
+      relative: true
+    source: path
     version: "1.1.0"
   dart_board_core:
     dependency: "direct main"
     description:
-      name: dart_board_core
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "../../core/dart_board_core"
+      relative: true
+    source: path
     version: "0.9.9"
   dart_board_firebase_core:
     dependency: "direct main"
     description:
-      name: dart_board_firebase_core
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "../dart_board_firebase_core"
+      relative: true
+    source: path
     version: "1.0.0+1"
   dart_board_locator:
     dependency: "direct main"
     description:
-      name: dart_board_locator
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "../dart_board_locator"
+      relative: true
+    source: path
     version: "0.9.4"
   fake_async:
     dependency: transitive
@@ -142,6 +142,27 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  google_sign_in:
+    dependency: "direct main"
+    description:
+      name: google_sign_in
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.0.7"
+  google_sign_in_platform_interface:
+    dependency: transitive
+    description:
+      name: google_sign_in_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.1"
+  google_sign_in_web:
+    dependency: transitive
+    description:
+      name: google_sign_in_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.10.0+1"
   http_parser:
     dependency: transitive
     description:
@@ -212,6 +233,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.0.0"
+  quiver:
+    dependency: transitive
+    description:
+      name: quiver
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.1"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -275,4 +303,4 @@ packages:
     version: "2.1.0"
 sdks:
   dart: ">=2.12.0 <3.0.0"
-  flutter: ">=1.16.0"
+  flutter: ">=2.0.0"

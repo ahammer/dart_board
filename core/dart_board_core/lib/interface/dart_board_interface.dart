@@ -113,7 +113,7 @@ class DartBoardDecoration {
 abstract class DartBoardFeature<T> {
   /// A namespace to prefix to reference this feature by
   /// Please make it unique
-  String get namespace => runtimeType.toString();
+  String get namespace;
 
   // An implementation name, this should be unique for each implementation used
   // When AB testing, share the namespace, make implementationName unique
@@ -151,6 +151,10 @@ abstract class DartBoardFeature<T> {
   /// a deny for everything else.
   List<String> get pageDecorationAllowList => [];
 
+  /// This can be used to allow an extension to exclude itself.
+  /// E.g. Based on platform
+  bool get enabled => true;
+
   @override
   String toString() => namespace;
 }
@@ -167,4 +171,7 @@ abstract class RouteDefinition {
 }
 
 /// An empty feature to use as a default if an feature can't be found
-class EmptyDartBoardFeature extends DartBoardFeature {}
+class EmptyDartBoardFeature extends DartBoardFeature {
+  @override
+  String get namespace => 'Empty';
+}

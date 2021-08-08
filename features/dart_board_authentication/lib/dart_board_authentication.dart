@@ -16,6 +16,9 @@ class DartBoardAuthenticationFeature extends DartBoardFeature {
       ];
   @override
   List<DartBoardFeature> get dependencies => [DartBoardLocatorFeature()];
+
+  @override
+  String get namespace => "DartBoardAuthenticationFeature";
 }
 
 class DartBoardAuthenticationProviderAppDecoration extends DartBoardDecoration {
@@ -95,12 +98,21 @@ class _AuthSignInDialogState extends State<AuthSignInDialog> {
   }
 }
 
+/// Current Authentication State of the app
+///
+/// Delegates are registered for various "authenticators"
 class AuthenticationState extends ChangeNotifier {
+  static AuthenticationState get instance => locate();
+
   final _delegates = <AuthenticationDelegate>[];
 
   AuthenticationDelegate? _activeDelegate;
 
   bool get signedIn => _activeDelegate != null;
+  String get photoUrl => _activeDelegate?.photoUrl ?? "";
+  String get username => _activeDelegate?.username ?? "anon";
+
+  get userId => _activeDelegate?.userId ?? "";
 
   /// Delegates should call this when authenticated
   void setSignedIn(bool val, AuthenticationDelegate? delegate) {
@@ -128,9 +140,27 @@ class AuthenticationState extends ChangeNotifier {
 }
 
 abstract class AuthenticationDelegate {
-  /// The name of this authentication widget
+  /// The name of this authentication delegate
   String get name;
+
+  /// The username of the logged in user
+  String get username;
+
+  /// The user ID of the logged in user
+  String get userId;
+
+  /// The photo URL to their avatar for this Delegate
+  get photoUrl => "";
+
+  /// This can be used to show either the Auth Widget directly, or trigger
+  /// the auth flow (e.g. popup)
   Widget buildAuthWidget();
+
+  /// This is a widget that will be child to the Login Body, or Login selector
+  /// list item.
+  ///
+  /// E.g. [Google Sign In] or [Facebook Sign in] buttons
+  Widget get loginButtonWidget;
 }
 
 // A widget that shows 1 of two widgets, signed in or out.
@@ -184,17 +214,11 @@ class LoginButton extends StatelessWidget {
             locate<AuthenticationState>().setSignedIn(false, null);
           },
           child: Text("Log Out")),
-      signedOut: (ctx) => Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text("Not logged in"),
-          MaterialButton(
-              onPressed: () {
-                AuthenticationState.requestSignIn();
-              },
-              child: Text("Sign In")),
-        ],
-      ),
+      signedOut: (ctx) => MaterialButton(
+          onPressed: () {
+            AuthenticationState.requestSignIn();
+          },
+          child: Text("Sign In")),
     );
   }
 }
