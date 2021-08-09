@@ -1,0 +1,27 @@
+name: dart_board_theme
+description: Basic theme selection for dart-board, allows changing between dark/light themes programmatically or through a /theme route.
+homepage: https://dart-board.io
+issue_tracker: https://github.com/ahammer/dart_board/issues
+repository: https://github.com/ahammer/dart_board
+
+version: 0.9.3
+
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  dart_board_core: ^0.9.9
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  pedantic: ^1.11.0
+  
+flutter:
+  uses-material-design: true
+  module:
+    androidX: true
+    androidPackage: com.metalrain.dart_board_theme_extension
+    iosBundleIdentifier: com.metalrain.dartBoardThemeExtension

@@ -1,0 +1,44 @@
+name: example
+description: A new Flutter project.
+publish_to: none
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  dart_board_core:
+  dart_board_theme:
+  dart_board_debug:
+  dart_board_redux:
+  dart_board_log:
+  dart_board_minesweeper:
+  dart_board_template_bottomnav:
+  dart_board_template_app_bar_sidenav:
+  dart_board_image_background:
+  dart_board_particles:
+  dart_board_authentication: 
+  dart_board_firebase_authentication:
+  dart_board_firebase_database:
+    path: ../../features/dart_board_firebase_database 
+  dart_board_chat:
+    path: ../../features/dart_board_chat
+  flutter_syntax_view: ^4.0.0
+  flutter_markdown: ^0.6.2
+  http: ^0.13.3
+  url_launcher: ^6.0.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  pedantic: ^1.11.0
+  
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
+  
