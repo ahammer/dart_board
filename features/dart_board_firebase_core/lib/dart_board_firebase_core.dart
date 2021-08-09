@@ -1,9 +1,11 @@
+import 'dart:io';
+
 import 'package:dart_board_core/dart_board.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 /// Initialization Hook for Firebase App
 /// For firebase-capable features to use
-class DartBoardFirebaseAppFeature extends DartBoardFeature {
+class DartBoardFirebaseCoreFeature extends DartBoardFeature {
   @override
   List<DartBoardDecoration> get appDecorations => [
         DartBoardDecoration(
@@ -13,6 +15,10 @@ class DartBoardFirebaseAppFeature extends DartBoardFeature {
 
   @override
   String get namespace => "DartBoardFirebaseCore";
+
+  @override
+  bool get enabled =>
+      kIsWeb || Platform.isAndroid || Platform.isIOS || Platform.isMacOS;
 }
 
 class FirebaseGateway extends StatefulWidget {

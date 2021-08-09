@@ -74,7 +74,6 @@ class LightingParticleLayer extends ParticleLayer<LightingParticle> {
 
   @override
   void before(Canvas canvas, Size size) {
-    if (time > 3) return;
     canvas.saveLayer(Rect.largest, Paint());
     canvas.drawRect(
         Rect.fromLTWH(0, 0, size.width, size.height),
@@ -89,13 +88,11 @@ class LightingParticleLayer extends ParticleLayer<LightingParticle> {
 
   @override
   void after(Canvas canvas, Size size) {
-    if (time > 3) return;
     canvas.restore();
   }
 
   @override
   void drawParticle(Canvas canvas, Size size, LightingParticle particle) {
-    if (time > 3) return;
     canvas.save();
     canvas.translate(particle.x, particle.y);
     canvas.scale(particle.s, particle.s);

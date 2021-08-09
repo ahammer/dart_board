@@ -239,6 +239,13 @@ packages:
       relative: true
     source: path
     version: "1.0.0+1"
+  dart_board_firebase_remote_config:
+    dependency: "direct main"
+    description:
+      path: "../../features/dart_board_firebase_remote_config"
+      relative: true
+    source: path
+    version: "1.0.0+1"
   dart_board_image_background:
     dependency: "direct main"
     description:
@@ -365,6 +372,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
+  firebase_remote_config:
+    dependency: transitive
+    description:
+      name: firebase_remote_config
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.10.0+3"
+  firebase_remote_config_platform_interface:
+    dependency: transitive
+    description:
+      name: firebase_remote_config_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.0+3"
   fixnum:
     dependency: transitive
     description:

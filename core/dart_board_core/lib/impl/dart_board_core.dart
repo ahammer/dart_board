@@ -285,10 +285,24 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
   /// Walks the feature tree and registers
   List<DartBoardFeature> buildDependencyList(List<DartBoardFeature> features,
       {List<DartBoardFeature> result = const <DartBoardFeature>[]}) {
-    features.forEach((element) {
-      result = buildDependencyList(element.dependencies, result: result);
-      if (!result.contains(element)) {
-        result = [...result, element];
+    features.forEach((feature) {
+      result = buildDependencyList(feature.dependencies, result: result);
+      if (!result.contains(feature)) {
+        result = [
+          ...result,
+
+          /// If the feature is enabled
+          /// And we don't already see it in the list for the same namespace
+          /// Since a dep can come from multiple sources, we just want the first
+          ///
+          if (feature.enabled &&
+              result
+                  .where((element) =>
+                      element.namespace == feature.namespace &&
+                      element.implementationName == feature.implementationName)
+                  .isEmpty)
+            feature
+        ];
       }
     });
     return result;
