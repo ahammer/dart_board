@@ -107,7 +107,7 @@ class ParticlePainter extends CustomPainter {
           if (element.needsParticlePaint)
             element.drawParticle(canvas, size, particle);
         });
-        if (!element.needsAfter) element.after(canvas, size);
+        if (element.needsAfter) element.after(canvas, size);
       }
     });
 
