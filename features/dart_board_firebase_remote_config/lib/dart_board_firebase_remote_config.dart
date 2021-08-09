@@ -5,7 +5,7 @@ import 'package:firebase_remote_config/firebase_remote_config.dart';
 /// Enabled Firebase RemoteConfig for dart-board apps
 class DartBoardFirebaseRemoteConfig extends DartBoardFeature {
   @override
-  List<DartBoardFeature> get dependencies => [DartBoardFirebaseAppFeature()];
+  List<DartBoardFeature> get dependencies => [DartBoardFirebaseCoreFeature()];
 
   @override
   String get namespace => "DartBoardRemoteConfigFeature";

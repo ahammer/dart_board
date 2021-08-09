@@ -20,7 +20,7 @@ late final _firebaseDelegate = FlutterFireAuthenticationDelegate();
 class DartBoardAuthenticationFlutterFireFeature extends DartBoardFeature {
   @override
   List<DartBoardFeature> get dependencies =>
-      [DartBoardAuthenticationFeature(), DartBoardFirebaseAppFeature()];
+      [DartBoardAuthenticationFeature(), DartBoardFirebaseCoreFeature()];
 
   @override
   List<DartBoardDecoration> get appDecorations => [
@@ -48,7 +48,8 @@ class DartBoardAuthenticationFlutterFireFeature extends DartBoardFeature {
 
   /// Firebase Auth is only supported by these platforms
   @override
-  bool get enabled => kIsWeb || Platform.isAndroid || Platform.isIOS;
+  bool get enabled =>
+      kIsWeb || Platform.isAndroid || Platform.isIOS || Platform.isMacOS;
 }
 
 /// This is the authentication delegate for firebase

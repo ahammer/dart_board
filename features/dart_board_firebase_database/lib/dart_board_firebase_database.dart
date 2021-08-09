@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DartBoardFirebaseDatabaseFeature extends DartBoardFeature {
   @override
-  List<DartBoardFeature> get dependencies => [DartBoardFirebaseAppFeature()];
+  List<DartBoardFeature> get dependencies => [DartBoardFirebaseCoreFeature()];
 
   @override
   String get namespace => "DartBoardFirebaseDatabaseFeature";
