@@ -1,0 +1,52 @@
+//
+// background.scss
+// Extended from Bootstrap
+//
+
+.bg-cover {
+  background: no-repeat center center / cover;
+}
+
+
+// Between
+
+.bg-between {
+
+  @include media-breakpoint-down(lg) {
+    background-image: none !important;
+  }
+
+  @include media-breakpoint-up(lg) {
+    background-repeat: no-repeat;
+    background-position: left center, right center;
+    background-size: auto 70%;
+  }
+}
+
+
+// Gradients
+
+.bg-gradient-light-white {
+  background-image: linear-gradient(to bottom, $light 0%, $white 100%);
+}
+
+.bg-gradient-dark-black {
+  background-image: linear-gradient(to bottom, $dark 0%, $black 100%);
+}
+
+.bg-gradient-multicolor {
+  background-image: conic-gradient(from 52deg at 50% 50%,
+      #8024A0 0deg,
+      #31EEC1 33deg,
+      #6924A0 222deg,
+      #D6723B 264deg,
+      #D5498C 295deg,
+      #8024A0 360deg);
+}
+
+
+// Patterns
+
+.bg-pattern-2 {
+  background-image: linear-gradient(to bottom, transparent 0%, $black 100%), url('#{$path-to-img}/patterns/pattern-2.png');
+}

@@ -1,0 +1,28 @@
+//
+// sidenav.scss
+// Theme components
+//
+
+.sidenav {
+
+  @include media-breakpoint-up(lg) {
+    position: fixed;
+    top: 84px;
+    height: calc(100vh - 84px);
+    overflow: auto;
+  }
+}
+
+.sidenav-start {
+
+  @include media-breakpoint-up(lg) {
+    left: 0;
+  }
+}
+
+.sidenav-end {
+
+  @include media-breakpoint-up(lg) {
+    right: 0;
+  }
+}

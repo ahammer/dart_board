@@ -1,0 +1,34 @@
+//
+// pagination.scss
+// Extended from Bootstrap
+//
+
+.pagination-sm .page-link {
+  line-height: $btn-line-height-sm;
+  font-size: $btn-font-size-sm;
+}
+
+.pagination-sm .page-item:first-child .page-link {
+  border-top-left-radius: $btn-border-radius-sm;
+  border-bottom-left-radius: $btn-border-radius-sm;
+}
+
+.pagination-sm .page-item:last-child .page-link {
+  border-top-right-radius: $btn-border-radius-sm;
+  border-bottom-right-radius: $btn-border-radius-sm;
+}
+
+.pagination-lg .page-link {
+  line-height: $btn-line-height-lg;
+  font-size: $btn-font-size-lg;
+}
+
+.pagination-lg .page-item:first-child .page-link {
+  border-top-left-radius: $btn-border-radius-lg;
+  border-bottom-left-radius: $btn-border-radius-lg;
+}
+
+.pagination-lg .page-item:last-child .page-link {
+  border-top-right-radius: $btn-border-radius-lg;
+  border-bottom-right-radius: $btn-border-radius-lg;
+}

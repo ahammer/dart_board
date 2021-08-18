@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {{> partials/head title="Landkit"}}
+  </head>
+  <body>
+
+    <!-- MODALS -->
+    {{> partials/modals}}
+
+    <!-- NAVBAR -->
+    {{> partials/navbar classList="navbar-light bg-white" container="container-fluid" button="primary"}}
+
+    <!-- WELCOME -->
+    <section class="pt-6 pt-md-8">
+      <div class="container">
+        <div class="row align-items-center justify-content-center justify-content-md-between">
+          <div class="col-10 col-sm-8 col-md-6 order-md-2">
+
+            <!-- iPhone + iPhone -->
+            <div class="device-combo device-combo-iphonex-iphonex mb-6 mb-md-0">
+
+              <!-- iPhone -->
+              <div class="device device-iphonex" data-aos="fade-left">
+                <img src="assets/img/screenshots/mobile/home.jpg" class="device-screen" alt="...">
+                <img src="assets/img/devices/iphonex.svg" class="img-fluid" alt="...">
+              </div>
+
+              <!-- iPhone -->
+              <div class="device device-iphonex" data-aos="fade-left" data-aos-delay="150">
+                <img src="assets/img/screenshots/mobile/rental.jpg" class="device-screen" alt="...">
+                <img src="assets/img/devices/iphonex.svg" class="img-fluid" alt="...">
+              </div>
+
+            </div>
+
+          </div>
+          <div class="col-12 col-md-6 col-lg-5" data-aos="fade-right">
+
+            <!-- Heading -->
+            <h1 class="fw-bold">
+              Chat with <span class="text-primary">friends.</span> <br>
+              Anywhere in the world.
+            </h1>
+
+            <!-- Text -->
+            <p class="fs-lg text-muted mb-6">
+              Keep in touch with your friends and family with free international chats, calls, and even games. Landkit connects you with the world.
+            </p>
+
+            <!-- Form -->
+            <form class="mb-6 mb-md-8 mb-md-0 order-md-1">
+              <div class="row gx-4">
+                <div class="col">
+
+                  <!-- Inout -->
+                  <input type="url" class="form-control bg-light border-0">
+
+                </div>
+                <div class="col-auto">
+
+                  <!-- Submit -->
+                  <button type="submit" class="btn btn-primary">
+                    Text link
+                  </button>
+
+                </div>
+              </div>
+            </form>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </section>
+
+    <!-- ABOUT -->
+    <section class="pt-8 pt-md-11">
+      <div class="container">
+        <div class="row align-items-center justify-content-between">
+          <div class="col-12 col-md-6 mb-5 mb-md-0">
+
+            <!-- Images -->
+            <div class="row">
+              <div class="col-6 me-n5">
+
+                <img src="assets/img/photos/photo-23.jpg" alt="..." class="img-fluid mb-4 rounded" data-aos="fade-right" data-aos-delay="100">
+
+                <img src="assets/img/photos/photo-25.jpg" alt="..." class="img-fluid rounded" data-aos="fade-right" data-aos-delay="150">
+
+              </div>
+              <div class="col-6 mt-8">
+
+                <img src="assets/img/photos/photo-22.jpg" alt="..." class="img-fluid mb-4 rounded" data-aos="fade-right">
+
+                <img src="assets/img/photos/photo-24.jpg" alt="..." class="img-fluid rounded" data-aos="fade-right" data-aos-delay="50">
+
+              </div>
+            </div> <!-- / .row -->
+
+          </div>
+          <div class="col-12 col-md-6 col-lg-5" data-aos="fade-left">
+
+            <!-- Heading -->
+            <h2 class="fw-bold">
+              Show your friends and family where you've been.
+            </h2>
+
+            <!-- Text -->
+            <p class="fs-lg text-muted mb-4">
+              Staying connected while traveling can be tough, but Landkit makes it easy by automatically sharing your experiences.
+            </p>
+
+            <!-- Button -->
+            <a href="#!" class="btn btn-primary">
+              Learn more
+            </a>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </section>
+
+    <!-- ABOUT -->
+    <section class="py-8 py-md-11">
+      <div class="container">
+        <div class="row align-items-center justify-content-between">
+          <div class="col-12 col-md-6 col-lg-7 order-md-2">
+
+            <!-- Image -->
+            <img src="assets/img/screenshots/ui/mobile-chat.png" alt="..." class="img-fluid mb-6 mb-md-8 mb-md-0" data-aos="fade-left">
+
+          </div>
+          <div class="col-12 col-md-6 col-lg-5 order-md-1" data-aos="fade-right">
+
+            <!-- Heading -->
+            <h2 class="fw-bold">
+              Use your phone number so you're easy to find.
+            </h2>
+
+            <!-- Text -->
+            <p class="fs-lg text-muted mb-0">
+              Landkit uses your phone number for your account instead of an email or username so you're super easy to find for all your friends.
+            </p>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </section>
+
+    <!-- SHAPE -->
+    <div class="position-relative">
+      <div class="shape shape-top shape-fluid-x text-white">
+        {{> waves/wave-1}}
+      </div>
+    </div>
+
+    <!-- VIDEO -->
+    <section class="py-12 py-md-13 bg-cover" style="background-image: url(assets/img/covers/cover-2.jpg);">
+      <div class="container py-md-13">
+        <div class="row">
+          <div class="col-12 text-center">
+
+            <!-- Button -->
+            <a class="btn btn-pill btn-white text-body shadow lift" data-bigpicture='{"ytSrc": "9I-Y6VQ6tyI"}' href="#">
+              <span class="h6 text-uppercase fw-bold"><i class="fe fe-play me-2"></i> Watch video</span>
+            </a>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </section>
+
+    <!-- CTA -->
+    <section class="pt-6 pt-md-8">
+      <div class="container pb-6 pb-md-8 border-bottom">
+        <div class="row align-items-center">
+          <div class="col-12 col-md">
+
+            <!-- Heading -->
+            <h3 class="fw-bold mb-1">
+              Get the app now!
+            </h3>
+
+            <!-- Text -->
+            <p class="text-muted mb-6 mb-md-0">
+              Travel and share with ease.
+            </p>
+
+          </div>
+
+          <div class="col-auto">
+
+            <a href="#!" class="text-reset d-inline-block me-1">
+              <img src="assets/img/buttons/button-app.png" class="img-fluid" alt="..." style="max-width: 155px;">
+            </a>
+
+            <a href="#!" class="text-reset d-inline-block">
+              <img src="assets/img/buttons/button-play.png" class="img-fluid" alt="..." style="max-width: 155px;">
+            </a>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </section>
+
+    <!-- FOOTER -->
+    {{> partials/footer classList="bg-white"}}
+
+    <!-- JAVASCRIPT -->
+    {{> partials/scripts}}
+
+  </body>
+</html>

@@ -1,0 +1,751 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {{> partials/head title="Landkit"}}
+  </head>
+  <body class="bg-light">
+
+    <!-- MODALS -->
+    {{> partials/modals}}
+
+    <!-- NAVBAR -->
+    {{> partials/navbar classList="navbar-light bg-white" container="container" button="primary"}}
+
+    <!-- BREADCRUMB -->
+    <nav class="bg-gray-200">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+
+            <!-- Breadcrumb -->
+            <ol class="breadcrumb breadcrumb-scroll">
+              <li class="breadcrumb-item">
+                <a href="#!" class="text-gray-700">
+                  Help Center
+                </a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Account
+              </li>
+            </ol>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </nav>
+
+    <!-- CONTENT -->
+    <section class="pt-6 pt-md-8 pb-8 mb-md-8">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+
+            <div class="row mb-6 mb-md-8">
+              <div class="col-auto">
+
+                <!-- Icon -->
+                <div class="icon-circle bg-primary text-white">
+                  <i class="fe fe-users"></i>
+                </div>
+
+              </div>
+              <div class="col ms-n4">
+
+                <!-- Heading -->
+                <h2 class="fw-bold mb-0">
+                  Account
+                </h2>
+
+                <!-- Text -->
+                <p class="fs-lg text-gray-700 mb-0">
+                  Let’s try to fix your account issues.
+                </p>
+
+              </div>
+            </div> <!-- / .row -->
+
+            <!-- Card -->
+            <div class="accordion shadow-light-lg mb-5 mb-md-6" id="helpAccordionOne">
+              <div class="accordion-item">
+
+                <!-- Button -->
+                <div class="accordion-button" role="button">
+                  <div class="me-auto">
+
+                    <!-- Heading -->
+                    <h4 class="fw-bold mb-0">
+                      Authentication Issues
+                    </h4>
+
+                    <!-- Text -->
+                    <p class="fs-sm text-muted mb-0">
+                      Issues related to logging in, out, or about multiple devices.
+                    </p>
+
+                  </div>
+
+                  <!-- Badge -->
+                  <span class="badge rounded-pill bg-success-soft ms-4">
+                    <span class="h6 text-uppercase">
+                      4 answers
+                    </span>
+                  </span>
+
+                </div>
+
+              </div>
+              <div class="accordion-item">
+
+                <!-- Button -->
+                <div class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#helpOne" aria-expanded="false" aria-controls="helpOne">
+
+                  <!-- Title -->
+                  <span class="me-4" id="helpOneHeading">
+                    Why doesn’t my account stay logged in?
+                  </span>
+
+                  <!-- Metadata -->
+                  <div class="text-muted ms-auto">
+
+                    <!-- Text -->
+                    <span class="fs-sm me-4 d-none d-md-inline">
+                      Updated last week
+                    </span>
+
+                  </div>
+
+                </div>
+
+                <!-- Collapse -->
+                <div class="accordion-collapse collapse" id="helpOne" aria-labelledby="helpOneHeading" data-bs-parent="#helpAccordionOne">
+                  <div class="accordion-body">
+
+                    <!-- Text -->
+                    <p class="text-gray-700">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt rerum minima a possimus, amet perferendis, temporibus obcaecati pariatur. Reprehenderit magnam necessitatibus vel culpa provident quas nesciunt sunt aut cupiditate fugiat! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt rerum minima a possimus, amet perferendis, temporibus obcaecati pariatur. Reprehenderit magnam necessitatibus vel culpa provident quas nesciunt sunt aut cupiditate fugiat!
+                    </p>
+
+                    <div class="d-flex align-items-center">
+
+                      <!-- Vote -->
+                      <div class="btn-group me-4">
+
+                        <!-- Thumb down -->
+                        <input type="radio" class="btn-check" name="helpOneVote" id="helpOneDown" checked>
+                        <label class="btn btn-sm btn-white" for="helpOneDown">
+                          <i class="fe fe-thumbs-down"></i>
+                        </label>
+
+                        <!-- Thumb up -->
+                        <input type="radio" class="btn-check" name="helpOneVote" id="helpOneUp">
+                        <label class="btn btn-sm btn-white" for="helpOneUp">
+                          <i class="fe fe-thumbs-up"></i>
+                        </label>
+
+                      </div>
+
+                      <!-- Text -->
+                      <span class="fs-sm text-muted">
+                        Did this help solve your issue?
+                      </span>
+
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+              <div class="accordion-item">
+
+                <!-- Button -->
+                <div class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#helpTwo" aria-expanded="false" aria-controls="helpTwo">
+
+                  <!-- Title -->
+                  <span class="me-4" id="helpTwoHeading">
+                    I'd like to renew but I am getting a 404 error
+                  </span>
+
+                  <!-- Metadata -->
+                  <div class="text-muted ms-auto">
+
+                    <!-- Text -->
+                    <span class="fs-sm me-4 d-none d-md-inline">
+                      Updated 2 weeks ago
+                    </span>
+
+                  </div>
+
+                </div>
+
+                <!-- Collapse -->
+                <div class="accordion-collapse collapse" id="helpTwo" aria-labelledby="helpTwoHeading" data-bs-parent="#helpAccordionOne">
+                  <div class="accordion-body">
+
+                    <!-- Text -->
+                    <p class="text-gray-700">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt rerum minima a possimus, amet perferendis, temporibus obcaecati pariatur. Reprehenderit magnam necessitatibus vel culpa provident quas nesciunt sunt aut cupiditate fugiat! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt rerum minima a possimus, amet perferendis, temporibus obcaecati pariatur. Reprehenderit magnam necessitatibus vel culpa provident quas nesciunt sunt aut cupiditate fugiat!
+                    </p>
+
+                    <div class="d-flex align-items-center">
+
+                      <!-- Vote -->
+                      <div class="btn-group me-4">
+
+                        <!-- Thumb down -->
+                        <input type="radio" class="btn-check" name="helpTwoVote" id="helpTwoDown" checked>
+                        <label class="btn btn-sm btn-white" for="helpTwoDown">
+                          <i class="fe fe-thumbs-down"></i>
+                        </label>
+
+                        <!-- Thumb up -->
+                        <input type="radio" class="btn-check" name="helpTwoVote" id="helpTwoUp">
+                        <label class="btn btn-sm btn-white" for="helpTwoUp">
+                          <i class="fe fe-thumbs-up"></i>
+                        </label>
+
+                      </div>
+
+                      <!-- Text -->
+                      <span class="fs-sm text-muted">
+                        Did this help solve your issue?
+                      </span>
+
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+              <div class="accordion-item">
+
+                <!-- Button -->
+                <div class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#helpThree" aria-expanded="false" aria-controls="helpThree">
+
+                  <!-- Title -->
+                  <span class="me-4" id="helpThreeHeading">
+                    Why can't I upgrade for free?
+                  </span>
+
+                  <!-- Metadata -->
+                  <div class="text-muted ms-auto">
+
+                    <!-- Text -->
+                    <span class="fs-sm me-4 d-none d-md-inline">
+                      Updated yesterday
+                    </span>
+
+                  </div>
+
+                </div>
+
+                <!-- Collapse -->
+                <div class="accordion-collapse collapse" id="helpThree" aria-labelledby="helpThreeHeading" data-bs-parent="#helpAccordionOne">
+                  <div class="accordion-body">
+
+                    <!-- Text -->
+                    <p class="text-gray-700">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt rerum minima a possimus, amet perferendis, temporibus obcaecati pariatur. Reprehenderit magnam necessitatibus vel culpa provident quas nesciunt sunt aut cupiditate fugiat! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt rerum minima a possimus, amet perferendis, temporibus obcaecati pariatur. Reprehenderit magnam necessitatibus vel culpa provident quas nesciunt sunt aut cupiditate fugiat!
+                    </p>
+
+                    <div class="d-flex align-items-center">
+
+                      <!-- Vote -->
+                      <div class="btn-group me-4">
+
+                        <!-- Thumb down -->
+                        <input type="radio" class="btn-check" name="helpThreeVote" id="helpThreeDown" checked>
+                        <label class="btn btn-sm btn-white" for="helpThreeDown">
+                          <i class="fe fe-thumbs-down"></i>
+                        </label>
+
+                        <!-- Thumb up -->
+                        <input type="radio" class="btn-check" name="helpThreeVote" id="helpThreeUp">
+                        <label class="btn btn-sm btn-white" for="helpThreeUp">
+                          <i class="fe fe-thumbs-up"></i>
+                        </label>
+
+                      </div>
+
+                      <!-- Text -->
+                      <span class="fs-sm text-muted">
+                        Did this help solve your issue?
+                      </span>
+
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+              <div class="accordion-item">
+
+                <!-- Button -->
+                <div class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#helpFour" aria-expanded="false" aria-controls="helpFour">
+
+                  <!-- Title -->
+                  <span class="me-4" id="helpFourHeading">
+                    Why doesn't my account stay logged in?
+                  </span>
+
+                  <!-- Metadata -->
+                  <div class="text-muted ms-auto">
+
+                    <!-- Text -->
+                    <span class="fs-sm me-4 d-none d-md-inline">
+                      Updated last month
+                    </span>
+
+                  </div>
+
+                </div>
+
+                <!-- Collapse -->
+                <div class="accordion-collapse collapse" id="helpFour" aria-labelledby="helpFourHeading" data-bs-parent="#helpAccordionOne">
+                  <div class="accordion-body">
+
+                    <!-- Text -->
+                    <p class="text-gray-700">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt rerum minima a possimus, amet perferendis, temporibus obcaecati pariatur. Reprehenderit magnam necessitatibus vel culpa provident quas nesciunt sunt aut cupiditate fugiat! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt rerum minima a possimus, amet perferendis, temporibus obcaecati pariatur. Reprehenderit magnam necessitatibus vel culpa provident quas nesciunt sunt aut cupiditate fugiat!
+                    </p>
+
+                    <div class="d-flex align-items-center">
+
+                      <!-- Vote -->
+                      <div class="btn-group me-4">
+
+                        <!-- Thumb down -->
+                        <input type="radio" class="btn-check" name="helpFourVote" id="helpFourDown" checked>
+                        <label class="btn btn-sm btn-white" for="helpFourDown">
+                          <i class="fe fe-thumbs-down"></i>
+                        </label>
+
+                        <!-- Thumb up -->
+                        <input type="radio" class="btn-check" name="helpFourVote" id="helpFourUp">
+                        <label class="btn btn-sm btn-white" for="helpFourUp">
+                          <i class="fe fe-thumbs-up"></i>
+                        </label>
+
+                      </div>
+
+                      <!-- Text -->
+                      <span class="fs-sm text-muted">
+                        Did this help solve your issue?
+                      </span>
+
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Card -->
+            <div class="accordion shadow-light-lg" id="helpAccordionTwo">
+              <div class="accordion-item">
+
+                <!-- Button -->
+                <div class="accordion-button" role="button">
+                  <div class="me-auto">
+
+                    <!-- Heading -->
+                    <h4 class="fw-bold mb-0">
+                      Billing
+                    </h4>
+
+                    <!-- Text -->
+                    <p class="fs-sm text-muted mb-0">
+                      Issues related to payments or invoicing.
+                    </p>
+
+                  </div>
+
+                  <!-- Badge -->
+                  <span class="badge rounded-pill bg-success-soft ms-4">
+                    <span class="h6 text-uppercase">
+                      4 answers
+                    </span>
+                  </span>
+
+                </div>
+
+              </div>
+              <div class="accordion-item">
+
+                <!-- Button -->
+                <div class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#helpFive" aria-expanded="false" aria-controls="helpFive">
+
+                  <!-- Title -->
+                  <span class="me-4" id="helpFiveHeading">
+                    I was double charged last month. Why is that?
+                  </span>
+
+                  <!-- Metadata -->
+                  <div class="text-muted ms-auto">
+
+                    <!-- Text -->
+                    <span class="fs-sm me-4 d-none d-md-inline">
+                      Updated 3 months ago
+                    </span>
+
+                  </div>
+
+                </div>
+
+                <!-- Collapse -->
+                <div class="accordion-collapse collapse" id="helpFive" aria-labelledby="helpFiveHeading" data-bs-parent="#helpAccordionTwo">
+                  <div class="accordion-body">
+
+                    <!-- Text -->
+                    <p class="text-gray-700">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt rerum minima a possimus, amet perferendis, temporibus obcaecati pariatur. Reprehenderit magnam necessitatibus vel culpa provident quas nesciunt sunt aut cupiditate fugiat! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt rerum minima a possimus, amet perferendis, temporibus obcaecati pariatur. Reprehenderit magnam necessitatibus vel culpa provident quas nesciunt sunt aut cupiditate fugiat!
+                    </p>
+
+                    <div class="d-flex align-items-center">
+
+                      <!-- Vote -->
+                      <div class="btn-group me-4">
+
+                        <!-- Thumb down -->
+                        <input type="radio" class="btn-check" name="helpFiveVote" id="helpFiveDown" checked>
+                        <label class="btn btn-sm btn-white" for="helpFiveDown">
+                          <i class="fe fe-thumbs-down"></i>
+                        </label>
+
+                        <!-- Thumb up -->
+                        <input type="radio" class="btn-check" name="helpFiveVote" id="helpFiveUp">
+                        <label class="btn btn-sm btn-white" for="helpFiveUp">
+                          <i class="fe fe-thumbs-up"></i>
+                        </label>
+
+                      </div>
+
+                      <!-- Text -->
+                      <span class="fs-sm text-muted">
+                        Did this help solve your issue?
+                      </span>
+
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+              <div class="accordion-item">
+
+                <!-- Button -->
+                <div class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#helpSix" aria-expanded="false" aria-controls="helpSix">
+
+                  <!-- Title -->
+                  <span class="me-4" id="helpSixHeading">
+                    How do I change my default payment option?
+                  </span>
+
+                  <!-- Metadata -->
+                  <div class="text-muted ms-auto">
+
+                    <!-- Text -->
+                    <span class="fs-sm me-4 d-none d-md-inline">
+                      Updated today
+                    </span>
+
+                  </div>
+
+                </div>
+
+                <!-- Collapse -->
+                <div class="accordion-collapse collapse" id="helpSix" aria-labelledby="helpSixHeading" data-bs-parent="#helpAccordionTwo">
+                  <div class="accordion-body">
+
+                    <!-- Text -->
+                    <p class="text-gray-700">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt rerum minima a possimus, amet perferendis, temporibus obcaecati pariatur. Reprehenderit magnam necessitatibus vel culpa provident quas nesciunt sunt aut cupiditate fugiat! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt rerum minima a possimus, amet perferendis, temporibus obcaecati pariatur. Reprehenderit magnam necessitatibus vel culpa provident quas nesciunt sunt aut cupiditate fugiat!
+                    </p>
+
+                    <div class="d-flex align-items-center">
+
+                      <!-- Vote -->
+                      <div class="btn-group me-4">
+
+                        <!-- Thumb down -->
+                        <input type="radio" class="btn-check" name="helpSixVote" id="helpSixDown" checked>
+                        <label class="btn btn-sm btn-white" for="helpSixDown">
+                          <i class="fe fe-thumbs-down"></i>
+                        </label>
+
+                        <!-- Thumb up -->
+                        <input type="radio" class="btn-check" name="helpSixVote" id="helpSixUp">
+                        <label class="btn btn-sm btn-white" for="helpSixUp">
+                          <i class="fe fe-thumbs-up"></i>
+                        </label>
+
+                      </div>
+
+                      <!-- Text -->
+                      <span class="fs-sm text-muted">
+                        Did this help solve your issue?
+                      </span>
+
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+              <div class="accordion-item">
+
+                <!-- Button -->
+                <div class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#helpSeven" aria-expanded="false" aria-controls="helpSeven">
+
+                  <!-- Title -->
+                  <span class="me-4" id="helpSevenHeading">
+                    Can I still pay with PayPal?
+                  </span>
+
+                  <!-- Metadata -->
+                  <div class="text-muted ms-auto">
+
+                    <!-- Text -->
+                    <span class="fs-sm me-4 d-none d-md-inline">
+                      Updated last week
+                    </span>
+
+                  </div>
+
+                </div>
+
+                <!-- Collapse -->
+                <div class="accordion-collapse collapse" id="helpSeven" aria-labelledby="helpSevenHeading" data-bs-parent="#helpAccordionTwo">
+                  <div class="accordion-body">
+
+                    <!-- Text -->
+                    <p class="text-gray-700">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt rerum minima a possimus, amet perferendis, temporibus obcaecati pariatur. Reprehenderit magnam necessitatibus vel culpa provident quas nesciunt sunt aut cupiditate fugiat! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt rerum minima a possimus, amet perferendis, temporibus obcaecati pariatur. Reprehenderit magnam necessitatibus vel culpa provident quas nesciunt sunt aut cupiditate fugiat!
+                    </p>
+
+                    <div class="d-flex align-items-center">
+
+                      <!-- Vote -->
+                      <div class="btn-group me-4">
+
+                        <!-- Thumb down -->
+                        <input type="radio" class="btn-check" name="helpSevenVote" id="helpSevenDown" checked>
+                        <label class="btn btn-sm btn-white" for="helpSevenDown">
+                          <i class="fe fe-thumbs-down"></i>
+                        </label>
+
+                        <!-- Thumb up -->
+                        <input type="radio" class="btn-check" name="helpSevenVote" id="helpSevenUp">
+                        <label class="btn btn-sm btn-white" for="helpSevenUp">
+                          <i class="fe fe-thumbs-up"></i>
+                        </label>
+
+                      </div>
+
+                      <!-- Text -->
+                      <span class="fs-sm text-muted">
+                        Did this help solve your issue?
+                      </span>
+
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+              <div class="accordion-item">
+
+                <!-- Button -->
+                <div class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#helpEight" aria-expanded="false" aria-controls="helpEight">
+
+                  <!-- Title -->
+                  <span class="me-4" id="helpEightHeading">
+                    Can I use referral code to decrease my monthly fees?
+                  </span>
+
+                  <!-- Metadata -->
+                  <div class="text-muted ms-auto">
+
+                    <!-- Text -->
+                    <span class="fs-sm me-4 d-none d-md-inline">
+                      Updated 3 weeks ago
+                    </span>
+
+                  </div>
+
+                </div>
+
+                <!-- Collapse -->
+                <div class="accordion-collapse collapse" id="helpEight" aria-labelledby="helpEightHeading" data-bs-parent="#helpAccordionTwo">
+                  <div class="accordion-body">
+
+                    <!-- Text -->
+                    <p class="text-gray-700">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt rerum minima a possimus, amet perferendis, temporibus obcaecati pariatur. Reprehenderit magnam necessitatibus vel culpa provident quas nesciunt sunt aut cupiditate fugiat! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt rerum minima a possimus, amet perferendis, temporibus obcaecati pariatur. Reprehenderit magnam necessitatibus vel culpa provident quas nesciunt sunt aut cupiditate fugiat!
+                    </p>
+
+                    <div class="d-flex align-items-center">
+
+                      <!-- Vote -->
+                      <div class="btn-group me-4">
+
+                        <!-- Thumb down -->
+                        <input type="radio" class="btn-check" name="helpEightVote" id="helpEightDown" checked>
+                        <label class="btn btn-sm btn-white" for="helpEightDown">
+                          <i class="fe fe-thumbs-down"></i>
+                        </label>
+
+                        <!-- Thumb up -->
+                        <input type="radio" class="btn-check" name="helpEightVote" id="helpEightUp">
+                        <label class="btn btn-sm btn-white" for="helpEightUp">
+                          <i class="fe fe-thumbs-up"></i>
+                        </label>
+
+                      </div>
+
+                      <!-- Text -->
+                      <span class="fs-sm text-muted">
+                        Did this help solve your issue?
+                      </span>
+
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <hr class="border-gray-300 my-6 my-md-8">
+
+            <!-- Header -->
+            <h3 class="fw-bold">
+              Related Help Center Categories
+            </h3>
+
+            <!-- Text -->
+            <p class="text-muted mb-6 mb-md-8">
+              If you didn’t find what you needed, these could help!
+            </p>
+
+            <!-- Categories -->
+            <div class="row">
+              <div class="col-12 col-md-6 col-lg-4">
+
+                <!-- Card -->
+                <div class="card card-border border-dark shadow-lg mb-6 mb-md-8 mb-lg-0 lift lift-lg">
+                  <div class="card-body text-center">
+
+                    <!-- Icon -->
+                    <div class="icon-circle bg-dark text-white mb-5">
+                      <i class="fe fe-users"></i>
+                    </div>
+
+                    <!-- Heading -->
+                    <h4 class="fw-bold">
+                      Organizations
+                    </h4>
+
+                    <!-- Text -->
+                    <p class="text-gray-700 mb-5">
+                      Setting up and managing collections of users.
+                    </p>
+
+                    <!-- Badge -->
+                    <span class="badge rounded-pill bg-dark-soft">
+                      <span class="h6 text-uppercase">
+                        11 entries
+                      </span>
+                    </span>
+
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-12 col-md-6 col-lg-4">
+
+                <!-- Card -->
+                <div class="card card-border border-primary-desat shadow-lg mb-6 mb-md-8 mb-lg-0 lift lift-lg">
+                  <div class="card-body text-center">
+
+                    <!-- Icon -->
+                    <div class="icon-circle bg-primary-desat text-white mb-5">
+                      <i class="fe fe-users"></i>
+                    </div>
+
+                    <!-- Heading -->
+                    <h4 class="fw-bold">
+                      Performance
+                    </h4>
+
+                    <!-- Text -->
+                    <p class="text-gray-700 mb-5">
+                      Improving your system's speed and reliability.
+                    </p>
+
+                    <!-- Badge -->
+                    <span class="badge rounded-pill bg-dark-soft">
+                      <span class="h6 text-uppercase">
+                        7 entries
+                      </span>
+                    </span>
+
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-12 col-md-6 col-lg-4">
+
+                <!-- Card -->
+                <div class="card card-border border-danger shadow-lg lift lift-lg">
+                  <div class="card-body text-center">
+
+                    <!-- Icon -->
+                    <div class="icon-circle bg-danger text-white mb-5">
+                      <i class="fe fe-users"></i>
+                    </div>
+
+                    <!-- Heading -->
+                    <h4 class="fw-bold">
+                      Customizing
+                    </h4>
+
+                    <!-- Text -->
+                    <p class="text-gray-700 mb-5">
+                      Building custom modules on top of our platform.
+                    </p>
+
+                    <!-- Badge -->
+                    <span class="badge rounded-pill bg-dark-soft">
+                      <span class="h6 text-uppercase">
+                        14 entries
+                      </span>
+                    </span>
+
+                  </div>
+                </div>
+
+              </div>
+            </div> <!-- / .row -->
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </section>
+
+    <!-- SHAPE -->
+    <div class="position-relative">
+      <div class="shape shape-bottom shape-fluid-x text-dark">
+        {{> curves/curve-1}}
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    {{> partials/footer classList="bg-dark"}}
+
+    <!-- JAVASCRIPT -->
+    {{> partials/scripts}}
+
+  </body>
+</html>

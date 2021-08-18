@@ -1,0 +1,32 @@
+//
+// aos.scss
+// Plugin overrides
+//
+
+[data-aos="img-skewed-item-start"],
+[data-aos="img-skewed-item-end"] {
+  opacity: 0;
+  transition-property: opacity, transform, -webkit-transform;
+  will-change: opacity, transform, -webkit-transform;
+  backface-visibility: hidden;
+
+  &.aos-animate {
+    opacity: 1;
+  }
+}
+
+[data-aos="img-skewed-item-start"] {
+  transform: rotateY(-$img-skewed-rotate-y + 15deg) rotateX($img-skewed-rotate-x - 10deg) translate3d(0, 100px, 0);
+
+  &.aos-animate {
+    transform: rotateY(-$img-skewed-rotate-y) rotateX($img-skewed-rotate-x) translate3d(0, 0, 0);
+  }
+}
+
+[data-aos="img-skewed-item-end"] {
+  transform: rotateY($img-skewed-rotate-y - 15deg) rotateX($img-skewed-rotate-x - 10deg) translate3d(0, 100px, 0);
+
+  &.aos-animate {
+    transform: rotateY($img-skewed-rotate-y) rotateX($img-skewed-rotate-x) translate3d(0, 0, 0);
+  }
+}

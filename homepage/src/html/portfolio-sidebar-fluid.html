@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {{> partials/head title="Landkit"}}
+  </head>
+  <body class="pt-10 pt-md-0" style="overflow: visible;">
+
+    <!-- MODALS -->
+    {{> partials/modals}}
+
+    <!-- NAVBAR -->
+    {{> partials/navbar classList="navbar-light fixed-top bg-white border-bottom" container="container-fluid" button="primary"}}
+
+    <!-- CONTENT -->
+    <div class="container-fluid px-md-0">
+      <div class="row justify-content-between gx-0 mx-md-0">
+        <div class="col-12 col-md-4 position-md-sticky d-flex align-items-center vh-md-100 mx-auto" style="top: 0;">
+
+          <!-- Sidebar -->
+          <aside class="flex-grow-1 py-8 py-md-10">
+
+            <!-- Brand -->
+            <div class="img-fluid mb-4 text-body" style="max-width: 140px;">
+              {{> brands/larq}}
+            </div>
+
+            <!-- Text -->
+            <p class="fs-lg mb-7 text-muted">
+              We created a photographic brand for Larq that’s fun and exciting.
+            </p>
+
+            <!-- List group -->
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+
+                <!-- Heading -->
+                <h6 class="d-flex mb-0 text-uppercase">
+                  Year <span class="ms-auto">2019</span>
+                </h6>
+
+              </li>
+              <li class="list-group-item">
+
+                <!-- Heading -->
+                <h6 class="d-flex mb-0 text-uppercase">
+                  Service <span class="ms-auto">Photography</span>
+                </h6>
+
+              </li>
+              <li class="list-group-item">
+
+                <!-- Heading -->
+                <h6 class="d-flex mb-0 text-uppercase">
+                  Timeline <span class="ms-auto">60 Days</span>
+                </h6>
+
+              </li>
+            </ul>
+
+          </aside>
+
+        </div>
+        <div class="col-12 col-md-7">
+
+          <!-- Images -->
+          <section class="pt-md-10">
+            <img class="w-100 h-auto" src="assets/img/portfolio/portfolio-21.jpg" alt="...">
+            <img class="w-100 h-auto" src="assets/img/portfolio/portfolio-22.jpg" alt="...">
+            <img class="w-100 h-auto" src="assets/img/portfolio/portfolio-23.jpg" alt="...">
+            <img class="w-100 h-auto" src="assets/img/portfolio/portfolio-24.jpg" alt="...">
+            <img class="w-100 h-auto" src="assets/img/portfolio/portfolio-25.jpg" alt="...">
+          </section>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- SHAPE -->
+    <div class="position-relative" style="z-index: 1;">
+      <div class="shape shape-bottom shape-fluid-x text-light">
+        {{> curves/curve-1}}
+      </div>
+    </div>
+
+    <!-- RELATED -->
+    <section class="pt-7 pt-md-10 bg-light">
+      <div class="container">
+        <div class="row align-items-center mb-5">
+          <div class="col-12 col-md">
+
+            <!-- Heading -->
+            <h3 class="mb-0">
+              Related Work
+            </h3>
+
+            <!-- Text -->
+            <p class="mb-0 text-muted">
+              Other goodies that are similar to this one.
+            </p>
+
+          </div>
+          <div class="col-12 col-md-auto">
+
+            <!-- Button -->
+            <a href="#!" class="btn btn-sm btn-outline-gray-300 d-none d-md-inline">
+              View all
+            </a>
+
+          </div>
+        </div> <!-- / .row -->
+        <div class="row">
+          <div class="col-12 col-md-6 col-lg-4 d-flex">
+
+            <!-- Card -->
+            <a class="card mb-6 mb-lg-0 shadow-light-lg" href="#!">
+
+              <!-- Image -->
+              <div class="card-zoom">
+                <img class="card-img-top" src="assets/img/portfolio/portfolio-1.jpg" alt="...">
+              </div>
+
+              <!-- Body -->
+              <div class="card-body">
+
+                <!-- Shape -->
+                <div class="shape shape-bottom-100 shape-fluid-x text-white">
+                  {{> curves/curve-1}}
+                </div>
+
+                <!-- Preheading -->
+                <h6 class="text-uppercase mb-1 text-muted">Branding</h6>
+
+                <!-- Heading -->
+                <h4 class="mb-0">Curology Campaign</h4>
+
+              </div>
+
+            </a>
+
+          </div>
+          <div class="col-12 col-md-6 col-lg-4 d-flex">
+
+            <!-- Card -->
+            <a class="card mb-6 mb-lg-0 shadow-light-lg" href="#!">
+
+              <!-- Image -->
+              <div class="card-zoom">
+                <img class="card-img-top" src="assets/img/portfolio/portfolio-2.jpg" alt="...">
+              </div>
+
+              <!-- Body -->
+              <div class="card-body">
+
+                <!-- Shape -->
+                <div class="shape shape-bottom-100 shape-fluid-x text-white">
+                  {{> curves/curve-1}}
+                </div>
+
+                <!-- Preheading -->
+                <h6 class="text-uppercase mb-1 text-muted">Branding</h6>
+
+                <!-- Heading -->
+                <h4 class="mb-0">Honest Packaging</h4>
+
+              </div>
+
+            </a>
+
+          </div>
+          <div class="col-12 col-md-6 col-lg-4 d-flex">
+
+            <!-- Card -->
+            <a class="card d-md-none d-lg-flex shadow-light-lg" href="#!">
+
+              <!-- Image -->
+              <div class="card-zoom">
+                <img class="card-img-top" src="assets/img/portfolio/portfolio-4.jpg" alt="...">
+              </div>
+
+              <!-- Body -->
+              <div class="card-body">
+
+                <!-- Shape -->
+                <div class="shape shape-bottom-100 shape-fluid-x text-white">
+                  {{> curves/curve-1}}
+                </div>
+
+                <!-- Preheading -->
+                <h6 class="text-uppercase mb-1 text-muted">Ideation</h6>
+
+                <!-- Heading -->
+                <h4 class="mb-0">Doodle Pad</h4>
+
+              </div>
+
+            </a>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </section>
+
+    <!-- CTA -->
+    <section class="pt-7 pt-md-10 bg-light">
+      <div class="container py-6 py-md-8 border-top border-bottom border-gray-300">
+        <div class="row align-items-center">
+          <div class="col-12 col-md">
+
+            <!-- Heading -->
+            <h3 class="mb-1 fw-bold">
+              Get our stories delivered
+            </h3>
+
+            <!-- Text -->
+            <p class="fs-lg text-muted mb-6 mb-md-0">
+              From us to your inbox weekly.
+            </p>
+
+          </div>
+          <div class="col-12 col-md-5">
+
+            <!-- Form -->
+            <form>
+              <div class="row">
+                <div class="col">
+
+                  <!-- Input -->
+                  <input type="email" class="form-control" placeholder="Enter your email">
+
+                </div>
+                <div class="col-auto ms-n5">
+
+                  <!-- Button -->
+                  <button class="btn btn-primary" type="submit">
+                    Subscribe
+                  </button>
+
+                </div>
+              </div> <!-- / .row -->
+            </form>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </section>
+
+    <!-- FOOTER -->
+    {{> partials/footer classList="bg-light"}}
+
+    <!-- JAVASCRIPT -->
+    {{> partials/scripts}}
+
+  </body>
+</html>

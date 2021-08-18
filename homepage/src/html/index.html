@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {{> partials/head title="Dart-Board"}}
+  </head>
+  <body>
+    <!-- MODALS -->
+    {{> partials/modals}}
+
+    <!-- NAVBAR -->
+    {{> partials/navbar classList="navbar-light bg-white" container="container"
+    button="primary"}}
+
+    <!-- WELCOME -->
+    <section class="pt-4 pt-md-11">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-12 col-md-5 col-lg-6 order-md-2">
+            <!-- Image -->
+            <img
+              src="assets/img/illustrations/illustration-2.png"
+              class="img-fluid mw-md-150 mw-lg-130 mb-6 mb-md-0"
+              alt="..."
+              data-aos="fade-up"
+              data-aos-delay="100"
+            />
+          </div>
+          <div class="col-12 col-md-7 col-lg-6 order-md-1" data-aos="fade-up">
+            <!-- Heading -->
+            <h1 class="display-3 text-center text-md-start">
+              <span class="text-primary">Dart Board</span>. <br />
+              Flutter Feature Framework
+            </h1>
+
+            <!-- Text -->
+            <p class="lead text-center text-md-start text-muted mb-6 mb-lg-8">
+              Leverage the power of Flutter + Feature Development to rapidly
+              develop modular cross-platform applications.
+            </p>
+
+            <!-- Buttons -->
+            <div class="text-center text-md-start">
+              <a
+                href="https://github.com/ahammer/dart_board"
+                class="btn btn-primary shadow lift me-1"
+              >
+                View on GitHub
+                <i class="fe fe-arrow-right d-none d-md-inline ms-3"></i>
+              </a>
+              <a
+                href="https://pub.dev/packages/dart_board_core"
+                class="btn btn-primary-soft lift"
+              >
+                View on Pub.dev
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- / .row -->
+      </div>
+      <!-- / .container -->
+    </section>
+
+    <!-- FEATURES -->
+    <section class="py-8 py-md-11 border-bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-4" data-aos="fade-up">
+            <!-- Icon -->
+            <div class="icon text-primary mb-3">{{> general/settings-1}}</div>
+
+            <!-- Heading -->
+            <h3>Built for developers</h3>
+
+            <!-- Text -->
+            <p class="text-muted mb-6 mb-md-0">
+              Dart-Board is designed to cleanly organize your code into
+              Features, allowing easy Gating and AB Testing of features.
+            </p>
+          </div>
+          <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="50">
+            <!-- Icon -->
+            <div class="icon text-primary mb-3">
+              {{> layout/layout-arrange}}
+            </div>
+
+            <!-- Heading -->
+            <h3>Designed to be modular</h3>
+
+            <!-- Text -->
+            <p class="text-muted mb-6 mb-md-0">
+              Robust architecture to allow encapsulated features. Break down
+              your monolith's with easily swappable features.
+            </p>
+          </div>
+          <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="100">
+            <!-- Icon -->
+            <div class="icon text-primary mb-3">{{> code/code}}</div>
+
+            <!-- Heading -->
+            <h3>Made for freedom</h3>
+
+            <!-- Text -->
+            <p class="text-muted mb-0">
+              Agnostic to feature implementations. Use any technique you are
+              comfortable with. Built in support for Redux and Locator patterns.
+            </p>
+          </div>
+        </div>
+        <!-- / .row -->
+      </div>
+      <!-- / .container -->
+    </section>
+
+    <!-- ABOUT -->
+    <section class="pt-8 pt-md-11 bg-gradient-light-white">
+      <div class="container">
+        <div
+          class="row align-items-center justify-content-between mb-8 mb-md-11"
+        >
+          <div class="col-12 col-md-6 order-md-2" data-aos="fade-left">
+            <!-- Heading -->
+            <h2>
+              Supporting
+              <span class="text-success">
+                <span
+                  data-typed='{"strings": ["Integrations", "Feature Development", "AB Testing", "Feature Gates"]}'
+                ></span
+              ></span>
+            </h2>
+
+            <!-- Text -->
+            <p class="fs-lg text-muted mb-6">
+              Feature development will change your paradigm on how software can
+              be built. Developers are free to focus on only the parts that
+              matter to them. Scope and contain your features as you develop
+              them.
+            </p>
+            <p class="fs-lg text-muted mb-6">
+              Deploy the features you want to the platforms you choose. Easily
+              customizable for any platform.
+            </p>
+
+            <!-- List -->
+            <div class="row">
+              <div class="col-12 col-lg-6">
+                <!-- Item -->
+                <div class="d-flex">
+                  <!-- Check -->
+                  <div
+                    class="badge badge-rounded-circle bg-success-soft mt-1 me-4"
+                  >
+                    <i class="fe fe-check"></i>
+                  </div>
+
+                  <!-- Text -->
+                  <p class="text-success">100% Open Source</p>
+                </div>
+                <!-- Item -->
+                <div class="d-flex">
+                  <!-- Check -->
+                  <div
+                    class="badge badge-rounded-circle bg-success-soft mt-1 me-4"
+                  >
+                    <i class="fe fe-check"></i>
+                  </div>
+
+                  <!-- Text -->
+                  <p class="text-success">Embedded Debugging</p>
+                </div>
+                <!-- Item -->
+                <div class="d-flex">
+                  <!-- Check -->
+                  <div
+                    class="badge badge-rounded-circle bg-success-soft mt-1 me-4"
+                  >
+                    <i class="fe fe-check"></i>
+                  </div>
+
+                  <p class="text-success mb-lg-0">Pre-built Features</p>
+                </div>
+              </div>
+              <div class="col-12 col-lg-6 mb-6 mb-md-0">
+                <!-- Item -->
+                <div class="d-flex">
+                  <!-- Check -->
+                  <span
+                    class="badge badge-rounded-circle bg-success-soft mt-1 me-4"
+                  >
+                    <i class="fe fe-check"></i>
+                  </span>
+
+                  <!-- Text -->
+                  <p class="text-success">Interactive Playground</p>
+                </div>
+
+                <!-- Item -->
+                <div class="d-flex">
+                  <!-- Check -->
+                  <div
+                    class="badge badge-rounded-circle bg-success-soft mt-1 me-4"
+                  >
+                    <i class="fe fe-check"></i>
+                  </div>
+
+                  <!-- Text -->
+                  <p class="text-success">Theme Support</p>
+                </div>
+
+                <!-- Item -->
+                <div class="d-flex">
+                  <!-- Check -->
+                  <div
+                    class="badge badge-rounded-circle bg-success-soft me-1 me-4"
+                  >
+                    <i class="fe fe-check"></i>
+                  </div>
+
+                  <!-- Text -->
+                  <p class="text-success mb-0">Self Documenting</p>
+                </div>
+              </div>
+            </div>
+            <!-- / .row -->
+          </div>
+
+          <div
+            class="col-12 col-md-6 col-lg-5 order-md-1"
+            data-aos="fade-right"
+          >
+            <!-- Card -->
+            <div class="card shadow-light-lg lift lift-lg">
+              <!-- Image -->
+              <img
+                src="assets/img/photos/photo-3.jpg"
+                alt="..."
+                class="card-img-top"
+              />
+
+              <!-- Shape -->
+              <div class="position-relative">
+                <div class="shape shape-bottom shape-fluid-x text-white">
+                  {{> curves/curve-1}}
+                </div>
+              </div>
+
+              <!-- Body -->
+            </div>
+          </div>
+        </div>
+        <!-- / .row -->
+        <div class="row align-items-center">
+          <div class="col-12 col-md-7 col-lg-6" data-aos="fade-right">
+            <!-- Heading -->
+            <h2>
+              Supporting development <br />
+              <span class="text-primary"> is our expertise </span>.
+            </h2>
+
+            <!-- Text -->
+            <p class="fs-lg text-muted mb-6">
+              Built for projects both large and small. It's easy to get started,
+              but leaves you room to grow.
+            </p>
+
+            <!-- List -->
+            <div class="d-flex">
+              <!-- Icon -->
+              <div class="icon text-primary">{{> media/repeat}}</div>
+
+              <div class="ms-5">
+                <!-- Heading -->
+                <h4 class="mb-1">Flutter since &lt; 1.0</h4>
+
+                <!-- Text -->
+                <p class="text-muted mb-6">
+                  Our experience has grown with Flutter. Dart Board is built
+                  around real world problems and solutions when building a large
+                  flutter application.
+                </p>
+              </div>
+            </div>
+            <div class="d-flex">
+              <!-- Icon -->
+              <div class="icon text-primary">{{> code/code}}</div>
+
+              <div class="ms-5">
+                <!-- Heading -->
+                <h4 class="mb-1">Rich development experience</h4>
+
+                <!-- Text -->
+                <p class="text-muted mb-6 mb-md-0">
+                  Experience from developing dozens of apps that have reached
+                  million's of users has fed the design of the framework.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-5 col-lg-6">
+            <div
+              class="w-md-150 w-lg-130 position-relative"
+              data-aos="fade-left"
+            >
+              <!-- Shape -->
+              <div class="shape shape-fluid-y shape-blur-4 text-gray-200">
+                {{> blurs/blur-4}}
+              </div>
+
+              <!-- Image -->
+              <div class="img-skewed img-skewed-start">
+                <!-- Image -->
+                <img
+                  src="assets/img/screenshots/desktop/dashkit.jpg"
+                  class="screenshot img-fluid img-skewed-item"
+                  alt="..."
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- / .row -->
+      </div>
+      <!-- / .container -->
+    </section>
+
+    <!-- SHAPE -->
+    <div class="position-relative mt-n8">
+      <div class="shape shape-bottom shape-fluid-x text-gray-200">
+        {{> curves/curve-3}}
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <section class="pt-12 pt-md-13 bg-gray-200">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-12 col-md-5 col-lg-6 order-md-2">
+            <!-- Image -->
+            <img
+              src="assets/img/illustrations/illustration-8.png"
+              alt="..."
+              class="img-fluid mb-6 mb-md-0"
+            />
+          </div>
+          <div class="col-12 col-md-7 col-lg-6 order-md-1">
+            <!-- Heading -->
+            <h2>
+              Keep your eye on the prize <br />
+              <span class="text-primary">Build and deploy your features</span>
+            </h2>
+
+            <!-- Text -->
+            <p class="fs-lg text-gray-700 mb-6">
+              You don't want to fight the framework, you just want to deliver
+              features. Dart Board is designed to maximize that ability.
+            </p>
+
+            <!-- Stats -->
+            <div class="d-flex">
+              <div class="pe-5">
+                <h3 class="mb-0">
+                  <span
+                    data-countup='{"startVal": 0}'
+                    data-to="13"
+                    data-aos
+                    data-aos-id="countup:in"
+                  ></span>
+                </h3>
+                <p class="text-gray-700 mb-0">Features</p>
+              </div>
+              <div class="border-start border-gray-300"></div>
+              <div class="px-5">
+                <h3 class="mb-0">
+                  <span
+                    data-countup='{"startVal": 0}'
+                    data-to="2"
+                    data-aos
+                    data-aos-id="countup:in"
+                  ></span>
+                </h3>
+                <p class="text-gray-700 mb-0">Templates</p>
+              </div>
+              <div class="border-start border-gray-300"></div>
+              <div class="ps-5">
+                <h3 class="mb-0">
+                  <span
+                    data-countup='{"startVal": 0}'
+                    data-to="2"
+                    data-aos
+                    data-aos-id="countup:in"
+                  ></span>
+                </h3>
+                <p class="text-gray-700 mb-0">Demos</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- / .row -->
+      </div>
+      <!-- / .container -->
+    </section>
+
+    <!-- PRICING -->
+    <section class="pt-9 pt-md-12 bg-gray-200">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-10 col-lg-8 text-center">
+            <!-- Heading -->
+            <h1>100% Free</h1>
+
+            <!-- Text -->
+            <p class="lead text-gray-700">
+              Everything is under a permissive license, do what you want with
+              it.
+            </p>
+            <p class="lead text-gray-700">
+              If you need more of a personal touch, please reach out.
+            </p>
+          </div>
+        </div>
+        <!-- / .row -->
+        <div class="row align-items-center gx-0">
+          <div class="col-12 col-md-6">
+            <!-- Card -->
+            <div
+              class="card rounded-lg shadow-lg mb-6 mb-md-0"
+              style="z-index: 1"
+              data-aos="fade-up"
+            >
+              <!-- Body -->
+              <div class="card-body py-6 py-md-8">
+                <div class="row justify-content-center">
+                  <div class="col-12 col-xl-9">
+                    <!-- Badge -->
+                    <div class="text-center mb-5">
+                      <span class="badge rounded-pill bg-primary-soft">
+                        <span class="h6 fw-bold text-uppercase">Free</span>
+                      </span>
+                    </div>
+
+                    <!-- Features -->
+                    <div class="d-flex">
+                      <!-- Check -->
+                      <div
+                        class="
+                          badge badge-rounded-circle
+                          bg-success-soft
+                          mt-1
+                          me-4
+                        "
+                      >
+                        <i class="fe fe-check"></i>
+                      </div>
+
+                      <!-- Text -->
+                      <p>Dart Board Core: Widgets + Utilities</p>
+                    </div>
+                    <div class="d-flex">
+                      <!-- Check -->
+                      <div
+                        class="
+                          badge badge-rounded-circle
+                          bg-success-soft
+                          mt-1
+                          me-4
+                        "
+                      >
+                        <i class="fe fe-check"></i>
+                      </div>
+
+                      <!-- Text -->
+                      <p>Service/State Locator Feature</p>
+                    </div>
+                    <div class="d-flex">
+                      <!-- Check -->
+                      <div
+                        class="
+                          badge badge-rounded-circle
+                          bg-success-soft
+                          mt-1
+                          me-4
+                        "
+                      >
+                        <i class="fe fe-check"></i>
+                      </div>
+
+                      <!-- Text -->
+                      <p>Redux Bindings</p>
+                    </div>
+                    <div class="d-flex">
+                      <!-- Check -->
+                      <div
+                        class="
+                          badge badge-rounded-circle
+                          bg-success-soft
+                          mt-1
+                          me-4
+                        "
+                      >
+                        <i class="fe fe-check"></i>
+                      </div>
+
+                      <!-- Text -->
+                      <p>Logging and Debug</p>
+                    </div>
+                    <div class="d-flex">
+                      <!-- Check -->
+                      <div
+                        class="
+                          badge badge-rounded-circle
+                          bg-success-soft
+                          mt-1
+                          me-4
+                        "
+                      >
+                        <i class="fe fe-check"></i>
+                      </div>
+
+                      <!-- Text -->
+                      <p>Authentication</p>
+                    </div>
+                    <div class="d-flex">
+                      <!-- Check -->
+                      <div
+                        class="
+                          badge badge-rounded-circle
+                          bg-success-soft
+                          mt-1
+                          me-4
+                        "
+                      >
+                        <i class="fe fe-check"></i>
+                      </div>
+
+                      <!-- Text -->
+                      <p>Firebase Support</p>
+                    </div>
+                    <div class="d-flex">
+                      <!-- Check -->
+                      <div
+                        class="
+                          badge badge-rounded-circle
+                          bg-success-soft
+                          mt-1
+                          me-4
+                        "
+                      >
+                        <i class="fe fe-check"></i>
+                      </div>
+
+                      <!-- Text -->
+                      <p>Particle Effects</p>
+                    </div>
+                    <div class="d-flex">
+                      <!-- Check -->
+                      <div
+                        class="
+                          badge badge-rounded-circle
+                          bg-success-soft
+                          mt-1
+                          me-4
+                        "
+                      >
+                        <i class="fe fe-check"></i>
+                      </div>
+
+                      <!-- Text -->
+                      <p class="mb-0">Minesweeper</p>
+                    </div>
+                  </div>
+                </div>
+                <!-- / .row -->
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 ms-md-n3">
+            <!-- Card -->
+            <div
+              class="card rounded-lg shadow-lg"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <!-- Body -->
+              <div class="card-body py-6 py-md-8">
+                <div class="row justify-content-center">
+                  <div class="col-12 col-xl-10">
+                    <!-- Badge -->
+                    <p class="text-center mb-8">
+                      <span class="badge rounded-pill bg-primary-soft">
+                        <span class="h6 fw-bold text-uppercase"
+                          >Development Rates</span
+                        >
+                      </span>
+                    </p>
+
+                    <!-- Price -->
+                    <div class="d-flex justify-content-center">
+                      <span class="h2 mb-0 mt-2">$</span>
+                      <span
+                        class="price display-2 mb-0"
+                        data-annual="0"
+                        data-monthly="0"
+                        >75
+                      </span>
+                      <span class="h2 align-self-end mb-1">/hr</span>
+                    </div>
+
+                    <!-- Text -->
+                    <p class="text-center text-muted mb-6 mb-md-8">
+                      Sponsored Contributions
+                    </p>
+
+                    <!-- Price -->
+                    <div class="d-flex justify-content-center">
+                      <span class="h2 mb-0 mt-2">$</span>
+                      <span
+                        class="price display-2 mb-0"
+                        data-annual="0"
+                        data-monthly="0"
+                        >150
+                      </span>
+                      <span class="h2 align-self-end mb-1">/hr</span>
+                    </div>
+
+                    <!-- Text -->
+                    <p class="text-center text-muted mb-6 mb-md-8">
+                      Private Development
+                    </p>
+
+                    <!-- Text -
+                    <p class="lead text-center text-muted mb-0 mb-md-10">
+                      We offer variable pricing with discounts for larger
+                      organizations. Get in touch with us and we’ll figure out
+                      something that works for everyone.
+                    </p> -->
+                  </div>
+                </div>
+                <!-- / .row -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- / .row -->
+      </div>
+      <!-- / .container -->
+    </section>
+
+    <!-- SHAPE -->
+    <div class="position-relative mt-n15">
+      <div class="shape shape-bottom shape-fluid-x text-dark">
+        {{> curves/curve-1}}
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <section class="pt-15 bg-dark">
+      <div class="container pt-8 pt-md-11">
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <!-- Item -->
+            <div class="d-flex">
+              <!-- Badge -->
+              <div class="badge badge-lg badge-rounded-circle bg-success">
+                <span>?</span>
+              </div>
+
+              <div class="ms-5">
+                <!-- Heading -->
+                <h4 class="text-white">What can I build with Dart Board?</h4>
+
+                <!-- Text -->
+                <p class="text-muted mb-6 mb-md-8">
+                  The possibilities are endless. It's well suited to 2D application's in flutter, typically business UI's and Simple games (e.g. Puzzle).
+                </p>
+              </div>
+            </div>
+
+            <!-- Item -->
+            <div class="d-flex">
+              <!-- Badge -->
+              <div class="badge badge-lg badge-rounded-circle bg-success">
+                <span>?</span>
+              </div>
+
+              <div class="ms-5">
+                <!-- Heading -->
+                <h4 class="text-white">Are there updates?</h4>
+
+                <!-- Text -->
+                <p class="text-muted mb-6 mb-md-0">
+                  The packages are regularly updated on pub.dev. For those that want
+                  to priority service for issues or features, Sponsored Contributions 
+                  can bring your issues to the front.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <!-- Item -->
+            <div class="d-flex">
+              <!-- Badge -->
+              <div class="badge badge-lg badge-rounded-circle bg-success">
+                <span>?</span>
+              </div>
+
+              <div class="ms-5">
+                <!-- Heading -->
+                <h4 class="text-white">Can you help me build an App?</h4>
+
+                <!-- Text -->
+                <p class="text-muted mb-6 mb-md-8">
+                  Sure, just reach out. We can provide a wide range of bespoke services such as scaffolding, custom feature development and support.
+                </p>
+              </div>
+            </div>
+
+            <!-- Item -->
+            <div class="d-flex">
+              <!-- Badge -->
+              <div class="badge badge-lg badge-rounded-circle bg-success">
+                <span>?</span>
+              </div>
+
+              <div class="ms-5">
+                <!-- Heading -->
+                <h4 class="text-white">
+                  Does it work with library X?
+                </h4>
+
+                <!-- Text -->
+                <p class="text-muted mb-6 mb-md-0">
+                  Dart Board is feature agnostic. Existing modules and libraries can frequently by integrated with ease. You can use it for both new projects and to refactor your existing applications into more consistent patterns.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- / .row -->
+      </div>
+      <!-- / .container -->
+    </section>
+
+    <!-- CTA -->
+    <section class="py-8 py-md-11 bg-dark">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-10 col-lg-8 text-center">
+            <!-- Badge -->
+            <span class="badge rounded-pill bg-gray-700-soft mb-4">
+              <span class="h6 fw-bold text-uppercase">Get started</span>
+            </span>
+
+            <!-- Heading -->
+            <h1 class="display-4 text-white">
+              Get Dart Board and start building.
+            </h1>
+
+            <!-- Text -->
+            <p class="fs-lg text-muted mb-6 mb-md-8">
+              Today is the best day to start. It's all free and ready to use.
+            </p>
+
+            <!-- Button -->
+            <a
+              href="https://pub.dev/packages/dart_board_core"
+              target="_blank"
+              class="btn btn-success lift"
+            >
+              Get starrted @ Github <i class="fe fe-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+        <!-- / .row -->
+      </div>
+      <!-- / .container -->
+    </section>
+
+    <!-- SHAPE -->
+    <div class="position-relative">
+      <div class="shape shape-bottom shape-fluid-x text-gray-200">
+        {{> curves/curve-1}}
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    {{> partials/footer classList="bg-gray-200"}}
+
+    <!-- JAVASCRIPT -->
+    {{> partials/scripts}}
+  </body>
+</html>

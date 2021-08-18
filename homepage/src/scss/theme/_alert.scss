@@ -1,0 +1,22 @@
+//
+// alert.scss
+// Extended from Bootstrap
+//
+
+// Color variants
+//
+// Using Bootstrap's core alert-variant mixin to generate solid background color + yiq colorized text (and making close/links match those colors)
+
+@each $color, $value in $theme-colors {
+  .alert-#{$color} {
+    @include alert-variant(shift-color($value, $alert-bg-scale), shift-color($value, $alert-border-scale), color-contrast(shift-color($value, $alert-bg-scale)));
+
+    .alert-link, .btn-close {
+      color: color-contrast(shift-color($value, $alert-bg-scale));
+    }
+
+    hr {
+      background-color: darken(shift-color($value, $alert-border-scale), 5%);
+    }
+  }
+}

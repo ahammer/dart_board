@@ -1,0 +1,53 @@
+//
+// icon.scss
+// Theme component
+//
+
+.icon > svg {
+  width: $icon-size-base;
+  height: $icon-size-base;
+}
+
+// Use "text-" utilities to fill svg icons
+.icon[class*="text-"] > svg [fill]:not([fill="none"]) {
+  fill: currentColor !important;
+}
+
+
+// Sizing
+
+.icon-xs > svg {
+  width: $icon-size-xs;
+  height: $icon-size-xs;
+}
+
+.icon-sm > svg {
+  width: $icon-size-sm;
+  height: $icon-size-sm;
+}
+
+.icon-lg > svg {
+  width: $icon-size-lg;
+  height: $icon-size-lg;
+}
+
+.icon-xl > svg {
+  width: $icon-size-xl;
+  height: $icon-size-xl;
+}
+
+
+// Circle
+
+.icon-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: $icon-circle-size;
+  height: $icon-circle-size;
+  border-radius: 50%;
+
+  > .fe {
+    font-size: $icon-circle-font-size;
+  }
+}

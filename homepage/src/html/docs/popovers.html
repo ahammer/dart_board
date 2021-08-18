@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {{> partials/head title="Landkit"}}
+  </head>
+  <body class="bg-light" style="padding-top: 84px;">
+
+    <!-- MODALS -->
+    {{> partials/modals}}
+
+    <!-- NAVBAR -->
+    {{> partials/navbar classList="navbar-light fixed-top bg-white border-bottom" container="container-fluid" button="primary"}}
+
+    <!-- BREADCRUMB -->
+    <nav class="d-lg-none bg-gray-800">
+      <div class="container-fluid">
+        <div class="row align-items-center">
+          <div class="col">
+
+            <!-- Breadcrumb -->
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <span class="text-white">
+                  Docs
+                </span>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                <span class="text-white">
+                  Popovers
+                </span>
+              </li>
+            </ol>
+
+          </div>
+          <div class="col-auto">
+
+            <!-- Toggler -->
+            <div class="navbar-dark">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidenavCollapse" aria-controls="sidenavCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </div>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </nav>
+
+    <!-- CONTENT -->
+    <section>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 col-lg-3 col-xl-2 px-lg-0 border-bottom border-bottom-lg-0 border-end-lg border-gray-300 sidenav sidenav-start">
+
+            {{> partials/sidenav}}
+
+          </div>
+          <div class="col-12 col-lg-6 col-xl-8 offset-lg-3 offset-xl-2 py-7 py-lg-9 px-lg-7">
+
+            <!-- Heading -->
+            <h1 class="mb-1">Popovers</h1>
+
+            <!-- Bootstrap/Plugin Link -->
+            <p>
+              <a class="text-decoration-none" href="https://getbootstrap.com/docs/5.0/components/popovers/" target="_blank">
+                <i class="fe fe-external-link pe-1"></i>
+                Bootstrap documentation
+              </a>
+            </p>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Card -->
+            <div class="card">
+              <div class="card-body">
+
+                <button type="button" class="btn btn-secondary mb-1" data-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">
+                  Popover on top
+                </button>
+
+                <button type="button" class="btn btn-secondary mb-1" data-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Right popover">
+                  Popover on right
+                </button>
+
+                <button type="button" class="btn btn-secondary mb-1" data-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Bottom popover">
+                  Popover on bottom
+                </button>
+
+                <button type="button" class="btn btn-secondary mb-1" data-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Left popover">
+                  Popover on left
+                </button>
+
+              </div>
+            </div>
+
+          </div>
+          <div class="col-12 col-lg-3 col-xl-2 d-none d-lg-block px-lg-0 sidenav sidenav-end"></div>
+        </div> <!-- / .row -->
+      </div>
+    </section>
+
+    <!-- JAVASCRIPT -->
+    {{> partials/scripts}}
+
+  </body>
+</html>

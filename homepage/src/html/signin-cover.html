@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {{> partials/head title="Landkit"}}
+  </head>
+  <body>
+
+    <!-- CONTENT -->
+    <section>
+      <div class="container d-flex flex-column">
+        <div class="row align-items-center justify-content-center gx-0 min-vh-100">
+          <div class="col-12 col-md-6 col-lg-4 py-8 py-md-11">
+
+            <!-- Heading -->
+            <h1 class="mb-0 fw-bold">
+              Sign in
+            </h1>
+
+            <!-- Text -->
+            <p class="mb-6 text-muted">
+              Simplify your workflow in minutes.
+            </p>
+
+            <!-- Form -->
+            <form class="mb-6">
+
+              <!-- Email -->
+              <div class="form-group">
+                <label class="form-label" for="email">
+                  Email Address
+                </label>
+                <input type="email" class="form-control" id="email" placeholder="name@address.com">
+              </div>
+
+              <!-- Password -->
+              <div class="form-group mb-5">
+                <label class="form-label" for="password">
+                  Password
+                </label>
+                <input type="password" class="form-control" id="password" placeholder="Enter your password">
+              </div>
+
+              <!-- Submit -->
+              <button class="btn w-100 btn-primary" type="submit">
+                Sign in
+              </button>
+
+            </form>
+
+            <!-- Text -->
+            <p class="mb-0 fs-sm text-muted">
+              Don't have an account yet? <a href="signup-cover.html">Sign up</a>.
+            </p>
+
+          </div>
+          <div class="col-lg-7 offset-lg-1 align-self-stretch d-none d-lg-block">
+
+            <!-- Image -->
+            <div class="h-100 w-cover bg-cover" style="background-image: url(assets/img/covers/cover-14.jpg);"></div>
+
+            <!-- Shape -->
+            <div class="shape shape-start shape-fluid-y text-white">
+              {{> angles/angle-start}}
+            </div>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </section>
+
+    <!-- JAVASCRIPT -->
+    {{> partials/scripts}}
+
+  </body>
+</html>

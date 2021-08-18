@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {{> partials/head title="Landkit"}}
+  </head>
+  <body class="bg-light" style="padding-top: 84px;">
+
+    <!-- MODALS -->
+    {{> partials/modals}}
+
+    <!-- NAVBAR -->
+    {{> partials/navbar classList="navbar-light fixed-top bg-white border-bottom" container="container-fluid" button="primary"}}
+
+    <!-- BREADCRUMB -->
+    <nav class="d-lg-none bg-gray-800">
+      <div class="container-fluid">
+        <div class="row align-items-center">
+          <div class="col">
+
+            <!-- Breadcrumb -->
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <span class="text-white">
+                  Docs
+                </span>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                <span class="text-white">
+                  Introduction
+                </span>
+              </li>
+            </ol>
+
+          </div>
+          <div class="col-auto">
+
+            <!-- Toggler -->
+            <div class="navbar-dark">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidenavCollapse" aria-controls="sidenavCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </div>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </nav>
+
+    <!-- CONTENT -->
+    <section>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 col-lg-3 col-xl-2 px-lg-0 border-bottom border-bottom-lg-0 border-end-lg border-gray-300 sidenav sidenav-start">
+
+            {{> partials/sidenav}}
+
+          </div>
+          <div class="col-12 col-lg-6 col-xl-8 offset-lg-3 offset-xl-2 py-7 py-lg-9 px-lg-7">
+
+            <!-- Heading -->
+            <h1 class="mb-1">Introduction</h1>
+
+            <!-- Text -->
+            <p class="fs-lg text-gray-700 mb-5">
+              How to get started with Landkit!
+            </p>
+
+            <!-- Text -->
+            <p class="text-gray-700">
+              This guide will help you get started with Landkit! All the important stuff – compiling the source, file structure, build tools, file includes – is documented here, but should you have any questions, always feel free to reach out to support@goodthemes.co.
+            </p>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Heading -->
+            <h3 class="fw-bold" id="newAndExtendedComponents">
+              New & extended components
+            </h3>
+
+            <!-- Text -->
+            <p class="text-gray-700">
+              Landkit extends Bootstrap by not only building on top of its existing components, but also introducing entirely new components and plugins. The best way to get an overview of this is to run through our <a href="alerts.html">components</a>.
+            </p>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Heading -->
+            <h3 class="fw-bold" id="devSetup">
+              Dev setup
+            </h3>
+
+            <!-- Text -->
+            <p class="text-gray-700">
+              To get started, you need to do the following:
+            </p>
+
+            <!-- List -->
+            <ol class="text-gray-700">
+              <li><strong>Make sure you have Node installed</strong> since Landkit uses npm to manage dependencies. If you don't, installing is quite easy, just visit the <a href="https://nodejs.org/en/download/">Node Downloads page</a> and install it. </li>
+              <li><strong>Unzip your theme and open your command line</strong>, making sure your command line prompt is at the root of the unzipped theme directory. </li>
+              <li><strong class="badge bg-danger-soft"><code>npm install</code></strong>: Open your command line to the root directory of your unzipped theme and run to install all of Landkit's dependencies.</li>
+            </ol>
+
+            <!-- Text -->
+            <p class="text-gray-700">
+              It's that simple! If you're not used to using terminal, don't worry, this is as advanced as it gets. If you want to kill the server and stop Webpack, just hit <code>Control + C</code>.
+            </p>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Heading -->
+            <h3 class="fw-bold" id="compiling">
+              Compiling
+            </h3>
+
+            <!-- Text -->
+            <p class="text-gray-700">
+              Webpack is used to manage Landkit development. Open your command line to the root directory of the theme to use the following commands:
+            </p>
+
+            <!-- List -->
+            <ul class="text-gray-700">
+              <li>
+                <strong class="badge bg-danger-soft"><code>npm start</code></strong>: Compile and watch the SCSS/JS/HTML, use Live Reload to update browsers instantly, start a server, and pop a tab in your default browser. Any changes made to the source files will be compiled as soon as you save the file.
+              </li>
+              <li>
+                <strong class="badge bg-danger-soft"><code>npm run build</code></strong>: Generates a <code>/dist</code> directory with all the production files.
+              </li>
+            </ul>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Heading -->
+            <h3 class="fw-bold mb-5" id="fileStructure">
+              File structure
+            </h3>
+
+            <!-- List -->
+            <ul>
+              <li>
+                <strong>📁 dist</strong> - Generated production files
+              </li>
+              <li>
+                <strong>📁 node_modules</strong> - Directory where <code>npm</code> installs dependencies
+              </li>
+              <li>
+                <strong>📁 src</strong>
+                <ul>
+                  <li>
+                    <strong>📁 favicon</strong> - Favicon files
+                  </li>
+                  <li>
+                    <strong>📁 fonts</strong> - HK Grotesk Pro font and Feather Icon font
+                  </li>
+                  <li>
+                    <strong>📁 html</strong> - HTML source
+                  </li>
+                  <li>
+                    <strong>📁 img</strong> - Image assets
+                  </li>
+                  <li>
+                    <strong>📁 js</strong> - Javascript source
+                  </li>
+                  <li>
+                    <strong>📁 partials</strong> - HTML partials
+                  </li>
+                  <li>
+                    <strong>📁 scss</strong> - SCSS source for theme
+                  </li>
+                  <li>
+                    <strong>📁 video</strong> - Video assets
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <strong>📄 .browserslistrc</strong> - Config to share target browsers and Node.js versions between different front-end tools
+              </li>
+              <li>
+                <strong>📄 .gitignore</strong> - Hide all unnecessary files from Git
+              </li>
+              <li>
+                <strong>📄 LICENSE.md</strong> - Theme license
+              </li>
+              <li>
+                <strong>📄 package.json</strong> - List of dependencies and npm information
+              </li>
+              <li>
+                <strong>📄 package-lock.json</strong> - Describes the exact dependency tree that was generated
+              </li>
+              <li>
+                <strong>📄 README.md</strong> - Theme info
+              </li>
+              <li>
+                <strong>📄 webpack.config.js</strong> - Webpack config file
+              </li>
+            </ul>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Heading -->
+            <h3 class="fw-bold" id="gulpFileIncludes">
+              Handlebars Webpack Plugin
+            </h3>
+
+            <!-- Text -->
+            <p class="text-gray-700">
+              The <a href="https://www.npmjs.com/package/handlebars-webpack-plugin" target="_blank">handlebars-webpack-plugin</a> package is used to make partials easier to use for initial development. For Landkit, we only use it for a handful of components that are found on most pages. The following partials are available:
+            </p>
+
+            <!-- List -->
+            <ul class="text-gray-700">
+              <li>
+                <code>footer.html</code>
+                <ul>
+                  <li>
+                    <code>classList (string)</code> - Parameter for passing additional classnames
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <code>head.html</code>
+                <ul>
+                  <li>
+                    <code>title (string)</code> - Parameter for the page title
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <code>modals.html</code>
+              </li>
+              <li>
+                <code>navbar.html</code>
+                <ul>
+                  <li>
+                    <code>classList (string)</code> - Parameter for passing additional classnames
+                  </li>
+                  <li>
+                    <code>container (string)</code> - Parameter for passing container classname
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <code>scripts.html</code>
+              </li>
+              <li>
+                <code>sidenav.html</code>
+              </li>
+            </ul>
+
+            <!-- Text -->
+            <p class="text-gray-700">
+              Easily create new <code>.html</code> partials inside the <code>/partials</code> folder and point to them
+              from any file by specifying the path to the partial file inside <code>\{{> }}</code> curly brackets.
+            </p>
+
+            <!-- Text -->
+            <p class="text-gray-700">
+              Please read the <a href="https://www.npmjs.com/package/handlebars-webpack-plugin" target="_blank">official package documentation</a> for more info.
+            </p>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Heading -->
+            <h3 class="fw-bold mb-5" id="customizingScss">
+              Customizing SCSS
+            </h3>
+
+            <!-- Text -->
+            <p class="text-gray-700">
+              There are 2 basic ways to customize your theme...
+            </p>
+
+            <!-- List -->
+            <ol class="text-gray-700">
+              <li>
+                <strong>Customizing SCSS.</strong> This is more versatile and sustainable way to customize Landkit, but requires the <code>webpack</code> compilation steps outlined above. The 2 major benefits of this strategy are using variable overrides to easily customize theme styles, plus you never have to touch Bootstrap or Landkit's source, meaning future updates will be much, much, simpler. There are 2 provided files that make this strategy simple to implement:
+                <ul>
+                  <li>
+                    <code>user-variables.scss</code>: This file can be used to override Bootstrap core and Landkit variables for customizing elements that have been tied to variables.
+                  </li>
+                  <li>
+                    <code>user.scss</code>: This file can be used for writing custom SCSS that will be compiled alongside Bootstrap and Landkit's core files.
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <strong>Compiled CSS.</strong> If you plan on using Landkit "as is", or only need limited customization, feel free to simply attach the compiled <code>theme.bundle.css</code> file in the <code>dist/assets/css</code> directory.
+              </li>
+            </ol>
+
+          </div>
+          <div class="col-12 col-lg-3 col-xl-2 d-none d-lg-block px-lg-0 sidenav sidenav-end">
+            <div class="my-7 my-lg-9 px-lg-7 border-start-lg border-gray-300">
+
+              <!-- Heading -->
+              <h6 class="text-uppercase fw-bold">
+                Jump to
+              </h6>
+
+              <!-- Links -->
+              <ul class="list mb-0">
+                <li class="list-item">
+                  <a class="list-link" href="#newAndExtendedComponents" data-scroll>New & extended components</a>
+                </li>
+                <li class="list-item">
+                  <a class="list-link" href="#devSetup" data-scroll>Dev setup</a>
+                </li>
+                <li class="list-item">
+                  <a class="list-link" href="#compiling" data-scroll>Compiling</a>
+                </li>
+                <li class="list-item">
+                  <a class="list-link" href="#fileStructure" data-scroll>File structure</a>
+                </li>
+                <li class="list-item d-flex">
+                  <a class="list-link" href="#gulpFileIncludes" data-scroll>Handlebars Webpack Plugin</a>
+                </li>
+                <li class="list-item d-flex">
+                  <a class="list-link" href="#customizingScss" data-scroll>Customizing SCSS</a>
+                </li>
+              </ul>
+
+            </div>
+          </div>
+        </div> <!-- / .row -->
+      </div>
+    </section>
+
+    <!-- JAVASCRIPT -->
+    {{> partials/scripts}}
+
+  </body>
+</html>

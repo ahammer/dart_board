@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {{> partials/head title="Landkit"}}
+  </head>
+  <body class="bg-light">
+
+    <!-- MODALS -->
+    {{> partials/modals}}
+
+    <!-- NAVBAR -->
+    {{> partials/navbar classList="navbar-light bg-white" container="container-md" button="primary"}}
+
+    <!-- BREADCRUMB -->
+    <nav class="bg-dark d-md-none">
+      <div class="container-md">
+        <div class="row align-items-center">
+          <div class="col">
+
+            <!-- Breadcrumb -->
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <span class="text-white">
+                  Account
+                </span>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                <span class="text-white">
+                  Security
+                </span>
+              </li>
+            </ol>
+
+          </div>
+          <div class="col-auto">
+
+            <!-- Toggler -->
+            <div class="navbar-dark">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidenavCollapse" aria-controls="sidenavCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </div>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </nav>
+
+    <!-- HEADER -->
+    <header class="bg-dark pt-9 pb-11 d-none d-md-block">
+      <div class="container-md">
+        <div class="row align-items-center">
+          <div class="col">
+
+            <!-- Heading -->
+            <h1 class="fw-bold text-white mb-2">
+              Account Settings
+            </h1>
+
+            <!-- Text -->
+            <p class="fs-lg text-white-75 mb-0">
+              Settings for <a class="text-reset" href="mailto:dhgamache@gmail.com">dhgamache@gmail.com</a>
+            </p>
+
+          </div>
+          <div class="col-auto">
+
+            <!-- Button -->
+            <button class="btn btn-sm btn-gray-300-20">
+              Log Out
+            </button>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </header>
+
+    <!-- MAIN -->
+    <main class="pb-8 pb-md-11 mt-md-n6">
+      <div class="container-md">
+        <div class="row">
+          <div class="col-12 col-md-3">
+
+            <!-- Card -->
+            <div class="card card-bleed border-bottom border-bottom-md-0 shadow-light-lg">
+
+              <!-- Collapse -->
+              <div class="collapse d-md-block" id="sidenavCollapse">
+                <div class="card-body">
+
+                  <!-- Heading -->
+                  <h6 class="fw-bold text-uppercase mb-3">
+                    Account
+                  </h6>
+
+                  <!-- List -->
+                  <ul class="card-list list text-gray-700 mb-6">
+                    <li class="list-item">
+                      <a class="list-link text-reset" href="account-general.html">
+                        General
+                      </a>
+                    </li>
+                    <li class="list-item active">
+                      <a class="list-link text-reset" href="account-security.html">
+                        Security
+                      </a>
+                    </li>
+                    <li class="list-item">
+                      <a class="list-link text-reset" href="account-notifications.html">
+                        Notifications
+                      </a>
+                    </li>
+                  </ul>
+
+                  <!-- Heading -->
+                  <h6 class="fw-bold text-uppercase mb-3">
+                    Billing
+                  </h6>
+
+                  <!-- List -->
+                  <ul class="card-list list text-gray-700 mb-0">
+                    <li class="list-item">
+                      <a class="list-link text-reset" href="billing-plans-and-payment.html">
+                        Plans & Payment
+                      </a>
+                    </li>
+                    <li class="list-item">
+                      <a class="list-link text-reset" href="billing-users.html">
+                        Users
+                      </a>
+                    </li>
+                  </ul>
+
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <div class="col-12 col-md-9">
+
+            <!-- Card -->
+            <div class="card card-bleed shadow-light-lg mb-6">
+              <div class="card-header">
+                <div class="row align-items-center">
+                  <div class="col">
+
+                    <!-- Heading -->
+                    <h4 class="mb-0">
+                      Two Factor
+                    </h4>
+
+                  </div>
+                  <div class="col-auto me-n5">
+
+                    <!-- Text -->
+                    <small class="text-gray-700">
+                      Requred?
+                    </small>
+
+                  </div>
+                  <div class="col-auto">
+
+                    <!-- Switch -->
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="twoFactorSwitch" checked>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+
+                <!-- List group -->
+                <div class="list-group list-group-flush">
+                  <div class="list-group-item">
+                    <div class="row align-items-center">
+                      <div class="col">
+
+                        <!-- Heading -->
+                        <p class="mb-0">
+                          Authenticator App
+                        </p>
+
+                        <!-- Text -->
+                        <small class="text-gray-700">
+                          Google auth or 1Password
+                        </small>
+
+                      </div>
+                      <div class="col-auto">
+
+                        <!-- Button -->
+                        <button class="btn btn-xs btn-outline-white">
+                          Setup
+                        </button>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="list-group-item">
+                    <div class="row align-items-center">
+                      <div class="col">
+
+                        <!-- Heading -->
+                        <p class="mb-0">
+                          SMS Recovery <i class="fe fe-info text-gray-500" data-bs-toggle="tooltip" title="We use the the phone number you provide in General"></i>
+                        </p>
+
+                        <!-- Text -->
+                        <small class="text-gray-700">
+                          Standard messaging rates apply
+                        </small>
+
+                      </div>
+                      <div class="col-auto">
+
+                        <!-- Button -->
+                        <button class="btn btn-xs btn-danger">
+                          Disable
+                        </button>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="list-group-item">
+                    <div class="row align-items-center">
+                      <div class="col">
+
+                        <!-- Heading -->
+                        <p class="mb-0">
+                          Recovery Codes <i class="fe fe-info text-gray-500" data-bs-toggle="tooltip" title="We use the the phone number you provide in General"></i>
+                        </p>
+
+                        <!-- Text -->
+                        <small class="text-gray-700">
+                          One time use safety codes
+                        </small>
+
+                      </div>
+                      <div class="col-auto">
+
+                        <!-- Button -->
+                        <button class="btn btn-xs btn-outline-white">
+                          Reveal
+                        </button>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Card -->
+            <div class="card card-bleed shadow-light-lg mb-6">
+              <div class="card-header">
+                <div class="row align-items-center">
+                  <div class="col">
+
+                    <!-- Heading -->
+                    <h4 class="mb-0">
+                      Password
+                    </h4>
+
+                  </div>
+                  <div class="col-auto">
+
+                    <!-- Link -->
+                    <a class="small text-gray-700" href="#!">
+                      Forgot your password?
+                    </a>
+
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+
+                <!-- Current password -->
+                <div class="form-group">
+                  <label class="form-label" for="currentPassword">Current Password</label>
+                  <input class="form-control" id="currentPassword" type="password">
+                </div>
+
+                <!-- New password -->
+                <div class="form-group">
+                  <label class="form-label" for="newPassword">New Password</label>
+                  <input class="form-control" id="newPassword" type="password">
+                </div>
+
+                <!-- Confirm password -->
+                <div class="form-group">
+                  <label class="form-label" for="confirmPassword">Confirm Password</label>
+                  <input class="form-control" id="confirmPassword" type="password">
+                </div>
+
+
+                <div class="row">
+                  <div class="col-12 col-md-auto">
+
+                    <!-- Button -->
+                    <button class="btn w-100 btn-primary" type="submit">
+                      Update Password
+                    </button>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Card -->
+            <div class="card card-bleed shadow-light-lg">
+              <div class="card-header">
+                <div class="row align-items-center">
+                  <div class="col">
+
+                    <!-- Heading -->
+                    <h4 class="mb-0">
+                      Device History
+                    </h4>
+
+                  </div>
+                  <div class="col-auto">
+
+                    <!-- Link -->
+                    <a class="small text-gray-700" href="#!">
+                      Log out all
+                    </a>
+
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+
+                <!-- List group -->
+                <div class="list-group list-group-flush">
+                  <div class="list-group-item">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+
+                        <!-- Icon -->
+                        <div class="icon icon-sm text-gray-400">
+                          {{> devices/iphone-x}}
+                        </div>
+
+                      </div>
+                      <div class="col ms-n5">
+
+                        <!-- Heading -->
+                        <p class="mb-0">
+                          iPhone 11
+                        </p>
+
+                        <!-- Text -->
+                        <small class="text-gray-700">
+                          Los Angeles, CA · April 20 at 4:16PM
+                        </small>
+
+                      </div>
+                      <div class="col-auto">
+
+                        <!-- Button -->
+                        <button class="btn btn-xs btn-outline-white">
+                          Log out
+                        </button>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="list-group-item">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+
+                        <!-- Icon -->
+                        <div class="icon icon-sm text-gray-400">
+                          {{> devices/imac}}
+                        </div>
+
+                      </div>
+                      <div class="col ms-n5">
+
+                        <!-- Heading -->
+                        <p class="mb-0">
+                          iMac OSX · Chrome v80.02
+                        </p>
+
+                        <!-- Text -->
+                        <small class="text-gray-700">
+                          Los Angeles, CA · April 20 at 4:16PM
+                        </small>
+
+                      </div>
+                      <div class="col-auto">
+
+                        <!-- Button -->
+                        <button class="btn btn-xs btn-outline-white">
+                          Log out
+                        </button>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="list-group-item">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+
+                        <!-- Icon -->
+                        <div class="icon icon-sm text-gray-400">
+                          {{> devices/iphone-x}}
+                        </div>
+
+                      </div>
+                      <div class="col ms-n5">
+
+                        <!-- Heading -->
+                        <p class="mb-0">
+                          iPhone 11
+                        </p>
+
+                        <!-- Text -->
+                        <small class="text-gray-700">
+                          Los Angeles, CA · April 20 at 4:16PM
+                        </small>
+
+                      </div>
+                      <div class="col-auto">
+
+                        <!-- Button -->
+                        <button class="btn btn-xs btn-outline-white">
+                          Log out
+                        </button>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="list-group-item">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+
+                        <!-- Icon -->
+                        <div class="icon icon-sm text-gray-400">
+                          {{> devices/imac}}
+                        </div>
+
+                      </div>
+                      <div class="col ms-n5">
+
+                        <!-- Heading -->
+                        <p class="mb-0">
+                          iMac OSX · Chrome v80.02
+                        </p>
+
+                        <!-- Text -->
+                        <small class="text-gray-700">
+                          Los Angeles, CA · April 20 at 4:16PM
+                        </small>
+
+                      </div>
+                      <div class="col-auto">
+
+                        <!-- Button -->
+                        <button class="btn btn-xs btn-outline-white">
+                          Log out
+                        </button>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </main>
+
+    <!-- CURVE -->
+    <div class="position-relative">
+      <div class="shape shape-bottom shape-fluid-x text-dark">
+        {{> curves/curve-1}}
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    {{> partials/footer classList="bg-dark"}}
+
+    <!-- JAVASCRIPT -->
+    {{> partials/scripts}}
+
+  </body>
+</html>

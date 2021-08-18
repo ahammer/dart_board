@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {{> partials/head title="Landkit"}}
+  </head>
+  <body class="bg-light" style="padding-top: 84px;">
+
+    <!-- MODALS -->
+    {{> partials/modals}}
+
+    <!-- NAVBAR -->
+    {{> partials/navbar classList="navbar-light fixed-top bg-white border-bottom" container="container-fluid" button="primary"}}
+
+    <!-- BREADCRUMB -->
+    <nav class="d-lg-none bg-gray-800">
+      <div class="container-fluid">
+        <div class="row align-items-center">
+          <div class="col">
+
+            <!-- Breadcrumb -->
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <span class="text-white">
+                  Docs
+                </span>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                <span class="text-white">
+                  Lift
+                </span>
+              </li>
+            </ol>
+
+          </div>
+          <div class="col-auto">
+
+            <!-- Toggler -->
+            <div class="navbar-dark">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidenavCollapse" aria-controls="sidenavCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </div>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </nav>
+
+    <!-- CONTENT -->
+    <section>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 col-lg-3 col-xl-2 px-lg-0 border-bottom border-bottom-lg-0 border-end-lg border-gray-300 sidenav sidenav-start">
+
+            {{> partials/sidenav}}
+
+          </div>
+          <div class="col-12 col-lg-6 col-xl-8 offset-lg-3 offset-xl-2 py-7 py-lg-9 px-lg-7">
+
+            <!-- Heading -->
+            <div class="d-flex align-items-center">
+              <h1 class="mb-1 me-3">Lift</h1>
+              <span class="badge rounded-pill bg-primary-soft mt-1">
+                <span class="h6 text-uppercase fw-bold">Landkit only</span>
+              </span>
+            </div>
+
+            <!-- Text -->
+            <p class="fs-lg text-gray-700">
+              Visually lifts an element on hover and focus.
+            </p>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <div class="row mb-5">
+              <div class="col-12 col-xl-4 d-flex">
+
+                <!-- Card -->
+                <div class="card lift lift-lg mb-6 mb-xl-0 pt-14 overlay overlay-black overlay-30 bg-cover shadow-light-lg" style="background-image: url(../assets/img/photos/photo-8.jpg);">
+
+                  <!-- Body -->
+                  <a class="card-body mt-auto" href="#!">
+
+                    <!-- Heading -->
+                    <h3 class="text-white">
+                      Background Photo + 30% Dark Overlay
+                    </h3>
+
+                    <!-- Text -->
+                    <p class="mb-0 text-white">
+                      A much lighter overlay work on darker photos, and is easy to control with utilities.
+                    </p>
+
+                  </a>
+
+                  <!-- Meta -->
+                  <a class="card-meta" href="#!">
+
+                    <!-- Divider -->
+                    <hr class="card-meta-divider bg-white-20">
+
+                    <!-- Avatar -->
+                    <div class="avatar avatar-sm me-2">
+                      <img src="../assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                    </div>
+
+                    <!-- Author -->
+                    <h6 class="text-uppercase text-white-80 me-2 mb-0">
+                      Ab Hadley
+                    </h6>
+
+                    <!-- Date -->
+                    <p class="h6 text-uppercase text-white-80 mb-0 ms-auto">
+                      <time datetime="2019-05-02">May 02</time>
+                    </p>
+
+                  </a>
+
+                </div>
+
+              </div>
+              <div class="col-12 col-xl-4 d-flex">
+
+                <!-- Card -->
+                <div class="card lift lift-lg mb-6 mb-xl-0 shadow-light-lg">
+
+                  <!-- Image -->
+                  <a class="card-img-top" href="#!">
+                    <img src="../assets/img/photos/photo-7.jpg" alt="..." class="card-img-top">
+                  </a>
+
+                  <div class="position-relative">
+                    <div class="shape shape-bottom shape-fluid-x text-white">
+                      {{> curves/curve-1}}
+                    </div>
+                  </div>
+
+                  <!-- Body -->
+                  <a class="card-body" href="#!">
+
+                    <!-- Heading -->
+                    <h3>
+                      Photo on Top + 33.3% Width.
+                    </h3>
+
+                    <!-- Text -->
+                    <p class="mb-0 text-muted">
+                      The markup for this card is identical to that for the 50% Width article above.
+                    </p>
+
+                  </a>
+
+                  <!-- Meta -->
+                  <a class="card-meta" href="#!">
+
+                    <!-- Divider -->
+                    <hr class="card-meta-divider">
+
+                    <!-- Avatar -->
+                    <div class="avatar avatar-sm me-2">
+                      <img src="../assets/img/avatars/avatar-2.jpg" alt="..." class="avatar-img rounded-circle">
+                    </div>
+
+                    <!-- Author -->
+                    <h6 class="text-uppercase text-muted me-2 mb-0">
+                      Adolfo Hess
+                    </h6>
+
+                    <!-- Date -->
+                    <p class="h6 text-uppercase text-muted mb-0 ms-auto">
+                      <time datetime="2019-05-02">May 02</time>
+                    </p>
+
+                  </a>
+
+                </div>
+
+              </div>
+              <div class="col-12 col-xl-4 d-flex">
+
+                <!-- Card -->
+                <div class="card lift lift-lg shadow-light-lg">
+
+                  <!-- Body -->
+                  <a class="card-body my-auto" href="#!">
+
+                    <!-- Heading -->
+                    <h3 class="mt-auto">
+                      All Text Card.
+                    </h3>
+
+                    <!-- Text -->
+                    <p class="mb-0 text-muted">
+                      Notice how this card stays the same height as its siblings and this text is vertically centered (at desktop sizes). This keeps layouts looking consistent no matter what type of content occupies each sibling card.
+                    </p>
+
+                  </a>
+
+                  <!-- Meta -->
+                  <a class="card-meta" href="#!">
+
+                    <!-- Divider -->
+                    <hr class="card-meta-divider">
+
+                    <!-- Avatar -->
+                    <div class="avatar avatar-sm me-2">
+                      <img src="../assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                    </div>
+
+                    <!-- Author -->
+                    <h6 class="text-uppercase text-muted me-2 mb-0">
+                      Ab Hadley
+                    </h6>
+
+                    <!-- Date -->
+                    <p class="h6 text-uppercase text-muted mb-0 ms-auto">
+                      <time datetime="2019-05-02">May 02</time>
+                    </p>
+
+                  </a>
+
+                </div>
+
+              </div>
+            </div> <!-- / .row -->
+
+            <!-- Button -->
+            <a href="#!" class="btn w-100 btn-primary lift mb-5">
+              Lift Button
+            </a>
+
+            <!-- Card -->
+            <div class="card">
+              <div class="card-footer rounded bg-black">
+                <code class="highlight html">
+                  &lt;div&nbsp;class=&quot;card&nbsp;lift&nbsp;lift-lg&quot;&gt;<br />&nbsp;&nbsp;...<br />&lt;/div&gt;<br /><br />&lt;a&nbsp;href=&quot;#!&quot;&nbsp;class=&quot;btn&nbsp;w-100&nbsp;btn-primary&nbsp;lift&quot;&gt;<br />&nbsp;&nbsp;Lift Button<br />&lt;/a&gt;
+                </code>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-12 col-lg-3 col-xl-2 d-none d-lg-block px-lg-0 sidenav sidenav-end"></div>
+        </div> <!-- / .row -->
+      </div>
+    </section>
+
+    <!-- JAVASCRIPT -->
+    {{> partials/scripts}}
+
+  </body>
+</html>

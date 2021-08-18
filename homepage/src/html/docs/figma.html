@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {{> partials/head title="Landkit"}}
+  </head>
+  <body class="bg-light" style="padding-top: 84px;">
+
+    <!-- MODALS -->
+    {{> partials/modals}}
+
+    <!-- NAVBAR -->
+    {{> partials/navbar classList="navbar-light fixed-top bg-white border-bottom" container="container-fluid" button="primary"}}
+
+    <!-- BREADCRUMB -->
+    <nav class="d-lg-none bg-gray-800">
+      <div class="container-fluid">
+        <div class="row align-items-center">
+          <div class="col">
+
+            <!-- Breadcrumb -->
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <span class="text-white">
+                  Docs
+                </span>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                <span class="text-white">
+                  Figma
+                </span>
+              </li>
+            </ol>
+
+          </div>
+          <div class="col-auto">
+
+            <!-- Toggler -->
+            <div class="navbar-dark">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidenavCollapse" aria-controls="sidenavCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </div>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </nav>
+
+    <!-- CONTENT -->
+    <section>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 col-lg-3 col-xl-2 px-lg-0 border-bottom border-bottom-lg-0 border-end-lg border-gray-300 sidenav sidenav-start">
+
+            {{> partials/sidenav}}
+
+          </div>
+          <div class="col-12 col-lg-6 col-xl-8 offset-lg-3 offset-xl-2 py-7 py-lg-9 px-lg-7">
+
+            <!-- Heading -->
+            <h1 class="mb-1" id="alerts">Figma</h1>
+
+            <!-- Text -->
+            <p class="fs-lg text-gray-700">
+              Landkit was designed in Figma, the best new design tool.
+            </p>
+
+            <!-- Bootstrap/Plugin Link -->
+            <p>
+              <a class="text-decoration-none" href="https://www.figma.com" target="_blank">
+                <i class="fe fe-external-link pe-1"></i>
+                Figma website
+              </a>
+            </p>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Heading -->
+            <h3 class="fw-bold" id="whyFigma">Why Figma?</h3>
+
+            <!-- Text -->
+            <p class="text-gray-700">
+              While Figma is a relatively new design tool, it has taken the top spot in our design toolkit. Having been a Sketch user since it's inception, it was a big decision to switch...but we so glad we did. Here are the biggest benefits we've found with Figma:
+            </p>
+
+            <!-- List -->
+            <ul class="text-gray-700">
+              <li>Performance is significantly better with large files</li>
+              <li>Work on any machine and you have "the latest"</li>
+              <li>Built in version history</li>
+              <li>Components and shared styles are better suited for building a design system</li>
+              <li>The ability to work collaboratively at the same time</li>
+            </ul>
+
+            <!-- Text -->
+            <p class="text-gray-700 mb-7">
+              The only downsides we've seen are that it takes a while to get used to different shortcut keys, and pasting assets into files doesn't work as well. The transition is hard in the beginning, but well worth it.
+            </p>
+
+            <!-- Heading -->
+            <h3 class="fw-bold" id="unofficialFile">Unofficial Figma File</h3>
+
+            <!-- Text -->
+            <p class="text-gray-700">
+              Since we work pretty fluidly between Figma and actual code, we've decided it's a better investment of time to continue improving Landkit over babysitting our design file. That said, we realize it can be super useful to have a design resource to rough out new pages or spin up component variations. To that end, we provide an "unofficial" Landkit Figma file for you to play with.
+            </p>
+
+            <!-- Text -->
+            <p class="text-gray-700">
+              The file is far from perfect, and is relatively disorganized, but the type and colors systems are well utilized and the overall layouts are quite close to the live product. To play with design:
+            </p>
+
+            <!-- List -->
+            <ol class="text-gray-700 mb-7">
+              <li><a href="https://www.figma.com" target="_blank">Download Figma</a></li>
+              <li>Open the Figma link from the <code>README.md</code></li>
+              <li>The file is "read-only", so you'll have to duplicate it! Go to your grid of documents in Figma, click the ellipsis icon on <code>Landkit (Distributed)</code>, and then "Duplicate" to create an editable version.</li>
+            </ol>
+
+            <!-- Screenshot -->
+            <img class="img-fluid screenshot" src="../assets/img/screenshots/landkit/figma.jpg">
+
+          </div>
+          <div class="col-12 col-lg-3 col-xl-2 d-none d-lg-block px-lg-0 sidenav sidenav-end">
+            <div class="my-7 my-lg-9 px-lg-7 border-start-lg border-gray-300">
+
+              <!-- Heading -->
+              <h6 class="text-uppercase fw-bold">
+                Jump to
+              </h6>
+
+              <!-- Links -->
+              <ul class="list mb-0">
+                <li class="list-item">
+                  <a class="list-link" href="#whyFigma" data-scroll>Why Figma</a>
+                </li>
+                <li class="list-item">
+                  <a class="list-link" href="#unofficialFile" data-scroll>Unofficial File</a>
+                </li>
+              </ul>
+
+            </div>
+          </div>
+        </div> <!-- / .row -->
+      </div>
+    </section>
+
+    <!-- JAVASCRIPT -->
+    {{> partials/scripts}}
+
+  </body>
+</html>

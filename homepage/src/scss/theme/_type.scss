@@ -1,0 +1,193 @@
+//
+// type.scss
+// Extended from Bootstrap
+//
+
+// Font
+
+@font-face {
+  font-family: "HKGroteskPro";
+  font-weight: 400;
+  src: url("#{$path-to-fonts}/HK%20Grotesk%20Pro/HKGroteskPro-Regular.woff2") format("woff2"),
+  url("#{$path-to-fonts}/HK%20Grotesk%20Pro/HKGroteskPro-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "HKGroteskPro";
+  font-weight: 600;
+  src: url("#{$path-to-fonts}/HK%20Grotesk%20Pro/HKGroteskPro-Medium.woff2") format("woff2"),
+  url("#{$path-to-fonts}/HK%20Grotesk%20Pro/HKGroteskPro-Medium.woff") format("woff");
+}
+
+@font-face {
+  font-family: "HKGroteskPro";
+  font-weight: 700;
+  src: url("#{$path-to-fonts}/HK%20Grotesk%20Pro/HKGroteskPro-Bold.woff2") format("woff2"),
+  url("#{$path-to-fonts}/HK%20Grotesk%20Pro/HKGroteskPro-Bold.woff") format("woff");
+}
+
+
+// Feather icons
+
+@font-face {
+  font-family: 'Feather';
+  src: url('#{$path-to-fonts}/Feather/Feather.ttf?sdxovp') format('truetype'), url('#{$path-to-fonts}/Feather/Feather.woff?sdxovp') format('woff'), url('#{$path-to-fonts}/Feather/Feather.svg?sdxovp#Feather') format('svg');
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+// Headings
+
+h1, h2, .h1, .h2 {
+  margin-bottom: 1rem;
+}
+
+h1, h2, h3, h4, .h1, .h2, .h3, .h4 {
+  letter-spacing: $headings-letter-spacing;
+}
+
+h1, .h1 {
+  line-height: $h1-line-height;
+
+  @include media-breakpoint-down(lg) {
+    font-size: $h1-font-size-md;
+  }
+}
+
+h2, .h2 {
+  line-height: $h2-line-height;
+
+  @include media-breakpoint-down(lg) {
+    font-size: $h2-font-size-md;
+  }
+}
+
+h3, .h3 {
+  line-height: $h3-line-height;
+
+  @include media-breakpoint-down(lg) {
+    font-size: $h3-font-size-md;
+  }
+}
+
+h4, .h4 {
+  line-height: $h4-line-height;
+
+  @include media-breakpoint-down(lg) {
+    font-size: $h4-font-size-md;
+  }
+}
+
+h5, .h5 {
+  line-height: $h5-line-height;
+}
+
+h6, .h6 {
+  line-height: $h6-line-height;
+
+  &.text-uppercase {
+    letter-spacing: .08em;
+  }
+}
+
+
+// Display
+
+.display-1, .display-2, .display-3, .display-4 {
+  letter-spacing: $display-letter-spacing;
+}
+
+.display-1 {
+  line-height: $display-line-height;
+
+  @include media-breakpoint-down(lg) {
+    font-size: $display1-font-size-md;
+  }
+}
+
+.display-2 {
+  line-height: $display-line-height;
+
+  @include media-breakpoint-down(lg) {
+    font-size: $display2-font-size-md;
+  }
+}
+
+.display-3 {
+  line-height: $display-line-height;
+
+  @include media-breakpoint-down(lg) {
+    font-size: $display3-font-size-md;
+  }
+}
+
+.display-4 {
+  line-height: $display-line-height;
+
+  @include media-breakpoint-down(lg) {
+    font-size: $display4-font-size-md;
+  }
+}
+
+
+// Lead
+
+.lead {
+
+  @include media-breakpoint-down(lg) {
+    font-size: $lead-font-size-md;
+  }
+}
+
+
+// Blockquote
+
+.blockquote-img {
+  max-height: 2.5rem;
+  max-width: 100%;
+  width: auto;
+}
+
+.blockquote-footer {
+  margin-top: 0;
+
+  &::before {
+    display: none;
+  }
+}
+
+
+// Social list
+
+.list-social-icon {
+  max-width: 1.25rem;
+  height: auto;
+}
+
+
+// Dividers
+
+.hr-sm {
+  width: 60px;
+}
+
+.hr-sm:not([size]) {
+  height: $border-width * 2;
+}
+
+.hr-md {
+  width: 100px;
+  ;
+}
+
+.hr-md:not([size]) {
+  height: $border-width * 2;
+}
+
+
+// Code
+
+code {
+  line-height: $code-line-height;
+}

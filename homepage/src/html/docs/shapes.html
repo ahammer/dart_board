@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {{> partials/head title="Landkit"}}
+  </head>
+  <body class="bg-light" style="padding-top: 84px;">
+
+    <!-- MODALS -->
+    {{> partials/modals}}
+
+    <!-- NAVBAR -->
+    {{> partials/navbar classList="navbar-light fixed-top bg-white border-bottom" container="container-fluid" button="primary"}}
+
+    <!-- BREADCRUMB -->
+    <nav class="d-lg-none bg-gray-800">
+      <div class="container-fluid">
+        <div class="row align-items-center">
+          <div class="col">
+
+            <!-- Breadcrumb -->
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <span class="text-white">
+                  Docs
+                </span>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                <span class="text-white">
+                  Shapes
+                </span>
+              </li>
+            </ol>
+
+          </div>
+          <div class="col-auto">
+
+            <!-- Toggler -->
+            <div class="navbar-dark">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidenavCollapse" aria-controls="sidenavCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </div>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </nav>
+
+    <!-- CONTENT -->
+    <section>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 col-lg-3 col-xl-2 px-lg-0 border-bottom border-bottom-lg-0 border-end-lg border-gray-300 sidenav sidenav-start">
+
+            {{> partials/sidenav}}
+
+          </div>
+          <div class="col-12 col-lg-6 col-xl-8 offset-lg-3 offset-xl-2 py-7 py-lg-9 px-lg-7">
+
+            <!-- Heading -->
+            <div class="d-flex align-items-center">
+              <h1 class="mb-1 me-3">Shapes</h1>
+              <span class="badge rounded-pill bg-primary-soft mt-1">
+                <span class="h6 text-uppercase fw-bold">Landkit only</span>
+              </span>
+            </div>
+
+            <!-- Text -->
+            <p class="fs-lg text-gray-700">
+              Multiple shapes to use as separators for sections or as background images.
+            </p>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Heading -->
+            <h3 class="fw-bold me-3" id="curves">Curves</h3>
+
+            <!-- Text -->
+            <p class="text-gray-700 mb-5">
+              Smooth curves that can be used at the top, bottom or right side of an element. Use text color utilities to control their coloring.
+            </p>
+
+            <!-- Card -->
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-12 col-md-4">
+
+                    <div class="position-relative mb-5">
+
+                      <!-- Image -->
+                      <img src="../assets/img/photos/photo-2.jpg" alt="..." class="img-fluid d-block">
+
+                      <!-- Shape -->
+                      <div class="shape shape-bottom shape-fluid-x text-white">
+                        {{> curves/curve-1}}
+                      </div>
+
+                    </div>
+
+                  </div>
+                  <div class="col-12 col-md-4">
+
+                    <div class="position-relative mb-5">
+
+                      <!-- Image -->
+                      <img src="../assets/img/photos/photo-2.jpg" alt="..." class="img-fluid d-block">
+
+                      <!-- Shape -->
+                      <div class="shape shape-bottom shape-fluid-x text-white">
+                        {{> curves/curve-2}}
+                      </div>
+
+                    </div>
+
+                  </div>
+                  <div class="col-12 col-md-4">
+
+                    <div class="position-relative mb-5">
+
+                      <!-- Image -->
+                      <img src="../assets/img/photos/photo-2.jpg" alt="..." class="img-fluid d-block">
+
+                      <!-- Shape -->
+                      <div class="shape shape-bottom shape-fluid-x text-white">
+                        {{> curves/curve-3}}
+                      </div>
+
+                    </div>
+
+                  </div>
+                  <div class="col-12 col-md-4">
+
+                    <div class="position-relative mb-5 mb-md-0">
+
+                      <!-- Image -->
+                      <img src="../assets/img/photos/photo-2.jpg" alt="..." class="img-fluid d-block">
+
+                      <!-- Shape -->
+                      <div class="shape shape-bottom shape-fluid-x text-white">
+                        {{> curves/curve-6}}
+                      </div>
+
+                    </div>
+
+                  </div>
+                  <div class="col-12 col-md-4">
+
+                    <div class="position-relative mb-5 mb-md-0">
+
+                      <!-- Image -->
+                      <img src="../assets/img/photos/photo-2.jpg" alt="..." class="img-fluid d-block">
+
+                      <!-- Shape -->
+                      <div class="shape shape-end shape-fluid-y text-white">
+                        {{> curves/curve-4}}
+                      </div>
+
+                    </div>
+
+                  </div>
+                  <div class="col-12 col-md-4">
+
+                    <div class="position-relative">
+
+                      <!-- Image -->
+                      <img src="../assets/img/photos/photo-2.jpg" alt="..." class="img-fluid d-block">
+
+                      <!-- Shape -->
+                      <div class="shape shape-start shape-fluid-y text-white">
+                        {{> curves/curve-5}}
+                      </div>
+
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer bg-black">
+                <code class="highlight html">
+                  &lt;div&nbsp;class=&quot;shape&nbsp;shape-bottom&nbsp;shape-fluid-x&nbsp;text-white&quot;&gt;<br />&nbsp;&nbsp;\{{>&nbsp;curves/curve-1}}<br />&lt;/div&gt;<br /><br />&lt;div&nbsp;class=&quot;shape&nbsp;shape-bottom&nbsp;shape-fluid-x&nbsp;text-white&quot;&gt;<br />&nbsp;&nbsp;\{{>&nbsp;curves/curve-2}}<br />&lt;/div&gt;<br /><br />&lt;div&nbsp;class=&quot;shape&nbsp;shape-bottom&nbsp;shape-fluid-x&nbsp;text-white&quot;&gt;<br />&nbsp;&nbsp;\{{>&nbsp;curves/curve-3}}<br />&lt;/div&gt;<br /><br />&lt;div&nbsp;class=&quot;shape&nbsp;shape-bottom&nbsp;shape-fluid-x&nbsp;text-white&quot;&gt;<br />&nbsp;&nbsp;\{{>&nbsp;curves/curve-6}}<br />&lt;/div&gt;<br /><br />&lt;div&nbsp;class=&quot;shape&nbsp;shape-end&nbsp;shape-fluid-y&nbsp;text-white&quot;&gt;<br />&nbsp;&nbsp;\{{>&nbsp;curves/curve-4}}<br />&lt;/div&gt;<br /><br />&lt;div&nbsp;class=&quot;shape&nbsp;shape-start&nbsp;shape-fluid-y&nbsp;text-white&quot;&gt;<br />&nbsp;&nbsp;\{{>&nbsp;curves/curve-5}}<br />&lt;/div&gt;
+                </code>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Heading -->
+            <h3 class="fw-bold me-3" id="wave">Wave</h3>
+
+            <!-- Text -->
+            <p class="text-gray-700 mb-5">
+              Wave shape that can be used at the top of an element.
+            </p>
+
+            <!-- Card -->
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-12 col-md-4">
+
+                    <div class="position-relative">
+
+                      <!-- Image -->
+                      <img src="../assets/img/photos/photo-2.jpg" class="img-fluid d-block" alt="...">
+
+                      <!-- Shape -->
+                      <div class="shape shape-top shape-fluid-x text-white">
+                        {{> waves/wave-1}}
+                      </div>
+
+                    </div>
+
+                  </div>
+                </div> <!-- / .row -->
+              </div>
+              <div class="card-footer bg-black">
+                <code class="highlight html">
+                  &lt;div&nbsp;class=&quot;shape&nbsp;shape-top&nbsp;shape-fluid-x&nbsp;text-white&quot;&gt;<br />&nbsp;&nbsp;\{{>&nbsp;waves/wave-1}}<br />&lt;/div&gt;
+                </code>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Heading -->
+            <h3 class="fw-bold me-3" id="angles">Angles</h3>
+
+            <!-- Text -->
+            <p class="text-gray-700 mb-5">
+              Angle shapes that can be used at the top, right, bottom, and left sides of an element.
+            </p>
+
+            <!-- Card -->
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-12 col-md-4">
+
+                    <div class="position-relative mb-5">
+
+                      <!-- Image -->
+                      <img src="../assets/img/photos/photo-2.jpg" alt="..." class="img-fluid d-block">
+
+                      <!-- Shape -->
+                      <div class="shape shape-top shape-fluid-x text-white">
+                        {{> angles/angle-top}}
+                      </div>
+
+                    </div>
+
+                  </div>
+                  <div class="col-12 col-md-4">
+
+                    <div class="position-relative mb-5">
+
+                      <!-- Image -->
+                      <img src="../assets/img/photos/photo-2.jpg" alt="..." class="img-fluid d-block">
+
+                      <!-- Shape -->
+                      <div class="shape shape-top shape-fluid-x shape-flip-x text-white">
+                        {{> angles/angle-top}}
+                      </div>
+
+                    </div>
+
+                  </div>
+                  <div class="col-12 col-md-4">
+
+                    <div class="position-relative mb-5">
+
+                      <!-- Image -->
+                      <img src="../assets/img/photos/photo-2.jpg" alt="..." class="img-fluid d-block">
+
+                      <!-- Shape -->
+                      <div class="shape shape-bottom shape-fluid-x text-white">
+                        {{> angles/angle-bottom}}
+                      </div>
+
+                    </div>
+
+                  </div>
+                  <div class="col-12 col-md-4">
+
+                    <div class="position-relative mb-5">
+
+                      <!-- Image -->
+                      <img src="../assets/img/photos/photo-2.jpg" alt="..." class="img-fluid d-block">
+
+                      <!-- Shape -->
+                      <div class="shape shape-bottom shape-fluid-x shape-flip-x text-white">
+                        {{> angles/angle-bottom}}
+                      </div>
+
+                    </div>
+
+                  </div>
+                  <div class="col-12 col-md-4">
+
+                    <div class="position-relative mb-5">
+
+                      <!-- Image -->
+                      <img src="../assets/img/photos/photo-2.jpg" alt="..." class="img-fluid d-block">
+
+                      <!-- Shape -->
+                      <div class="shape shape-end shape-fluid-y text-white">
+                        {{> angles/angle-end}}
+                      </div>
+
+                    </div>
+
+                  </div>
+                  <div class="col-12 col-md-4">
+
+                    <div class="position-relative">
+
+                      <!-- Image -->
+                      <img src="../assets/img/photos/photo-2.jpg" alt="..." class="img-fluid d-block">
+
+                      <!-- Shape -->
+                      <div class="shape shape-start shape-fluid-y text-white">
+                        {{> angles/angle-start}}
+                      </div>
+
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer bg-black">
+                <code class="highlight html">
+                  &lt;div&nbsp;class=&quot;shape&nbsp;shape-top&nbsp;shape-fluid-x&nbsp;text-white&quot;&gt;<br />&nbsp;&nbsp;\{{>&nbsp;angles/angle-top}}<br />&lt;/div&gt;<br /><br />&lt;div&nbsp;class=&quot;shape&nbsp;shape-top&nbsp;shape-fluid-x&nbsp;shape-flip-x&nbsp;text-white&quot;&gt;<br />&nbsp;&nbsp;\{{>&nbsp;angles/angle-top}}<br />&lt;/div&gt;<br /><br />&lt;div&nbsp;class=&quot;shape&nbsp;shape-bottom&nbsp;shape-fluid-x&nbsp;text-white&quot;&gt;<br />&nbsp;&nbsp;\{{>&nbsp;angles/angle-bottom}}<br />&lt;/div&gt;<br /><br />&lt;div&nbsp;class=&quot;shape&nbsp;shape-bottom&nbsp;shape-fluid-x&nbsp;shape-flip-x&nbsp;text-white&quot;&gt;<br />&nbsp;&nbsp;\{{>&nbsp;angles/angle-bottom}}<br />&lt;/div&gt;<br /><br />&lt;div&nbsp;class=&quot;shape&nbsp;shape-end&nbsp;shape-fluid-y&nbsp;text-white&quot;&gt;<br />&nbsp;&nbsp;\{{>&nbsp;angles/angle-end}}<br />&lt;/div&gt;<br /><br />&lt;div&nbsp;class=&quot;shape&nbsp;shape-start&nbsp;shape-fluid-y&nbsp;text-white&quot;&gt;<br />&nbsp;&nbsp;\{{>&nbsp;angles/angle-start}}<br />&lt;/div&gt;
+                </code>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Heading -->
+            <h3 class="fw-bold me-3" id="blurs">Blurs</h3>
+
+            <!-- Text -->
+            <p class="text-gray-700 mb-5">
+              Blur shapes that can be used as background images for elements.
+            </p>
+
+            <!-- Card -->
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-12 col-md-6">
+                    <div class="position-relative overflow-hidden bg-light py-6 py-md-8 px-5 mb-5">
+
+                      <!-- Shape -->
+                      <div class="shape shape-blur-1 text-gray-200">
+                        {{> blurs/blur-1}}
+                      </div>
+
+                      <!-- Text -->
+                      <p class="position-relative text-center">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque reprehenderit rem veniam accusamus mollitia minus esse, aut voluptates provident, labore ab, eos vel nemo error cum similique nulla dignissimos animi.
+                      </p>
+
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <div class="position-relative overflow-hidden bg-light py-6 py-md-8 px-5 mb-5">
+
+                      <!-- Shape -->
+                      <div class="shape shape-blur-2 text-gray-200">
+                        {{> blurs/blur-2}}
+                      </div>
+
+                      <!-- Text -->
+                      <p class="position-relative text-center">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque reprehenderit rem veniam accusamus mollitia minus esse, aut voluptates provident, labore ab, eos vel nemo error cum similique nulla dignissimos animi.
+                      </p>
+
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <div class="position-relative bg-light py-6 py-md-8 px-5 mb-5 mb-md-0">
+
+                      <!-- Shape -->
+                      <div class="shape shape-blur-3  text-dark">
+                        {{> blurs/blur-3}}
+                      </div>
+
+                      <!-- Text -->
+                      <p class="position-relative text-center">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque reprehenderit rem veniam accusamus mollitia minus esse, aut voluptates provident, labore ab, eos vel nemo error cum similique nulla dignissimos animi.
+                      </p>
+
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <div class="position-relative bg-light py-6 py-md-8 px-5">
+
+                      <!-- Shape -->
+                      <div class="shape shape-blur-4 text-gray-200">
+                        {{> blurs/blur-4}}
+                      </div>
+
+                      <!-- Text -->
+                      <p class="position-relative text-center">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque reprehenderit rem veniam accusamus mollitia minus esse, aut voluptates provident, labore ab, eos vel nemo error cum similique nulla dignissimos animi.
+                      </p>
+
+                    </div>
+                  </div>
+                </div> <!-- / .row -->
+              </div>
+              <div class="card-footer bg-black">
+                <code class="highlight html">
+                  &lt;div&nbsp;class=&quot;shape&nbsp;shape-blur-1&nbsp;text-gray-200&quot;&gt;<br />&nbsp;&nbsp;\{{>&nbsp;blurs/blur-1}}<br />&lt;/div&gt;<br /><br />&lt;div&nbsp;class=&quot;shape&nbsp;shape-blur-2&nbsp;text-gray-200&quot;&gt;<br />&nbsp;&nbsp;\{{>&nbsp;blurs/blur-2}}<br />&lt;/div&gt;<br /><br />&lt;div&nbsp;class=&quot;shape&nbsp;shape-top&nbsp;shape-fluid-x&nbsp;text-dark&quot;&gt;<br />&nbsp;&nbsp;\{{>&nbsp;blurs/blur-3}}<br />&lt;/div&gt;<br /><br />&lt;div&nbsp;class=&quot;shape&nbsp;shape-blur-4&nbsp;text-gray-200&quot;&gt;<br />&nbsp;&nbsp;\{{>&nbsp;blurs/blur-4}}<br />&lt;/div&gt;
+                </code>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Heading -->
+            <h3 class="fw-bold me-3" id="newShapes">Creating New Shapes</h3>
+
+            <!-- Text -->
+            <p class="text-gray-700">
+              You can create new shapes easily by exporting an SVG from your preferred editor (Sketch, Figma, etc.), but you will have to make a handful of modifications for the shape to work:
+            </p>
+
+            <!-- Text -->
+            <ul class="text-gray-700 mb-6">
+              <li>Remove the <code>width</code> and <code>height</code> attributes</li>
+              <li>Add <code>preserveAspectRatio="none"</code> to the top level <code>svg</code> element</li>
+              <li>Replace all <code>fill</code> values that aren't <code>"none"</code> with <code>"currentColor"</code></li>
+            </ul>
+
+            <!-- Text -->
+            <p class="text-gray-700">
+              A few other important things to note...
+            </p>
+
+            <!-- Text -->
+            <ul class="text-gray-700">
+              <li>Make sure your vector points line up on whole pixels in your design tool</li>
+              <li>Make sure your Artboard/Frame is setup on whole pixels</li>
+            </ul>
+
+          </div>
+          <div class="col-12 col-lg-3 col-xl-2 d-none d-lg-block px-lg-0 sidenav sidenav-end">
+            <div class="my-7 my-lg-9 px-lg-7 border-start-lg border-gray-300">
+
+              <!-- Heading -->
+              <h6 class="text-uppercase fw-bold">
+                Jump to
+              </h6>
+
+              <!-- Links -->
+              <ul class="list mb-0">
+                <li class="list-item">
+                  <a class="list-link" href="#curves" data-scroll>Curves</a>
+                </li>
+                <li class="list-item">
+                  <a class="list-link" href="#wave" data-scroll>Wave</a>
+                </li>
+                <li class="list-item">
+                  <a class="list-link" href="#angles" data-scroll>Angles</a>
+                </li>
+                <li class="list-item">
+                  <a class="list-link" href="#blurs" data-scroll>Blurs</a>
+                </li>
+                <li class="list-item">
+                  <a class="list-link" href="#newShapes" data-scroll>New Shapes</a>
+                </li>
+              </ul>
+
+            </div>
+          </div>
+        </div> <!-- / .row -->
+      </div>
+    </section>
+
+    <!-- JAVASCRIPT -->
+    {{> partials/scripts}}
+
+  </body>
+</html>

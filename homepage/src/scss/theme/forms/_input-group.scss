@@ -1,0 +1,18 @@
+//
+// input-group.scss
+//
+
+// Sizing
+
+.input-group-xs .form-control {
+  min-height: $input-height-xs;
+  padding: $input-padding-y-xs $input-padding-x-xs;
+  line-height: $input-line-height-xs;
+  font-size: $input-font-size-xs;
+}
+
+.input-group-xs .input-group-text {
+  padding: $input-padding-y-xs $input-padding-x-xs;
+  line-height: $input-line-height-xs;
+  font-size: $input-btn-font-size-xs;
+}

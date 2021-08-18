@@ -1,0 +1,24 @@
+//
+// accordion.scss
+// Extended from Bootstrap
+//
+
+// Button
+
+.accordion-button:not(.collapsed) {
+  box-shadow: none;
+}
+
+.accordion-button:not([data-bs-toggle="collapse"])::after {
+  display: none;
+}
+
+.accordion-button::after {
+  margin-left: $spacer;
+}
+
+// Body
+
+.accordion-body {
+  padding-top: 0;
+}

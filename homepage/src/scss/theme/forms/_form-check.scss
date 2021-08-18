@@ -1,0 +1,57 @@
+// 
+// form-check.scss
+// Extended from Bootstrap
+// 
+
+//
+// Check
+//
+
+.form-check {
+  margin-bottom: 0;
+}
+
+.form-check + .form-check {
+  margin-top: $form-check-margin-bottom;
+}
+
+// Dark
+
+.form-check-dark .form-check-input {
+  background-color: $form-check-input-bg-dark;
+}
+
+.form-check-dark .form-check-input:checked {
+  background-color: $form-check-input-checked-bg-color-dark;
+}
+
+
+//
+// Switch
+//
+
+.form-switch {
+  min-height: $form-switch-min-height;
+}
+
+.form-switch > .form-check-input {
+  height: $form-switch-min-height;
+}
+
+.form-switch > .form-check-label {
+  margin-top: calc((#{$form-switch-min-height} - #{$line-height-base} * 1em) / 2);
+}
+
+// Dark
+
+.form-check-dark.form-switch .form-check-input {
+  background-image: escape-svg($form-switch-bg-image-dark);
+}
+
+.form-check-dark.form-switch .form-check-input:focus {
+  background-image: escape-svg($form-switch-focus-bg-image-dark);
+}
+
+.form-check-dark.form-switch .form-check-input:checked {
+  background-image: escape-svg($form-switch-checked-bg-image-dark);
+}

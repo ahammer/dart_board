@@ -1,0 +1,71 @@
+<div class="modal fade" id="modalSignupHorizontal" tabindex="-1" role="dialog" aria-labelledby="modalSignupHorizontalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="card card-row">
+        <div class="row gx-0">
+          <div class="col-12 col-md-6 bg-cover card-img-start" style="background-image: url({{webRoot}}/assets/img/photos/photo-8.jpg);">
+
+            <!-- Image (placeholder) -->
+            <img src="{{webRoot}}/assets/img/photos/photo-8.jpg" alt="..." class="img-fluid d-md-none invisible">
+
+            <!-- Shape -->
+            <div class="shape shape-end shape-fluid-y text-white d-none d-md-block">
+              {{> curves/curve-4}}
+            </div>
+
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="card-body">
+
+              <!-- Close -->
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+              <!-- Heading -->
+              <h2 class="mb-0 fw-bold text-center" id="modalSignupHorizontalTitle">
+                Sign Up
+              </h2>
+
+              <!-- Text -->
+              <p class="mb-6 text-center text-muted">
+                Simplify your workflow in minutes.
+              </p>
+
+              <!-- Form -->
+              <form class="mb-6">
+
+                <!-- Email -->
+                <div class="form-group">
+                  <label class="visually-hidden" for="modalSignupHorizontalEmail">
+                    Your email
+                  </label>
+                  <input type="email" class="form-control" id="modalSignupHorizontalEmail" placeholder="Your email">
+                </div>
+
+                <!-- Password -->
+                <div class="form-group mb-5">
+                  <label class="visually-hidden" for="modalSignupHorizontalPassword">
+                    Create a password
+                  </label>
+                  <input type="password" class="form-control" id="modalSignupHorizontalPassword" placeholder="Create a password">
+                </div>
+
+                <!-- Submit -->
+                <button class="btn w-100 btn-primary" type="submit">
+                  Sign up
+                </button>
+
+              </form>
+
+              <!-- Text -->
+              <p class="mb-0 fs-sm text-center text-muted">
+                Already have an account? <a href="{{webRoot}}/signin-illustration.html">Log in</a>.
+              </p>
+
+            </div>
+          </div>
+
+        </div> <!-- / .row -->
+      </div>
+    </div>
+  </div>
+</div>

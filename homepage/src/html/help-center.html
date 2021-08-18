@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {{> partials/head title="Landkit"}}
+  </head>
+  <body class="bg-light">
+
+    <!-- MODALS -->
+    {{> partials/modals}}
+
+    <!-- NAVBAR -->
+    {{> partials/navbar classList="navbar-light bg-white" container="container" button="primary"}}
+
+    <!-- WELCOME -->
+    <section data-jarallax data-speed=".8" class="pt-10 pb-11 py-md-14 overlay overlay-black overlay-60 jarallax" style="background-image: url(assets/img/covers/cover-4.jpg);">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-10 col-lg-8 text-center">
+
+            <!-- Heading -->
+            <h1 class="display-2 fw-bold text-white">
+              What Do You Need?
+            </h1>
+
+            <!-- Text -->
+            <p class="lead text-white-75 mb-0">
+              We're here to help you better use Landkit. First, let's figure out if we have a solution in our documentation.
+            </p>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </section>
+
+    <!-- SHAPE -->
+    <div class="position-relative">
+      <div class="shape shape-bottom shape-fluid-x text-light">
+        {{> curves/curve-1}}
+      </div>
+    </div>
+
+    <!-- CATEGORIES -->
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+
+            <!-- Form -->
+            <form class="rounded shadow mt-n6 mb-4">
+              <div class="input-group input-group-lg">
+
+                <!-- Text -->
+                <span class="input-group-text border-0 pe-1">
+                  <i class="fe fe-search"></i>
+                </span>
+
+                <!-- Input -->
+                <input class="form-control border-0 px-1" type="text" aria-label="Search for your issue..." placeholder="Search for your issue...">
+
+                <!-- Text -->
+                <span class="input-group-text border-0 py-0 ps-1 pe-3">
+                  <button class="btn btn-sm btn-primary" type="submit">
+                    Search
+                  </button>
+                </span>
+
+              </div>
+            </form>
+
+            <!-- Text -->
+            <div class="row align-items-center mb-6 mb-md-8">
+              <div class="col-auto">
+
+                <!-- Heading -->
+                <h6 class="fw-bold text-uppercase text-muted mb-0">
+                  Common searches:
+                </h6>
+
+              </div>
+              <div class="col ms-n5">
+
+                <!-- Text -->
+                <p class="fs-sm text-muted mb-0">
+                  Redownload my theme, Request an invoice, Update my .zip
+                </p>
+
+              </div>
+            </div> <!-- / .row -->
+
+          </div>
+        </div> <!-- / .row -->
+        <div class="row">
+          <div class="col-12 col-md-6 col-lg-4">
+
+            <!-- Card -->
+            <div class="card card-border border-primary shadow-lg mb-6 mb-md-8 lift lift-lg">
+              <div class="card-body text-center">
+
+                <!-- Icon -->
+                <div class="icon-circle bg-primary text-white mb-5">
+                  <i class="fe fe-users"></i>
+                </div>
+
+                <!-- Heading -->
+                <h4 class="fw-bold">
+                  Account
+                </h4>
+
+                <!-- Text -->
+                <p class="text-gray-700 mb-5">
+                  Issues related to logging in, out, or about multiple devices.
+                </p>
+
+                <!-- Badge -->
+                <span class="badge rounded-pill bg-dark-soft">
+                  <span class="h6 text-uppercase">
+                    21 entries
+                  </span>
+                </span>
+
+              </div>
+            </div>
+
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+
+            <!-- Card -->
+            <div class="card card-border border-success shadow-lg mb-6 mb-md-8 lift lift-lg">
+              <div class="card-body text-center">
+
+                <!-- Icon -->
+                <div class="icon-circle bg-success text-white mb-5">
+                  <i class="fe fe-clock"></i>
+                </div>
+
+                <!-- Heading -->
+                <h4 class="fw-bold">
+                  Integrations
+                </h4>
+
+                <!-- Text -->
+                <p class="text-gray-700 mb-5">
+                  Connecting with 3rd party apps to exchange data.
+                </p>
+
+                <!-- Badge -->
+                <span class="badge rounded-pill bg-dark-soft">
+                  <span class="h6 text-uppercase">
+                    9 entries
+                  </span>
+                </span>
+
+              </div>
+            </div>
+
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+
+            <!-- Card -->
+            <div class="card card-border border-warning shadow-lg mb-6 mb-md-8 lift lift-lg">
+              <div class="card-body text-center">
+
+                <!-- Icon -->
+                <div class="icon-circle bg-warning text-white mb-5">
+                  <i class="fe fe-users"></i>
+                </div>
+
+                <!-- Heading -->
+                <h4 class="fw-bold">
+                  Billing
+                </h4>
+
+                <!-- Text -->
+                <p class="text-gray-700 mb-5">
+                  Issues with payments or invoicing.
+                </p>
+
+                <!-- Badge -->
+                <span class="badge rounded-pill bg-dark-soft">
+                  <span class="h6 text-uppercase">
+                    14 entries
+                  </span>
+                </span>
+
+              </div>
+            </div>
+
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+
+            <!-- Card -->
+            <div class="card card-border border-dark shadow-lg mb-6 mb-md-8 mb-lg-0 lift lift-lg">
+              <div class="card-body text-center">
+
+                <!-- Icon -->
+                <div class="icon-circle bg-dark text-white mb-5">
+                  <i class="fe fe-users"></i>
+                </div>
+
+                <!-- Heading -->
+                <h4 class="fw-bold">
+                  Organizations
+                </h4>
+
+                <!-- Text -->
+                <p class="text-gray-700 mb-5">
+                  Setting up and managing collections of users.
+                </p>
+
+                <!-- Badge -->
+                <span class="badge rounded-pill bg-dark-soft">
+                  <span class="h6 text-uppercase">
+                    17 entries
+                  </span>
+                </span>
+
+              </div>
+            </div>
+
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+
+            <!-- Card -->
+            <div class="card card-border border-primary-desat shadow-lg mb-6 mb-md-0 lift lift-lg">
+              <div class="card-body text-center">
+
+                <!-- Icon -->
+                <div class="icon-circle bg-primary-desat text-white mb-5">
+                  <i class="fe fe-users"></i>
+                </div>
+
+                <!-- Heading -->
+                <h4 class="fw-bold">
+                  Performance
+                </h4>
+
+                <!-- Text -->
+                <p class="text-gray-700 mb-5">
+                  Improving your system's speed and reliability.
+                </p>
+
+                <!-- Badge -->
+                <span class="badge rounded-pill bg-dark-soft">
+                  <span class="h6 text-uppercase">
+                    7 entries
+                  </span>
+                </span>
+
+              </div>
+            </div>
+
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+
+            <!-- Card -->
+            <div class="card card-border border-danger shadow-lg lift lift-lg">
+              <div class="card-body text-center">
+
+                <!-- Icon -->
+                <div class="icon-circle bg-danger text-white mb-5">
+                  <i class="fe fe-users"></i>
+                </div>
+
+                <!-- Heading -->
+                <h4 class="fw-bold">
+                  Customizing
+                </h4>
+
+                <!-- Text -->
+                <p class="text-gray-700 mb-5">
+                  Building custom modules on top of our platform.
+                </p>
+
+                <!-- Badge -->
+                <span class="badge rounded-pill bg-dark-soft">
+                  <span class="h6 text-uppercase">
+                    14 entries
+                  </span>
+                </span>
+
+              </div>
+            </div>
+
+          </div>
+        </div> <!-- / .row -->
+      </div>
+    </section>
+
+    <!-- FORM -->
+    <section class="pt-8 pt-md-11 pb-8 pb-md-14">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-10 col-lg-8 text-center">
+
+            <!-- Heading -->
+            <h2 class="fw-bold">
+              Can't find the answer you need?
+            </h2>
+
+            <!-- Text -->
+            <p class="fs-lg text-muted mb-7 mb-md-9">
+              Contact us and we'll get back to you as soon as possible with a solution to whatever issues you're having with Landkit.
+            </p>
+
+          </div>
+        </div> <!-- / .row -->
+        <div class="row mb-7 mb-md-9">
+          <div class="col-12 col-md-4 text-center">
+
+            <!-- Heading -->
+            <h6 class="text-uppercase text-gray-700 mb-1">
+              Message us
+            </h6>
+
+            <!-- Link -->
+            <div class="mb-5 mb-md-0">
+              <a href="#!" class="h4 text-primary">
+                Start a chat!
+              </a>
+            </div>
+
+          </div>
+          <div class="col-12 col-md-4 text-center border-start-md border-gray-300">
+
+            <!-- Heading -->
+            <h6 class="text-uppercase text-gray-700 mb-1">
+              Call anytime
+            </h6>
+
+            <!-- Link -->
+            <div class="mb-5 mb-md-0">
+              <a href="#!" class="h4">
+                (555) 123-4567
+              </a>
+            </div>
+
+          </div>
+          <div class="col-12 col-md-4 text-center border-start-md border-gray-300">
+
+            <!-- Heading -->
+            <h6 class="text-uppercase text-gray-700 mb-1">
+              Email us
+            </h6>
+
+            <!-- Link -->
+            <a href="#!" class="h4">
+              support@goodthemes.co
+            </a>
+
+          </div>
+        </div> <!-- / .row -->
+        <div class="row justify-content-center">
+          <div class="col-12">
+
+            <!-- Form -->
+            <form>
+              <div class="row">
+                <div class="col-12 col-md-6">
+                  <div class="form-group mb-5">
+
+                    <!-- Label -->
+                    <label class="form-label" for="contactName">
+                      Full name
+                    </label>
+
+                    <!-- Input -->
+                    <input class="form-control" id="contactName" type="text" placeholder="Full name">
+
+                  </div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <div class="form-group mb-5">
+
+                    <!-- Label -->
+                    <label class="form-label" for="contactEmail">
+                      Email
+                    </label>
+
+                    <!-- Input -->
+                    <input class="form-control" id="contactEmail" type="email" placeholder="hello@domain.com">
+
+                  </div>
+                </div>
+              </div> <!-- / .row -->
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group mb-7 mb-md-9">
+
+                    <!-- Label -->
+                    <label class="form-label" for="contactMessage">
+                      What can we help you with?
+                    </label>
+
+                    <!-- Input -->
+                    <textarea class="form-control" id="contactMessage" rows="5" placeholder="Tell us what we can help you with!"></textarea>
+
+                  </div>
+                </div>
+              </div> <!-- / .row -->
+              <div class="row justify-content-center">
+                <div class="col-auto">
+
+                  <!-- Submit -->
+                  <button type="submit" class="btn btn-primary lift">
+                    Submit request
+                  </button>
+
+                </div>
+              </div> <!-- / .row -->
+            </form>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </section>
+
+    <!-- SHAPE -->
+    <div class="position-relative">
+      <div class="shape shape-bottom shape-fluid-x text-dark">
+        {{> curves/curve-1}}
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    {{> partials/footer classList="bg-dark"}}
+
+    <!-- JAVASCRIPT -->
+    {{> partials/scripts}}
+
+  </body>
+</html>

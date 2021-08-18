@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {{> partials/head title="Landkit"}}
+  </head>
+  <body class="pt-10 bg-light">
+
+    <!-- MODALS -->
+    {{> partials/modals}}
+
+    <!-- NAVBAR -->
+    {{> partials/navbar classList="navbar-light fixed-top bg-white border-bottom" container="container-fluid" button="primary"}}
+
+    <!-- WELCOME -->
+    <section class="pt-8 pt-md-11 pb-10 pb-md-15 bg-primary">
+
+      <!-- Shape -->
+      <div class="shape shape-blur-3 text-white">
+        {{> blurs/blur-3}}
+      </div>
+
+      <!-- Content -->
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-10 col-lg-8 text-center">
+
+            <!-- Heading -->
+            <h1 class="display-2 text-white">
+              Simple, fair pricing.
+            </h1>
+
+            <!-- Text -->
+            <p class="lead text-white-80 mb-6 mb-md-8">
+              All types of businesses need access to development resources, so we give you the option to decide how much you need to use.
+            </p>
+
+            <!-- Form -->
+            <form class="d-flex align-items-center justify-content-center mb-7 mb-md-9">
+
+              <!-- Label -->
+              <span class="text-white-80">
+                Annual
+              </span>
+
+              <!-- Switch -->
+              <div class="form-check form-check-dark form-switch mx-3">
+                <input class="form-check-input" type="checkbox" id="billingSwitch" data-toggle="price" data-target=".price">
+              </div>
+
+              <!-- Label -->
+              <span class="text-white-80">
+                Monthly
+              </span>
+
+            </form>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+
+    </section>
+
+    <!-- SHAPE -->
+    <div class="position-relative">
+      <div class="shape shape-bottom shape-fluid-x text-light">
+        {{> curves/curve-1}}
+      </div>
+    </div>
+
+    <!-- PRICING -->
+    <section class="mt-n8 mt-md-n14">
+      <div class="container">
+        <div class="row gx-4">
+          <div class="col-12 col-md-4">
+
+            <!-- Card -->
+            <div class="card shadow-lg mb-6 mb-md-0">
+              <div class="card-body">
+
+                <!-- Preheading -->
+                <div class="text-center mb-3">
+                  <span class="badge rounded-pill bg-primary-soft">
+                    <span class="h6 text-uppercase">Basic</span>
+                  </span>
+                </div>
+
+                <!-- Price -->
+                <div class="d-flex justify-content-center">
+                  <span class="h2 mb-0 mt-2">$</span>
+                  <span class="price display-2 mb-0" data-annual="0" data-monthly="0">0</span>
+                  <span class="h2 align-self-end mb-1">/mo</span>
+                </div>
+
+                <!-- Text -->
+                <p class="text-center text-muted mb-5">
+                  per seat
+                </p>
+
+                <!-- List -->
+                <div class="d-flex">
+
+                  <!-- Badge -->
+                  <div class="badge badge-rounded-circle bg-success-soft mt-1 me-4">
+                    <i class="fe fe-check"></i>
+                  </div>
+
+                  <!-- Text -->
+                  <p>
+                    Rich landing pages
+                  </p>
+
+                </div>
+                <div class="d-flex">
+
+                  <!-- Badge -->
+                  <div class="badge badge-rounded-circle bg-success-soft mt-1 me-4">
+                    <i class="fe fe-check"></i>
+                  </div>
+
+                  <!-- Text -->
+                  <p class="mb-5">
+                    100+ components
+                  </p>
+
+                </div>
+
+                <!-- Button -->
+                <a href="#!" class="btn w-100 btn-primary-soft">
+                  Start for free <i class="fe fe-arrow-right ms-3"></i>
+                </a>
+
+              </div>
+            </div>
+
+          </div>
+          <div class="col-12 col-md-4">
+
+            <!-- Card -->
+            <div class="card shadow-lg mb-6 mb-md-0">
+              <div class="card-body">
+
+                <!-- Preheading -->
+                <div class="text-center mb-3">
+                  <span class="badge rounded-pill bg-primary-soft">
+                    <span class="h6 text-uppercase">Standard</span>
+                  </span>
+                </div>
+
+                <!-- Price -->
+                <div class="d-flex justify-content-center">
+                  <span class="h2 mb-0 mt-2">$</span>
+                  <span class="price display-2 mb-0" data-annual="29" data-monthly="49">29</span>
+                  <span class="h2 align-self-end mb-1">/mo</span>
+                </div>
+
+                <!-- Text -->
+                <p class="text-center text-muted mb-5">
+                  per seat
+                </p>
+
+                <!-- List -->
+                <div class="d-flex">
+
+                  <!-- Badge -->
+                  <div class="badge badge-rounded-circle bg-success-soft mt-1 me-4">
+                    <i class="fe fe-check"></i>
+                  </div>
+
+                  <!-- Text -->
+                  <p>
+                    Rich landing pages
+                  </p>
+
+                </div>
+                <div class="d-flex">
+
+                  <!-- Badge -->
+                  <div class="badge badge-rounded-circle bg-success-soft mt-1 me-4">
+                    <i class="fe fe-check"></i>
+                  </div>
+
+                  <!-- Text -->
+                  <p>
+                    100+ components
+                  </p>
+
+                </div>
+                <div class="d-flex">
+
+                  <!-- Badge -->
+                  <div class="badge badge-rounded-circle bg-success-soft mt-1 me-4">
+                    <i class="fe fe-check"></i>
+                  </div>
+
+                  <!-- Text -->
+                  <p>
+                    Flexible licensing
+                  </p>
+
+                </div>
+                <div class="d-flex">
+
+                  <!-- Badge -->
+                  <div class="badge badge-rounded-circle bg-success-soft mt-1 me-4">
+                    <i class="fe fe-check"></i>
+                  </div>
+
+                  <!-- Text -->
+                  <p>
+                    Speedy build tooling
+                  </p>
+
+                </div>
+                <div class="d-flex">
+
+                  <!-- Badge -->
+                  <div class="badge badge-rounded-circle bg-success-soft mt-1 me-4">
+                    <i class="fe fe-check"></i>
+                  </div>
+
+                  <!-- Text -->
+                  <p class="mb-5">
+                    6 months free support
+                  </p>
+
+                </div>
+
+                <!-- Button -->
+                <a href="#!" class="btn w-100 btn-primary">
+                  Start with Standard <i class="fe fe-arrow-right ms-3"></i>
+                </a>
+
+              </div>
+            </div>
+
+          </div>
+          <div class="col-12 col-md-4">
+
+            <!-- Card -->
+            <div class="card shadow-lg mb-md-0">
+              <div class="card-body">
+
+                <!-- Preheading -->
+                <div class="text-center mb-3">
+                  <span class="badge rounded-pill bg-primary-soft">
+                    <span class="h6 text-uppercase">Premium</span>
+                  </span>
+                </div>
+
+                <!-- Price -->
+                <div class="d-flex justify-content-center">
+                  <span class="h2 mb-0 mt-2">$</span>
+                  <span class="price display-2 mb-0" data-annual="49" data-monthly="69">49</span>
+                  <span class="h2 align-self-end mb-1">/mo</span>
+                </div>
+
+                <!-- Text -->
+                <p class="text-center text-muted mb-5">
+                  per seat
+                </p>
+
+                <!-- List -->
+                <div class="d-flex">
+
+                  <!-- Badge -->
+                  <div class="badge badge-rounded-circle bg-success-soft mt-1 me-4">
+                    <i class="fe fe-check"></i>
+                  </div>
+
+                  <!-- Text -->
+                  <p>
+                    Rich landing pages
+                  </p>
+
+                </div>
+                <div class="d-flex">
+
+                  <!-- Badge -->
+                  <div class="badge badge-rounded-circle bg-success-soft mt-1 me-4">
+                    <i class="fe fe-check"></i>
+                  </div>
+
+                  <!-- Text -->
+                  <p>
+                    100+ components
+                  </p>
+
+                </div>
+                <div class="d-flex">
+
+                  <!-- Badge -->
+                  <div class="badge badge-rounded-circle bg-success-soft mt-1 me-4">
+                    <i class="fe fe-check"></i>
+                  </div>
+
+                  <!-- Text -->
+                  <p>
+                    Flexible licensing
+                  </p>
+
+                </div>
+                <div class="d-flex">
+
+                  <!-- Badge -->
+                  <div class="badge badge-rounded-circle bg-success-soft mt-1 me-4">
+                    <i class="fe fe-check"></i>
+                  </div>
+
+                  <!-- Text -->
+                  <p>
+                    Speedy build tooling
+                  </p>
+
+                </div>
+                <div class="d-flex">
+
+                  <!-- Badge -->
+                  <div class="badge badge-rounded-circle bg-success-soft mt-1 me-4">
+                    <i class="fe fe-check"></i>
+                  </div>
+
+                  <!-- Text -->
+                  <p>
+                    6 months free support
+                  </p>
+
+                </div>
+                <div class="d-flex">
+
+                  <!-- Badge -->
+                  <div class="badge badge-rounded-circle bg-success-soft mt-1 me-4">
+                    <i class="fe fe-check"></i>
+                  </div>
+
+                  <!-- Text -->
+                  <p>
+                    256-bit encryption
+                  </p>
+
+                </div>
+                <div class="d-flex">
+
+                  <!-- Badge -->
+                  <div class="badge badge-rounded-circle bg-success-soft mt-1 me-4">
+                    <i class="fe fe-check"></i>
+                  </div>
+
+                  <!-- Text -->
+                  <p>
+                    Guaranteed 100% uptime
+                  </p>
+
+                </div>
+                <div class="d-flex">
+
+                  <!-- Badge -->
+                  <div class="badge badge-rounded-circle bg-success-soft mt-1 me-4">
+                    <i class="fe fe-check"></i>
+                  </div>
+
+                  <!-- Text -->
+                  <p class="mb-5">
+                    Unlimited users
+                  </p>
+
+                </div>
+
+                <!-- Button -->
+                <a href="#!" class="btn w-100 btn-primary-soft">
+                  Start with Premium <i class="fe fe-arrow-right ms-3"></i>
+                </a>
+
+              </div>
+            </div>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </section>
+
+    <!-- ENTERPRISE -->
+    <section class="py-8 py-md-11">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-10 col-lg-8 text-center">
+
+            <!-- Badge -->
+            <span class="badge rounded-pill bg-primary-desat-soft mb-3">
+              <span class="h6 text-uppercase">Enterprise</span>
+            </span>
+
+            <!-- Heading -->
+            <h2>
+              Business grade quality <span class="fw-bold text-primary-desat">for all plans</span>.
+            </h2>
+
+            <!-- Text -->
+            <p class="fs-lg text-muted mb-7 mb-md-9">
+              Build a beautiful, modern website with our flexible Bootstrap components all built from scratch.
+            </p>
+
+          </div>
+        </div> <!-- / .row -->
+        <div class="row">
+          <div class="col-12 col-md-4 text-center">
+
+            <!-- Icon -->
+            <div class="icon text-primary mb-3">
+              {{> general/settings-1}}
+            </div>
+
+            <!-- Heading -->
+            <h3>
+              Built for developers
+            </h3>
+
+            <!-- Text -->
+            <p class="text-muted mb-6 mb-md-0">
+              Landkit is built to make your life easier. Variables, build tooling, documentation, and reusable components.
+            </p>
+
+          </div>
+          <div class="col-12 col-md-4 text-center">
+
+            <!-- Icon -->
+            <div class="icon text-primary mb-3">
+              {{> layout/layout-arrange}}
+            </div>
+
+            <!-- Heading -->
+            <h3>
+              Designed to be modern
+            </h3>
+
+            <!-- Text -->
+            <p class="text-muted mb-6 mb-md-0">
+              Designed with the latest design trends in mind. Landkit feels modern, minimal, and beautiful.
+            </p>
+
+          </div>
+          <div class="col-12 col-md-4 text-center">
+
+            <!-- Icon -->
+            <div class="icon text-primary mb-3">
+              {{> code/code}}
+            </div>
+
+            <!-- Heading -->
+            <h3>
+              Documentation for everything
+            </h3>
+
+            <!-- Text -->
+            <p class="text-muted mb-0">
+              We've written extensive documentation for components and tools, so you never have to reverse engineer anything.
+            </p>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </section>
+
+    <!-- SHAPE -->
+    <div class="position-relative">
+      <div class="shape shape-bottom shape-fluid-x text-white">
+        {{> curves/curve-1}}
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <section class="py-8 py-md-11 bg-white border-bottom">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-10 col-md-8 text-center">
+
+            <!-- Badge -->
+            <span class="badge rounded-pill bg-primary-desat-soft mb-3">
+              <span class="h6 text-uppercase">FAQ</span>
+            </span>
+
+            <!-- Heading -->
+            <h2>
+              Frequently asked questions.
+            </h2>
+
+            <!-- Text -->
+            <p class="fs-lg text-muted mb-7 mb-md-9">
+              Let us help answer the most common questions you might have.
+            </p>
+
+          </div>
+        </div> <!-- / .row -->
+        <div class="row">
+          <div class="col-12 col-md-6">
+
+            <!-- Heading -->
+            <h3>
+              Can I use Landkit for my clients?
+            </h3>
+
+            <!-- Text -->
+            <p class="text-gray-800 mb-6 mb-md-8">
+              Absolutely. The Bootstrap Themes license allows you to build a websites for personal use or for a client. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in nibh nec erat tincidunt porta. Donec ac mauris ullamcorper quam ullamcorper cursus eu in dui. Aliquam cursus accumsan laoreet.
+            </p>
+
+            <!-- Heading -->
+            <h3>
+              Is there a money back guarantee?
+            </h3>
+
+            <!-- Text -->
+            <p class="text-gray-800 mb-6 mb-md-8">
+              Yup! Bootstrap Themes come with a satisfaction guarantee. Submit a return and get your money back. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in nibh nec erat tincidunt porta. Donec ac mauris ullamcorper quam ullamcorper cursus eu in dui. Aliquam cursus accumsan laoreet.
+            </p>
+
+            <!-- Heading -->
+            <h3>
+              Do I get free updates?
+            </h3>
+
+            <!-- Text -->
+            <p class="text-gray-800 mb-6 mb-md-0">
+              Yes. We update all of our themes with each Bootstrap update, plus are constantly adding new components, pages, and features to our themes. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in nibh nec erat tincidunt porta. Donec ac mauris ullamcorper.
+            </p>
+
+          </div>
+          <div class="col-12 col-md-6">
+
+            <!-- Heading -->
+            <h3>
+              Does it work with Rails? React? Laravel?
+            </h3>
+
+            <!-- Text -->
+            <p class="text-gray-800 mb-6 mb-md-8">
+              Yes. Landkit has basic CSS/JS files you can include. If you want to enable deeper customization, you can integrate it into your assets pipeline or build processes. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in nibh nec erat tincidunt porta. Donec ac mauris ullamcorper.
+            </p>
+
+            <!-- Heading -->
+            <h3>
+              Can I use Landkit for my clients?
+            </h3>
+
+            <!-- Text -->
+            <p class="text-gray-800 mb-6 mb-md-8">
+              Absolutely. The Bootstrap Themes license allows you to build a websites for personal use or for a client. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in nibh nec erat tincidunt porta. Donec ac mauris ullamcorper quam ullamcorper cursus eu in dui. Aliquam cursus accumsan laoreet.
+            </p>
+
+            <!-- Heading -->
+            <h3>
+              Is there a money back guarantee?
+            </h3>
+
+            <!-- Text -->
+            <p class="text-gray-800 mb-0">
+              Yup! Bootstrap Themes come with a satisfaction guarantee. Submit a return and get your money back. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in nibh nec erat tincidunt porta. Donec ac mauris ullamcorper quam ullamcorper cursus eu in dui. Aliquam cursus accumsan laoreet.
+            </p>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="py-8 py-md-11">
+      <div class="container">
+        <div class="row align-items-stretch">
+          <div class="col-12 col-md-5">
+
+            <!-- Blockquote -->
+            <blockquote class="blockquote text-center">
+
+              <!-- Logo -->
+              <div class="img-fluid mb-5 mb-md-7 mx-auto " style="max-width: 120px; color: #FF5A5F;">
+                {{> logotype/airbnb}}
+              </div>
+
+              <!-- Text -->
+              <p class="mb-5 mb-md-7">
+                "It was incredibly easy to post the unused apartment above my garage for rent and have since been paying my mortgage with the proceeds.”
+              </p>
+
+              <!-- Footer -->
+              <footer class="blockquote-footer mb-8 mb-md-0">
+                <div class="avatar me-3">
+                  <img src="assets/img/avatars/avatar-2.jpg" class="avatar-img rounded-circle" alt="...">
+                </div> <span class="h6 text-uppercase">Bill Callan</span>
+              </footer>
+
+            </blockquote>
+
+          </div>
+          <div class="col-12 col-md-1 border-end my-n8 my-md-n11 d-none d-md-block"></div>
+          <div class="col-12 col-md-5 offset-md-1">
+
+            <!-- Blockquote -->
+            <blockquote class="blockquote text-center">
+
+              <!-- Logo -->
+              <div class="img-fluid mb-5 mb-md-7 mx-auto" style="max-width: 120px; color: #CB2027;">
+                {{> logotype/pinterest}}
+              </div>
+
+              <!-- Text -->
+              <p class="mb-5 mb-md-7">
+                “If you're going on vacation, you might as well get paid while you travel! Share your home with others and return to a nice paycheck when you arrive home.”
+              </p>
+
+              <!-- Footer -->
+              <footer class="blockquote-footer mb-0">
+                <div class="avatar me-3">
+                  <img src="assets/img/avatars/avatar-1.jpg" class="avatar-img rounded-circle" alt="...">
+                </div> <span class="h6 text-uppercase">Jacob Thornton</span>
+              </footer>
+
+            </blockquote>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </section>
+
+    <!-- FOOTER -->
+    {{> partials/footer classList="bg-dark"}}
+
+    <!-- JAVASCRIPT -->
+    {{> partials/scripts}}
+
+  </body>
+</html>

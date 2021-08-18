@@ -1,0 +1,71 @@
+<div class="modal fade" id="modalSigninHorizontal" tabindex="-1" role="dialog" aria-labelledby="modalSigninHorizontalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="card card-row">
+        <div class="row gx-0">
+          <div class="col-12 col-md-6 bg-cover card-img-start" style="background-image: url({{webRoot}}/assets/img/photos/photo-1.jpg);">
+
+            <!-- Image (placeholder) -->
+            <img src="{{webRoot}}/assets/img/photos/photo-1.jpg" alt="..." class="img-fluid d-md-none invisible">
+
+            <!-- Shape -->
+            <div class="shape shape-end shape-fluid-y text-white d-none d-md-block">
+              {{> curves/curve-4}}
+            </div>
+
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="card-body">
+
+              <!-- Close -->
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+              <!-- Heading -->
+              <h2 class="mb-0 fw-bold text-center" id="modalSigninHorizontalTitle">
+                Sign In
+              </h2>
+
+              <!-- Text -->
+              <p class="mb-6 text-center text-muted">
+                Simplify your workflow in minutes.
+              </p>
+
+              <!-- Form -->
+              <form class="mb-6">
+
+                <!-- Email -->
+                <div class="form-group">
+                  <label class="visually-hidden" for="modalSigninHorizontalEmail">
+                    Your email
+                  </label>
+                  <input type="email" class="form-control" id="modalSigninHorizontalEmail" placeholder="Your email">
+                </div>
+
+                <!-- Password -->
+                <div class="form-group mb-5">
+                  <label class="visually-hidden" for="modalSigninHorizontalPassword">
+                    Enter your password
+                  </label>
+                  <input type="password" class="form-control" id="modalSigninHorizontalPassword" placeholder="Enter your password">
+                </div>
+
+                <!-- Submit -->
+                <button class="btn w-100 btn-primary" type="submit">
+                  Sign in
+                </button>
+
+              </form>
+
+              <!-- Text -->
+              <p class="mb-0 fs-sm text-center text-muted">
+                Don't have an account yet? <a href="{{webRoot}}/signin-illustration.html">Sign up</a>.
+              </p>
+
+            </div>
+          </div>
+
+        </div> <!-- / .row -->
+      </div>
+    </div>
+  </div>
+</div>
