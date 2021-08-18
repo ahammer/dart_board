@@ -1,3 +1,4 @@
+import 'package:dart_board_core/dart_board.dart';
 import 'package:flutter/material.dart';
 
 /// This is a simple state object
@@ -16,6 +17,8 @@ class BottomNavTemplateState extends ChangeNotifier {
   int get selectedTab => _selectedTab ?? 0;
   set selectedRoute(String route) {
     _selectedRoute = route;
+    _selectedTab =
+        config.indexOf(config.where((e) => e["route"] == route).first);
     notifyListeners();
   }
 
@@ -23,4 +26,11 @@ class BottomNavTemplateState extends ChangeNotifier {
     _selectedTab = index;
     notifyListeners();
   }
+}
+
+/// Messenger for the state object
+class BottomNavMessenger {
+  static void requestNewRoute(BuildContext context, String route) =>
+      Provider.of<BottomNavTemplateState>(context, listen: false)
+          .selectedRoute = route;
 }
