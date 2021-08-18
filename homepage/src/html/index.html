@@ -7,12 +7,8 @@
     <!-- MODALS -->
     {{> partials/modals}}
 
-    <!-- NAVBAR -->
-    {{> partials/navbar classList="navbar-light bg-white" container="container"
-    button="primary"}}
-
     <!-- WELCOME -->
-    <section class="pt-4 pt-md-11">
+    <section class="pt-4 pt-md-8">
       <div class="container">
         <div class="row align-items-center">
           <div class="col-12 col-md-5 col-lg-6 order-md-2">
@@ -39,7 +35,7 @@
             </p>
 
             <!-- Buttons -->
-            <div class="text-center text-md-start">
+            <div class="text-center text-md-start mb-8">
               <a
                 href="https://github.com/ahammer/dart_board"
                 class="btn btn-primary shadow lift me-1"
@@ -52,6 +48,22 @@
                 class="btn btn-primary-soft lift"
               >
                 View on Pub.dev
+              </a>
+            </div>
+            <div class="text-center text-md-start mb-4">
+              <a
+                href="./playground/"
+                class="btn btn-primary-soft shadow lift me-1"
+              >
+                Demo: Playground
+              </a>
+            </div>
+            <div class="text-center text-md-start">
+              <a
+                href="./blank/"
+                class="btn btn-primary-soft lift"
+              >
+                Demo: Starter
               </a>
             </div>
           </div>
@@ -588,44 +600,51 @@
                     <p class="text-center mb-8">
                       <span class="badge rounded-pill bg-primary-soft">
                         <span class="h6 fw-bold text-uppercase"
-                          >Development Rates</span
+                          >Private and Public development</span
                         >
                       </span>
                     </p>
 
-                    <!-- Price -->
                     <div class="d-flex justify-content-center">
-                      <span class="h2 mb-0 mt-2">$</span>
-                      <span
-                        class="price display-2 mb-0"
-                        data-annual="0"
-                        data-monthly="0"
-                        >75
-                      </span>
-                      <span class="h2 align-self-end mb-1">/hr</span>
+                      <p class="text-center mb-8">
+                        To get a free consultation/estimation contact us on
+                        Telegram @
+                        <a href="https://t.me/Dart_Board">DART_BOARD </a>
+                      </p>
                     </div>
 
-                    <!-- Text -->
-                    <p class="text-center text-muted mb-6 mb-md-8">
-                      Sponsored Contributions
+                    <!-- Price -->
+
+                    <p class="text-center mb-8">
+                      <span class="badge rounded-pill bg-primary-soft">
+                        <span class="h6 fw-bold text-uppercase"
+                          >Support the project</span
+                        >
+                      </span>
                     </p>
 
-                    <!-- Price -->
-                    <div class="d-flex justify-content-center">
-                      <span class="h2 mb-0 mt-2">$</span>
-                      <span
-                        class="price display-2 mb-0"
-                        data-annual="0"
-                        data-monthly="0"
-                        >150
-                      </span>
-                      <span class="h2 align-self-end mb-1">/hr</span>
+                    <div class="d-flex justify-content-center mb-6">
+                      <a
+                        href="https://www.patreon.com/bePatron?u=8140321"
+                        data-patreon-widget-type="become-patron-button"
+                        >Become a Patron!</a
+                      >
+                      <script
+                        async
+                        src="https://c6.patreon.com/becomePatronButton.bundle.js"
+                      ></script>
                     </div>
 
-                    <!-- Text -->
-                    <p class="text-center text-muted mb-6 mb-md-8">
-                      Private Development
-                    </p>
+                    <div class="d-flex justify-content-center mb-2">
+                      <p class="text-center">
+                        <a href="bitcoin:1EvW3dBDXqG8U69yk1b261qixSt6CoJAT"
+                          ><img
+                            src="{{webRoot}}/assets/img/bitcoin.png"
+                            width="100" /></a
+                        ><br />
+                        Bitcoin
+                      </p>
+                    </div>
 
                     <!-- Text -
                     <p class="lead text-center text-muted mb-0 mb-md-10">
@@ -670,7 +689,9 @@
 
                 <!-- Text -->
                 <p class="text-muted mb-6 mb-md-8">
-                  The possibilities are endless. It's well suited to 2D application's in flutter, typically business UI's and Simple games (e.g. Puzzle).
+                  The possibilities are endless. It's well suited to 2D
+                  application's in flutter, typically business UI's and Simple
+                  games (e.g. Puzzle).
                 </p>
               </div>
             </div>
@@ -688,9 +709,9 @@
 
                 <!-- Text -->
                 <p class="text-muted mb-6 mb-md-0">
-                  The packages are regularly updated on pub.dev. For those that want
-                  to priority service for issues or features, Sponsored Contributions 
-                  can bring your issues to the front.
+                  The packages are regularly updated on pub.dev. For those that
+                  want to priority service for issues or features, Sponsored
+                  Contributions can bring your issues to the front.
                 </p>
               </div>
             </div>
@@ -709,7 +730,9 @@
 
                 <!-- Text -->
                 <p class="text-muted mb-6 mb-md-8">
-                  Sure, just reach out. We can provide a wide range of bespoke services such as scaffolding, custom feature development and support.
+                  Sure, just reach out. We can provide a wide range of bespoke
+                  services such as scaffolding, custom feature development and
+                  support.
                 </p>
               </div>
             </div>
@@ -723,13 +746,14 @@
 
               <div class="ms-5">
                 <!-- Heading -->
-                <h4 class="text-white">
-                  Does it work with library X?
-                </h4>
+                <h4 class="text-white">Does it work with library X?</h4>
 
                 <!-- Text -->
                 <p class="text-muted mb-6 mb-md-0">
-                  Dart Board is feature agnostic. Existing modules and libraries can frequently by integrated with ease. You can use it for both new projects and to refactor your existing applications into more consistent patterns.
+                  Dart Board is feature agnostic. Existing modules and libraries
+                  can frequently by integrated with ease. You can use it for
+                  both new projects and to refactor your existing applications
+                  into more consistent patterns.
                 </p>
               </div>
             </div>
