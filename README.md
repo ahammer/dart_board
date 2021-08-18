@@ -2,35 +2,40 @@
 
 Flutter Architecture/Framework for Feature based development
 
+# Introduction
+
+In software development there is always a strong desire to know the "best way". But the reality is that there isn't a best way. The best way is constantly changing.
+
+In order to keep up with the change of pace and demands of modern software development, adopting a feature framework allows you to isolate and contain features. This provides a lot of flexibility to gate new feature's, run AB tests, or swap aging components.
+
 # What is it? 
 
-- It is a high level architecture pattern and framework.
+- A Core Framework + Utilities
 
-- It is not a state management solution, at least not directly.
+- Optional features that can be enabled.
 
-- It is a feature management framework.
+- Starter templates and Examples.
 
-In the simplest terms, Dart Board starts blank, and you throw features at it to build your app.
 
-The core library itself only provides common utilities and the core set of widgets. Everything from Content, State Management and more advanced features come in the form of external `Features`. Features are isolated chunks of code built on dart_board that can be easily integrated together.
-
-Internally mechanisms in flutter such as `named routes` are utilized to loosely couple things together. Dart Board owns your MaterialApp and Navigator, we are able to expose integration points for features to utilize in their integartion.
-
-TLDR: Dart Board owns your MaterialApp() and manages features for you (AB Testing, Feature Flags).
+It's a ready to use Framework for building a flutter app today.
 
 
 ## How it works?
 
+Dart Board provides an entry point to your Flutter Application.
+
+You are able to register your features into it's registry and they become available to your application. 
+
+Features have the ability to hook into your app in a variety of ways, such as: Expose Route's, Decorate the App or each Page with a variety of decorations.
+
+You start it by giving your features and initialRoute and it's good to go.
+
 ```
 void main() => runApp(DartBoard(
-  features:[YourIntegration()], 
+  features:[MainFeature(), SomeOtherFeature(), ....], 
   initialRoute: '/main']))
 ```
 
-
-When you Launch your app, you Launch DartBoard() widget, provide it your Features and your initial route and you are good to go.
-
-Dart board loads your features and installs them as you go.
 
 ## What is a Feature?
 
