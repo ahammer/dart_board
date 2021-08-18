@@ -1,0 +1,27 @@
+//
+// list.scss
+// Theme component
+//
+
+.list {
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.list-item + .list-item {
+  margin-top: $list-item-spacing-y;
+}
+
+.list-link {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  font-size: $list-link-font-size;
+  color: $list-link-color;
+
+  &:hover, &:focus {
+    text-decoration: none;
+    color: $list-link-hover-color;
+  }
+}

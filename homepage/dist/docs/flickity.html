@@ -1,0 +1,1469 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../assets/favicon/favicon.ico" type="image/x-icon" />
+    
+    <!-- Map CSS -->
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css" />
+    
+    <!-- Libs CSS -->
+    <link rel="stylesheet" href="../assets/css/libs.bundle.css" />
+    
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="../assets/css/theme.bundle.css" />
+    
+    <!-- Title -->
+    <title>Landkit</title>
+  </head>
+  <body class="bg-light" style="padding-top: 84px;">
+
+    <!-- MODALS -->
+    <!-- Example -->
+    <div class="modal fade" id="modalExample" tabindex="-1" role="dialog" aria-labelledby="modalExampleTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+    
+            <!-- Close -->
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    
+            <!-- Image -->
+            <div class="text-center">
+              <img src="../assets/img/illustrations/illustration-1.png" alt="..." class="img-fluid mb-3" style="width: 200px;">
+            </div>
+    
+            <!-- Heading -->
+            <h2 class="fw-bold text-center mb-1" id="modalExampleTitle">
+              Schedule a demo with us
+            </h2>
+    
+            <!-- Text -->
+            <p class="fs-lg text-center text-muted mb-6 mb-md-8">
+              We can help you solve company communication.
+            </p>
+    
+            <!-- Form -->
+            <form>
+              <div class="row">
+                <div class="col-12 col-md-6">
+    
+                  <!-- First name -->
+                  <div class="form-floating">
+                    <input type="text" class="form-control form-control-flush" id="registrationFirstNameModal" placeholder="First name">
+                    <label for="registrationFirstNameModal">First name</label>
+                  </div>
+    
+                </div>
+                <div class="col-12 col-md-6">
+    
+                  <!-- Last name -->
+                  <div class="form-floating">
+                    <input type="text" class="form-control form-control-flush" id="registrationLastNameModal" placeholder="Last name">
+                    <label for="registrationLastNameModal">Last name</label>
+                  </div>
+    
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 col-md-6">
+    
+                  <!-- Email -->
+                  <div class="form-floating">
+                    <input type="email" class="form-control form-control-flush" id="registrationEmailModal" placeholder="Email">
+                    <label for="registrationEmailModal">Email</label>
+                  </div>
+    
+                </div>
+                <div class="col-12 col-md-6">
+    
+                  <!-- Password -->
+                  <div class="form-floating">
+                    <input type="password" class="form-control form-control-flush" id="registrationPasswordModal" placeholder="Password">
+                    <label for="registrationPasswordModal">Password</label>
+                  </div>
+    
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+    
+                  <!-- Submit -->
+                  <button class="btn w-100 btn-primary mt-3 lift">
+                    Request a demo
+                  </button>
+    
+                </div>
+              </div>
+            </form>
+    
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Signup: Horizontal  -->
+    <div class="modal fade" id="modalSignupHorizontal" tabindex="-1" role="dialog" aria-labelledby="modalSignupHorizontalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="card card-row">
+            <div class="row gx-0">
+              <div class="col-12 col-md-6 bg-cover card-img-start" style="background-image: url(../assets/img/photos/photo-8.jpg);">
+    
+                <!-- Image (placeholder) -->
+                <img src="../assets/img/photos/photo-8.jpg" alt="..." class="img-fluid d-md-none invisible">
+    
+                <!-- Shape -->
+                <div class="shape shape-end shape-fluid-y text-white d-none d-md-block">
+                  <svg viewBox="0 0 112 690" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M116 0H51v172C76 384 0 517 0 517v173h116V0z" fill="currentColor"/></svg>            </div>
+    
+              </div>
+              <div class="col-12 col-md-6">
+                <div class="card-body">
+    
+                  <!-- Close -->
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    
+                  <!-- Heading -->
+                  <h2 class="mb-0 fw-bold text-center" id="modalSignupHorizontalTitle">
+                    Sign Up
+                  </h2>
+    
+                  <!-- Text -->
+                  <p class="mb-6 text-center text-muted">
+                    Simplify your workflow in minutes.
+                  </p>
+    
+                  <!-- Form -->
+                  <form class="mb-6">
+    
+                    <!-- Email -->
+                    <div class="form-group">
+                      <label class="visually-hidden" for="modalSignupHorizontalEmail">
+                        Your email
+                      </label>
+                      <input type="email" class="form-control" id="modalSignupHorizontalEmail" placeholder="Your email">
+                    </div>
+    
+                    <!-- Password -->
+                    <div class="form-group mb-5">
+                      <label class="visually-hidden" for="modalSignupHorizontalPassword">
+                        Create a password
+                      </label>
+                      <input type="password" class="form-control" id="modalSignupHorizontalPassword" placeholder="Create a password">
+                    </div>
+    
+                    <!-- Submit -->
+                    <button class="btn w-100 btn-primary" type="submit">
+                      Sign up
+                    </button>
+    
+                  </form>
+    
+                  <!-- Text -->
+                  <p class="mb-0 fs-sm text-center text-muted">
+                    Already have an account? <a href="../signin-illustration.html">Log in</a>.
+                  </p>
+    
+                </div>
+              </div>
+    
+            </div> <!-- / .row -->
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Signup: Vertical  -->
+    <div class="modal fade" id="modalSignupVertical" tabindex="-1" role="dialog" aria-labelledby="modalSignupVerticalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="card">
+    
+            <!-- Close -->
+            <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+    
+            <!-- Image -->
+            <img src="../assets/img/photos/photo-7.jpg" alt="..." class="card-img-top">
+    
+            <!-- Shape -->
+            <div class="position-relative">
+              <div class="shape shape-bottom shape-fluid-x text-white">
+                <svg viewBox="0 0 2880 480" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2160 0C1440 240 720 240 720 240H0v240h2880V0h-720z" fill="currentColor"/></svg>          </div>
+            </div>
+    
+            <!-- Body -->
+            <div class="card-body">
+    
+              <!-- Heading -->
+              <h2 class="mb-0 fw-bold text-center" id="modalSignupVerticalTitle">
+                Sign Up
+              </h2>
+    
+              <!-- Text -->
+              <p class="mb-6 text-center text-muted">
+                Simplify your workflow in minutes.
+              </p>
+    
+              <!-- Form -->
+              <form class="mb-6">
+    
+                <!-- Email -->
+                <div class="form-group">
+                  <label class="visually-hidden" for="modalSignupVerticalEmail">
+                    Your email
+                  </label>
+                  <input type="email" class="form-control" id="modalSignupVerticalEmail" placeholder="Your email">
+                </div>
+    
+                <!-- Password -->
+                <div class="form-group mb-5">
+                  <label class="visually-hidden" for="modalSignupVerticalPassword">
+                    Create a password
+                  </label>
+                  <input type="password" class="form-control" id="modalSignupVerticalPassword" placeholder="Create a password">
+                </div>
+    
+                <!-- Submit -->
+                <button class="btn w-100 btn-primary" type="submit">
+                  Sign up
+                </button>
+    
+              </form>
+    
+              <!-- Text -->
+              <p class="mb-0 fs-sm text-center text-muted">
+                Already have an account? <a href="../signin-illustration.html">Log in</a>.
+              </p>
+    
+            </div>
+    
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Signin: Horizontal  -->
+    <div class="modal fade" id="modalSigninHorizontal" tabindex="-1" role="dialog" aria-labelledby="modalSigninHorizontalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="card card-row">
+            <div class="row gx-0">
+              <div class="col-12 col-md-6 bg-cover card-img-start" style="background-image: url(../assets/img/photos/photo-1.jpg);">
+    
+                <!-- Image (placeholder) -->
+                <img src="../assets/img/photos/photo-1.jpg" alt="..." class="img-fluid d-md-none invisible">
+    
+                <!-- Shape -->
+                <div class="shape shape-end shape-fluid-y text-white d-none d-md-block">
+                  <svg viewBox="0 0 112 690" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M116 0H51v172C76 384 0 517 0 517v173h116V0z" fill="currentColor"/></svg>            </div>
+    
+              </div>
+              <div class="col-12 col-md-6">
+                <div class="card-body">
+    
+                  <!-- Close -->
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    
+                  <!-- Heading -->
+                  <h2 class="mb-0 fw-bold text-center" id="modalSigninHorizontalTitle">
+                    Sign In
+                  </h2>
+    
+                  <!-- Text -->
+                  <p class="mb-6 text-center text-muted">
+                    Simplify your workflow in minutes.
+                  </p>
+    
+                  <!-- Form -->
+                  <form class="mb-6">
+    
+                    <!-- Email -->
+                    <div class="form-group">
+                      <label class="visually-hidden" for="modalSigninHorizontalEmail">
+                        Your email
+                      </label>
+                      <input type="email" class="form-control" id="modalSigninHorizontalEmail" placeholder="Your email">
+                    </div>
+    
+                    <!-- Password -->
+                    <div class="form-group mb-5">
+                      <label class="visually-hidden" for="modalSigninHorizontalPassword">
+                        Enter your password
+                      </label>
+                      <input type="password" class="form-control" id="modalSigninHorizontalPassword" placeholder="Enter your password">
+                    </div>
+    
+                    <!-- Submit -->
+                    <button class="btn w-100 btn-primary" type="submit">
+                      Sign in
+                    </button>
+    
+                  </form>
+    
+                  <!-- Text -->
+                  <p class="mb-0 fs-sm text-center text-muted">
+                    Don't have an account yet? <a href="../signin-illustration.html">Sign up</a>.
+                  </p>
+    
+                </div>
+              </div>
+    
+            </div> <!-- / .row -->
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Signin: Vertical  -->
+    <div class="modal fade" id="modalSigninVertical" tabindex="-1" role="dialog" aria-labelledby="modalSigninVerticalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="card">
+    
+            <!-- Close -->
+            <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+    
+            <!-- Image -->
+            <img src="../assets/img/photos/photo-21.jpg" alt="..." class="card-img-top">
+    
+            <!-- Shape -->
+            <div class="position-relative">
+              <div class="shape shape-bottom shape-fluid-x text-white">
+                <svg viewBox="0 0 2880 480" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2160 0C1440 240 720 240 720 240H0v240h2880V0h-720z" fill="currentColor"/></svg>          </div>
+            </div>
+    
+            <!-- Body -->
+            <div class="card-body">
+    
+              <!-- Heading -->
+              <h2 class="mb-0 fw-bold text-center" id="modalSigninVerticalTitle">
+                Sign In
+              </h2>
+    
+              <!-- Text -->
+              <p class="mb-6 text-center text-muted">
+                Simplify your workflow in minutes.
+              </p>
+    
+              <!-- Form -->
+              <form class="mb-6">
+    
+                <!-- Email -->
+                <div class="form-group">
+                  <label class="visually-hidden" for="modalSigninVerticalEmail">
+                    Your email
+                  </label>
+                  <input type="email" class="form-control" id="modalSigninVerticalEmail" placeholder="Your email">
+                </div>
+    
+                <!-- Password -->
+                <div class="form-group mb-5">
+                  <label class="visually-hidden" for="modalSigninVerticalPassword">
+                    Enter your password
+                  </label>
+                  <input type="password" class="form-control" id="modalSigninVerticalPassword" placeholder="Enter your password">
+                </div>
+    
+                <!-- Submit -->
+                <button class="btn w-100 btn-primary" type="submit">
+                  Sign in
+                </button>
+    
+              </form>
+    
+              <!-- Text -->
+              <p class="mb-0 fs-sm text-center text-muted">
+                Don't have an account yet? <a href="../signin-illustration.html">Sign up</a>.
+              </p>
+    
+            </div>
+    
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Payment -->
+    <div class="modal fade" id="modalPayment" tabindex="-1" role="dialog" aria-labelledby="modalPaymentTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+    
+            <!-- Close -->
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    
+            <!-- Heading -->
+            <h2 class="fw-bold text-center mb-1" id="modalPaymentTitle">
+              Add Payment
+            </h2>
+    
+            <!-- Text -->
+            <p class="fs-lg text-center text-muted mb-6 mb-md-8">
+              Simplify your workflow in minutes.
+            </p>
+    
+            <!-- Form -->
+            <form>
+    
+              <!-- Name -->
+              <div class="form-group">
+                <label class="form-label" for="modalPaymentName">Name on card</label>
+                <input class="form-control" id="modalPaymentName" type="text" placeholder="First Last">
+              </div>
+    
+              <!-- Name -->
+              <div class="form-group">
+                <label class="form-label" for="modalPaymentNumbber">Card number</label>
+                <input class="form-control" id="modalPaymentNumbber" type="number" placeholder="4242 4242 4242 4242">
+              </div>
+    
+              <!-- Name -->
+              <div class="form-group">
+                <label class="form-label" for="modalPaymentDate">Exp. Date</label>
+                <input class="form-control" id="modalPaymentDate" type="text" placeholder="03/2023">
+              </div>
+    
+              <!-- Submit -->
+              <button class="btn w-100 btn-primary mt-3 lift">
+                Add Payment Method
+              </button>
+    
+            </form>
+    
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-white border-bottom">
+      <div class="container-fluid">
+    
+        <!-- Brand -->
+        <a class="navbar-brand" href="../index.html">
+          <img src="../assets/img/brand.svg" class="navbar-brand-img" alt="...">
+        </a>
+    
+        <!-- Toggler -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <!-- Collapse -->
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+    
+          <!-- Toggler -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fe fe-x"></i>
+          </button>
+    
+          <!-- Navigation -->
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarLandings" data-bs-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
+                Landings
+              </a>
+              <div class="dropdown-menu dropdown-menu-xl p-0" aria-labelledby="navbarLandings">
+                <div class="row gx-0">
+                  <div class="col-12 col-lg-6">
+                    <div class="dropdown-img-start" style="background-image: url(../assets/img/photos/photo-3.jpg);">
+    
+                      <!-- Heading -->
+                      <h4 class="fw-bold text-white mb-0">
+                        Want to see an overview?
+                      </h4>
+    
+                      <!-- Text -->
+                      <p class="fs-sm text-white">
+                        See all the pages at once.
+                      </p>
+    
+                      <!-- Button -->
+                      <a href="../overview.html" class="btn btn-sm btn-white shadow-dark fonFt-size-sm">
+                        View all pages
+                      </a>
+    
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-6">
+                    <div class="dropdown-body">
+                      <div class="row gx-0">
+                        <div class="col-6">
+    
+                          <!-- Heading -->
+                          <h6 class="dropdown-header">
+                            Services
+                          </h6>
+    
+                          <!-- List -->
+                          <a class="dropdown-item" href="../coworking.html">
+                            Coworking
+                          </a>
+                          <a class="dropdown-item" href="../rental.html">
+                            Rental
+                          </a>
+                          <a class="dropdown-item mb-5" href="../job.html">
+                            Job Listing
+                          </a>
+    
+                          <!-- Heading -->
+                          <h6 class="dropdown-header">
+                            Apps
+                          </h6>
+    
+                          <!-- List -->
+                          <a class="dropdown-item" href="../desktop-app.html">
+                            Desktop
+                          </a>
+                          <a class="dropdown-item" href="../mobile-app.html">
+                            Mobile
+                          </a>
+    
+                        </div>
+                        <div class="col-6">
+    
+                          <!-- Heading -->
+                          <h6 class="dropdown-header">
+                            Web
+                          </h6>
+    
+                          <!-- List -->
+                          <a class="dropdown-item" href="../index.html">
+                            Basic
+                          </a>
+                          <a class="dropdown-item" href="../startup.html">
+                            Startup
+                          </a>
+                          <a class="dropdown-item" href="../enterprise.html">
+                            Enterprise
+                          </a>
+                          <a class="dropdown-item" href="../service.html">
+                            Service
+                          </a>
+                          <a class="dropdown-item" href="../cloud.html">
+                            Cloud Hosting
+                          </a>
+                          <a class="dropdown-item" href="../agency.html">
+                            Agency
+                          </a>
+                          <a class="dropdown-item" href="../framework.html">
+                            Framework <span class="h6 text-uppercase text-primary">(new)</span>
+                          </a>
+    
+                        </div>
+                      </div> <!-- / .row -->
+                    </div>
+                  </div>
+                </div> <!-- / .row -->
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarPages" data-bs-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
+                Pages
+              </a>
+              <div class="dropdown-menu dropdown-menu-lg" aria-labelledby="navbarPages">
+                <div class="row gx-0">
+                  <div class="col-6">
+                    <div class="row gx-0">
+                      <div class="col-12 col-lg-6">
+    
+                        <!-- Heading -->
+                        <h6 class="dropdown-header">
+                          Career
+                        </h6>
+    
+                        <!-- List -->
+                        <a class="dropdown-item" href="../careers.html">
+                          Listing
+                        </a>
+                        <a class="dropdown-item mb-5" href="../career-single.html">
+                          Opening
+                        </a>
+    
+                        <!-- Heading -->
+                        <h6 class="dropdown-header">
+                          Company
+                        </h6>
+    
+                        <!-- List -->
+                        <a class="dropdown-item" href="../about.html">
+                          About
+                        </a>
+                        <a class="dropdown-item" href="../pricing.html">
+                          Pricing
+                        </a>
+                        <a class="dropdown-item mb-5 mb-lg-0" href="../terms-of-service.html">
+                          Terms
+                        </a>
+    
+                      </div>
+                      <div class="col-12 col-lg-6">
+    
+                        <!-- Heading -->
+                        <h6 class="dropdown-header">
+                          Help center
+                        </h6>
+    
+                        <!-- List -->
+                        <a class="dropdown-item" href="../help-center.html">
+                          Overview
+                        </a>
+                        <a class="dropdown-item mb-5" href="../help-center-article.html">
+                          Article
+                        </a>
+    
+                        <!-- Heading -->
+                        <h6 class="dropdown-header">
+                          Contact
+                        </h6>
+    
+                        <!-- List -->
+                        <a class="dropdown-item" href="../contact.html">
+                          Basic
+                        </a>
+                        <a class="dropdown-item" href="../contact-alt.html">
+                          Cover
+                        </a>
+    
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="row gx-0">
+                      <div class="col-12 col-lg-6">
+    
+                        <!-- Heading -->
+                        <h6 class="dropdown-header">
+                          Blog
+                        </h6>
+    
+                        <!-- List -->
+                        <a class="dropdown-item" href="../blog.html">
+                          Rich View
+                        </a>
+                        <a class="dropdown-item" href="../blog-post.html">
+                          Article
+                        </a>
+                        <a class="dropdown-item" href="../blog-showcase.html">
+                          Showcase
+                        </a>
+                        <a class="dropdown-item mb-5 mb-lg-0" href="../blog-search.html">
+                          Search
+                        </a>
+    
+                      </div>
+                      <div class="col-12 col-lg-6">
+    
+                        <!-- Heading -->
+                        <h6 class="dropdown-header">
+                          Portfolio
+                        </h6>
+    
+                        <!-- List -->
+                        <a class="dropdown-item" href="../portfolio-masonry.html">
+                          Masonry
+                        </a>
+                        <a class="dropdown-item" href="../portfolio-grid-rows.html">
+                          Grid Rows
+                        </a>
+                        <a class="dropdown-item" href="../portfolio-parallax.html">
+                          Parallax
+                        </a>
+                        <a class="dropdown-item" href="../portfolio-case-study.html">
+                          Case Study
+                        </a>
+                        <a class="dropdown-item" href="../portfolio-sidebar.html">
+                          Sidebar
+                        </a>
+                        <a class="dropdown-item" href="../portfolio-sidebar-fluid.html">
+                          Sidebar: Fluid
+                        </a>
+                        <a class="dropdown-item" href="../portfolio-grid.html">
+                          Basic Grid
+                        </a>
+    
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> <!-- / .row -->
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarAccount" data-bs-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
+                Account
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarAccount">
+                <li class="dropdown-item dropend">
+                  <a class="dropdown-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
+                    Settings
+                  </a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="../account-general.html">
+                      General
+                    </a>
+                    <a class="dropdown-item" href="../account-security.html">
+                      Security
+                    </a>
+                    <a class="dropdown-item" href="../account-notifications.html">
+                      Notifications
+                    </a>
+                    <a class="dropdown-item" href="../billing-plans-and-payment.html">
+                      Plans & Payment
+                    </a>
+                    <a class="dropdown-item" href="../billing-users.html">
+                      Users
+                    </a>
+                  </div>
+                </li>
+                <li class="dropdown-item dropend">
+                  <a class="dropdown-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
+                    Sign In
+                  </a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="../signin-cover.html">
+                      Side Cover
+                    </a>
+                    <a class="dropdown-item" href="../signin-illustration.html">
+                      Illustration
+                    </a>
+                    <a class="dropdown-item" href="../signin.html">
+                      Basic
+                    </a>
+                    <a class="dropdown-item" data-bs-toggle="modal" href="#modalSigninHorizontal">
+                      Modal Horizontal
+                    </a>
+                    <a class="dropdown-item" data-bs-toggle="modal" href="#modalSigninVertical">
+                      Modal Vertical
+                    </a>
+                  </div>
+                </li>
+                <li class="dropdown-item dropend">
+                  <a class="dropdown-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
+                    Sign Up
+                  </a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="../signup-cover.html">
+                      Side Cover
+                    </a>
+                    <a class="dropdown-item" href="../signup-illustration.html">
+                      Illustration
+                    </a>
+                    <a class="dropdown-item" href="../signup.html">
+                      Basic
+                    </a>
+                    <a class="dropdown-item" data-bs-toggle="modal" href="#modalSignupHorizontal">
+                      Modal Horizontal
+                    </a>
+                    <a class="dropdown-item" data-bs-toggle="modal" href="#modalSignupVertical">
+                      Modal Vertical
+                    </a>
+                  </div>
+                </li>
+                <li class="dropdown-item dropend">
+                  <a class="dropdown-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
+                    Password Reset
+                  </a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="../password-reset-cover.html">
+                      Side Cover
+                    </a>
+                    <a class="dropdown-item" href="../password-reset-illustration.html">
+                      Illustration
+                    </a>
+                    <a class="dropdown-item" href="../password-reset.html">
+                      Basic
+                    </a>
+                  </div>
+                </li>
+                <li class="dropdown-item dropend">
+                  <a class="dropdown-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
+                    Error
+                  </a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="../error-cover.html">
+                      Side Cover
+                    </a>
+                    <a class="dropdown-item" href="../error-illustration.html">
+                      Illustration
+                    </a>
+                    <a class="dropdown-item" href="../error.html">
+                      Basic
+                    </a>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarDocumentation" data-bs-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
+                Documentation
+              </a>
+              <div class="dropdown-menu dropdown-menu-md" aria-labelledby="navbarDocumentation">
+                <div class="list-group list-group-flush">
+                  <a class="list-group-item" href="../docs/index.html">
+    
+                    <!-- Icon -->
+                    <div class="icon icon-sm text-primary">
+                      <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M0 0h24v24H0z"/><path d="M8 3v.5A1.5 1.5 0 009.5 5h5A1.5 1.5 0 0016 3.5V3h2a2 2 0 012 2v16a2 2 0 01-2 2H6a2 2 0 01-2-2V5a2 2 0 012-2h2z" fill="#335EEA" opacity=".3"/><path d="M11 2a1 1 0 012 0h1.5a.5.5 0 01.5.5v1a.5.5 0 01-.5.5h-5a.5.5 0 01-.5-.5v-1a.5.5 0 01.5-.5H11z" fill="#335EEA"/><rect fill="#335EEA" opacity=".3" x="7" y="10" width="5" height="2" rx="1"/><rect fill="#335EEA" opacity=".3" x="7" y="14" width="9" height="2" rx="1"/></g></svg>                </div>
+    
+                    <!-- Content -->
+                    <div class="ms-4">
+    
+                      <!-- Heading -->
+                      <h6 class="fw-bold text-uppercase text-primary mb-0">
+                        Documentation
+                      </h6>
+    
+                      <!-- Text -->
+                      <p class="fs-sm text-gray-700 mb-0">
+                        Customizing and building
+                      </p>
+    
+                    </div>
+    
+                  </a>
+                  <a class="list-group-item" href="../docs/alerts.html">
+    
+                    <!-- Icon -->
+                    <div class="icon icon-sm text-primary">
+                      <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M0 0h24v24H0z"/><rect fill="#335EEA" x="4" y="4" width="7" height="7" rx="1.5"/><path d="M5.5 13h4a1.5 1.5 0 011.5 1.5v4A1.5 1.5 0 019.5 20h-4A1.5 1.5 0 014 18.5v-4A1.5 1.5 0 015.5 13zm9-9h4A1.5 1.5 0 0120 5.5v4a1.5 1.5 0 01-1.5 1.5h-4A1.5 1.5 0 0113 9.5v-4A1.5 1.5 0 0114.5 4zm0 9h4a1.5 1.5 0 011.5 1.5v4a1.5 1.5 0 01-1.5 1.5h-4a1.5 1.5 0 01-1.5-1.5v-4a1.5 1.5 0 011.5-1.5z" fill="#335EEA" opacity=".3"/></g></svg>                </div>
+    
+                    <!-- Content -->
+                    <div class="ms-4">
+    
+                      <!-- Heading -->
+                      <h6 class="fw-bold text-uppercase text-primary mb-0">
+                        Components
+                      </h6>
+    
+                      <!-- Text -->
+                      <p class="fs-sm text-gray-700 mb-0">
+                        Full list of components
+                      </p>
+    
+                    </div>
+    
+                  </a>
+                  <a class="list-group-item" href="../docs/changelog.html">
+    
+                    <!-- Icon -->
+                    <div class="icon icon-sm text-primary">
+                      <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M0 0h24v24H0z"/><path d="M5.857 2h7.88a1.5 1.5 0 01.968.355l4.764 4.029A1.5 1.5 0 0120 7.529v12.554c0 1.79-.02 1.917-1.857 1.917H5.857C4.02 22 4 21.874 4 20.083V3.917C4 2.127 4.02 2 5.857 2z" fill="#335EEA" opacity=".3"/><rect fill="#335EEA" x="6" y="11" width="9" height="2" rx="1"/><rect fill="#335EEA" x="6" y="15" width="5" height="2" rx="1"/></g></svg>                </div>
+    
+                    <!-- Content -->
+                    <div class="ms-4">
+    
+                      <!-- Heading -->
+                      <h6 class="fw-bold text-uppercase text-primary mb-0">
+                        Changelog
+                      </h6>
+    
+                      <!-- Text -->
+                      <p class="fs-sm text-gray-700 mb-0">
+                        Keep track of changes
+                      </p>
+    
+                    </div>
+    
+                    <!-- Badge -->
+                    <span class="badge rounded-pill bg-primary-soft ms-auto">
+                      2.0.0
+                    </span>
+    
+                  </a>
+                </div>
+              </div>
+            </li>
+          </ul>
+    
+          <!-- Button -->
+          <a class="navbar-btn btn btn-sm btn-primary lift ms-auto" href="https://themes.getbootstrap.com/product/landkit/" target="_blank">
+            Buy now
+          </a>
+    
+        </div>
+    
+      </div>
+    </nav>
+
+    <!-- BREADCRUMB -->
+    <nav class="d-lg-none bg-gray-800">
+      <div class="container-fluid">
+        <div class="row align-items-center">
+          <div class="col">
+
+            <!-- Breadcrumb -->
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <span class="text-white">
+                  Docs
+                </span>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                <span class="text-white">
+                  Flickity
+                </span>
+              </li>
+            </ol>
+
+          </div>
+          <div class="col-auto">
+
+            <!-- Toggler -->
+            <div class="navbar-dark">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidenavCollapse" aria-controls="sidenavCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </div>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </nav>
+
+    <!-- CONTENT -->
+    <section>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 col-lg-3 col-xl-2 px-lg-0 border-bottom border-bottom-lg-0 border-end-lg border-gray-300 sidenav sidenav-start">
+
+            <div class="collapse d-lg-block" id="sidenavCollapse">
+              <div class="py-7 py-lg-9 px-lg-7">
+            
+                <!-- Heading -->
+                <h6 class="text-uppercase fw-bold">
+                  Getting started
+                </h6>
+            
+                <!-- Links -->
+                <ul class="list mb-6">
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/index.html">Introduction</a>
+                  </li>
+                  <li class="list-item d-flex">
+                    <a class="list-link" href="../docs/changelog.html">Changelog</a> <span class="badge rounded-pill bg-primary-soft ms-auto align-self-center">2.0.0</span>
+                  </li>
+                </ul>
+            
+                <!-- Heading -->
+                <h6 class="text-uppercase fw-bold">
+                  Components
+                </h6>
+            
+                <!-- Links -->
+                <ul class="list mb-6">
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/alerts.html">Alerts</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/avatars.html">Avatars</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/badges.html">Badges</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/breadcrumb.html">Breadcrumb</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/buttons.html">Buttons</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/cards.html">Cards</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/devices.html">Devices</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/dropdowns.html">Dropdowns</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/forms.html">Forms</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/icons.html">Icons</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/lists.html">Lists</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/modal.html">Modal</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/navbar.html">Navbar</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/navs.html">Navs</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/pagination.html">Pagination</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/popovers.html">Popovers</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/progress.html">Progress</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/screenshot.html">Screenshot</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/shapes.html">Shapes</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/spinners.html">Spinners</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/switches.html">Switches</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/tables.html">Tables</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/toasts.html">Toasts</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/tooltips.html">Tooltips</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/typography.html">Typography</a>
+                  </li>
+                </ul>
+            
+                <!-- Heading -->
+                <h6 class="text-uppercase fw-bold">
+                  Plugins
+                </h6>
+            
+                <!-- Links -->
+                <ul class="list mb-6">
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/aos.html">AOS</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/bigpicture.html">BigPicture</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/choices.html">Choices</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/countup.html">Count up</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/dropzone.html">Dropzone</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/flickity.html">Flickity</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/isotope.html">Isotope</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/jarallax.html">Jarallax</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/map.html">Map</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/quill.html">Quill</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/smooth-scroll.html">Smooth scroll</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/typed.html">Typed</a>
+                  </li>
+                </ul>
+            
+            
+                <!-- Heading -->
+                <h6 class="text-uppercase fw-bold">
+                  Utilities
+                </h6>
+            
+                <!-- List -->
+                <ul class="list mb-6">
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/background.html">Background</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/borders.html">Borders</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/images.html">Images</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/lift.html">Lift</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/overlay.html">Overlay</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/position.html">Position</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/shadows.html">Shadows</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/sizing.html">Sizing</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/type.html">Type</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/visibility.html">Visibility</a>
+                  </li>
+                </ul>
+            
+                <!-- Heading -->
+                <h6 class="text-uppercase fw-bold">
+                  Design
+                </h6>
+            
+                <!-- Links -->
+                <ul class="list mb-0">
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/figma.html">Figma</a>
+                  </li>
+                  <li class="list-item">
+                    <a class="list-link" href="../docs/illustrations.html">Illustrations</a>
+                  </li>
+                </ul>
+            
+              </div>
+            </div>
+
+          </div>
+          <div class="col-12 col-lg-6 col-xl-8 offset-lg-3 offset-xl-2 py-7 py-lg-9 px-lg-7">
+
+            <!-- Heading -->
+            <div class="d-flex align-items-center">
+              <h1 class="mb-1 me-3">Flickity</h1>
+              <span class="badge rounded-pill bg-primary-soft mt-1">
+                <span class="h6 text-uppercase fw-bold">Landkit only</span>
+              </span>
+            </div>
+
+            <!-- Text -->
+            <p class="fs-lg text-gray-700">
+              Touch, responsive, flickable carousels.
+            </p>
+
+            <!-- Bootstrap/Plugin Link -->
+            <p>
+              <a class="text-decoration-none" href="https://flickity.metafizzy.co/" target="_blank">
+                <i class="fe fe-external-link pe-1"></i>
+                Plugin documentation
+              </a>
+            </p>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Card -->
+            <div class="card">
+              <div class="card-body">
+
+                <!-- Flickity -->
+                <div data-flickity='{"pageDots": false,"cellAlign": "left", "wrapAround": true, "imagesLoaded": true}'>
+                  <div class="col-12 col-md-4 px-1">
+                    <img src="../assets/img/covers/cover-5.jpg" class="img-fluid" alt="...">
+                  </div>
+                  <div class="col-12 col-md-4 px-1">
+                    <img src="../assets/img/covers/cover-6.jpg" class="img-fluid" alt="...">
+                  </div>
+                  <div class="col-12 col-md-4 px-1">
+                    <img src="../assets/img/covers/cover-7.jpg" class="img-fluid" alt="...">
+                  </div>
+                  <div class="col-12 col-md-4 px-1">
+                    <img src="../assets/img/covers/cover-8.jpg" class="img-fluid" alt="...">
+                  </div>
+                </div>
+
+              </div>
+              <div class="card-footer bg-black">
+                <code class="highlight html">
+                  &lt;div&nbsp;data-flickity='{&quot;pageDots&quot;:&nbsp;false,&quot;cellAlign&quot;:&nbsp;&quot;left&quot;,&nbsp;&quot;wrapAround&quot;:&nbsp;true,&nbsp;&quot;imagesLoaded&quot;:&nbsp;true}'&gt;<br />&nbsp;&nbsp;&lt;div&nbsp;class=&quot;col-12&nbsp;col-md-4&nbsp;px-1&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;src=&quot;../assets/img/covers/cover-5.jpg&quot;&nbsp;class=&quot;img-fluid&quot;&nbsp;alt=&quot;...&quot;&gt;<br />&nbsp;&nbsp;&lt;/div&gt;<br />&nbsp;&nbsp;&lt;div&nbsp;class=&quot;col-12&nbsp;col-md-4&nbsp;px-1&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;src=&quot;../assets/img/covers/cover-6.jpg&quot;&nbsp;class=&quot;img-fluid&quot;&nbsp;alt=&quot;...&quot;&gt;<br />&nbsp;&nbsp;&lt;/div&gt;<br />&nbsp;&nbsp;&lt;div&nbsp;class=&quot;col-12&nbsp;col-md-4&nbsp;px-1&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;src=&quot;../assets/img/covers/cover-7.jpg&quot;&nbsp;class=&quot;img-fluid&quot;&nbsp;alt=&quot;...&quot;&gt;<br />&nbsp;&nbsp;&lt;/div&gt;<br />&nbsp;&nbsp;&lt;div&nbsp;class=&quot;col-12&nbsp;col-md-4&nbsp;px-1&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;src=&quot;../assets/img/covers/cover-8.jpg&quot;&nbsp;class=&quot;img-fluid&quot;&nbsp;alt=&quot;...&quot;&gt;<br />&nbsp;&nbsp;&lt;/div&gt;<br />&lt;/div&gt;
+                </code>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Heading -->
+            <h3 class="fw-bold me-3" id="navigationColor">Navigation color</h3>
+
+            <!-- Text -->
+            <p class="text-gray-700 mb-5">
+              Create a white variation of the navigation buttons with a <code>.flickity-button-white</code> modifier.
+            </p>
+
+            <!-- Card -->
+            <div class="card">
+              <div class="card-body">
+
+                <!-- Flickity -->
+                <div class="flickity-button-white" data-flickity='{"pageDots": false,"cellAlign": "left", "wrapAround": true, "imagesLoaded": true}'>
+                  <div class="col-12 col-md-4 px-1">
+                    <img src="../assets/img/covers/cover-5.jpg" class="img-fluid" alt="...">
+                  </div>
+                  <div class="col-12 col-md-4 px-1">
+                    <img src="../assets/img/covers/cover-6.jpg" class="img-fluid" alt="...">
+                  </div>
+                  <div class="col-12 col-md-4 px-1">
+                    <img src="../assets/img/covers/cover-7.jpg" class="img-fluid" alt="...">
+                  </div>
+                  <div class="col-12 col-md-4 px-1">
+                    <img src="../assets/img/covers/cover-8.jpg" class="img-fluid" alt="...">
+                  </div>
+                </div>
+
+              </div>
+              <div class="card-footer bg-black">
+                <code class="highlight html">
+                  &lt;div&nbsp;class=&quot;flickity-button-white&quot;&nbsp;data-flickity='{&quot;pageDots&quot;:&nbsp;false,&quot;cellAlign&quot;:&nbsp;&quot;left&quot;,&nbsp;&quot;wrapAround&quot;:&nbsp;true,&nbsp;&quot;imagesLoaded&quot;:&nbsp;true}'&gt;<br />&nbsp;&nbsp;&lt;div&nbsp;class=&quot;col-12&nbsp;col-md-4&nbsp;px-1&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;src=&quot;../assets/img/covers/cover-5.jpg&quot;&nbsp;class=&quot;img-fluid&quot;&nbsp;alt=&quot;...&quot;&gt;<br />&nbsp;&nbsp;&lt;/div&gt;<br />&nbsp;&nbsp;&lt;div&nbsp;class=&quot;col-12&nbsp;col-md-4&nbsp;px-1&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;src=&quot;../assets/img/covers/cover-6.jpg&quot;&nbsp;class=&quot;img-fluid&quot;&nbsp;alt=&quot;...&quot;&gt;<br />&nbsp;&nbsp;&lt;/div&gt;<br />&nbsp;&nbsp;&lt;div&nbsp;class=&quot;col-12&nbsp;col-md-4&nbsp;px-1&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;src=&quot;../assets/img/covers/cover-7.jpg&quot;&nbsp;class=&quot;img-fluid&quot;&nbsp;alt=&quot;...&quot;&gt;<br />&nbsp;&nbsp;&lt;/div&gt;<br />&nbsp;&nbsp;&lt;div&nbsp;class=&quot;col-12&nbsp;col-md-4&nbsp;px-1&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;src=&quot;../assets/img/covers/cover-8.jpg&quot;&nbsp;class=&quot;img-fluid&quot;&nbsp;alt=&quot;...&quot;&gt;<br />&nbsp;&nbsp;&lt;/div&gt;<br />&lt;/div&gt;
+                </code>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Heading -->
+            <h3 class="fw-bold me-3" id="navigationPositioning">Navigation positioning</h3>
+
+            <!-- Text -->
+            <p class="text-gray-700 mb-5">
+              Change the position of the navigation buttons with a <code>.flickity-buttons-inset</code> modifier.
+            </p>
+
+            <!-- Card -->
+            <div class="card">
+              <div class="card-body">
+
+                <!-- Flickity -->
+                <div class="flickity-button-inset" data-flickity='{"pageDots": false,"cellAlign": "left", "wrapAround": true, "imagesLoaded": true}'>
+                  <div class="col-12 col-md-4 px-1">
+                    <img src="../assets/img/covers/cover-5.jpg" class="img-fluid" alt="...">
+                  </div>
+                  <div class="col-12 col-md-4 px-1">
+                    <img src="../assets/img/covers/cover-6.jpg" class="img-fluid" alt="...">
+                  </div>
+                  <div class="col-12 col-md-4 px-1">
+                    <img src="../assets/img/covers/cover-7.jpg" class="img-fluid" alt="...">
+                  </div>
+                  <div class="col-12 col-md-4 px-1">
+                    <img src="../assets/img/covers/cover-8.jpg" class="img-fluid" alt="...">
+                  </div>
+                </div>
+
+              </div>
+              <div class="card-footer bg-black">
+                <code class="highlight html">
+                  &lt;div&nbsp;class=&quot;flickity-button-inset&quot;&nbsp;data-flickity='{&quot;pageDots&quot;:&nbsp;false,&quot;cellAlign&quot;:&nbsp;&quot;left&quot;,&nbsp;&quot;wrapAround&quot;:&nbsp;true,&nbsp;&quot;imagesLoaded&quot;:&nbsp;true}'&gt;<br />&nbsp;&nbsp;&lt;div&nbsp;class=&quot;col-12&nbsp;col-md-4&nbsp;px-1&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;src=&quot;../assets/img/covers/cover-5.jpg&quot;&nbsp;class=&quot;img-fluid&quot;&nbsp;alt=&quot;...&quot;&gt;<br />&nbsp;&nbsp;&lt;/div&gt;<br />&nbsp;&nbsp;&lt;div&nbsp;class=&quot;col-12&nbsp;col-md-4&nbsp;px-1&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;src=&quot;../assets/img/covers/cover-6.jpg&quot;&nbsp;class=&quot;img-fluid&quot;&nbsp;alt=&quot;...&quot;&gt;<br />&nbsp;&nbsp;&lt;/div&gt;<br />&nbsp;&nbsp;&lt;div&nbsp;class=&quot;col-12&nbsp;col-md-4&nbsp;px-1&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;src=&quot;../assets/img/covers/cover-7.jpg&quot;&nbsp;class=&quot;img-fluid&quot;&nbsp;alt=&quot;...&quot;&gt;<br />&nbsp;&nbsp;&lt;/div&gt;<br />&nbsp;&nbsp;&lt;div&nbsp;class=&quot;col-12&nbsp;col-md-4&nbsp;px-1&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;src=&quot;../assets/img/covers/cover-8.jpg&quot;&nbsp;class=&quot;img-fluid&quot;&nbsp;alt=&quot;...&quot;&gt;<br />&nbsp;&nbsp;&lt;/div&gt;<br />&lt;/div&gt;
+                </code>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Heading -->
+            <h3 class="fw-bold me-3" id="visibleOverflow">Visible overflow</h3>
+
+            <!-- Text -->
+            <p class="text-gray-700 mb-5">
+              Changes the overflow visibililty of the flickity viewport.
+            </p>
+
+            <!-- Flickity -->
+            <div class="flickity-viewport-visible pt-2 pb-9" data-flickity='{"cellAlign": "left", "imagesLoaded": true, "pageDots": false, "prevNextButtons": false, "contain": true}'>
+              <div class="col-12 col-md-5 col-lg-4">
+
+                <!-- Card -->
+                <div class="card card-border shadow-light-lg lift lift-lg" style="border-top-color: #FF5A5F;">
+                  <div class="card-body text-center">
+
+                    <!-- Icon -->
+                    <div class="img-fluid mb-5 w-50" style="color: #FF5A5F;">
+                      <svg viewBox="0 0 2761 991" xmlns="http://www.w3.org/2000/svg"><path d="M1447.629 301.83c0 28.119-22.658 50.76-50.777 50.76-28.118 0-50.76-22.641-50.76-50.76s21.87-50.76 50.76-50.76c28.915.78 50.777 23.43 50.777 50.76zm-209.316 102.317v12.5s-24.202-31.256-75.75-31.256c-85.121 0-151.517 64.828-151.517 154.638 0 89.037 65.615 154.638 151.517 154.638 52.328 0 75.75-32.02 75.75-32.02v13.271c0 6.25 4.697 10.923 10.939 10.923h63.252V393.177h-63.252c-6.242.024-10.939 5.5-10.939 10.97zm0 188.21c-11.703 17.189-35.14 32.028-63.251 32.028-49.98 0-88.258-31.24-88.258-84.356 0-53.11 38.277-84.349 88.258-84.349 27.338 0 52.328 15.62 63.251 32.02v104.658zm121.058-199.156h74.97v293.664h-74.97V393.2zm1119.954-7.818c-51.548 0-75.766 31.255-75.766 31.255V251.85h-74.97v435.015h63.267c6.25 0 10.923-5.47 10.923-10.94v-13.27s24.218 32.02 75.75 32.02c85.137 0 151.518-65.585 151.518-154.623s-66.38-154.669-150.722-154.669zm-12.499 238.214c-28.906 0-51.548-14.824-63.267-32.02V486.92c11.719-15.62 36.709-32.02 63.267-32.02 49.98 0 88.25 31.24 88.25 84.349 0 53.109-38.261 84.348-88.25 84.348zm-177.28-110.891v174.939h-74.985V521.288c0-48.412-15.62-67.949-57.767-67.949-22.642 0-46.08 11.72-60.942 28.907v204.626h-74.955V393.21h59.335c6.25 0 10.938 5.469 10.938 10.938v12.5c21.87-22.658 50.76-31.256 79.652-31.256 32.808 0 60.147 9.386 82.016 28.126 26.543 21.87 36.709 49.98 36.709 99.189zm-450.65-127.323c-51.532 0-75.75 31.255-75.75 31.255V251.85h-74.97v435.015h63.251c6.25 0 10.939-5.47 10.939-10.94v-13.27s24.218 32.02 75.75 32.02c85.137 0 151.518-65.585 151.518-154.623.78-89.045-65.6-154.669-150.737-154.669zm-12.498 238.214c-28.891 0-51.533-14.824-63.252-32.02V486.92c11.719-15.62 36.709-32.02 63.252-32.02 49.996 0 88.257 31.24 88.257 84.349 0 53.109-38.261 84.348-88.257 84.348zm-203.05-238.214c22.641 0 34.36 3.917 34.36 3.917v69.5s-62.48-21.088-101.52 23.438v205.399H1481.2V393.2h63.267c6.25 0 10.923 5.469 10.923 10.938v12.5c14.075-16.409 44.535-31.256 67.957-31.256zM844.705 660.306c-3.901-9.37-7.81-19.52-11.711-28.119-6.258-14.051-12.507-27.338-17.96-39.83l-.781-.78c-53.897-117.156-111.68-235.858-172.606-352.999l-2.34-4.696a1536.65 1536.65 0 01-18.734-36.71c-7.817-14.067-15.62-28.89-28.119-42.958-24.99-31.24-60.918-48.427-99.18-48.427-39.057 0-74.198 17.188-99.96 46.859-11.72 14.052-20.317 28.891-28.12 42.958a1695.173 1695.173 0 01-18.732 36.71l-2.349 4.696c-60.138 117.141-118.709 235.85-172.598 353l-.788 1.552c-5.462 12.514-11.719 25.786-17.968 39.83-3.901 8.597-7.803 17.968-11.704 28.118-10.158 28.892-13.287 56.23-9.37 84.357 8.59 58.578 47.632 107.763 101.529 129.647 20.309 8.598 41.398 12.5 63.26 12.5 6.249 0 14.051-.78 20.308-1.569 25.779-3.12 52.33-11.703 78.107-26.543 32.02-17.968 62.48-43.73 96.84-81.22 34.36 37.49 65.6 63.252 96.84 81.22 25.786 14.84 52.329 23.422 78.1 26.543 6.249.796 14.066 1.568 20.316 1.568 21.87 0 43.73-3.9 63.252-12.499 54.677-21.884 92.938-71.85 101.536-129.647 6.203-27.331 3.082-54.654-7.068-83.56zm-352.219 40.61c-42.178-53.109-69.517-103.09-78.88-145.252-3.9-17.968-4.688-33.588-2.34-47.647 1.553-12.5 6.25-23.438 12.499-32.808 14.84-21.074 39.83-34.36 68.729-34.36 28.907 0 54.677 12.498 68.736 34.36 6.25 9.37 10.931 20.316 12.507 32.808 2.333 14.067 1.553 30.46-2.348 47.647-9.402 41.383-36.74 91.37-78.903 145.252zm311.6 36.71c-5.46 40.61-32.8 75.765-71.06 91.385-18.742 7.802-39.058 10.15-59.352 7.802-19.52-2.348-39.057-8.598-59.35-20.3-28.119-15.636-56.23-39.83-89.038-75.767 51.54-63.252 82.78-121.058 94.5-172.59 5.469-24.218 6.257-46.08 3.9-66.397-3.113-19.52-10.15-37.489-21.081-53.109-24.226-35.156-64.843-55.45-110.127-55.45-45.283 0-85.901 21.09-110.111 55.45-10.93 15.62-17.968 33.588-21.09 53.11-3.12 20.316-2.348 42.958 3.902 66.395 11.71 51.533 43.73 110.112 94.491 173.371-32.02 35.929-60.919 60.147-89.037 75.766-20.31 11.72-39.822 17.969-59.343 20.302a124.96 124.96 0 01-59.359-7.803c-38.261-15.62-65.6-50.776-71.061-91.386-2.341-19.52-.788-39.042 7.03-60.91 2.332-7.819 6.249-15.62 10.15-24.991 5.47-12.499 11.703-25.786 17.96-39.057l.788-1.553c53.882-116.376 111.672-235.085 171.81-350.666l2.341-4.697c6.258-11.703 12.507-24.202 18.749-35.92 6.25-12.5 13.271-24.219 21.87-34.377 16.4-18.725 38.26-28.891 62.478-28.891 24.218 0 46.08 10.166 62.48 28.891 8.598 10.182 15.62 21.9 21.87 34.376 6.256 11.719 12.506 24.218 18.74 35.921l2.348 4.697a10341.109 10341.109 0 01171.038 351.446v.78c6.257 12.515 11.719 26.559 17.968 39.073 3.901 9.355 7.81 17.157 10.15 24.975 6.235 20.285 8.575 39.822 5.447 60.123z" fill="currentColor" fill-rule="nonzero"/></svg>                    </div>
+
+                    <!-- Text -->
+                    <p class="text-gray-700 mb-5">
+                      Uses Landkit to keep their remote teams from around the world in sync.
+                    </p>
+
+                    <!-- Link -->
+                    <a href="#!" style="color: #FF5A5F;">Read more</a>
+
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-12 col-md-5 col-lg-4">
+
+                <!-- Card -->
+                <div class="card card-border shadow-light-lg lift lift-lg" style="border-top-color: #B81D24;">
+                  <div class="card-body text-center">
+
+                    <!-- Icon -->
+                    <div class="img-fluid mb-5 w-50" style="color: #B81D24;">
+                      <svg viewBox="0 0 2761 991" xmlns="http://www.w3.org/2000/svg"><path d="M2140.629 749.008c29.915 2.896 59.815 6.007 89.644 9.225l65.859-162.412 62.6 177.393a7894.176 7894.176 0 0196.232 12.643l-109.75-311.073L2455 204.021h-92.981l-.967 1.33-59.307 146.273-52.068-147.581h-91.807l94.779 268.625-112.013 276.34h-.007zm-69.432-6.364V204.02h-91.77v531.064c30.609 2.36 61.233 4.892 91.77 7.552v.007zm-689.374-30.12c24.774 0 49.52.186 74.222.386V515.03h110.244v-84.267h-110.237V288.388h126.97v-84.367h-219.099v508.575c5.95 0 11.929-.093 17.9-.072zm-284.928 5.149a8147.87 8147.87 0 0191.82-2.746V288.402h85.779v-84.36h-263.377v84.36h85.792v429.27h-.014zm-701.862 56.793V453.568l108.662 307.94a7954.136 7954.136 0 01100.442-10.605V204.03h-88.055v332.396L398.828 204.03H307V786h.551c29.092-4.019 58.284-7.837 87.482-11.534zM922.625 288.38v-84.352h-219.12v537.757a7890.227 7890.227 0 01218.941-15.81v-84.432a7642.138 7642.138 0 00-126.805 8.445V515.066h110.244v-84.317H795.64V288.38h126.984zm842.27 349.13V204h-92.171v513.98c73.32 2.69 146.352 6.436 219.142 11.156v-84.481a8007.367 8007.367 0 00-126.97-7.151v.007z" fill="currentColor" fill-rule="nonzero"/></svg>                    </div>
+
+                    <!-- Text -->
+                    <p class="text-gray-700 mb-5">
+                      Uses Landkit to document their processes for acquiring shows.
+                    </p>
+
+                    <!-- Link -->
+                    <a href="#!" style="color: #B81D24;">Read more</a>
+
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-12 col-md-5 col-lg-4">
+
+                <!-- Card -->
+                <div class="card card-border shadow-light-lg lift lift-lg" style="border-top-color: #0081C9;">
+                  <div class="card-body text-center">
+
+                    <!-- Icon -->
+                    <div class="img-fluid mb-5 w-50" style="color: #0081C9;">
+                      <svg viewBox="0 0 2761 991" xmlns="http://www.w3.org/2000/svg"><path d="M326.558 759C247.442 759 170 702.045 170 573.476c0-128.987 77.442-185.105 156.558-185.105 38.93 0 69.489 10.051 91.256 24.29l-23.86 52.349c-14.652-10.47-36.42-17.17-58.187-17.17-47.72 0-91.255 37.69-91.255 124.799 0 87.108 44.79 125.636 91.255 125.636 21.768 0 43.535-6.7 58.186-17.17l23.861 53.605C395.209 749.787 365.488 759 326.558 759zm272.512 0c-100.884 0-156.558-79.989-156.558-185.524s55.255-185.105 156.558-185.105c100.883 0 156.558 79.151 156.558 185.105C755.628 679.011 699.953 759 599.07 759zm0-313.255c-56.093 0-83.721 50.255-83.721 126.894 0 76.638 27.628 127.312 83.72 127.312 56.094 0 83.722-50.674 83.722-127.312 0-76.639-27.628-126.894-83.721-126.894zm253.674-114.748c-23.86 0-43.116-18.427-43.116-41.042 0-22.614 19.256-41.041 43.116-41.041s43.116 18.427 43.116 41.041c0 22.615-19.674 41.042-43.116 41.042zm-36.418 64.493h72.837v355.972h-72.837V395.49zm358.325 355.972V514.008c0-41.46-25.116-67.425-74.511-67.425-26.373 0-50.652 4.606-65.303 10.47V751.88h-72V413.498c35.582-14.657 81.21-25.127 136.884-25.127 99.628 0 147.767 43.554 147.767 118.936v244.574h-72.837v-.42zm264.14 7.538c-46.047 0-91.675-11.307-119.721-25.127V233h72v171.704c17.163-7.957 44.79-14.658 69.488-14.658 91.675 0 154.047 66.169 154.047 175.054 0 134.432-69.489 193.9-175.814 193.9zM1448 446.583c-19.674 0-43.116 4.606-56.93 11.726v233.685c10.465 4.606 30.977 9.213 51.488 9.213 57.349 0 99.628-39.785 99.628-130.662.419-77.895-36.419-123.962-94.186-123.962zM1810.512 759c-102.14 0-154.047-41.46-154.047-111.817 0-99.253 105.488-116.842 213.07-122.705v-22.615c0-44.81-29.721-60.724-75.349-60.724-33.488 0-74.512 10.47-98.372 21.777l-18.419-49.418c28.465-12.563 76.605-25.127 124.326-25.127 84.977 0 136.884 33.084 136.884 121.03v224.472c-25.535 13.82-77.86 25.127-128.093 25.127zm59.441-186.361c-72.837 3.769-145.255 10.05-145.255 73.288 0 37.69 28.883 60.724 83.72 60.724 23.024 0 50.233-3.769 61.535-9.213v-124.8zM2101.023 759c-41.442 0-84.976-11.307-110.93-25.127l24.28-55.28c18.418 11.307 57.348 23.033 84.557 23.033 38.93 0 64.884-19.265 64.884-48.999 0-32.246-27.21-44.81-63.21-58.211-47.72-18.008-100.883-39.785-100.883-106.373 0-58.63 45.628-99.672 124.744-99.672 43.116 0 78.698 10.47 103.814 25.127l-22.605 50.255c-15.907-10.05-47.72-20.94-73.255-20.94-37.675 0-58.605 19.684-58.605 45.649 0 32.247 26.372 43.554 61.535 56.955 49.395 18.427 104.232 38.948 104.232 108.467C2239.163 717.12 2190.186 759 2101.023 759zm489.35-187.199l-236.513 33.084c7.117 64.075 48.977 96.322 108.838 96.322 35.581 0 74.093-8.795 98.372-21.777l20.93 54.024c-27.628 14.657-75.349 25.127-124.326 25.127-112.186 0-174.976-72.032-174.976-185.524 0-108.885 60.697-185.105 160.325-185.105 92.512 0 147.35 60.725 147.35 156.628.836 8.794.836 18.008 0 27.221zm-147.768-130.662c-55.256 0-91.675 42.297-92.93 116.423l172.465-23.87c-.838-61.982-32.233-92.553-79.535-92.553z" fill="currentColor" fill-rule="nonzero"/></svg>                    </div>
+
+
+                    <!-- Text -->
+                    <p class="text-gray-700 mb-5">
+                      Uses Landkit to share their brand assets across their teams.
+                    </p>
+
+                    <!-- Link -->
+                    <a href="#!" style="color: #0081C9;">Read more</a>
+
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-12 col-md-5 col-lg-4">
+
+                <!-- Card -->
+                <div class="card card-border shadow-light-lg lift lift-lg" style="border-top-color: #6772E5;">
+                  <div class="card-body text-center">
+
+                    <!-- Icon -->
+                    <div class="img-fluid mb-5 w-50" style="color: #6772E5;">
+                      <svg viewBox="0 0 2761 991" xmlns="http://www.w3.org/2000/svg"><path d="M666.751 420.38c0-17.962 14.764-24.873 39.222-24.873 35.063 0 79.355 10.597 114.42 29.482V316.742c-38.293-15.2-76.126-21.188-114.42-21.188-93.665 0-155.952 48.827-155.952 130.358 0 127.126 175.326 106.861 175.326 161.676 0 21.185-18.453 28.096-44.292 28.096-38.294 0-87.203-15.662-125.96-36.85V688.46c42.91 18.425 86.28 26.253 125.96 26.253 95.968 0 161.947-47.44 161.947-129.892-.46-137.263-176.25-112.852-176.25-164.442zM978.65 203.432l-112.579 23.95-.46 368.954c0 68.175 51.215 118.378 119.5 118.378 37.834 0 65.516-6.908 80.741-15.2V606.01c-14.76 5.988-87.663 27.176-87.663-40.996V401.495h87.663v-98.11H978.19l.46-99.953zm230.697 134.037l-7.384-34.084h-99.66v403.038h115.349V433.28c27.218-35.467 73.36-29.019 87.663-23.954v-105.94c-14.764-5.53-68.747-15.663-95.968 34.083zm124.111-34.084h115.81v403.038h-115.81V303.385zm0-35.007l115.81-24.873V150l-115.81 24.413v93.965zm356.654 27.176c-45.217 0-74.284 21.188-90.43 35.93l-6.002-28.559h-101.502V840l115.345-24.41.464-130.355c16.61 11.977 41.061 29.019 81.665 29.019 82.589 0 157.795-66.329 157.795-212.343-.461-133.58-76.591-206.357-157.335-206.357zm-27.682 317.364c-27.222 0-43.374-9.67-54.443-21.647l-.464-170.89c11.997-13.357 28.607-22.568 54.907-22.568 41.986 0 71.053 46.98 71.053 107.32 0 61.724-28.607 107.785-71.053 107.785zm548.59-106.401c0-117.918-57.213-210.963-166.56-210.963-109.814 0-176.254 93.048-176.254 210.043 0 138.643 78.44 208.657 191.015 208.657 54.907 0 96.432-12.437 127.806-29.939V592.19c-31.37 15.663-67.361 25.337-113.039 25.337-44.756 0-84.435-15.663-89.509-70.015h225.62c0-5.991.922-29.941.922-40.995zm-227.926-43.758c0-52.05 31.838-73.7 60.905-73.7 28.143 0 58.135 21.65 58.135 73.7h-119.04z" fill="currentColor" fill-rule="nonzero"/></svg>                    </div>
+
+
+                    <!-- Text -->
+                    <p class="text-gray-700 mb-5">
+                      Uses Landkit to plan their product development with engineering.
+                    </p>
+
+                    <!-- Link -->
+                    <a href="#!" style="color: #6772E5;">Read more</a>
+
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-12 col-md-5 col-lg-4">
+
+                <!-- Card -->
+                <div class="card card-border shadow-light-lg lift lift-lg" style="border-top-color: #CB2027;">
+                  <div class="card-body text-center">
+
+                    <!-- Icon -->
+                    <div class="img-fluid mb-5 w-50" style="color: #CB2027;">
+                      <svg viewBox="0 0 2761 991" xmlns="http://www.w3.org/2000/svg"><path d="M705.019 399.95c27.127 0 53.153-22.584 57.68-50.446 5.35-27.119-13.037-49.703-40.144-49.703-27.115 0-53.145 22.584-57.74 49.703-5.29 27.862 12.342 50.446 40.204 50.446zm1840.855 80.607h60.682c8.316 0 13.186-3.377 15.059-11.137a2716.172 2716.172 0 018.961-35.996c1.796-6.984-2.271-12.278-10.015-12.278h-59.879c4.314-17.161 21.107-72.876 21.107-109.2 0-72.54-61.598-134.244-149-134.244-98.708 0-162.925 66.243-162.925 159.455 0 27.188 10.144 58.879 22.717 78.537-5.411-.309-10.83-.462-16.25-.46-75.002 0-122.244 40.685-122.244 99.887 0 55.562 43.8 77.153 85.038 91.522 36.63 12.766 70.362 18.706 70.362 47.322 0 19.295-18.56 30.618-54.884 30.618-43.098 0-66.783-20.296-72.803-27.995 4.083-3.208 10.156-10.846 10.156-23.573 0-17.802-12.505-32.332-35.73-32.332-19.65 0-36.263 16.027-40.435 37.11-31.561 25.82-66.008 42.553-114.864 42.553-48.105 0-73.074-25.021-73.074-78.263 11.278 3.434 40.645 7.558 60.053 7.558 81.455 0 136.968-37.01 136.968-111.124 0-39.854-34.987-81.709-104.204-81.709h-.157c-91.038 0-142.032 57.668-164.297 121.098a1300.764 1300.764 0 00-18.747-4.374c4.98-14.07 8.554-30.375 8.554-48.452 0-31.328-19.4-68.272-71.314-68.272-36.162 0-70.463 23.685-94.237 59.185 5.915-23.157 9.837-38.578 10.091-39.611 1.55-6.057-.972-12.803-10.418-12.803h-53.282c-7.594 0-12.953 2.683-15.112 11.33-1.448 5.766-19.755 77.597-37.577 147.54-11.226 43.61-69.298 97.897-142.287 97.897-48.113 0-73.061-26.667-73.061-79.93 12.589 5.012 40.64 9.22 60.04 9.22 84.768 0 136.968-37.008 136.968-111.123 0-39.854-34.983-81.709-104.207-81.709h-.15c-102.513 0-165.31 79.623-175.95 169.902-4.426 37.53-36.101 89.064-70.439 89.064-16.729 0-26.058-10.507-26.058-28.346 0-15.405 10.846-53.076 22.733-100.286 3.983-15.793 10.027-39.886 16.73-66.581h55.73c8.297 0 13.163-3.377 15.047-11.137 2.668-11.173 7.562-30.666 8.95-35.996 1.796-6.984-2.247-12.278-10.015-12.278h-54.803s25.23-100.674 25.832-103.26c2.429-10.237-6.137-16.144-15.1-14.26 0 0-42.359 8.292-50.215 9.93-7.896 1.598-14.025 5.936-16.878 17.319l-22.435 90.27h-44.005c-8.296 0-13.175 3.386-15.035 11.13a3732.041 3732.041 0 01-8.95 36.003c-1.82 6.985 2.244 12.279 10.003 12.279h43.155c-.307 1.235-15.587 59.363-27.947 111.418-5.818 25.033-25.303 83.61-57.212 83.61-19.061 0-27.115-9.616-27.115-30.239 0-32.477 31.97-113.779 31.97-150.67 0-49.28-26.438-77.832-80.6-77.832-34.14 0-69.54 22.044-84.541 41.391 0 0 4.551-15.837 6.109-21.926 1.662-6.432-1.788-12.75-10.233-12.75H837.25c-11.27 0-14.385 6.024-16.04 12.65-.661 2.658-19.743 77.588-38.062 149.52-12.528 49.255-42.972 90.412-75.523 90.412-16.737 0-24.19-10.503-24.19-28.341 0-15.414 9.959-53.448 21.842-100.653 14.457-57.471 27.212-104.797 28.576-110.325 1.78-7.086-1.388-13.26-10.52-13.26H670.06c-9.652 0-13.098 5.065-15.132 12.102 0 0-14.994 56.76-30.871 119.948-11.532 45.858-24.267 92.567-24.267 114.513 0 39.164 17.585 68.684 65.928 68.684 37.312 0 66.84-18.92 89.387-43.03-3.312 13.05-5.427 21.31-5.64 22.153-1.946 7.46.41 14.054 9.2 14.054h54.516c9.49 0 13.138-3.817 15.12-12.093 1.908-7.897 42.625-168.05 42.625-168.05 10.761-43.02 37.38-71.508 74.829-71.508 17.758 0 33.127 11.758 31.348 34.608-1.977 25.138-32.292 115.446-32.292 155.081 0 30 11.124 68.813 67.598 68.813 38.494 0 66.832-18.456 87.438-42.275 7.546 25.28 27.535 42.275 64.201 42.275 60.937 0 97.667-36.141 119.247-72.444 17.907 42.178 59.847 72.424 121.348 72.424 62.684 0 111.193-26.425 145.57-62.349l-10.72 42.053c-1.95 7.574 1.347 13.53 10.24 13.53h53.957c7.388 0 12.645-3.757 14.562-11.517.948-3.809 8.744-33.938 19.755-76.75 21.059-81.922 54.904-166.915 105.762-166.915 17.935 0 25.29 10.027 25.29 25.824 0 7.449-2.162 13.884-4.03 17.334-24.65-4.898-44.482 7.271-44.482 33.592 0 17.148 18.045 32.736 42.4 32.736 18.61 0 33.995-4.564 46.265-12.824a1729.855 1729.855 0 0136.15 7.86 237.795 237.795 0 00-2.829 35.904c0 65.754 46.951 121.518 131.11 121.518 65.947 0 111.204-24.125 150.27-55.054 18.78 30.727 66.195 55.558 128.402 55.558 85.26 0 133.615-44.332 133.615-102.932 0-53.04-43.541-72.562-88.443-88.815-36.5-13.186-66.944-20.356-66.944-46.152 0-21.144 16.644-30.815 45.171-30.815 18.509 0 32.405 3.986 39.826 6.068 7.36 18.42 22.588 38.817 48.585 38.817 21.999 0 31.877-17.399 31.877-33.422 0-45.612-75.98-50.393-75.98-148.214 0-60.827 34.42-111.006 105.702-111.006 49.53 0 81.874 31.408 81.874 82.1 0 41.794-25.348 116.196-25.348 116.196h-43.086c-8.28 0-13.166 3.385-15.038 11.128a3072.974 3072.974 0 01-8.966 36.004c-1.812 6.985 2.251 12.279 10.015 12.279h42.069s-43.49 160.391-43.49 189.56c0 39.164 22.072 68.676 70.435 68.676 68.406 0 111.152-44.454 129.738-109.095 1.444-4.999-1.388-9.07-6.452-9.07h-26.099c-5.209 0-8.231 2.97-9.546 8.062-5.896 22.947-20.506 47.088-49.276 47.088-16.729 0-26.054-10.507-26.054-28.342 0-15.41 10.2-51.486 22.75-100.285 5.98-23.238 16.624-66.59 16.624-66.59zm-539.375-2.74c24.19 0 35.682 16.092 35.682 35.27 0 32.437-25.158 52.217-64.508 52.217-14.082 0-33.769-3.337-45.393-7.21 4.886-29.831 26.477-80.277 74.22-80.277zm-569.035 0c26.477 0 35.67 16.092 35.67 35.27 0 32.437-25.147 52.217-64.492 52.217-14.086 0-33.773-3.337-45.394-7.21 4.858-29.831 24.004-80.277 74.216-80.277zM390.64 177C218.03 177 131 300.753 131 403.952c0 62.486 23.657 118.077 74.397 138.788 8.32 3.406 15.773.117 18.186-9.095 1.679-6.375 5.649-22.454 7.42-29.156 2.438-9.112 1.49-12.307-5.225-20.248-14.63-17.258-23.98-39.6-23.98-71.246 0-91.812 68.692-174.005 178.872-174.005 97.566 0 151.163 59.613 151.163 139.227 0 104.753-46.354 193.164-115.18 193.164-38.005 0-66.456-31.433-57.337-69.983 10.919-46.023 32.07-95.694 32.07-128.914 0-29.738-15.962-54.542-48.996-54.542-38.853 0-70.064 40.193-70.064 94.036 0 34.294 11.588 57.487 11.588 57.487s-39.76 168.465-46.729 197.969c-13.88 58.757-2.09 130.786-1.093 138.061.589 4.31 6.129 5.335 8.638 2.082 3.584-4.676 49.853-61.804 65.59-118.89 4.45-16.165 25.553-99.859 25.553-99.859 12.621 24.077 49.513 45.285 88.746 45.285 116.785 0 196.024-106.472 196.024-248.988C620.643 277.363 529.367 177 390.64 177z" fill="currentColor" fill-rule="nonzero"/></svg>                    </div>
+
+
+                    <!-- Text -->
+                    <p class="text-gray-700 mb-5">
+                      Uses Landkit to share financial projections with their investors.
+                    </p>
+
+                    <!-- Link -->
+                    <a href="#!" style="color: #CB2027;">Read more</a>
+
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-12 col-md-5 col-lg-4">
+
+                <!-- Card -->
+                <div class="card card-border shadow-light-lg lift lift-lg" style="border-top-color: #DA5988;">
+                  <div class="card-body text-center">
+
+                    <!-- Icon -->
+                    <div class="img-fluid mb-5 w-50" style="color: #DA5988;">
+                      <svg viewBox="0 0 2761 991" xmlns="http://www.w3.org/2000/svg"><path d="M951.211 442.866c25.294 0 45.797-20.48 45.797-45.739 0-25.263-20.503-45.738-45.797-45.738-25.294 0-45.797 20.475-45.797 45.738 0 25.26 20.503 45.739 45.797 45.739zm1511.432 156.271c-6.967-4.891-12.345-5.702-16.808 3.797-76.919 166.334-206.54 83.33-193.664 90.636 28.751-13.132 104.37-73.682 92.94-157.289-6.94-51.095-50.864-73.76-97.486-65.644-81.381 14.166-111.32 101.806-96.078 179.397 2.667 13.325 7.432 24.315 12.193 35.08-91.965 74.669-128.486-66.842-132.63-83.753-.164-.905 71.01-60.137 90.805-201.281 20.748-147.928-26.516-174.864-74.847-174.023-89.436 1.556-113.603 188.124-81.135 343.615-2.72.707-15.375 7.706-35.71 8.49-14.632-45.97-77.156-86.266-93.519-70.738-40.954 38.842 9.932 114.782 45.737 120.738-21.51 132.267-156.021 99.51-130.982-66.2 43.803-81.215 77.117-201.975 71.173-274.877-2.106-25.81-21.219-60.39-64.443-58.675-83.139 3.284-92.177 189.904-82.43 322.356-.484-3.263-5.111 16.092-39.18 25.715-8.06-44.66-80.083-89.49-97.038-67.937-31.738 40.338 23.266 112.262 49.32 117.278-21.51 132.263-156.017 99.505-130.977-66.204 43.802-81.21 77.112-201.971 71.168-274.873-2.106-25.814-21.215-60.395-64.443-58.684-83.139 3.288-92.177 189.908-82.43 322.36-.489-3.314-5.224 16.679-40.683 26.142-1.187-57.942-73.474-84.511-90.839-66.023-30.948 32.956 7.088 100.574 42.275 117.282-21.508 132.263-156.016 99.505-130.977-66.204 43.803-81.21 77.117-201.971 71.17-274.873-2.103-25.814-21.216-60.395-64.445-58.684-83.134 3.288-89.824 199.29-80.078 331.738-27.383 117.14-119.214 263.426-107.284-29.616 1.179-20.557 2.465-28.361-7.8-36.058-7.691-5.982-25.181-3.103-34.742-2.866-11.62.465-14.534 7.253-17.102 17.514-5.982 26.496-7.057 52.181-7.912 87.227-.56 16.394-1.877 24.043-8.201 46.397-6.315 22.35-42.344 63.201-62.07 56.37-27.366-9.395-18.388-86.528-13.26-139.524 4.273-41.88-9.41-60.688-44.467-67.527-20.525-4.271-32.995-3.616-54.37-10.344-20.213-6.36-24.785-44.535-67.897-31.813-23.58 6.964-8.421 56.848-14.089 93.82-27.862 181.871-85.835 186.866-112.731 98.518 121.131-296.205 35.04-412.978-15.353-412.978-52.488 0-112.486 36.097-87.08 267.059-12.353-3.599-16.152-5.538-29.675-5.538-76.482 0-128.59 61.731-128.59 137.882 0 76.151 52.112 137.887 128.595 137.887 45.15 0 76.849-20.501 100.857-52.216 15.664 22.397 34.738 52.56 69.619 51.203 103.969-4.043 134.205-216.977 137.775-228.854 11.115 1.71 21.63 4.947 31.894 6.658 17.102 2.564 18.345 9.322 17.956 26.496-4.532 144.82 22.234 195.528 82.948 195.528 33.828 0 63.978-33.185 84.749-56.913 15.513 31.968 40.233 55.934 73.396 56.908 80.358 1.996 111.126-125.884 108.32-109.055-2.201 13.205 26.071 108.335 108.8 108.68 102.475.431 121.523-112.085 123.794-130.93.284-3.75.41-3.362 0 0l-.078 1.142c32.533-6.043 49.32-23.458 49.32-23.458s26.122 154.996 122.887 153.25c100.486-1.818 119.435-103.525 121.921-123.358.328-4.706.522-4.155 0 0l-.039.582c38.645-14.037 48.81-28.125 48.81-28.125s20.762 151.914 122.888 153.242c91.007 1.19 124.736-91.86 124.934-130.806 15.35.164 43.743-9.093 43.078-9.62 0 0 33.335 132.824 126.427 139.646 43.708 3.202 76.495-24.557 95.186-37.218 43.923 35.515 190.185 80.879 282.538-75.453 13.036-22.436-14.99-48.94-19.911-52.401zM400.883 712.64c-44.623 0-73.236-41.196-73.236-85.615 0-44.415 26.265-85.611 70.888-85.611 20.08 0 31.25 2.206 46.889 15.786 2.836 11.158 10.873 36.895 14.784 48.582 5.24 15.64 11.473 28.953 17.757 43.441-8.978 37.162-38.411 63.417-77.082 63.417zm108.739-154.134c-1.856-2.952-1.468-1.138-3.544-3.926-8.18-22.216-23.943-71.803-25.769-128.126-2.063-63.713 8.572-138.395 39.927-138.395 21.245 0 43.824 151.355-10.619 270.447h.005zm628.3-66.386c-5.033-37.808-5.297-206.358 35.23-201.716 22.376 9.05-14.188 168.097-35.23 201.716zm295.928 0c-5.033-37.808-5.296-206.358 35.23-201.716 22.377 9.05-14.188 168.097-35.23 201.716zm293.58 2.349c-5.037-37.813-5.296-206.362 35.226-201.72 22.376 9.05-14.188 168.1-35.226 201.72zm324.11-213.93c37.052-3.835 35.524 157.715-38.848 259.707-9.59-36.865-24.297-247.05 38.848-259.711v.004zm155.736 347.623c-11.9-60.02 18.85-99.44 50.55-103.763 11.08-1.767 27.136 5.4 30.34 18.799 5.265 25.25-.765 62.705-71.714 110.227.104.405-6.522-11.894-9.172-25.263h-.004z" fill="currentColor" fill-rule="nonzero"/></svg>                    </div>
+
+                    <!-- Text -->
+                    <p class="text-gray-700 mb-5">
+                      Uses Landkit to plan their priorities for the company quarterly and annually.
+                    </p>
+
+                    <!-- Link -->
+                    <a href="#!" style="color: #DA5988;">Read more</a>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Card -->
+            <div class="card">
+              <div class="card-footer bg-black">
+                <code class="highlight html">
+                  &lt;div&nbsp;class=&quot;flickity-viewport-visible&quot;&nbsp;data-flickity='{&quot;cellAlign&quot;:&nbsp;&quot;left&quot;,&nbsp;&quot;imagesLoaded&quot;:&nbsp;true,&nbsp;&quot;pageDots&quot;:&nbsp;false,&nbsp;&quot;prevNextButtons&quot;:&nbsp;false,&nbsp;&quot;contain&quot;:&nbsp;true}'&gt;<br />&nbsp;&nbsp;...<br />&lt;/div&gt;
+                </code>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-12 col-lg-3 col-xl-2 d-none d-lg-block px-lg-0 sidenav sidenav-end">
+            <div class="my-7 my-lg-9 px-lg-7 border-start-lg border-gray-300">
+
+              <!-- Heading -->
+              <h6 class="text-uppercase fw-bold">
+                Jump to
+              </h6>
+
+              <!-- Links -->
+              <ul class="list mb-0">
+                <li class="list-item">
+                  <a class="list-link" href="#navigationColor" data-scroll>Navigation color</a>
+                </li>
+                <li class="list-item">
+                  <a class="list-link" href="#navigationPositioning" data-scroll>Navigation positioning</a>
+                </li>
+                <li class="list-item">
+                  <a class="list-link" href="#visibleOverflow" data-scroll>Visible overflow</a>
+                </li>
+              </ul>
+
+            </div>
+          </div>
+        </div> <!-- / .row -->
+      </div>
+    </section>
+
+    <!-- JAVASCRIPT -->
+    <!-- Map JS -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+    
+    <!-- Vendor JS -->
+    <script src="../assets/js/vendor.bundle.js"></script>
+    
+    <!-- Theme JS -->
+    <script src="../assets/js/theme.bundle.js"></script>
+
+  </body>
+</html>

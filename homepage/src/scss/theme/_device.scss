@@ -1,0 +1,103 @@
+//
+// device.scss
+// Theme component
+//
+
+.device {
+  position: relative;
+
+  > .img-fluid {
+    position: relative;
+  }
+}
+
+.device::before {
+  content: "";
+  background-color: $light;
+}
+
+.device::before,
+.device-screen {
+  position: absolute;
+  object-fit: cover;
+}
+
+
+//
+// Single devices
+//
+
+.device-iphonex::before,
+.device-iphonex > .device-screen {
+  top: 7.784431138%; left: 16.4021164%;
+  width: 66.137566137%; height: 80.838323353%;
+}
+
+.device-macbook::before,
+.device-macbook > .device-screen {
+  top: 11.53846154%; left: 13.38709677%;
+  width: 73.548387096%; height: 73.076923076%;
+}
+
+
+//
+// Combos
+//
+
+.device-combo {
+  position: relative;
+}
+
+.device-combo > .device {
+  position: absolute;
+}
+
+.device-combo-iphonex-iphonex {
+  padding-bottom: 130.250482%;
+}
+
+.device-combo-iphonex-iphonex > .device-iphonex {
+  
+  &:first-child {
+    bottom: 0; left: 0;
+    width: 65.5260116%;
+    z-index: 1;
+  }
+
+  &:last-child {
+    top: 0; right: 0;
+    width: 72.8323699%;
+  }
+}
+
+.device-combo-macbook-iphonex,
+.device-combo-iphonex-macbook {
+  padding-bottom: 62.4260355%;
+}
+
+.device-combo-macbook-iphonex > .device-macbook,
+.device-combo-iphonex-macbook > .device-macbook {
+  width: 91.7159763%;
+}
+
+.device-combo-macbook-iphonex > .device-iphonex,
+.device-combo-iphonex-macbook > .device-iphonex {
+  width: 27.9585799%;
+  z-index: 1;
+}
+
+.device-combo-macbook-iphonex > .device-macbook {
+  top: 0; left: 0;
+}
+
+.device-combo-iphonex-macbook > .device-macbook {
+  top: 0; right: 0;
+}
+
+.device-combo-macbook-iphonex > .device-iphonex {
+  bottom: 0; right: 0;
+}
+
+.device-combo-iphonex-macbook > .device-iphonex {
+  bottom: 0; left: 0;
+}

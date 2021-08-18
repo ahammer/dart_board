@@ -1,0 +1,68 @@
+<div class="modal fade" id="modalSignupVertical" tabindex="-1" role="dialog" aria-labelledby="modalSignupVerticalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="card">
+
+        <!-- Close -->
+        <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+
+        <!-- Image -->
+        <img src="{{webRoot}}/assets/img/photos/photo-7.jpg" alt="..." class="card-img-top">
+
+        <!-- Shape -->
+        <div class="position-relative">
+          <div class="shape shape-bottom shape-fluid-x text-white">
+            {{> curves/curve-3}}
+          </div>
+        </div>
+
+        <!-- Body -->
+        <div class="card-body">
+
+          <!-- Heading -->
+          <h2 class="mb-0 fw-bold text-center" id="modalSignupVerticalTitle">
+            Sign Up
+          </h2>
+
+          <!-- Text -->
+          <p class="mb-6 text-center text-muted">
+            Simplify your workflow in minutes.
+          </p>
+
+          <!-- Form -->
+          <form class="mb-6">
+
+            <!-- Email -->
+            <div class="form-group">
+              <label class="visually-hidden" for="modalSignupVerticalEmail">
+                Your email
+              </label>
+              <input type="email" class="form-control" id="modalSignupVerticalEmail" placeholder="Your email">
+            </div>
+
+            <!-- Password -->
+            <div class="form-group mb-5">
+              <label class="visually-hidden" for="modalSignupVerticalPassword">
+                Create a password
+              </label>
+              <input type="password" class="form-control" id="modalSignupVerticalPassword" placeholder="Create a password">
+            </div>
+
+            <!-- Submit -->
+            <button class="btn w-100 btn-primary" type="submit">
+              Sign up
+            </button>
+
+          </form>
+
+          <!-- Text -->
+          <p class="mb-0 fs-sm text-center text-muted">
+            Already have an account? <a href="{{webRoot}}/signin-illustration.html">Log in</a>.
+          </p>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,120 @@
+//
+// flickity.scss
+// Plugin overrides
+//
+
+// Controls
+
+.flickity-prev-next-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: $input-height;
+  height: $input-height;
+  background-color: $primary;
+  box-shadow: $box-shadow-light;
+  color: $white;
+
+  &::before, &::after {
+    font-family: "Feather";
+  }
+
+  &:hover, &:focus {
+    background-color: $primary;
+    box-shadow: $box-shadow;
+  }
+}
+
+.flickity-prev-next-button.previous {
+  left: 0;
+  transform: translate(calc(-50% + #{$grid-gutter-width / 4}), -50%);
+
+  @include media-breakpoint-up(lg) {
+    transform: translate(-50%, -50%);
+  }
+
+  &::before {
+    content: "\e910";
+  }
+}
+
+.flickity-prev-next-button.next {
+  right: 0;
+  transform: translate(calc(50% - #{$grid-gutter-width / 4}), -50%);
+
+  @include media-breakpoint-up(lg) {
+    transform: translate(50%, -50%);
+  }
+
+  &::before {
+    content: "\e912";
+  }
+}
+
+.flickity-button-icon {
+  display: none;
+}
+
+
+// Button white
+
+.flickity-button-white .flickity-prev-next-button {
+  background-color: $white;
+  color: $primary;
+}
+
+
+// Button bottom
+
+.flickity-button-bottom .flickity-prev-next-button {
+  top: auto;
+  bottom: 1.5rem;
+  transform: none;
+}
+
+.flickity-button-bottom .flickity-prev-next-button.previous {
+  left: auto;
+  right: 6.375rem;
+}
+
+.flickity-button-bottom .flickity-prev-next-button.next {
+  left: auto;
+  right: 2.5rem;
+}
+
+
+// Button inset
+
+.flickity-button-inset .flickity-prev-next-button {
+  transform: translateY(-50%);
+}
+
+.flickity-button-inset .flickity-prev-next-button.previous {
+  left: 1.5rem;
+}
+
+.flickity-button-inset .flickity-prev-next-button.next {
+  right: 1.5rem;
+}
+
+
+// Viewport
+
+.flickity-viewport-visible .flickity-viewport {
+  overflow: visible;
+}
+
+
+// Adaptive height
+
+[data-flickity*='"adaptiveHeight": true'] .flickity-viewport {
+  transition: all .5s ease; // Make the transition match the rough duration of flicking between items
+}
+
+
+// Fixing .col gutters because Bootstrap sets it to 0 if they are not direct children of a .row
+
+.flickity-slider > [class^="col"] {
+  padding-left: $grid-gutter-width / 2;
+  padding-right: $grid-gutter-width / 2;
+}

@@ -1,0 +1,111 @@
+//
+// dropdown.scss
+// Extended from Bootstrap
+//
+
+.dropdown-menu {
+  padding-left: $dropdown-padding-x;
+  padding-right: $dropdown-padding-x;
+}
+
+
+// Item
+
+.dropdown-item {
+  width: auto;
+  min-width: 100%;
+  margin-left: -$dropdown-padding-x;
+  margin-right: -$dropdown-padding-x;
+
+  &:hover, &:focus {
+    outline: none;
+  }
+}
+
+.dropdown-item + .dropdown-item {
+  margin-top: $dropdown-item-spacing-y;
+}
+
+
+// Link (optional)
+
+.dropdown-link {
+  color: inherit;
+
+  &:hover {
+    text-decoration: inherit;
+  }
+
+  &:hover, &:focus {
+    outline: none;
+  }
+}
+
+
+// Header
+
+.dropdown-header {
+  margin-left: -$dropdown-padding-x;
+  margin-right: -$dropdown-padding-x;
+  padding-top: 0;
+  padding-bottom: $headings-margin-bottom;
+  font-size: $h6-font-size;
+  font-weight: $font-weight-bold;
+  line-height: $h6-line-height;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+
+// Toggle
+
+.dropdown-toggle::after {
+  font-family: "Feather";
+  vertical-align: middle;
+  border: none !important;
+  content: "\e92e";
+}
+
+.dropend > .dropdown-toggle::after {
+  content: "\e930";
+}
+
+
+// Sizing
+
+.dropdown-menu-xs {
+  min-width: $dropdown-min-width-xs;
+  padding: $dropdown-padding-y-xs $dropdown-padding-x-xs;
+}
+
+.dropdown-menu-md {
+  min-width: $dropdown-min-width-md;
+}
+
+.dropdown-menu-lg {
+  min-width: $dropdown-min-width-lg;
+}
+
+.dropdown-menu-xl {
+  min-width: $dropdown-min-width-xl;
+}
+
+.dropdown-menu-lg,
+.dropdown-menu-xl {
+  padding: $dropdown-padding-y-lg $dropdown-padding-x-lg;
+}
+
+.dropdown-menu-lg .dropdown-item,
+.dropdown-menu-xl .dropdown-header {
+  margin-left: -$dropdown-padding-x-lg;
+  margin-right: -$dropdown-padding-x-lg;
+  padding-left: $dropdown-item-padding-x-lg;
+  padding-right: $dropdown-item-padding-x-lg;
+}
+
+
+// Positioning
+
+.dropend > .dropdown-menu {
+  top: -$dropdown-padding-y;
+}

@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {{> partials/head title="Landkit"}}
+  </head>
+  <body class="bg-light" style="padding-top: 84px;">
+
+    <!-- MODALS -->
+    {{> partials/modals}}
+
+    <!-- NAVBAR -->
+    {{> partials/navbar classList="navbar-light fixed-top bg-white border-bottom" container="container-fluid" button="primary"}}
+
+    <!-- BREADCRUMB -->
+    <nav class="d-lg-none bg-gray-800">
+      <div class="container-fluid">
+        <div class="row align-items-center">
+          <div class="col">
+
+            <!-- Breadcrumb -->
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <span class="text-white">
+                  Docs
+                </span>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                <span class="text-white">
+                  Choices
+                </span>
+              </li>
+            </ol>
+
+          </div>
+          <div class="col-auto">
+
+            <!-- Toggler -->
+            <div class="navbar-dark">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidenavCollapse" aria-controls="sidenavCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </div>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </nav>
+
+    <!-- CONTENT -->
+    <section>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 col-lg-3 col-xl-2 px-lg-0 border-bottom border-bottom-lg-0 border-end-lg border-gray-300 sidenav sidenav-start">
+
+            {{> partials/sidenav}}
+
+          </div>
+          <div class="col-12 col-lg-6 col-xl-8 offset-lg-3 offset-xl-2 py-7 py-lg-9 px-lg-7">
+
+            <!-- Heading -->
+            <div class="d-flex align-items-center">
+              <h1 class="mb-1 me-3">Choices.js</h1>
+              <span class="badge rounded-pill bg-primary-soft mt-1">
+                <span class="h6 text-uppercase fw-bold">Landkit only</span>
+              </span>
+            </div>
+
+            <!-- Text -->
+            <p class="fs-lg text-gray-700">
+              Choices.js is a lightweight, configurable select box/text input plugin. Similar to Select2 and Selectize but without the jQuery dependency. We currently support only the basic variation of the Choices plugin. Styles for search field, pills and other elements will be added in one of the future releases.
+            </p>
+
+            <!-- Bootstrap/Plugin Link -->
+            <p>
+              <a class="text-decoration-none" href="https://joshuajohnson.co.uk/Choices/" target="_blank">
+                <i class="fe fe-external-link pe-1"></i>
+                Plugin documentation
+              </a>
+            </p>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Card -->
+            <div class="card">
+              <div class="card-body">
+
+                <!-- Select -->
+                <select class="form-select mb-5" data-choices>
+                  <option>Option</option>
+                  <option>Another option</option>
+                  <option>Something else here</option>
+                </select>
+
+                <!-- Select -->
+                <select class="form-select form-select-sm mb-5" data-choices>
+                  <option>Option</option>
+                  <option>Another option</option>
+                  <option>Something else here</option>
+                </select>
+
+                <!-- Select -->
+                <select class="form-select form-select-xs" data-choices>
+                  <option>Option</option>
+                  <option>Another option</option>
+                  <option>Something else here</option>
+                </select>
+
+              </div>
+              <div class="card-footer bg-black">
+                <code class="highlight html">
+                  &lt;select&nbsp;class=&quot;form-select&quot;&nbsp;data-choices&gt;<br />&nbsp;&nbsp;&lt;option&gt;Option&lt;/option&gt;<br />&nbsp;&nbsp;&lt;option&gt;Another&nbsp;option&lt;/option&gt;<br />&nbsp;&nbsp;&lt;option&gt;Something&nbsp;else&nbsp;here&lt;/option&gt;<br />&lt;/select&gt;<br /><br />&lt;select&nbsp;class=&quot;form-select&nbsp;form-select-sm&quot;&nbsp;data-choices&gt;<br />&nbsp;&nbsp;&lt;option&gt;Option&lt;/option&gt;<br />&nbsp;&nbsp;&lt;option&gt;Another&nbsp;option&lt;/option&gt;<br />&nbsp;&nbsp;&lt;option&gt;Something&nbsp;else&nbsp;here&lt;/option&gt;<br />&lt;/select&gt;<br /><br />&lt;select&nbsp;class=&quot;form-select&nbsp;form-select-xs&quot;&nbsp;data-choices&gt;<br />&nbsp;&nbsp;&lt;option&gt;Option&lt;/option&gt;<br />&nbsp;&nbsp;&lt;option&gt;Another&nbsp;option&lt;/option&gt;<br />&nbsp;&nbsp;&lt;option&gt;Something&nbsp;else&nbsp;here&lt;/option&gt;<br />&lt;/select&gt;
+                </code>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-12 col-lg-3 col-xl-2 d-none d-lg-block px-lg-0 sidenav sidenav-end"></div>
+        </div> <!-- / .row -->
+      </div>
+    </section>
+
+    <!-- JAVASCRIPT -->
+    {{> partials/scripts}}
+
+  </body>
+</html>

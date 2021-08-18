@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {{> partials/head title="Landkit"}}
+  </head>
+  <body>
+
+    <!-- MODALS -->
+    {{> partials/modals}}
+
+    <!-- NAVBAR -->
+    {{> partials/navbar classList="navbar-light bg-white border-bottom" container="container-fluid" button="primary"}}
+
+    <!-- CONTENT -->
+    <section>
+
+      <!-- Content -->
+      <div class="container d-flex flex-column">
+        <div class="row align-items-center justify-content-between gx-0 min-vh-100">
+          <div class="col-12 col-md-5 align-self-stretch">
+
+            <!-- Image (mobile) -->
+            <img src="assets/img/photos/photo-5.jpg" class="d-md-none img-cover" alt="...">
+
+            <!-- Image -->
+            <div class="d-none d-md-block vw-50 h-100 float-end bg-cover" style="background-image: url(assets/img/covers/cover-10.jpg);"></div>
+
+          </div>
+          <div class="col-12 col-md-6 py-8 py-md-11">
+
+            <!-- Heading -->
+            <h2 class="fw-bold text-center mb-2">
+              Contact us for anything.
+            </h2>
+
+            <!-- Text -->
+            <p class="fs-lg text-center text-muted mb-0">
+              Our goal is to be as helpful as possible.
+            </p>
+
+            <!-- Divider -->
+            <hr class="hr-sm my-6 my-md-8 mx-auto bg-gray-300">
+
+            <!-- Form -->
+            <form>
+              <div class="form-group mb-5">
+
+                <!-- Label -->
+                <label class="form-label" for="contactName">
+                  Full name
+                </label>
+
+                <!-- Input -->
+                <input class="form-control" id="contactName" type="text" placeholder="Full name">
+
+              </div>
+              <div class="form-group mb-5">
+
+                <!-- Label -->
+                <label class="form-label" for="contactEmail">
+                  Email
+                </label>
+
+                <!-- Input -->
+                <input class="form-control" id="contactEmail" type="email" placeholder="hello@domain.com">
+
+              </div>
+              <div class="form-group mb-5 d-none">
+
+                <!-- Label -->
+                <label for="contactMessage">
+                  What can we help you with?
+                </label>
+
+                <!-- Input -->
+                <textarea class="form-control" id="contactMessage" rows="5" placeholder="Tell us what we can help you with!"></textarea>
+
+              </div>
+              <div class="form-group mb-0">
+
+                <!-- Submit -->
+                <a href="#!" class="btn w-100 btn-primary lift">
+                  Send message
+                </a>
+
+              </div>
+            </form>
+
+          </div>
+        </div> <!-- / .row -->
+      </div>
+    </section>
+
+    <!-- JAVASCRIPT -->
+    {{> partials/scripts}}
+
+  </body>
+</html>

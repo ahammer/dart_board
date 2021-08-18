@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {{> partials/head title="Landkit"}}
+  </head>
+  <body class="bg-light" style="padding-top: 84px;">
+
+    <!-- MODALS -->
+    {{> partials/modals}}
+
+    <!-- NAVBAR -->
+    {{> partials/navbar classList="navbar-light fixed-top bg-white border-bottom" container="container-fluid" button="primary"}}
+
+    <!-- BREADCRUMB -->
+    <nav class="d-lg-none bg-gray-800">
+      <div class="container-fluid">
+        <div class="row align-items-center">
+          <div class="col">
+
+            <!-- Breadcrumb -->
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <span class="text-white">
+                  Docs
+                </span>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                <span class="text-white">
+                  Avatars
+                </span>
+              </li>
+            </ol>
+
+          </div>
+          <div class="col-auto">
+
+            <!-- Toggler -->
+            <div class="navbar-dark">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidenavCollapse" aria-controls="sidenavCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </div>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </nav>
+
+    <!-- CONTENT -->
+    <section>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 col-lg-3 col-xl-2 px-lg-0 border-bottom border-bottom-lg-0 border-end-lg border-gray-300 sidenav sidenav-start">
+
+            {{> partials/sidenav}}
+
+          </div>
+          <div class="col-12 col-lg-6 col-xl-8 offset-lg-3 offset-xl-2 py-7 py-lg-9 px-lg-7">
+
+            <!-- Heading -->
+            <div class="d-flex align-items-center">
+              <h1 class="mb-1 me-3">Avatars</h1>
+              <span class="badge rounded-pill bg-primary-soft mt-1">
+                <span class="h6 text-uppercase fw-bold">Landkit only</span>
+              </span>
+            </div>
+
+            <!-- Text -->
+            <p class="fs-lg text-gray-700">
+              Create and group avatars of different sizes and shapes with a single component.
+            </p>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Heading -->
+            <h3 class="fw-bold me-3" id="sizing">Sizing</h3>
+
+            <!-- Text -->
+            <p class="text-gray-700 mb-5">
+              Using Bootstrap’s typical naming structure, you can create a standard avatar, or scale it up to different sizes based on what’s needed.
+            </p>
+
+            <!-- Card -->
+            <div class="card">
+              <div class="card-body">
+
+                <div class="avatar avatar-xxl">
+                  <img src="../assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                </div>
+
+                <div class="avatar avatar-xl">
+                  <img src="../assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                </div>
+
+                <div class="avatar avatar-lg">
+                  <img src="../assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                </div>
+
+                <div class="avatar">
+                  <img src="../assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                </div>
+
+                <div class="avatar avatar-sm">
+                  <img src="../assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                </div>
+
+                <div class="avatar avatar-xs">
+                  <img src="../assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                </div>
+
+              </div>
+              <div class="card-footer bg-black">
+                <code class="highlight html">
+                  &lt;div&nbsp;class=&quot;avatar&nbsp;avatar-xxl&quot;&gt;<br />&nbsp;&nbsp;&lt;img&nbsp;src=&quot;../assets/img/avatars/avatar-1.jpg&quot;&nbsp;alt=&quot;...&quot;&nbsp;class=&quot;avatar-img&nbsp;rounded-circle&quot;&gt;<br />&lt;/div&gt;<br /><br />&lt;div&nbsp;class=&quot;avatar&nbsp;avatar-xl&quot;&gt;<br />&nbsp;&nbsp;&lt;img&nbsp;src=&quot;../assets/img/avatars/avatar-1.jpg&quot;&nbsp;alt=&quot;...&quot;&nbsp;class=&quot;avatar-img&nbsp;rounded-circle&quot;&gt;<br />&lt;/div&gt;<br /><br />&lt;div&nbsp;class=&quot;avatar&nbsp;avatar-lg&quot;&gt;<br />&nbsp;&nbsp;&lt;img&nbsp;src=&quot;../assets/img/avatars/avatar-1.jpg&quot;&nbsp;alt=&quot;...&quot;&nbsp;class=&quot;avatar-img&nbsp;rounded-circle&quot;&gt;<br />&lt;/div&gt;<br /><br />&lt;div&nbsp;class=&quot;avatar&quot;&gt;<br />&nbsp;&nbsp;&lt;img&nbsp;src=&quot;../assets/img/avatars/avatar-1.jpg&quot;&nbsp;alt=&quot;...&quot;&nbsp;class=&quot;avatar-img&nbsp;rounded-circle&quot;&gt;<br />&lt;/div&gt;<br /><br />&lt;div&nbsp;class=&quot;avatar&nbsp;avatar-sm&quot;&gt;<br />&nbsp;&nbsp;&lt;img&nbsp;src=&quot;../assets/img/avatars/avatar-1.jpg&quot;&nbsp;alt=&quot;...&quot;&nbsp;class=&quot;avatar-img&nbsp;rounded-circle&quot;&gt;<br />&lt;/div&gt;<br /><br />&lt;div&nbsp;class=&quot;avatar&nbsp;avatar-xs&quot;&gt;<br />&nbsp;&nbsp;&lt;img&nbsp;src=&quot;../assets/img/avatars/avatar-1.jpg&quot;&nbsp;alt=&quot;...&quot;&nbsp;class=&quot;avatar-img&nbsp;rounded-circle&quot;&gt;<br />&lt;/div&gt;
+                </code>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Heading -->
+            <h3 class="fw-bold me-3" id="statusIndicator">Status Indicator</h3>
+
+            <!-- Text -->
+            <p class="text-gray-700 mb-5">
+              Add an online or offline status indicator to show user's availability.
+            </p>
+
+            <!-- Card -->
+            <div class="card">
+              <div class="card-body">
+
+                <div class="avatar avatar-xxl avatar-offline">
+                  <img src="../assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                </div>
+
+                <div class="avatar avatar-xl avatar-online">
+                  <img src="../assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                </div>
+
+                <div class="avatar avatar-lg avatar-offline">
+                  <img src="../assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                </div>
+
+                <div class="avatar avatar-online">
+                  <img src="../assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                </div>
+
+                <div class="avatar avatar-sm avatar-offline">
+                  <img src="../assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                </div>
+
+                <div class="avatar avatar-xs avatar-online">
+                  <img src="../assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                </div>
+
+              </div>
+              <div class="card-footer bg-black">
+                <code class="highlight html">
+                  &lt;div&nbsp;class=&quot;avatar&nbsp;avatar-online&quot;&gt;<br />&nbsp;&nbsp;&lt;img&nbsp;src=&quot;../assets/img/avatars/avatar-1.jpg&quot;&nbsp;alt=&quot;...&quot;&nbsp;class=&quot;avatar-img&nbsp;rounded-circle&quot;&gt;<br />&lt;/div&gt;<br /><br />&lt;div&nbsp;class=&quot;avatar&nbsp;avatar-offline&quot;&gt;<br />&nbsp;&nbsp;&lt;img&nbsp;src=&quot;../assets/img/avatars/avatar-1.jpg&quot;&nbsp;alt=&quot;...&quot;&nbsp;class=&quot;avatar-img&nbsp;rounded-circle&quot;&gt;<br />&lt;/div&gt;
+                </code>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Heading -->
+            <h3 class="fw-bold me-3" id="shape">Shape</h3>
+
+            <!-- Text -->
+            <p class="text-gray-700 mb-5">
+              Change the shape of an avatar with the default Bootstrap image classes.
+            </p>
+
+            <!-- Card -->
+            <div class="card">
+              <div class="card-body">
+
+                <div class="avatar avatar-xxl">
+                  <img src="../assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded">
+                </div>
+
+                <div class="avatar avatar-xxl">
+                  <img src="../assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                </div>
+
+                <div class="avatar avatar-lg">
+                  <img src="../assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded">
+                </div>
+
+                <div class="avatar avatar-lg">
+                  <img src="../assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                </div>
+
+                <div class="avatar">
+                  <img src="../assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded">
+                </div>
+
+                <div class="avatar">
+                  <img src="../assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                </div>
+
+              </div>
+              <div class="card-footer bg-black">
+                <code class="highlight html">
+                  &lt;div&nbsp;class=&quot;avatar&quot;&gt;<br />&nbsp;&nbsp;&lt;img&nbsp;src=&quot;../assets/img/avatars/avatar-1.jpg&quot;&nbsp;alt=&quot;...&quot;&nbsp;class=&quot;avatar-img&nbsp;rounded&quot;&gt;<br />&lt;/div&gt;<br /><br />&lt;div&nbsp;class=&quot;avatar&quot;&gt;<br />&nbsp;&nbsp;&lt;img&nbsp;src=&quot;../assets/img/avatars/avatar-1.jpg&quot;&nbsp;alt=&quot;...&quot;&nbsp;class=&quot;avatar-img&nbsp;rounded-circle&quot;&gt;<br />&lt;/div&gt;
+                </code>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Heading -->
+            <h3 class="fw-bold me-3" id="ratio">Ratio</h3>
+
+            <!-- Text -->
+            <p class="text-gray-700 mb-5">
+              Change the proportional relationship between the width and height of an avatar to 4 by 3 with an <code>.avatar-4by3</code> modifier.
+            </p>
+
+            <!-- Card -->
+            <div class="card">
+              <div class="card-body">
+
+                <div class="avatar avatar-xxl avatar-4by3">
+                  <img src="../assets/img/photos/photo-1.jpg" alt="..." class="avatar-img rounded">
+                </div>
+
+                <div class="avatar avatar-xl avatar-4by3">
+                  <img src="../assets/img/photos/photo-1.jpg" alt="..." class="avatar-img rounded">
+                </div>
+
+                <div class="avatar avatar-lg avatar-4by3">
+                  <img src="../assets/img/photos/photo-1.jpg" alt="..." class="avatar-img rounded">
+                </div>
+
+                <div class="avatar avatar-4by3">
+                  <img src="../assets/img/photos/photo-1.jpg" alt="..." class="avatar-img rounded">
+                </div>
+
+              </div>
+              <div class="card-footer bg-black">
+                <code class="highlight html">
+                  &lt;div&nbsp;class=&quot;avatar&nbsp;avatar-lg&nbsp;avatar-4by3&quot;&gt;<br />&nbsp;&nbsp;&lt;img&nbsp;src=&quot;../assets/img/photos/photo-1.jpg&quot;&nbsp;alt=&quot;...&quot;&nbsp;class=&quot;avatar-img&nbsp;rounded&quot;&gt;<br />&lt;/div&gt;
+                </code>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Heading -->
+            <h3 class="fw-bold me-3" id="initials">Initials</h3>
+
+            <!-- Text -->
+            <p class="text-gray-700 mb-5">
+              You won't always have an image for every user, so easily use initials instead.
+            </p>
+
+            <!-- Card -->
+            <div class="card">
+              <div class="card-body">
+
+                <div class="avatar avatar-xxl">
+                  <span class="avatar-title rounded-circle">CF</span>
+                </div>
+
+                <div class="avatar avatar-xl">
+                  <span class="avatar-title rounded-circle">CF</span>
+                </div>
+
+                <div class="avatar avatar-lg">
+                  <span class="avatar-title rounded-circle">CF</span>
+                </div>
+
+                <div class="avatar">
+                  <span class="avatar-title rounded-circle">CF</span>
+                </div>
+
+                <div class="avatar avatar-sm">
+                  <span class="avatar-title rounded-circle">CF</span>
+                </div>
+
+                <div class="avatar avatar-xs">
+                  <span class="avatar-title rounded-circle">CF</span>
+                </div>
+
+              </div>
+              <div class="card-footer bg-black">
+                <code class="highlight html">
+                  &lt;div&nbsp;class=&quot;avatar&nbsp;avatar-xxl&quot;&gt;<br />&nbsp;&nbsp;&lt;span&nbsp;class=&quot;avatar-title&nbsp;rounded-circle&quot;&gt;CF&lt;/span&gt;<br />&lt;/div&gt;<br /><br />&lt;div&nbsp;class=&quot;avatar&nbsp;avatar-xl&quot;&gt;<br />&nbsp;&nbsp;&lt;span&nbsp;class=&quot;avatar-title&nbsp;rounded-circle&quot;&gt;CF&lt;/span&gt;<br />&lt;/div&gt;<br /><br />&lt;div&nbsp;class=&quot;avatar&nbsp;avatar-lg&quot;&gt;<br />&nbsp;&nbsp;&lt;span&nbsp;class=&quot;avatar-title&nbsp;rounded-circle&quot;&gt;CF&lt;/span&gt;<br />&lt;/div&gt;<br /><br />&lt;div&nbsp;class=&quot;avatar&quot;&gt;<br />&nbsp;&nbsp;&lt;span&nbsp;class=&quot;avatar-title&nbsp;rounded-circle&quot;&gt;CF&lt;/span&gt;<br />&lt;/div&gt;<br /><br />&lt;div&nbsp;class=&quot;avatar&nbsp;avatar-sm&quot;&gt;<br />&nbsp;&nbsp;&lt;span&nbsp;class=&quot;avatar-title&nbsp;rounded-circle&quot;&gt;CF&lt;/span&gt;<br />&lt;/div&gt;<br /><br />&lt;div&nbsp;class=&quot;avatar&nbsp;avatar-xs&quot;&gt;<br />&nbsp;&nbsp;&lt;span&nbsp;class=&quot;avatar-title&nbsp;rounded-circle&quot;&gt;CF&lt;/span&gt;<br />&lt;/div&gt;
+                </code>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Heading -->
+            <h3 class="fw-bold me-3" id="groups">Groups</h3>
+
+            <!-- Text -->
+            <p class="text-gray-700 mb-5">
+              Easily group avatars of any size, shape and content with a single component. Each avatar can also use an <a> to link to the corresponding profile.
+            </p>
+
+            <!-- Card -->
+            <div class="card">
+              <div class="card-body">
+
+                <div class="avatar-group">
+                  <div class="avatar avatar-lg">
+                    <img src="../assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                  </div>
+                  <div class="avatar avatar-lg">
+                    <img src="../assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                  </div>
+                  <div class="avatar avatar-lg">
+                    <img src="../assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                  </div>
+                  <div class="avatar avatar-lg">
+                    <span class="avatar-title rounded-circle">CF</span>
+                  </div>
+                </div>
+
+                <div class="avatar-group">
+                  <div class="avatar">
+                    <img src="../assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                  </div>
+                  <div class="avatar">
+                    <img src="../assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                  </div>
+                  <div class="avatar">
+                    <img src="../assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                  </div>
+                  <div class="avatar">
+                    <span class="avatar-title rounded-circle">CF</span>
+                  </div>
+                </div>
+
+                <div class="avatar-group">
+                  <div class="avatar avatar-xs">
+                    <img src="../assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                  </div>
+                  <div class="avatar avatar-xs">
+                    <img src="../assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                  </div>
+                  <div class="avatar avatar-xs">
+                    <img src="../assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                  </div>
+                  <div class="avatar avatar-xs">
+                    <span class="avatar-title rounded-circle">CF</span>
+                  </div>
+                </div>
+
+              </div>
+              <div class="card-footer bg-black">
+                <code class="highlight html">
+                  &lt;div&nbsp;class=&quot;avatar-group&quot;&gt;<br />&nbsp;&nbsp;&lt;div&nbsp;class=&quot;avatar&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;src=&quot;../assets/img/avatars/avatar-1.jpg&quot;&nbsp;alt=&quot;...&quot;&nbsp;class=&quot;avatar-img&nbsp;rounded-circle&quot;&gt;<br />&nbsp;&nbsp;&lt;/div&gt;<br />&nbsp;&nbsp;&lt;div&nbsp;class=&quot;avatar&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;src=&quot;../assets/img/avatars/avatar-1.jpg&quot;&nbsp;alt=&quot;...&quot;&nbsp;class=&quot;avatar-img&nbsp;rounded-circle&quot;&gt;<br />&nbsp;&nbsp;&lt;/div&gt;<br />&nbsp;&nbsp;&lt;div&nbsp;class=&quot;avatar&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;src=&quot;../assets/img/avatars/avatar-1.jpg&quot;&nbsp;alt=&quot;...&quot;&nbsp;class=&quot;avatar-img&nbsp;rounded-circle&quot;&gt;<br />&nbsp;&nbsp;&lt;/div&gt;<br />&nbsp;&nbsp;&lt;div&nbsp;class=&quot;avatar&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;class=&quot;avatar-title&nbsp;rounded-circle&quot;&gt;CF&lt;/span&gt;<br />&nbsp;&nbsp;&lt;/div&gt;<br />&lt;/div&gt;
+                </code>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-12 col-lg-3 col-xl-2 d-none d-lg-block px-lg-0 sidenav sidenav-end">
+            <div class="my-7 my-lg-9 px-lg-7 border-start-lg border-gray-300">
+
+              <!-- Heading -->
+              <h6 class="text-uppercase fw-bold">
+                Jump to
+              </h6>
+
+              <!-- Links -->
+              <ul class="list mb-0">
+                <li class="list-item">
+                  <a class="list-link" href="#sizing" data-scroll>Sizing</a>
+                </li>
+                <li class="list-item">
+                  <a class="list-link" href="#statusIndicator" data-scroll>Status Indicator</a>
+                </li>
+                <li class="list-item">
+                  <a class="list-link" href="#shape" data-scroll>Shape</a>
+                </li>
+                <li class="list-item">
+                  <a class="list-link" href="#ratio" data-scroll>Ratio</a>
+                </li>
+                <li class="list-item">
+                  <a class="list-link" href="#initials" data-scroll>Initials</a>
+                </li>
+                <li class="list-item">
+                  <a class="list-link" href="#groups" data-scroll>Groups</a>
+                </li>
+              </ul>
+
+            </div>
+          </div>
+        </div> <!-- / .row -->
+      </div>
+    </section>
+
+    <!-- JAVASCRIPT -->
+    {{> partials/scripts}}
+
+  </body>
+</html>

@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {{> partials/head title="Landkit"}}
+  </head>
+  <body class="bg-light" style="padding-top: 84px;">
+
+    <!-- MODALS -->
+    {{> partials/modals}}
+
+    <!-- NAVBAR -->
+    {{> partials/navbar classList="navbar-light fixed-top bg-white border-bottom" container="container-fluid" button="primary"}}
+
+    <!-- BREADCRUMB -->
+    <nav class="d-lg-none bg-gray-800">
+      <div class="container-fluid">
+        <div class="row align-items-center">
+          <div class="col">
+
+            <!-- Breadcrumb -->
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <span class="text-white">
+                  Docs
+                </span>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                <span class="text-white">
+                  Sizing
+                </span>
+              </li>
+            </ol>
+
+          </div>
+          <div class="col-auto">
+
+            <!-- Toggler -->
+            <div class="navbar-dark">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidenavCollapse" aria-controls="sidenavCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </div>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </nav>
+
+    <!-- CONTENT -->
+    <section>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 col-lg-3 col-xl-2 px-lg-0 border-bottom border-bottom-lg-0 border-end-lg border-gray-300 sidenav sidenav-start">
+
+            {{> partials/sidenav}}
+
+          </div>
+          <div class="col-12 col-lg-6 col-xl-8 offset-lg-3 offset-xl-2 py-7 py-lg-9 px-lg-7">
+
+            <!-- Heading -->
+            <div class="d-flex align-items-center">
+              <h1 class="mb-1 me-3">Sizing</h1>
+              <span class="badge rounded-pill bg-primary-soft mt-1">
+                <span class="h6 text-uppercase fw-bold">Landkit only</span>
+              </span>
+            </div>
+
+            <!-- Text -->
+            <p class="fs-lg text-gray-700">
+              Sizing utlities to control the size of an element.
+            </p>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- List -->
+            <ul class="mb-5">
+              <li>
+                <code>.mw-25(50, 75, 100, 110, 120, 130, 140, 150)</code> - controls the <code>max-width</code> of an element in <code>%</code>.
+              </li>
+              <li>
+                <code>.vw-25(50, 75, 100, 110, 120, 130, 140, 150)</code> - controls the width of an element in <code>vw</code>.
+              </li>
+            </ul>
+
+            <!-- Card -->
+            <div class="card">
+              <div class="card-footer rounded bg-black">
+                <code class="highlight html">
+                  &lt;div&nbsp;class=&quot;mw-50&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;vw-50&quot;&gt;&lt;/div&gt;
+                </code>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Heading -->
+            <h3 class="fw-bold me-3" id="responsive">Responsive</h3>
+
+            <!-- Text -->
+            <p class="text-gray-700 mb-5">
+              Responsive sizing utlities to control the size of an element at every breakpoint.
+            </p>
+
+            <!-- Card -->
+            <div class="card">
+              <div class="card-footer bg-black">
+                <code class="highlight html">
+                  &lt;div&nbsp;class=&quot;h-sm(md,&nbsp;lg,&nbsp;xl)-25(50,&nbsp;75,&nbsp;100,&nbsp;110,&nbsp;120,&nbsp;130,&nbsp;140,&nbsp;150)&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;w-sm(md,&nbsp;lg,&nbsp;xl)-25(50,&nbsp;75,&nbsp;100,&nbsp;110,&nbsp;120,&nbsp;130,&nbsp;140,&nbsp;150)&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;mw-sm(md,&nbsp;lg,&nbsp;xl)-25(50,&nbsp;75,&nbsp;100,&nbsp;110,&nbsp;120,&nbsp;130,&nbsp;140,&nbsp;150)&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;vw-sm(md,&nbsp;lg,&nbsp;xl)-25(50,&nbsp;75,&nbsp;100,&nbsp;110,&nbsp;120,&nbsp;130,&nbsp;140,&nbsp;150)&quot;&gt;&lt;/div&gt;
+                </code>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-12 col-lg-3 col-xl-2 d-none d-lg-block px-lg-0 sidenav sidenav-end">
+            <div class="my-7 my-lg-9 px-lg-7 border-start-lg border-gray-300">
+
+              <!-- Heading -->
+              <h6 class="text-uppercase fw-bold">
+                Jump to
+              </h6>
+
+              <!-- Links -->
+              <ul class="list mb-0">
+                <li class="list-item">
+                  <a class="list-link" href="#responsive" data-scroll>Responsive</a>
+                </li>
+              </ul>
+
+            </div>
+          </div>
+        </div> <!-- / .row -->
+      </div>
+    </section>
+
+    <!-- JAVASCRIPT -->
+    {{> partials/scripts}}
+
+  </body>
+</html>

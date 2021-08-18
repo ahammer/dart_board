@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {{> partials/head title="Landkit"}}
+  </head>
+  <body class="bg-light" style="padding-top: 84px;">
+
+    <!-- MODALS -->
+    {{> partials/modals}}
+
+    <!-- NAVBAR -->
+    {{> partials/navbar classList="navbar-light fixed-top bg-white border-bottom" container="container-fluid" button="primary"}}
+
+    <!-- BREADCRUMB -->
+    <nav class="d-lg-none bg-gray-800">
+      <div class="container-fluid">
+        <div class="row align-items-center">
+          <div class="col">
+
+            <!-- Breadcrumb -->
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <span class="text-white">
+                  Docs
+                </span>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                <span class="text-white">
+                  Borders
+                </span>
+              </li>
+            </ol>
+
+          </div>
+          <div class="col-auto">
+
+            <!-- Toggler -->
+            <div class="navbar-dark">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidenavCollapse" aria-controls="sidenavCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </div>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </nav>
+
+    <!-- CONTENT -->
+    <section>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 col-lg-3 col-xl-2 px-lg-0 border-bottom border-bottom-lg-0 border-end-lg border-gray-300 sidenav sidenav-start">
+
+            {{> partials/sidenav}}
+
+          </div>
+          <div class="col-12 col-lg-6 col-xl-8 offset-lg-3 offset-xl-2 py-7 py-lg-9 px-lg-7">
+
+            <!-- Heading -->
+            <div class="d-flex align-items-center">
+              <h1 class="mb-1 me-3">Borders</h1>
+              <span class="badge rounded-pill bg-primary-soft mt-1">
+                <span class="h6 text-uppercase fw-bold">Landkit only</span>
+              </span>
+            </div>
+
+            <!-- Text -->
+            <p class="fs-lg text-gray-700">
+              Use border utilities to quickly style the border and border-radius of an element. Great for images, buttons, or any other element.
+            </p>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Heading -->
+            <h3 class="fw-bold me-3" id="colors">Colors</h3>
+
+            <!-- Text -->
+            <p class="text-gray-700 mb-5">
+              Additonal border color utilities. Additonal modifier at the end of the utility name means the opacity level.
+            </p>
+
+            <!-- Card -->
+            <div class="card">
+              <div class="card-body d-flex flex-wrap">
+
+                <div class="me-3 mb-3 border border-white-10" style="width: 5rem; height: 5rem;"></div>
+                <div class="me-3 mb-3 border border-white-20" style="width: 5rem; height: 5rem;"></div>
+                <div class="me-3 mb-3 border border-gray-300" style="width: 5rem; height: 5rem;"></div>
+                <div class="me-3 mb-3 border border-gray-800" style="width: 5rem; height: 5rem;"></div>
+                <div class="me-3 mb-3 border border-gray-800-50" style="width: 5rem; height: 5rem;"></div>
+                <div class="me-3 mb-3 border border-gray-900-50" style="width: 5rem; height: 5rem;"></div>
+
+              </div>
+              <div class="card-footer bg-black">
+                <code class="highlight html">
+                  &lt;div&nbsp;class=&quot;me-3&nbsp;mb-3&nbsp;border&nbsp;border-white-10&quot;&nbsp;style=&quot;width:&nbsp;5rem;&nbsp;height:&nbsp;5rem;&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;me-3&nbsp;mb-3&nbsp;border&nbsp;border-white-20&quot;&nbsp;style=&quot;width:&nbsp;5rem;&nbsp;height:&nbsp;5rem;&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;me-3&nbsp;mb-3&nbsp;border&nbsp;border-gray-300&quot;&nbsp;style=&quot;width:&nbsp;5rem;&nbsp;height:&nbsp;5rem;&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;me-3&nbsp;mb-3&nbsp;border&nbsp;border-gray-800&quot;&nbsp;style=&quot;width:&nbsp;5rem;&nbsp;height:&nbsp;5rem;&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;me-3&nbsp;mb-3&nbsp;border&nbsp;border-gray-800-50&quot;&nbsp;style=&quot;width:&nbsp;5rem;&nbsp;height:&nbsp;5rem;&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;me-3&nbsp;mb-3&nbsp;border&nbsp;border-gray-900-50&quot;&nbsp;style=&quot;width:&nbsp;5rem;&nbsp;height:&nbsp;5rem;&quot;&gt;&lt;/div&gt;
+                </code>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Heading -->
+            <h3 class="fw-bold me-3" id="responsive">Responsive</h3>
+
+            <!-- Text -->
+            <p class="text-gray-700 mb-5">
+              Responsive border utilities to add or remove borders only when you need it.
+            </p>
+
+            <!-- Card -->
+            <div class="card">
+              <div class="card-footer rounded bg-black">
+                <code class="highlight html">
+                  &lt;div&nbsp;class=&quot;border-sm&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;border-md&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;border-lg&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;border-xl&quot;&gt;&lt;/div&gt;<br /><br />&lt;div&nbsp;class=&quot;border-top-sm&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;border-top-md&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;border-top-lg&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;border-top-xl&quot;&gt;&lt;/div&gt;<br /><br />&lt;div&nbsp;class=&quot;border-end-sm&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;border-end-md&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;border-end-lg&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;border-end-xl&quot;&gt;&lt;/div&gt;<br /><br />&lt;div&nbsp;class=&quot;border-bottom-sm&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;border-bottom-md&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;border-bottom-lg&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;border-bottom-xl&quot;&gt;&lt;/div&gt;<br /><br />&lt;div&nbsp;class=&quot;border-start-sm&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;border-start-md&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;border-start-lg&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;border-start-xl&quot;&gt;&lt;/div&gt;<br /><br />&lt;div&nbsp;class=&quot;border-sm-0&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;border-md-0&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;border-lg-0&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;border-xl-0&quot;&gt;&lt;/div&gt;<br /><br />&lt;div&nbsp;class=&quot;border-top-sm-0&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;border-top-md-0&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;border-top-lg-0&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;border-top-xl-0&quot;&gt;&lt;/div&gt;<br /><br />&lt;div&nbsp;class=&quot;border-end-sm-0&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;border-end-md-0&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;border-end-lg-0&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;border-end-xl-0&quot;&gt;&lt;/div&gt;<br /><br />&lt;div&nbsp;class=&quot;border-bottom-sm-0&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;border-bottom-md-0&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;border-bottom-lg-0&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;border-bottom-xl-0&quot;&gt;&lt;/div&gt;<br /><br />&lt;div&nbsp;class=&quot;border-start-sm-0&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;border-start-md-0&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;border-start-lg-0&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;border-start-xl-0&quot;&gt;&lt;/div&gt;
+                </code>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-12 col-lg-3 col-xl-2 d-none d-lg-block px-lg-0 sidenav sidenav-end">
+            <div class="my-7 my-lg-9 px-lg-7 border-start-lg border-gray-300">
+
+              <!-- Heading -->
+              <h6 class="text-uppercase fw-bold">
+                Jump to
+              </h6>
+
+              <!-- Links -->
+              <ul class="list mb-0">
+                <li class="list-item">
+                  <a class="list-link" href="#colors" data-scroll>Colors</a>
+                </li>
+                <li class="list-item">
+                  <a class="list-link" href="#responsive" data-scroll>Responsive</a>
+                </li>
+              </ul>
+
+            </div>
+          </div>
+        </div> <!-- / .row -->
+      </div>
+    </section>
+
+    <!-- JAVASCRIPT -->
+    {{> partials/scripts}}
+
+  </body>
+</html>

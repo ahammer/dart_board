@@ -1,0 +1,15 @@
+//
+// popover.scss
+// Extended from Bootstrap
+//
+
+.popover-header {
+  padding-bottom: 0;
+  margin-bottom: $headings-margin-bottom;
+  font-size: $popover-header-font-size;
+  color: $popover-header-color;
+}
+
+.popover-header:not(:empty) ~ .popover-body {
+  padding-top: 0;
+}

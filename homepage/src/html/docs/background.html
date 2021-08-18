@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {{> partials/head title="Landkit"}}
+  </head>
+  <body class="bg-light" style="padding-top: 84px;">
+
+    <!-- MODALS -->
+    {{> partials/modals}}
+
+    <!-- NAVBAR -->
+    {{> partials/navbar classList="navbar-light fixed-top bg-white border-bottom" container="container-fluid" button="primary"}}
+
+    <!-- BREADCRUMB -->
+    <nav class="d-lg-none bg-gray-800">
+      <div class="container-fluid">
+        <div class="row align-items-center">
+          <div class="col">
+
+            <!-- Breadcrumb -->
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <span class="text-white">
+                  Docs
+                </span>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                <span class="text-white">
+                  Background
+                </span>
+              </li>
+            </ol>
+
+          </div>
+          <div class="col-auto">
+
+            <!-- Toggler -->
+            <div class="navbar-dark">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidenavCollapse" aria-controls="sidenavCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </div>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </nav>
+
+    <!-- CONTENT -->
+    <section>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 col-lg-3 col-xl-2 px-lg-0 border-bottom border-bottom-lg-0 border-end-lg border-gray-300 sidenav sidenav-start">
+
+            {{> partials/sidenav}}
+
+          </div>
+          <div class="col-12 col-lg-6 col-xl-8 offset-lg-3 offset-xl-2 py-7 py-lg-9 px-lg-7">
+
+            <!-- Heading -->
+            <div class="d-flex align-items-center">
+              <h1 class="mb-1 me-3">Background</h1>
+              <span class="badge rounded-pill bg-primary-soft mt-1">
+                <span class="h6 text-uppercase fw-bold">Landkit only</span>
+              </span>
+            </div>
+
+            <!-- Text -->
+            <p class="fs-lg text-gray-700">
+              Background utilities to easily change background sizing, position, and color properties.
+            </p>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Heading -->
+            <h3 class="fw-bold me-3" id="colors">Colors</h3>
+
+            <!-- Text -->
+            <p class="text-gray-700 mb-5">
+              Additonal background color utilities.
+            </p>
+
+            <!-- Card -->
+            <div class="card">
+              <div class="card-body d-flex flex-wrap">
+
+                <div class="me-3 mb-3 bg-black" style="width: 5rem; height: 5rem;"></div>
+                <div class="me-3 mb-3 bg-gray-800" style="width: 5rem; height: 5rem;"></div>
+                <div class="me-3 mb-3 bg-gray-300" style="width: 5rem; height: 5rem;"></div>
+                <div class="me-3 mb-3 bg-gray-200" style="width: 5rem; height: 5rem;"></div>
+
+              </div>
+              <div class="card-footer bg-black">
+                <code class="highlight html">
+                  &lt;div&nbsp;class=&quot;bg-black&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;bg-gray-800&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;bg-gray-300&quot;&gt;&lt;/div&gt;<br />&lt;div&nbsp;class=&quot;bg-gray-200&quot;&gt;&lt;/div&gt;
+                </code>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Heading -->
+            <h3 class="fw-bold me-3" id="gradient">Gradient</h3>
+
+            <!-- Text -->
+            <p class="text-gray-700 mb-5">
+              Adds a background gradient image that goes from <code>$light</code> to <code>$white</code>.
+            </p>
+
+            <!-- Card -->
+            <div class="card">
+              <div class="card-body d-flex flex-wrap">
+
+                <div class="bg-gradient-light-white me-3 mb-3" style="width: 5rem; height: 5rem;"></div>
+                <div class="bg-gradient-dark-black me-3 mb-3" style="width: 5rem; height: 5rem;"></div>
+                <div class="bg-gradient-multicolor me-3 mb-3" style="width: 5rem; height: 5rem;"></div>
+
+              </div>
+              <div class="card-footer bg-black">
+                <code class="highlight html">
+                  &lt;div&nbsp;class=&quot;bg-gradient-light-white&quot;&gt;&lt;/div&gt;<br />
+                  &lt;div&nbsp;class=&quot;bg-gradient-dark-black&quot;&gt;&lt;/div&gt;<br />
+                  &lt;div&nbsp;class=&quot;bg-gradient-multicolor&quot;&gt;&lt;/div&gt;<br />
+                </code>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Heading -->
+            <h3 class="fw-bold me-3" id="cover">Cover</h3>
+
+            <!-- Text -->
+            <p class="text-gray-700 mb-5">
+              Sets the <code>background-image</code> property to <code>cover</code>.
+            </p>
+
+            <!-- Card -->
+            <div class="card">
+              <div class="card-body bg-cover rounded-top" style="background-image: url(../assets/img/covers/cover-8.jpg); height: 250px;"></div>
+              <div class="card-footer bg-black">
+                <code class="highlight html">
+                  &lt;div&nbsp;class=&quot;bg-cover&quot;&nbsp;style=&quot;background-image:&nbsp;url(assets/img/covers/cover-8.jpg);&quot;&gt;&lt;/div&gt;
+                </code>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Heading -->
+            <h3 class="fw-bold me-3" id="between">Between</h3>
+
+            <!-- Text -->
+            <p class="text-gray-700 mb-5">
+              Positions two background images with a space between them.
+            </p>
+
+            <!-- Card -->
+            <div class="card">
+              <div class="card-body bg-between rounded-top" style="background-image: url(../assets/img/illustrations/illustration-6-cropped.png), url(../assets/img/illustrations/illustration-4-cropped.png); height: 250px;"></div>
+              <div class="card-footer bg-black">
+                <code class="highlight html">
+                  &lt;div&nbsp;class=&quot;bg-between&quot;&nbsp;style=&quot;background-image:&nbsp;url(assets/img/illustrations/illustration-6-cropped.png),&nbsp;url(assets/img/illustrations/illustration-4-cropped.png);&quot;&gt;&lt;/div&gt;
+                </code>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-12 col-lg-3 col-xl-2 d-none d-lg-block px-lg-0 sidenav sidenav-end">
+            <div class="my-7 my-lg-9 px-lg-7 border-start-lg border-gray-300">
+
+              <!-- Heading -->
+              <h6 class="text-uppercase fw-bold">
+                Jump to
+              </h6>
+
+              <!-- Links -->
+              <ul class="list mb-0">
+                <li class="list-item">
+                  <a class="list-link" href="#colors" data-scroll>Colors</a>
+                </li>
+                <li class="list-item">
+                  <a class="list-link" href="#gradient" data-scroll>Gradient</a>
+                </li>
+                <li class="list-item">
+                  <a class="list-link" href="#cover" data-scroll>Cover</a>
+                </li>
+                <li class="list-item">
+                  <a class="list-link" href="#between" data-scroll>Between</a>
+                </li>
+              </ul>
+
+            </div>
+          </div>
+        </div> <!-- / .row -->
+      </div>
+    </section>
+
+    <!-- JAVASCRIPT -->
+    {{> partials/scripts}}
+
+  </body>
+</html>

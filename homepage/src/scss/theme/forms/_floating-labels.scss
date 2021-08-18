@@ -1,0 +1,14 @@
+// 
+// floating-labels.scss
+// Extended from Bootstrap
+// 
+
+.form-floating > label {
+  color: $form-floating-label-color;
+}
+
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label,
+.form-floating > .form-select ~ label {
+  font-size: $form-floating-label-font-size;
+}

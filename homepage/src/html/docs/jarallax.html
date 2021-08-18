@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {{> partials/head title="Landkit"}}
+  </head>
+  <body class="bg-light" style="padding-top: 84px;">
+
+    <!-- MODALS -->
+    {{> partials/modals}}
+
+    <!-- NAVBAR -->
+    {{> partials/navbar classList="navbar-light fixed-top bg-white border-bottom" container="container-fluid" button="primary"}}
+
+    <!-- BREADCRUMB -->
+    <nav class="d-lg-none bg-gray-800">
+      <div class="container-fluid">
+        <div class="row align-items-center">
+          <div class="col">
+
+            <!-- Breadcrumb -->
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <span class="text-white">
+                  Docs
+                </span>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                <span class="text-white">
+                  Jarallax
+                </span>
+              </li>
+            </ol>
+
+          </div>
+          <div class="col-auto">
+
+            <!-- Toggler -->
+            <div class="navbar-dark">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidenavCollapse" aria-controls="sidenavCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </div>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </nav>
+
+    <!-- CONTENT -->
+    <section>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 col-lg-3 col-xl-2 px-lg-0 border-bottom border-bottom-lg-0 border-end-lg border-gray-300 sidenav sidenav-start">
+
+            {{> partials/sidenav}}
+
+          </div>
+          <div class="col-12 col-lg-6 col-xl-8 offset-lg-3 offset-xl-2 py-7 py-lg-9 px-lg-7">
+
+            <!-- Heading -->
+            <div class="d-flex align-items-center">
+              <h1 class="mb-1 me-3">Jarallax</h1>
+              <span class="badge rounded-pill bg-primary-soft mt-1">
+                <span class="h6 text-uppercase fw-bold">Landkit only</span>
+              </span>
+            </div>
+
+            <!-- Text -->
+            <p class="fs-lg text-gray-700">
+              Smooth parallax scrolling effect for background images, videos and inline elements.
+            </p>
+
+            <!-- Bootstrap/Plugin Link -->
+            <p>
+              <a class="text-decoration-none" href="https://github.com/nk-o/jarallax" target="_blank">
+                <i class="fe fe-external-link pe-1"></i>
+                Plugin documentation
+              </a>
+            </p>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Heading -->
+            <h3 class="fw-bold me-3" id="backgroundImage">Background image</h3>
+
+            <!-- Text -->
+            <p class="text-gray-700 mb-5">
+              We recommend you use Jarallax with background images to ensure compatibility with IE.
+            </p>
+
+            <!-- Card -->
+            <div class="card">
+              <div class="card-body rounded-top overflow-hidden py-14 jarallax" data-jarallax data-speed=".8" style="background-image: url(../assets/img/covers/cover-8.jpg);"></div>
+              <div class="card-footer bg-black">
+                <code class="highlight html">
+                  &lt;div&nbsp;class=&quot;jarallax&quot;&nbsp;data-jarallax&nbsp;data-speed=&quot;.8&quot;&nbsp;style=&quot;background-image:&nbsp;url(../assets/img/covers/cover-8.jpg);&quot;&gt;&lt;/div&gt;
+                </code>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Heading -->
+            <h3 class="fw-bold me-3" id="element">Element</h3>
+
+            <!-- Text -->
+            <p class="text-gray-700 mb-5">
+              Note: this is more like experimental feature, so the behavior could be changed in the future releases.
+            </p>
+
+            <!-- Card -->
+            <div class="card overflow-hidden" style="margin-bottom: 70vh;">
+              <div class="card-body">
+
+                <p data-jarallax-element="-40">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet nisi magnam sit numquam quidem similique earum assumenda nesciunt a! Quos perspiciatis velit ipsum natus similique blanditiis possimus dignissimos inventore labore.
+                </p>
+
+              </div>
+              <div class="card-footer bg-black">
+                <code class="highlight html">
+                  &lt;p&nbsp;data-jarallax-element=&quot;-40&quot;&gt;<br />&nbsp;&nbsp;Lorem&nbsp;ipsum&nbsp;dolor&nbsp;sit&nbsp;amet,&nbsp;consectetur&nbsp;adipisicing&nbsp;elit.&nbsp;Amet&nbsp;nisi&nbsp;magnam&nbsp;sit&nbsp;numquam&nbsp;quidem&nbsp;similique&nbsp;earum&nbsp;assumenda&nbsp;nesciunt&nbsp;a!&nbsp;Quos&nbsp;perspiciatis&nbsp;velit&nbsp;ipsum&nbsp;natus&nbsp;similique&nbsp;blanditiis&nbsp;possimus&nbsp;dignissimos&nbsp;inventore&nbsp;labore.<br />&lt;/p&gt;
+                </code>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-12 col-lg-3 col-xl-2 d-none d-lg-block px-lg-0 sidenav sidenav-end">
+            <div class="my-7 my-lg-9 px-lg-7 border-start-lg border-gray-300">
+
+              <!-- Heading -->
+              <h6 class="text-uppercase fw-bold">
+                Jump to
+              </h6>
+
+              <!-- Links -->
+              <ul class="list mb-0">
+                <li class="list-item">
+                  <a class="list-link" href="#backgroundImage" data-scroll>Background image</a>
+                </li>
+                <li class="list-item">
+                  <a class="list-link" href="#element" data-scroll>Element</a>
+                </li>
+              </ul>
+
+            </div>
+          </div>
+        </div> <!-- / .row -->
+      </div>
+    </section>
+
+    <!-- JAVASCRIPT -->
+    {{> partials/scripts}}
+
+  </body>
+</html>

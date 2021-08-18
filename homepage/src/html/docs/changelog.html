@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {{> partials/head title="Landkit"}}
+  </head>
+  <body class="bg-light" style="padding-top: 84px;">
+
+    <!-- MODALS -->
+    {{> partials/modals}}
+
+    <!-- NAVBAR -->
+    {{> partials/navbar classList="navbar-light fixed-top bg-white border-bottom" container="container-fluid" button="primary"}}
+
+    <!-- BREADCRUMB -->
+    <nav class="d-lg-none bg-gray-800">
+      <div class="container-fluid">
+        <div class="row align-items-center">
+          <div class="col">
+
+            <!-- Breadcrumb -->
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <span class="text-white">
+                  Docs
+                </span>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                <span class="text-white">
+                  Changelog
+                </span>
+              </li>
+            </ol>
+
+          </div>
+          <div class="col-auto">
+
+            <!-- Toggler -->
+            <div class="navbar-dark">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidenavCollapse" aria-controls="sidenavCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </div>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </nav>
+
+    <!-- CONTENT -->
+    <section>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 col-lg-3 col-xl-2 px-lg-0 border-bottom border-bottom-lg-0 border-end-lg border-gray-300 sidenav sidenav-start">
+
+            {{> partials/sidenav}}
+
+          </div>
+          <div class="col-12 col-lg-6 col-xl-8 offset-lg-3 offset-xl-2 py-7 py-lg-9 px-lg-7">
+
+            <!-- Heading -->
+            <h1 class="mb-6">Changelog</h1>
+
+            <!-- Text -->
+            <p class="text-gray-700" id="v2.0.0">
+              <span class="badge rounded-pill bg-primary-soft">v2.0.0</span>
+              <span>- May 14th, 2021</span>
+            </p>
+
+            <!-- List -->
+            <ul class="text-gray-700">
+              <li>Updated to Bootstrap v5.0.1.</li>
+              <li>Updated other dependencies.</li>
+              <li>Other small changes and bug fixes.</li>
+            </ul>
+
+            <!-- Text -->
+            <p>New files:</p>
+
+            <!-- List -->
+            <ul class="text-gray-700">
+              <li>src/js/bootstrap.js</li>
+              <li>src/js/flickity.js</li>
+              <li>src/scss/theme/_accordion.scss</li>
+            </ul>
+
+            <!-- Text -->
+            <p>Updated files:</p>
+
+            <!-- List -->
+            <ul class="text-gray-700">
+              <li>.browserslistrc</li>
+              <li>package-lock.json</li>
+              <li>package.json</li>
+              <li>src/html/*.html (removed <code>.svg-shim</code> classname, updated markup for accordions)</li>
+              <li>src/js/*.js</li>
+              <li>src/partials/navbar.html</li>
+              <li>src/partials/sidenav.html</li>
+              <li>src/scss/theme/_navbar.scss</li>
+              <li>src/scss/theme/_reboot.scss</li>
+              <li>src/scss/theme/_theme.scss</li>
+              <li>src/scss/theme/_variables.scss</li>
+              <li>src/scss/theme/vendor/_flickity.scss</li>
+              <li>webpack.config.js</li>
+            </ul>
+
+            <!-- Text -->
+            <p>Removed files:</p>
+
+            <!-- List -->
+            <ul class="text-gray-700">
+              <li>src/scss/theme/_collapse.scss</li>
+            </ul>
+
+            <!-- Text -->
+            <p class="text-gray-700" id="v2.0.0-beta1">
+              <span class="badge rounded-pill bg-primary-soft">v2.0.0-beta1</span>
+              <span>- January 4th, 2020</span>
+            </p>
+
+            <!-- List -->
+            <ul class="text-gray-700">
+              <li>Updated to Bootstrap v5.0.0-beta1.</li>
+              <li>Updated other dependencies.</li>
+              <li>Added <code>framework.html.</code></li>
+              <li>Other small changes.</li>
+            </ul>
+
+            <!-- Text -->
+            <p>New files:</p>
+
+            <!-- List -->
+            <ul class="text-gray-700">
+              <li>src/html/framework.html</li>
+              <li>src/img/covers/cover-19.jpg</li>
+              <li>src/img/icons/figma-dark-circle.png</li>
+              <li>src/img/patterns/pattern-2.png</li>
+              <li>src/img/screenshots/desktop/dashkit-alt-mixed-cropped.png</li>
+              <li>src/img/screenshots/ui/landkit-figma.png</li>
+              <li>src/js/user.js</li>
+              <li>src/partials/icons/duotone-icons/communication/mail-opened-info.svg</li>
+              <li>src/scss/theme/forms/_floating-labels.scss</li>
+              <li>src/scss/theme/utilities/_shadows.scss</li>
+            </ul>
+
+            <!-- Text -->
+            <p>Updated files:</p>
+
+            <!-- List -->
+            <ul class="text-gray-700">
+              <li>.gitignore</li>
+              <li>package-lock.json</li>
+              <li>package.json</li>
+              <li>src/html/**/*</li>
+              <li>src/js/**/*</li>
+              <li>src/partials/**/*</li>
+              <li>src/scss/**/*</li>
+            </ul>
+
+            <!-- Text -->
+            <p>Removed files:</p>
+
+            <!-- List -->
+            <ul class="text-gray-700">
+              <li>src/scss/theme/forms/_labels.scss</li>
+            </ul>
+
+            <!-- Text -->
+            <p class="text-gray-700" id="v2.0.0-alpha">
+              <span class="badge rounded-pill bg-primary-soft">v2.0.0-alpha</span>
+              <span>- September 15th, 2020</span>
+            </p>
+
+            <!-- List -->
+            <ul class="text-gray-700">
+              <li>Updated to Bootstrap v5.0.0-alpha1.</li>
+              <li>Improved folder structure.</li>
+              <li>Replaced Gulp with Webpack &amp; npm-scripts.</li>
+              <li>Replaced Gulp File Include with Handlebars Webpack Plugin.</li>
+              <li>Replaced Fancybox with BigPicture.js.</li>
+              <li>Removed jQuery dependency.</li>
+              <li>Moved all JavaScript to ES6 modules.</li>
+              <li>Other small changes.</li>
+            </ul>
+
+            <!-- Text -->
+            <p class="text-gray-700" id="v1.2.1">
+              <span class="badge rounded-pill bg-primary-soft">v1.2.1</span>
+              <span>- September 15th, 2020</span>
+            </p>
+
+            <!-- List -->
+            <ul class="text-gray-700">
+              <li>Updated to Bootstrap v4.5.2.</li>
+              <li>Updated other dependencies.</li>
+              <li>Other small fixes.</li>
+            </ul>
+
+            <!-- Text -->
+            <p>Updated files:</p>
+
+            <!-- List -->
+            <ul class="text-gray-700">
+              <li>src/index.html</li>
+              <li>src/blog.html</li>
+              <li>src/assets/scss/theme/_navbar.scss</li>
+              <li>src/assets/js/dropdown.js</li>
+              <li>package.json</li>
+              <li>package-lock.json</li>
+            </ul>
+
+            <!-- Text -->
+            <p class="text-gray-700" id="v1.2.0">
+              <span class="badge rounded-pill bg-primary-soft">v1.2.0</span>
+              <span>- May 14th, 2020</span>
+            </p>
+
+            <!-- List -->
+            <ul class="text-gray-700">
+              <li>Added <code>startup.html</code>.</li>
+              <li>Added account setting pages.</li>
+              <li>Added Choices.js plugin for rich selects.</li>
+              <li>Added Quill plugin for rich text editor.</li>
+              <li>Added Dropzone plugin for drag & drop file uploads.</li>
+              <li>Added extra small variation of form controls.</li>
+              <li>Included <code>.otf</code> font files.</li>
+              <li>Improved documentation for icons.</li>
+              <li>Updated to Bootstrap v4.4.5.</li>
+              <li>Updated other dependencies.</li>
+              <li>Replaced navbar partial <code>@@type</code> attribute with <code>@@container</code> to support all container types.</li>
+              <li>Removed empty SCSS files.</li>
+              <li>Other small fixes and improvements.</li>
+            </ul>
+
+            <!-- Text -->
+            <p>New files:</p>
+
+            <!-- List -->
+            <ul class="text-gray-700">
+              <li>src/account-general.html</li>
+              <li>src/account-notifications.html</li>
+              <li>src/account-security.html</li>
+              <li>src/billing-plans-and-payment.html</li>
+              <li>src/billing-users.html</li>
+              <li>src/startup.html</li>
+              <li>src/assets/scss/theme/_choices.scss</li>
+              <li>src/assets/scss/theme/_quill.scss</li>
+              <li>src/assets/scss/theme/_dropzone.scss</li>
+              <li>src/assets/js/choices.js</li>
+              <li>src/assets/js/quill.js</li>
+              <li>src/assets/js/dropzone.js</li>
+              <li>src/assets/img/avatars/avatar-3.jpg</li>
+              <li>src/assets/img/avatars/avatar-4.jpg</li>
+              <li>src/assets/img/avatars/avatar-5.jpg</li>
+              <li>src/assets/img/covers/cover-18.jpg</li>
+              <li>src/assets/img/illustrations/illustration-1-dark.png</li>
+              <li>src/assets/img/screenshots/landkit/account/general.jpg</li>
+              <li>src/assets/img/screenshots/landkit/account/notifications.jpg</li>
+              <li>src/assets/img/screenshots/landkit/account/plans-and-payments.jpg</li>
+              <li>src/assets/img/screenshots/landkit/account/security.jpg</li>
+              <li>src/assets/img/screenshots/landkit/account/users.jpg</li>
+              <li>src/assets/img/screenshots/landkit/landing/startup.jpg</li>
+              <li>src/assets/img/screenshots/ui/analytics-1.png</li>
+              <li>src/assets/img/screenshots/ui/analytics-2.png</li>
+              <li>src/assets/img/screenshots/ui/analytics-3.png</li>
+              <li>src/assets/img/icons/payment-methods/*</li>
+              <li>src/assets/video/video-1.mp4</li>
+              <li>src/assets/fonts/HK Grotesk Pro/*.otf</li>
+            </ul>
+
+            <!-- Text -->
+            <p>Updated files:</p>
+
+            <!-- List -->
+            <ul class="text-gray-700">
+              <li>package.json</li>
+              <li>package-lock.json</li>
+              <li>src/*.html</li>
+              <li>src/docs/*.html</li>
+              <li>src/partials/head.html</li>
+              <li>src/partials/modals.html</li>
+              <li>src/partials/navbar.html</li>
+              <li>src/partials/scripts.html</li>
+              <li>src/partials/sidenav.html</li>
+              <li>src/assets/scss/theme/_avatar.scss</li>
+              <li>src/assets/scss/theme/_buttons.scss</li>
+              <li>src/assets/scss/theme/_card.scss</li>
+              <li>src/assets/scss/theme/_custom-forms.scss</li>
+              <li>src/assets/scss/theme/_dropdown.scss</li>
+              <li>src/assets/scss/theme/_forms.scss</li>
+              <li>src/assets/scss/theme/_grid.scss</li>
+              <li>src/assets/scss/theme/_input-group.scss</li>
+              <li>src/assets/scss/theme/_navbar.scss</li>
+              <li>src/assets/scss/theme/_shapes.scss</li>
+              <li>src/assets/scss/theme/_shapes.scss</li>
+              <li>src/assets/scss/theme/_theme.scss</li>
+              <li>src/assets/scss/theme/_type.scss</li>
+              <li>src/assets/scss/theme/_variables.scss</li>
+              <li>src/assets/scss/theme/_variables.scss</li>
+              <li>src/assets/scss/theme/utilities/_borders.scss</li>
+              <li>src/assets/scss/theme/utilities/_type.scss</li>
+              <li>src/assets/js/dropdown.js</li>
+            </ul>
+
+            <!-- Text -->
+            <p>Removed files:</p>
+
+            <!-- List -->
+            <ul class="text-gray-700">
+              <li>src/assets/scss/theme/_button-group.scss</li>
+              <li>src/assets/scss/theme/_carousel.scss</li>
+              <li>src/assets/scss/theme/_code.scss</li>
+              <li>src/assets/scss/theme/_jumbotron.scss</li>
+              <li>src/assets/scss/theme/_media.scss</li>
+              <li>src/assets/scss/theme/_nav.scss</li>
+              <li>src/assets/scss/theme/_print.scss</li>
+              <li>src/assets/scss/theme/_progress.scss</li>
+              <li>src/assets/scss/theme/_root.scss</li>
+              <li>src/assets/scss/theme/_tooltip.scss</li>
+              <li>src/assets/scss/theme/_transitions.scss</li>
+            </ul>
+
+            <!-- Text -->
+            <p class="text-gray-700" id="v1.1.3">
+              <span class="badge rounded-pill bg-primary-soft">v1.1.3</span>
+              <span>- April 1st, 2020</span>
+            </p>
+
+            <!-- List -->
+            <ul class="text-gray-700">
+              <li>Updated dependencies.</li>
+              <li>Improved navbar scrolling behaviour in collapsed mode.</li>
+              <li>Fixed modal scrolling bug.</li>
+              <li>Cleaned up SVG code for icons and illustrations.</li>
+            </ul>
+
+            <!-- Text -->
+            <p class="text-gray-700" id="v1.1.2">
+              <span class="badge rounded-pill bg-primary-soft">v1.1.2</span>
+              <span>- December 2nd, 2019</span>
+            </p>
+
+            <!-- List -->
+            <ul class="text-gray-700">
+              <li>Updated to Bootstrap v4.4.1.</li>
+              <li>Added active state for custom buttons.</li>
+              <li>Fixed navbar dropdowns to close on click.</li>
+            </ul>
+
+            <!-- Text -->
+            <p class="text-gray-700" id="v1.1.1">
+              <span class="badge rounded-pill bg-primary-soft">v1.1.1</span>
+              <span>- November 18th, 2019</span>
+            </p>
+
+            <!-- List -->
+            <ul class="text-gray-700">
+              <li>Added portfolio pages.</li>
+              <li>Added Agency landing page.</li>
+              <li>Updated dependencies. Included <code>package-lock.json</code>.</li>
+              <li>Other small fixes and improvements.</li>
+            </ul>
+
+            <!-- Text -->
+            <p class="text-gray-700" id="v1.1.0">
+              <span class="badge rounded-pill bg-primary-soft">v1.1.0</span>
+              <span>- June 17th, 2019</span>
+            </p>
+
+            <!-- List -->
+            <ul class="text-gray-700">
+              <li>Added blog pages.</li>
+              <li>Added account pages.</li>
+              <li>Enabled passing options to Map and Typed plugin instances via <code>data-</code> attributes.</li>
+              <li>Improved navigation panel dropdowns markup.</li>
+              <li>Improved shapes rendering.</li>
+              <li>Updated dependencies. Fixed <code>npm audit</code> vulnerabilities.</li>
+            </ul>
+
+            <!-- Text -->
+            <p class="text-gray-700" id="v1.0.0">
+              <span class="badge rounded-pill bg-primary-soft">v1.0.0</span>
+              <span>- April 15th, 2019</span>
+            </p>
+
+            <!-- List -->
+            <ul class="text-gray-700">
+              <li>Initial release of Landkit! Lots more coming soon though 😁</li>
+            </ul>
+
+          </div>
+          <div class="col-12 col-lg-3 col-xl-2 d-none d-lg-block px-lg-0 sidenav sidenav-end">
+            <div class="my-7 my-lg-9 px-lg-7 border-start-lg border-gray-300">
+
+              <!-- Heading -->
+              <h6 class="text-uppercase fw-bold">
+                Jump to
+              </h6>
+
+              <!-- Links -->
+              <ul class="list mb-0">
+                <li class="list-item">
+                  <a class="list-link" href="#v2.0.0" data-scroll>v2.0.0</a>
+                </li>
+                <li class="list-item">
+                  <a class="list-link" href="#v2.0.0-beta1" data-scroll>v2.0.0-beta1</a>
+                </li>
+                <li class="list-item">
+                  <a class="list-link" href="#v2.0.0-alpha" data-scroll>v2.0.0-alpha</a>
+                </li>
+                <li class="list-item">
+                  <a class="list-link" href="#v1.2.1" data-scroll>v1.2.1</a>
+                </li>
+                <li class="list-item">
+                  <a class="list-link" href="#v1.2.0" data-scroll>v1.2.0</a>
+                </li>
+                <li class="list-item">
+                  <a class="list-link" href="#v1.1.3" data-scroll>v1.1.3</a>
+                </li>
+                <li class="list-item">
+                  <a class="list-link" href="#v1.1.2" data-scroll>v1.1.2</a>
+                </li>
+                <li class="list-item">
+                  <a class="list-link" href="#v1.1.1" data-scroll>v1.1.1</a>
+                </li>
+                <li class="list-item">
+                  <a class="list-link" href="#v1.1.0" data-scroll>v1.1.0</a>
+                </li>
+                <li class="list-item">
+                  <a class="list-link" href="#v1.0.0" data-scroll>v1.0.0</a>
+                </li>
+              </ul>
+
+            </div>
+          </div>
+        </div> <!-- / .row -->
+      </div>
+    </section>
+
+    <!-- JAVASCRIPT -->
+    {{> partials/scripts}}
+
+  </body>
+</html>

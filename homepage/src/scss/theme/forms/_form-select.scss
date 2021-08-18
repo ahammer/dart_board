@@ -1,0 +1,15 @@
+// 
+// form-select.scss
+// Extended from Bootstrap
+// 
+
+// Sizes
+
+.form-select-xs {
+  height: $form-select-height-xs;
+  padding: $form-select-padding-y-xs calc(#{$form-select-padding-x-xs} + #{$form-select-indicator-padding-xs} + #{$form-select-bg-size-xs}) $form-select-padding-y-xs $form-select-padding-x-xs;
+  line-height: $form-select-line-height-xs;
+  font-size: $form-select-font-size-xs;
+  background-size: $form-select-bg-size-xs;
+  background-position: right $form-select-padding-x-xs center;
+}

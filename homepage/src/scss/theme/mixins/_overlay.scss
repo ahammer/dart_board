@@ -1,0 +1,24 @@
+//
+// overlay.scss
+// Theme mixin
+//
+
+@mixin overlay($color) {
+  
+  &::before {
+    background-color: $color;
+  }
+}
+
+@mixin overlay-gradient($color, $direction) {
+  
+  &::before {
+    background-image: linear-gradient(to bottom, transparent, $color);
+
+    @if($direction == "right" OR $direction == "left") {
+      @include media-breakpoint-up(lg) {
+        background-image: linear-gradient(to $direction, transparent, $color 50%, $color);
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+//
+// type.scss
+// Extended from Bootstrap
+//
+
+//
+// Font sizing
+//
+
+@include media-breakpoint-down(lg) {
+  .font-size-lg {
+    font-size: $font-size-lg-md !important;
+  }
+}

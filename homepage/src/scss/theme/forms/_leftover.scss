@@ -1,0 +1,10 @@
+//
+// forms.scss
+// Extended from Boostrap
+//
+
+// Custom file input
+
+.custom-file-label::after {
+  font-weight: $font-weight-bold;
+}

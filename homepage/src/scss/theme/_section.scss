@@ -1,0 +1,19 @@
+//
+// section.scss
+// Theme module
+//
+
+.section-border {
+  position: relative;
+}
+
+.section-border::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  border-width: $border-width * 2 0 0 0;
+  border-style: solid;
+  border-color: inherit;
+  content: "";
+}

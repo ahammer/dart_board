@@ -1,0 +1,188 @@
+//
+// shapes.scss
+// Theme component
+//
+
+.shape {
+  position: absolute;
+  pointer-events: none;
+}
+
+.shape > * {
+  display: block;
+}
+
+.shape:not([class*="shape-blur"]) {
+  overflow: hidden;
+}
+
+.shape:not([class*="shape-blur"]) > * {
+  transform: scale(2);
+}
+
+
+// Hide SVG images in IE
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+
+  .shape > svg {
+    display: none;
+  }
+}
+
+
+// Position
+
+.shape-top {
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
+.shape-top > * {
+  transform-origin: bottom center;
+}
+
+.shape-end {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.shape-end > * {
+  position: inherit;
+  top: inherit;
+  bottom: inherit;
+  right: inherit;
+  transform-origin: center left;
+}
+
+.shape-bottom {
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.shape-bottom > * {
+  transform-origin: top center;
+}
+
+.shape-bottom-100 {
+  right: 0;
+  bottom: 100%;
+  left: 0;
+}
+
+.shape-bottom-100 > * {
+  transform-origin: top center;
+}
+
+.shape-start {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.shape-start > * {
+  position: inherit;
+  top: inherit;
+  bottom: inherit;
+  left: inherit;
+  transform-origin: center right;
+}
+
+
+// Orientation
+
+.shape-fluid-x > * {
+  width: 100%;
+  height: auto;
+}
+
+.shape-fluid-y > * {
+  width: auto;
+  height: 100%;
+}
+
+
+// Direction
+
+.shape-flip-x {
+  transform: scaleX(-1);
+}
+
+
+// Blurs
+
+.shape-blur-1 {
+  top: 0;
+  right: 0;
+  left: 0;
+
+  @include media-breakpoint-up(lg) {
+    bottom: 0;
+    left: 50%;
+    right: auto;
+  }
+}
+
+.shape-blur-1 > * {
+  width: 100%;
+  height: auto;
+
+  @include media-breakpoint-up(lg) {
+    width: auto;
+    height: 100%;
+  }
+}
+
+.shape-blur-2 {
+  top: 0;
+  right: 0;
+  left: 0;
+
+  @include media-breakpoint-up(lg) {
+    bottom: 0;
+    right: 50%;
+    left: auto;
+  }
+}
+
+.shape-blur-2 > * {
+  width: 100%;
+  height: auto;
+
+  @include media-breakpoint-up(lg) {
+    width: auto;
+    height: 100%;
+    float: right;
+  }
+}
+
+.shape-blur-3 {
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
+.shape-blur-3 > * {
+  width: 100%;
+  height: auto;
+}
+
+.shape-blur-4 {
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100%;
+  transform: translateX(-50%) scale(1.3);
+}
+
+.shape-blur-4 > * {
+  width: auto;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}

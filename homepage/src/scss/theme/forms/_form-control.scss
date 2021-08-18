@@ -1,0 +1,32 @@
+//
+// form-control.scss
+// Extended from Bootstrap
+//
+
+// Sizing
+
+.form-control-xs {
+  min-height: $input-height-xs;
+  padding: $input-padding-y-xs $input-padding-x-xs;
+  line-height: $input-line-height-xs;
+  font-size: $input-font-size-xs;
+}
+
+
+// Form control flush
+
+.form-control-flush,
+.form-floating > .form-control-flush {
+  padding-left: 0;
+  padding-right: 0;
+  border-top-width: 0;
+  border-right-width: 0;
+  border-left-width: 0;
+  border-radius: 0;
+}
+
+.form-floating > .form-control-flush ~ label {
+  padding-left: 0;
+  padding-right: 0;
+  border-width: 0;
+}

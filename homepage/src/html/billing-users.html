@@ -1,0 +1,558 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {{> partials/head title="Landkit"}}
+  </head>
+  <body class="bg-light">
+
+    <!-- MODALS -->
+    {{> partials/modals}}
+
+    <!-- NAVBAR -->
+    {{> partials/navbar classList="navbar-light bg-white" container="container-md" button="primary"}}
+
+    <!-- ALERT -->
+    <div class="alert alert-danger rounded-0 mb-0">
+      <div class="container-md">
+        <div class="row">
+          <div class="col-12">
+
+            <!-- Text -->
+            <p class="text-center mb-0">
+              All seats used. Please <a class="text-reset" href="#!">upgrade your plan</a>.
+            </p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BREADCRUMB -->
+    <nav class="bg-dark d-md-none">
+      <div class="container-md">
+        <div class="row align-items-center">
+          <div class="col">
+
+            <!-- Breadcrumb -->
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <span class="text-white">
+                  Billing
+                </span>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                <span class="text-white">
+                  Users
+                </span>
+              </li>
+            </ol>
+
+          </div>
+          <div class="col-auto">
+
+            <!-- Toggler -->
+            <div class="navbar-dark">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidenavCollapse" aria-controls="sidenavCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </div>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </nav>
+
+    <!-- HEADER -->
+    <header class="bg-dark pt-9 pb-11 d-none d-md-block">
+      <div class="container-md">
+        <div class="row align-items-center">
+          <div class="col">
+
+            <!-- Heading -->
+            <h1 class="fw-bold text-white mb-2">
+              Account Settings
+            </h1>
+
+            <!-- Text -->
+            <p class="fs-lg text-white-75 mb-0">
+              Settings for <a class="text-reset" href="mailto:dhgamache@gmail.com">dhgamache@gmail.com</a>
+            </p>
+
+          </div>
+          <div class="col-auto">
+
+            <!-- Button -->
+            <button class="btn btn-sm btn-gray-300-20">
+              Log Out
+            </button>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </header>
+
+    <!-- MAIN -->
+    <main class="pb-8 pb-md-11 mt-md-n6">
+      <div class="container-md">
+        <div class="row">
+          <div class="col-12 col-md-3">
+
+            <!-- Card -->
+            <div class="card card-bleed border-bottom border-bottom-md-0 shadow-light-lg">
+
+              <!-- Collapse -->
+              <div class="collapse d-md-block" id="sidenavCollapse">
+                <div class="card-body">
+
+                  <!-- Heading -->
+                  <h6 class="fw-bold text-uppercase mb-3">
+                    Account
+                  </h6>
+
+                  <!-- List -->
+                  <ul class="card-list list text-gray-700 mb-6">
+                    <li class="list-item">
+                      <a class="list-link text-reset" href="account-general.html">
+                        General
+                      </a>
+                    </li>
+                    <li class="list-item">
+                      <a class="list-link text-reset" href="account-security.html">
+                        Security
+                      </a>
+                    </li>
+                    <li class="list-item">
+                      <a class="list-link text-reset" href="account-notifications.html">
+                        Notifications
+                      </a>
+                    </li>
+                  </ul>
+
+                  <!-- Heading -->
+                  <h6 class="fw-bold text-uppercase mb-3">
+                    Billing
+                  </h6>
+
+                  <!-- List -->
+                  <ul class="card-list list text-gray-700 mb-0">
+                    <li class="list-item">
+                      <a class="list-link text-reset" href="billing-plans-and-payment.html">
+                        Plans & Payment
+                      </a>
+                    </li>
+                    <li class="list-item active">
+                      <a class="list-link text-reset" href="billing-users.html">
+                        Users
+                      </a>
+                    </li>
+                  </ul>
+
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <div class="col-12 col-md-9">
+
+            <!-- Card -->
+            <div class="card card-bleed shadow-light-lg">
+              <div class="card-header">
+                <div class="row align-items-center">
+                  <div class="col">
+
+                    <!-- Heading -->
+                    <h4 class="mb-0">
+                      Your Team
+                    </h4>
+
+                  </div>
+                  <div class="col-auto">
+
+                    <!-- Button -->
+                    <button class="btn btn-xs btn-primary">
+                      Add
+                    </button>
+
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+
+                <!-- List group -->
+                <div class="list-group list-group-flush">
+                  <div class="list-group-item">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+
+                        <!-- Avatar -->
+                        <div class="avatar avatar-xl">
+                          <img class="avatar-img rounded-circle" src="assets/img/avatars/avatar-1.jpg" alt="...">
+                        </div>
+
+                      </div>
+                      <div class="col-6 ms-n5">
+
+                        <!-- Heading -->
+                        <p class="mb-0">
+                          Ab Hadley
+                        </p>
+
+                        <!-- Text -->
+                        <a class="d-block small text-truncate text-gray-700" href="mailto:ab.hadley@company.com">
+                          ab.hadley@company.com
+                        </a>
+
+                      </div>
+                      <div class="col-auto ms-auto">
+
+                        <!-- Select -->
+                        <select class="form-select form-select-xs" data-choices>
+                          <option selected>Admin</option>
+                          <option>Staff</option>
+                          <option>Custom</option>
+                        </select>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="list-group-item">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+
+                        <!-- Avatar -->
+                        <div class="avatar avatar-xl">
+                          <img class="avatar-img rounded-circle" src="assets/img/avatars/avatar-2.jpg" alt="...">
+                        </div>
+
+                      </div>
+                      <div class="col-6 ms-n5">
+
+                        <!-- Heading -->
+                        <p class="mb-0">
+                          Adolfo Hess
+                        </p>
+
+                        <!-- Text -->
+                        <a class="d-block small text-truncate text-gray-700" href="mailto:adolfo.hess@company.com">
+                          adolfo.hess@company.com
+                        </a>
+
+                      </div>
+                      <div class="col-auto ms-auto">
+
+                        <!-- Select -->
+                        <select class="form-select form-select-xs" data-choices>
+                          <option>Admin</option>
+                          <option selected>Staff</option>
+                          <option>Custom</option>
+                        </select>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="list-group-item">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+
+                        <!-- Avatar -->
+                        <div class="avatar avatar-xl">
+                          <img class="avatar-img rounded-circle" src="assets/img/avatars/avatar-3.jpg" alt="...">
+                        </div>
+
+                      </div>
+                      <div class="col-6 ms-n5">
+
+                        <!-- Heading -->
+                        <p class="mb-0">
+                          Dianna Smiley
+                        </p>
+
+                        <!-- Text -->
+                        <a class="d-block small text-truncate text-gray-700" href="mailto:dianna.smiley@company.com">
+                          dianna.smiley@company.com
+                        </a>
+
+                      </div>
+                      <div class="col-auto ms-auto">
+
+                        <!-- Select -->
+                        <select class="form-select form-select-xs" data-choices>
+                          <option>Admin</option>
+                          <option selected>Staff</option>
+                          <option>Custom</option>
+                        </select>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="list-group-item">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+
+                        <!-- Avatar -->
+                        <div class="avatar avatar-xl">
+                          <img class="avatar-img rounded-circle" src="assets/img/avatars/avatar-4.jpg" alt="...">
+                        </div>
+
+                      </div>
+                      <div class="col-6 ms-n5">
+
+                        <!-- Heading -->
+                        <p class="mb-0">
+                          Daniela Dewitt
+                        </p>
+
+                        <!-- Text -->
+                        <a class="d-block small text-truncate text-gray-700" href="mailto:daniela.dewitt@company.com">
+                          daniela.dewitt@company.com
+                        </a>
+
+                      </div>
+                      <div class="col-auto ms-auto">
+
+                        <!-- Select -->
+                        <select class="form-select form-select-xs" data-choices>
+                          <option>Admin</option>
+                          <option selected>Staff</option>
+                          <option>Custom</option>
+                        </select>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="list-group-item">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+
+                        <!-- Avatar -->
+                        <div class="avatar avatar-xl">
+                          <img class="avatar-img rounded-circle" src="assets/img/avatars/avatar-5.jpg" alt="...">
+                        </div>
+
+                      </div>
+                      <div class="col-6 ms-n5">
+
+                        <!-- Heading -->
+                        <p class="mb-0">
+                          Miyah Myles
+                        </p>
+
+                        <!-- Text -->
+                        <a class="d-block small text-truncate text-gray-700" href="mailto:miyah.myles@company.com">
+                          miyah.myles@company.com
+                        </a>
+
+                      </div>
+                      <div class="col-auto ms-auto">
+
+                        <!-- Select -->
+                        <select class="form-select form-select-xs" data-choices>
+                          <option selected>Admin</option>
+                          <option>Staff</option>
+                          <option>Custom</option>
+                        </select>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="list-group-item">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+
+                        <!-- Avatar -->
+                        <div class="avatar avatar-xl">
+                          <img class="avatar-img rounded-circle" src="assets/img/avatars/avatar-1.jpg" alt="...">
+                        </div>
+
+                      </div>
+                      <div class="col-6 ms-n5">
+
+                        <!-- Heading -->
+                        <p class="mb-0">
+                          Ab Hadley
+                        </p>
+
+                        <!-- Text -->
+                        <a class="d-block small text-truncate text-gray-700" href="mailto:ab.hadley@company.com">
+                          ab.hadley@company.com
+                        </a>
+
+                      </div>
+                      <div class="col-auto ms-auto">
+
+                        <!-- Select -->
+                        <select class="form-select form-select-xs" data-choices>
+                          <option selected>Admin</option>
+                          <option>Staff</option>
+                          <option>Custom</option>
+                        </select>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="list-group-item">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+
+                        <!-- Avatar -->
+                        <div class="avatar avatar-xl">
+                          <img class="avatar-img rounded-circle" src="assets/img/avatars/avatar-2.jpg" alt="...">
+                        </div>
+
+                      </div>
+                      <div class="col-6 ms-n5">
+
+                        <!-- Heading -->
+                        <p class="mb-0">
+                          Adolfo Hess
+                        </p>
+
+                        <!-- Text -->
+                        <a class="d-block small text-truncate text-gray-700" href="mailto:adolfo.hess@company.com">
+                          adolfo.hess@company.com
+                        </a>
+
+                      </div>
+                      <div class="col-auto ms-auto">
+
+                        <!-- Select -->
+                        <select class="form-select form-select-xs" data-choices>
+                          <option>Admin</option>
+                          <option selected>Staff</option>
+                          <option>Custom</option>
+                        </select>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="list-group-item">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+
+                        <!-- Avatar -->
+                        <div class="avatar avatar-xl">
+                          <img class="avatar-img rounded-circle" src="assets/img/avatars/avatar-3.jpg" alt="...">
+                        </div>
+
+                      </div>
+                      <div class="col-6 ms-n5">
+
+                        <!-- Heading -->
+                        <p class="mb-0">
+                          Dianna Smiley
+                        </p>
+
+                        <!-- Text -->
+                        <a class="d-block small text-truncate text-gray-700" href="mailto:dianna.smiley@company.com">
+                          dianna.smiley@company.com
+                        </a>
+
+                      </div>
+                      <div class="col-auto ms-auto">
+
+                        <!-- Select -->
+                        <select class="form-select form-select-xs" data-choices>
+                          <option>Admin</option>
+                          <option selected>Staff</option>
+                          <option>Custom</option>
+                        </select>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="list-group-item">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+
+                        <!-- Avatar -->
+                        <div class="avatar avatar-xl">
+                          <img class="avatar-img rounded-circle" src="assets/img/avatars/avatar-4.jpg" alt="...">
+                        </div>
+
+                      </div>
+                      <div class="col-6 ms-n5">
+
+                        <!-- Heading -->
+                        <p class="mb-0">
+                          Daniela Dewitt
+                        </p>
+
+                        <!-- Text -->
+                        <a class="d-block small text-truncate text-gray-700" href="mailto:daniela.dewitt@company.com">
+                          daniela.dewitt@company.com
+                        </a>
+
+                      </div>
+                      <div class="col-auto ms-auto">
+
+                        <!-- Select -->
+                        <select class="form-select form-select-xs" data-choices>
+                          <option>Admin</option>
+                          <option selected>Staff</option>
+                          <option>Custom</option>
+                        </select>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="list-group-item">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+
+                        <!-- Avatar -->
+                        <div class="avatar avatar-xl">
+                          <img class="avatar-img rounded-circle" src="assets/img/avatars/avatar-5.jpg" alt="...">
+                        </div>
+
+                      </div>
+                      <div class="col-6 ms-n5">
+
+                        <!-- Heading -->
+                        <p class="mb-0">
+                          Miyah Myles
+                        </p>
+
+                        <!-- Text -->
+                        <a class="d-block small text-truncate text-gray-700" href="mailto:miyah.myles@company.com">
+                          miyah.myles@company.com
+                        </a>
+
+                      </div>
+                      <div class="col-auto ms-auto">
+
+                        <!-- Select -->
+                        <select class="form-select form-select-xs" data-choices>
+                          <option selected>Admin</option>
+                          <option>Staff</option>
+                          <option>Custom</option>
+                        </select>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </main>
+
+    <!-- CURVE -->
+    <div class="position-relative">
+      <div class="shape shape-bottom shape-fluid-x text-dark">
+        {{> curves/curve-1}}
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    {{> partials/footer classList="bg-dark"}}
+
+    <!-- JAVASCRIPT -->
+    {{> partials/scripts}}
+
+  </body>
+</html>

@@ -1,0 +1,1373 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="./assets/favicon/favicon.ico" type="image/x-icon" />
+    
+    <!-- Map CSS -->
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css" />
+    
+    <!-- Libs CSS -->
+    <link rel="stylesheet" href="./assets/css/libs.bundle.css" />
+    
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="./assets/css/theme.bundle.css" />
+    
+    <!-- Title -->
+    <title>Landkit</title>
+  </head>
+  <body class="bg-light">
+
+    <!-- MODALS -->
+    <!-- Example -->
+    <div class="modal fade" id="modalExample" tabindex="-1" role="dialog" aria-labelledby="modalExampleTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+    
+            <!-- Close -->
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    
+            <!-- Image -->
+            <div class="text-center">
+              <img src="./assets/img/illustrations/illustration-1.png" alt="..." class="img-fluid mb-3" style="width: 200px;">
+            </div>
+    
+            <!-- Heading -->
+            <h2 class="fw-bold text-center mb-1" id="modalExampleTitle">
+              Schedule a demo with us
+            </h2>
+    
+            <!-- Text -->
+            <p class="fs-lg text-center text-muted mb-6 mb-md-8">
+              We can help you solve company communication.
+            </p>
+    
+            <!-- Form -->
+            <form>
+              <div class="row">
+                <div class="col-12 col-md-6">
+    
+                  <!-- First name -->
+                  <div class="form-floating">
+                    <input type="text" class="form-control form-control-flush" id="registrationFirstNameModal" placeholder="First name">
+                    <label for="registrationFirstNameModal">First name</label>
+                  </div>
+    
+                </div>
+                <div class="col-12 col-md-6">
+    
+                  <!-- Last name -->
+                  <div class="form-floating">
+                    <input type="text" class="form-control form-control-flush" id="registrationLastNameModal" placeholder="Last name">
+                    <label for="registrationLastNameModal">Last name</label>
+                  </div>
+    
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 col-md-6">
+    
+                  <!-- Email -->
+                  <div class="form-floating">
+                    <input type="email" class="form-control form-control-flush" id="registrationEmailModal" placeholder="Email">
+                    <label for="registrationEmailModal">Email</label>
+                  </div>
+    
+                </div>
+                <div class="col-12 col-md-6">
+    
+                  <!-- Password -->
+                  <div class="form-floating">
+                    <input type="password" class="form-control form-control-flush" id="registrationPasswordModal" placeholder="Password">
+                    <label for="registrationPasswordModal">Password</label>
+                  </div>
+    
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+    
+                  <!-- Submit -->
+                  <button class="btn w-100 btn-primary mt-3 lift">
+                    Request a demo
+                  </button>
+    
+                </div>
+              </div>
+            </form>
+    
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Signup: Horizontal  -->
+    <div class="modal fade" id="modalSignupHorizontal" tabindex="-1" role="dialog" aria-labelledby="modalSignupHorizontalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="card card-row">
+            <div class="row gx-0">
+              <div class="col-12 col-md-6 bg-cover card-img-start" style="background-image: url(./assets/img/photos/photo-8.jpg);">
+    
+                <!-- Image (placeholder) -->
+                <img src="./assets/img/photos/photo-8.jpg" alt="..." class="img-fluid d-md-none invisible">
+    
+                <!-- Shape -->
+                <div class="shape shape-end shape-fluid-y text-white d-none d-md-block">
+                  <svg viewBox="0 0 112 690" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M116 0H51v172C76 384 0 517 0 517v173h116V0z" fill="currentColor"/></svg>            </div>
+    
+              </div>
+              <div class="col-12 col-md-6">
+                <div class="card-body">
+    
+                  <!-- Close -->
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    
+                  <!-- Heading -->
+                  <h2 class="mb-0 fw-bold text-center" id="modalSignupHorizontalTitle">
+                    Sign Up
+                  </h2>
+    
+                  <!-- Text -->
+                  <p class="mb-6 text-center text-muted">
+                    Simplify your workflow in minutes.
+                  </p>
+    
+                  <!-- Form -->
+                  <form class="mb-6">
+    
+                    <!-- Email -->
+                    <div class="form-group">
+                      <label class="visually-hidden" for="modalSignupHorizontalEmail">
+                        Your email
+                      </label>
+                      <input type="email" class="form-control" id="modalSignupHorizontalEmail" placeholder="Your email">
+                    </div>
+    
+                    <!-- Password -->
+                    <div class="form-group mb-5">
+                      <label class="visually-hidden" for="modalSignupHorizontalPassword">
+                        Create a password
+                      </label>
+                      <input type="password" class="form-control" id="modalSignupHorizontalPassword" placeholder="Create a password">
+                    </div>
+    
+                    <!-- Submit -->
+                    <button class="btn w-100 btn-primary" type="submit">
+                      Sign up
+                    </button>
+    
+                  </form>
+    
+                  <!-- Text -->
+                  <p class="mb-0 fs-sm text-center text-muted">
+                    Already have an account? <a href="./signin-illustration.html">Log in</a>.
+                  </p>
+    
+                </div>
+              </div>
+    
+            </div> <!-- / .row -->
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Signup: Vertical  -->
+    <div class="modal fade" id="modalSignupVertical" tabindex="-1" role="dialog" aria-labelledby="modalSignupVerticalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="card">
+    
+            <!-- Close -->
+            <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+    
+            <!-- Image -->
+            <img src="./assets/img/photos/photo-7.jpg" alt="..." class="card-img-top">
+    
+            <!-- Shape -->
+            <div class="position-relative">
+              <div class="shape shape-bottom shape-fluid-x text-white">
+                <svg viewBox="0 0 2880 480" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2160 0C1440 240 720 240 720 240H0v240h2880V0h-720z" fill="currentColor"/></svg>          </div>
+            </div>
+    
+            <!-- Body -->
+            <div class="card-body">
+    
+              <!-- Heading -->
+              <h2 class="mb-0 fw-bold text-center" id="modalSignupVerticalTitle">
+                Sign Up
+              </h2>
+    
+              <!-- Text -->
+              <p class="mb-6 text-center text-muted">
+                Simplify your workflow in minutes.
+              </p>
+    
+              <!-- Form -->
+              <form class="mb-6">
+    
+                <!-- Email -->
+                <div class="form-group">
+                  <label class="visually-hidden" for="modalSignupVerticalEmail">
+                    Your email
+                  </label>
+                  <input type="email" class="form-control" id="modalSignupVerticalEmail" placeholder="Your email">
+                </div>
+    
+                <!-- Password -->
+                <div class="form-group mb-5">
+                  <label class="visually-hidden" for="modalSignupVerticalPassword">
+                    Create a password
+                  </label>
+                  <input type="password" class="form-control" id="modalSignupVerticalPassword" placeholder="Create a password">
+                </div>
+    
+                <!-- Submit -->
+                <button class="btn w-100 btn-primary" type="submit">
+                  Sign up
+                </button>
+    
+              </form>
+    
+              <!-- Text -->
+              <p class="mb-0 fs-sm text-center text-muted">
+                Already have an account? <a href="./signin-illustration.html">Log in</a>.
+              </p>
+    
+            </div>
+    
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Signin: Horizontal  -->
+    <div class="modal fade" id="modalSigninHorizontal" tabindex="-1" role="dialog" aria-labelledby="modalSigninHorizontalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="card card-row">
+            <div class="row gx-0">
+              <div class="col-12 col-md-6 bg-cover card-img-start" style="background-image: url(./assets/img/photos/photo-1.jpg);">
+    
+                <!-- Image (placeholder) -->
+                <img src="./assets/img/photos/photo-1.jpg" alt="..." class="img-fluid d-md-none invisible">
+    
+                <!-- Shape -->
+                <div class="shape shape-end shape-fluid-y text-white d-none d-md-block">
+                  <svg viewBox="0 0 112 690" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M116 0H51v172C76 384 0 517 0 517v173h116V0z" fill="currentColor"/></svg>            </div>
+    
+              </div>
+              <div class="col-12 col-md-6">
+                <div class="card-body">
+    
+                  <!-- Close -->
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    
+                  <!-- Heading -->
+                  <h2 class="mb-0 fw-bold text-center" id="modalSigninHorizontalTitle">
+                    Sign In
+                  </h2>
+    
+                  <!-- Text -->
+                  <p class="mb-6 text-center text-muted">
+                    Simplify your workflow in minutes.
+                  </p>
+    
+                  <!-- Form -->
+                  <form class="mb-6">
+    
+                    <!-- Email -->
+                    <div class="form-group">
+                      <label class="visually-hidden" for="modalSigninHorizontalEmail">
+                        Your email
+                      </label>
+                      <input type="email" class="form-control" id="modalSigninHorizontalEmail" placeholder="Your email">
+                    </div>
+    
+                    <!-- Password -->
+                    <div class="form-group mb-5">
+                      <label class="visually-hidden" for="modalSigninHorizontalPassword">
+                        Enter your password
+                      </label>
+                      <input type="password" class="form-control" id="modalSigninHorizontalPassword" placeholder="Enter your password">
+                    </div>
+    
+                    <!-- Submit -->
+                    <button class="btn w-100 btn-primary" type="submit">
+                      Sign in
+                    </button>
+    
+                  </form>
+    
+                  <!-- Text -->
+                  <p class="mb-0 fs-sm text-center text-muted">
+                    Don't have an account yet? <a href="./signin-illustration.html">Sign up</a>.
+                  </p>
+    
+                </div>
+              </div>
+    
+            </div> <!-- / .row -->
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Signin: Vertical  -->
+    <div class="modal fade" id="modalSigninVertical" tabindex="-1" role="dialog" aria-labelledby="modalSigninVerticalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="card">
+    
+            <!-- Close -->
+            <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+    
+            <!-- Image -->
+            <img src="./assets/img/photos/photo-21.jpg" alt="..." class="card-img-top">
+    
+            <!-- Shape -->
+            <div class="position-relative">
+              <div class="shape shape-bottom shape-fluid-x text-white">
+                <svg viewBox="0 0 2880 480" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2160 0C1440 240 720 240 720 240H0v240h2880V0h-720z" fill="currentColor"/></svg>          </div>
+            </div>
+    
+            <!-- Body -->
+            <div class="card-body">
+    
+              <!-- Heading -->
+              <h2 class="mb-0 fw-bold text-center" id="modalSigninVerticalTitle">
+                Sign In
+              </h2>
+    
+              <!-- Text -->
+              <p class="mb-6 text-center text-muted">
+                Simplify your workflow in minutes.
+              </p>
+    
+              <!-- Form -->
+              <form class="mb-6">
+    
+                <!-- Email -->
+                <div class="form-group">
+                  <label class="visually-hidden" for="modalSigninVerticalEmail">
+                    Your email
+                  </label>
+                  <input type="email" class="form-control" id="modalSigninVerticalEmail" placeholder="Your email">
+                </div>
+    
+                <!-- Password -->
+                <div class="form-group mb-5">
+                  <label class="visually-hidden" for="modalSigninVerticalPassword">
+                    Enter your password
+                  </label>
+                  <input type="password" class="form-control" id="modalSigninVerticalPassword" placeholder="Enter your password">
+                </div>
+    
+                <!-- Submit -->
+                <button class="btn w-100 btn-primary" type="submit">
+                  Sign in
+                </button>
+    
+              </form>
+    
+              <!-- Text -->
+              <p class="mb-0 fs-sm text-center text-muted">
+                Don't have an account yet? <a href="./signin-illustration.html">Sign up</a>.
+              </p>
+    
+            </div>
+    
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Payment -->
+    <div class="modal fade" id="modalPayment" tabindex="-1" role="dialog" aria-labelledby="modalPaymentTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+    
+            <!-- Close -->
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    
+            <!-- Heading -->
+            <h2 class="fw-bold text-center mb-1" id="modalPaymentTitle">
+              Add Payment
+            </h2>
+    
+            <!-- Text -->
+            <p class="fs-lg text-center text-muted mb-6 mb-md-8">
+              Simplify your workflow in minutes.
+            </p>
+    
+            <!-- Form -->
+            <form>
+    
+              <!-- Name -->
+              <div class="form-group">
+                <label class="form-label" for="modalPaymentName">Name on card</label>
+                <input class="form-control" id="modalPaymentName" type="text" placeholder="First Last">
+              </div>
+    
+              <!-- Name -->
+              <div class="form-group">
+                <label class="form-label" for="modalPaymentNumbber">Card number</label>
+                <input class="form-control" id="modalPaymentNumbber" type="number" placeholder="4242 4242 4242 4242">
+              </div>
+    
+              <!-- Name -->
+              <div class="form-group">
+                <label class="form-label" for="modalPaymentDate">Exp. Date</label>
+                <input class="form-control" id="modalPaymentDate" type="text" placeholder="03/2023">
+              </div>
+    
+              <!-- Submit -->
+              <button class="btn w-100 btn-primary mt-3 lift">
+                Add Payment Method
+              </button>
+    
+            </form>
+    
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container">
+    
+        <!-- Brand -->
+        <a class="navbar-brand" href="./index.html">
+          <img src="./assets/img/brand.svg" class="navbar-brand-img" alt="...">
+        </a>
+    
+        <!-- Toggler -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <!-- Collapse -->
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+    
+          <!-- Toggler -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fe fe-x"></i>
+          </button>
+    
+          <!-- Navigation -->
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarLandings" data-bs-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
+                Landings
+              </a>
+              <div class="dropdown-menu dropdown-menu-xl p-0" aria-labelledby="navbarLandings">
+                <div class="row gx-0">
+                  <div class="col-12 col-lg-6">
+                    <div class="dropdown-img-start" style="background-image: url(./assets/img/photos/photo-3.jpg);">
+    
+                      <!-- Heading -->
+                      <h4 class="fw-bold text-white mb-0">
+                        Want to see an overview?
+                      </h4>
+    
+                      <!-- Text -->
+                      <p class="fs-sm text-white">
+                        See all the pages at once.
+                      </p>
+    
+                      <!-- Button -->
+                      <a href="./overview.html" class="btn btn-sm btn-white shadow-dark fonFt-size-sm">
+                        View all pages
+                      </a>
+    
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-6">
+                    <div class="dropdown-body">
+                      <div class="row gx-0">
+                        <div class="col-6">
+    
+                          <!-- Heading -->
+                          <h6 class="dropdown-header">
+                            Services
+                          </h6>
+    
+                          <!-- List -->
+                          <a class="dropdown-item" href="./coworking.html">
+                            Coworking
+                          </a>
+                          <a class="dropdown-item" href="./rental.html">
+                            Rental
+                          </a>
+                          <a class="dropdown-item mb-5" href="./job.html">
+                            Job Listing
+                          </a>
+    
+                          <!-- Heading -->
+                          <h6 class="dropdown-header">
+                            Apps
+                          </h6>
+    
+                          <!-- List -->
+                          <a class="dropdown-item" href="./desktop-app.html">
+                            Desktop
+                          </a>
+                          <a class="dropdown-item" href="./mobile-app.html">
+                            Mobile
+                          </a>
+    
+                        </div>
+                        <div class="col-6">
+    
+                          <!-- Heading -->
+                          <h6 class="dropdown-header">
+                            Web
+                          </h6>
+    
+                          <!-- List -->
+                          <a class="dropdown-item" href="./index.html">
+                            Basic
+                          </a>
+                          <a class="dropdown-item" href="./startup.html">
+                            Startup
+                          </a>
+                          <a class="dropdown-item" href="./enterprise.html">
+                            Enterprise
+                          </a>
+                          <a class="dropdown-item" href="./service.html">
+                            Service
+                          </a>
+                          <a class="dropdown-item" href="./cloud.html">
+                            Cloud Hosting
+                          </a>
+                          <a class="dropdown-item" href="./agency.html">
+                            Agency
+                          </a>
+                          <a class="dropdown-item" href="./framework.html">
+                            Framework <span class="h6 text-uppercase text-primary">(new)</span>
+                          </a>
+    
+                        </div>
+                      </div> <!-- / .row -->
+                    </div>
+                  </div>
+                </div> <!-- / .row -->
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarPages" data-bs-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
+                Pages
+              </a>
+              <div class="dropdown-menu dropdown-menu-lg" aria-labelledby="navbarPages">
+                <div class="row gx-0">
+                  <div class="col-6">
+                    <div class="row gx-0">
+                      <div class="col-12 col-lg-6">
+    
+                        <!-- Heading -->
+                        <h6 class="dropdown-header">
+                          Career
+                        </h6>
+    
+                        <!-- List -->
+                        <a class="dropdown-item" href="./careers.html">
+                          Listing
+                        </a>
+                        <a class="dropdown-item mb-5" href="./career-single.html">
+                          Opening
+                        </a>
+    
+                        <!-- Heading -->
+                        <h6 class="dropdown-header">
+                          Company
+                        </h6>
+    
+                        <!-- List -->
+                        <a class="dropdown-item" href="./about.html">
+                          About
+                        </a>
+                        <a class="dropdown-item" href="./pricing.html">
+                          Pricing
+                        </a>
+                        <a class="dropdown-item mb-5 mb-lg-0" href="./terms-of-service.html">
+                          Terms
+                        </a>
+    
+                      </div>
+                      <div class="col-12 col-lg-6">
+    
+                        <!-- Heading -->
+                        <h6 class="dropdown-header">
+                          Help center
+                        </h6>
+    
+                        <!-- List -->
+                        <a class="dropdown-item" href="./help-center.html">
+                          Overview
+                        </a>
+                        <a class="dropdown-item mb-5" href="./help-center-article.html">
+                          Article
+                        </a>
+    
+                        <!-- Heading -->
+                        <h6 class="dropdown-header">
+                          Contact
+                        </h6>
+    
+                        <!-- List -->
+                        <a class="dropdown-item" href="./contact.html">
+                          Basic
+                        </a>
+                        <a class="dropdown-item" href="./contact-alt.html">
+                          Cover
+                        </a>
+    
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="row gx-0">
+                      <div class="col-12 col-lg-6">
+    
+                        <!-- Heading -->
+                        <h6 class="dropdown-header">
+                          Blog
+                        </h6>
+    
+                        <!-- List -->
+                        <a class="dropdown-item" href="./blog.html">
+                          Rich View
+                        </a>
+                        <a class="dropdown-item" href="./blog-post.html">
+                          Article
+                        </a>
+                        <a class="dropdown-item" href="./blog-showcase.html">
+                          Showcase
+                        </a>
+                        <a class="dropdown-item mb-5 mb-lg-0" href="./blog-search.html">
+                          Search
+                        </a>
+    
+                      </div>
+                      <div class="col-12 col-lg-6">
+    
+                        <!-- Heading -->
+                        <h6 class="dropdown-header">
+                          Portfolio
+                        </h6>
+    
+                        <!-- List -->
+                        <a class="dropdown-item" href="./portfolio-masonry.html">
+                          Masonry
+                        </a>
+                        <a class="dropdown-item" href="./portfolio-grid-rows.html">
+                          Grid Rows
+                        </a>
+                        <a class="dropdown-item" href="./portfolio-parallax.html">
+                          Parallax
+                        </a>
+                        <a class="dropdown-item" href="./portfolio-case-study.html">
+                          Case Study
+                        </a>
+                        <a class="dropdown-item" href="./portfolio-sidebar.html">
+                          Sidebar
+                        </a>
+                        <a class="dropdown-item" href="./portfolio-sidebar-fluid.html">
+                          Sidebar: Fluid
+                        </a>
+                        <a class="dropdown-item" href="./portfolio-grid.html">
+                          Basic Grid
+                        </a>
+    
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> <!-- / .row -->
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarAccount" data-bs-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
+                Account
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarAccount">
+                <li class="dropdown-item dropend">
+                  <a class="dropdown-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
+                    Settings
+                  </a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="./account-general.html">
+                      General
+                    </a>
+                    <a class="dropdown-item" href="./account-security.html">
+                      Security
+                    </a>
+                    <a class="dropdown-item" href="./account-notifications.html">
+                      Notifications
+                    </a>
+                    <a class="dropdown-item" href="./billing-plans-and-payment.html">
+                      Plans & Payment
+                    </a>
+                    <a class="dropdown-item" href="./billing-users.html">
+                      Users
+                    </a>
+                  </div>
+                </li>
+                <li class="dropdown-item dropend">
+                  <a class="dropdown-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
+                    Sign In
+                  </a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="./signin-cover.html">
+                      Side Cover
+                    </a>
+                    <a class="dropdown-item" href="./signin-illustration.html">
+                      Illustration
+                    </a>
+                    <a class="dropdown-item" href="./signin.html">
+                      Basic
+                    </a>
+                    <a class="dropdown-item" data-bs-toggle="modal" href="#modalSigninHorizontal">
+                      Modal Horizontal
+                    </a>
+                    <a class="dropdown-item" data-bs-toggle="modal" href="#modalSigninVertical">
+                      Modal Vertical
+                    </a>
+                  </div>
+                </li>
+                <li class="dropdown-item dropend">
+                  <a class="dropdown-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
+                    Sign Up
+                  </a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="./signup-cover.html">
+                      Side Cover
+                    </a>
+                    <a class="dropdown-item" href="./signup-illustration.html">
+                      Illustration
+                    </a>
+                    <a class="dropdown-item" href="./signup.html">
+                      Basic
+                    </a>
+                    <a class="dropdown-item" data-bs-toggle="modal" href="#modalSignupHorizontal">
+                      Modal Horizontal
+                    </a>
+                    <a class="dropdown-item" data-bs-toggle="modal" href="#modalSignupVertical">
+                      Modal Vertical
+                    </a>
+                  </div>
+                </li>
+                <li class="dropdown-item dropend">
+                  <a class="dropdown-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
+                    Password Reset
+                  </a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="./password-reset-cover.html">
+                      Side Cover
+                    </a>
+                    <a class="dropdown-item" href="./password-reset-illustration.html">
+                      Illustration
+                    </a>
+                    <a class="dropdown-item" href="./password-reset.html">
+                      Basic
+                    </a>
+                  </div>
+                </li>
+                <li class="dropdown-item dropend">
+                  <a class="dropdown-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
+                    Error
+                  </a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="./error-cover.html">
+                      Side Cover
+                    </a>
+                    <a class="dropdown-item" href="./error-illustration.html">
+                      Illustration
+                    </a>
+                    <a class="dropdown-item" href="./error.html">
+                      Basic
+                    </a>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarDocumentation" data-bs-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
+                Documentation
+              </a>
+              <div class="dropdown-menu dropdown-menu-md" aria-labelledby="navbarDocumentation">
+                <div class="list-group list-group-flush">
+                  <a class="list-group-item" href="./docs/index.html">
+    
+                    <!-- Icon -->
+                    <div class="icon icon-sm text-primary">
+                      <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M0 0h24v24H0z"/><path d="M8 3v.5A1.5 1.5 0 009.5 5h5A1.5 1.5 0 0016 3.5V3h2a2 2 0 012 2v16a2 2 0 01-2 2H6a2 2 0 01-2-2V5a2 2 0 012-2h2z" fill="#335EEA" opacity=".3"/><path d="M11 2a1 1 0 012 0h1.5a.5.5 0 01.5.5v1a.5.5 0 01-.5.5h-5a.5.5 0 01-.5-.5v-1a.5.5 0 01.5-.5H11z" fill="#335EEA"/><rect fill="#335EEA" opacity=".3" x="7" y="10" width="5" height="2" rx="1"/><rect fill="#335EEA" opacity=".3" x="7" y="14" width="9" height="2" rx="1"/></g></svg>                </div>
+    
+                    <!-- Content -->
+                    <div class="ms-4">
+    
+                      <!-- Heading -->
+                      <h6 class="fw-bold text-uppercase text-primary mb-0">
+                        Documentation
+                      </h6>
+    
+                      <!-- Text -->
+                      <p class="fs-sm text-gray-700 mb-0">
+                        Customizing and building
+                      </p>
+    
+                    </div>
+    
+                  </a>
+                  <a class="list-group-item" href="./docs/alerts.html">
+    
+                    <!-- Icon -->
+                    <div class="icon icon-sm text-primary">
+                      <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M0 0h24v24H0z"/><rect fill="#335EEA" x="4" y="4" width="7" height="7" rx="1.5"/><path d="M5.5 13h4a1.5 1.5 0 011.5 1.5v4A1.5 1.5 0 019.5 20h-4A1.5 1.5 0 014 18.5v-4A1.5 1.5 0 015.5 13zm9-9h4A1.5 1.5 0 0120 5.5v4a1.5 1.5 0 01-1.5 1.5h-4A1.5 1.5 0 0113 9.5v-4A1.5 1.5 0 0114.5 4zm0 9h4a1.5 1.5 0 011.5 1.5v4a1.5 1.5 0 01-1.5 1.5h-4a1.5 1.5 0 01-1.5-1.5v-4a1.5 1.5 0 011.5-1.5z" fill="#335EEA" opacity=".3"/></g></svg>                </div>
+    
+                    <!-- Content -->
+                    <div class="ms-4">
+    
+                      <!-- Heading -->
+                      <h6 class="fw-bold text-uppercase text-primary mb-0">
+                        Components
+                      </h6>
+    
+                      <!-- Text -->
+                      <p class="fs-sm text-gray-700 mb-0">
+                        Full list of components
+                      </p>
+    
+                    </div>
+    
+                  </a>
+                  <a class="list-group-item" href="./docs/changelog.html">
+    
+                    <!-- Icon -->
+                    <div class="icon icon-sm text-primary">
+                      <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M0 0h24v24H0z"/><path d="M5.857 2h7.88a1.5 1.5 0 01.968.355l4.764 4.029A1.5 1.5 0 0120 7.529v12.554c0 1.79-.02 1.917-1.857 1.917H5.857C4.02 22 4 21.874 4 20.083V3.917C4 2.127 4.02 2 5.857 2z" fill="#335EEA" opacity=".3"/><rect fill="#335EEA" x="6" y="11" width="9" height="2" rx="1"/><rect fill="#335EEA" x="6" y="15" width="5" height="2" rx="1"/></g></svg>                </div>
+    
+                    <!-- Content -->
+                    <div class="ms-4">
+    
+                      <!-- Heading -->
+                      <h6 class="fw-bold text-uppercase text-primary mb-0">
+                        Changelog
+                      </h6>
+    
+                      <!-- Text -->
+                      <p class="fs-sm text-gray-700 mb-0">
+                        Keep track of changes
+                      </p>
+    
+                    </div>
+    
+                    <!-- Badge -->
+                    <span class="badge rounded-pill bg-primary-soft ms-auto">
+                      2.0.0
+                    </span>
+    
+                  </a>
+                </div>
+              </div>
+            </li>
+          </ul>
+    
+          <!-- Button -->
+          <a class="navbar-btn btn btn-sm btn-primary lift ms-auto" href="https://themes.getbootstrap.com/product/landkit/" target="_blank">
+            Buy now
+          </a>
+    
+        </div>
+    
+      </div>
+    </nav>
+
+    <!-- WELCOME -->
+    <section class="mt-n10">
+      <div class="container d-flex flex-column">
+        <div class="row align-items-center justify-content-center min-vh-100 py-8 py-md-11">
+          <div class="col-12 col-md-8 col-lg-7 mt-auto text-center">
+
+            <!-- Heading -->
+            <h1 class="display-1 mb-0 fw-bold">
+              We <span class="text-primary">Design & Build</span> Products For All.
+            </h1>
+
+          </div>
+          <div class="col-12 mt-auto text-center">
+
+            <!-- Button -->
+            <a class="btn btn-primary btn-rounded-circle shadow" data-scroll='{"offset": 0}' href="#sectionTwo">
+              <i class="fe fe-arrow-down"></i>
+            </a>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </section>
+
+    <!-- IMAGE -->
+    <a class="d-block text-decoration-none" id="sectionTwo" data-jarallax data-speed=".8" href="portfolio-case-study.html" style="background-image: url(assets/img/portfolio/portfolio-cover-4.jpg)">
+      <div class="container d-flex flex-column">
+        <div class="row align-items-center min-vh-100 py-8 py-md-11">
+          <div class="col-12">
+
+            <!-- Brand -->
+            <div class="img-fluid text-white mx-auto mb-5" style="max-width: 320px;">
+              <svg viewBox="0 0 222 52" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M193.541 43.309c-9.826 0-18.127-8.375-18.127-18.287 0-9.913 8.301-18.287 18.127-18.287 9.826 0 18.127 8.374 18.127 18.287h-.001c0 3.76-1.197 7.297-3.216 10.242l-5.522-5.522-4.591 4.591 5.573 5.574c-2.961 2.131-6.548 3.402-10.37 3.402zm25.704 2.749l-5.518-5.518c3.44-4.226 5.477-9.598 5.477-15.518 0-13.946-11.273-24.87-25.663-24.87-14.391 0-25.664 10.924-25.664 24.87 0 13.945 11.273 24.869 25.664 24.869 5.854 0 11.191-1.808 15.464-4.891l5.649 5.649 4.591-4.591zM1.121 48.858V1.182h7.061v41.094H36.98v6.582H1.12zM121.159 26.569h14.874c7.758 0 10.51-5.064 10.51-9.402 0-4.337-2.752-9.401-10.51-9.401h-14.874v18.803zm23.303 22.29L134.07 33.152h-12.911v15.705h-7.061V1.182h22.649c10.083 0 16.858 6.423 16.858 15.985 0 6.435-4.282 11.92-10.908 13.97l-1.403.435 12.117 17.286h-8.949zM60.404 48.858l14.831-36.43 14.7 36.43h7.874L79.089 4.661a5.703 5.703 0 00-5.252-3.48H58.769v1.234a4.875 4.875 0 004.875 4.874h7.113L52.592 48.86h7.812z" fill="currentColor"/></svg>            </div>
+
+            <!-- Subheading -->
+            <p class="mb-0 fw-bold text-center text-uppercase text-white letter-spacing-lg">
+              Bottle Redesigned
+            </p>
+
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <!-- IMAGE -->
+    <a class="d-block text-decoration-none" id="sectionTwo" data-jarallax data-speed=".8" href="portfolio-sidebar.html" style="background-image: url(assets/img/portfolio/portfolio-cover-5.jpg)">
+      <div class="container d-flex flex-column">
+        <div class="row align-items-center min-vh-100 py-8 py-md-11">
+          <div class="col-12">
+
+            <!-- Brand -->
+            <div class="img-fluid text-white mx-auto mb-5" style="max-width: 320px;">
+              <svg viewBox="0 0 322 83" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M39.324 37.727v14.106h25.37A26.036 26.036 0 0140.336 68.17c-13.86-.466-24.855-11.85-24.855-25.736 0-13.886 10.996-25.27 24.855-25.736a26.2 26.2 0 0122.015 11.847h16.952C73.158 12.377 57.613 1.746 40.337 1.896 18.1 2.421.449 20.803.797 43.07c.347 22.268 18.564 40.088 40.805 39.917 22.241-.17 40.183-18.268 40.19-40.539a40.281 40.281 0 00-.29-4.692H39.324v-.03zM91.049 42.448c-.365-16.847 9.493-32.238 24.937-38.934a41.357 41.357 0 0145.42 8.428c12.022 11.793 15.717 29.699 9.347 45.296-6.37 15.598-21.536 25.782-38.365 25.762a40.85 40.85 0 01-29.071-11.69 40.955 40.955 0 01-12.268-28.862zm66.854 0c-.128-14.059-11.588-25.366-25.63-25.286-14.041.08-25.373 11.516-25.341 25.575.031 14.06 11.414 25.445 25.456 25.462a25.353 25.353 0 0018.157-7.511 25.42 25.42 0 007.358-18.24zM184.633 3.2h29.362c17.849 0 26.759 7.734 26.759 22.043a16.717 16.717 0 01-8.678 15.149 18.48 18.48 0 0111.571 17.958c0 15.584-9.662 23.318-27.511 23.318h-31.503V3.2zm15.303 13.759v17.379H214.4c8.997 0 10.906-4.78 10.906-9.124 0-4.345-2.892-8.284-10.154-8.284h-15.216v.029zm0 31.398v19.58h16.808c8.678 0 11.426-5.01 11.426-9.905s-2.893-9.675-11.426-9.675h-16.808zM303.874 3.2l-19.382 32.992L264.532 3.2h-18.225l29.825 47.214-18.399 31.254h17.589L321.347 3.2h-17.473z" fill="currentColor"/></svg>            </div>
+
+            <!-- Subheading -->
+            <p class="mb-0 fw-bold text-center text-uppercase text-white letter-spacing-lg">
+              Toothbrush Prototype
+            </p>
+
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <!-- QUOTE -->
+    <section>
+      <div class="container d-flex flex-column">
+        <div class="row align-items-center justify-content-center min-vh-100 py-8 py-md-11">
+          <div class="col-12 col-lg-10 col-xl-8">
+
+            <!-- Blockquote -->
+            <blockquote class="blockquote text-center">
+
+              <!-- Logo -->
+              <div class="img-fluid mb-5 mb-md-7 mx-auto" style="max-width: 120px; color: #CB2027;">
+                <svg viewBox="0 0 2761 991" xmlns="http://www.w3.org/2000/svg"><path d="M1447.629 301.83c0 28.119-22.658 50.76-50.777 50.76-28.118 0-50.76-22.641-50.76-50.76s21.87-50.76 50.76-50.76c28.915.78 50.777 23.43 50.777 50.76zm-209.316 102.317v12.5s-24.202-31.256-75.75-31.256c-85.121 0-151.517 64.828-151.517 154.638 0 89.037 65.615 154.638 151.517 154.638 52.328 0 75.75-32.02 75.75-32.02v13.271c0 6.25 4.697 10.923 10.939 10.923h63.252V393.177h-63.252c-6.242.024-10.939 5.5-10.939 10.97zm0 188.21c-11.703 17.189-35.14 32.028-63.251 32.028-49.98 0-88.258-31.24-88.258-84.356 0-53.11 38.277-84.349 88.258-84.349 27.338 0 52.328 15.62 63.251 32.02v104.658zm121.058-199.156h74.97v293.664h-74.97V393.2zm1119.954-7.818c-51.548 0-75.766 31.255-75.766 31.255V251.85h-74.97v435.015h63.267c6.25 0 10.923-5.47 10.923-10.94v-13.27s24.218 32.02 75.75 32.02c85.137 0 151.518-65.585 151.518-154.623s-66.38-154.669-150.722-154.669zm-12.499 238.214c-28.906 0-51.548-14.824-63.267-32.02V486.92c11.719-15.62 36.709-32.02 63.267-32.02 49.98 0 88.25 31.24 88.25 84.349 0 53.109-38.261 84.348-88.25 84.348zm-177.28-110.891v174.939h-74.985V521.288c0-48.412-15.62-67.949-57.767-67.949-22.642 0-46.08 11.72-60.942 28.907v204.626h-74.955V393.21h59.335c6.25 0 10.938 5.469 10.938 10.938v12.5c21.87-22.658 50.76-31.256 79.652-31.256 32.808 0 60.147 9.386 82.016 28.126 26.543 21.87 36.709 49.98 36.709 99.189zm-450.65-127.323c-51.532 0-75.75 31.255-75.75 31.255V251.85h-74.97v435.015h63.251c6.25 0 10.939-5.47 10.939-10.94v-13.27s24.218 32.02 75.75 32.02c85.137 0 151.518-65.585 151.518-154.623.78-89.045-65.6-154.669-150.737-154.669zm-12.498 238.214c-28.891 0-51.533-14.824-63.252-32.02V486.92c11.719-15.62 36.709-32.02 63.252-32.02 49.996 0 88.257 31.24 88.257 84.349 0 53.109-38.261 84.348-88.257 84.348zm-203.05-238.214c22.641 0 34.36 3.917 34.36 3.917v69.5s-62.48-21.088-101.52 23.438v205.399H1481.2V393.2h63.267c6.25 0 10.923 5.469 10.923 10.938v12.5c14.075-16.409 44.535-31.256 67.957-31.256zM844.705 660.306c-3.901-9.37-7.81-19.52-11.711-28.119-6.258-14.051-12.507-27.338-17.96-39.83l-.781-.78c-53.897-117.156-111.68-235.858-172.606-352.999l-2.34-4.696a1536.65 1536.65 0 01-18.734-36.71c-7.817-14.067-15.62-28.89-28.119-42.958-24.99-31.24-60.918-48.427-99.18-48.427-39.057 0-74.198 17.188-99.96 46.859-11.72 14.052-20.317 28.891-28.12 42.958a1695.173 1695.173 0 01-18.732 36.71l-2.349 4.696c-60.138 117.141-118.709 235.85-172.598 353l-.788 1.552c-5.462 12.514-11.719 25.786-17.968 39.83-3.901 8.597-7.803 17.968-11.704 28.118-10.158 28.892-13.287 56.23-9.37 84.357 8.59 58.578 47.632 107.763 101.529 129.647 20.309 8.598 41.398 12.5 63.26 12.5 6.249 0 14.051-.78 20.308-1.569 25.779-3.12 52.33-11.703 78.107-26.543 32.02-17.968 62.48-43.73 96.84-81.22 34.36 37.49 65.6 63.252 96.84 81.22 25.786 14.84 52.329 23.422 78.1 26.543 6.249.796 14.066 1.568 20.316 1.568 21.87 0 43.73-3.9 63.252-12.499 54.677-21.884 92.938-71.85 101.536-129.647 6.203-27.331 3.082-54.654-7.068-83.56zm-352.219 40.61c-42.178-53.109-69.517-103.09-78.88-145.252-3.9-17.968-4.688-33.588-2.34-47.647 1.553-12.5 6.25-23.438 12.499-32.808 14.84-21.074 39.83-34.36 68.729-34.36 28.907 0 54.677 12.498 68.736 34.36 6.25 9.37 10.931 20.316 12.507 32.808 2.333 14.067 1.553 30.46-2.348 47.647-9.402 41.383-36.74 91.37-78.903 145.252zm311.6 36.71c-5.46 40.61-32.8 75.765-71.06 91.385-18.742 7.802-39.058 10.15-59.352 7.802-19.52-2.348-39.057-8.598-59.35-20.3-28.119-15.636-56.23-39.83-89.038-75.767 51.54-63.252 82.78-121.058 94.5-172.59 5.469-24.218 6.257-46.08 3.9-66.397-3.113-19.52-10.15-37.489-21.081-53.109-24.226-35.156-64.843-55.45-110.127-55.45-45.283 0-85.901 21.09-110.111 55.45-10.93 15.62-17.968 33.588-21.09 53.11-3.12 20.316-2.348 42.958 3.902 66.395 11.71 51.533 43.73 110.112 94.491 173.371-32.02 35.929-60.919 60.147-89.037 75.766-20.31 11.72-39.822 17.969-59.343 20.302a124.96 124.96 0 01-59.359-7.803c-38.261-15.62-65.6-50.776-71.061-91.386-2.341-19.52-.788-39.042 7.03-60.91 2.332-7.819 6.249-15.62 10.15-24.991 5.47-12.499 11.703-25.786 17.96-39.057l.788-1.553c53.882-116.376 111.672-235.085 171.81-350.666l2.341-4.697c6.258-11.703 12.507-24.202 18.749-35.92 6.25-12.5 13.271-24.219 21.87-34.377 16.4-18.725 38.26-28.891 62.478-28.891 24.218 0 46.08 10.166 62.48 28.891 8.598 10.182 15.62 21.9 21.87 34.376 6.256 11.719 12.506 24.218 18.74 35.921l2.348 4.697a10341.109 10341.109 0 01171.038 351.446v.78c6.257 12.515 11.719 26.559 17.968 39.073 3.901 9.355 7.81 17.157 10.15 24.975 6.235 20.285 8.575 39.822 5.447 60.123z" fill="currentColor" fill-rule="nonzero"/></svg>              </div>
+
+              <!-- Text -->
+              <p class="h2 mb-5 mb-md-7">
+                “Before we even did a kickoff call, I knew we'd make the right choice to work with the Landkit team. Their body of work and influence on the industry speak volumes.”
+              </p>
+
+              <!-- Footer -->
+              <footer class="blockquote-footer mb-0">
+                <div class="avatar me-3">
+                  <img src="assets/img/avatars/avatar-1.jpg" class="avatar-img rounded-circle" alt="...">
+                </div> <span class="h6 text-uppercase">Jacob Thornton</span>
+              </footer>
+
+            </blockquote>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMAGE -->
+    <a class="d-block text-decoration-none" id="sectionTwo" data-jarallax data-speed=".8" href="portfolio-case-study.html" style="background-image: url(assets/img/portfolio/portfolio-cover-7.jpg)">
+      <div class="container d-flex flex-column">
+        <div class="row align-items-center min-vh-100 py-8 py-md-11">
+          <div class="col-12">
+
+            <!-- Brand -->
+            <div class="img-fluid text-white mx-auto mb-5" style="max-width: 500px;">
+              <svg viewBox="0 0 501 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M414.353 0h-41.96l-21.5 59.436h41.96L414.353 0zM406.723 27.725l24.794 31.71h48.376l-27.742-31.363L500.353 0H451.11l-44.387 27.725zM359.04 11.437L363.201 0H255.873l-14.738 40.895c-.867 2.599-1.04 5.544.867 7.797.694.693 5.375 6.238 6.416 7.278 1.733 1.906 3.814 3.466 7.282 3.466h86.001l4.161-11.264h-60.166c-3.641 0-5.375-2.772-4.508-5.545l2.774-7.45h66.582l4.161-11.437h-66.581l4.508-12.303h66.408zM235.761 0H128.953l-21.5 59.436h40.92l17.339-48h30.516c3.295 0 4.509 2.427 3.815 4.68-.694 2.425-1.734 5.37-2.601 7.104-1.04 2.426-3.468 4.332-7.109 4.332h-28.609l24.795 31.71h46.988l-21.153-23.74h12.657c5.895 0 9.363-3.118 10.924-7.104 1.734-4.505 5.721-15.422 6.935-19.06C245.124 3.637 241.656 0 235.761 0zM121.497 0H4.98L.818 11.437h40.227l-17.34 47.999H63.24l17.339-48h36.931L121.497 0z" fill="currentColor"/></svg>            </div>
+
+            <!-- Subheading -->
+            <p class="mb-0 fw-bold text-center text-uppercase text-white letter-spacing-lg">
+              Ride for your campaign
+            </p>
+
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <!-- IMAGE -->
+    <a class="d-block text-decoration-none" id="sectionTwo" data-jarallax data-speed=".8" href="portfolio-sidebar-fluid.html" style="background-image: url(assets/img/portfolio/portfolio-cover-2.jpg)">
+      <div class="container d-flex flex-column">
+        <div class="row align-items-center min-vh-100 py-8 py-md-11">
+          <div class="col-12">
+
+            <!-- Brand -->
+            <div class="img-fluid text-white mx-auto mb-5" style="max-width: 320px;">
+              <svg viewBox="0 0 222 52" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M193.541 43.309c-9.826 0-18.127-8.375-18.127-18.287 0-9.913 8.301-18.287 18.127-18.287 9.826 0 18.127 8.374 18.127 18.287h-.001c0 3.76-1.197 7.297-3.216 10.242l-5.522-5.522-4.591 4.591 5.573 5.574c-2.961 2.131-6.548 3.402-10.37 3.402zm25.704 2.749l-5.518-5.518c3.44-4.226 5.477-9.598 5.477-15.518 0-13.946-11.273-24.87-25.663-24.87-14.391 0-25.664 10.924-25.664 24.87 0 13.945 11.273 24.869 25.664 24.869 5.854 0 11.191-1.808 15.464-4.891l5.649 5.649 4.591-4.591zM1.121 48.858V1.182h7.061v41.094H36.98v6.582H1.12zM121.159 26.569h14.874c7.758 0 10.51-5.064 10.51-9.402 0-4.337-2.752-9.401-10.51-9.401h-14.874v18.803zm23.303 22.29L134.07 33.152h-12.911v15.705h-7.061V1.182h22.649c10.083 0 16.858 6.423 16.858 15.985 0 6.435-4.282 11.92-10.908 13.97l-1.403.435 12.117 17.286h-8.949zM60.404 48.858l14.831-36.43 14.7 36.43h7.874L79.089 4.661a5.703 5.703 0 00-5.252-3.48H58.769v1.234a4.875 4.875 0 004.875 4.874h7.113L52.592 48.86h7.812z" fill="currentColor"/></svg>            </div>
+
+            <!-- Subheading -->
+            <p class="mb-0 fw-bold text-center text-uppercase text-white letter-spacing-lg">
+              The bright campaign
+            </p>
+
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <!-- TOGETHER -->
+    <section>
+      <div class="container d-flex flex-column">
+        <div class="row align-items-center justify-content-between min-vh-100 py-8 py-md-11">
+          <div class="col-12 col-md-6 col-lg-5">
+
+            <!-- Badge -->
+            <span class="badge rounded-pill bg-primary-soft mb-3">
+              <span class="h6 text-uppercase">Support</span>
+            </span>
+
+            <!-- Heading -->
+            <h2>
+              Our legacy will be working <br>
+              <span class="text-primary">with people we love</span>.
+            </h2>
+
+            <!-- Text -->
+            <p class="fs-lg text-gray-700 mb-6">
+              Are you doing good for the world? Do you care about the future of technology and the internet? Are you the type of person who “wastes” hundreds of hours of side projects and experiments? We probably love you.
+            </p>
+
+            <!-- Stats -->
+            <div class="d-flex mb-8 mb-md-0">
+              <div class="pe-5">
+                <h3 class="mb-0">
+                  <span data-countup='{"startVal": 0}' data-to="50" data-aos data-aos-id="countup:in">0</span>%
+                </h3>
+                <p class="text-gray-700 mb-0">
+                  Humanitarian
+                </p>
+              </div>
+              <div class="border-start border-gray-300"></div>
+              <div class="px-5">
+                <h3 class="mb-0">
+                  <span data-countup='{"startVal": 0}' data-to="100" data-aos data-aos-id="countup:in">0</span>%
+                </h3>
+                <p class="text-gray-700 mb-0">
+                  Satisfaction
+                </p>
+              </div>
+              <div class="border-start border-gray-300"></div>
+              <div class="ps-5">
+                <h3 class="mb-0">
+                  <span data-countup='{"startVal": 0}' data-to="67" data-aos data-aos-id="countup:in">0</span>%
+                </h3>
+                <p class="text-gray-700 mb-0">
+                  Remote work
+                </p>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-12 col-md-6">
+
+            <!-- Images -->
+            <div class="row">
+              <div class="col-6 mt-8 me-n5" data-aos="fade-up">
+
+                <img src="assets/img/photos/photo-10.jpg" alt="..." class="img-fluid mb-4 rounded">
+
+                <img src="assets/img/photos/photo-12.jpg" alt="..." class="img-fluid rounded">
+
+              </div>
+              <div class="col-6" data-aos="fade-up" data-aos-delay="100">
+
+                <img src="assets/img/photos/photo-9.jpg" alt="..." class="img-fluid mb-4 rounded">
+
+                <img src="assets/img/photos/photo-11.jpg" alt="..." class="img-fluid rounded">
+
+              </div>
+            </div> <!-- / .row -->
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMAGE -->
+    <a class="d-block text-decoration-none" id="sectionTwo" data-jarallax data-speed=".8" href="portfolio-case-study.html" style="background-image: url(assets/img/portfolio/portfolio-cover-6.jpg)">
+      <div class="container d-flex flex-column">
+        <div class="row align-items-center min-vh-100 py-8 py-md-11">
+          <div class="col-12">
+
+            <!-- Brand -->
+            <div class="img-fluid text-white mx-auto mb-5" style="max-width: 370px;">
+              <svg viewBox="0 0 370 132" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M41.613 131.892c-10.98-.439-19.962-3.457-26.986-9.063-1.34-1.071-4.534-4.282-5.606-5.637-2.848-3.598-4.784-7.1-6.076-10.985-3.974-11.96-1.929-27.656 5.85-44.88 6.662-14.747 16.94-29.373 34.87-49.63C46.308 8.718 54.174 0 54.225 0c.019 0-.41.746-.95 1.655-4.662 7.846-8.651 17.088-10.824 25.09-3.492 12.838-3.07 23.857 1.233 32.4 2.968 5.886 8.057 10.984 13.78 13.802 10.019 4.932 24.687 5.34 42.599 1.194 1.233-.287 62.345-16.587 135.804-36.222C309.325 18.284 369.438 2.23 369.447 2.242c.021.017-170.666 73.4-259.272 111.471-14.033 6.027-17.785 7.55-24.382 9.877-16.864 5.95-31.97 8.789-44.18 8.302z" fill="currentColor"/></svg>            </div>
+
+            <!-- Subheading -->
+            <p class="mb-0 fw-bold text-center text-uppercase text-white letter-spacing-lg">
+              (Red) Freeruns
+            </p>
+
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <!-- IMAGE -->
+    <a class="d-block text-decoration-none" id="sectionTwo" data-jarallax data-speed=".8" href="portfolio-sidebar.html" style="background-image: url(assets/img/portfolio/portfolio-cover-3.jpg)">
+      <div class="container d-flex flex-column">
+        <div class="row align-items-center min-vh-100 py-8 py-md-11">
+          <div class="col-12">
+
+            <!-- Brand -->
+            <div class="img-fluid text-white mx-auto mb-5" style="max-width: 320px;">
+              <svg viewBox="0 0 222 52" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M193.541 43.309c-9.826 0-18.127-8.375-18.127-18.287 0-9.913 8.301-18.287 18.127-18.287 9.826 0 18.127 8.374 18.127 18.287h-.001c0 3.76-1.197 7.297-3.216 10.242l-5.522-5.522-4.591 4.591 5.573 5.574c-2.961 2.131-6.548 3.402-10.37 3.402zm25.704 2.749l-5.518-5.518c3.44-4.226 5.477-9.598 5.477-15.518 0-13.946-11.273-24.87-25.663-24.87-14.391 0-25.664 10.924-25.664 24.87 0 13.945 11.273 24.869 25.664 24.869 5.854 0 11.191-1.808 15.464-4.891l5.649 5.649 4.591-4.591zM1.121 48.858V1.182h7.061v41.094H36.98v6.582H1.12zM121.159 26.569h14.874c7.758 0 10.51-5.064 10.51-9.402 0-4.337-2.752-9.401-10.51-9.401h-14.874v18.803zm23.303 22.29L134.07 33.152h-12.911v15.705h-7.061V1.182h22.649c10.083 0 16.858 6.423 16.858 15.985 0 6.435-4.282 11.92-10.908 13.97l-1.403.435 12.117 17.286h-8.949zM60.404 48.858l14.831-36.43 14.7 36.43h7.874L79.089 4.661a5.703 5.703 0 00-5.252-3.48H58.769v1.234a4.875 4.875 0 004.875 4.874h7.113L52.592 48.86h7.812z" fill="currentColor"/></svg>            </div>
+
+            <!-- Subheading -->
+            <p class="mb-0 fw-bold text-center text-uppercase text-white letter-spacing-lg">
+              Earthtones collection
+            </p>
+
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <!-- CTA -->
+    <section>
+      <div class="container d-flex flex-column">
+        <div class="row align-items-center justify-content-center min-vh-100 py-8 py-md-11">
+          <div class="col-12 col-md-9 col-lg-8 col-xl-7 text-center">
+
+            <!-- Heading -->
+            <h2 class="display-3">Wanna work with us?</h2>
+
+            <!-- Text -->
+            <p class="mb-5 fs-lg text-gray-800">
+              We work on everything from physical products to digital experiences and are looking forward to hearing from you.
+            </p>
+
+            <!-- Button -->
+            <a class="btn btn-primary rounded-pill" href="#!">
+              Let us know <i class="fe fe-arrow-right ms-2"></i>
+            </a>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SHAPE -->
+    <div class="position-relative">
+      <div class="shape shape-bottom shape-fluid-x text-dark">
+        <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/></svg>      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="py-8 py-md-11 bg-dark">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-4 col-lg-3">
+    
+            <!-- Brand -->
+            <img src="./assets/img/brand.svg" alt="..." class="footer-brand img-fluid mb-2">
+    
+            <!-- Text -->
+            <p class="text-gray-700 mb-2">
+              A better way to build.
+            </p>
+    
+            <!-- Social -->
+            <ul class="list-unstyled list-inline list-social mb-6 mb-md-0">
+              <li class="list-inline-item list-social-item me-3">
+                <a href="#!" class="text-decoration-none">
+                  <img src="./assets/img/icons/social/instagram.svg" class="list-social-icon" alt="...">
+                </a>
+              </li>
+              <li class="list-inline-item list-social-item me-3">
+                <a href="#!" class="text-decoration-none">
+                  <img src="./assets/img/icons/social/facebook.svg" class="list-social-icon" alt="...">
+                </a>
+              </li>
+              <li class="list-inline-item list-social-item me-3">
+                <a href="#!" class="text-decoration-none">
+                  <img src="./assets/img/icons/social/twitter.svg" class="list-social-icon" alt="...">
+                </a>
+              </li>
+              <li class="list-inline-item list-social-item">
+                <a href="#!" class="text-decoration-none">
+                  <img src="./assets/img/icons/social/pinterest.svg" class="list-social-icon" alt="...">
+                </a>
+              </li>
+            </ul>
+    
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+    
+            <!-- Heading -->
+            <h6 class="fw-bold text-uppercase text-gray-700">
+              Products
+            </h6>
+    
+            <!-- List -->
+            <ul class="list-unstyled text-muted mb-6 mb-md-8 mb-lg-0">
+              <li class="mb-3">
+                <a href="#!" class="text-reset">
+                  Page Builder
+                </a>
+              </li>
+              <li class="mb-3">
+                <a href="#!" class="text-reset">
+                  UI Kit
+                </a>
+              </li>
+              <li class="mb-3">
+                <a href="#!" class="text-reset">
+                  Styleguide
+                </a>
+              </li>
+              <li class="mb-3">
+                <a href="#!" class="text-reset">
+                  Documentation
+                </a>
+              </li>
+              <li>
+                <a href="#!" class="text-reset">
+                  Changelog
+                </a>
+              </li>
+            </ul>
+    
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+    
+            <!-- Heading -->
+            <h6 class="fw-bold text-uppercase text-gray-700">
+              Services
+            </h6>
+    
+            <!-- List -->
+            <ul class="list-unstyled text-muted mb-6 mb-md-8 mb-lg-0">
+              <li class="mb-3">
+                <a href="#!" class="text-reset">
+                  Documentation
+                </a>
+              </li>
+              <li class="mb-3">
+                <a href="#!" class="text-reset">
+                  Changelog
+                </a>
+              </li>
+              <li class="mb-3">
+                <a href="#!" class="text-reset">
+                  Pagebuilder
+                </a>
+              </li>
+              <li>
+                <a href="#!" class="text-reset">
+                  UI Kit
+                </a>
+              </li>
+            </ul>
+    
+          </div>
+          <div class="col-6 col-md-4 offset-md-4 col-lg-2 offset-lg-0">
+    
+            <!-- Heading -->
+            <h6 class="fw-bold text-uppercase text-gray-700">
+              Connect
+            </h6>
+    
+            <!-- List -->
+            <ul class="list-unstyled text-muted mb-0">
+              <li class="mb-3">
+                <a href="#!" class="text-reset">
+                  Page Builder
+                </a>
+              </li>
+              <li class="mb-3">
+                <a href="#!" class="text-reset">
+                  UI Kit
+                </a>
+              </li>
+              <li class="mb-3">
+                <a href="#!" class="text-reset">
+                  Styleguide
+                </a>
+              </li>
+              <li class="mb-3">
+                <a href="#!" class="text-reset">
+                  Documentation
+                </a>
+              </li>
+              <li class="mb-3">
+                <a href="#!" class="text-reset">
+                  Changelog
+                </a>
+              </li>
+              <li class="mb-3">
+                <a href="#!" class="text-reset">
+                  Documentation
+                </a>
+              </li>
+              <li>
+                <a href="#!" class="text-reset">
+                  Changelog
+                </a>
+              </li>
+            </ul>
+    
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+    
+            <!-- Heading -->
+            <h6 class="fw-bold text-uppercase text-gray-700">
+              Legal
+            </h6>
+    
+            <!-- List -->
+            <ul class="list-unstyled text-muted mb-0">
+              <li class="mb-3">
+                <a href="#!" class="text-reset">
+                  Documentation
+                </a>
+              </li>
+              <li class="mb-3">
+                <a href="#!" class="text-reset">
+                  Changelog
+                </a>
+              </li>
+              <li>
+                <a href="#!" class="text-reset">
+                  Pagebuilder
+                </a>
+              </li>
+            </ul>
+    
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <!-- Map JS -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+    
+    <!-- Vendor JS -->
+    <script src="./assets/js/vendor.bundle.js"></script>
+    
+    <!-- Theme JS -->
+    <script src="./assets/js/theme.bundle.js"></script>
+
+  </body>
+</html>

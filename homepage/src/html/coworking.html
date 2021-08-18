@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {{> partials/head title="Landkit"}}
+  </head>
+  <body>
+
+    <!-- MODALS -->
+    {{> partials/modals}}
+
+    <!-- NAVBAR -->
+    {{> partials/navbar classList="navbar-light bg-white border-bottom" container="container" button="primary"}}
+
+    <!-- WELCOME -->
+    <section class="border-bottom">
+      <div class="container">
+        <div class="row align-items-stretch">
+          <div class="col-12 col-md-6 offset-md-1 order-md-2">
+
+            <!-- Slider (mobile) -->
+            <div class="d-md-none img-cover" data-flickity='{"imagesLoaded": true, "wrapAround": true, "prevNextButtons": false, "pageDots": false}'>
+              <div class="w-100">
+
+                <!-- Image -->
+                <img src="assets/img/covers/cover-12.jpg" alt="..." class="img-fluid">
+
+              </div>
+              <div class="w-100">
+
+                <!-- Image -->
+                <img src="assets/img/covers/cover-2.jpg" alt="..." class="img-fluid">
+
+              </div>
+            </div>
+
+            <!-- Slider -->
+            <div class="position-relative h-100 vw-50 d-none d-md-block" data-aos="fade-left">
+
+              <!-- Slider -->
+              <div class="flickity-button-bottom flickity-button-white h-100 w-100" data-flickity='{"imagesLoaded": true, "setGallerySize": false, "wrapAround": true, "pageDots": false}'>
+                <div class="w-100 h-100 bg-cover" style="background-image: url(assets/img/covers/cover-9.jpg);"></div>
+                <div class="w-100 h-100 bg-cover" style="background-image: url(assets/img/covers/cover-2.jpg);"></div>
+              </div>
+
+              <!-- Shape -->
+              <div class="shape shape-start shape-fluid-y svg-shim text-white">
+                {{> angles/angle-start}}
+              </div>
+
+            </div>
+
+          </div>
+          <div class="col-12 col-md-5 py-8 py-md-14 order-md-1" data-aos="fade-right">
+
+            <!-- Heading -->
+            <h1 class="display-3">
+              Coworking spaces built for <span class="text-success">startups.</span>
+            </h1>
+
+            <!-- Text -->
+            <p class="lead text-muted mb-6 mb-md-8">
+              We design and build coworking spaces tailored to the needs of growing teams.
+            </p>
+
+            <!-- Text -->
+            <p>
+              Where are you located?
+            </p>
+
+            <!-- Form -->
+            <form>
+              <div class="row gx-4">
+                <div class="col-12 col-lg">
+
+                  <!-- Search -->
+                  <div class="form-group mb-lg-0">
+                    <input type="search" class="form-control" value="Los Angeles">
+                  </div>
+
+                </div>
+                <div class="col-12 col-lg-auto">
+
+                  <!-- Button -->
+                  <button type="submit" class="btn w-100 btn-primary shadow lift">
+                    Find space
+                  </button>
+
+                </div>
+              </div> <!-- / .form-row -->
+            </form>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </section>
+
+    <!-- FLEXIBILITY -->
+    <section class="pt-8 pt-md-11 bg-gradient-light-white">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-10 col-lg-8 text-center">
+
+            <!-- Badge -->
+            <span class="badge rounded-pill bg-success-soft mb-3">
+              <span class="h6 text-uppercase">Flexibility</span>
+            </span>
+
+            <!-- Heading -->
+            <h1>
+              Spaces for any size of team.
+            </h1>
+
+            <!-- Text -->
+            <p class="fs-lg text-gray-700 mb-7 mb-md-9">
+              No matter what size your team, we have a solution. From single shared spaces to entire floors, it's available.
+            </p>
+
+          </div>
+        </div> <!-- / .row -->
+        <div class="row">
+          <div class="col-12 col-md-4" data-aos="fade-up">
+
+            <!-- Card -->
+            <div class="card shadow-light-lg mb-6 mb-md-0 lift lift-lg">
+
+              <!-- Image -->
+              <img src="assets/img/photos/photo-4.jpg" alt="..." class="card-img-top">
+
+              <!-- Shape -->
+              <div class="position-relative">
+                <div class="shape shape-bottom shape-fluid-x svg-shim text-white">
+                  {{> curves/curve-1}}
+                </div>
+              </div>
+
+              <!-- Body -->
+              <div class="card-body position-relative">
+
+                <!-- Badge -->
+                <div class="position-relative text-end mt-n8 me-n4 mb-3">
+                  <span class="badge rounded-pill bg-success">
+                    <span class="h6 text-uppercase">$49/mo</span>
+                  </span>
+                </div>
+
+                <!-- Heading -->
+                <h3>
+                  Shared Coworking
+                </h3>
+
+                <!-- Text -->
+                <p class="text-muted">
+                  Open seating is available weekdays from 7am - 7pm and weekends from 9am - 5pm.
+                </p>
+
+                <!-- Link -->
+                <a href="#!" class="fw-bold text-decoration-none">
+                  Tour the space <i class="fe fe-arrow-right ms-3"></i>
+                </a>
+
+              </div>
+
+            </div>
+
+          </div>
+          <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="100">
+
+            <!-- Card -->
+            <div class="card shadow-light-lg mb-6 mb-md-0 lift lift-lg">
+
+              <!-- Image -->
+              <img src="assets/img/photos/photo-5.jpg" alt="..." class="card-img-top">
+
+              <!-- Shape -->
+              <div class="position-relative">
+                <div class="shape shape-bottom shape-fluid-x svg-shim text-white">
+                  {{> curves/curve-1}}
+                </div>
+              </div>
+
+              <!-- Body -->
+              <div class="card-body position-relative">
+
+                <!-- Badge -->
+                <div class="position-relative text-end mt-n8 me-n4 mb-3">
+                  <span class="badge rounded-pill bg-warning">
+                    <span class="h6 text-uppercase">$99/mo</span>
+                  </span>
+                </div>
+
+                <!-- Heading -->
+                <h3>
+                  Designated Desk
+                </h3>
+
+                <!-- Text -->
+                <p class="text-muted">
+                  A personal space to leave your computer, monitor, and supplies with unlimited access.
+                </p>
+
+                <!-- Link -->
+                <a href="#!" class="fw-bold text-decoration-none">
+                  Find a desk <i class="fe fe-arrow-right ms-3"></i>
+                </a>
+
+              </div>
+
+            </div>
+
+          </div>
+          <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="200">
+
+            <!-- Card -->
+            <div class="card shadow-light-lg lift lift-lg">
+
+              <!-- Image -->
+              <img src="assets/img/photos/photo-6.jpg" alt="..." class="card-img-top">
+
+              <!-- Shape -->
+              <div class="position-relative">
+                <div class="shape shape-bottom shape-fluid-x svg-shim text-white">
+                  {{> curves/curve-1}}
+                </div>
+              </div>
+
+              <!-- Body -->
+              <div class="card-body position-relative">
+
+                <!-- Badge -->
+                <div class="position-relative text-end mt-n8 me-n4 mb-3">
+                  <span class="badge rounded-pill bg-success">
+                    <span class="h6 text-uppercase">$399/mo</span>
+                  </span>
+                </div>
+
+                <!-- Heading -->
+                <h3>
+                  Private Offices
+                </h3>
+
+                <!-- Text -->
+                <p class="text-muted">
+                  Need a private space? We have all sizes of offices from 400² ft. available up to 3100² ft.
+                </p>
+
+                <!-- Link -->
+                <a href="#!" class="fw-bold text-decoration-none">
+                  Tour the offices <i class="fe fe-arrow-right ms-3"></i>
+                </a>
+
+              </div>
+
+            </div>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </section>
+
+    <!-- SCALABLE -->
+    <section class="py-8 py-md-11 border-bottom">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-12 col-md-6 order-md-2">
+
+            <!-- Image -->
+            <img src="assets/img/illustrations/illustration-1.png" alt="..." class="img-fluid mb-6 mb-md-0">
+
+          </div>
+          <div class="col-12 col-md-6 order-md-1">
+
+            <!-- Badge -->
+            <span class="badge rounded-pill bg-primary-soft mb-3">
+              <span class="h6 text-uppercase">Scalable</span>
+            </span>
+
+            <!-- Heading -->
+            <h2>
+              Flexible office space means <br>
+              <span class="text-primary">growing your team is easy</span>.
+            </h2>
+
+            <!-- Text -->
+            <p class="fs-lg text-gray-700 mb-6 mb-md-6">
+              Rather than worrying about switching offices every couple years, you can instead stay in the same location and grow-up from your shared coworking space to an office that takes up an entire floor.
+            </p>
+
+            <!-- List -->
+            <div class="row">
+              <div class="col-12 col-lg-6">
+
+                <!-- Item -->
+                <div class="d-flex">
+
+                  <!-- Check -->
+                  <div class="badge badge-rounded-circle bg-primary-soft mt-1 me-4">
+                    <i class="fe fe-check"></i>
+                  </div>
+
+                  <!-- Text -->
+                  <p>
+                    Add space anytime
+                  </p>
+
+                </div>
+
+                <!-- Item -->
+                <div class="d-flex">
+
+                  <!-- Check -->
+                  <div class="badge badge-rounded-circle bg-primary-soft mt-1 me-4">
+                    <i class="fe fe-check"></i>
+                  </div>
+
+                  <p class="mb-lg-0">
+                    Group discounts
+                  </p>
+
+                </div>
+
+              </div>
+              <div class="col-12 col-lg-6">
+
+                <!-- Item -->
+                <div class="d-flex">
+
+                  <!-- Check -->
+                  <span class="badge badge-rounded-circle bg-primary-soft mt-1 me-4">
+                    <i class="fe fe-check"></i>
+                  </span>
+
+                  <!-- Text -->
+                  <p>
+                    Infinite flexibility
+                  </p>
+
+                </div>
+
+                <!-- Item -->
+                <div class="d-flex">
+
+                  <!-- Check -->
+                  <div class="badge badge-rounded-circle bg-primary-soft me-1 me-4">
+                    <i class="fe fe-check"></i>
+                  </div>
+
+                  <!-- Text -->
+                  <p class="mb-0">
+                    Snacks included
+                  </p>
+
+                </div>
+
+              </div>
+            </div> <!-- / .row -->
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </section>
+
+    <!-- LOCATION -->
+    <section class="pt-8 pt-md-0 border-bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-6">
+
+            <!-- Map (mobile) -->
+            <div class="ratio ratio-1x1 d-md-none">
+              <div data-map='{"center": [-118.244615, 34.052979], "zoom": 12}'></div>
+            </div>
+
+            <!-- Map -->
+            <div class="position-relative h-100 vw-50 float-end d-none d-md-block
+            ">
+
+              <!-- Map -->
+              <div class="w-100 h-100" data-map='{"center": [-118.244615, 34.052979], "zoom": 12}'></div>
+
+              <!-- Shape -->
+              <div class="shape shape-end shape-fluid-y svg-shim text-white">
+                {{> angles/angle-end}}
+              </div>
+
+            </div>
+
+          </div>
+          <div class="col-12 col-md-6 col-lg-5 offset-lg-1 py-8 py-md-11 py-lg-12">
+
+            <!-- Heading -->
+            <h2>
+              Over <span data-countup='{"startVal": 100}' data-to="400" data-aos data-aos-id="countup:in">100</span> locations spread <br>
+              <span class="text-success">across the entire planet</span>.
+            </h2>
+
+            <!-- Text -->
+            <p class="fs-lg text-gray-700 mb-6 mb-md-6">
+              We picked our office locations to maximize our availability to you! We try to keep locations in every major city, as well as common vacatino destinations in case you need to sneak work in on the side.
+            </p>
+
+            <!-- Stats -->
+            <div class="d-flex">
+              <div class="pe-5">
+                <h3 class="text-success mb-0">
+                  125
+                </h3>
+                <p class="text-gray-700 mb-0">
+                  Countries
+                </p>
+              </div>
+              <div class="border-start"></div>
+              <div class="px-5">
+                <h3 class="text-success mb-0">
+                  312
+                </h3>
+                <p class="text-gray-700 mb-0">
+                  Cities
+                </p>
+              </div>
+              <div class="border-start"></div>
+              <div class="ps-5">
+                <h3 class="text-success mb-0">
+                  40,000
+                </h3>
+                <p class="text-gray-700 mb-0">
+                  Desks
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </section>
+
+    <!-- FEATURES -->
+    <section class="py-8 py-md-11 bg-light">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-10 col-lg-8 text-center">
+
+            <!-- Heading -->
+            <h2>
+              <span class="text-primary">Everything</span> your team could need.
+            </h2>
+
+            <!-- Text -->
+            <p class="fs-lg text-muted mb-7 mb-md-9 px-md-9">
+              We make sure to include all the amenities and niceties that a growing startup could possibly need.
+            </p>
+
+          </div>
+        </div> <!-- / .row -->
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-10 col-lg-8">
+
+            <!-- Card -->
+            <div class="accordion" id="featuresAccordion">
+              <div class="accordion-item">
+
+                <!-- Button -->
+                <div class="accordion-button" role="button" data-bs-toggle="collapse" data-bs-target="#featuresOne" aria-expanded="true" aria-controls="featuresOne">
+                  <div class="me-auto">
+
+                    <!-- Title -->
+                    <p class="fw-bold mb-0" id="featuresOneHeading">
+                      Flexible access to facilities.
+                    </p>
+
+                    <!-- Text -->
+                    <p class="fs-sm text-muted mb-0">
+                      Our new key fobs make it so easy!
+                    </p>
+
+                  </div>
+
+                  <!-- Badge -->
+                  <span class="badge rounded-pill bg-success-soft ms-4">
+                    <span class="h6 text-uppercase">New</span>
+                  </span>
+
+                </div>
+
+                <!-- Collapse -->
+                <div class="accordion-collapse collapse show" id="featuresOne" aria-labelledby="featuresOneHeading" data-bs-parent="#featuresAccordion">
+                  <div class="accordion-body">
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt rerum minima a possimus, amet perferendis, temporibus obcaecati pariatur. Reprehenderit magnam necessitatibus vel culpa provident quas nesciunt sunt aut cupiditate fugiat! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt rerum minima a possimus, amet perferendis, temporibus obcaecati pariatur. Reprehenderit magnam necessitatibus vel culpa provident quas nesciunt sunt aut cupiditate fugiat!
+                    </p>
+                    <a href="#!" class="fw-bold text-decoration-none">
+                      Check it out <i class="fe fe-arrow-right ms-3"></i>
+                    </a>
+                  </div>
+                </div>
+
+              </div>
+              <div class="accordion-item">
+
+                <!-- Button -->
+                <div class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#featuresTwo" aria-expanded="false" aria-controls="featuresTwo">
+                  <div class="me-auto">
+
+                    <!-- Title -->
+                    <p class="fw-bold mb-0" id="featuresTwoHeading">
+                      Snacks, drinks, coffee, and more.
+                    </p>
+
+                    <!-- Text -->
+                    <p class="fs-sm text-muted mb-0">
+                      Keep your engine going with free food and drinks.
+                    </p>
+
+                  </div>
+
+                </div>
+
+                <!-- Collapse -->
+                <div class="accordion-collapse collapse" id="featuresTwo" aria-labelledby="featuresTwoHeading" data-bs-parent="#featuresAccordion">
+                  <div class="accordion-body">
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt rerum minima a possimus, amet perferendis, temporibus obcaecati pariatur. Reprehenderit magnam necessitatibus vel culpa provident quas nesciunt sunt aut cupiditate fugiat! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt rerum minima a possimus, amet perferendis, temporibus obcaecati pariatur. Reprehenderit magnam necessitatibus vel culpa provident quas nesciunt sunt aut cupiditate fugiat!
+                    </p>
+                    <a href="#!" class="fw-bold text-decoration-none">
+                      Check it out <i class="fe fe-arrow-right ms-3"></i>
+                    </a>
+                  </div>
+                </div>
+
+              </div>
+              <div class="accordion-item">
+
+                <!-- Button -->
+                <div class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#featuresThree" aria-expanded="false" aria-controls="featuresThree">
+                  <div class="me-auto">
+
+                    <!-- Title -->
+                    <p class="fw-bold mb-0" id="featuresThreeHeading">
+                      On site tech support
+                    </p>
+
+                    <!-- Text -->
+                    <p class="fs-sm text-muted mb-0">
+                      Connectivity, power, and IT issues solved in no time.
+                    </p>
+
+                  </div>
+
+                </div>
+
+                <!-- Collapse -->
+                <div class="accordion-collapse collapse" id="featuresThree" aria-labelledby="featuresThreeHeading" data-bs-parent="#featuresAccordion">
+                  <div class="accordion-body">
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt rerum minima a possimus, amet perferendis, temporibus obcaecati pariatur. Reprehenderit magnam necessitatibus vel culpa provident quas nesciunt sunt aut cupiditate fugiat! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt rerum minima a possimus, amet perferendis, temporibus obcaecati pariatur. Reprehenderit magnam necessitatibus vel culpa provident quas nesciunt sunt aut cupiditate fugiat!
+                    </p>
+                    <a href="#!" class="fw-bold text-decoration-none">
+                      Check it out <i class="fe fe-arrow-right ms-3"></i>
+                    </a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </section>
+
+    <!-- SHAPE -->
+    <div class="position-relative mt-n16">
+      <div class="shape shape-bottom shape-fluid-x svg-shim text-dark">
+        {{> curves/curve-1}}
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <section class="pt-16 bg-dark">
+      {{> partials/footer classList="bg-dark border-top border-gray-800-50"}}
+    </section>
+
+    <!-- JAVASCRIPT -->
+    {{> partials/scripts}}
+
+  </body>
+</html>

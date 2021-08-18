@@ -1,0 +1,18 @@
+//
+// modal.scss
+// Extended from Bootstrap
+//
+
+.modal-open .navbar.fixed-top {
+  padding-right: inherit;
+}
+
+
+// Close
+
+.modal .btn-close {
+  position: absolute;
+  top: $spacer * 1.5;
+  right: $spacer * 1.5;
+  z-index: $zindex-dropdown;
+}

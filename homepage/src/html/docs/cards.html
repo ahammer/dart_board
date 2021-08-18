@@ -1,0 +1,966 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {{> partials/head title="Landkit"}}
+  </head>
+  <body class="bg-light" style="padding-top: 84px;">
+
+    <!-- MODALS -->
+    {{> partials/modals}}
+
+    <!-- NAVBAR -->
+    {{> partials/navbar classList="navbar-light fixed-top bg-white border-bottom" container="container-fluid" button="primary"}}
+
+    <!-- BREADCRUMB -->
+    <nav class="d-lg-none bg-gray-800">
+      <div class="container-fluid">
+        <div class="row align-items-center">
+          <div class="col">
+
+            <!-- Breadcrumb -->
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <span class="text-white">
+                  Docs
+                </span>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                <span class="text-white">
+                  Cards
+                </span>
+              </li>
+            </ol>
+
+          </div>
+          <div class="col-auto">
+
+            <!-- Toggler -->
+            <div class="navbar-dark">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidenavCollapse" aria-controls="sidenavCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </div>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </nav>
+
+    <!-- CONTENT -->
+    <section>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 col-lg-3 col-xl-2 px-lg-0 border-bottom border-bottom-lg-0 border-end-lg border-gray-300 sidenav sidenav-start">
+
+            {{> partials/sidenav}}
+
+          </div>
+          <div class="col-12 col-lg-6 col-xl-8 offset-lg-3 offset-xl-2 py-7 py-lg-9 px-lg-7">
+
+            <!-- Heading -->
+            <h1 class="mb-1">
+              Cards
+            </h1>
+
+            <!-- Text -->
+            <p class="fs-lg text-gray-700">
+              Bootstrap’s cards provide a flexible and extensible content container with multiple variants and options.
+            </p>
+
+            <!-- Bootstrap/Plugin Link -->
+            <p>
+              <a class="text-decoration-none" href="https://getbootstrap.com/docs/5.0/components/card/" target="_blank">
+                <i class="fe fe-external-link pe-1"></i>
+                Bootstrap documentation
+              </a>
+            </p>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Card -->
+            <div class="card">
+              <div class="card-body">
+                <h3 class="card-title text-body">Card title</h3>
+                <p class="card-text">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis non dolore est fuga nobis ipsum illum eligendi nemo iure repellat, soluta, optio minus ut reiciendis voluptates enim impedit veritatis officiis.
+                </p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Heading -->
+            <div class="d-flex align-items-center">
+              <h3 class="fw-bold me-3" id="border">Border</h3>
+              <span class="badge rounded-pill bg-primary-soft mb-2">
+                <span class="h6 text-uppercase fw-bold">Landkit only</span>
+              </span>
+            </div>
+
+            <!-- Text -->
+            <p class="text-gray-700 mb-5">
+              Add a contextual border to the top of the card component. Three sizing options are available.
+            </p>
+
+            <!-- Card -->
+            <div class="card card-border border-success mb-5">
+              <div class="card-body">
+                Card border
+              </div>
+              <div class="card-footer bg-black">
+                <code class="highlight html">
+                  &lt;div&nbsp;class=&quot;card&nbsp;card-border&nbsp;border-success&quot;&gt;<br />&nbsp;&nbsp;&lt;div&nbsp;class=&quot;card-body&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;Card&nbsp;border<br />&nbsp;&nbsp;&lt;/div&gt;<br />&lt;/div&gt;
+                </code>
+              </div>
+            </div>
+
+            <!-- Card -->
+            <div class="card card-border card-border-lg border-danger mb-5">
+              <div class="card-body">
+                Card border large
+              </div>
+              <div class="card-footer bg-black">
+                <code class="highlight html">
+                  &lt;div&nbsp;class=&quot;card&nbsp;card-border&nbsp;card-border-lg&nbsp;border-danger&quot;&gt;<br />&nbsp;&nbsp;&lt;div&nbsp;class=&quot;card-body&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;Card&nbsp;border&nbsp;large<br />&nbsp;&nbsp;&lt;/div&gt;<br />&lt;/div&gt;
+                </code>
+              </div>
+            </div>
+
+            <!-- Card -->
+            <div class="card card-border card-border-xl border-primary">
+              <div class="card-body">
+                Card border extra large
+              </div>
+              <div class="card-footer bg-black">
+                <code class="highlight html">
+                  &lt;div&nbsp;class=&quot;card&nbsp;card-border&nbsp;card-border-xl&nbsp;border-primary&quot;&gt;<br />&nbsp;&nbsp;&lt;div&nbsp;class=&quot;card-body&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;Card&nbsp;border&nbsp;extra&nbsp;large<br />&nbsp;&nbsp;&lt;/div&gt;<br />&lt;/div&gt;
+                </code>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Heading -->
+            <div class="d-flex align-items-center">
+              <h3 class="fw-bold me-3" id="border">Bleed</h3>
+              <span class="badge rounded-pill bg-primary-soft mb-2">
+                <span class="h6 text-uppercase fw-bold">Landkit only</span>
+              </span>
+            </div>
+
+            <!-- Text -->
+            <p class="text-gray-700 mb-5">
+              Spans the card component from edge to edge and removes its border radius on extra small screens.
+            </p>
+
+            <!-- Card -->
+            <div class="card card-bleed mb-5">
+              <div class="card-body">
+                Card bleed
+              </div>
+              <div class="card-footer bg-black">
+                <code class="highlight html">
+                  &lt;div&nbsp;class=&quot;card&nbsp;card-bleed&quot;&gt;<br />&nbsp;&nbsp;&lt;div&nbsp;class=&quot;card-body&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;Card&nbsp;bleed<br />&nbsp;&nbsp;&lt;/div&gt;<br />&lt;/div&gt;
+                </code>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Heading -->
+            <div class="d-flex align-items-center">
+              <h3 class="fw-bold me-3" id="signup">Signup</h1>
+                <span class="badge rounded-pill bg-primary-soft mb-2">
+                  <span class="h6 text-uppercase fw-bold">Landkit only</span>
+                </span>
+            </div>
+
+            <!-- Text -->
+            <p class="text-gray-700 mb-5">
+              Combination of the default Bootstrap card component with an image at the top and a form in the body of it.
+            </p>
+
+            <!-- Card -->
+            <div class="card shadow-light-lg mb-5" style="max-width: 480px;">
+
+              <!-- Image -->
+              <img src="../assets/img/photos/photo-2.jpg" alt="..." class="card-img-top">
+
+              <!-- Shape -->
+              <div class="position-relative">
+                <div class="shape shape-bottom shape-fluid-x text-white">
+                  {{> curves/curve-1}}
+                </div>
+              </div>
+
+              <!-- Body -->
+              <div class="card-body">
+
+                <!-- Form -->
+                <form>
+                  <div class="form-floating">
+                    <input type="text" class="form-control form-control-flush" id="cardName" placeholder="Name">
+                    <label for="cardName">Name</label>
+                  </div>
+                  <div class="form-floating">
+                    <input type="email" class="form-control form-control-flush" id="cardEmail" placeholder="Email">
+                    <label for="cardEmail">Email</label>
+                  </div>
+                  <div class="form-floating">
+                    <input type="password" class="form-control form-control-flush" id="cardPassword" placeholder="Password">
+                    <label for="cardPassword">Password</label>
+                  </div>
+                  <div class="mt-6">
+                    <button class="btn w-100 btn-success lift" type="submit">
+                      Download a sample
+                    </button>
+                  </div>
+                </form>
+
+              </div>
+
+            </div>
+
+            <!-- Card -->
+            <div class="card">
+              <div class="card-footer rounded bg-black">
+                <code class="highlight html">
+                  &lt;div&nbsp;class=&quot;card&nbsp;shadow-light-lg&quot;&gt;<br />&nbsp;&nbsp;<br />&nbsp;&nbsp;&lt;!--&nbsp;Image&nbsp;--&gt;<br />&nbsp;&nbsp;&lt;img&nbsp;src=&quot;../assets/img/photos/photo-2.jpg&quot;&nbsp;alt=&quot;...&quot;&nbsp;class=&quot;card-img-top&quot;&gt;<br /><br />&nbsp;&nbsp;&lt;!--&nbsp;Shape&nbsp;--&gt;<br />&nbsp;&nbsp;&lt;div&nbsp;class=&quot;position-relative&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;class=&quot;shape&nbsp;shape-bottom&nbsp;shape-fluid-x&nbsp;text-white&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\{{>&nbsp;curves/curve-1}}<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />&nbsp;&nbsp;&lt;/div&gt;<br /><br />&nbsp;&nbsp;&lt;!--&nbsp;Body&nbsp;--&gt;<br />&nbsp;&nbsp;&lt;div&nbsp;class=&quot;card-body&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Form&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;form&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;class=&quot;form-floating&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;type=&quot;text&quot;&nbsp;class=&quot;form-control&nbsp;form-control-flush&quot;&nbsp;id=&quot;cardName&quot;&nbsp;placeholder=&quot;Name&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label&nbsp;for=&quot;cardName&quot;&gt;Name&lt;/label&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;class=&quot;form-floating&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;type=&quot;email&quot;&nbsp;class=&quot;form-control&nbsp;form-control-flush&quot;&nbsp;id=&quot;cardEmail&quot;&nbsp;placeholder=&quot;Email&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label&nbsp;for=&quot;cardEmail&quot;&gt;Email&lt;/label&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;class=&quot;form-floating&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;type=&quot;password&quot;&nbsp;class=&quot;form-control&nbsp;form-control-flush&quot;&nbsp;id=&quot;cardPassword&quot;&nbsp;placeholder=&quot;Password&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label&nbsp;for=&quot;cardPassword&quot;&gt;Password&lt;/label&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;class=&quot;mt-6&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;button&nbsp;class=&quot;btn&nbsp;w-100&nbsp;btn-success&nbsp;lift&quot;&nbsp;type=&quot;submit&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Download&nbsp;a&nbsp;sample<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/button&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/form&gt;<br /><br />&nbsp;&nbsp;&lt;/div&gt;<br /><br />&lt;/div&gt;
+                </code>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Heading -->
+            <div class="d-flex align-items-center">
+              <h3 class="fw-bold me-3" id="testimonials">Testimonials</h1>
+                <span class="badge rounded-pill bg-primary-soft mb-2">
+                  <span class="h6 text-uppercase fw-bold">Landkit only</span>
+                </span>
+            </div>
+
+            <!-- Text -->
+            <p class="text-gray-700 mb-5">
+              Combination of the card component, grid utilities and the blockquote for a testimonials component.
+            </p>
+
+            <!-- Card -->
+            <div class="card card-row shadow-light-lg mb-5">
+              <div class="row gx-0">
+                <a class="col-12 col-md-6 bg-cover card-img-start" style="background-image: url(../assets/img/photos/photo-1.jpg);" href="#!">
+
+                  <!-- Image (placeholder) -->
+                  <img src="../assets/img/photos/photo-1.jpg" alt="..." class="img-fluid d-md-none invisible">
+
+                  <!-- Shape -->
+                  <div class="shape shape-end shape-fluid-y text-white d-none d-md-block">
+                    {{> curves/curve-4}}
+                  </div>
+
+                </a>
+                <div class="col-12 col-md-6 order-md-1">
+
+                  <!-- Body -->
+                  <div class="card-body">
+                    <blockquote class="blockquote mb-0 text-center">
+
+                      <!-- Text -->
+                      <p class="mb-5 mb-md-7">
+                        “Working at Landkit has been a dream. The team is amazing, the office is perfect, and I feel like I'm part of a family. I'll be here for a great many years.”
+                      </p>
+
+                      <!-- Footer -->
+                      <footer class="blockquote-footer">
+                        <span class="h6 text-uppercase">William Callan</span>
+                      </footer>
+
+                    </blockquote>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Card -->
+            <div class="card">
+              <div class="card-footer rounded bg-black">
+                <code class="highlight html">
+                  &lt;div&nbsp;class=&quot;card&nbsp;card-row&nbsp;shadow-light-lg&quot;&gt;<br />&nbsp;&nbsp;&lt;div&nbsp;class=&quot;row&nbsp;gx-0&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;class=&quot;col-12&nbsp;col-md-6&nbsp;bg-cover&nbsp;card-img-start&quot;&nbsp;style=&quot;background-image:&nbsp;url(../assets/img/photos/photo-1.jpg);&quot;&nbsp;href=&quot;#!&quot;&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Image&nbsp;(placeholder)&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;src=&quot;../assets/img/photos/photo-1.jpg&quot;&nbsp;alt=&quot;...&quot;&nbsp;class=&quot;img-fluid&nbsp;d-md-none&nbsp;invisible&quot;&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Shape&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;class=&quot;shape&nbsp;shape-end&nbsp;shape-fluid-y&nbsp;text-white&nbsp;d-none&nbsp;d-md-block&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\{{>&nbsp;curves/curve-4}}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/a&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;class=&quot;col-12&nbsp;col-md-6&nbsp;order-md-1&quot;&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Body&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;class=&quot;card-body&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;blockquote&nbsp;class=&quot;blockquote&nbsp;mb-0&nbsp;text-center&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Text&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&nbsp;class=&quot;mb-5&nbsp;mb-md-7&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#x201c;Working&nbsp;at&nbsp;Landkit&nbsp;has&nbsp;been&nbsp;a&nbsp;dream.&nbsp;The&nbsp;team&nbsp;is&nbsp;amazing,&nbsp;the&nbsp;office&nbsp;is&nbsp;perfect,&nbsp;and&nbsp;I&nbsp;feel&nbsp;like&nbsp;I'm&nbsp;part&nbsp;of&nbsp;a&nbsp;family.&nbsp;I'll&nbsp;be&nbsp;here&nbsp;for&nbsp;a&nbsp;great&nbsp;many&nbsp;years.&#x201d;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/p&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Footer&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;footer&nbsp;class=&quot;blockquote-footer&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;class=&quot;h6&nbsp;text-uppercase&quot;&gt;William&nbsp;Callan&lt;/span&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/footer&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/blockquote&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br /><br />&nbsp;&nbsp;&lt;/div&gt;<br />&lt;/div&gt;
+                </code>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Heading -->
+            <div class="d-flex align-items-center">
+              <h3 class="fw-bold me-3" id="blockCards">Block cards</h1>
+                <span class="badge rounded-pill bg-primary-soft mb-2">
+                  <span class="h6 text-uppercase fw-bold">Landkit only</span>
+                </span>
+            </div>
+
+            <!-- Text -->
+            <p class="text-gray-700 mb-5">
+              The card component without images, with an image at the top, and an image in the background.
+            </p>
+
+            <!-- Cards -->
+            <div class="row mb-5">
+              <div class="col-12 col-xl-4 d-flex">
+
+                <!-- Card -->
+                <div class="card mb-6 mb-xl-0 pt-14 overlay overlay-black overlay-30 bg-cover shadow-light-lg" style="background-image: url(../assets/img/photos/photo-8.jpg);">
+
+                  <!-- Body -->
+                  <a class="card-body mt-auto" href="#!">
+
+                    <!-- Heading -->
+                    <h3 class="text-white">
+                      Using Unsplash to improve your listing visibility
+                    </h3>
+
+                    <!-- Text -->
+                    <p class="mb-0 text-white">
+                      Using free stock photos of your surrounding areas can skyrocket your popularity.
+                    </p>
+
+                  </a>
+
+                  <!-- Meta -->
+                  <a class="card-meta" href="#!">
+
+                    <!-- Divider -->
+                    <hr class="card-meta-divider bg-white-20">
+
+                    <!-- Avatar -->
+                    <div class="avatar avatar-sm me-2">
+                      <img src="../assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                    </div>
+
+                    <!-- Author -->
+                    <h6 class="text-uppercase text-white-80 me-2 mb-0">
+                      Casey Fyfe
+                    </h6>
+
+                    <!-- Date -->
+                    <p class="h6 text-uppercase text-white-80 mb-0 ms-auto">
+                      <time datetime="2019-05-02">May 02</time>
+                    </p>
+
+                  </a>
+
+                </div>
+
+              </div>
+              <div class="col-12 col-xl-4 d-flex">
+
+                <!-- Card -->
+                <div class="card mb-6 mb-xl-0 shadow-light-lg">
+
+                  <!-- Image -->
+                  <a class="card-img-top" href="#!">
+                    <img src="../assets/img/photos/photo-7.jpg" alt="..." class="img-fluid">
+                  </a>
+
+                  <!-- Shape -->
+                  <div class="position-relative">
+                    <div class="shape shape-fluid-x shape-bottom text-white">
+                      {{> curves/curve-1}}
+                    </div>
+                  </div>
+
+                  <!-- Body -->
+                  <a class="card-body" href="#!">
+
+                    <!-- Heading -->
+                    <h3>
+                      Photos should appeal to a sense of adventure
+                    </h3>
+
+                    <!-- Text -->
+                    <p class="mb-0 text-muted">
+                      Cozy vibes are out and this summer you should focus on making customer's feel brave.
+                    </p>
+
+                  </a>
+
+                  <!-- Meta -->
+                  <a class="card-meta" href="#!">
+
+                    <!-- Divider -->
+                    <hr class="card-meta-divider">
+
+                    <!-- Avatar -->
+                    <div class="avatar avatar-sm me-2">
+                      <img src="../assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                    </div>
+
+                    <!-- Author -->
+                    <h6 class="text-uppercase text-muted me-2 mb-0">
+                      Danny Devito
+                    </h6>
+
+                    <!-- Date -->
+                    <p class="h6 text-uppercase text-muted mb-0 ms-auto">
+                      <time datetime="2019-05-02">May 02</time>
+                    </p>
+
+                  </a>
+
+                </div>
+
+              </div>
+              <div class="col-12 col-xl-4 d-flex">
+
+                <!-- Card -->
+                <div class="card shadow-light-lg">
+
+                  <!-- Body -->
+                  <a class="card-body my-auto" href="#!">
+
+                    <!-- Heading -->
+                    <h3 class="mt-auto">
+                      It's the little touches that make memories.
+                    </h3>
+
+                    <!-- Text -->
+                    <p class="mb-0 text-muted">
+                      Once you have your rental posted, you should focus on how you can differentiate your home with little touches. Chocolates, specialty coffee, fast wifi, nice toiletries, or a personal note. Small touches can make a huge difference.
+                    </p>
+
+                  </a>
+
+                  <!-- Meta -->
+                  <a class="card-meta" href="#!">
+
+                    <!-- Divider -->
+                    <hr class="card-meta-divider">
+
+                    <!-- Avatar -->
+                    <div class="avatar avatar-sm me-2">
+                      <img src="../assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                    </div>
+
+                    <!-- Author -->
+                    <h6 class="text-uppercase text-muted me-2 mb-0">
+                      Dave Gamache
+                    </h6>
+
+                    <!-- Date -->
+                    <p class="h6 text-uppercase text-muted mb-0 ms-auto">
+                      <time datetime="2019-05-02">May 02</time>
+                    </p>
+
+                  </a>
+
+                </div>
+
+              </div>
+            </div> <!-- / .row -->
+
+            <!-- Card -->
+            <div class="card">
+              <div class="card-footer rounded bg-black">
+                <code class="highlight bg-black">
+                  &lt;div&nbsp;class=&quot;row&quot;&gt;<br />&nbsp;&nbsp;&lt;div&nbsp;class=&quot;col-12&nbsp;col-xl-4&nbsp;d-flex&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Card&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;class=&quot;card&nbsp;mb-6&nbsp;mb-xl-0&nbsp;pt-14&nbsp;overlay&nbsp;overlay-black&nbsp;overlay-30&nbsp;bg-cover&nbsp;shadow-light-lg&quot;&nbsp;style=&quot;background-image:&nbsp;url(../assets/img/photos/photo-8.jpg);&quot;&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Body&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;class=&quot;card-body&nbsp;mt-auto&quot;&nbsp;href=&quot;#!&quot;&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Heading&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h3&nbsp;class=&quot;text-white&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Using&nbsp;Unsplash&nbsp;to&nbsp;improve&nbsp;your&nbsp;listing&nbsp;visibility<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/h3&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Text&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&nbsp;class=&quot;mb-0&nbsp;text-white&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Using&nbsp;free&nbsp;stock&nbsp;photos&nbsp;of&nbsp;your&nbsp;surrounding&nbsp;areas&nbsp;can&nbsp;skyrocket&nbsp;your&nbsp;popularity.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/p&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/a&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Meta&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;class=&quot;card-meta&quot;&nbsp;href=&quot;#!&quot;&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Divider&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;hr&nbsp;class=&quot;card-meta-divider&nbsp;bg-white-20&quot;&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Avatar&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;class=&quot;avatar&nbsp;avatar-sm&nbsp;me-2&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;src=&quot;../assets/img/avatars/avatar-1.jpg&quot;&nbsp;alt=&quot;...&quot;&nbsp;class=&quot;avatar-img&nbsp;rounded-circle&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Author&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h6&nbsp;class=&quot;text-uppercase&nbsp;text-white-80&nbsp;me-2&nbsp;mb-0&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Casey&nbsp;Fyfe<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/h6&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Date&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&nbsp;class=&quot;h6&nbsp;text-uppercase&nbsp;text-white-80&nbsp;mb-0&nbsp;ms-auto&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;time&nbsp;datetime=&quot;2019-05-02&quot;&gt;May&nbsp;02&lt;/time&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/p&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/a&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br /><br />&nbsp;&nbsp;&lt;/div&gt;<br />&nbsp;&nbsp;&lt;div&nbsp;class=&quot;col-12&nbsp;col-xl-4&nbsp;d-flex&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Card&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;class=&quot;card&nbsp;mb-6&nbsp;mb-xl-0&nbsp;shadow-light-lg&quot;&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Image&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;class=&quot;card-img-top&quot;&nbsp;href=&quot;#!&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;src=&quot;../assets/img/photos/photo-7.jpg&quot;&nbsp;alt=&quot;...&quot;&nbsp;class=&quot;img-fluid&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/a&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Shape&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;class=&quot;position-relative&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;class=&quot;shape&nbsp;shape-fluid-x&nbsp;shape-bottom&nbsp;text-white&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\{{>&nbsp;curves/curve-1}}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Body&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;class=&quot;card-body&quot;&nbsp;href=&quot;#!&quot;&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Heading&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h3&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Photos&nbsp;should&nbsp;appeal&nbsp;to&nbsp;a&nbsp;sense&nbsp;of&nbsp;adventure<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/h3&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Text&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&nbsp;class=&quot;mb-0&nbsp;text-muted&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cozy&nbsp;vibes&nbsp;are&nbsp;out&nbsp;and&nbsp;this&nbsp;summer&nbsp;you&nbsp;should&nbsp;focus&nbsp;on&nbsp;making&nbsp;customer's&nbsp;feel&nbsp;brave.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/p&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/a&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Meta&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;class=&quot;card-meta&quot;&nbsp;href=&quot;#!&quot;&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Divider&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;hr&nbsp;class=&quot;card-meta-divider&quot;&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Avatar&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;class=&quot;avatar&nbsp;avatar-sm&nbsp;me-2&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;src=&quot;../assets/img/avatars/avatar-1.jpg&quot;&nbsp;alt=&quot;...&quot;&nbsp;class=&quot;avatar-img&nbsp;rounded-circle&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Author&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h6&nbsp;class=&quot;text-uppercase&nbsp;text-muted&nbsp;me-2&nbsp;mb-0&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Danny&nbsp;Devito<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/h6&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Date&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&nbsp;class=&quot;h6&nbsp;text-uppercase&nbsp;text-muted&nbsp;mb-0&nbsp;ms-auto&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;time&nbsp;datetime=&quot;2019-05-02&quot;&gt;May&nbsp;02&lt;/time&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/p&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/a&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br /><br />&nbsp;&nbsp;&lt;/div&gt;<br />&nbsp;&nbsp;&lt;div&nbsp;class=&quot;col-12&nbsp;col-xl-4&nbsp;d-flex&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Card&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;class=&quot;card&nbsp;shadow-light-lg&quot;&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Body&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;class=&quot;card-body&nbsp;my-auto&quot;&nbsp;href=&quot;#!&quot;&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Heading&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h3&nbsp;class=&quot;mt-auto&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It's&nbsp;the&nbsp;little&nbsp;touches&nbsp;that&nbsp;make&nbsp;memories.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/h3&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Text&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&nbsp;class=&quot;mb-0&nbsp;text-muted&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Once&nbsp;you&nbsp;have&nbsp;your&nbsp;rental&nbsp;posted,&nbsp;you&nbsp;should&nbsp;focus&nbsp;on&nbsp;how&nbsp;you&nbsp;can&nbsp;differentiate&nbsp;your&nbsp;home&nbsp;with&nbsp;little&nbsp;touches.&nbsp;Chocolates,&nbsp;specialty&nbsp;coffee,&nbsp;fast&nbsp;wifi,&nbsp;nice&nbsp;toiletries,&nbsp;or&nbsp;a&nbsp;personal&nbsp;note.&nbsp;Small&nbsp;touches&nbsp;can&nbsp;make&nbsp;a&nbsp;huge&nbsp;difference.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/p&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/a&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Meta&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;class=&quot;card-meta&quot;&nbsp;href=&quot;#!&quot;&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Divider&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;hr&nbsp;class=&quot;card-meta-divider&quot;&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Avatar&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;class=&quot;avatar&nbsp;avatar-sm&nbsp;me-2&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;src=&quot;../assets/img/avatars/avatar-1.jpg&quot;&nbsp;alt=&quot;...&quot;&nbsp;class=&quot;avatar-img&nbsp;rounded-circle&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Author&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h6&nbsp;class=&quot;text-uppercase&nbsp;text-muted&nbsp;me-2&nbsp;mb-0&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dave&nbsp;Gamache<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/h6&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Date&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&nbsp;class=&quot;h6&nbsp;text-uppercase&nbsp;text-muted&nbsp;mb-0&nbsp;ms-auto&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;time&nbsp;datetime=&quot;2019-05-02&quot;&gt;May&nbsp;02&lt;/time&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/p&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/a&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br /><br />&nbsp;&nbsp;&lt;/div&gt;<br />&lt;/div&gt;&nbsp;&lt;!--&nbsp;/&nbsp;.row&nbsp;--&gt;
+                </code>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Heading -->
+            <div class="d-flex align-items-center">
+              <h3 class="fw-bold me-3" id="price">Price</h1>
+                <span class="badge rounded-pill bg-primary-soft mb-2">
+                  <span class="h6 text-uppercase fw-bold">Landkit only</span>
+                </span>
+            </div>
+
+            <!-- Text -->
+            <p class="text-gray-700 mb-5">
+              Combination of the card component, styled lists and other components.
+            </p>
+
+            <div class="row mb-5">
+              <div class="col-12 col-xl-4">
+
+                <!-- Card -->
+                <div class="card shadow-lg mb-6 mb-xl-0">
+                  <div class="card-body">
+
+                    <!-- Preheading -->
+                    <div class="text-center mb-3">
+                      <span class="badge rounded-pill bg-primary-soft">
+                        <span class="h6 text-uppercase">Basic</span>
+                      </span>
+                    </div>
+
+                    <!-- Price -->
+                    <div class="d-flex justify-content-center">
+                      <span class="h2 mb-0 mt-2">$</span>
+                      <span class="price display-2 mb-0" data-annual="0" data-monthly="0">0</span>
+                      <span class="h2 align-self-end mb-1">/mo</span>
+                    </div>
+
+                    <!-- Text -->
+                    <p class="text-center text-muted mb-5">
+                      per seat
+                    </p>
+
+                    <!-- List -->
+                    <div class="d-flex">
+
+                      <!-- Badge -->
+                      <div class="badge badge-rounded-circle bg-success-soft mt-1 me-4">
+                        <i class="fe fe-check"></i>
+                      </div>
+
+                      <!-- Text -->
+                      <p>
+                        Rich landing pages
+                      </p>
+
+                    </div>
+                    <div class="d-flex">
+
+                      <!-- Badge -->
+                      <div class="badge badge-rounded-circle bg-success-soft mt-1 me-4">
+                        <i class="fe fe-check"></i>
+                      </div>
+
+                      <!-- Text -->
+                      <p class="mb-5">
+                        100+ components
+                      </p>
+
+                    </div>
+
+                    <!-- Button -->
+                    <a href="#!" class="btn w-100 btn-primary-soft">
+                      Start for free <i class="fe fe-arrow-right ms-3"></i>
+                    </a>
+
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-12 col-xl-4">
+
+                <!-- Card -->
+                <div class="card shadow-lg mb-6 mb-xl-0">
+                  <div class="card-body">
+
+                    <!-- Preheading -->
+                    <div class="text-center mb-3">
+                      <span class="badge rounded-pill bg-primary-soft">
+                        <span class="h6 text-uppercase">Standard</span>
+                      </span>
+                    </div>
+
+                    <!-- Price -->
+                    <div class="d-flex justify-content-center">
+                      <span class="h2 mb-0 mt-2">$</span>
+                      <span class="price display-2 mb-0" data-annual="29" data-monthly="49">29</span>
+                      <span class="h2 align-self-end mb-1">/mo</span>
+                    </div>
+
+                    <!-- Text -->
+                    <p class="text-center text-muted mb-5">
+                      per seat
+                    </p>
+
+                    <!-- List -->
+                    <div class="d-flex">
+
+                      <!-- Badge -->
+                      <div class="badge badge-rounded-circle bg-success-soft mt-1 me-4">
+                        <i class="fe fe-check"></i>
+                      </div>
+
+                      <!-- Text -->
+                      <p>
+                        Rich landing pages
+                      </p>
+
+                    </div>
+                    <div class="d-flex">
+
+                      <!-- Badge -->
+                      <div class="badge badge-rounded-circle bg-success-soft mt-1 me-4">
+                        <i class="fe fe-check"></i>
+                      </div>
+
+                      <!-- Text -->
+                      <p>
+                        100+ components
+                      </p>
+
+                    </div>
+                    <div class="d-flex">
+
+                      <!-- Badge -->
+                      <div class="badge badge-rounded-circle bg-success-soft mt-1 me-4">
+                        <i class="fe fe-check"></i>
+                      </div>
+
+                      <!-- Text -->
+                      <p>
+                        Flexible licensing
+                      </p>
+
+                    </div>
+                    <div class="d-flex">
+
+                      <!-- Badge -->
+                      <div class="badge badge-rounded-circle bg-success-soft mt-1 me-4">
+                        <i class="fe fe-check"></i>
+                      </div>
+
+                      <!-- Text -->
+                      <p>
+                        Speedy build tooling
+                      </p>
+
+                    </div>
+                    <div class="d-flex">
+
+                      <!-- Badge -->
+                      <div class="badge badge-rounded-circle bg-success-soft mt-1 me-4">
+                        <i class="fe fe-check"></i>
+                      </div>
+
+                      <!-- Text -->
+                      <p class="mb-5">
+                        6 months free support
+                      </p>
+
+                    </div>
+
+                    <!-- Button -->
+                    <a href="#!" class="btn w-100 btn-primary">
+                      Start with Standard <i class="fe fe-arrow-right ms-3"></i>
+                    </a>
+
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-12 col-xl-4">
+
+                <!-- Card -->
+                <div class="card shadow-lg mb-md-0">
+                  <div class="card-body">
+
+                    <!-- Preheading -->
+                    <div class="text-center mb-3">
+                      <span class="badge rounded-pill bg-primary-soft">
+                        <span class="h6 text-uppercase">Premium</span>
+                      </span>
+                    </div>
+
+                    <!-- Price -->
+                    <div class="d-flex justify-content-center">
+                      <span class="h2 mb-0 mt-2">$</span>
+                      <span class="price display-2 mb-0" data-annual="49" data-monthly="69">49</span>
+                      <span class="h2 align-self-end mb-1">/mo</span>
+                    </div>
+
+                    <!-- Text -->
+                    <p class="text-center text-muted mb-5">
+                      per seat
+                    </p>
+
+                    <!-- List -->
+                    <div class="d-flex">
+
+                      <!-- Badge -->
+                      <div class="badge badge-rounded-circle bg-success-soft mt-1 me-4">
+                        <i class="fe fe-check"></i>
+                      </div>
+
+                      <!-- Text -->
+                      <p>
+                        Rich landing pages
+                      </p>
+
+                    </div>
+                    <div class="d-flex">
+
+                      <!-- Badge -->
+                      <div class="badge badge-rounded-circle bg-success-soft mt-1 me-4">
+                        <i class="fe fe-check"></i>
+                      </div>
+
+                      <!-- Text -->
+                      <p>
+                        100+ components
+                      </p>
+
+                    </div>
+                    <div class="d-flex">
+
+                      <!-- Badge -->
+                      <div class="badge badge-rounded-circle bg-success-soft mt-1 me-4">
+                        <i class="fe fe-check"></i>
+                      </div>
+
+                      <!-- Text -->
+                      <p>
+                        Flexible licensing
+                      </p>
+
+                    </div>
+                    <div class="d-flex">
+
+                      <!-- Badge -->
+                      <div class="badge badge-rounded-circle bg-success-soft mt-1 me-4">
+                        <i class="fe fe-check"></i>
+                      </div>
+
+                      <!-- Text -->
+                      <p>
+                        Speedy build tooling
+                      </p>
+
+                    </div>
+                    <div class="d-flex">
+
+                      <!-- Badge -->
+                      <div class="badge badge-rounded-circle bg-success-soft mt-1 me-4">
+                        <i class="fe fe-check"></i>
+                      </div>
+
+                      <!-- Text -->
+                      <p>
+                        6 months free support
+                      </p>
+
+                    </div>
+                    <div class="d-flex">
+
+                      <!-- Badge -->
+                      <div class="badge badge-rounded-circle bg-success-soft mt-1 me-4">
+                        <i class="fe fe-check"></i>
+                      </div>
+
+                      <!-- Text -->
+                      <p>
+                        256-bit encryption
+                      </p>
+
+                    </div>
+                    <div class="d-flex">
+
+                      <!-- Badge -->
+                      <div class="badge badge-rounded-circle bg-success-soft mt-1 me-4">
+                        <i class="fe fe-check"></i>
+                      </div>
+
+                      <!-- Text -->
+                      <p>
+                        Guaranteed 100% uptime
+                      </p>
+
+                    </div>
+                    <div class="d-flex">
+
+                      <!-- Badge -->
+                      <div class="badge badge-rounded-circle bg-success-soft mt-1 me-4">
+                        <i class="fe fe-check"></i>
+                      </div>
+
+                      <!-- Text -->
+                      <p class="mb-5">
+                        Unlimited users
+                      </p>
+
+                    </div>
+
+                    <!-- Button -->
+                    <a href="#!" class="btn w-100 btn-primary-soft">
+                      Start with Premium <i class="fe fe-arrow-right ms-3"></i>
+                    </a>
+
+                  </div>
+                </div>
+
+              </div>
+            </div> <!-- / .row -->
+
+            <!-- Card -->
+            <div class="card">
+              <div class="card-footer rounded bg-black">
+                <code class="highlight html">
+                  &lt;div&nbsp;class=&quot;card&nbsp;shadow-lg&quot;&gt;<br />&nbsp;&nbsp;&lt;div&nbsp;class=&quot;card-body&quot;&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Preheading&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;class=&quot;text-center&nbsp;mb-3&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;class=&quot;badge&nbsp;rounded-pill&nbsp;bg-primary-soft&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;class=&quot;h6&nbsp;text-uppercase&quot;&gt;Basic&lt;/span&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/span&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Price&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;class=&quot;d-flex&nbsp;justify-content-center&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;class=&quot;h2&nbsp;mb-0&nbsp;mt-2&quot;&gt;$&lt;/span&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;class=&quot;price&nbsp;display-2&nbsp;mb-0&quot;&nbsp;data-annual=&quot;0&quot;&nbsp;data-monthly=&quot;0&quot;&gt;0&lt;/span&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;class=&quot;h2&nbsp;align-self-end&nbsp;mb-1&quot;&gt;/mo&lt;/span&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Text&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&nbsp;class=&quot;text-center&nbsp;text-muted&nbsp;mb-5&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;per&nbsp;seat<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/p&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;List&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;class=&quot;d-flex&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Badge&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;class=&quot;badge&nbsp;badge-rounded-circle&nbsp;bg-success-soft&nbsp;mt-1&nbsp;me-4&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;i&nbsp;class=&quot;fe&nbsp;fe-check&quot;&gt;&lt;/i&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Text&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rich&nbsp;landing&nbsp;pages<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/p&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;class=&quot;d-flex&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Badge&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;class=&quot;badge&nbsp;badge-rounded-circle&nbsp;bg-success-soft&nbsp;mt-1&nbsp;me-4&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;i&nbsp;class=&quot;fe&nbsp;fe-check&quot;&gt;&lt;/i&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Text&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&nbsp;class=&quot;mb-5&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;100+&nbsp;components<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/p&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Button&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#!&quot;&nbsp;class=&quot;btn&nbsp;w-100&nbsp;btn-primary-soft&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Start&nbsp;for&nbsp;free&nbsp;&lt;i&nbsp;class=&quot;fe&nbsp;fe-arrow-right&nbsp;ms-3&quot;&gt;&lt;/i&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/a&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&lt;/div&gt;<br />&lt;/div&gt;
+                </code>
+              </div>
+            </div>
+
+
+            <!-- Divider -->
+            <hr class="bg-gray-300 my-6">
+
+            <!-- Heading -->
+            <div class="d-flex align-items-center">
+              <h3 class="fw-bold me-3" id="portfolio">Portfolio</h3>
+              <span class="badge rounded-pill bg-primary-soft mb-2">
+                <span class="h6 text-uppercase fw-bold">Landkit only</span>
+              </span>
+            </div>
+
+            <!-- Text -->
+            <p class="text-gray-700 mb-5">
+              Variations of the card component.
+            </p>
+
+            <!-- Card -->
+            <div class="card mb-5">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-12 col-md-4">
+
+                    <!-- Card -->
+                    <a class="card card-flush mb-7 mb-md-0" href="#!">
+
+                      <!-- Image -->
+                      <div class="card-zoom">
+                        <img class="card-img-top rounded shadow-light-lg" src="{{webRoot}}/assets/img/portfolio/portfolio-5.jpg" alt="...">
+                      </div>
+
+                      <!-- Footer -->
+                      <div class="card-footer">
+
+                        <!-- Preheading -->
+                        <h6 class="text-uppercase mb-1 text-muted">Branding</h6>
+
+                        <!-- Heading -->
+                        <h4 class="mb-0">Landkit Redesign</h4>
+
+                      </div>
+
+                    </a>
+
+                  </div>
+                  <div class="col-12 col-md-4">
+
+                    <!-- Card -->
+                    <a class="card shadow-light-lg mb-7 mb-md-0" href="#!">
+
+                      <!-- Image -->
+                      <div class="card-zoom">
+                        <img class="card-img-top" src="{{webRoot}}/assets/img/portfolio/portfolio-6.jpg" alt="...">
+                      </div>
+
+                      <!-- Body -->
+                      <div class="card-body">
+
+                        <!-- Shape -->
+                        <div class="shape shape-bottom-100 shape-fluid-x text-white">
+                          {{> curves/curve-1}}
+                        </div>
+
+                        <!-- Preheading -->
+                        <h6 class="text-uppercase mb-1 text-muted">Branding</h6>
+
+                        <!-- Heading -->
+                        <h4 class="mb-0">Landkit Redesign</h4>
+
+                      </div>
+
+                    </a>
+
+                  </div>
+                  <div class="col-12 col-md-4">
+
+                    <!-- Card -->
+                    <a class="card shadow-light-lg" href="#!">
+
+                      <!-- Image -->
+                      <div class="card-zoom">
+                        <img class="card-img" src="{{webRoot}}/assets/img/portfolio/portfolio-11.jpg" alt="...">
+                      </div>
+
+                      <!-- Overlay -->
+                      <div class="card-img-overlay card-img-overlay-hover">
+                        <div class="card-body bg-white">
+
+                          <!-- Shape -->
+                          <div class="shape shape-bottom-100 shape-fluid-x text-white">
+                            {{> curves/curve-1}}
+                          </div>
+
+                          <!-- Preheading -->
+                          <h6 class="text-uppercase mb-1 text-muted">Branding</h6>
+
+                          <!-- Heading -->
+                          <h4 class="mb-0">Landkit Redesign</h4>
+
+                        </div>
+                      </div>
+
+                    </a>
+
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer bg-black">
+                <code class="highlight html">
+                  &lt;!--&nbsp;Card&nbsp;--&gt;<br />&lt;a&nbsp;class=&quot;card&nbsp;card-flush&nbsp;mb-7&nbsp;mb-md-0&quot;&nbsp;href=&quot;#!&quot;&gt;<br /><br />&nbsp;&nbsp;&lt;!--&nbsp;Image&nbsp;--&gt;<br />&nbsp;&nbsp;&lt;div&nbsp;class=&quot;card-zoom&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;class=&quot;card-img-top&nbsp;rounded&nbsp;shadow-light-lg&quot;&nbsp;src=&quot;{{webRoot}}/assets/img/portfolio/portfolio-5.jpg&quot;&nbsp;alt=&quot;...&quot;&gt;<br />&nbsp;&nbsp;&lt;/div&gt;<br /><br />&nbsp;&nbsp;&lt;!--&nbsp;Footer&nbsp;--&gt;<br />&nbsp;&nbsp;&lt;div&nbsp;class=&quot;card-footer&quot;&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Preheading&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;h6&nbsp;class=&quot;text-uppercase&nbsp;mb-1&nbsp;text-muted&quot;&gt;Branding&lt;/h6&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Heading&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;h4&nbsp;class=&quot;mb-0&quot;&gt;Landkit&nbsp;Redesign&lt;/h4&gt;<br /><br />&nbsp;&nbsp;&lt;/div&gt;<br /><br />&lt;/a&gt;<br /><br />&lt;!--&nbsp;Card&nbsp;--&gt;<br />&lt;a&nbsp;class=&quot;card&nbsp;shadow-light-lg&nbsp;mb-7&nbsp;mb-md-0&quot;&nbsp;href=&quot;#!&quot;&gt;<br /><br />&nbsp;&nbsp;&lt;!--&nbsp;Image&nbsp;--&gt;<br />&nbsp;&nbsp;&lt;div&nbsp;class=&quot;card-zoom&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;class=&quot;card-img-top&quot;&nbsp;src=&quot;{{webRoot}}/assets/img/portfolio/portfolio-6.jpg&quot;&nbsp;alt=&quot;...&quot;&gt;<br />&nbsp;&nbsp;&lt;/div&gt;<br /><br />&nbsp;&nbsp;&lt;!--&nbsp;Body&nbsp;--&gt;<br />&nbsp;&nbsp;&lt;div&nbsp;class=&quot;card-body&quot;&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Shape&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;class=&quot;shape&nbsp;shape-bottom-100&nbsp;shape-fluid-x&nbsp;text-white&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\{{> curves/curve-1}}<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Preheading&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;h6&nbsp;class=&quot;text-uppercase&nbsp;mb-1&nbsp;text-muted&quot;&gt;Branding&lt;/h6&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Heading&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;h4&nbsp;class=&quot;mb-0&quot;&gt;Landkit&nbsp;Redesign&lt;/h4&gt;<br /><br />&nbsp;&nbsp;&lt;/div&gt;<br /><br />&lt;/a&gt;<br /><br />&lt;!--&nbsp;Card&nbsp;--&gt;<br />&lt;a&nbsp;class=&quot;card&nbsp;shadow-light-lg&quot;&nbsp;href=&quot;#!&quot;&gt;<br /><br />&nbsp;&nbsp;&lt;!--&nbsp;Image&nbsp;--&gt;<br />&nbsp;&nbsp;&lt;div&nbsp;class=&quot;card-zoom&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;class=&quot;card-img&quot;&nbsp;src=&quot;{{webRoot}}/assets/img/portfolio/portfolio-11.jpg&quot;&nbsp;alt=&quot;...&quot;&gt;<br />&nbsp;&nbsp;&lt;/div&gt;<br /><br />&nbsp;&nbsp;&lt;!--&nbsp;Overlay&nbsp;--&gt;<br />&nbsp;&nbsp;&lt;div&nbsp;class=&quot;card-img-overlay&nbsp;card-img-overlay-hover&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;class=&quot;card-body&nbsp;bg-white&quot;&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Shape&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;class=&quot;shape&nbsp;shape-bottom-100&nbsp;shape-fluid-x&nbsp;text-white&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\{{> &nbsp;curves/curve-1}}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Preheading&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h6&nbsp;class=&quot;text-uppercase&nbsp;mb-1&nbsp;text-muted&quot;&gt;Branding&lt;/h6&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Heading&nbsp;--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h4&nbsp;class=&quot;mb-0&quot;&gt;Landkit&nbsp;Redesign&lt;/h4&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />&nbsp;&nbsp;&lt;/div&gt;<br /><br />&lt;/a&gt;<br />
+                </code>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-12 col-lg-3 col-xl-2 d-none d-lg-block px-lg-0 sidenav sidenav-end">
+            <div class="my-7 my-lg-9 px-lg-7 border-start-lg border-gray-300">
+
+              <!-- Heading -->
+              <h6 class="text-uppercase fw-bold">
+                Jump to
+              </h6>
+
+              <!-- Links -->
+              <ul class="list mb-0">
+                <li class="list-item">
+                  <a class="list-link" href="#border" data-scroll>Border</a>
+                </li>
+                <li class="list-item">
+                  <a class="list-link" href="#signup" data-scroll>Signup</a>
+                </li>
+                <li class="list-item">
+                  <a class="list-link" href="#testimonials" data-scroll>Testimonials</a>
+                </li>
+                <li class="list-item">
+                  <a class="list-link" href="#blockCards" data-scroll>Block cards</a>
+                </li>
+                <li class="list-item">
+                  <a class="list-link" href="#price" data-scroll>Price</a>
+                </li>
+                <li class="list-item">
+                  <a class="list-link" href="#portfolio" data-scroll>Portfolio</a>
+                </li>
+              </ul>
+
+            </div>
+          </div>
+        </div> <!-- / .row -->
+      </div>
+    </section>
+
+    <!-- JAVASCRIPT -->
+    {{> partials/scripts}}
+
+  </body>
+</html>
