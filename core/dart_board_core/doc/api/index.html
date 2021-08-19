@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="generator" content="made with love by dartdoc 1.0.2">
+  <meta name="description" content="dart_board_core API docs, for the Dart programming language.">
+  <title>dart_board_core - Dart API docs</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link rel="stylesheet" href="static-assets/github.css?v1">
+  <link rel="stylesheet" href="static-assets/styles.css?v1">
+  <link rel="icon" href="static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href=""
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="https://dart-board.io">dart_board_core package</a></li>
+  </ol>
+  <div class="self-name">dart_board_core</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+
+  <div id="dartdoc-main-content" class="main-content">
+      
+<section class="desc markdown">
+  <h1 id="dart_board">dart_board</h1>
+<p>A feature management framework for flutter</p>
+<h3 id="feature-management-what-is-that">Feature management, what is that?</h3>
+<p>It's a way of isolating features so that they can be managed. E.g. Mix and match/AB Test/Disable at run time or build time.</p>
+<p>It provides architectural guidance and structure so that you can cleanly build an app.</p>
+<p>While providing structure on how to integrate and isolate features, Dart Board is agnostic when it comes to actual 
+state management of architectural patterns of the features themselves.</p>
+<p>Even existing projects can be easily ported to love within a Dart Board Feature.</p>
+<h2 id="getting-started">Getting Started</h2>
+<p><em>NOTE: Still not released, these instructions are preliminary/TBD</em></p>
+<h3 id="app-developer">App Developer</h3>
+<ul>
+<li>Make a new flutter app project <code>flutter create -t app --platforms=android,ios,web,linux,macos,windows your_project</code></li>
+<li>Add dart_board to your <code>pubspect.yaml</code></li>
+<li>Extend <code>DartBoardFeature</code> to create an <em>integration feature</em></li>
+<li>Add a <code>/</code> or <code>/main</code> or any other appropriate entry point to your feature</li>
+<li><code>main() =&gt; runApp(DartBoard(features:[YourIntegrationFeature()], initialRoute:'/main'));</code></li>
+</ul>
+<p>That's it, you should be ready to add more features to your app.</p>
+<p>You can play around with the framework by adding <code>Page/App Decoration</code> and <code>Routes</code> to your integration extension. It's recommended though to try and isolate your features and keep them small. For example, if you have a Search feature and 2 UI's you might want a <code>SearchManager</code> feature, and then <code>SearchUI_VariantA</code> and <code>SearchUI_VariantB</code> that can bring <code>SearchManager</code> in as a dependency. This would let you trivially swap UI's on a shared backend.  Each feature holds 1 small part. The data/api for searching, and 1 UI each for the feature, bound to a route (e.g. <em>/search</em>)</p>
+<h3 id="feature-developer">Feature Developer</h3>
+<ul>
+<li>Make a new flutter module or plugin project (e.g. `flutter create -t module my_feature)</li>
+<li>Add <em>Dart Board</em> to your <code>pubspec.yaml</code></li>
+<li>Create your Feature</li>
+<li>To test your feature, you can use the Module and it's own <code>main.dart</code>.</li>
+<li>Recommended to make an <code>example</code> for each feature, following the <em>App Developer</em> steps above.</li>
+</ul>
+<p>Setting up an Example will let you instrument your Feature and also enable Features you would not want to ship with your feature. (e.g. DebugFeature, LogFeature).</p>
+<p>Generally it's a good idea to also set up routes dedicated to development tasks and portions of the app, since you can change the initialRoute in the main, it's easy to jump around parts of a feature while doing development.</p>
+<h3 id="portingadapting-existing-libraries">Porting/Adapting existing libraries</h3>
+<ul>
+<li>Extends DartBoardFeature</li>
+<li>Provide routes (NamedRouteDefinition is the current only supported option)</li>
+<li>Create an AppDecorator widget to define app level state.</li>
+<li>Create any PageDecorators to decorate the named routes</li>
+</ul>
+<p>At this point a user of your Feature can navigate to your route with RouteWidget or pushNamed()
+If necessary, the Feature can provide additional API to interact with it's app state via the tree.</p>
+<p>Routes do not need to be used full-screen by integrators, they can also use RouteWidget anywhere in the UI tree</p>
+<h2 id="how-it-works">How it works</h2>
+<p>You give it extensions, it unwraps, sorts and organizes them, then injects them back into your app.</p>
+<p>First it walks the dependency tree and collects an ordered list of what to init.</p>
+<p>It then collects all the routes and decorations. It creates the MaterialApp()
+for you, and sets up the routing and decoration features, as well as injecting all your App Decoration's near the trunk of the Tree.</p>
+<p>From here, you can use named routing to access any registered feature route, or
+RouteView. Additionally features can provide API's to the app and page level components.</p>
+<h2 id="some-things-to-try-in-this-example">Some things to try in this Example</h2>
+<ul>
+<li>Play with the Debug Screen (Caution, you can break the app if you disable something you need).</li>
+<li>Play MineSweeper</li>
+<li>Read the Documentation (This File + Example Readme + Selected Files)</li>
+</ul>
+<h2 id="what-is-in-the-repo">What is in the Repo</h2>
+<h3 id="dart_board-2">./dart_board</h3>
+<p>The core framework, brought in by all Features and Apps</p>
+<h3 id="example">./example</h3>
+<p>The integration example, documentation of all features.
+visible at <a href="https://dart-board.io">https://dart-board.io</a></p>
+<h3 id="featuresdart_board_debug">./features/dart_board_debug</h3>
+<p>Debug feature. Includes the /debug route that gives you insight into DartBoard
+and it's current integration.</p>
+<p>It also allows you to toggle variants of features, and disable features at run time.</p>
+<h3 id="featuresdart_board_log">./features/dart_board_log</h3>
+<p>Basic logging features. Includes a PageDecoration that will show the last log message
+as a toolbar.</p>
+<p>Tapping the toolbar will open the larger log.</p>
+<h3 id="featuresdart_board_minesweeper">./features/dart_board_minesweeper</h3>
+<p>A minesweeper implementation in Dart. This is a standalone redux application. It's been ported
+to a feature container so that you can play Minesweeper, and persist it's state through the app.</p>
+<h3 id="featuresdart_board_theme">./features/dart_board_theme</h3>
+<p>Minimal theming feature, supports a boolean for light/dark</p>
+<h2 id="how-to-help">How to help.</h2>
+<ol>
+<li>Contribute via Patreon (<a href="https://www.patreon.com/AdamHammer)">https://www.patreon.com/AdamHammer)</a>, pledging support</li>
+<li>Contribute Code</li>
+</ol>
+<ul>
+<li>New features (E.g. Auth would be a huge next target)</li>
+<li>Build out core features (Log, Debug, Theme) could all use significant work.</li>
+<li>Tests (I'll get to them eventually, but if you want to help, please do)</li>
+</ul>
+</section>
+
+
+      <section class="summary">
+          <h2>Libraries</h2>
+        <dl>
+          <dt id="change_notifier_builder">
+  <span class="name"><a href="impl_widgets_change_notifier_builder/impl_widgets_change_notifier_builder-library.html">change_notifier_builder</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="collect">
+  <span class="name"><a href="impl_utils_collect/impl_utils_collect-library.html">collect</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="convertor_widget">
+  <span class="name"><a href="impl_widgets_convertor_widget/impl_widgets_convertor_widget-library.html">convertor_widget</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="dart_board">
+  <span class="name"><a href="dart_board/dart_board-library.html">dart_board</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="dart_board_core">
+  <span class="name"><a href="impl_dart_board_core/impl_dart_board_core-library.html">dart_board_core</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="dart_board_interface">
+  <span class="name"><a href="interface_dart_board_interface/interface_dart_board_interface-library.html">dart_board_interface</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="feature_gate">
+  <span class="name"><a href="impl_widgets_feature_gate/impl_widgets_feature_gate-library.html">feature_gate</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="generic_features">
+  <span class="name"><a href="impl_features_generic_features/impl_features_generic_features-library.html">generic_features</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="life_cycle_widget">
+  <span class="name"><a href="impl_widgets_life_cycle_widget/impl_widgets_life_cycle_widget-library.html">life_cycle_widget</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="named_route">
+  <span class="name"><a href="impl_route_types_named_route/impl_route_types_named_route-library.html">named_route</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="route_not_found">
+  <span class="name"><a href="impl_widgets_route_not_found/impl_widgets_route_not_found-library.html">route_not_found</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="route_widget">
+  <span class="name"><a href="impl_widgets_route_widget/impl_widgets_route_widget-library.html">route_widget</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="string_extensions">
+  <span class="name"><a href="impl_utils_string_extensions/impl_utils_string_extensions-library.html">string_extensions</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="timer_widgets">
+  <span class="name"><a href="impl_widgets_timer_widgets/impl_widgets_timer_widgets-library.html">timer_widgets</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+        </dl>
+      </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li><a href="https://dart-board.io">dart_board_core package</a></li>
+</ol>
+
+
+    <h5 class="hidden-xs"><span class="package-name">dart_board_core</span> <span class="package-kind">package</span></h5>
+    <ol>
+      <li class="section-title">Libraries</li>
+      <li><a href="impl_widgets_change_notifier_builder/impl_widgets_change_notifier_builder-library.html">change_notifier_builder</a></li>
+      <li><a href="impl_utils_collect/impl_utils_collect-library.html">collect</a></li>
+      <li><a href="impl_widgets_convertor_widget/impl_widgets_convertor_widget-library.html">convertor_widget</a></li>
+      <li><a href="dart_board/dart_board-library.html">dart_board</a></li>
+      <li><a href="impl_dart_board_core/impl_dart_board_core-library.html">dart_board_core</a></li>
+      <li><a href="interface_dart_board_interface/interface_dart_board_interface-library.html">dart_board_interface</a></li>
+      <li><a href="impl_widgets_feature_gate/impl_widgets_feature_gate-library.html">feature_gate</a></li>
+      <li><a href="impl_features_generic_features/impl_features_generic_features-library.html">generic_features</a></li>
+      <li><a href="impl_widgets_life_cycle_widget/impl_widgets_life_cycle_widget-library.html">life_cycle_widget</a></li>
+      <li><a href="impl_route_types_named_route/impl_route_types_named_route-library.html">named_route</a></li>
+      <li><a href="impl_widgets_route_not_found/impl_widgets_route_not_found-library.html">route_not_found</a></li>
+      <li><a href="impl_widgets_route_widget/impl_widgets_route_widget-library.html">route_widget</a></li>
+      <li><a href="impl_utils_string_extensions/impl_utils_string_extensions-library.html">string_extensions</a></li>
+      <li><a href="impl_widgets_timer_widgets/impl_widgets_timer_widgets-library.html">timer_widgets</a></li>
+</ol>
+
+  </div>
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div>
+
+</main>
+
+<footer>
+  <span class="no-break">
+    dart_board_core
+      0.9.9
+  </span>
+
+  
+</footer>
+
+
+
+<script src="static-assets/highlight.pack.js?v1"></script>
+<script src="static-assets/script.js?v1"></script>
+
+
+
+</body>
+
+</html>
+
