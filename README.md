@@ -153,5 +153,13 @@ You access the template by navigating to the route you select.
 
 This is a place to see Integrations of multiple features into a larger app.
 
-The only "example" right now is dart-board.io website, and the official example for the platform
+- Example/Playground: Integrates everything, demonstrates it all at once.
+- Blank: A minimal template with no major features. This can be adapted as a starting template.
 
+### homepage
+
+This is the "dart-board.io" website.
+
+The template is SplashKit (Bootstrap) and is not licensed for re-use.
+
+For all intents and purposes, this is outside the open source components due to license restrictions.

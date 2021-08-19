@@ -12,7 +12,7 @@
 .dart_tool/
 pubspec.lock
 flutter_export_environment.sh
-
+dist/
 examples/all_plugins/pubspec.yaml
 
 Podfile.lock
