@@ -6,7 +6,7 @@
 !.vscode/tasks.json
 !.vscode/settings.json
 
-
+coverage/
 .packages
 .pub/
 .dart_tool/
