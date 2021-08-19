@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the dispatchFunc function from the dart_board_redux library, for the Dart programming language.">
+  <title>dispatchFunc function - dart_board_redux library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../static-assets/styles.css?v1">
+  <link rel="icon" href="../static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href="../"
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">dart_board_redux</a></li>
+    <li><a href="../dart_board_redux/dart_board_redux-library.html">dart_board_redux</a></li>
+    <li class="self-crumb">dispatchFunc&lt;<wbr><span class="type-parameter">T</span>&gt; function</li>
+  </ol>
+  <div class="self-name">dispatchFunc</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+
+  <div id="dartdoc-main-content" class="main-content">
+      <div>
+<h1><span class="kind-function">dispatchFunc&lt;<wbr><span class="type-parameter">T</span>&gt;</span> function 
+    <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+ 
+</h1></div>
+
+    <section class="multi-line-signature">
+        
+
+<span class="returntype">void</span>
+<span class="name ">dispatchFunc</span>&lt;<wbr><span class="type-parameter">T</span>&gt;(<wbr><ol class="parameter-list"><li><span class="parameter" id="dispatchFunc-param-func"><span class="type-annotation">T</span> <span class="parameter-name">func</span>(<ol class="parameter-list"><li><span class="parameter" id="param-oldState"><span class="type-annotation">T</span> <span class="parameter-name">oldState</span></span></li>
+</ol>
+)</span></li>
+</ol>)
+
+    </section>
+    
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">void dispatchFunc&lt;T&gt;(T Function(T oldState) func) =&gt;
+    dispatch(_FunctionReduxAction&lt;T&gt;((state) =&gt; func(state)));</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li><a href="../index.html">dart_board_redux</a></li>
+  <li><a href="../dart_board_redux/dart_board_redux-library.html">dart_board_redux</a></li>
+  <li class="self-crumb">dispatchFunc&lt;<wbr><span class="type-parameter">T</span>&gt; function</li>
+</ol>
+
+
+    <h5>dart_board_redux library</h5>
+    <ol>
+  <li class="section-title"><a href="../dart_board_redux/dart_board_redux-library.html#classes">Classes</a></li>
+  <li><a href="../dart_board_redux/BaseAction-class.html">BaseAction</a></li>
+  <li><a href="../dart_board_redux/DartBoardRedux-class.html">DartBoardRedux</a></li>
+  <li><a href="../dart_board_redux/DartBoardState-class.html">DartBoardState</a></li>
+  <li><a href="../dart_board_redux/FeatureAction-class.html">FeatureAction</a></li>
+  <li><a href="../dart_board_redux/FeatureStateBuilder-class.html">FeatureStateBuilder</a></li>
+  <li><a href="../dart_board_redux/ReduxMiddlewareDecoration-class.html">ReduxMiddlewareDecoration</a></li>
+  <li><a href="../dart_board_redux/ReduxStateDecoration-class.html">ReduxStateDecoration</a></li>
+
+
+
+
+
+  <li class="section-title"><a href="../dart_board_redux/dart_board_redux-library.html#functions">Functions</a></li>
+  <li><a href="../dart_board_redux/dispatch.html">dispatch</a></li>
+  <li><a href="../dart_board_redux/dispatchFunc.html">dispatchFunc</a></li>
+  <li><a href="../dart_board_redux/getState.html">getState</a></li>
+
+
+  <li class="section-title"><a href="../dart_board_redux/dart_board_redux-library.html#typedefs">Typedefs</a></li>
+  <li><a href="../dart_board_redux/StateFactory.html">StateFactory</a></li>
+
+</ol>
+
+  </div><!--/.sidebar-offcanvas-left-->
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    dart_board_redux
+      0.9.2+1
+  </span>
+
+  
+</footer>
+
+
+
+<script src="../static-assets/highlight.pack.js?v1"></script>
+<script src="../static-assets/script.js?v1"></script>
+
+
+
+</body>
+
+</html>
+

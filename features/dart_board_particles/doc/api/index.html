@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="generator" content="made with love by dartdoc 1.0.2">
+  <meta name="description" content="dart_board_particles API docs, for the Dart programming language.">
+  <title>dart_board_particles - Dart API docs</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link rel="stylesheet" href="static-assets/github.css?v1">
+  <link rel="stylesheet" href="static-assets/styles.css?v1">
+  <link rel="icon" href="static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href=""
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="https://dart-board.io">dart_board_particles package</a></li>
+  </ol>
+  <div class="self-name">dart_board_particles</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+
+  <div id="dartdoc-main-content" class="main-content">
+      
+<section class="desc markdown">
+  <h1 id="dart_board_particles">dart_board_particles</h1>
+<p>A particle system for Dart Board</p>
+<p>Do you ever want sparkly things happening on the screen? Trails? Rainbows? Bubbles? Flames? Of course you do, if you can't show fake fire on the screen, what's the point of your app.</p>
+<p>Include DartBoardParticlesFeature() and you are good to go.</p>
+<p>Usage/Implementation is quite easy. A few built in examples are included in fire/lighting/rainbow/water particles.</p>
+<p>The API is dead simple <code>Particles.instance.addLayer(particleLayer)</code></p>
+<p>What is a <code>ParticleLayer&lt;T extends Particle&gt;</code>?</p>
+<p>A layer is a fixed group of <code>Particles</code>. It includes logic to do before the layer, after the layer, and for each particle.</p>
+<p>What is a <code>particle</code>? In the context of the bare api, it's almost nothing.</p>
+<pre class="language-dart"><code>abstract class Particle {
+  void step(double time, Size size);
+}
+</code></pre>
+<p>The only thing a particle must be able to do is <code>step</code> through it's simulation.</p>
+<h2 id="getting-started">Getting Started</h2>
+<p>For help getting started with Flutter, view our online
+<a href="https://flutter.dev/">documentation</a>.</p>
+<p>For instructions integrating Flutter modules to your existing applications,
+see the <a href="https://flutter.dev/docs/development/add-to-app">add-to-app documentation</a>.</p>
+</section>
+
+
+      <section class="summary">
+          <h2>Libraries</h2>
+        <dl>
+          <dt id="cursor_particle_features">
+  <span class="name"><a href="features_cursor_particle_features/features_cursor_particle_features-library.html">cursor_particle_features</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="dart_board_particle_feature">
+  <span class="name"><a href="dart_board_particle_feature/dart_board_particle_feature-library.html">dart_board_particle_feature</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="fire_particle">
+  <span class="name"><a href="presets_fire_particle/presets_fire_particle-library.html">fire_particle</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="lighting_particle">
+  <span class="name"><a href="presets_lighting_particle/presets_lighting_particle-library.html">lighting_particle</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="rainbow_particle">
+  <span class="name"><a href="presets_rainbow_particle/presets_rainbow_particle-library.html">rainbow_particle</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="snow_feature">
+  <span class="name"><a href="features_snow_feature/features_snow_feature-library.html">snow_feature</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="snow_particle">
+  <span class="name"><a href="presets_snow_particle/presets_snow_particle-library.html">snow_particle</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+        </dl>
+      </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li><a href="https://dart-board.io">dart_board_particles package</a></li>
+</ol>
+
+
+    <h5 class="hidden-xs"><span class="package-name">dart_board_particles</span> <span class="package-kind">package</span></h5>
+    <ol>
+      <li class="section-title">Libraries</li>
+      <li><a href="features_cursor_particle_features/features_cursor_particle_features-library.html">cursor_particle_features</a></li>
+      <li><a href="dart_board_particle_feature/dart_board_particle_feature-library.html">dart_board_particle_feature</a></li>
+      <li><a href="presets_fire_particle/presets_fire_particle-library.html">fire_particle</a></li>
+      <li><a href="presets_lighting_particle/presets_lighting_particle-library.html">lighting_particle</a></li>
+      <li><a href="presets_rainbow_particle/presets_rainbow_particle-library.html">rainbow_particle</a></li>
+      <li><a href="features_snow_feature/features_snow_feature-library.html">snow_feature</a></li>
+      <li><a href="presets_snow_particle/presets_snow_particle-library.html">snow_particle</a></li>
+</ol>
+
+  </div>
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div>
+
+</main>
+
+<footer>
+  <span class="no-break">
+    dart_board_particles
+      1.2.1
+  </span>
+
+  
+</footer>
+
+
+
+<script src="static-assets/highlight.pack.js?v1"></script>
+<script src="static-assets/script.js?v1"></script>
+
+
+
+</body>
+
+</html>
+

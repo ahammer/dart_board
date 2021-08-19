@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="dart_board_redux library API docs, for the Dart programming language.">
+  <title>dart_board_redux library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../static-assets/styles.css?v1">
+  <link rel="icon" href="../static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href="../"
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">dart_board_redux</a></li>
+    <li class="self-crumb">dart_board_redux library</li>
+  </ol>
+  <div class="self-name">dart_board_redux</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+
+  <div id="dartdoc-main-content" class="main-content">
+      <div>
+<h1><span class="kind-library">dart_board_redux</span> library 
+    <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+ 
+</h1></div>
+
+    
+
+
+    <section class="summary offset-anchor" id="classes">
+      <h2>Classes</h2>
+
+      <dl>
+        <dt id="BaseAction">
+  <span class="name "><a href="../dart_board_redux/BaseAction-class.html">BaseAction</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="DartBoardRedux">
+  <span class="name "><a href="../dart_board_redux/DartBoardRedux-class.html">DartBoardRedux</a></span> 
+
+</dt>
+<dd>
+   <a href="../dart_board_redux/DartBoardRedux-class.html">[...]</a>
+</dd>
+
+        <dt id="DartBoardState">
+  <span class="name "><a href="../dart_board_redux/DartBoardState-class.html">DartBoardState</a></span> 
+
+</dt>
+<dd>
+  getState() itself generates the State from the object if it doesn't exist.
+When reducing a feature, this fallback creates the initial state, and
+ensures getState() never returns null for a registered state. <a href="../dart_board_redux/DartBoardState-class.html">[...]</a>
+</dd>
+
+        <dt id="FeatureAction">
+  <span class="name "><a href="../dart_board_redux/FeatureAction-class.html">FeatureAction</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="FeatureStateBuilder">
+  <span class="name "><a href="../dart_board_redux/FeatureStateBuilder-class.html">FeatureStateBuilder</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> 
+
+</dt>
+<dd>
+  Widgets <a href="../dart_board_redux/FeatureStateBuilder-class.html">[...]</a>
+</dd>
+
+        <dt id="ReduxMiddlewareDecoration">
+  <span class="name "><a href="../dart_board_redux/ReduxMiddlewareDecoration-class.html">ReduxMiddlewareDecoration</a></span> 
+
+</dt>
+<dd>
+  ReduxMiddlewareDecoration({required this.name, required this.middleware}) <a href="../dart_board_redux/ReduxMiddlewareDecoration-class.html">[...]</a>
+</dd>
+
+        <dt id="ReduxStateDecoration">
+  <span class="name "><a href="../dart_board_redux/ReduxStateDecoration-class.html">ReduxStateDecoration</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> 
+
+</dt>
+<dd>
+  Decorations <a href="../dart_board_redux/ReduxStateDecoration-class.html">[...]</a>
+</dd>
+
+      </dl>
+    </section>
+
+
+
+
+
+    <section class="summary offset-anchor" id="functions">
+      <h2>Functions</h2>
+
+      <dl class="callables">
+        <dt id="dispatch" class="callable">
+  <span class="name"><a href="../dart_board_redux/dispatch.html">dispatch</a></span><span class="signature">(<wbr><span class="parameter" id="dispatch-param-dispatchable"><span class="type-annotation">dynamic</span> <span class="parameter-name">dispatchable</span></span>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd>
+  Actions and Dispatching <a href="../dart_board_redux/dispatch.html">[...]</a>
+  
+
+</dd>
+
+        <dt id="dispatchFunc" class="callable">
+  <span class="name"><a href="../dart_board_redux/dispatchFunc.html">dispatchFunc</a></span><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="dispatchFunc-param-func"><span class="type-annotation">T</span> <span class="parameter-name">func</span>(<span class="parameter" id="param-oldState"><span class="type-annotation">T</span> <span class="parameter-name">oldState</span></span>)</span>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd>
+   
+  
+
+</dd>
+
+        <dt id="getState" class="callable">
+  <span class="name"><a href="../dart_board_redux/getState.html">getState</a></span><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="getState-param-instanceId">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">instanceId</span> = <span class="default-value">&quot;&quot;</span>}</span>)
+    <span class="returntype parameter">&#8594; T</span>
+  </span>
+  
+
+</dt>
+<dd>
+   <a href="../dart_board_redux/getState.html">[...]</a>
+  
+
+</dd>
+
+      </dl>
+    </section>
+
+
+    <section class="summary offset-anchor" id="typedefs">
+      <h2>Typedefs</h2>
+
+      <dl>
+          
+  <dt id="StateFactory" class="callable">
+    <span class="name"><a href="../dart_board_redux/StateFactory.html">StateFactory</a></span>&lt;<wbr><span class="type-parameter">T</span>&gt;<span class="signature">
+      <span class="returntype parameter">= T Function<span class="signature">()</span></span>
+    </span>
+    
+
+  </dt>
+  <dd>
+     <a href="../dart_board_redux/StateFactory.html">[...]</a>
+    
+
+  </dd>
+
+      </dl>
+    </section>
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li><a href="../index.html">dart_board_redux</a></li>
+  <li class="self-crumb">dart_board_redux library</li>
+</ol>
+
+
+    <h5><span class="package-name">dart_board_redux</span> <span class="package-kind">package</span></h5>
+    <ol>
+      <li class="section-title">Libraries</li>
+      <li><a href="../dart_board_redux/dart_board_redux-library.html">dart_board_redux</a></li>
+</ol>
+
+  </div>
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+    <h5>dart_board_redux library</h5>
+    <ol>
+  <li class="section-title"><a href="../dart_board_redux/dart_board_redux-library.html#classes">Classes</a></li>
+  <li><a href="../dart_board_redux/BaseAction-class.html">BaseAction</a></li>
+  <li><a href="../dart_board_redux/DartBoardRedux-class.html">DartBoardRedux</a></li>
+  <li><a href="../dart_board_redux/DartBoardState-class.html">DartBoardState</a></li>
+  <li><a href="../dart_board_redux/FeatureAction-class.html">FeatureAction</a></li>
+  <li><a href="../dart_board_redux/FeatureStateBuilder-class.html">FeatureStateBuilder</a></li>
+  <li><a href="../dart_board_redux/ReduxMiddlewareDecoration-class.html">ReduxMiddlewareDecoration</a></li>
+  <li><a href="../dart_board_redux/ReduxStateDecoration-class.html">ReduxStateDecoration</a></li>
+
+
+
+
+
+  <li class="section-title"><a href="../dart_board_redux/dart_board_redux-library.html#functions">Functions</a></li>
+  <li><a href="../dart_board_redux/dispatch.html">dispatch</a></li>
+  <li><a href="../dart_board_redux/dispatchFunc.html">dispatchFunc</a></li>
+  <li><a href="../dart_board_redux/getState.html">getState</a></li>
+
+
+  <li class="section-title"><a href="../dart_board_redux/dart_board_redux-library.html#typedefs">Typedefs</a></li>
+  <li><a href="../dart_board_redux/StateFactory.html">StateFactory</a></li>
+
+</ol>
+
+  </div><!--/sidebar-offcanvas-right-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    dart_board_redux
+      0.9.2+1
+  </span>
+
+  
+</footer>
+
+
+
+<script src="../static-assets/highlight.pack.js?v1"></script>
+<script src="../static-assets/script.js?v1"></script>
+
+
+
+</body>
+
+</html>
+
