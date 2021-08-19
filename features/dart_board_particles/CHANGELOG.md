@@ -1,3 +1,7 @@
+## 1.2.1
+
+ - **FIX**: bug in particle "after" callback not triggering properly, throwing.
+
 ## 1.2.0
 
  - **FIX**: cursor mode for rainbows now draws solid lines.

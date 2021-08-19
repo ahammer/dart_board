@@ -1,3 +1,7 @@
+## 0.9.2+1
+
+ - Update a dependency to the latest release.
+
 ## 0.9.2
 
  - **FIX**: cursor mode for rainbows now draws solid lines.

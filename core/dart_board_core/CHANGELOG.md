@@ -1,3 +1,8 @@
+## 0.9.10
+
+ - **FIX**: fixed dependency loading case where duplicates might have been.
+ - **FEAT**: adding firebase remote config.
+
 ## 0.9.9
 
  - **TEST**: verify findFeature code works.
