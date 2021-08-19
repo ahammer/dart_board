@@ -2,6 +2,7 @@ import 'package:dart_board_authentication/dart_board_authentication.dart';
 import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_particles/dart_board_particle_feature.dart';
 import 'package:dart_board_particles/presets/lighting_particle.dart';
+import 'package:flutter/material.dart';
 
 enum TemplateOptions { plain, bottom_nav, side_nav }
 enum BackgroundOptions { white, image, animated }

@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:dart_board_core/dart_board.dart';
 import 'package:flutter/material.dart';
+import 'package:logging/logging.dart';
+import 'package:provider/provider.dart';
 
 const kLogRoute = '/log';
 

@@ -1,5 +1,6 @@
 import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_template_bottomnav/dart_board_template_bottomnav.dart';
+import 'package:flutter/material.dart';
 
 /// Minimal Dart Board example.
 ///

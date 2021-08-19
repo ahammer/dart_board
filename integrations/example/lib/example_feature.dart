@@ -18,6 +18,7 @@ import 'impl/pages/home_page.dart';
 import 'package:dart_board_template_bottomnav/dart_board_template_bottomnav.dart';
 import 'package:dart_board_image_background/dart_board_image_background.dart';
 import 'impl/pages/haiku_and_code.dart';
+import 'package:flutter/material.dart';
 
 /// The Example Feature
 ///

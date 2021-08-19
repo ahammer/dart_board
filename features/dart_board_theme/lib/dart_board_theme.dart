@@ -1,6 +1,7 @@
 import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_core/impl/widgets/timer_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ThemeFeature extends DartBoardFeature {
   @override

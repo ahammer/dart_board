@@ -1,6 +1,8 @@
 import 'package:dart_board_core/dart_board.dart';
 import 'state/bottom_nav_state.dart';
 import 'package:logging/logging.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 final log = Logger('BottomNavTemplateFeature');
 

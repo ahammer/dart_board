@@ -1,4 +1,4 @@
-import 'package:dart_board_core/dart_board.dart';
+import 'package:flutter/painting.dart';
 import '../dart_board_particle_feature.dart';
 
 /// This class provides a generic
@@ -31,12 +31,13 @@ class RainbowParticleLayer extends ParticleLayer<RainbowParticle> {
   void after(Canvas canvas, Size size) {}
 
   @override
-  void drawParticle(Canvas canvas, Size size, RainbowParticle particle) => canvas.drawLine(
-        Offset(screenX, screenY),
-        Offset(lastScreenX, lastScreenY),
-        Paint()
-          ..color = particle.c.withOpacity(1 - particle.t / 0.5)
-          ..strokeWidth = 10.0 * 1 / (1 + particle.t * 5));
+  void drawParticle(Canvas canvas, Size size, RainbowParticle particle) =>
+      canvas.drawLine(
+          Offset(screenX, screenY),
+          Offset(lastScreenX, lastScreenY),
+          Paint()
+            ..color = particle.c.withOpacity(1 - particle.t / 0.5)
+            ..strokeWidth = 10.0 * 1 / (1 + particle.t * 5));
 
   @override
   List<RainbowParticle> get particles => _particleList;

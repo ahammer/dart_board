@@ -13,10 +13,3 @@ export 'impl/widgets/route_widget.dart';
 export 'impl/widgets/life_cycle_widget.dart';
 export 'impl/widgets/feature_gate.dart';
 export 'impl/route_types/named_route.dart';
-
-/// These are incredibly common exports
-/// I include them here to cover basic use cases
-export 'package:logging/logging.dart';
-export 'package:provider/provider.dart';
-export 'package:flutter/foundation.dart';
-export 'package:flutter/material.dart';

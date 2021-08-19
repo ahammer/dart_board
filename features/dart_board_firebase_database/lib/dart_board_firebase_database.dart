@@ -1,6 +1,7 @@
 import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_firebase_core/dart_board_firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 
 class DartBoardFirebaseDatabaseFeature extends DartBoardFeature {
   @override

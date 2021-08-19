@@ -1,5 +1,7 @@
 import 'package:dart_board_core/dart_board.dart';
 import 'package:faker_dart/faker_dart.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class RepositoryFeature extends DartBoardFeature {
   /// We give the repository to the feature to wire up.

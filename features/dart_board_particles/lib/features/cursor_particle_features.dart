@@ -2,6 +2,7 @@ import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_particles/presets/fire_particle.dart';
 import 'package:dart_board_particles/dart_board_particle_feature.dart';
 import 'package:dart_board_particles/presets/rainbow_particle.dart';
+import 'package:flutter/material.dart';
 
 abstract class CursorFeature extends DartBoardFeature {
   ParticleLayer generateParticleLayer(double x, double y);
@@ -40,11 +41,10 @@ class RainbowCursorFeature extends CursorFeature {
   String get namespace => 'RainbowCursor';
   @override
   ParticleLayer<Particle> generateParticleLayer(double x, double y) {
-
-    final layer = RainbowParticleLayer(x, y, oldX??x, oldY??y);
+    final layer = RainbowParticleLayer(x, y, oldX ?? x, oldY ?? y);
     oldX = x;
     oldY = y;
-    
+
     return layer;
   }
 }

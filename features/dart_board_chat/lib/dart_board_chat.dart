@@ -7,6 +7,8 @@ import 'package:dart_board_core/interface/dart_board_interface.dart';
 import 'package:dart_board_firebase_database/dart_board_firebase_database.dart';
 import 'package:dart_board_locator/dart_board_locator.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 /// Chat functionality for Dart Board.
