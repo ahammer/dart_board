@@ -12,8 +12,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  
   dart_board_core: ^0.9.10
+  provider: ^5.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

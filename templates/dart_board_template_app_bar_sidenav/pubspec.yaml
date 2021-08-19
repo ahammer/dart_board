@@ -14,7 +14,7 @@ dependencies:
     sdk: flutter
   dart_board_core: ^0.9.10
   logging: ^1.0.1
-
+  provider: ^5.0.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
