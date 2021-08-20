@@ -13,6 +13,9 @@ dependencies:
   # Dart board core features
   dart_board_core:  
   
+  # Debug features for dart board
+  dart_board_debug:
+
   # A general template for bottom navigation.
   dart_board_template_bottomnav:
 

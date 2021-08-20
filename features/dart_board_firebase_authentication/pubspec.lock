@@ -49,28 +49,28 @@ packages:
       path: "../dart_board_authentication"
       relative: true
     source: path
-    version: "1.1.0"
+    version: "1.1.1"
   dart_board_core:
     dependency: "direct main"
     description:
       path: "../../core/dart_board_core"
       relative: true
     source: path
-    version: "0.9.9"
+    version: "0.9.10"
   dart_board_firebase_core:
     dependency: "direct main"
     description:
       path: "../dart_board_firebase_core"
       relative: true
     source: path
-    version: "1.0.0+1"
+    version: "1.1.0"
   dart_board_locator:
     dependency: "direct main"
     description:
       path: "../dart_board_locator"
       relative: true
     source: path
-    version: "0.9.4"
+    version: "0.9.4+1"
   fake_async:
     dependency: transitive
     description:
@@ -225,7 +225,7 @@ packages:
       name: provider
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.0.0"
+    version: "6.0.0"
   quiver:
     dependency: transitive
     description:

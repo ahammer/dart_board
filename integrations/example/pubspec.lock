@@ -196,7 +196,7 @@ packages:
       path: "../../features/dart_board_authentication"
       relative: true
     source: path
-    version: "1.1.0"
+    version: "1.1.1"
   dart_board_chat:
     dependency: "direct main"
     description:
@@ -210,98 +210,98 @@ packages:
       path: "../../core/dart_board_core"
       relative: true
     source: path
-    version: "0.9.9"
+    version: "0.9.10"
   dart_board_debug:
     dependency: "direct main"
     description:
       path: "../../features/dart_board_debug"
       relative: true
     source: path
-    version: "0.9.3"
+    version: "0.9.3+1"
   dart_board_firebase_authentication:
     dependency: "direct main"
     description:
       path: "../../features/dart_board_firebase_authentication"
       relative: true
     source: path
-    version: "1.0.0+1"
+    version: "1.1.0"
   dart_board_firebase_core:
     dependency: transitive
     description:
       path: "../../features/dart_board_firebase_core"
       relative: true
     source: path
-    version: "1.0.0+1"
+    version: "1.1.0"
   dart_board_firebase_database:
     dependency: "direct main"
     description:
       path: "../../features/dart_board_firebase_database"
       relative: true
     source: path
-    version: "1.0.0+1"
+    version: "1.0.1"
   dart_board_image_background:
     dependency: "direct main"
     description:
       path: "../../features/dart_board_image_background"
       relative: true
     source: path
-    version: "0.9.2"
+    version: "0.9.2+1"
   dart_board_locator:
     dependency: transitive
     description:
       path: "../../features/dart_board_locator"
       relative: true
     source: path
-    version: "0.9.4"
+    version: "0.9.4+1"
   dart_board_log:
     dependency: "direct main"
     description:
       path: "../../features/dart_board_log"
       relative: true
     source: path
-    version: "0.9.2"
+    version: "0.9.2+1"
   dart_board_minesweeper:
     dependency: "direct main"
     description:
       path: "../../features/dart_board_minesweeper"
       relative: true
     source: path
-    version: "0.9.5"
+    version: "0.9.5+1"
   dart_board_particles:
     dependency: "direct main"
     description:
       path: "../../features/dart_board_particles"
       relative: true
     source: path
-    version: "1.2.0"
+    version: "1.2.1"
   dart_board_redux:
     dependency: "direct main"
     description:
       path: "../../features/dart_board_redux"
       relative: true
     source: path
-    version: "0.9.2"
+    version: "0.9.2+1"
   dart_board_template_app_bar_sidenav:
     dependency: "direct main"
     description:
       path: "../../templates/dart_board_template_app_bar_sidenav"
       relative: true
     source: path
-    version: "0.9.3"
+    version: "0.9.3+1"
   dart_board_template_bottomnav:
     dependency: "direct main"
     description:
       path: "../../templates/dart_board_template_bottomnav"
       relative: true
     source: path
-    version: "0.9.3"
+    version: "0.9.3+1"
   dart_board_theme:
     dependency: "direct main"
     description:
       path: "../../features/dart_board_theme"
       relative: true
     source: path
-    version: "0.9.3"
+    version: "0.9.3+1"
   dart_style:
     dependency: transitive
     description:
@@ -582,7 +582,7 @@ packages:
       name: provider
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.0.0"
+    version: "6.0.0"
   pub_semver:
     dependency: transitive
     description:

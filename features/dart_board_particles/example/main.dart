@@ -7,6 +7,7 @@ import 'package:dart_board_particles/presets/fire_particle.dart';
 import 'package:dart_board_particles/presets/lighting_particle.dart';
 import 'package:dart_board_particles/presets/rainbow_particle.dart';
 import 'package:dart_board_particles/presets/snow_particle.dart';
+import 'package:flutter/material.dart';
 
 /// Dart Board Particles Example
 void main() => runApp(DartBoard(

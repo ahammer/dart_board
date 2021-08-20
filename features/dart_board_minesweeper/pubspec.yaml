@@ -15,7 +15,7 @@ dependencies:
 
   
   #For provider, for local component with more state  
-  provider: ^5.0.0 
+  provider: ^6.0.0 
 
   #For immutable data types (Prevents bugs, makes Redux easier)
   built_collection: ^5.0.0
