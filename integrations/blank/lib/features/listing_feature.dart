@@ -39,12 +39,24 @@ class _ListingScreenState extends State<ListingScreen> {
                   itemCount: data.length,
                   itemBuilder: (ctx, idx) => ListTile(
                       selected: _selection == idx,
-                      title: Text(data[idx].title),
+                      title: Row(
+                        children: [
+                          Expanded(child: Text(data[idx].title)),
+                          Image.network(
+                            data[idx].image_url,
+                            width: 200,
+                          ),
+                        ],
+                      ),
                       onTap: () {
                         /// Since we use BottomNav we can use the BottomNavMessenger
                         /// to tell BottomNav what tab to show
                         BottomNavMessenger.requestNewRoute(context, "/details");
-                        MainDetailsMessenger.setId(context, idx);
+
+                        /// Since we have a global state for a Main Details screen
+                        /// we can call that here too.
+                        MainDetailsMessenger.setId(
+                            context, idx); //TODO: Switch to remote message
                         setState(() {
                           /// Notify the selection
                           _selection = idx;
