@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:dart_board_core/dart_board.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
 
@@ -63,7 +64,15 @@ class LogFeature extends DartBoardFeature {
 
   @override
   String get namespace => 'logging';
+
+  @override
+  Map<String, MethodCallHandler> get methodHandlers =>
+      const {'showLogRoute': _showLogOverlay};
 }
+
+/// Sample handler to display the log route when this is called.
+Future<dynamic> _showLogOverlay(BuildContext context, MethodCall call) async =>
+    Navigator.of(context).pushNamed(kLogRoute);
 
 class LogWrapper extends StatelessWidget {
   final Widget? child;

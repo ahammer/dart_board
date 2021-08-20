@@ -1,6 +1,7 @@
 import 'package:dart_board_core/dart_board.dart';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class DebugList extends StatelessWidget {
   @override
@@ -66,40 +67,67 @@ class CollapsingList extends StatelessWidget {
     return CustomScrollView(
       slivers: <Widget>[
         ///-------------------------------------------------------------------
-        makeHeader(context, 'Extensions'),
+        makeHeader(context, 'Features'),
         SliverGrid.extent(
-          childAspectRatio: 3,
+          childAspectRatio: 2,
           maxCrossAxisExtent: 300,
           children: [
             ...DartBoardCore.instance.detectedImplementations.keys.map((e) {
               final implementations =
                   DartBoardCore.instance.detectedImplementations[e]!;
+              final feature = DartBoardCore.instance.findByName(e);
 
-              return Card(
-                child: FittedBox(
-                    fit: BoxFit.scaleDown,
-                    child: Column(
-                      children: [
-                        Text(
-                          e,
-                          style: Theme.of(context).textTheme.headline4,
-                        ),
-                        Text('Active: ${implementations[0]}'),
-                        DropdownButton<String>(
-                            onChanged: (value) => DartBoardCore.instance
-                                .setFeatureImplementation(e, value),
-                            value:
-                                DartBoardCore.instance.activeImplementations[e],
-                            items: [
-                              DropdownMenuItem(
-                                  value: null, child: Text('Disabled')),
-                              ...implementations
-                                  .map((e) => DropdownMenuItem(
-                                      value: e, child: Text('$e')))
-                                  .toList()
-                            ]),
-                      ],
-                    )),
+              return ListTile(
+                title: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Column(
+                        children: [
+                          Text(
+                            e,
+                            style: Theme.of(context).textTheme.headline4,
+                          ),
+                          Text('Active: ${implementations[0]}'),
+                          DropdownButton<String>(
+                              onChanged: (value) => DartBoardCore.instance
+                                  .setFeatureImplementation(e, value),
+                              value: DartBoardCore
+                                  .instance.activeImplementations[e],
+                              items: [
+                                DropdownMenuItem(
+                                    value: null, child: Text('Disabled')),
+                                ...implementations
+                                    .map((e) => DropdownMenuItem(
+                                        value: e, child: Text('$e')))
+                                    .toList()
+                              ]),
+                          if (feature.methodHandlers.isNotEmpty) ...[
+                            Text('Active Method Handlers'),
+                            DropdownButton<String>(
+                                onChanged: (value) {
+                                  if (value == null) return;
+
+                                  /// Lets dispatch this with no-args to test remote
+                                  /// call
+                                  DartBoardCore.instance.dispatchMethodCall(
+                                      context: context,
+                                      call: MethodCall(value));
+                                },
+                                value: null,
+                                items: [
+                                  DropdownMenuItem(
+                                      value: null,
+                                      child: Text('Select to Trigger')),
+                                  ...feature.methodHandlers.keys
+                                      .map((e) => DropdownMenuItem(
+                                          value: e, child: Text('$e')))
+                                      .toList()
+                                ]),
+                          ],
+                        ],
+                      )),
+                ),
               );
             })
           ],

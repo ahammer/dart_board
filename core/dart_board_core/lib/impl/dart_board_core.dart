@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/src/services/message_codec.dart';
 import 'package:provider/provider.dart';
 import 'package:logging/logging.dart';
 
@@ -92,6 +93,9 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
   @override
   // All App Decorations
   late List<DartBoardDecoration> appDecorations;
+
+  @override
+  late Map<String, MethodCallHandler> methodHandlers;
 
   @override
   // Deny list for decorations (e.g. "/route:decoration_name")
@@ -233,12 +237,20 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
 
       log.info('Available Page Decorations: $pageDecorations');
 
+      /// Build up app decoration list
       appDecorations = allFeatures.fold<List<DartBoardDecoration>>(
           <DartBoardDecoration>[],
           (previousValue, element) => <DartBoardDecoration>[
                 ...previousValue,
                 ...element.appDecorations
               ]);
+
+      /// Build up the MethodHandler list. First takes priority.
+      methodHandlers = allFeatures.fold<Map<String, MethodCallHandler>>(
+          <String, MethodCallHandler>{},
+          (previousValue, element) => <String, MethodCallHandler>{}
+            ..addAll(element.methodHandlers)
+            ..addAll(previousValue));
 
       log.info('Available App Decorations: $appDecorations');
 
@@ -338,6 +350,18 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
     }
 
     return true;
+  }
+
+  @override
+  Future<dynamic> dispatchMethodCall(
+      {required BuildContext context, required MethodCall call}) async {
+    if (methodHandlers.containsKey(call.method) &&
+        methodHandlers[call.method] != null) {
+      return await methodHandlers[call.method]!(context, call);
+    }
+
+    throw Exception(
+        'You attempted to call ${call.method} but it is not registered to an active feature');
   }
 }
 

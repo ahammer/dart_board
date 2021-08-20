@@ -1,7 +1,5 @@
-import 'dart:io';
-
-import 'package:dart_board_core/dart_board.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 /// Interfaces for Dart Board
@@ -25,6 +23,9 @@ typedef RouteWidgetBuilder = Widget Function(
 typedef RouteBuilder = Route Function(
     RouteSettings settings, WidgetBuilder builder);
 
+typedef MethodCallHandler = Future Function(
+    BuildContext context, MethodCall call);
+
 /// Dart Board Core Interfaces
 ///
 ///
@@ -44,12 +45,12 @@ abstract class DartBoardCore {
       Provider.of<DartBoardCore>(dartBoardNavKey.currentContext!,
           listen: false);
 
-  /// These are the Features
+  /// These are the Features that have been loaded
   ///
-  /// The implementation is responsible for managing this list
-
+  /// Essentially, this is your "app" and how to build everything
   List<DartBoardDecoration> get pageDecorations;
   List<DartBoardDecoration> get appDecorations;
+  Map<String, MethodCallHandler> get methodHandlers;
   List<String> get pageDecorationDenyList;
   List<String> get pageDecorationAllowList;
   Set<String> get whitelistedPageDecorations;
@@ -91,6 +92,12 @@ abstract class DartBoardCore {
 
   /// Check if this route can be resolved
   bool confirmRouteExists(String route);
+
+  /// Send a method call to be picked up by a feature
+  ///
+  /// Helper for deep decoupling of features.
+  Future<dynamic> dispatchMethodCall(
+      {required BuildContext context, required MethodCall call});
 }
 
 ///
@@ -156,6 +163,14 @@ abstract class DartBoardFeature<T> {
   /// This can be used to allow an extension to exclude itself.
   /// E.g. Based on platform
   bool get enabled => true;
+
+  /// This map of method handlers can be used to define callbacks
+  ///
+  /// context will be the BuildContext where this is invoked from
+  ///
+  /// call is the actual call (can contain arguments).
+  ///
+  Map<String, MethodCallHandler> get methodHandlers => {};
 
   @override
   String toString() => namespace;

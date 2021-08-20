@@ -277,6 +277,8 @@ Is where that magic happens.
 
 Although, this is definitely not what we want the cart to do. It's nice to see it on a screen at this point and know that you can click and tap it.
 
+From here, our goals shift to implementing some more useful features.
+
 1) We want to actually get ID's and Quantities into our cart, of real items.
 2) When the cart is triggered, we want to probably show it as a dialog/popup or another route.
 3) We want the cart to be able to actually render each item as well.

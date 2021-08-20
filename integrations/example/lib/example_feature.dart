@@ -106,7 +106,6 @@ class ExampleFeature extends DartBoardFeature {
 
                     <String>[
                       'theme',
-                      'logging',
                       'FireCursor',
                       'Snow',
                       //'Snow'
