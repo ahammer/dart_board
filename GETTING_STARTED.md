@@ -148,3 +148,128 @@ Then we need to show the UI, for this we'll add a PageDecoration that will displ
 the existing pages, and exclude it from other's later (like our login flow)
 
 #### Implementation
+
+1. Create the file and class
+
+```
+import 'package:dart_board_core/dart_board.dart';
+
+class CartFeature extends DartBoardFeature {
+  @override
+  String get namespace => "Cart";
+}
+```
+
+We want a new feature, with it's own namespace.
+
+Next, we'll want to add the PageDecoration that will apply the cart.
+
+`DartBoardDecoration` class is used to apply a decoration. To do this you provide a Builder function that also gives a Child `WidgetWithChildBuilder` aka `Widget function(BuildContext context, Widget child)`. The contract is that the child must be returned, but you can wrap it or "decorate" it.
+
+For this, we'll want a widget that takes a child, applies it in a Stack with a button for the Cart.
+
+```
+class CartOverlay extends StatelessWidget {
+  final Widget child;
+
+  const CartOverlay({Key? key, required this.child}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) => Stack(
+        children: [
+          child,
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Padding(
+              padding: const EdgeInsets.all(24.0),
+              child: FloatingActionButton(
+                onPressed: () {},
+                child: Icon(Icons.shopping_basket),
+              ),
+            ),
+          )
+        ],
+      );
+}
+```
+
+This widget puts a Floating Action Button, with a Shopping Basket in the bottom Right of the Screen.
+
+To activate this widget in our application, first we need to add the pageDecoration to the `CartFeature` class
+
+```
+  @override
+  List<DartBoardDecoration> get pageDecorations => [
+        DartBoardDecoration(
+            name: "CartOverlay",
+            decoration: (ctx, child) => CartOverlay(child: child))
+      ];
+```
+
+Now is also a good time to register the Cart Feature. 
+
+Go back to your `main.dart` and add `CartFeature()` to your lists of features. Restart your application and you should see the cart icon.
+
+
+
+Currently, there is no State to this Cart though, and we are going to want to interact with it. Next lets create a model.
+
+```
+class CartState extends ChangeNotifier {
+  int items = 0;
+  void addItem() {
+    items++;
+    notifyListeners();
+  }
+}
+```
+
+Now to actually use the Locator, add `dart_board_locator` to your pubspec.yaml and fetch dependencies
+
+And now to make an instance of this globally accessible, back in your `CartFeature` add the following.
+
+```
+  @override
+  List<DartBoardDecoration> get appDecorations =>
+      [LocatorDecoration(() => CartState())];
+
+  @override
+  List<DartBoardFeature> get dependencies => [DartBoardLocatorFeature()];
+```
+
+This applies a `LocatorDecoration` in your feature at that app level, which can provide the `CartState` class. Simply use `Locate<CartState>()` and you'll get the global instance from anywhere.
+
+Next we can hook that up to the UI
+
+in our `FloatingActionButton` that lives in the `CartOverlay` class we created before, you can wire up to addItem now by replacing 
+`onPressed:locate<CartState>().addItem` which will trigger the method.
+
+underneath the shopping cart, we want to show a count. Ultimately our FloatingActionButton ends up looking like this.
+
+```
+FloatingActionButton(   
+   /// Trigger the "Cart Counter" for now
+   onPressed: locate<CartState>().addItem,
+   child: Column(
+   mainAxisSize: MainAxisSize.min,
+   children: [
+      Icon(Icons.shopping_basket),
+      locate<CartState>().builder<CartState>(
+         (context, value) => Text("${value.items}"))
+   ],
+   ),
+)
+```            
+
+Of note is how we handle the updating.
+
+```
+locate<CartState>()
+   .builder<CartState>((context, value) => Text("${value.items}"))
+```
+
+Is where that magic happens.
+
+1) Locator finds your class
+2) `.builder((ctx, value) => widget)` is a extension on ChangeNotifier. It automatically constructs a "RebuildingWidget" around it.
+3) Each time it triggers a build, you show the new value.

@@ -58,24 +58,30 @@ class LongRecord extends ShortRecord {
   }) : super(id: id, title: title, price: price, image_url: image_url);
 }
 
-/// This messenger is used to pass messages to the bound repository
-///
-/// This is syntactic sugar for the apps to use.
-class RepositoryMessenger {
-  static Future<List<ShortRecord>> performSearch(BuildContext context) =>
-      Provider.of<Repository>(context, listen: false).performSearch();
-  static Future<LongRecord> fetchDetails(BuildContext context, int id) =>
-      Provider.of<Repository>(context, listen: false).fetchDetails(id);
-}
-
 /// This is the interface for a Repository
 ///
 /// It can pull a list of records or a long record by ID
 /// In our case ID = idx of the record
-
 abstract class Repository {
   Future<List<ShortRecord>> performSearch();
   Future<LongRecord> fetchDetails(int id);
+}
+
+/// This messenger is used to pass messages to the bound repository
+///
+/// This is syntactic sugar for the apps to use.
+/// i.e.
+/// `RepositoryMessenger.performSearch(context)`
+/// or
+/// `RepositoryMessenger.fetchDetails(context, id)`
+class RepositoryMessenger {
+  /// Perform a "search"
+  static Future<List<ShortRecord>> performSearch(BuildContext context) =>
+      context.read<Repository>().performSearch();
+
+  /// Fetch the "details"
+  static Future<LongRecord> fetchDetails(BuildContext context, int id) =>
+      context.read<Repository>().fetchDetails(id);
 }
 
 /// This is a mock repository

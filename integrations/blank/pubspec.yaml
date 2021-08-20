@@ -19,6 +19,9 @@ dependencies:
   # A general template for bottom navigation.
   dart_board_template_bottomnav:
 
+  # Locator pattern, used by the Cart
+  dart_board_locator:
+
   # This library generates fake mock data.
   faker_dart:
 

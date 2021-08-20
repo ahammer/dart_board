@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 ///
 /// That's what this is for, so you can convert ChangeNotifiers into widgets
 ///
-///
+/// Since this is on ChangeNotifier, you'll need to specify your type again
 extension ChangeNotifierBuilderExtension on ChangeNotifier {
   Widget builder<T extends ChangeNotifier>(
           Widget Function(BuildContext context, T value) handler) =>

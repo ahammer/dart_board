@@ -4,6 +4,7 @@ import 'package:dart_board_debug/debug_feature.dart';
 import 'package:dart_board_template_bottomnav/dart_board_template_bottomnav.dart';
 import 'package:flutter/material.dart';
 
+import 'features/cart_feature.dart';
 import 'features/details_feature.dart';
 import 'features/listing_feature.dart';
 
@@ -17,6 +18,7 @@ void main() {
       RepositoryFeature(repository: MockRepository()),
       DetailsFeature(),
       ListingFeature(),
+      CartFeature(),
       DebugFeature(),
       BottomNavTemplateFeature(route: '/home', config: _templateConfig)
     ],
