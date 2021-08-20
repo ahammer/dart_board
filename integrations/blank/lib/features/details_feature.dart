@@ -1,6 +1,7 @@
 import 'package:dart_board_core/dart_board.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 import 'repository_feature.dart';
 
@@ -92,7 +93,48 @@ class _DetailsScreenState extends State<DetailsScreen> {
       builder: (ctx, snapshot) {
         if (snapshot.hasData && snapshot.data != null) {
           final data = snapshot.data!;
-          return Text(data.title);
+          var textTheme = Theme.of(context).textTheme;
+          return Stack(
+            children: [
+              FadeInImage.memoryNetwork(
+                placeholder: kTransparentImage,
+                image: data.image_url,
+                fit: BoxFit.cover,
+                width: double.infinity,
+                height: double.infinity,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  width: 300,
+                  child: Card(
+                      child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          data.title,
+                          style: textTheme.headline3,
+                        ),
+                        Text(
+                          data.price,
+                          style: textTheme.headline4,
+                        ),
+                        Container(
+                          height: 48,
+                        ),
+                        Text(
+                          data.description,
+                          style: textTheme.bodyText1,
+                        ),
+                      ],
+                    ),
+                  )),
+                ),
+              ),
+            ],
+          );
         } else {
           return LinearProgressIndicator();
         }

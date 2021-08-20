@@ -72,6 +72,8 @@ class BottomNavTemplateFeature extends DartBoardFeature {
 }
 
 class BottomNavTemplate extends StatelessWidget {
+  const BottomNavTemplate();
+
   @override
   Widget build(BuildContext context) {
     return Consumer<BottomNavTemplateState>(
@@ -89,7 +91,7 @@ class BottomNavTemplate extends StatelessWidget {
             ),
           ),
           bottomNavigationBar: BottomNavigationBar(
-            elevation: 3,
+            elevation: 1,
             type: BottomNavigationBarType.shifting,
             items: <BottomNavigationBarItem>[
               ...active

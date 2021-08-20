@@ -81,15 +81,17 @@ abstract class Repository {
 /// This is a mock repository
 class MockRepository extends Repository {
   /// Internal record list, we generate on the fly.
-  late final List<LongRecord> _records = List.generate(
-      200,
-      (index) => LongRecord(
-          id: index,
-          image_url: Faker.instance.image.unsplash.nature(),
-          title: Faker.instance.animal.animal(),
-          price: Faker.instance.commerce.price(),
-          description: Faker.instance.commerce.productDescription(),
-          companyName: Faker.instance.company.bsNoun()));
+  late final List<LongRecord> _records = List.generate(200, (index) {
+    final city = Faker.instance.address.country();
+    return LongRecord(
+        id: index,
+        image_url:
+            Faker.instance.image.unsplash.nature(w: 200, h: 200, keyword: city),
+        title: city,
+        price: Faker.instance.commerce.price(),
+        description: Faker.instance.commerce.productDescription(),
+        companyName: Faker.instance.company.bsNoun());
+  });
 
   @override
   Future<List<ShortRecord>> performSearch() async {

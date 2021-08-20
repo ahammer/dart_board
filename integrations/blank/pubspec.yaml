@@ -22,6 +22,9 @@ dependencies:
   # This library generates fake mock data.
   faker_dart:
 
+  # This is used for image-fading
+  transparent_image:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
