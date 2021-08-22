@@ -141,14 +141,14 @@ Then start working to rebuild the feature, using this guide and the completed co
 So a cart itself is going to have a few sub-tasks/components.
 
 1. A cart should show as a floating action button when items are in it
-2. Items should be able to be added to the cart on both screens
+2. Items should be able to be added to the cart indirectly, from features that don't know directly about Cart.
 3. You should be able to view your cart
+4. You should be able to clear your cart and start a checkout process.
 
 To do this, we are going to introduce a new `DartBoardFeature` this time we'll call it `CartFeature`
 
 `CartFeature` will export some routes. 
-- `/cart` To show the contents of a cart
-- `/add_to_cart` To expose a add to cart button
+- `/view_cart` To show the contents of a cart
 
 
 It'll also need to export some *app state* for tracking the cart. For this we can use Locator to export a `CartState` class that keeps track of the items in the cart. To add locator we'll need to also add `dart_board_locator` to our pubspec.yaml
