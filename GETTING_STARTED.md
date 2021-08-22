@@ -123,8 +123,7 @@ routes into a single screen, (e.g. tabs with the bottom nav). You provide it a c
 At this point you should have the app running. But lets say that we want to add a few new stories.
 
 1. As a user I'd like to add items to a cart
-2. As a user I'd like to be able to sign in with google
-3. As a user I'd like to start a checkout flow
+2. As a user I'd like to start a checkout flow
 
 So lets work through these features together.
 
