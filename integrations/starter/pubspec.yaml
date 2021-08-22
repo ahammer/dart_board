@@ -1,5 +1,5 @@
-name: blank
-description: A blank placeholder for a dart-board application
+name: starter
+description: A tutorial project that can be used as a template for new projects.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 

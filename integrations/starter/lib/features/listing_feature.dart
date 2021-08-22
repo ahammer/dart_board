@@ -1,9 +1,9 @@
-import 'package:blank/features/details_feature.dart';
 import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_template_bottomnav/state/bottom_nav_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:transparent_image/transparent_image.dart';
+import 'details_feature.dart';
 import 'repository_feature.dart';
 
 class ListingFeature extends DartBoardFeature {
@@ -91,8 +91,7 @@ class _ListingScreenState extends State<ListingScreen> {
 
                         /// Since we have a global state for a Main Details screen
                         /// we can call that here too.
-                        MainDetailsMessenger.setId(
-                            context, idx); //TODO: Switch to remote message
+                        MainDetailsMessenger.setId(context, idx);
                         setState(() {
                           /// Notify the selection
                           _selection = idx;

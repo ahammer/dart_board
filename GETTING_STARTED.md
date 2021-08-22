@@ -1,7 +1,7 @@
 # Getting Started with Dart Board
 https://dart-board.io
 
-This "blank" template in `integrations/blank` provides a good starting point with Dart-Board.
+This "starter" template in `integrations/starter` provides a good starting point with Dart-Board.
 
 However you can also start from scratch.
 
@@ -34,22 +34,22 @@ You want to create your own project from scratch.
            initial_route:"/debug"))
    ```
 
-You can also reference the [main.dart](https://github.com/ahammer/dart_board/blob/master/integrations/blank/lib/main.dart)
+You can also reference the [main.dart](https://github.com/ahammer/dart_board/blob/master/integrations/starter/lib/main.dart)
 
 
 This will give you a Flutter app that launches right into the built in debug().
 
 
-### Option B) Port `Blank`
+### Option B) Port `starter`
 
-1. Copy `blank` from integrations into your own directory/project. Rename the directory to your project name. (e.g. `blank` -> `MyStore`)
+1. Copy `starter` from integrations into your own directory/project. Rename the directory to your project name. (e.g. `starter` -> `MyStore`)
 2. Edit the pubspec.yaml and update the name, it should match the folder (i.e. `MyStore`)
 3. Run and Build.
 
 
 ## The first 3 Features
 
-Now I'll give a run down of the 3 Features used in "Blank" to give some scaffolding. If you chose option A, you should work to re-implement this code. If you chose option B, this will serve as a detailed explanation of these steps.
+Now I'll give a run down of the 3 Features used in "starter" to give some scaffolding. If you chose option A, you should work to re-implement this code. If you chose option B, this will serve as a detailed explanation of these steps.
 
 For this section, I'm going to recommend checking out each file and reading the comments, as it'll guide you through them in the most up to date way.
 
@@ -60,7 +60,7 @@ Provides a repository for the Listings and Details features to use. The reposito
 The way this feature works is by providing a `DartBoardDecoration` to the `appDecorations` scope. This decoration uses `Provider`
 to serve up a `Repository` interface that is supplied to the feature.
 
-[repository_feature.dart](https://github.com/ahammer/dart_board/blob/master/integrations/blank/lib/features/repository_feature.dart)
+[repository_feature.dart](https://github.com/ahammer/dart_board/blob/master/integrations/starter/lib/features/repository_feature.dart)
 
 
 ### ListingsFeature
@@ -69,14 +69,14 @@ Provides the `/listings` route that shows the results
 
 The way this feature works is by getting the repository and doing a `search` then putting the results in a `ListView`
 
-[listing_feature.dart](https://github.com/ahammer/dart_board/blob/master/integrations/blank/lib/features/listing_feature.dart)
+[listing_feature.dart](https://github.com/ahammer/dart_board/blob/master/integrations/starter/lib/features/listing_feature.dart)
 
 
 ### DetailsFeature
 
 Provides the `/details` route, and also provides app-level state to track the current selection.
 
-[details_feature.dart](https://github.com/ahammer/dart_board/blob/master/integrations/blank/lib/features/details_feature.dart)
+[details_feature.dart](https://github.com/ahammer/dart_board/blob/master/integrations/starter/lib/features/details_feature.dart)
 
 
 ### How it all comes together.
@@ -131,7 +131,7 @@ So lets work through these features together.
 ### Cart Feature
 
 Here we will go about "adding" a cart. I've already taken the liberty of coding it up and including it in `cart_feature_complete.dart`
-which can be used for reference. As you can see by running the `blank` template, the Cart is already activated, but can be easily removed.
+which can be used for reference. As you can see by running the `starter` template, the Cart is already activated, but can be easily removed.
 
 #### Removal of existing `cart` to start this tutorial
 
@@ -719,7 +719,7 @@ Having a soft feature will lessen the amount of dependencies you have, but incre
 
 3) Resolving and configuring dependencies. It's first-come first serve. So in the case of something like the RepositoryFeature() that is defined as a dependency in listing/details feature with the MockRepository(), if you define ReposityFeature(repository: YourRepository()), in the main before Listing/Details feature are loaded, it will take that config. The fact that it's registered as a dependency twice just mean's it's ignored the second time it's seen.
 
-4) I recommend breaking features into flutter modules (don't build a monolithic feature pile). Use pub (git dependencies + melos recommended) to scope your hard and soft dependencies. Your integration/app project should bring in features and contain config, but ideally not contain features itself (outside of an integration feature). The features themselves should be scoped down as much as possible. While the "blank" feature does shoehorn a bunch of features together, things should be more like `PlayGround` where the actual features are brought in, and all that is in the Main.dart is essentially config and feature selection. 
+4) I recommend breaking features into flutter modules (don't build a monolithic feature pile). Use pub (git dependencies + melos recommended) to scope your hard and soft dependencies. Your integration/app project should bring in features and contain config, but ideally not contain features itself (outside of an integration feature). The features themselves should be scoped down as much as possible. While the "starter" feature does shoehorn a bunch of features together, things should be more like `PlayGround` where the actual features are brought in, and all that is in the Main.dart is essentially config and feature selection. 
 
 5) I also recommend that each runner/app uses an "Integration" feature, similar to `PlayGround`. Using an integration features can be looked at as the "wiring interface" for the app.
 

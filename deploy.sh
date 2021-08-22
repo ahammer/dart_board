@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd integrations/blank
+cd integrations/starter
 flutter build web --release
 firebase deploy
 
