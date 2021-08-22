@@ -652,6 +652,41 @@ Here we got 2 styled up buttons, dropped in. One triggers the clearCart and a po
 
 For checkout, we are just going to mock it and call this tutorial complete.
 
+```
+class MockCheckoutFeature extends DartBoardFeature {
+  @override
+  String get namespace => "Checkout";
+
+  @override
+  List<DartBoardFeature> get dependencies => [];
+
+  @override
+  Map<String, MethodCallHandler> get methodHandlers => {
+        "startCheckout": (context, call) async {
+          Navigator.of(context).pop();
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text('Checkout Flow Triggered')));
+        }
+      };
+}
+```
+
+and finally, register this MockCheckoutFeature and you are ready to pass the torch from Cart to Checkout.
+
+How you implement checkout would ultimately be up to you. You can take the same "soft dependency" approach and create an API and contract to interact with the feature using `MethodCalls` and `Routes` or, you could bring in `RepositoryFeature` and `CartFeature` and directly access the classes such as `CartState` and `RepositoryMessenger` within your code safely.
+
+**Congratulations**. If you made it this far. You've completed the Dart Board tutorial. Have fun crafting. This covered a vast range of the tools at your disposal to create and encapsulate your features and minimize their dependencies. You can see this in our `CartFeature` which only has 4 imports at this point. All the implementation details including underlying data and UI presentation have been hidden and abstracted away from the feature, leaving you an easily mocked, standalone feature.
+
+```
+import 'package:dart_board_core/dart_board.dart';
+import 'package:dart_board_locator/dart_board_locator.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+```
+
+
+
+
 
 
 Footnote:
