@@ -31,7 +31,7 @@ Dart Board provides an entry point to your Flutter Application.
 
 You are able to register your features into it's registry and they become available to your application. 
 
-Features have the ability to hook into your app in a variety of ways, such as: Expose Route's, Decorate the App or each Page with a variety of decorations.
+Features have the ability to hook into your app in a variety of ways, such as: Router support, app and page decorations, remote method call handlers and more.
 
 You start it by giving your features and initialRoute and it's good to go.
 
