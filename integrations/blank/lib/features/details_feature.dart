@@ -10,7 +10,14 @@ class DetailsFeature extends DartBoardFeature {
   List<RouteDefinition> get routes => [
         NamedRouteDefinition(
             route: "/details",
-            builder: (settings, context) => MainDetailsScreen())
+            builder: (settings, context) => MainDetailsScreen()),
+        NamedRouteDefinition(
+            route: "/details_by_id",
+            builder: (settings, context) {
+              dynamic args = settings.arguments;
+
+              return DetailsScreen(id: args["id"]);
+            })
       ];
 
   @override
@@ -24,6 +31,10 @@ class DetailsFeature extends DartBoardFeature {
 
   @override
   String get namespace => "DetailsFeature";
+
+  @override
+  List<DartBoardFeature> get dependencies =>
+      [RepositoryFeature(repository: MockRepository())];
 }
 
 // State for the "Main" route inside the tabs
@@ -108,27 +119,29 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 child: Container(
                   width: 300,
                   child: Card(
-                      child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          data.title,
-                          style: textTheme.headline3,
-                        ),
-                        Text(
-                          data.price,
-                          style: textTheme.headline4,
-                        ),
-                        Container(
-                          height: 48,
-                        ),
-                        Text(
-                          data.description,
-                          style: textTheme.bodyText1,
-                        ),
-                      ],
+                      child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            data.title,
+                            style: textTheme.headline3,
+                          ),
+                          Text(
+                            data.price,
+                            style: textTheme.headline4,
+                          ),
+                          Container(
+                            height: 48,
+                          ),
+                          Text(
+                            data.description,
+                            style: textTheme.bodyText1,
+                          ),
+                        ],
+                      ),
                     ),
                   )),
                 ),

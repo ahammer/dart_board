@@ -16,10 +16,10 @@ class RouteWidget extends StatelessWidget {
       {Key? key, required this.settings, this.decorate = false})
       : super(key: key);
 
-  factory RouteWidget(String initialRoute,
+  factory RouteWidget(String route,
           {dynamic args, bool decorate = false, Key? key}) =>
       RouteWidget._internal(
-          settings: RouteSettings(name: initialRoute, arguments: args),
+          settings: RouteSettings(name: route, arguments: args),
           decorate: decorate,
           key: key);
 

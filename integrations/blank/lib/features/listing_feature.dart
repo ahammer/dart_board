@@ -2,6 +2,7 @@ import 'package:blank/features/details_feature.dart';
 import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_template_bottomnav/state/bottom_nav_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'repository_feature.dart';
 
@@ -14,6 +15,10 @@ class ListingFeature extends DartBoardFeature {
 
   @override
   String get namespace => "ListingsFeature";
+
+  @override
+  List<DartBoardFeature> get dependencies =>
+      [RepositoryFeature(repository: MockRepository())];
 }
 
 final _listingsScreen = ListingScreen();
@@ -46,18 +51,36 @@ class _ListingScreenState extends State<ListingScreen> {
                             data[idx].title,
                             style: Theme.of(context).textTheme.headline3,
                           )),
-                          Container(
-                            width: 200,
-                            height: 200,
-                            child: Material(
-                              elevation: 2,
-                              child: FadeInImage.memoryNetwork(
-                                placeholder: kTransparentImage,
-                                image: data[idx].image_url,
-                                fit: BoxFit.cover,
+                          Stack(
+                            children: [
+                              Container(
                                 width: 200,
+                                height: 200,
+                                child: Material(
+                                  elevation: 2,
+                                  child: FadeInImage.memoryNetwork(
+                                    placeholder: kTransparentImage,
+                                    image: data[idx].image_url,
+                                    fit: BoxFit.cover,
+                                    width: 200,
+                                  ),
+                                ),
                               ),
-                            ),
+                              Card(
+                                  child: InkWell(
+                                      onTap: () {
+                                        DartBoardCore.instance
+                                            .dispatchMethodCall(
+                                                context: context,
+                                                call: MethodCall(
+                                                    "addItemToCart",
+                                                    {"id": data[idx].id}));
+                                      },
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text("Add"),
+                                      )))
+                            ],
                           ),
                         ],
                       ),
