@@ -509,10 +509,10 @@ Our new route is as defined for now. It simply echo's the arguments. This will l
       builder: (settings, ctx) => Text("${settings.arguments}"))
 ```
 
-Then we hop over to our Cart View, and use RouteWidget to embed previews
+Then we hop over to our Cart View and it's time for some refactors. We want can finish up the CartView now.
 
-our updated CartView will look like this. 
-We are going to stack it up, put the Quantity a bit nicer, and use the details.
+1) I'm going to put a list of items/quantities, with buttons that overlay it to Clear and Submit the cart.
+2) 
 
 
 ```
@@ -522,38 +522,138 @@ class CartView extends StatelessWidget {
   const CartView({required this.itemPreviewRoute});
 
   @override
-   Widget build(BuildContext context) =>
-      locate<CartState>().builder<CartState>((context, cartState) => Material(
-          child: ListView.builder(
-              itemBuilder: (ctx, idx) {
-                final id = cartState.items[idx];
-                final quantity = cartState.getQuantity(id);
-                return Stack(
-                  children: [
-                    Expanded(
-                        child: Container(
-                      height: 300,
-                      child: RouteWidget(
-                        itemPreviewRoute,
-                        args: {"id": id},
-                      ),
-                    )),
-                    Align(
-                        alignment: Alignment.topRight,
-                        child: Card(
-                            child: Text(
-                          " x $quantity ",
-                          style: Theme.of(context).textTheme.headline5,
-                        ))),
-                  ],
-                );
-              },
-              itemCount: cartState.items.length)));
+  Widget build(BuildContext context) => locate<CartState>()
+      .builder<CartState>((context, cartState) => cartState.items.length == 0
+          ? Center(child: Material(child: Text("Nothing in cart")))
+          : Material(
+              child: Stack(
+              children: [
+                ListView.builder(
+                    itemBuilder: (ctx, idx) => CartItem(
+                          itemPreviewRoute: itemPreviewRoute,
+                          id: cartState.items[idx],
+                        ),
+                    itemCount: cartState.items.length),
+                CartActionButtons()
+              ],
+            )));
 }
 ```
-We need to update the Feature to also take in the `itemPreviewRoute` so that the CartView knows what to inflate.
+
+
+This also introduces 2 new Widgets for refactoring, because I don't want CartView to get out of hand. `CartItem` and `CartActionButtons`
+
+```
+/// Represents a row in the "cart". Delegates to the Preview Routes
+/// Shows "remove item" and quantity on stack.
+class CartItem extends StatelessWidget {
+  const CartItem({
+    Key? key,
+    required this.itemPreviewRoute,
+    required this.id,
+  }) : super(key: key);
+
+  final String itemPreviewRoute;
+  final int id;
+
+  @override
+  Widget build(BuildContext context) => Container(
+        height: 300,
+        child: Stack(
+          children: [
+            Container(
+              height: double.infinity,
+              width: double.infinity,
+              child: RouteWidget(
+                itemPreviewRoute,
+                args: {"id": id},
+              ),
+            ),
+            Align(
+                alignment: Alignment.topRight,
+                child: Card(
+                    child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      " x ${locate<CartState>().getQuantity(id)} ",  // <--- Show the Quantity
+                      style: Theme.of(context).textTheme.headline5,
+                    ),
+                    MaterialButton(
+                        onPressed: () => locate<CartState>().removeItem(id), // <--- Show and write the "Remove" button
+                        child: Text("remove"))
+                  ],
+                ))),
+          ],
+        ),
+      );
+}
+```
+
+As for the `CartActionButtons`, we are going to put 2 buttons in the bottom right of the frame. 
+
+The `Start Checkout` button will dispatch the `startCheckout` method which can then pass the torch to another feature.
+
+The `Clear Cart` button does exactly that, and pops the view so you go back to where you came from.
+
+```
+
+class CartActionButtons extends StatelessWidget {
+  const CartActionButtons({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Align(
+      alignment: Alignment.bottomRight,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          MaterialButton(
+            color: theme.colorScheme.primaryVariant,
+            onPressed: () {
+              /// Close the dialog
+              Navigator.of(context).pop();
+
+              /// Clear the cart
+              locate<CartState>().clearCart();
+            },
+            child: Text(
+              "Clear Cart",
+              style: theme.textTheme.headline4!
+                  .copyWith(color: theme.colorScheme.onPrimary),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: MaterialButton(
+              color: theme.colorScheme.primary,
+              onPressed: () {
+                /// Message the system to start the checkout flow
+                DartBoardCore.instance.dispatchMethodCall(
+                    context: context, call: MethodCall("startCheckout"));
+              },
+              child: Text(
+                "Start Checkout",
+                style: theme.textTheme.headline4!
+                    .copyWith(color: theme.colorScheme.onPrimary),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+```
+
+
+Lastly need to update the Feature to also take in the `itemPreviewRoute` so that the CartView knows what to inflate.
 
 For, that, we'll want to update our CardFeature a bit.
+
 ```
 
 class CartFeature extends DartBoardFeature {
@@ -583,82 +683,15 @@ To specify the config is easy. Just go back to your `main.dart` and give the rou
 
 Now when you run it all, you should be able to see The cart, click the icon, see the items with a preview that matches the detail page.
 
-We are going to start doing the final steps and get this cart-preview left in a state where you can start building a `checkout_feature.dart`. However, I'm going to leave that up to your own adventure.
+Congrat's, at this point your CartFeature is **done** congratulations. At least for this tutorial. There is one final step though. We left the checkout dangling. We dispatch a method, but we don't do anything with it. This is a great entry point into another feature.
 
-To finalize this portion of the project, we are going to want to add a few buttons to our CartView. I'm going to run through these steps really quick, so hold on. There are not many new concepts at this point however.
-
-1) Remove Item button (to remove 1 quantity of 1 item from the cart)
-2) Clear cart button
-3) Proceed to Checkout
-
-
-For 1 we are going to simply add the button under the quantity in our CartView. You can wrap it in a Column to get that going.
-
-e.g.
-```
-   MaterialButton(
-      onPressed: () =>
-         locate<CartState>().removeItem(id),
-      child: Text("remove"))
-```                        
-
-For 2,3) We are going to put a Stack on top of our List in `CartView`, and we are going to put two buttons in the bottom right.
-
-
-```
-  Align(
-   alignment: Alignment.bottomRight,
-   child: Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-      MaterialButton(
-         color: theme.colorScheme.primaryVariant,
-         onPressed: () {
-            /// Close the dialog
-            Navigator.of(context).pop();
-
-            /// Clear the cart
-            locate<CartState>().clearCart();
-         },
-         child: Text(
-            "Clear Cart",
-            style: theme.textTheme.headline4!
-               .copyWith(color: theme.colorScheme.onPrimary),
-         ),
-      ),
-      Padding(
-         padding: const EdgeInsets.all(8.0),
-         child: MaterialButton(
-            color: theme.colorScheme.primary,
-            onPressed: () {
-            /// Message the system to start the checkout flow
-            DartBoardCore.instance.dispatchMethodCall(
-                  context: context,
-                  call: MethodCall("startCheckout"));
-            },
-            child: Text(
-            "Start Checkout",
-            style: theme.textTheme.headline4!
-                  .copyWith(color: theme.colorScheme.onPrimary),
-            ),
-         ),
-      ),
-      ],
-   ),
-)
-```                  
-
-Here we got 2 styled up buttons, dropped in. One triggers the clearCart and a pops the nav stack to clear the dialog. The other calls the method calls startCheckout to get pass the torch to the next feature `checkout`
-
-For checkout, we are just going to mock it and call this tutorial complete.
+In this case, `MockCheckoutFeature` will be created and registered with the DartBoard() widget, this will be able to accept the method
+and proceed with checkout. For out Mock/Stub, we'll just be showing a SnackBar to acknowledge we saw it, and popping the checkout dialog from the navigator.
 
 ```
 class MockCheckoutFeature extends DartBoardFeature {
   @override
   String get namespace => "Checkout";
-
-  @override
-  List<DartBoardFeature> get dependencies => [];
 
   @override
   Map<String, MethodCallHandler> get methodHandlers => {
@@ -671,23 +704,8 @@ class MockCheckoutFeature extends DartBoardFeature {
 }
 ```
 
-and finally, register this MockCheckoutFeature and you are ready to pass the torch from Cart to Checkout.
 
-How you implement checkout would ultimately be up to you. You can take the same "soft dependency" approach and create an API and contract to interact with the feature using `MethodCalls` and `Routes` or, you could bring in `RepositoryFeature` and `CartFeature` and directly access the classes such as `CartState` and `RepositoryMessenger` within your code safely.
-
-**Congratulations**. If you made it this far. You've completed the Dart Board tutorial. Have fun crafting. This covered a vast range of the tools at your disposal to create and encapsulate your features and minimize their dependencies. You can see this in our `CartFeature` which only has 4 imports at this point. All the implementation details including underlying data and UI presentation have been hidden and abstracted away from the feature, leaving you an easily mocked, standalone feature.
-
-```
-import 'package:dart_board_core/dart_board.dart';
-import 'package:dart_board_locator/dart_board_locator.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-```
-
-
-
-
-
+**Congratulations**. If you made it this far. You've completed the Dart Board tutorial. Have fun crafting. This covered a vast range of the tools at your disposal to create and encapsulate your features and minimize their dependencies. Our little `CartFeature` implemented during this portion of the excercise has 0 direct dependencies on Listings/Details or Repository, despite leveraging them for integration. This feature could be moved to it's own module, and via mocked interfaces and stubs can be developed 100% independently of other features.
 
 Footnote:
 
@@ -695,9 +713,14 @@ This tutorial was organized in a way to cover a lot of topics very quickly, but 
 
 1) No magic numbers/strings. I know I use them extensively but it's preferred to have config stored in the feature and passed to the children. E.g. for the row-height of the cart-preview or any hard coded strings. This can go as far as configuration options for route, implementation name, namespace etc. It will give you the ability to load the feature more than once if necessary. For example, templates have configurations that allow them to be registered multiple times without conflict.
 
-2) You can have hard and soft dependencies. In the cast of Listing/Details features, they both have a hard dependency on repository. This means the code doesn't need indirection. The feature can directly provide code and widgets. Soft features are features like Cart, that don't know about the repository or the details screen, even though they use those features indirectly. Hard features are harder to swap, but in some cases are the right approach. E.g. with a repository, using methodCall would be burdensome if you need access to models. 
+2) You can have hard and soft dependencies. In the case of Listing/Details features, they both have a hard dependency on repository. This means the code doesn't need indirection. The feature can directly provide code and widgets. Soft features are features like Cart, that don't know about the repository or the details screen, even though they use those features indirectly. Hard features are harder to swap, but in some cases are the right approach. E.g. with a repository, using methodCall would be burdensome if you need access to models. 
 
 Having a soft feature will lessen the amount of dependencies you have, but increase the complexity of your contract between features. There isn't a right or wrong way here. Generally though, soft features whenever viable, and hard features if they have a strong general use case (models, business logic, repositories), or provide framework features (e.g. decorations) for a feature to use.
 
 3) Resolving and configuring dependencies. It's first-come first serve. So in the case of something like the RepositoryFeature() that is defined as a dependency in listing/details feature with the MockRepository(), if you define ReposityFeature(repository: YourRepository()), in the main before Listing/Details feature are loaded, it will take that config. The fact that it's registered as a dependency twice just mean's it's ignored the second time it's seen.
+
+4) I recommend breaking features into flutter modules (don't build a monolithic feature pile). Use pub (git dependencies + melos recommended) to scope your hard and soft dependencies. Your integration/app project should bring in features and contain config, but ideally not contain features itself (outside of an integration feature). The features themselves should be scoped down as much as possible. While the "blank" feature does shoehorn a bunch of features together, things should be more like `PlayGround` where the actual features are brought in, and all that is in the Main.dart is essentially config and feature selection. 
+
+5) I also recommend that each runner/app uses an "Integration" feature, similar to `PlayGround`. Using an integration features can be looked at as the "wiring interface" for the app.
+
 

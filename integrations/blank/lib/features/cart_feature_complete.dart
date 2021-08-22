@@ -85,97 +85,116 @@ class CartView extends StatelessWidget {
   const CartView({required this.itemPreviewRoute});
 
   @override
-  Widget build(BuildContext context) =>
-      locate<CartState>().builder<CartState>((context, cartState) {
-        final theme = Theme.of(context);
-
-        return cartState.items.length == 0
-            ? Center(child: Material(child: Text("Nothing in cart")))
-            : Material(
-                child: Stack(
-                children: [
-                  ListView.builder(
-                      itemBuilder: (ctx, idx) {
-                        final id = cartState.items[idx];
-                        final quantity = cartState.getQuantity(id);
-                        return Container(
-                          height: 300,
-                          child: Stack(
-                            children: [
-                              Expanded(
-                                  child: Container(
-                                height: double.infinity,
-                                child: RouteWidget(
-                                  itemPreviewRoute,
-                                  args: {"id": id},
-                                ),
-                              )),
-                              Align(
-                                  alignment: Alignment.topRight,
-                                  child: Card(
-                                      child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Text(
-                                        " x $quantity ",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline5,
-                                      ),
-                                      MaterialButton(
-                                          onPressed: () => locate<CartState>()
-                                              .removeItem(id),
-                                          child: Text("remove"))
-                                    ],
-                                  ))),
-                            ],
-                          ),
-                        );
-                      },
-                      itemCount: cartState.items.length),
-                  Align(
-                    alignment: Alignment.bottomRight,
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        MaterialButton(
-                          color: theme.colorScheme.primaryVariant,
-                          onPressed: () {
-                            /// Close the dialog
-                            Navigator.of(context).pop();
-
-                            /// Clear the cart
-                            locate<CartState>().clearCart();
-                          },
-                          child: Text(
-                            "Clear Cart",
-                            style: theme.textTheme.headline4!
-                                .copyWith(color: theme.colorScheme.onPrimary),
-                          ),
+  Widget build(BuildContext context) => locate<CartState>()
+      .builder<CartState>((context, cartState) => cartState.items.length == 0
+          ? Center(child: Material(child: Text("Nothing in cart")))
+          : Material(
+              child: Stack(
+              children: [
+                ListView.builder(
+                    itemBuilder: (ctx, idx) => CartItem(
+                          itemPreviewRoute: itemPreviewRoute,
+                          id: cartState.items[idx],
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: MaterialButton(
-                            color: theme.colorScheme.primary,
-                            onPressed: () {
-                              /// Message the system to start the checkout flow
-                              DartBoardCore.instance.dispatchMethodCall(
-                                  context: context,
-                                  call: MethodCall("startCheckout"));
-                            },
-                            child: Text(
-                              "Start Checkout",
-                              style: theme.textTheme.headline4!
-                                  .copyWith(color: theme.colorScheme.onPrimary),
-                            ),
-                          ),
-                        ),
-                      ],
+                    itemCount: cartState.items.length),
+                CartActionButtons()
+              ],
+            )));
+}
+
+class CartActionButtons extends StatelessWidget {
+  const CartActionButtons({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Align(
+      alignment: Alignment.bottomRight,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          MaterialButton(
+            color: theme.colorScheme.primaryVariant,
+            onPressed: () {
+              /// Close the dialog
+              Navigator.of(context).pop();
+
+              /// Clear the cart
+              locate<CartState>().clearCart();
+            },
+            child: Text(
+              "Clear Cart",
+              style: theme.textTheme.headline4!
+                  .copyWith(color: theme.colorScheme.onPrimary),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: MaterialButton(
+              color: theme.colorScheme.primary,
+              onPressed: () {
+                /// Message the system to start the checkout flow
+                DartBoardCore.instance.dispatchMethodCall(
+                    context: context, call: MethodCall("startCheckout"));
+              },
+              child: Text(
+                "Start Checkout",
+                style: theme.textTheme.headline4!
+                    .copyWith(color: theme.colorScheme.onPrimary),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Represents a row in the "cart". Delegates to the Preview Routes
+/// Shows "remove item" and quantity on stack.
+class CartItem extends StatelessWidget {
+  const CartItem({
+    Key? key,
+    required this.itemPreviewRoute,
+    required this.id,
+  }) : super(key: key);
+
+  final String itemPreviewRoute;
+  final int id;
+
+  @override
+  Widget build(BuildContext context) => Container(
+        height: 300,
+        child: Stack(
+          children: [
+            Container(
+              height: double.infinity,
+              width: double.infinity,
+              child: RouteWidget(
+                itemPreviewRoute,
+                args: {"id": id},
+              ),
+            ),
+            Align(
+                alignment: Alignment.topRight,
+                child: Card(
+                    child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      " x ${locate<CartState>().getQuantity(id)} ",
+                      style: Theme.of(context).textTheme.headline5,
                     ),
-                  )
-                ],
-              ));
-      });
+                    MaterialButton(
+                        onPressed: () => locate<CartState>().removeItem(id),
+                        child: Text("remove"))
+                  ],
+                ))),
+          ],
+        ),
+      );
 }
 
 class CartState extends ChangeNotifier {
