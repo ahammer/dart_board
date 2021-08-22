@@ -5,6 +5,7 @@
 .melos_tool/*
 !.vscode/tasks.json
 !.vscode/settings.json
+.firebase
 
 coverage/
 .packages
