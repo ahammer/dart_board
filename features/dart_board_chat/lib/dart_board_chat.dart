@@ -87,7 +87,7 @@ class _ChatWidgetState extends State<ChatWidget> {
           ),
         ),
         body: (_id != null)
-            ? MessageWidget(channel_id: _id!)
+            ? MessageWidget(channelId: _id!)
             : Container(
                 child: Text("No channel selected"),
               ),
@@ -117,11 +117,11 @@ class ChannelWidget extends StatelessWidget {
 }
 
 class MessageWidget extends StatefulWidget {
-  final String channel_id;
+  final String channelId;
 
   MessageWidget({
     Key? key,
-    required this.channel_id,
+    required this.channelId,
   }) : super(key: key);
 
   @override
@@ -150,7 +150,7 @@ class _MessageWidgetState extends State<MessageWidget> {
                 child: Column(
                   children: [
                     Divider(),
-                    NewMessageRow(channel_id: widget.channel_id),
+                    NewMessageRow(channelId: widget.channelId),
                   ],
                 ),
               )
@@ -158,23 +158,23 @@ class _MessageWidgetState extends State<MessageWidget> {
       builder: (idx, ctx, snapshot) => Padding(
             padding: const EdgeInsets.fromLTRB(12, 0, 0, 0),
             child: MessageRow(
-              channel_id: widget.channel_id,
+              channelId: widget.channelId,
               data: snapshot.docs[idx],
             ),
           ),
       ref: FirebaseFirestore.instance
-          .collection("channels/${widget.channel_id}/messages")
+          .collection("channels/${widget.channelId}/messages")
           .orderBy('date', descending: true));
 }
 
 class MessageRow extends StatelessWidget {
   final QueryDocumentSnapshot<Object?> data;
-  final String channel_id;
+  final String channelId;
 
   const MessageRow({
     Key? key,
     required this.data,
-    required this.channel_id,
+    required this.channelId,
   }) : super(key: key);
 
   @override
@@ -234,7 +234,7 @@ class MessageRow extends StatelessWidget {
                         onPressed: () async {
                           //await FirebaseFirestore.instance.
                           FirebaseFirestore.instance
-                              .collection("channels/${channel_id}/messages")
+                              .collection('channels/$channelId/messages')
                               .doc(data.id)
                               .delete();
                         },
@@ -257,11 +257,11 @@ class MessageRow extends StatelessWidget {
 }
 
 class NewMessageRow extends StatefulWidget {
-  final String channel_id;
+  final String channelId;
 
   const NewMessageRow({
     Key? key,
-    required this.channel_id,
+    required this.channelId,
   }) : super(key: key);
 
   @override
@@ -344,7 +344,7 @@ class _NewMessageRowState extends State<NewMessageRow> {
 
   Future<void> submitMessage() async {
     await FirebaseFirestore.instance
-        .collection("channels/${widget.channel_id}/messages")
+        .collection("channels/${widget.channelId}/messages")
         .add({
       "message": _controller.text,
       "date": DateTime.now().millisecondsSinceEpoch,

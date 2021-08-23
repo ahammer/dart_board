@@ -109,7 +109,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
             children: [
               FadeInImage.memoryNetwork(
                 placeholder: kTransparentImage,
-                image: data.image_url,
+                image: data.imageUrl,
                 fit: BoxFit.cover,
                 width: double.infinity,
                 height: double.infinity,

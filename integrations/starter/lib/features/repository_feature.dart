@@ -34,13 +34,13 @@ class ShortRecord {
   final int id;
   final String title;
   final String price;
-  final String image_url;
+  final String imageUrl;
 
   ShortRecord(
       {required this.id,
       required this.title,
       required this.price,
-      required this.image_url});
+      required this.imageUrl});
 }
 
 /// A long record, meant to represent the details page
@@ -52,10 +52,10 @@ class LongRecord extends ShortRecord {
     required int id,
     required String title,
     required String price,
-    required String image_url,
+    required String imageUrl,
     required this.description,
     required this.companyName,
-  }) : super(id: id, title: title, price: price, image_url: image_url);
+  }) : super(id: id, title: title, price: price, imageUrl: imageUrl);
 }
 
 /// This is the interface for a Repository
@@ -91,7 +91,7 @@ class MockRepository extends Repository {
     final city = Faker.instance.address.country();
     return LongRecord(
         id: index,
-        image_url:
+        imageUrl:
             Faker.instance.image.unsplash.nature(w: 200, h: 200, keyword: city),
         title: city,
         price: Faker.instance.commerce.price(),

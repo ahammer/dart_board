@@ -60,7 +60,7 @@ class _ListingScreenState extends State<ListingScreen> {
                                   elevation: 2,
                                   child: FadeInImage.memoryNetwork(
                                     placeholder: kTransparentImage,
-                                    image: data[idx].image_url,
+                                    image: data[idx].imageUrl,
                                     fit: BoxFit.cover,
                                     width: 200,
                                   ),
