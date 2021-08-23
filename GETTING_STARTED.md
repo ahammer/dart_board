@@ -34,7 +34,7 @@ You want to create your own project from scratch.
            initial_route:"/debug"))
    ```
 
-You can also reference the [main.dart](https://github.com/ahammer/dart_board/blob/master/integrations/starter/lib/main.dart)
+You can also reference the [main.dart](https://github.com/ahammer/dart_board/blob/master/integrations/starter/lib/main.dart) of the example. It's got more than you need to get started.
 
 
 This will give you a Flutter app that launches right into the built in debug().
@@ -49,35 +49,25 @@ This will give you a Flutter app that launches right into the built in debug().
 
 ## The first 3 Features
 
-Now I'll give a run down of the 3 Features used in "starter" to give some scaffolding. If you chose option A, you should work to re-implement this code. If you chose option B, this will serve as a detailed explanation of these steps.
-
-For this section, I'm going to recommend checking out each file and reading the comments, as it'll guide you through them in the most up to date way.
+Now I'll give a run down of the 3 Features used in "starter" to give some scaffolding. You can choose to either use the Features from the starter or re-implement them as you see fit. This will however give you an overview of what is offered in the "starter".
 
 ### RepositoryFeature
 
 Provides a repository for the Listings and Details features to use. The repository can be easily mocked for test purposes.
 
-The way this feature works is by providing a `DartBoardDecoration` to the `appDecorations` scope. This decoration uses `Provider`
-to serve up a `Repository` interface that is supplied to the feature.
-
 [repository_feature.dart](https://github.com/ahammer/dart_board/blob/master/integrations/starter/lib/features/repository_feature.dart)
-
 
 ### ListingsFeature
 
 Provides the `/listings` route that shows the results
 
-The way this feature works is by getting the repository and doing a `search` then putting the results in a `ListView`
-
 [listing_feature.dart](https://github.com/ahammer/dart_board/blob/master/integrations/starter/lib/features/listing_feature.dart)
-
 
 ### DetailsFeature
 
 Provides the `/details` route, and also provides app-level state to track the current selection.
 
 [details_feature.dart](https://github.com/ahammer/dart_board/blob/master/integrations/starter/lib/features/details_feature.dart)
-
 
 ### How it all comes together.
 
@@ -88,7 +78,6 @@ void main() {
   runApp(DartBoard(
     features: [
       /// We load our repository with mock data
-      RepositoryFeature(repository: MockRepository()),
       DetailsFeature(),
       ListingFeature(),
       DebugFeature(),
@@ -123,10 +112,15 @@ routes into a single screen, (e.g. tabs with the bottom nav). You provide it a c
 At this point you should have the app running. But lets say that we want to add a few new stories.
 
 1. As a user I'd like to add items to a cart
-2. As a user I'd like to be able to sign in with google
-3. As a user I'd like to start a checkout flow
+   1. Be able to add them from the listings screen 
+   2. Be able to see a Floating Action Button on the screen.
+   3. Be able to remove items from the cart
+   4. Be able to see a cart view
+2. Do all of the above without any direct knowledge of the Repository or Listings/Details features.
 
-So lets work through these features together.
+This can be kind of a challenge, because it's very tempting to share models and just smash it all together. But with some tact we can build a cart that is generic and can easily be developed in isolation to other features.
+
+This guide was written interactively, updated as I went through the process of integrating and developing `cart_feature_complete.dart`. It's encouraged to disable this feature, and then work to re-implement it using this guide and the final result as guidance.
 
 ### Cart Feature
 
@@ -147,14 +141,14 @@ Then start working to rebuild the feature, using this guide and the completed co
 So a cart itself is going to have a few sub-tasks/components.
 
 1. A cart should show as a floating action button when items are in it
-2. Items should be able to be added to the cart on both screens
+2. Items should be able to be added to the cart indirectly, from features that don't know directly about Cart.
 3. You should be able to view your cart
+4. You should be able to clear your cart and start a checkout process.
 
 To do this, we are going to introduce a new `DartBoardFeature` this time we'll call it `CartFeature`
 
 `CartFeature` will export some routes. 
-- `/cart` To show the contents of a cart
-- `/add_to_cart` To expose a add to cart button
+- `/view_cart` To show the contents of a cart
 
 
 It'll also need to export some *app state* for tracking the cart. For this we can use Locator to export a `CartState` class that keeps track of the items in the cart. To add locator we'll need to also add `dart_board_locator` to our pubspec.yaml
@@ -252,7 +246,7 @@ And now to make an instance of this globally accessible, back in your `CartFeatu
   List<DartBoardFeature> get dependencies => [DartBoardLocatorFeature()];
 ```
 
-This applies a `LocatorDecoration` in your feature at that app level, which can provide the `CartState` class. Simply use `Locate<CartState>()` and you'll get the global instance from anywhere.
+This applies a `LocatorDecoration` in your feature at that app level, which can provide the `CartState` class. Simply use `locate<CartState>()` and you'll get the global instance from anywhere.
 
 Next we can hook that up to the UI
 
