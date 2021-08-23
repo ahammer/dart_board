@@ -246,7 +246,7 @@ And now to make an instance of this globally accessible, back in your `CartFeatu
   List<DartBoardFeature> get dependencies => [DartBoardLocatorFeature()];
 ```
 
-This applies a `LocatorDecoration` in your feature at that app level, which can provide the `CartState` class. Simply use `Locate<CartState>()` and you'll get the global instance from anywhere.
+This applies a `LocatorDecoration` in your feature at that app level, which can provide the `CartState` class. Simply use `locate<CartState>()` and you'll get the global instance from anywhere.
 
 Next we can hook that up to the UI
 
