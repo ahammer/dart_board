@@ -90,8 +90,38 @@ class CollapsingList extends StatelessWidget {
                           ),
                           Text('Active: ${implementations[0]}'),
                           DropdownButton<String>(
-                              onChanged: (value) => DartBoardCore.instance
-                                  .setFeatureImplementation(e, value),
+                              onChanged: (value) {
+                                if (value == null) {
+                                  showDialog(
+                                      builder: (ctx) => AlertDialog(
+                                            title:
+                                                Text('Warning: Are you sure?'),
+                                            content: Text(
+                                                'Disabling a feature that is currently active can result in breakage. E.g. if your Route becomes unavailable. Please confirm before continuing'),
+                                            actions: [
+                                              MaterialButton(
+                                                onPressed: () {
+                                                  Navigator.of(context).pop();
+                                                },
+                                                child: Text('Cancel'),
+                                              ),
+                                              MaterialButton(
+                                                onPressed: () {
+                                                  DartBoardCore.instance
+                                                      .setFeatureImplementation(
+                                                          e, value);
+                                                  Navigator.of(context).pop();
+                                                },
+                                                child: Text('OK'),
+                                              )
+                                            ],
+                                          ),
+                                      context: context);
+                                } else {
+                                  DartBoardCore.instance
+                                      .setFeatureImplementation(e, value);
+                                }
+                              },
                               value: DartBoardCore
                                   .instance.activeImplementations[e],
                               items: [
