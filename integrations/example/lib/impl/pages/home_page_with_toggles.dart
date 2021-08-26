@@ -57,10 +57,6 @@ class HomePageWithToggles extends StatelessWidget {
                         itemBuilder: (BuildContext context) =>
                             <PopupMenuEntry<TemplateOptions>>[
                           const PopupMenuItem<TemplateOptions>(
-                            value: TemplateOptions.plain,
-                            child: Text('No Layout'),
-                          ),
-                          const PopupMenuItem<TemplateOptions>(
                             value: TemplateOptions.side_nav,
                             child: Text('AppBar+Drawer Nav'),
                           ),
