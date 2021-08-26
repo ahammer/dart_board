@@ -14,11 +14,15 @@ class BottomNavTemplateState extends ChangeNotifier {
   BottomNavTemplateState(this.config) : _selectedRoute = config[0]["route"];
 
   String get selectedRoute => _selectedRoute ?? "404";
+
   int get selectedTab => _selectedTab ?? 0;
+
+  Map<String, dynamic> get selectedConfig =>
+      config.where((e) => e["route"] == selectedRoute).first;
+
   set selectedRoute(String route) {
     _selectedRoute = route;
-    _selectedTab =
-        config.indexOf(config.where((e) => e["route"] == route).first);
+    _selectedTab = config.indexOf(selectedConfig);
     notifyListeners();
   }
 

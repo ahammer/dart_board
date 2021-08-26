@@ -22,6 +22,7 @@ final log = Logger('BottomNavTemplateFeature');
 class BottomNavTemplateFeature extends DartBoardFeature {
   final String route;
   final List<Map<String, dynamic>> config;
+  final bool decorateRoutes;
 
   ///Expose namespace/implementation name so we can AB test layouts easily
   final String namespace;
@@ -30,6 +31,7 @@ class BottomNavTemplateFeature extends DartBoardFeature {
   BottomNavTemplateFeature(
       {required this.route,
       required this.config,
+      this.decorateRoutes = true,
       this.namespace = 'bottom_nav_template_feature',
       this.implementationName = 'Bottom Navigation'});
 
@@ -68,6 +70,9 @@ class BottomNavTemplateFeature extends DartBoardFeature {
         if (!(element["icon"] is IconData)) {
           throw Exception("icon must be IconData");
         }
+        if (!(element["decorate"] is bool) && element["decorate"] != null) {
+          throw Exception("icon must be IconData");
+        }
       });
 }
 
@@ -86,6 +91,7 @@ class BottomNavTemplate extends StatelessWidget {
             duration: Duration(milliseconds: 200),
             child: RouteWidget(
               navstate.selectedRoute,
+              decorate: navstate.selectedConfig["decorate"] ?? true,
               key: Key(navstate.selectedRoute),
             ),
           ),
