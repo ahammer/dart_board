@@ -10,10 +10,10 @@ class DetailsFeature extends DartBoardFeature {
   List<RouteDefinition> get routes => [
         NamedRouteDefinition(
             route: "/details",
-            builder: (settings, context) => MainDetailsScreen()),
+            builder: (context, settings) => MainDetailsScreen()),
         NamedRouteDefinition(
             route: "/details_by_id",
-            builder: (settings, context) {
+            builder: (context, settings) {
               dynamic args = settings.arguments;
 
               return DetailsScreen(id: args["id"]);

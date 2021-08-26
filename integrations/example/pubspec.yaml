@@ -27,6 +27,8 @@ dependencies:
     path: ../../features/dart_board_firebase_database 
   dart_board_chat:
     path: ../../features/dart_board_chat
+  dart_board_splash:
+    path: ../../features/dart_board_splash
   flutter_syntax_view: ^4.0.0
   flutter_markdown: ^0.6.2
   http: ^0.13.3

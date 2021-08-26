@@ -35,7 +35,7 @@ class SimpleRouteFeature extends DartBoardFeature {
   List<RouteDefinition> get routes => [
         NamedRouteDefinition(
             route: '/home',
-            builder: (settings, ctx) => Material(
+            builder: (ctx, settings) => Material(
                   color: Color.fromARGB(255, 48, 48, 72),
                   child: LayoutBuilder(
                     builder: (ctx, constraints) => PeriodicWidget(

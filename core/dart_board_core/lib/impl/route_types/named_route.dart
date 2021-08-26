@@ -52,7 +52,7 @@ class MapRouteDefinition implements RouteDefinition {
 
   @override
   RouteWidgetBuilder get builder =>
-      (settings, ctx) => routeMap[settings.name]!(settings, ctx);
+      (ctx, settings) => routeMap[settings.name]!(ctx, settings);
 }
 
 /// This one should take map of name->builder

@@ -16,11 +16,11 @@ class CartFeature extends DartBoardFeature {
         /// Register the route for "viewing the cart"
         NamedRouteDefinition(
             route: "/view_cart",
-            builder: (settings, ctx) =>
+            builder: (ctx, settings) =>
                 CartView(itemPreviewRoute: itemPreviewRoute)),
         NamedRouteDefinition(
             route: "/stub_item_preview",
-            builder: (settings, ctx) => Text("${settings.arguments}"))
+            builder: (ctx, settings) => Text("${settings.arguments}"))
       ];
 
   @override

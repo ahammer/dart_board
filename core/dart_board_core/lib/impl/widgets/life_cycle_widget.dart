@@ -15,6 +15,7 @@ dynamic _stub2() {}
 //
 // If you don't need context, use preInit()
 //
+// Key is mandatory as a helpful hint for stateful widgets.
 class LifeCycleWidget extends StatefulWidget {
   final Widget child;
 

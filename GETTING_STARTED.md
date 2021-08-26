@@ -451,7 +451,7 @@ In your `CartFeature` to expose the route.
   List<RouteDefinition> get routes => [
         /// Register the route for "viewing the cart"
         NamedRouteDefinition(
-            route: "/view_cart", builder: (settings, ctx) => const CartView())
+            route: "/view_cart", builder: (ctx, settings) => const CartView())
       ];
 ```
 
@@ -500,7 +500,7 @@ Our new route is as defined for now. It simply echo's the arguments. This will l
 ```
    NamedRouteDefinition(
       route: "/stub_item_preview",
-      builder: (settings, ctx) => Text("${settings.arguments}"))
+      builder: (ctx, settings) => Text("${settings.arguments}"))
 ```
 
 Then we hop over to our Cart View and it's time for some refactors. We want can finish up the CartView now.
@@ -663,7 +663,7 @@ class CartFeature extends DartBoardFeature {
         /// Register the route for "viewing the cart"
         NamedRouteDefinition(
             route: "/view_cart",
-            builder: (settings, ctx) =>
+            builder: (ctx, settings) =>
                 CartView(itemPreviewRoute: itemPreviewRoute)), // <--- Give the feature configuration to the named route.
 ```
 

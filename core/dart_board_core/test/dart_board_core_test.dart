@@ -43,7 +43,7 @@ class TestFeature extends DartBoardFeature {
   @override
   List<RouteDefinition> get routes => [
         MapRouteDefinition(routeMap: {
-          route1: (settings, ctx) => Material(
+          route1: (ctx, settings) => Material(
                   child: Column(
                 children: [
                   MaterialButton(
@@ -64,7 +64,7 @@ class TestFeature extends DartBoardFeature {
           NamedRouteDefinition(
               routeBuilder: kMaterialRouteResolver,
               route: route2!,
-              builder: (settings, ctx) => Material(
+              builder: (ctx, settings) => Material(
                   child: Text('$namespace:${implementationName}_secondary')))
       ];
 

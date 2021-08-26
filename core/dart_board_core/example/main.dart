@@ -39,7 +39,7 @@ class SimpleRouteFeature extends DartBoardFeature {
   @override
   List<RouteDefinition> get routes => [
         MapRouteDefinition(routeMap: {
-          '/home': (settings, ctx) => Card(
+          '/home': (ctx, settings) => Card(
                   child: Column(
                 children: [
                   Text('Home Page'),
@@ -52,7 +52,7 @@ class SimpleRouteFeature extends DartBoardFeature {
         }),
         NamedRouteDefinition(
             route: '/second',
-            builder: (settings, ctx) => Card(
+            builder: (ctx, settings) => Card(
                     child: Column(
                   children: [
                     Text('Second Page'),

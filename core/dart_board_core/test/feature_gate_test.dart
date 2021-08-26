@@ -25,7 +25,7 @@ class FeatureB extends DartBoardFeature {
   List<RouteDefinition> get routes => [
         NamedRouteDefinition(
             route: '/main',
-            builder: (settings, ctx) => Card(
+            builder: (ctx, settings) => Card(
                   child: Text('test passed'),
                 ))
       ];

@@ -96,6 +96,6 @@ class _LocatorState extends State<_Locator> {
 /// Global Key we use to Track the store.
 final _locatorKey = GlobalKey<_LocatorState>();
 
-/// Globally Locate a type
+/// Globally Locate a type via the Locator
 T locate<T>({String instanceId = ""}) =>
     _locatorKey.currentState!._locate(T, instanceId: instanceId);

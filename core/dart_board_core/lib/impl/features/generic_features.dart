@@ -50,6 +50,6 @@ class BasicRouteFeature extends DartBoardFeature {
   @override
   List<RouteDefinition> get routes => [
         NamedRouteDefinition(
-            route: targetRoute, builder: (settings, ctx) => builder(ctx))
+            route: targetRoute, builder: (ctx, settings) => builder(ctx))
       ];
 }

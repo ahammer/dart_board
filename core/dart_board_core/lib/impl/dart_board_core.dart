@@ -170,7 +170,7 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
                           pageDecorationAllowList.contains(
                               '${settings.name}:${decoration.name}')))))
               .toList(),
-          child: route.builder(settings, context));
+          child: route.builder(context, settings));
 
   /// buildFeatures()
   ///
@@ -284,7 +284,7 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
   Route onGenerateRoute(RouteSettings settings) {
     final definition = routes.firstWhere((it) => it.matches(settings),
         orElse: () => NamedRouteDefinition(
-            builder: (settings, ctx) => widget.pageNotFoundWidgetBuilder(ctx),
+            builder: (ctx, settings) => widget.pageNotFoundWidgetBuilder(ctx),
             route: '/404'));
     if (definition.routeBuilder != null) {
       return definition.routeBuilder!(

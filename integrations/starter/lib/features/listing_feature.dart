@@ -10,7 +10,7 @@ class ListingFeature extends DartBoardFeature {
   @override
   List<RouteDefinition> get routes => [
         NamedRouteDefinition(
-            route: "/listings", builder: (settings, context) => _listingsScreen)
+            route: "/listings", builder: (context, settings) => _listingsScreen)
       ];
 
   @override

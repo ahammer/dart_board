@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   dart_board_core:
+  dart_board_locator:
 
 dev_dependencies:
   flutter_test:

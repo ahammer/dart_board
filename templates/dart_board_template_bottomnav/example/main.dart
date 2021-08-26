@@ -38,13 +38,13 @@ class SimpleRouteFeature extends DartBoardFeature {
   List<RouteDefinition> get routes => [
         NamedRouteDefinition(
             route: '/first',
-            builder: (settings, ctx) => Container(
+            builder: (ctx, settings) => Container(
                   width: double.infinity,
                   child: Card(child: Text('Home Page')),
                 )),
         NamedRouteDefinition(
             route: '/second',
-            builder: (settings, ctx) => Container(
+            builder: (ctx, settings) => Container(
                   width: double.infinity,
                   child: Card(child: Text('Second Page')),
                 )),

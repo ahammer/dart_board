@@ -17,7 +17,7 @@ typedef WidgetWithChildBuilder = Widget Function(
 
 /// Builds a widget for a route
 typedef RouteWidgetBuilder = Widget Function(
-    RouteSettings settings, BuildContext context);
+    BuildContext context, RouteSettings settings);
 
 /// Builds a Route itself (e.g. MaterialPageRoute, CupertinoPageRoute or other)
 typedef RouteBuilder = Route Function(
