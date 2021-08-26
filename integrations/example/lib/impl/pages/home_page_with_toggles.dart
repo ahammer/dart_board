@@ -143,7 +143,7 @@ class HomePageWithToggles extends StatelessWidget {
                         value: DartBoardCore.instance.isFeatureActive('theme'),
                         onChanged: (result) => DartBoardCore.instance
                             .setFeatureImplementation(
-                                'theme', result ? 'default' : null)),
+                                'theme', result ? 'Theme' : null)),
                     ListTile(
                       title: Text('Show Intro Particles'),
                       onTap: () {
