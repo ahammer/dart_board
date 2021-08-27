@@ -96,6 +96,9 @@ abstract class DartBoardCore {
   /// Send a method call to be picked up by a feature
   ///
   /// Helper for deep decoupling of features.
+  ///
+  /// param: context - Current context (to be passed to the handler)
+  /// param: call - A MethodCall object (with name and settings) to call out to
   Future<dynamic> dispatchMethodCall(
       {required BuildContext context, required MethodCall call});
 }

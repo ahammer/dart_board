@@ -1,3 +1,4 @@
+import 'package:dart_board_canvas/dart_board_canvas.dart';
 import 'package:dart_board_firebase_authentication/dart_board_firebase_authentication.dart';
 import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_core/impl/features/generic_features.dart';
@@ -13,6 +14,7 @@ import 'package:dart_board_debug/debug_feature.dart';
 import 'package:dart_board_log/dart_board_log.dart';
 import 'package:example/impl/pages/code_overview.dart';
 import 'package:example/impl/pages/home_page_with_toggles.dart';
+import 'package:example/impl/paintings/paintings.dart';
 import 'data/constants.dart';
 import 'impl/decorations/wavy_lines_background.dart';
 import 'impl/pages/home_page.dart';
@@ -47,7 +49,28 @@ class ExampleFeature extends DartBoardFeature {
   ///
   @override
   List<DartBoardFeature> get dependencies => [
-        DartBoardSplashFeature(),
+        DartBoardCanvasFeature(
+            namespace: 'splash_background',
+            implementationName: 'static',
+            route: '/splash_bg',
+            paintFunction: draw100GreenCircles),
+
+        /// Splash Screen, we'll for now, just use some Text
+        DartBoardSplashFeature(FadeOutSplashScreen(
+          delay: Duration(seconds: 5),
+          fadeDuration: Duration(seconds: 3),
+          contentBuilder: (context) => Stack(
+            children: [
+              RouteWidget('/splash_bg'),
+              Center(
+                child: Text(
+                  'Dart Board Example',
+                  style: Theme.of(context).textTheme.headline1,
+                ),
+              ),
+            ],
+          ),
+        )),
         ThemeFeature(isDarkByDefault: true),
         DebugFeature(),
         LogFeature(),

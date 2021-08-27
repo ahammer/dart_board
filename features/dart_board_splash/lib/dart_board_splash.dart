@@ -1,24 +1,47 @@
+import 'dart:async';
+
 import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_core/interface/dart_board_interface.dart';
 import 'package:dart_board_locator/dart_board_locator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
+/// Splash Feature
+///
+/// Simple Splash Feature.
+/// Include this to add a Splash to your App
+/// Splash can either hide itself (after a timer)
+///
+/// Usage:
+/// ```
+///   *ADD TO YOUR REGISTRATION*
+///   DartBoardSplashFeature(YourSplashWidget),
+///
+///   *HIDE FROM ANYWHERE IN YOUR CODE*
+///
+///   DartBoardCore.instance.dispatchMethodCall(
+///     context: context,
+///     call: MethodCall("hideSplashScreen"));
+/// ```
+///
 class DartBoardSplashFeature extends DartBoardFeature {
-  final Widget splashWidget = FadeOutSplashScreen();
+  final Widget splashWidget;
+
+  DartBoardSplashFeature(this.splashWidget);
 
   @override
   String get namespace => "SplashScreen";
 
   @override
   List<DartBoardDecoration> get appDecorations => [
+        LocatorDecoration(() => _SplashState()),
         DartBoardDecoration(
             name: "SplashLifeCycle",
-            decoration: (ctx, child) => SplashDecoration(
+            decoration: (ctx, child) => _SplashDecoration(
                   splashWidget: splashWidget,
                   child: child,
                 )),
-        LocatorDecoration(() => SplashScreenMessenger())
       ];
 
   @override
@@ -26,11 +49,22 @@ class DartBoardSplashFeature extends DartBoardFeature {
         NamedRouteDefinition(
             route: "/splash_screen", builder: (ctx, settings) => splashWidget)
       ];
+
+  @override
+  List<DartBoardFeature> get dependencies => [DartBoardLocatorFeature()];
+
+  @override
+  Map<String, MethodCallHandler> get methodHandlers => {
+        "hideSplashScreen": (ctx, call) async {
+          locate<_SplashState>()._hide();
+        }
+      };
 }
 
-class SplashDecoration extends StatelessWidget {
+/// App Decoration Widget for the Splash Screen
+class _SplashDecoration extends StatelessWidget {
   final Widget child;
-  const SplashDecoration({
+  const _SplashDecoration({
     Key? key,
     required this.splashWidget,
     required this.child,
@@ -39,22 +73,45 @@ class SplashDecoration extends StatelessWidget {
   final Widget splashWidget;
 
   @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [child, splashWidget],
-    );
-  }
+  Widget build(BuildContext context) => locate<_SplashState>()
+      .builder<_SplashState>((ctx, state) => !state._visible
+          ? child
+          : Stack(children: [
+              child,
+              splashWidget,
+            ]));
 }
 
-class SplashScreenMessenger extends ChangeNotifier {
+class _SplashState extends ChangeNotifier {
   bool _visible = true;
+
   void _hide() {
     _visible = false;
     notifyListeners();
   }
 }
 
+/// A very simple fading out Splash Screen
+///
+/// Can be used as an example to build your own
+/// If you want to isolate the splash into it's own feature you
+/// can use RouteWidget to wire it up into a Splash.
+///
+/// delay - how long it'll show
+/// fadeDuration - how long the duration is
+///
 class FadeOutSplashScreen extends StatefulWidget {
+  final Duration delay;
+  final Duration fadeDuration;
+  final WidgetBuilder contentBuilder;
+
+  const FadeOutSplashScreen(
+      {Key? key,
+      required this.contentBuilder,
+      this.delay = const Duration(seconds: 1),
+      this.fadeDuration = const Duration(seconds: 1)})
+      : super(key: key);
+
   @override
   _FadeOutSplashScreenState createState() => _FadeOutSplashScreenState();
 }
@@ -64,7 +121,7 @@ class _FadeOutSplashScreenState extends State<FadeOutSplashScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    Timer(widget.delay, () {
       setState(() => startedFade = true);
     });
   }
@@ -72,12 +129,17 @@ class _FadeOutSplashScreenState extends State<FadeOutSplashScreen> {
   @override
   Widget build(BuildContext context) => AnimatedOpacity(
         opacity: startedFade ? 0 : 1,
-        duration: Duration(seconds: 5),
+        curve: Curves.easeInOut,
+        onEnd: () {
+          DartBoardCore.instance.dispatchMethodCall(
+              context: context, call: MethodCall("hideSplashScreen"));
+        },
+        duration: widget.fadeDuration,
         child: Material(
           child: Container(
               width: double.infinity,
               height: double.infinity,
-              child: Text("blah")),
+              child: widget.contentBuilder(context)),
         ),
       );
 }

@@ -197,6 +197,13 @@ packages:
       relative: true
     source: path
     version: "1.1.1"
+  dart_board_canvas:
+    dependency: "direct main"
+    description:
+      path: "../../features/dart_board_canvas"
+      relative: true
+    source: path
+    version: "1.0.0+1"
   dart_board_chat:
     dependency: "direct main"
     description:

@@ -1,0 +1,25 @@
+name: dart_board_canvas
+description: Static and Animated canvas features
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  dart_board_core:
+
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  module:
+    androidX: true
+    androidPackage: com.example.dart_board_canvas
+    iosBundleIdentifier: com.example.dartBoardCanvas
