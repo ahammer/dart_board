@@ -19,6 +19,8 @@ jobs:
           flutter-version: '2.2.0'
       - name: Install MELOS
         run: flutter pub global activate melos
+      - name: Bootstrap
+        run: melos bootstrap
       - name: Melos run all tests
         run: melos exec -- flutter test --coverage      
       - name: Upload coverage to codecov
