@@ -13,6 +13,16 @@ In software development there is always a strong desire to know the "best way". 
 
 In order to keep up with the change of pace and demands of modern software development, adopting a feature framework allows you to isolate and contain features. This provides a lot of flexibility to gate new feature's, run AB tests, or swap aging components.
 
+# Repo Setup:
+
+1) Clone the repo
+2) Flutter pub global activate melos
+3) melos bootstrap
+
+Most features contain a main.dart that can be run on an Android or iOS device/simulator.
+
+Integrations folder contains "starter" and "example". They both have main.dart and are primarily developed on desktop and web to maximize compat across all platforms.
+
 # What is it? 
 
 - A Core Framework + Utilities

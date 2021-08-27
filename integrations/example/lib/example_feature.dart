@@ -50,10 +50,11 @@ class ExampleFeature extends DartBoardFeature {
   @override
   List<DartBoardFeature> get dependencies => [
         DartBoardCanvasFeature(
-            namespace: 'splash_background',
-            implementationName: 'static',
-            route: '/splash_bg',
-            paintFunction: draw100GreenCircles),
+          state: Draw100GreenCircles(),
+          namespace: 'splash_background',
+          implementationName: 'static',
+          route: '/splash_bg',
+        ),
 
         /// Splash Screen, we'll for now, just use some Text
         DartBoardSplashFeature(FadeOutSplashScreen(
@@ -61,6 +62,13 @@ class ExampleFeature extends DartBoardFeature {
           fadeDuration: Duration(seconds: 3),
           contentBuilder: (context) => Stack(
             children: [
+              Material(
+                color: Colors.white70,
+                child: Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                ),
+              ),
               RouteWidget('/splash_bg'),
               Center(
                 child: Text(

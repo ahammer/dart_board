@@ -135,11 +135,9 @@ class _FadeOutSplashScreenState extends State<FadeOutSplashScreen> {
               context: context, call: MethodCall("hideSplashScreen"));
         },
         duration: widget.fadeDuration,
-        child: Material(
-          child: Container(
-              width: double.infinity,
-              height: double.infinity,
-              child: widget.contentBuilder(context)),
-        ),
+        child: Container(
+            width: double.infinity,
+            height: double.infinity,
+            child: widget.contentBuilder(context)),
       );
 }
