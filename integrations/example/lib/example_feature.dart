@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:dart_board_canvas/dart_board_canvas.dart';
 import 'package:dart_board_firebase_authentication/dart_board_firebase_authentication.dart';
 import 'package:dart_board_core/dart_board.dart';
@@ -50,7 +52,7 @@ class ExampleFeature extends DartBoardFeature {
   @override
   List<DartBoardFeature> get dependencies => [
         DartBoardCanvasFeature(
-          state: Draw100GreenCircles(),
+          state: IntroBoxes(),
           namespace: 'splash_background',
           implementationName: 'static',
           route: '/splash_bg',
@@ -62,17 +64,16 @@ class ExampleFeature extends DartBoardFeature {
           fadeDuration: Duration(seconds: 3),
           contentBuilder: (context) => Stack(
             children: [
-              Material(
-                color: Colors.white70,
-                child: Container(
-                  width: double.infinity,
-                  height: double.infinity,
-                ),
-              ),
+              BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 16.0, sigmaY: 16.0),
+                  child: Container(
+                    width: double.infinity,
+                    height: double.infinity,
+                  )),
               RouteWidget('/splash_bg'),
               Center(
                 child: Text(
-                  'Dart Board Example',
+                  'Splash!',
                   style: Theme.of(context).textTheme.headline1,
                 ),
               ),

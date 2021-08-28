@@ -84,5 +84,6 @@ abstract class AnimatedCanvasState {
   void step(double deltaTime) {
     _time += deltaTime;
     _timeDelta = deltaTime;
+    _lastFrameEpochMs = DateTime.now().millisecondsSinceEpoch;
   }
 }

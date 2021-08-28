@@ -4,34 +4,57 @@ import 'dart:ui';
 import 'package:dart_board_canvas/dart_board_canvas.dart';
 import 'package:flutter/material.dart';
 
-class Draw100GreenCircles extends AnimatedCanvasState {
-  final centers = List.generate(
-      100,
-      (index) => Offset(Random().nextDouble(), Random().nextDouble())
-          .scale(0.75, 0.2)
-          .translate(0.25 / 2, 0.40));
+const curve = Curves.easeInOutCubic;
 
-  final velocities = List.generate(
-      100,
-      (index) => Offset(Random().nextDouble(), Random().nextDouble())
-          .translate(-0.5, -0.5)
-          .scale(0.01, 0.01));
+class _Box {
+  final Offset target;
+  final Offset origin;
+  final double initialRotation = Random().nextDouble() - 0.5 * 20;
+  late final tweenPos = Tween<Offset>(begin: origin, end: target);
+  late final tweenRot = Tween<double>(begin: initialRotation, end: 0);
+  late final delta = target - origin;
+  late final color =
+      HSLColor.fromAHSL(1.0, cos(target.dx + target.dy) * 5000 % 360, 0.5, 0.8)
+          .toColor();
 
-  @override
-  void step(double deltaTime) {
-    centers.replaceRange(0, centers.length, centers.map((e) {
-      final idx = centers.indexOf(e);
-      return e.translate(
-          velocities[idx].dx * deltaTime, velocities[idx].dy * deltaTime);
-    }));
-    super.step(deltaTime);
-  }
+  _Box({required this.target, required this.origin});
+}
+
+late final List<int> shuffled = List.generate(20 * 20, (index) => index)
+  ..shuffle();
+
+class IntroBoxes extends AnimatedCanvasState {
+  /// Shuffled Indexes
+
+  final List<_Box> boxes = List.generate(
+      20 * 20,
+      (index) => _Box(
+            target: Offset(index % 20, (index ~/ 20).toDouble())
+                .scale(1 / 20, 1 / 20)
+                .translate(-0.5, -0.5),
+            origin:
+                Offset(shuffled[index] % 20, (shuffled[index] ~/ 20).toDouble())
+                    .scale(1 / 20, 1 / 20)
+                    .translate(-0.5, -0.5)
+                    .scale(10, 10),
+          ));
 
   @override
   void paint(Canvas canvas, Size size) {
-    centers.forEach((element) {
-      canvas.drawCircle(element.scale(size.width, size.height), 50,
-          Paint()..color = Colors.black);
+    final longestSide = max(size.width, size.height);
+    final squareWidth = longestSide / 20.0 + 1;
+    final animTime = min(time / 4.0, 1.0).toDouble();
+    boxes.forEach((box) {
+      final curOffset = box.tweenPos.transform(curve.transform(animTime));
+      canvas.save();
+      canvas.translate(
+          curOffset.dx * longestSide + size.width / 2 + squareWidth / 2,
+          curOffset.dy * longestSide + size.height / 2 + squareWidth / 2);
+      canvas.rotate(box.tweenRot.transform(animTime));
+      canvas.scale(squareWidth, squareWidth);
+      canvas.drawRect(Rect.fromCenter(center: Offset.zero, width: 1, height: 1),
+          Paint()..color = box.color);
+      canvas.restore();
     });
   }
 }
