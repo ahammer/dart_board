@@ -16,7 +16,7 @@ import 'package:dart_board_debug/debug_feature.dart';
 import 'package:dart_board_log/dart_board_log.dart';
 import 'package:example/impl/pages/code_overview.dart';
 import 'package:example/impl/pages/home_page_with_toggles.dart';
-import 'package:example/impl/paintings/paintings.dart';
+import 'package:example/impl/splash/splash.dart';
 import 'data/constants.dart';
 import 'impl/decorations/wavy_lines_background.dart';
 import 'impl/pages/home_page.dart';
@@ -52,34 +52,20 @@ class ExampleFeature extends DartBoardFeature {
   @override
   List<DartBoardFeature> get dependencies => [
         DartBoardCanvasFeature(
-          state: IntroBoxes(),
+          state: SplashCanvas(),
           namespace: 'splash_background',
           implementationName: 'static',
           route: '/splash_bg',
         ),
 
         /// Splash Screen, we'll for now, just use some Text
-        DartBoardSplashFeature(FadeOutSplashScreen(
-          delay: Duration(seconds: 5),
-          fadeDuration: Duration(seconds: 3),
-          contentBuilder: (context) => Stack(
-            children: [
-              BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 16.0, sigmaY: 16.0),
-                  child: Container(
-                    width: double.infinity,
-                    height: double.infinity,
-                  )),
-              RouteWidget('/splash_bg'),
-              Center(
-                child: Text(
-                  'Splash!',
-                  style: Theme.of(context).textTheme.headline1,
-                ),
-              ),
-            ],
+        DartBoardSplashFeature(
+          FadeOutSplashScreen(
+            delay: Duration(seconds: 5),
+            fadeDuration: Duration(seconds: 1),
+            contentBuilder: (context) => ExampleSplashWidget(),
           ),
-        )),
+        ),
         ThemeFeature(isDarkByDefault: true),
         DebugFeature(),
         LogFeature(),
