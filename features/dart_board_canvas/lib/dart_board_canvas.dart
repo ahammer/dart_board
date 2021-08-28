@@ -14,17 +14,7 @@ class DartBoardCanvasFeature<T extends AnimatedCanvasState>
 
   final T state;
 
-  late final painter = CanvasFeaturePainter(state);
-  late final widget = Container(
-      width: double.infinity,
-      height: double.infinity,
-      child: LifeCycleWidget(
-        //preInit: ,
-        init: state.init,
-        dispose: state.dispose,
-        key: ValueKey(this),
-        child: CustomPaint(painter: painter),
-      ));
+  late final widget = AnimatedCanvasWidget(state: state);
 
   DartBoardCanvasFeature({
     required this.namespace,
@@ -40,6 +30,50 @@ class DartBoardCanvasFeature<T extends AnimatedCanvasState>
       ];
 }
 
+class AnimatedCanvasWidget extends StatefulWidget {
+  const AnimatedCanvasWidget({
+    Key? key,
+    required this.state,
+  }) : super(key: key);
+
+  final AnimatedCanvasState state;
+
+  @override
+  _AnimatedCanvasWidgetState createState() => _AnimatedCanvasWidgetState();
+}
+
+class _AnimatedCanvasWidgetState extends State<AnimatedCanvasWidget>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _animationController =
+      AnimationController.unbounded(
+          vsync: this, duration: Duration(days: 1000000));
+  @override
+  void initState() {
+    super.initState();
+    widget.state.init(context);
+    _animationController.forward();
+  }
+
+  @override
+  void dispose() {
+    widget.state.dispose();
+    _animationController.stop();
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => Container(
+      width: double.infinity,
+      height: double.infinity,
+      child: AnimatedBuilder(
+          animation: _animationController,
+          builder: (ctx, child) =>
+              CustomPaint(painter: CanvasFeaturePainter(widget.state))));
+}
+
+/// This is the CustomPainter that is actually setting up the draw
+/// It'll track timing, call out the step() call and the paint() call.
 class CanvasFeaturePainter extends CustomPainter {
   final AnimatedCanvasState state;
 
@@ -56,9 +90,7 @@ class CanvasFeaturePainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return false;
-  }
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
 }
 
 /// This is a state object that tracks time.
@@ -85,7 +117,7 @@ abstract class AnimatedCanvasState {
     _lastFrameEpochMs = DateTime.now().millisecondsSinceEpoch;
   }
 
-  void dispose(BuildContext context) {
+  void dispose() {
     _context == null;
   }
 
