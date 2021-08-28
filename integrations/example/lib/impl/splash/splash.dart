@@ -79,7 +79,8 @@ class SplashAnimation extends AnimatedCanvasState {
           curOffset.dx * longestSide + size.width / 2 + squareWidth / 2,
           curOffset.dy * longestSide + size.height / 2 + squareWidth / 2);
       canvas.rotate(box.tweenRot.transform(animTime));
-      canvas.scale(squareWidth, squareWidth);
+      final tweenScale = box.tweenScale.transform(animTime);
+      canvas.scale(squareWidth * tweenScale, squareWidth * tweenScale);
       canvas.drawRect(Rect.fromCenter(center: Offset.zero, width: 1, height: 1),
           Paint()..color = box.color);
       canvas.restore();
@@ -91,9 +92,11 @@ class SplashAnimation extends AnimatedCanvasState {
 class _Box {
   final Offset target;
   final Offset origin;
+
   final double initialRotation = Random().nextDouble() - 0.5 * 20;
   late final tweenPos = Tween<Offset>(begin: origin, end: target);
   late final tweenRot = Tween<double>(begin: initialRotation, end: 0);
+  late final tweenScale = Tween<double>(begin: 0.0, end: 1.0);
   late final delta = target - origin;
   late final color =
       HSLColor.fromAHSL(0.8, cos(target.dx + target.dy) * 5000 % 360, 0.7, 0.8)
