@@ -25,10 +25,10 @@ class RouteWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) =>
-      Provider.of<DartBoardCore>(context, listen: false).buildPageRoute(
+      context.read<DartBoardCore>().buildPageRoute(
           context,
           settings,
-          Provider.of<DartBoardCore>(context, listen: false).routes.firstWhere(
+          context.read<DartBoardCore>().routes.firstWhere(
               (it) => it.matches(settings),
               orElse: () => NamedRouteDefinition(
                   builder: (ctx, _) => RouteNotFound(settings.name!),

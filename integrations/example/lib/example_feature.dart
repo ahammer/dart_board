@@ -52,7 +52,7 @@ class ExampleFeature extends DartBoardFeature {
   @override
   List<DartBoardFeature> get dependencies => [
         DartBoardCanvasFeature(
-          state: SplashCanvas(),
+          state: SplashAnimation(),
           namespace: 'splash_background',
           implementationName: 'static',
           route: '/splash_bg',
@@ -119,6 +119,7 @@ class ExampleFeature extends DartBoardFeature {
   List<DartBoardDecoration> get appDecorations => <DartBoardDecoration>[
         DartBoardDecoration(
             name: 'Example Initializer',
+            enabled: false,
             decoration: (ctx, child) => LifeCycleWidget(
                   key: ValueKey('Example Initializer'),
                   init: (ctx) {

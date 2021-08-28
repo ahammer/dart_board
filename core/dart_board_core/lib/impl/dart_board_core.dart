@@ -233,6 +233,7 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
           ((previousValue, element) => <DartBoardDecoration>[
                 ...previousValue,
                 ...element.pageDecorations
+                    .where((decoration) => decoration.enabled)
               ]));
 
       log.info('Available Page Decorations: $pageDecorations');
@@ -243,6 +244,7 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
           (previousValue, element) => <DartBoardDecoration>[
                 ...previousValue,
                 ...element.appDecorations
+                    .where((decoration) => decoration.enabled)
               ]);
 
       /// Build up the MethodHandler list. First takes priority.

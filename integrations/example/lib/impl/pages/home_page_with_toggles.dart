@@ -141,22 +141,17 @@ class HomePageWithToggles extends StatelessWidget {
                             .setFeatureImplementation(
                                 'theme', result ? 'Theme' : null)),
                     ListTile(
-                      title: Text('Show Intro Particles'),
+                      title: Text('Click Me!'),
                       onTap: () {
                         Particles.instance.addLayer(LightingParticleLayer());
                       },
                     ),
                     ListTile(
-                      title: Text('Readme'),
+                      title: Text('See the Splash'),
                       onTap: () {
-                        showDialog(
-                            barrierDismissible: true,
-                            context: context,
-                            useSafeArea: true,
-                            builder: (ctx) => Dialog(
-                                child: Card(child: RouteWidget('/readme'))));
+                        Particles.instance.addLayer(LightingParticleLayer());
                       },
-                    )
+                    ),
                   ],
                 ),
               ),

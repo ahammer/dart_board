@@ -1,3 +1,4 @@
+import 'package:dart_board_core/dart_board.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -22,7 +23,11 @@ class BottomNavTemplateState extends ChangeNotifier {
 
   set selectedRoute(String route) {
     _selectedRoute = route;
-    _selectedTab = config.indexOf(selectedConfig);
+    _selectedTab = config
+        .where((element) =>
+            DartBoardCore.instance.confirmRouteExists(element["route"]))
+        .toList()
+        .indexOf(selectedConfig);
     notifyListeners();
   }
 
