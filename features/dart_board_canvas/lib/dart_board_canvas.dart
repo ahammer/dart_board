@@ -77,10 +77,7 @@ abstract class AnimatedCanvasState {
   double get timeDelta => _timeDelta;
 
   /// This will paint on the screen
-  @mustCallSuper
-  void paint(Canvas canvas, Size size) {
-    if (_context == null) return;
-  }
+  void paint(Canvas canvas, Size size);
 
   @mustCallSuper
   void init(BuildContext context) {

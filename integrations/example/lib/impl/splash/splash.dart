@@ -49,10 +49,10 @@ class ExampleSplashWidget extends StatelessWidget {
 /// And then displayed using "/splash_bg" route.
 
 class SplashAnimation extends AnimatedCanvasState {
-  static late final List<int> shuffled =
-      List.generate(20 * 20, (index) => index)..shuffle();
+  final List<int> shuffled = List.generate(20 * 20, (index) => index)
+    ..shuffle();
 
-  static final List<_Box> boxes = List.generate(
+  late final List<_Box> boxes = List.generate(
       20 * 20,
       (index) => _Box(
             target: Offset(index % 20, (index ~/ 20).toDouble())
@@ -82,25 +82,43 @@ class SplashAnimation extends AnimatedCanvasState {
       final tweenScale = box.tweenScale.transform(animTime);
       canvas.scale(squareWidth * tweenScale, squareWidth * tweenScale);
       canvas.drawRect(Rect.fromCenter(center: Offset.zero, width: 1, height: 1),
-          Paint()..color = box.color);
+          Paint()..color = box.getColor(this));
       canvas.restore();
     });
   }
 }
 
+// Random Kernel
+final _kd = [
+  Random().nextDouble(),
+  Random().nextDouble(),
+  Random().nextDouble(),
+  Random().nextDouble(),
+];
+final _ki = [
+  Random().nextInt(20),
+  Random().nextInt(20),
+  Random().nextInt(20),
+  Random().nextInt(20),
+];
+
 /// One box that we render
+
 class _Box {
   final Offset target;
   final Offset origin;
-
   final double initialRotation = Random().nextDouble() - 0.5 * 20;
+
   late final tweenPos = Tween<Offset>(begin: origin, end: target);
   late final tweenRot = Tween<double>(begin: initialRotation, end: 0);
   late final tweenScale = Tween<double>(begin: 0.0, end: 1.0);
   late final delta = target - origin;
-  late final color =
-      HSLColor.fromAHSL(0.8, cos(target.dx + target.dy) * 5000 % 360, 0.7, 0.8)
-          .toColor();
+  Color getColor(AnimatedCanvasState state) {
+    final a = (cos(target.dx * _ki[0] + state.time) + 1) / 2;
+    final b = (cos(target.dx * 10) + 1) / 2;
+
+    return Colors.red.withOpacity(a);
+  }
 
   _Box({required this.target, required this.origin});
 }
