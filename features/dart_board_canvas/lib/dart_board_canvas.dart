@@ -47,6 +47,7 @@ class CanvasFeaturePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    if (!state.isReady) return;
     final currentTime = DateTime.now().millisecondsSinceEpoch;
     final lastTime = state._lastFrameEpochMs;
     final deltaTime = (currentTime - lastTime) / 1000.0;
@@ -64,24 +65,37 @@ class CanvasFeaturePainter extends CustomPainter {
 /// Base class to track the state
 abstract class AnimatedCanvasState {
   late int _lastFrameEpochMs;
+  BuildContext? _context;
+  BuildContext get context => _context!;
 
+  bool get isReady => _context != null;
+
+  /// This should be safe in step and paint
   double _time = 0;
   double _timeDelta = 0;
-
   double get time => _time;
   double get timeDelta => _timeDelta;
 
   /// This will paint on the screen
-  paint(Canvas canvas, Size size);
+  @mustCallSuper
+  void paint(Canvas canvas, Size size) {
+    if (_context == null) return;
+  }
 
   @mustCallSuper
-  void init(BuildContext context) =>
-      _lastFrameEpochMs = DateTime.now().millisecondsSinceEpoch;
+  void init(BuildContext context) {
+    _context = context;
+    _lastFrameEpochMs = DateTime.now().millisecondsSinceEpoch;
+  }
 
-  void dispose(BuildContext context) {}
+  void dispose(BuildContext context) {
+    _context == null;
+  }
 
   @mustCallSuper
   void step(double deltaTime) {
+    if (_context == null) return;
+
     _time += deltaTime;
     _timeDelta = deltaTime;
     _lastFrameEpochMs = DateTime.now().millisecondsSinceEpoch;

@@ -62,7 +62,7 @@ class ExampleFeature extends DartBoardFeature {
         DartBoardSplashFeature(
           FadeOutSplashScreen(
             delay: Duration(seconds: 5),
-            fadeDuration: Duration(seconds: 5),
+            fadeDuration: Duration(seconds: 2),
             contentBuilder: (context) => ExampleSplashWidget(),
           ),
         ),
