@@ -31,10 +31,10 @@ class ExampleSplashWidget extends StatelessWidget {
           alignment: Alignment.topLeft,
           child: Text(
             ' Dart Board',
-            style: Theme.of(context)
-                .textTheme
-                .headline1!
-                .copyWith(fontWeight: FontWeight.bold),
+            style: Theme.of(context).textTheme.headline1!.copyWith(
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+                shadows: [BoxShadow(color: Colors.white, blurRadius: 10)]),
           ),
         ),
       ],
@@ -97,7 +97,7 @@ class SplashAnimation extends AnimatedCanvasState {
           Rect.fromCenter(center: Offset.zero, width: 1, height: 1),
           Paint()
             ..color = box.getColor(this)
-            ..blendMode = BlendMode.overlay);
+            ..blendMode = BlendMode.difference);
       canvas.restore();
     });
   }
