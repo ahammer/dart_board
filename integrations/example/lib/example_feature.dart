@@ -61,7 +61,7 @@ class ExampleFeature extends DartBoardFeature {
         /// Splash Screen, we'll for now, just use some Text
         DartBoardSplashFeature(
           FadeOutSplashScreen(
-            delay: Duration(seconds: 5),
+            delay: Duration(seconds: 10),
             fadeDuration: Duration(seconds: 2),
             contentBuilder: (context) => ExampleSplashWidget(),
           ),
