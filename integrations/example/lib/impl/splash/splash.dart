@@ -12,7 +12,7 @@ import 'package:flutter/services.dart';
 ///
 /// I'm just having fun here, don't expect documentation or good patterns
 const _curve = Curves.easeInOutCubic;
-const _res = 8;
+const _res = 12;
 const _tweenTime = 5;
 
 class ExampleSplashWidget extends StatelessWidget {

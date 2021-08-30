@@ -52,11 +52,11 @@ class ExampleFeature extends DartBoardFeature {
   @override
   List<DartBoardFeature> get dependencies => [
         DartBoardCanvasFeature(
-          stateBuilder: () => SplashAnimation(),
-          namespace: 'splash_background',
-          implementationName: 'static',
-          route: '/splash_bg',
-        ),
+            stateBuilder: () => SplashAnimation(),
+            namespace: 'splash_background',
+            implementationName: 'static',
+            route: '/splash_bg',
+            showFpsOverlay: true),
 
         /// Splash Screen, we'll for now, just use some Text
         DartBoardSplashFeature(
