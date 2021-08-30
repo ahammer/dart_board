@@ -5,6 +5,7 @@ import 'dart:ui';
 import 'package:dart_board_canvas/dart_board_canvas.dart';
 import 'package:dart_board_core/dart_board.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 /// Sometimes you just want to be quick and dirty, this is demo programming at heart
 /// Don't use this file as a example on how to code for business
@@ -39,6 +40,16 @@ class ExampleSplashWidget extends StatelessWidget {
                     ]),
               ),
             ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: MaterialButton(
+                onPressed: () {
+                  DartBoardCore.instance.dispatchMethodCall(
+                      context: context, call: MethodCall('hideSplashScreen'));
+                },
+                child: Text('Dismiss Splash'),
+              ),
+            )
           ],
         ),
       );
@@ -90,8 +101,11 @@ class SplashAnimation extends AnimatedCanvasState {
       final c = box.getColor(this);
       canvas.scale(squareWidth * tweenScale * c.opacity * fadeTime,
           squareWidth * tweenScale * c.opacity * fadeTime);
-      canvas.drawRect(Rect.fromCenter(center: Offset.zero, width: 1, height: 1),
-          Paint()..color = c);
+      canvas.drawRect(
+          Rect.fromCenter(center: Offset.zero, width: 1, height: 1),
+          Paint()
+            ..color = c
+            ..blendMode = BlendMode.difference);
       canvas.restore();
     });
   }
