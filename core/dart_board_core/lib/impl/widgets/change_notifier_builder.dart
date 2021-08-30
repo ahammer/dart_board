@@ -30,7 +30,10 @@ class ChangeNotifierBuilder<T extends ChangeNotifier> extends StatefulWidget {
 
 class _ChangeNotifierBuilderState<T extends ChangeNotifier>
     extends State<ChangeNotifierBuilder<T>> {
-  void onUpdate() => setState(() {});
+  void onUpdate() {
+    WidgetsBinding.instance!
+        .addPostFrameCallback((timeStamp) => setState(() {}));
+  }
 
   @override
   void initState() {

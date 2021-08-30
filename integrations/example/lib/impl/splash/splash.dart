@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 import 'dart:ui';
 
@@ -5,16 +6,13 @@ import 'package:dart_board_canvas/dart_board_canvas.dart';
 import 'package:dart_board_core/dart_board.dart';
 import 'package:flutter/material.dart';
 
-/// Sometimes you just want to be quick and dirty
+/// Sometimes you just want to be quick and dirty, this is demo programming at heart
+/// Don't use this file as a example on how to code for business
 ///
-/// This splash was built like this
-///
-/// 1. Added centered text (title)
-/// 2. Created an AnimatedCanvasState we can mount to a route
-/// 3. Put that route in a stack z-below the text
-const curve = Curves.easeInOutCubic;
-const res = 10;
-const tweenTime = 5;
+/// I'm just having fun here, don't expect documentation or good patterns
+const _curve = Curves.easeInOutCubic;
+const _res = 8;
+const _tweenTime = 5;
 
 class ExampleSplashWidget extends StatelessWidget {
   const ExampleSplashWidget({
@@ -22,82 +20,78 @@ class ExampleSplashWidget extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        // We bring the
-        RouteWidget('/splash_bg'),
-        Align(
-          alignment: Alignment.topLeft,
-          child: Text(
-            ' Dart Board',
-            style: Theme.of(context).textTheme.headline1!.copyWith(
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-                shadows: [BoxShadow(color: Colors.white, blurRadius: 10)]),
-          ),
+  Widget build(BuildContext context) => LayoutBuilder(
+        builder: (ctx, constraints) => Stack(
+          children: [
+            RouteWidget('/splash_bg'),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(32, 0, 0, 0),
+              child: Text(
+                'Dart Board',
+                style: Theme.of(context).textTheme.headline1!.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    shadows: [
+                      BoxShadow(
+                          color: Colors.black,
+                          blurRadius: 10,
+                          offset: Offset(5, 5))
+                    ]),
+              ),
+            ),
+          ],
         ),
-      ],
-    );
-  }
+      );
 }
 
-/// We are going to use this AnimatedCanvasState to draw the boxes
-/// It's mounted with
-///
-///   DartBoardCanvasFeature(
-///     state: SplashCanvas(),
-///     namespace: 'splash_background',
-///     implementationName: 'static',
-///     route: '/splash_bg',
-///   ),
-///
-/// And then displayed using "/splash_bg" route.
-
 class SplashAnimation extends AnimatedCanvasState {
-  final List<int> shuffled = List.generate(res * res, (index) => index)
+  final List<int> shuffled = List.generate(_res * _res, (index) => index)
     ..shuffle();
 
   late final List<_Box> boxes = List.generate(
-      res * res,
+      _res * _res,
       (index) => _Box(
-            target: Offset((index % res).toDouble(), (index ~/ res).toDouble())
-                .scale(1 / res, 1 / res)
-                .translate(-0.5, -0.5),
-            origin: Offset((shuffled[index] % res).toDouble(),
-                    (shuffled[index] ~/ res).toDouble())
-                .scale(1 / res, 1 / res)
-                .translate(-0.5, -0.5)
-                .scale(res / 2, res / 2),
+          target: Offset((index % _res).toDouble(), (index ~/ _res).toDouble())
+              .scale(1 / _res, 1 / _res)
+              .translate(-0.5, -0.5),
+          origin: Offset((shuffled[index] % _res).toDouble(),
+                  (shuffled[index] ~/ _res).toDouble())
+              .scale(1 / _res, 1 / _res)
+              .translate(-0.5, -0.5)
+          //.scale(_res / 2, _res / 2),
           ));
 
   @override
   void paint(Canvas canvas, Size size) {
     final longestSide = max(size.width, size.height);
-    final squareWidth = longestSide / res * 1.5;
-    final animTime = min(time / tweenTime, 1.0).toDouble();
-    canvas.drawRect(Rect.fromLTWH(0, 0, size.width, size.height),
-        Paint()..color = Colors.white.withOpacity((1 - animTime) / 5 + 0.78));
+    final squareWidth = longestSide / _res * 2.0;
+    final animTime = min(time / _tweenTime, 1.0).toDouble();
+    final fadeTime = max(0.0, 1.0 - max(0.0, (time - 5) / 2.0));
+
+    canvas.drawRect(
+        Rect.fromLTRB(0, 0, size.width, size.height),
+        Paint()
+          ..color = HSLColor.fromAHSL(
+                  (1.0 - (animTime / 3)), animTime * 360, 0.8, 0.7)
+              .toColor());
+
     boxes.forEach((box) {
-      final curOffset = box.tweenPos.transform(curve.transform(animTime));
+      var transform = _curve.transform(animTime);
+      final curOffset = box.tweenPos.transform(transform);
       canvas.save();
       canvas.translate(
           curOffset.dx * longestSide + size.width / 2 + squareWidth / 2,
           curOffset.dy * longestSide + size.height / 2 + squareWidth / 2);
-      if (animTime >= 1) {
-        canvas.rotate((time - tweenTime) / 2);
-      } else {
-        /// Tween into position
-        canvas.rotate(box.tweenRot.transform(animTime));
-      }
 
-      final tweenScale = box.tweenScale.transform(animTime);
-      canvas.scale(squareWidth * tweenScale, squareWidth * tweenScale);
-      canvas.drawRect(
-          Rect.fromCenter(center: Offset.zero, width: 1, height: 1),
-          Paint()
-            ..color = box.getColor(this)
-            ..blendMode = BlendMode.difference);
+      /// Tween into position
+      canvas.rotate(box.tweenRot.transform(animTime) + time);
+
+      final tweenScale = box.tweenScale.transform(transform);
+      final c = box.getColor(this);
+      canvas.scale(squareWidth * tweenScale * c.opacity * fadeTime,
+          squareWidth * tweenScale * c.opacity * fadeTime);
+      canvas.drawRect(Rect.fromCenter(center: Offset.zero, width: 1, height: 1),
+          Paint()..color = c);
       canvas.restore();
     });
   }
@@ -121,7 +115,7 @@ final _ki = [
 class _Box {
   final Offset target;
   final Offset origin;
-  final double initialRotation = Random().nextDouble() - 0.5 * 20;
+  final double initialRotation = -5;
 
   final double r = Random().nextDouble();
   final double g = Random().nextDouble();
@@ -130,6 +124,7 @@ class _Box {
   late final tweenPos = Tween<Offset>(begin: origin, end: target);
   late final tweenRot = Tween<double>(begin: initialRotation, end: 0);
   late final tweenScale = Tween<double>(begin: 0.0, end: 1.0);
+
   late final delta = target - origin;
   Color getColor(AnimatedCanvasState state) {
     final a = (cos(target.dx * _ki[0] + state.time) + 1) / 2;

@@ -3,6 +3,7 @@ import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_particles/dart_board_particle_feature.dart';
 import 'package:dart_board_particles/presets/lighting_particle.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 enum TemplateOptions { plain, bottom_nav, side_nav }
 enum BackgroundOptions { white, image, animated }
@@ -149,7 +150,9 @@ class HomePageWithToggles extends StatelessWidget {
                     ListTile(
                       title: Text('See the Splash'),
                       onTap: () {
-                        Particles.instance.addLayer(LightingParticleLayer());
+                        DartBoardCore.instance.dispatchMethodCall(
+                            context: context,
+                            call: MethodCall('showSplashScreen'));
                       },
                     ),
                   ],

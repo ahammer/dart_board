@@ -52,7 +52,7 @@ class ExampleFeature extends DartBoardFeature {
   @override
   List<DartBoardFeature> get dependencies => [
         DartBoardCanvasFeature(
-          state: SplashAnimation(),
+          stateBuilder: () => SplashAnimation(),
           namespace: 'splash_background',
           implementationName: 'static',
           route: '/splash_bg',
@@ -61,8 +61,10 @@ class ExampleFeature extends DartBoardFeature {
         /// Splash Screen, we'll for now, just use some Text
         DartBoardSplashFeature(
           FadeOutSplashScreen(
-            delay: Duration(seconds: 10),
-            fadeDuration: Duration(seconds: 2),
+            delay: Duration(seconds: 7),
+
+            /// We will use our own fade (I want to tween out the image filter)
+            fadeDuration: Duration(seconds: 1),
             contentBuilder: (context) => ExampleSplashWidget(),
           ),
         ),

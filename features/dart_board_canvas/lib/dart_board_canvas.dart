@@ -12,21 +12,21 @@ class DartBoardCanvasFeature<T extends AnimatedCanvasState>
   /// Route that will be exposed by this feature
   final String route;
 
-  final T state;
-
-  late final widget = AnimatedCanvasWidget(state: state);
+  final T Function() stateBuilder;
 
   DartBoardCanvasFeature({
     required this.namespace,
     required this.implementationName,
     required this.route,
-    required this.state,
+    required this.stateBuilder,
   });
 
   @override
   List<RouteDefinition> get routes => [
         NamedRouteDefinition(
-            route: route, builder: (context, settings) => widget)
+            route: route,
+            builder: (context, settings) =>
+                AnimatedCanvasWidget(state: stateBuilder()))
       ];
 }
 
@@ -81,9 +81,8 @@ class CanvasFeaturePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    if (!state.isReady) return;
     final currentTime = DateTime.now().millisecondsSinceEpoch;
-    final lastTime = state._lastFrameEpochMs;
+    final lastTime = state._lastFrameEpochMs ?? currentTime;
     final deltaTime = (currentTime - lastTime) / 1000.0;
     state.step(deltaTime);
     return state.paint(canvas, size);
@@ -96,11 +95,9 @@ class CanvasFeaturePainter extends CustomPainter {
 /// This is a state object that tracks time.
 /// Base class to track the state
 abstract class AnimatedCanvasState {
-  late int _lastFrameEpochMs;
+  int? _lastFrameEpochMs;
   BuildContext? _context;
   BuildContext get context => _context!;
-
-  bool get isReady => _context != null;
 
   /// This should be safe in step and paint
   double _time = 0;

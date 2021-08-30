@@ -57,6 +57,9 @@ class DartBoardSplashFeature extends DartBoardFeature {
   Map<String, MethodCallHandler> get methodHandlers => {
         "hideSplashScreen": (ctx, call) async {
           locate<_SplashState>()._hide();
+        },
+        "showSplashScreen": (ctx, call) async {
+          locate<_SplashState>()._restart();
         }
       };
 }
@@ -89,6 +92,11 @@ class _SplashState extends ChangeNotifier {
     _visible = false;
     notifyListeners();
   }
+
+  void _restart() {
+    _visible = true;
+    notifyListeners();
+  }
 }
 
 /// A very simple fading out Splash Screen
@@ -117,6 +125,7 @@ class FadeOutSplashScreen extends StatefulWidget {
 }
 
 class _FadeOutSplashScreenState extends State<FadeOutSplashScreen> {
+  late final child = widget.contentBuilder(context);
   bool startedFade = false;
   @override
   void initState() {
@@ -136,8 +145,6 @@ class _FadeOutSplashScreenState extends State<FadeOutSplashScreen> {
         },
         duration: widget.fadeDuration,
         child: Container(
-            width: double.infinity,
-            height: double.infinity,
-            child: widget.contentBuilder(context)),
+            width: double.infinity, height: double.infinity, child: child),
       );
 }
