@@ -9,7 +9,9 @@ void main() {
     await tester.pumpWidget(MaterialApp(
       home: ChangeNotifierBuilder<MyState>(
         notifier: notifier,
-        builder: (ctx, val) => Text(val.output),
+        builder: (ctx, val) {
+          return Text(val.output);
+        },
       ),
     ));
     await tester.pumpAndSettle();

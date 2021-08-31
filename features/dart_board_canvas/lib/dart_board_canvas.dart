@@ -167,7 +167,7 @@ class FpsPainter extends AnimatedCanvasState {
             color: Colors.lightGreenAccent,
             fontSize: 24.0,
             fontFamily: 'Roboto'),
-        text: "${fps}");
+        text: "$fps");
     TextPainter tp = new TextPainter(
         text: span,
         textAlign: TextAlign.left,

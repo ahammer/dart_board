@@ -65,15 +65,15 @@ class DartBoard extends StatefulWidget {
   /// doesn't have to be "/", can be any registered route.
   final String initialRoute;
 
-  final Map<String, String?> featureOverrides;
+  final Map<String, String?>? featureOverrides;
 
   DartBoard(
       {Key? key,
       required this.features,
       this.pageNotFoundWidgetBuilder = _pageNoteFound,
       required this.initialRoute,
+      this.featureOverrides,
       this.pageDecorationDenyList = const {},
-      this.featureOverrides = const {},
       this.routeBuilder = kCupertinoRouteResolver})
       : super(key: key);
 
@@ -128,7 +128,7 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
   @override
   void initState() {
     super.initState();
-    featureOverrides = widget.featureOverrides;
+    featureOverrides = widget.featureOverrides ?? {};
     buildFeatures();
     WidgetsBinding.instance
         ?.scheduleFrameCallback((timeStamp) => setState(() => _init = true));

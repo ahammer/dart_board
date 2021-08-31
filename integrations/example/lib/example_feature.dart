@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:dart_board_canvas/dart_board_canvas.dart';
 import 'package:dart_board_firebase_authentication/dart_board_firebase_authentication.dart';
 import 'package:dart_board_core/dart_board.dart';
