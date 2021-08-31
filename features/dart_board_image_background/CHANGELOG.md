@@ -1,3 +1,7 @@
+## 0.9.2+2
+
+ - **DOCS**: lots of docs.
+
 ## 0.9.2+1
 
  - Update a dependency to the latest release.

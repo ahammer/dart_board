@@ -1,7 +1,7 @@
 name: dart_board_splash
 description: Helps you easily provide a splash screen to your application.
 
-version: 1.0.0+1
+version: 1.0.1
 
 environment:
   sdk: ">=2.12.0 <3.0.0"

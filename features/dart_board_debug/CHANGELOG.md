@@ -1,3 +1,8 @@
+## 0.9.3+2
+
+ - **FIX**: for debug to prompt before disabling a feature (to warn of potential.
+ - **DOCS**: lots of docs.
+
 ## 0.9.3+1
 
  - Update a dependency to the latest release.

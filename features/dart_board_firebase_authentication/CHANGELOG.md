@@ -1,3 +1,7 @@
+## 1.1.1
+
+ - **DOCS**: lots of docs.
+
 ## 1.1.0
 
  - **FIX**: fixed dependency loading case where duplicates might have been.

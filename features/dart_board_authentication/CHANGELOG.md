@@ -1,3 +1,8 @@
+## 1.1.2
+
+ - **FIX**: cleanup and documentation.
+ - **DOCS**: lots of docs.
+
 ## 1.1.1
 
  - Update a dependency to the latest release.

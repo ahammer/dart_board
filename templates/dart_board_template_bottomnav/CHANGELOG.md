@@ -1,3 +1,7 @@
+## 0.9.3+2
+
+ - **FIX**: updated blank template with more mock data and a more refined.
+
 ## 0.9.3+1
 
  - Update a dependency to the latest release.

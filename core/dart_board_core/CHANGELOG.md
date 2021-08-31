@@ -1,3 +1,8 @@
+## 0.9.11
+
+ - **FIX**: bugs.
+ - **FEAT**: support for featureOverrides in the DartBoard widget.
+
 ## 0.9.10
 
  - **FIX**: fixed dependency loading case where duplicates might have been.
