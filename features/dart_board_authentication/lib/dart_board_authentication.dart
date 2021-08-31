@@ -22,6 +22,9 @@ class DartBoardAuthenticationFeature extends DartBoardFeature {
   String get namespace => "DartBoardAuthenticationFeature";
 }
 
+/// Provide this App Decoration in your Features to register a Delegate
+///
+/// A delegate is any auth provider that can fulfill the contract.
 class DartBoardAuthenticationProviderAppDecoration extends DartBoardDecoration {
   final String name;
   final AuthenticationDelegate delegate;

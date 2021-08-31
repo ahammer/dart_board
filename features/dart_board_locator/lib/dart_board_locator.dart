@@ -99,3 +99,9 @@ final _locatorKey = GlobalKey<_LocatorState>();
 /// Globally Locate a type via the Locator
 T locate<T>({String instanceId = ""}) =>
     _locatorKey.currentState!._locate(T, instanceId: instanceId);
+
+/// Locate a ChangeNotifier and Build it.
+Widget locateAndBuild<T extends ChangeNotifier>(
+        Widget Function(BuildContext, T) builder,
+        {String instanceId = ""}) =>
+    locate<T>(instanceId: instanceId).builder<T>(builder);

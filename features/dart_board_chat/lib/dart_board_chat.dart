@@ -104,16 +104,14 @@ class ChannelWidget extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return CollectionView(
-      builder: (idx, ctx, snapshot) => ListTile(
-        selected: snapshot.docs[idx].reference.id == selection,
-        title: Text("${snapshot.docs[idx].get("name")}"),
-        onTap: () => this.onTapped(snapshot.docs[idx].reference.id),
-      ),
-      ref: FirebaseFirestore.instance.collection("channels"),
-    );
-  }
+  Widget build(BuildContext context) => CollectionView(
+        builder: (idx, ctx, snapshot) => ListTile(
+          selected: snapshot.docs[idx].reference.id == selection,
+          title: Text("${snapshot.docs[idx].get("name")}"),
+          onTap: () => this.onTapped(snapshot.docs[idx].reference.id),
+        ),
+        ref: FirebaseFirestore.instance.collection("channels"),
+      );
 }
 
 class MessageWidget extends StatefulWidget {
@@ -135,13 +133,13 @@ class _MessageWidgetState extends State<MessageWidget> {
       child: Column(children: [
         Expanded(
           child: AuthenticationGate(
-            signedIn: (ctx) => buildMessageListView(true),
-            signedOut: (ctx) => buildMessageListView(false),
+            signedIn: (ctx) => buildMessageListView(showFooter: true),
+            signedOut: (ctx) => buildMessageListView(),
           ),
         ),
       ]));
 
-  Widget buildMessageListView(bool showFooter) => QueryListView(
+  Widget buildMessageListView({bool showFooter = false}) => QueryListView(
       reversed: true,
       autoScroll: true,
       headerBuilder: showFooter

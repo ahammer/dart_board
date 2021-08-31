@@ -31,10 +31,11 @@ class DartBoardCanvasFeature<T extends AnimatedCanvasState>
             route: route,
             builder: (context, settings) =>
                 AnimatedCanvasWidget(state: stateBuilder())),
-        NamedRouteDefinition(
-            route: "/fps",
-            builder: (ctx, settings) =>
-                AnimatedCanvasWidget(state: FpsPainter()))
+        if (showFpsOverlay)
+          NamedRouteDefinition(
+              route: "/fps",
+              builder: (ctx, settings) =>
+                  AnimatedCanvasWidget(state: FpsPainter()))
       ];
 
   @override
