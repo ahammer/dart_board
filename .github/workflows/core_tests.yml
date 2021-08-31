@@ -22,7 +22,7 @@ jobs:
       - name: Bootstrap
         run: melos bootstrap
       - name: Melos run all tests
-        run: melos exec -- flutter test --coverage      
+        run: melos exec --dir-exists=test -- flutter test --coverage      
       - name: Upload coverage to codecov
         uses: codecov/codecov-action@v1
         
