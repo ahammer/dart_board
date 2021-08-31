@@ -14,16 +14,13 @@ dependencies:
   dart_board_authentication:    
   cupertino_icons: ^1.0.2
   intl:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
-
+    
 flutter:
   uses-material-design: true
-
   module:
     androidX: true
     androidPackage: com.example.dart_board_chat_feature

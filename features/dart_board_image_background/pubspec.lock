@@ -46,9 +46,9 @@ packages:
   dart_board_core:
     dependency: "direct main"
     description:
-      path: "../../core/dart_board_core"
-      relative: true
-    source: path
+      name: dart_board_core
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.9.10"
   fake_async:
     dependency: transitive
@@ -122,7 +122,7 @@ packages:
       name: provider
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.0.0"
+    version: "5.0.0"
   sky_engine:
     dependency: transitive
     description: flutter

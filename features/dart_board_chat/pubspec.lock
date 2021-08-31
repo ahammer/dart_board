@@ -74,23 +74,23 @@ packages:
   dart_board_authentication:
     dependency: "direct main"
     description:
-      path: "../dart_board_authentication"
-      relative: true
-    source: path
+      name: dart_board_authentication
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "1.1.1"
   dart_board_core:
     dependency: transitive
     description:
-      path: "../../core/dart_board_core"
-      relative: true
-    source: path
+      name: dart_board_core
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.9.10"
   dart_board_firebase_core:
     dependency: transitive
     description:
-      path: "../dart_board_firebase_core"
-      relative: true
-    source: path
+      name: dart_board_firebase_core
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "1.1.0"
   dart_board_firebase_database:
     dependency: "direct main"
@@ -102,9 +102,9 @@ packages:
   dart_board_locator:
     dependency: transitive
     description:
-      path: "../dart_board_locator"
-      relative: true
-    source: path
+      name: dart_board_locator
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.9.4+1"
   fake_async:
     dependency: transitive
@@ -211,7 +211,7 @@ packages:
       name: provider
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.0.0"
+    version: "5.0.0"
   sky_engine:
     dependency: transitive
     description: flutter

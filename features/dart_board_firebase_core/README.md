@@ -1,11 +1,5 @@
 # dart_board_firebase_app
 
-A new flutter module project.
+This is an anchor to attach the FirebaseCore library
 
-## Getting Started
-
-For help getting started with Flutter, view our online
-[documentation](https://flutter.dev/).
-
-For instructions integrating Flutter modules to your existing applications,
-see the [add-to-app documentation](https://flutter.dev/docs/development/add-to-app).
+It doesn't do anything on it's own, but the other firebase libraries require it

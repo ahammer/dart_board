@@ -29,6 +29,10 @@ It is also a `ChangeNotifier` so if you want to listen to updates, you can use `
 
 Call the static global `AuthenticationState.requestSignIn()` to start the log in flow in a dialog.
 
+Alternatively, use
+
+`LoginButton()` widget.
+
 ### Writing a Delegate
 
 1) Create a new feature in a clean flutter module. 

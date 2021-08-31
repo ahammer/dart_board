@@ -1,11 +1,12 @@
 # dart_board_chat_feature
 
-A new flutter module project.
+Add a super simple Chat feature to your app. This is built on top of `dart_board_firebase_database` and `dart_board_authentication`.
 
 ## Getting Started
 
-For help getting started with Flutter, view our online
-[documentation](https://flutter.dev/).
+1) Configure Firebase for your platform (follow googles guides, not included here)
+2) Include  DartBoardChatFeature() into your app
+3) Navigate to "/chat" to use. 
 
-For instructions integrating Flutter modules to your existing applications,
-see the [add-to-app documentation](https://flutter.dev/docs/development/add-to-app).
+## Coming Soon
+More integrations, e.g. `/chat_channel` that can take a channel ID and drop the selector.
