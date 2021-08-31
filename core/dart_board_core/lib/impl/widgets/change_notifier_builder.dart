@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 /// ChangeNotifierBuilder Extension
@@ -30,9 +32,7 @@ class ChangeNotifierBuilder<T extends ChangeNotifier> extends StatefulWidget {
 
 class _ChangeNotifierBuilderState<T extends ChangeNotifier>
     extends State<ChangeNotifierBuilder<T>> {
-  void onUpdate() {
-    setState(() {});
-  }
+  void onUpdate() => Timer.run(() => setState(() {}));
 
   @override
   void initState() {
