@@ -19,7 +19,7 @@ The advantages of adopting a pattern like this are the following
 - AB Testing
 - Feature Gates
 - Feature Isolation
-- Develoer autonomy at the feature level
+- Feature Developer autonomy 
 
 This lets you structure you code as fundamental building blocks of "features", and then integrate them into a consistent application with config only. At compile and runtime you can mix/match and switch feature implementations. 
 
