@@ -13,14 +13,17 @@ Dart Board is a Framework/Architecture pattern for Flutter applications.
 
 The premise is "feature management and encapsulation"
 
-The advantages of adopting this are the following
+The advantages of adopting a pattern like this are the following
 - App as Config/Integration
-- Standalone and Dependant features
+- Features as standalone modules
 - AB Testing
 - Feature Gates
 - Feature Isolation
+- Develoer autonomy at the feature level
 
 This lets you structure you code as fundamental building blocks of "features", and then integrate them into a consistent application with config only. At compile and runtime you can mix/match and switch feature implementations. 
+
+It's designed for squad-based development where multiple teams may work on the same app or code, however any developer can use it to generate a library of features they can re-use across multiple apps with minimal integration.
 
 # Repo Setup:
 
