@@ -14,6 +14,14 @@ This tutorial is definitely not about making a pretty app. It does not preclude 
 
 ## Initial Setup
 
+### Melos notes
+
+To work inside the repo, you'll need to use melos in order to locally link the code.
+
+`flutter pub global activate melos`
+and 
+`melos bootstrap` to link projects locally and generate .lock files.
+
 ### Option A) New Project
 
 You want to create your own project from scratch.

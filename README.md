@@ -19,6 +19,9 @@ In order to keep up with the change of pace and demands of modern software devel
 2) Flutter pub global activate melos
 3) melos bootstrap
 
+Melos is mandatory for local dev, if you use pub dependencies for dev, they'll be out of date across versions. Melos handles it so I don't need to install overrides.
+More info @ https://pub.dev/packages/melos
+
 Most features contain a main.dart that can be run on an Android or iOS device/simulator.
 
 Integrations folder contains "starter" and "example". They both have main.dart and are primarily developed on desktop and web to maximize compat across all platforms.

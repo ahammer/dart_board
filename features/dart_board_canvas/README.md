@@ -40,6 +40,12 @@ built-in fields/getters accessible in paint()
 ### Funvas Support
 https://github.com/creativecreatorormaybenot/funvas
 
-Funvas code can be dropped in as is usually, the key API used is supported.
+Funvas code can be dropped in as is usually, the shorthand API is supported, and a small amount of code ported.
+However, we don't bring in funvas directly.
 
 Just drop the funvas code into the paint() method.
+
+I know it's strange to have 2 api's (e.g. time and t), but funvas is really nice, and the programming style of brevity and hacking is nicely
+in the spirit of this kind of graphics programming. So use the shorthand for fun, use the full names if your writing more readable code.
+
+Ultimately, up to you.
