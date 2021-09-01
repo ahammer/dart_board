@@ -26,6 +26,10 @@ This lets you structure you code as fundamental building blocks of "features", a
 
 It's designed for squad-based development where multiple teams may work on the same app or code, however any developer can use it to generate a library of features they can re-use across multiple apps with minimal integration.
 
+What is a feature? Many are offered out of the box, including Debugging, Full Features like Chat and MineSweeper, and tons of supporting features like Analytics, Realtime Database, State Management options, Canvas and Particle effects and more. There is no pre-set definition of what a feature can be.
+
+Built for the future, Dart Board treats Web and Native platforms as a first class citizen.  
+
 # Repo Setup:
 
 1) Clone the repo
