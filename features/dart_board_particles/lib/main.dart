@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_core/impl/widgets/timer_widgets.dart';
 import 'package:dart_board_particles/dart_board_particle_feature.dart';
+import 'package:dart_board_particles/features/cursor_particle_features.dart';
 import 'package:dart_board_particles/presets/fire_particle.dart';
 import 'package:dart_board_particles/presets/lighting_particle.dart';
 import 'package:dart_board_particles/presets/rainbow_particle.dart';
@@ -22,7 +23,10 @@ void main() => runApp(DartBoard(
           ..addLayer(SnowParticleLayer())
 
           /// And show the intro particle layer
-          ..addLayer(LightingParticleLayer())
+          ..addLayer(LightingParticleLayer()),
+
+        FireCursorFeature(),
+        RainbowCursorFeature()
       ],
     ));
 

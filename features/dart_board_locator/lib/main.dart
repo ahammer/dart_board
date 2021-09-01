@@ -94,8 +94,9 @@ class LocatorDemo extends StatelessWidget {
           children: [
             Text(instanceId),
             Divider(),
-            Text(
-                "hello: ${locate<ExampleState>(instanceId: instanceId).count}"),
+            locateAndBuild<ExampleState>(
+                (ctx, state) => Text("hello: ${state.count}"),
+                instanceId: instanceId),
             MaterialButton(
               onPressed: () {
                 /// Can also use like this
