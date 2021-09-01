@@ -9,9 +9,18 @@ Flutter Architecture/Framework for Feature based development
 
 # Introduction
 
-In software development there is always a strong desire to know the "best way". But the reality is that there isn't a best way. The best way is constantly changing.
+Dart Board is a Framework/Architecture pattern for Flutter applications.
 
-In order to keep up with the change of pace and demands of modern software development, adopting a feature framework allows you to isolate and contain features. This provides a lot of flexibility to gate new feature's, run AB tests, or swap aging components.
+The premise is "feature management and encapsulation"
+
+The advantages of adopting this are the following
+- App as Config/Integration
+- Standalone and Dependant features
+- AB Testing
+- Feature Gates
+- Feature Isolation
+
+This lets you structure you code as fundamental building blocks of "features", and then integrate them into a consistent application with config only. At compile and runtime you can mix/match and switch feature implementations. 
 
 # Repo Setup:
 
@@ -19,7 +28,7 @@ In order to keep up with the change of pace and demands of modern software devel
 2) Flutter pub global activate melos
 3) melos bootstrap
 
-Melos is mandatory for local dev, if you use pub dependencies for dev, they'll be out of date across versions. Melos handles it so I don't need to install overrides.
+Melos is mandatory for local dev, if you use pub dependencies for dev, they won't link changes correctly locally. Melos handles it so I don't need to install overrides.
 More info @ https://pub.dev/packages/melos
 
 Most features contain a main.dart that can be run on an Android or iOS device/simulator.
