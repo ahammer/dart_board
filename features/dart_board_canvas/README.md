@@ -37,3 +37,9 @@ built-in fields/getters accessible in paint()
 
 
 
+### Funvas Support
+https://github.com/creativecreatorormaybenot/funvas
+
+Funvas code can be dropped in as is usually, the key API used is supported.
+
+Just drop the funvas code into the paint() method.

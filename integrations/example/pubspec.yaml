@@ -24,7 +24,7 @@ dependencies:
   dart_board_authentication: 
   dart_board_firebase_authentication:
   dart_board_firebase_database:
-    path: ../../features/dart_board_firebase_database 
+
   dart_board_chat:
     path: ../../features/dart_board_chat
   dart_board_splash:

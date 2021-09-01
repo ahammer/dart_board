@@ -9,4 +9,5 @@ Add a super simple Chat feature to your app. This is built on top of `dart_board
 3) Navigate to "/chat" to use. 
 
 ## Coming Soon
+
 More integrations, e.g. `/chat_channel` that can take a channel ID and drop the selector.

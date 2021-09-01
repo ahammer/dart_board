@@ -159,3 +159,22 @@ class _Box {
 
   _Box({required this.target, required this.origin});
 }
+
+/// Method is yanked from funvas, copy/pasted.
+class FunvasApiTest extends AnimatedCanvasState {
+  @override
+  void paint(Canvas canvas, Size size) {
+    c.drawPaint(Paint()..color = const Color(0xffffffff));
+    final s = s2q(750), w = s.width, h = s.height;
+
+    for (var A = .0, q = 123, j = .0, i = 756;
+        i-- > 0;
+        c.drawRect(
+      Rect.fromLTWH(w / 2 + A * sin(j), h / 2 + A * cos(j), i / 84, i / 84),
+      Paint()..color = Color.fromRGBO(i % 99 + 156, q - i % q, q, 1),
+    )) {
+      j = i / 9;
+      A = (9 * sin(t * j / 20) + cos(20 * j) + 6) * 21;
+    }
+  }
+}
