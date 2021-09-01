@@ -45,8 +45,11 @@ class TrackingDelegateAppDecoration implements DartBoardDecoration {
   @override
   WidgetWithChildBuilder get decoration => (ctx, child) => LifeCycleWidget(
         key: ValueKey("tracking_delegate_$name"),
-        init: (ctx) =>
-            findByName<DartBoardTrackingFeature>(name)._delegates.add(delegate),
+        init: (ctx) {
+          findByName<DartBoardTrackingFeature>("tracking")
+              ._delegates
+              .add(delegate);
+        },
         child: child,
       );
 }

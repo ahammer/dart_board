@@ -1,5 +1,5 @@
 import 'package:dart_board_canvas/dart_board_canvas.dart';
-import 'package:dart_board_firebase_analytics/dart_board_firebase_database.dart';
+import 'package:dart_board_firebase_analytics/dart_board_firebase_analytics.dart';
 import 'package:dart_board_firebase_authentication/dart_board_firebase_authentication.dart';
 import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_core/impl/features/generic_features.dart';
@@ -100,7 +100,9 @@ class ExampleFeature extends DartBoardFeature {
             filename: 'assets/sunset_painting.jpg',
             namespace: 'background',
             implementationName: 'City Image'),
+
         AnimatedBackgroundFeature(),
+
         ImageBackgroundFeature(
             filename: 'assets/mush.jpg',
             namespace: 'background',
@@ -145,6 +147,8 @@ class ExampleFeature extends DartBoardFeature {
   List<String> get pageDecorationDenyList => ['/main:animated_background'];
 
   @override
-  List<String> get pageDecorationAllowList =>
-      ['/main:color_border', '/main:log_frame'];
+  List<String> get pageDecorationAllowList => [
+        '/main:color_border',
+        '/main:log_frame',
+      ];
 }
