@@ -1,7 +1,6 @@
 import 'package:dart_board_core/dart_board.dart';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class DebugList extends StatelessWidget {
   @override
@@ -140,9 +139,7 @@ class CollapsingList extends StatelessWidget {
 
                                   /// Lets dispatch this with no-args to test remote
                                   /// call
-                                  DartBoardCore.instance.dispatchMethodCall(
-                                      context: context,
-                                      call: MethodCall(value));
+                                  context.dispatchMethod(value);
                                 },
                                 value: null,
                                 items: [

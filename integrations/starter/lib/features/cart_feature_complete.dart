@@ -1,7 +1,6 @@
 import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_locator/dart_board_locator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class CartFeature extends DartBoardFeature {
   final String itemPreviewRoute;
@@ -136,8 +135,7 @@ class CartActionButtons extends StatelessWidget {
               color: theme.colorScheme.primary,
               onPressed: () {
                 /// Message the system to start the checkout flow
-                DartBoardCore.instance.dispatchMethodCall(
-                    context: context, call: MethodCall("startCheckout"));
+                context.dispatchMethod("startCheckout");
               },
               child: Text(
                 "Start Checkout",
