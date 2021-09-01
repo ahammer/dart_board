@@ -21,13 +21,11 @@ import 'features/mock_checkout_feature.dart';
 void main() {
   runApp(DartBoard(
     features: [
-      /// We load our repository with mock data
       DetailsFeature(),
       ListingFeature(),
       CartFeature(itemPreviewRoute: "/details_by_id"),
       DebugFeature(),
       BottomNavTemplateFeature(route: '/home', config: _templateConfig),
-      // For CartFeature to pass the buck too
       MockCheckoutFeature()
     ],
     initialRoute: '/home',
