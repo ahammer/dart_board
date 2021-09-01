@@ -12,15 +12,12 @@ import 'package:dart_board_template_app_bar_sidenav/dart_board_template_app_bar_
 import 'package:dart_board_theme/dart_board_theme.dart';
 import 'package:dart_board_debug/debug_feature.dart';
 import 'package:dart_board_log/dart_board_log.dart';
-import 'package:example/impl/pages/code_overview.dart';
 import 'package:example/impl/pages/home_page_with_toggles.dart';
 import 'package:example/impl/splash/splash.dart';
 import 'data/constants.dart';
 import 'impl/decorations/wavy_lines_background.dart';
-import 'impl/pages/home_page.dart';
 import 'package:dart_board_template_bottomnav/dart_board_template_bottomnav.dart';
 import 'package:dart_board_image_background/dart_board_image_background.dart';
-import 'impl/pages/haiku_and_code.dart';
 import 'package:flutter/material.dart';
 
 /// The Example Feature
@@ -140,31 +137,6 @@ class ExampleFeature extends DartBoardFeature {
                   },
                   child: child,
                 ))
-      ];
-
-  /// Navigation entry points
-  ///
-  /// Use the NamedRouteDefinition() to define some simple named routes
-  /// other RouteDefinitions may come soon (e.g. UrlRouteDefinition)
-  @override
-  List<RouteDefinition> get routes => <RouteDefinition>[
-        /// /home route
-        NamedRouteDefinition(
-            route: '/home', builder: (ctx, settings) => HomePage()),
-
-        /// /code route
-        NamedRouteDefinition(
-            route: '/code', builder: (ctx, settings) => CodeOverview()),
-
-        /// Additional routes from the Constants files
-        /// Each one is dedicated to a specific code file
-        /// Files are just raw/master references to the github repo
-        ///
-        /// Visible on the /code route
-        ...kCodeRoutes.map((e) => NamedRouteDefinition(
-            route: e['route']!,
-            builder: (ctx, setting) =>
-                HaikuAndCode(haiku: e['haiku']!, url: e['url']!))),
       ];
 
   @override
