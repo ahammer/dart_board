@@ -197,3 +197,7 @@ class EmptyDartBoardFeature extends DartBoardFeature {
   @override
   String get namespace => 'Empty';
 }
+
+/// Warning, unchecked cast
+T findByName<T extends DartBoardFeature>(String name) =>
+    DartBoardCore.instance.findByName(name) as T;

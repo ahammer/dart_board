@@ -1,4 +1,5 @@
 import 'package:dart_board_canvas/dart_board_canvas.dart';
+import 'package:dart_board_firebase_analytics/dart_board_firebase_database.dart';
 import 'package:dart_board_firebase_authentication/dart_board_firebase_authentication.dart';
 import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_core/impl/features/generic_features.dart';
@@ -71,6 +72,7 @@ class ExampleFeature extends DartBoardFeature {
         RainbowCursorFeature(),
         DartBoardAuthenticationFlutterFireFeature(),
         DartBoardChatFeature(),
+        DartBoardFirebaseAnalytics(),
 
         /// Add 2 template's
         /// can toggle in debug
