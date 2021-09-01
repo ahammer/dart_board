@@ -20,6 +20,7 @@ The advantages of adopting a pattern like this are the following
 - Feature Gates
 - Feature Isolation
 - Feature Developer autonomy 
+- Easy to port existing flutter code
 
 This lets you structure you code as fundamental building blocks of "features", and then integrate them into a consistent application with config only. At compile and runtime you can mix/match and switch feature implementations. 
 
