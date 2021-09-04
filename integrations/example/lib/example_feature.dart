@@ -53,7 +53,7 @@ class ExampleFeature extends DartBoardFeature {
             namespace: 'splash_background',
             implementationName: 'static',
             route: '/splash_bg',
-            showFpsOverlay: true),
+            showFpsOverlay: false),
 
         /// Splash Screen, we'll for now, just use some Text
         DartBoardSplashFeature(
@@ -95,8 +95,9 @@ class ExampleFeature extends DartBoardFeature {
             title: 'Example App',
             namespace: 'template'),
 
-        /// We are going to register the clock to many routes and implementations
-        /// so we can bind to background selection
+        /// We register the clocks as 3 features, since it's bound to the image_background
+        /// Another approach is to have the image background -> route, and then select the space variant
+        /// But I did it this way because I want them all on the "background" feature
         SpaceClockFeature(
           namespace: 'clock',
           implementationName: 'Space Clock - Stars',
@@ -124,7 +125,12 @@ class ExampleFeature extends DartBoardFeature {
           showSun: true,
         ),
 
-        /// We are going to mount the SpaceClock using the ImageBackgroundFeature widget option
+        /// Here we register the actual backgrounds we can use
+        /// There is a variety of features to provide a background
+        /// they are all on the namespace "background"
+        ///
+        /// They all generally apply a page decoration with a stack
+        /// to place the content on
         ImageBackgroundFeature(
             widget: Container(
                 width: double.infinity,
