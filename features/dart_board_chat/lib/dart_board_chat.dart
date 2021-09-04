@@ -50,6 +50,7 @@ class _ChatWidgetState extends State<ChatWidget> {
   String? _id;
   @override
   Widget build(BuildContext context) => Scaffold(
+        backgroundColor: Colors.transparent,
         appBar: AppBar(
           actions: [LoginButton()],
           title: Text(
