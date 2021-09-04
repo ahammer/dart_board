@@ -22,21 +22,9 @@ class HomePageWithToggles extends StatelessWidget {
                 children: [
                   Card(
                     child: Container(
-                      width: 350,
+                      width: 200,
                       child: Column(
                         children: [
-                          Text(
-                            'Dart Board',
-                            style: Theme.of(context).textTheme.headline3,
-                          ),
-                          Text(
-                            'Flutter Feature Framework',
-                            style: Theme.of(context).textTheme.headline5,
-                          ),
-                          Text(
-                            '[ Sandbox / Playground ]',
-                            style: Theme.of(context).textTheme.subtitle2,
-                          ),
                           LoginButton(),
                           ListTile(
                             title: Text('Template'),
