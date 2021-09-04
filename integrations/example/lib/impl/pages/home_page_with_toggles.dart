@@ -173,13 +173,6 @@ class HomePageWithToggles extends StatelessWidget {
                                   .setFeatureImplementation(
                                       'theme', result ? 'Theme' : null)),
                           ListTile(
-                            title: Text('Click Me!'),
-                            onTap: () {
-                              Particles.instance
-                                  .addLayer(LightingParticleLayer());
-                            },
-                          ),
-                          ListTile(
                             title: Text('See the Splash'),
                             onTap: () {
                               context.dispatchMethod('showSplashScreen');
