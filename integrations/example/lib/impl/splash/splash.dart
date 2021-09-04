@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 /// I'm just having fun here, don't expect documentation or good patterns
 const _curve = Curves.easeInOutCubic;
 const _res = 12;
-const _tweenTime = 5;
+const _tweenTime = 2;
 
 class ExampleSplashWidget extends StatelessWidget {
   const ExampleSplashWidget({
@@ -79,9 +79,7 @@ class SplashAnimation extends AnimatedCanvasState {
     canvas.drawRect(
         Rect.fromLTRB(0, 0, size.width, size.height),
         Paint()
-          ..color = HSLColor.fromAHSL(
-                  (1.0 - (animTime / 3)), animTime * 360, 0.8, 0.7)
-              .toColor());
+          ..color = HSLColor.fromAHSL(1.0, animTime * 360, 0.8, 0.7).toColor());
 
     boxes.forEach((box) {
       var transform = _curve.transform(animTime);

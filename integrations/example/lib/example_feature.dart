@@ -57,7 +57,7 @@ class ExampleFeature extends DartBoardFeature {
         /// Splash Screen, we'll for now, just use some Text
         DartBoardSplashFeature(
           FadeOutSplashScreen(
-            delay: Duration(seconds: 7),
+            delay: Duration(seconds: 1),
 
             /// We will use our own fade (I want to tween out the image filter)
             fadeDuration: Duration(seconds: 1),
