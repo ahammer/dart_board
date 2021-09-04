@@ -12,8 +12,17 @@ import 'ticker/ticker_clock.dart';
 /// Layer 2: The DateTimeAndWeatherTicker the draws in the top left
 ///
 class ClockScaffolding extends StatelessWidget {
+  final bool showMoon, showEarth, showSun;
+
   /// Construct a clock scaffolding given a model
-  const ClockScaffolding({required this.model, Key? key}) : super(key: key);
+  ///
+  const ClockScaffolding({
+    required this.model,
+    Key? key,
+    this.showMoon = false,
+    this.showEarth = true,
+    this.showSun = false,
+  }) : super(key: key);
 
   /// The ClockModel, needed by things to make decisions about what to draw
   final ClockModel model;
@@ -22,7 +31,12 @@ class ClockScaffolding extends StatelessWidget {
   Widget build(BuildContext context) => Stack(
         children: <Widget>[
           //The space clock
-          SpaceClockScene(model),
+          SpaceClockScene(
+            model,
+            showMoon: showMoon,
+            showSun: showSun,
+            showEarth: showEarth,
+          ),
 
           Align(
               alignment: Alignment.topLeft,

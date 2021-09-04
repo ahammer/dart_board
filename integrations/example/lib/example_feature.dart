@@ -8,6 +8,7 @@ import 'package:dart_board_minesweeper/dart_board_minesweeper.dart';
 import 'package:dart_board_particles/dart_board_particle_feature.dart';
 import 'package:dart_board_particles/features/cursor_particle_features.dart';
 import 'package:dart_board_particles/features/snow_feature.dart';
+import 'package:dart_board_space_clock/clock_feature.dart';
 import 'package:dart_board_splash/dart_board_splash.dart';
 import 'package:dart_board_template_app_bar_sidenav/dart_board_template_app_bar_sidenav.dart';
 import 'package:dart_board_theme/dart_board_theme.dart';
@@ -94,8 +95,23 @@ class ExampleFeature extends DartBoardFeature {
             title: 'Example App',
             namespace: 'template'),
 
-        /// Register 3 Backgrounds
+        /// Register 4 Backgrounds
         /// can toggle in debug
+
+        SpaceClockFeature(
+          namespace: 'clock',
+          implementationName: 'Space Clock',
+        ),
+
+        /// We are going to mount the SpaceClock using the ImageBackgroundFeature widget option
+        ImageBackgroundFeature(
+            widget: Container(
+                width: double.infinity,
+                height: double.infinity,
+                child: RouteWidget('/clock')),
+            namespace: 'background',
+            implementationName: 'Space Clock'),
+
         ImageBackgroundFeature(
             filename: 'assets/sunset_painting.jpg',
             namespace: 'background',

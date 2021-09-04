@@ -164,7 +164,8 @@ class TickerWeatherIcon extends StatelessWidget {
   Widget build(BuildContext context) => Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: ExactAssetImage(clockModel.weatherAsset),
+                image: ExactAssetImage(clockModel.weatherAsset,
+                    package: "dart_board_space_clock"),
                 fit: BoxFit.contain)),
         width: height,
         height: height,

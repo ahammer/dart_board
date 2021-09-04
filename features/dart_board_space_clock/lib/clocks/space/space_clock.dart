@@ -60,10 +60,17 @@ import 'stars.dart';
 ///
 /// Handles the drawing of the space clock
 class SpaceClockScene extends StatelessWidget {
+  final bool showMoon, showEarth, showSun;
+
   /// SpaceClockScene
   ///
   /// Constructs the space_clock, give it a ClockModel
-  const SpaceClockScene(this.model, {Key? key}) : super(key: key);
+  const SpaceClockScene(this.model,
+      {this.showMoon = false,
+      this.showEarth = true,
+      this.showSun = false,
+      Key? key})
+      : super(key: key);
 
   /// ClockModel from the challenge
   final ClockModel model;
@@ -71,7 +78,11 @@ class SpaceClockScene extends StatelessWidget {
   @override
   Widget build(BuildContext context) => AnimatedPaint(
         painter: SpaceClockPainter(
-            isDark: Theme.of(context).brightness == Brightness.dark),
+          isDark: Theme.of(context).brightness == Brightness.dark,
+          showMoon: showMoon,
+          showSun: showSun,
+          showEarth: showEarth,
+        ),
       );
 }
 
@@ -125,8 +136,15 @@ bool _startedLoadingImages = false;
 ///  - This object acts as a singleton
 ///  - Theme Light/Dark is passed to the painter through the SpaceClockScene.build() method
 class SpaceClockPainter extends AnimatedPainter {
+  final bool showMoon, showEarth, showSun;
+
   /// Constructor for the painter
-  SpaceClockPainter({required this.isDark});
+  SpaceClockPainter({
+    required this.isDark,
+    this.showMoon = false,
+    this.showEarth = true,
+    this.showSun = false,
+  });
 
   /// Whether to draw dark config or not
   /// Note: This is mutating state
@@ -223,15 +241,15 @@ class SpaceClockPainter extends AnimatedPainter {
     drawStars(canvas, size, viewModel.backgroundRotation,
         time.millisecondsSinceEpoch / 1000.0);
 
-    drawSun(canvas, size, viewModel, config);
+    if (showSun) drawSun(canvas, size, viewModel, config);
 
     //We draw the moon behind for the "top" pass of the circle
     if (time.second < 15 || time.second > 45) {
-      drawMoon(canvas, size, viewModel, config);
-      drawEarth(canvas, size, viewModel, config);
+      if (showMoon) drawMoon(canvas, size, viewModel, config);
+      if (showEarth) drawEarth(canvas, size, viewModel, config);
     } else {
-      drawEarth(canvas, size, viewModel, config);
-      drawMoon(canvas, size, viewModel, config);
+      if (showEarth) drawEarth(canvas, size, viewModel, config);
+      if (showMoon) drawMoon(canvas, size, viewModel, config);
     }
   }
 
