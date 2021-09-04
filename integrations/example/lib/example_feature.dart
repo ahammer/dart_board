@@ -95,13 +95,43 @@ class ExampleFeature extends DartBoardFeature {
             title: 'Example App',
             namespace: 'template'),
 
-        /// Register 4 Backgrounds
-        /// can toggle in debug
-
+        /// We are going to register the clock to many routes and implementations
+        /// so we can bind to background selection
         SpaceClockFeature(
           namespace: 'clock',
-          implementationName: 'Space Clock',
+          implementationName: 'Space Clock - Stars',
+          route: '/clock',
+          showEarth: false,
+          showMoon: false,
+          showSun: false,
         ),
+
+        SpaceClockFeature(
+          namespace: 'clock2',
+          route: '/clock_earth',
+          implementationName: 'Space Clock - Earth',
+          showEarth: true,
+          showMoon: false,
+          showSun: false,
+        ),
+
+        SpaceClockFeature(
+          namespace: 'clock3',
+          route: '/clock_all',
+          implementationName: 'Space Clock - All',
+          showEarth: true,
+          showMoon: true,
+          showSun: true,
+        ),
+
+        /// We are going to mount the SpaceClock using the ImageBackgroundFeature widget option
+        ImageBackgroundFeature(
+            widget: Container(
+                width: double.infinity,
+                height: double.infinity,
+                child: RouteWidget('/clock_earth')),
+            namespace: 'background',
+            implementationName: 'ClockEarth'),
 
         /// We are going to mount the SpaceClock using the ImageBackgroundFeature widget option
         ImageBackgroundFeature(
@@ -110,7 +140,16 @@ class ExampleFeature extends DartBoardFeature {
                 height: double.infinity,
                 child: RouteWidget('/clock')),
             namespace: 'background',
-            implementationName: 'Space Clock'),
+            implementationName: 'ClockStars'),
+
+        /// We are going to mount the SpaceClock using the ImageBackgroundFeature widget option
+        ImageBackgroundFeature(
+            widget: Container(
+                width: double.infinity,
+                height: double.infinity,
+                child: RouteWidget('/clock_all')),
+            namespace: 'background',
+            implementationName: 'ClockAll'),
 
         ImageBackgroundFeature(
             filename: 'assets/sunset_painting.jpg',

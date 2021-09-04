@@ -6,7 +6,7 @@ import 'package:dart_board_tracking/dart_board_tracking.dart';
 import 'package:flutter/material.dart';
 
 enum TemplateOptions { plain, bottom_nav, side_nav }
-enum BackgroundOptions { white, image, animated }
+enum BackgroundOptions { white, image, animated, space, space_earth, space_all }
 
 class HomePageWithToggles extends StatelessWidget {
   @override
@@ -94,6 +94,21 @@ class HomePageWithToggles extends StatelessWidget {
                                         .setFeatureImplementation(
                                             'background', 'Relaxing Waves');
                                     break;
+                                  case BackgroundOptions.space:
+                                    DartBoardCore.instance
+                                        .setFeatureImplementation(
+                                            'background', 'ClockStars');
+                                    break;
+                                  case BackgroundOptions.space_earth:
+                                    DartBoardCore.instance
+                                        .setFeatureImplementation(
+                                            'background', 'ClockEarth');
+                                    break;
+                                  case BackgroundOptions.space_all:
+                                    DartBoardCore.instance
+                                        .setFeatureImplementation(
+                                            'background', 'ClockAll');
+                                    break;
                                 }
                               },
                               itemBuilder: (BuildContext context) =>
@@ -109,6 +124,18 @@ class HomePageWithToggles extends StatelessWidget {
                                 const PopupMenuItem<BackgroundOptions>(
                                   value: BackgroundOptions.animated,
                                   child: Text('Animated'),
+                                ),
+                                const PopupMenuItem<BackgroundOptions>(
+                                  value: BackgroundOptions.space,
+                                  child: Text('Space'),
+                                ),
+                                const PopupMenuItem<BackgroundOptions>(
+                                  value: BackgroundOptions.space_earth,
+                                  child: Text('Space+Earth'),
+                                ),
+                                const PopupMenuItem<BackgroundOptions>(
+                                  value: BackgroundOptions.space_all,
+                                  child: Text('Space+All'),
                                 ),
                               ],
                             ),
