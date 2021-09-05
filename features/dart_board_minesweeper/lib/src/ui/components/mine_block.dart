@@ -46,22 +46,25 @@ class _MineBlockState extends State<MineBlock> {
                   getState<MinesweeperState>().mineSweeper.isGameOver;
                 }),
                 onExit: (_) => setState(() => hover = false),
-                child: AnimatedContainer(
-                  decoration: vm.isVisible
-                      ? (vm.isBomb ?? false
-                          ? bombBox(context)
-                          : cleanBox(context))
-                      : hover
-                          ? hoverBox(context)
-                          : vm.isTagged
-                              ? flagBox(context)
-                              : unknownBox(context),
-                  duration: Duration(
-                      milliseconds: hover
-                          ? (100 * vm.random).toInt()
-                          : (250 + vm.random * 500).toInt()),
-                  child: Center(
-                      child: Text(vm.isVisible
+                child: Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: AnimatedContainer(
+                    decoration: vm.isVisible
+                        ? (vm.isBomb ?? false
+                            ? bombBox(context)
+                            : cleanBox(context))
+                        : hover
+                            ? hoverBox(context)
+                            : vm.isTagged
+                                ? flagBox(context)
+                                : unknownBox(context),
+                    duration: Duration(
+                        milliseconds: hover
+                            ? (100 * vm.random).toInt()
+                            : (250 + vm.random * 500).toInt()),
+                    child: Center(
+                        child: Text(
+                      vm.isVisible
                           ? (vm.isBomb ?? false)
                               ? "💣"
                               : "${vm.neighbours == 0 ? "" : vm.neighbours}"
@@ -69,7 +72,22 @@ class _MineBlockState extends State<MineBlock> {
                               ? "🏳"
                               : (isGameOver && (vm.isBomb ?? false))
                                   ? "💣"
-                                  : ""))),
+                                  : ""),
+                      style: Theme.of(context).textTheme.headline4!.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).colorScheme.secondary,
+                          shadows: [
+                            Shadow(
+                                blurRadius: 2,
+                                color: Colors.black,
+                                offset: Offset(2, 1)),
+                            Shadow(
+                                blurRadius: 2,
+                                color: Colors.white,
+                                offset: Offset(-2, -1)),
+                          ]),
+                    )),
+                  ),
                 ),
               ),
             ),
@@ -95,13 +113,10 @@ hoverBox(BuildContext context) => BoxDecoration(
     );
 
 unknownBox(BuildContext context) => BoxDecoration(
-      color: Theme.of(context).colorScheme.primaryVariant,
-      border:
-          Border.all(color: Theme.of(context).colorScheme.primary, width: 1),
+      color: Theme.of(context).colorScheme.primary.withOpacity(0.66),
+      borderRadius: BorderRadius.circular(16),
     );
 
 cleanBox(BuildContext context) => BoxDecoration(
-      color: Theme.of(context).colorScheme.surface.withOpacity(0.3),
-      border:
-          Border.all(color: Theme.of(context).colorScheme.primary, width: 1),
+      color: Theme.of(context).colorScheme.surface.withOpacity(0.0),
     );
