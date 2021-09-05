@@ -26,8 +26,8 @@ dependencies:
   dart_board_firebase_database:
   dart_board_firebase_analytics:
     path: ../../features/dart_board_firebase_analytics
-  dart_board_space_clock:    
-    path: ../../features/dart_board_space_clock
+  dart_board_space_scene:    
+    path: ../../features/dart_board_space_scene
   dart_board_chat:
     path: ../../features/dart_board_chat
   dart_board_splash:

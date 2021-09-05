@@ -22,6 +22,7 @@ class ExampleSplashWidget extends StatelessWidget {
   Widget build(BuildContext context) => LayoutBuilder(
         builder: (ctx, constraints) => Stack(
           children: [
+            RouteWidget('/space'),
             RouteWidget('/splash_bg'),
             Padding(
               padding: const EdgeInsets.fromLTRB(32, 0, 0, 0),
@@ -76,11 +77,12 @@ class SplashAnimation extends AnimatedCanvasState {
     final animTime = min(time / _tweenTime, 1.0).toDouble();
     final fadeTime = max(0.0, 1.0 - max(0.0, (time - 5) / 2.0));
 
+    /*
     canvas.drawRect(
         Rect.fromLTRB(0, 0, size.width, size.height),
         Paint()
           ..color = HSLColor.fromAHSL(1.0, animTime * 360, 0.8, 0.7).toColor());
-
+*/
     boxes.forEach((box) {
       var transform = _curve.transform(animTime);
       final curOffset = box.tweenPos.transform(transform);

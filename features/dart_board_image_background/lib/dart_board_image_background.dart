@@ -1,7 +1,10 @@
 import 'package:dart_board_core/dart_board.dart';
 import 'package:flutter/material.dart';
 
-/// Give this filename or widget, and it'll apply a background
+/// Give this filename or widget, and it'll apply a background as a page decoration
+/// It'll also expose a background route, if you want to access it
+/// other ways.
+
 class ImageBackgroundFeature extends DartBoardFeature {
   @override
   final String namespace;
@@ -29,6 +32,12 @@ class ImageBackgroundFeature extends DartBoardFeature {
       this.widget,
       this.decorationName = 'image_background'});
 
+  @override
+  List<RouteDefinition> get routes => [
+        NamedRouteDefinition(
+            route: '/${namespace}_route',
+            builder: (ctx, settings) => widget ?? fileWidget)
+      ];
   @override
   List<DartBoardDecoration> get pageDecorations => [
         DartBoardDecoration(

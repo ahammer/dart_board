@@ -12,7 +12,7 @@ Future<ui.Image> loadImageFromAsset(String asset, {String ext = "png"}) async {
   /// Read the bytes of the Data into a list
 
   final img = (await rootBundle
-          .load('packages/dart_board_space_clock/assets/$asset.$ext'))
+          .load('packages/dart_board_space_scene/assets/$asset.$ext'))
       .chain((bytes) => Uint8List.view(bytes.buffer));
 
   final completer = Completer<ui.Image>();

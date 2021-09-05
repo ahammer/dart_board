@@ -8,7 +8,7 @@ import 'package:dart_board_minesweeper/dart_board_minesweeper.dart';
 import 'package:dart_board_particles/dart_board_particle_feature.dart';
 import 'package:dart_board_particles/features/cursor_particle_features.dart';
 import 'package:dart_board_particles/features/snow_feature.dart';
-import 'package:dart_board_space_clock/clock_feature.dart';
+import 'package:dart_board_space_scene/space_scene_feature.dart';
 import 'package:dart_board_splash/dart_board_splash.dart';
 import 'package:dart_board_template_app_bar_sidenav/dart_board_template_app_bar_sidenav.dart';
 import 'package:dart_board_theme/dart_board_theme.dart';
@@ -58,10 +58,10 @@ class ExampleFeature extends DartBoardFeature {
         /// Splash Screen, we'll for now, just use some Text
         DartBoardSplashFeature(
           FadeOutSplashScreen(
-            delay: Duration(seconds: 1),
+            delay: Duration(milliseconds: 1500),
 
             /// We will use our own fade (I want to tween out the image filter)
-            fadeDuration: Duration(seconds: 1),
+            fadeDuration: Duration(milliseconds: 2500),
             contentBuilder: (context) => ExampleSplashWidget(),
           ),
         ),
@@ -98,27 +98,27 @@ class ExampleFeature extends DartBoardFeature {
         /// We register the clocks as 3 features, since it's bound to the image_background
         /// Another approach is to have the image background -> route, and then select the space variant
         /// But I did it this way because I want them all on the "background" feature
-        SpaceClockFeature(
+        SpaceSceneFeature(
           namespace: 'clock',
           implementationName: 'Space Clock - Stars',
-          route: '/clock',
+          route: '/space',
           showEarth: false,
           showMoon: false,
           showSun: false,
         ),
 
-        SpaceClockFeature(
+        SpaceSceneFeature(
           namespace: 'clock2',
-          route: '/clock_earth',
+          route: '/space_earth',
           implementationName: 'Space Clock - Earth',
           showEarth: true,
           showMoon: false,
           showSun: false,
         ),
 
-        SpaceClockFeature(
+        SpaceSceneFeature(
           namespace: 'clock3',
-          route: '/clock_all',
+          route: '/space_all',
           implementationName: 'Space Clock - All',
           showEarth: true,
           showMoon: true,
@@ -135,7 +135,7 @@ class ExampleFeature extends DartBoardFeature {
             widget: Container(
                 width: double.infinity,
                 height: double.infinity,
-                child: RouteWidget('/clock_earth')),
+                child: RouteWidget('/space_earth')),
             namespace: 'background',
             implementationName: 'ClockEarth'),
 
@@ -144,7 +144,7 @@ class ExampleFeature extends DartBoardFeature {
             widget: Container(
                 width: double.infinity,
                 height: double.infinity,
-                child: RouteWidget('/clock')),
+                child: RouteWidget('/space')),
             namespace: 'background',
             implementationName: 'ClockStars'),
 
@@ -153,7 +153,7 @@ class ExampleFeature extends DartBoardFeature {
             widget: Container(
                 width: double.infinity,
                 height: double.infinity,
-                child: RouteWidget('/clock_all')),
+                child: RouteWidget('/space_all')),
             namespace: 'background',
             implementationName: 'ClockAll'),
 

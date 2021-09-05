@@ -22,7 +22,7 @@ class HomePageWithToggles extends StatelessWidget {
                 children: [
                   Card(
                     child: Container(
-                      width: 200,
+                      width: 275,
                       child: Column(
                         children: [
                           LoginButton(),

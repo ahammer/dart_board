@@ -1,10 +1,9 @@
 import 'package:dart_board_core/dart_board.dart';
 import 'package:flutter/material.dart';
-
-import 'clocks/clock_scaffolding.dart';
+import 'clocks/space/space_clock.dart';
 import 'customizer.dart';
 
-class SpaceClockFeature extends DartBoardFeature {
+class SpaceSceneFeature extends DartBoardFeature {
   final String namespace;
   final String route;
   final String implementationName;
@@ -13,7 +12,7 @@ class SpaceClockFeature extends DartBoardFeature {
   final bool showEarth;
   final bool showSun;
 
-  SpaceClockFeature({
+  SpaceSceneFeature({
     this.showMoon = false,
     this.showEarth = true,
     this.showSun = false,
@@ -26,12 +25,13 @@ class SpaceClockFeature extends DartBoardFeature {
   List<RouteDefinition> get routes => [
         NamedRouteDefinition(
             builder: (ctx, settings) => ClockCustomizer((model) => Builder(
-                builder: (context) => ClockScaffolding(
-                      model: model,
-                      showMoon: showMoon,
-                      showSun: showSun,
-                      showEarth: showEarth,
-                    ))),
+                  builder: (context) => SpaceClockScene(
+                    model,
+                    showMoon: showMoon,
+                    showSun: showSun,
+                    showEarth: showEarth,
+                  ),
+                )),
             route: route)
       ];
 }
