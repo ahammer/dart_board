@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   dart_board_core: ^0.9.10
-  dart_board_locator:
+  dart_board_locator: ^0.9.4+1
 
 dev_dependencies:
   flutter_test:
