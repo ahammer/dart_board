@@ -32,7 +32,7 @@ class CollectionView extends StatelessWidget {
                     builder(idx, ctx, snapshot.data!),
                 itemCount: snapshot.data!.docs.length);
           } else {
-            return CircularProgressIndicator();
+            return Container(height: 16, child: LinearProgressIndicator());
           }
         },
       );
@@ -98,7 +98,7 @@ class _QueryListViewState extends State<QueryListView> {
                     (widget.footerBuilder != null ? 1 : 0) +
                     (widget.headerBuilder != null ? 1 : 0));
           } else {
-            return CircularProgressIndicator();
+            return Container(height: 16, child: LinearProgressIndicator());
           }
         },
       );

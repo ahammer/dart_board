@@ -1,4 +1,5 @@
 import 'package:dart_board_canvas/dart_board_canvas.dart';
+import 'package:dart_board_firebase_analytics/dart_board_firebase_analytics.dart';
 import 'package:dart_board_firebase_authentication/dart_board_firebase_authentication.dart';
 import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_core/impl/features/generic_features.dart';
@@ -7,20 +8,18 @@ import 'package:dart_board_minesweeper/dart_board_minesweeper.dart';
 import 'package:dart_board_particles/dart_board_particle_feature.dart';
 import 'package:dart_board_particles/features/cursor_particle_features.dart';
 import 'package:dart_board_particles/features/snow_feature.dart';
+import 'package:dart_board_space_scene/space_scene_feature.dart';
 import 'package:dart_board_splash/dart_board_splash.dart';
 import 'package:dart_board_template_app_bar_sidenav/dart_board_template_app_bar_sidenav.dart';
 import 'package:dart_board_theme/dart_board_theme.dart';
 import 'package:dart_board_debug/debug_feature.dart';
 import 'package:dart_board_log/dart_board_log.dart';
-import 'package:example/impl/pages/code_overview.dart';
 import 'package:example/impl/pages/home_page_with_toggles.dart';
 import 'package:example/impl/splash/splash.dart';
 import 'data/constants.dart';
 import 'impl/decorations/wavy_lines_background.dart';
-import 'impl/pages/home_page.dart';
 import 'package:dart_board_template_bottomnav/dart_board_template_bottomnav.dart';
 import 'package:dart_board_image_background/dart_board_image_background.dart';
-import 'impl/pages/haiku_and_code.dart';
 import 'package:flutter/material.dart';
 
 /// The Example Feature
@@ -54,15 +53,15 @@ class ExampleFeature extends DartBoardFeature {
             namespace: 'splash_background',
             implementationName: 'static',
             route: '/splash_bg',
-            showFpsOverlay: true),
+            showFpsOverlay: false),
 
         /// Splash Screen, we'll for now, just use some Text
         DartBoardSplashFeature(
           FadeOutSplashScreen(
-            delay: Duration(seconds: 7),
+            delay: Duration(milliseconds: 1500),
 
             /// We will use our own fade (I want to tween out the image filter)
-            fadeDuration: Duration(seconds: 1),
+            fadeDuration: Duration(milliseconds: 2500),
             contentBuilder: (context) => ExampleSplashWidget(),
           ),
         ),
@@ -74,6 +73,7 @@ class ExampleFeature extends DartBoardFeature {
         RainbowCursorFeature(),
         DartBoardAuthenticationFlutterFireFeature(),
         DartBoardChatFeature(),
+        DartBoardFirebaseAnalytics(),
 
         /// Add 2 template's
         /// can toggle in debug
@@ -95,13 +95,75 @@ class ExampleFeature extends DartBoardFeature {
             title: 'Example App',
             namespace: 'template'),
 
-        /// Register 3 Backgrounds
-        /// can toggle in debug
+        /// We register the clocks as 3 features, since it's bound to the image_background
+        /// Another approach is to have the image background -> route, and then select the space variant
+        /// But I did it this way because I want them all on the "background" feature
+        SpaceSceneFeature(
+          namespace: 'clock',
+          implementationName: 'Space Clock - Stars',
+          route: '/space',
+          showEarth: false,
+          showMoon: false,
+          showSun: false,
+        ),
+
+        SpaceSceneFeature(
+          namespace: 'clock2',
+          route: '/space_earth',
+          implementationName: 'Space Clock - Earth',
+          showEarth: true,
+          showMoon: false,
+          showSun: false,
+        ),
+
+        SpaceSceneFeature(
+          namespace: 'clock3',
+          route: '/space_all',
+          implementationName: 'Space Clock - All',
+          showEarth: true,
+          showMoon: true,
+          showSun: true,
+        ),
+
+        /// Here we register the actual backgrounds we can use
+        /// There is a variety of features to provide a background
+        /// they are all on the namespace "background"
+        ///
+        /// They all generally apply a page decoration with a stack
+        /// to place the content on
+        ImageBackgroundFeature(
+            widget: Container(
+                width: double.infinity,
+                height: double.infinity,
+                child: RouteWidget('/space_earth')),
+            namespace: 'background',
+            implementationName: 'ClockEarth'),
+
+        /// We are going to mount the SpaceClock using the ImageBackgroundFeature widget option
+        ImageBackgroundFeature(
+            widget: Container(
+                width: double.infinity,
+                height: double.infinity,
+                child: RouteWidget('/space')),
+            namespace: 'background',
+            implementationName: 'ClockStars'),
+
+        /// We are going to mount the SpaceClock using the ImageBackgroundFeature widget option
+        ImageBackgroundFeature(
+            widget: Container(
+                width: double.infinity,
+                height: double.infinity,
+                child: RouteWidget('/space_all')),
+            namespace: 'background',
+            implementationName: 'ClockAll'),
+
         ImageBackgroundFeature(
             filename: 'assets/sunset_painting.jpg',
             namespace: 'background',
             implementationName: 'City Image'),
+
         AnimatedBackgroundFeature(),
+
         ImageBackgroundFeature(
             filename: 'assets/mush.jpg',
             namespace: 'background',
@@ -142,35 +204,12 @@ class ExampleFeature extends DartBoardFeature {
                 ))
       ];
 
-  /// Navigation entry points
-  ///
-  /// Use the NamedRouteDefinition() to define some simple named routes
-  /// other RouteDefinitions may come soon (e.g. UrlRouteDefinition)
-  @override
-  List<RouteDefinition> get routes => <RouteDefinition>[
-        /// /home route
-        NamedRouteDefinition(
-            route: '/home', builder: (ctx, settings) => HomePage()),
-
-        /// /code route
-        NamedRouteDefinition(
-            route: '/code', builder: (ctx, settings) => CodeOverview()),
-
-        /// Additional routes from the Constants files
-        /// Each one is dedicated to a specific code file
-        /// Files are just raw/master references to the github repo
-        ///
-        /// Visible on the /code route
-        ...kCodeRoutes.map((e) => NamedRouteDefinition(
-            route: e['route']!,
-            builder: (ctx, setting) =>
-                HaikuAndCode(haiku: e['haiku']!, url: e['url']!))),
-      ];
-
   @override
   List<String> get pageDecorationDenyList => ['/main:animated_background'];
 
   @override
-  List<String> get pageDecorationAllowList =>
-      ['/main:color_border', '/main:log_frame'];
+  List<String> get pageDecorationAllowList => [
+        '/main:color_border',
+        '/main:log_frame',
+      ];
 }

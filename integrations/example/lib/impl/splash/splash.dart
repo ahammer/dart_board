@@ -4,7 +4,6 @@ import 'dart:ui';
 import 'package:dart_board_canvas/dart_board_canvas.dart';
 import 'package:dart_board_core/dart_board.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 /// Sometimes you just want to be quick and dirty, this is demo programming at heart
 /// Don't use this file as a example on how to code for business
@@ -12,7 +11,7 @@ import 'package:flutter/services.dart';
 /// I'm just having fun here, don't expect documentation or good patterns
 const _curve = Curves.easeInOutCubic;
 const _res = 12;
-const _tweenTime = 5;
+const _tweenTime = 2;
 
 class ExampleSplashWidget extends StatelessWidget {
   const ExampleSplashWidget({
@@ -23,6 +22,7 @@ class ExampleSplashWidget extends StatelessWidget {
   Widget build(BuildContext context) => LayoutBuilder(
         builder: (ctx, constraints) => Stack(
           children: [
+            RouteWidget('/space'),
             RouteWidget('/splash_bg'),
             Padding(
               padding: const EdgeInsets.fromLTRB(32, 0, 0, 0),
@@ -43,8 +43,7 @@ class ExampleSplashWidget extends StatelessWidget {
               alignment: Alignment.bottomRight,
               child: MaterialButton(
                 onPressed: () {
-                  DartBoardCore.instance.dispatchMethodCall(
-                      context: context, call: MethodCall('hideSplashScreen'));
+                  context.dispatchMethod('hideSplashScreen');
                 },
                 child: Text('Dismiss Splash'),
               ),
@@ -78,13 +77,12 @@ class SplashAnimation extends AnimatedCanvasState {
     final animTime = min(time / _tweenTime, 1.0).toDouble();
     final fadeTime = max(0.0, 1.0 - max(0.0, (time - 5) / 2.0));
 
+    /*
     canvas.drawRect(
         Rect.fromLTRB(0, 0, size.width, size.height),
         Paint()
-          ..color = HSLColor.fromAHSL(
-                  (1.0 - (animTime / 3)), animTime * 360, 0.8, 0.7)
-              .toColor());
-
+          ..color = HSLColor.fromAHSL(1.0, animTime * 360, 0.8, 0.7).toColor());
+*/
     boxes.forEach((box) {
       var transform = _curve.transform(animTime);
       final curOffset = box.tweenPos.transform(transform);
@@ -158,4 +156,23 @@ class _Box {
   }
 
   _Box({required this.target, required this.origin});
+}
+
+/// Method is yanked from funvas, copy/pasted.
+class FunvasApiTest extends AnimatedCanvasState {
+  @override
+  void paint(Canvas canvas, Size size) {
+    c.drawPaint(Paint()..color = const Color(0xffffffff));
+    final s = s2q(750), w = s.width, h = s.height;
+
+    for (var A = .0, q = 123, j = .0, i = 756;
+        i-- > 0;
+        c.drawRect(
+      Rect.fromLTWH(w / 2 + A * sin(j), h / 2 + A * cos(j), i / 84, i / 84),
+      Paint()..color = Color.fromRGBO(i % 99 + 156, q - i % q, q, 1),
+    )) {
+      j = i / 9;
+      A = (9 * sin(t * j / 20) + cos(20 * j) + 6) * 21;
+    }
+  }
 }

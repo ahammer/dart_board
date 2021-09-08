@@ -9,10 +9,16 @@ This guide has an expectation that you know the basics of Flutter and the Dart l
 
 This guide is split into 2 main sections. The first being *Initial Setup* which covers creating a new project and working through it's setup. The second part is *Feature Development* where we will walk through adding a decoupled Cart Feature to the application.
 
-This tutorial is definitely not about making a pretty app. It does not preclude you from making a beautiful app, but I won't be painting the shed here at all. This is about structure of Dart Board
-
 
 ## Initial Setup
+
+### Melos notes
+
+To work inside the repo, you'll need to use melos in order to locally link the code.
+
+`flutter pub global activate melos`
+and 
+`melos bootstrap` to link projects locally and generate .lock files.
 
 ### Option A) New Project
 

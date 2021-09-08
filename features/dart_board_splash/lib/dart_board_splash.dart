@@ -5,7 +5,6 @@ import 'package:dart_board_core/interface/dart_board_interface.dart';
 import 'package:dart_board_locator/dart_board_locator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 /// Splash Feature
 ///
@@ -140,8 +139,7 @@ class _FadeOutSplashScreenState extends State<FadeOutSplashScreen> {
         opacity: startedFade ? 0 : 1,
         curve: Curves.easeInOut,
         onEnd: () {
-          DartBoardCore.instance.dispatchMethodCall(
-              context: context, call: MethodCall("hideSplashScreen"));
+          context.dispatchMethod("hideSplashScreen");
         },
         duration: widget.fadeDuration,
         child: Container(

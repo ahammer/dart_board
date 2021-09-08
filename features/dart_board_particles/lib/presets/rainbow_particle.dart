@@ -31,13 +31,19 @@ class RainbowParticleLayer extends ParticleLayer<RainbowParticle> {
   void after(Canvas canvas, Size size) {}
 
   @override
-  void drawParticle(Canvas canvas, Size size, RainbowParticle particle) =>
-      canvas.drawLine(
-          Offset(screenX, screenY),
-          Offset(lastScreenX, lastScreenY),
-          Paint()
-            ..color = particle.c.withOpacity(1 - particle.t / 0.5)
-            ..strokeWidth = 10.0 * 1 / (1 + particle.t * 5));
+  void drawParticle(Canvas canvas, Size size, RainbowParticle particle) {
+    final offset = Offset(screenX, screenY);
+    final offset2 = Offset(lastScreenX, lastScreenY);
+    // Filter out the big jumps
+    if ((offset - offset2).distance > 50) return;
+
+    canvas.drawLine(
+        offset,
+        offset2,
+        Paint()
+          ..color = particle.c.withOpacity(1 - particle.t / 0.5)
+          ..strokeWidth = 10.0 * 1 / (1 + particle.t * 5));
+  }
 
   @override
   List<RainbowParticle> get particles => _particleList;

@@ -14,31 +14,30 @@ class SnowParticle extends Particle {
   double r = Random().nextDouble() - 0.5;
   double r2 = (Random().nextDouble() - 0.5);
   double t = 0.0;
-  double x = Random().nextDouble() * 2000;
+  double x = Random().nextDouble();
   double oldX = -1;
   double oldY = -1;
 
-  double y = -1500 * Random().nextDouble();
-  double ys = 0.0;
+  double y = Random().nextDouble();
+  double ys = Random().nextDouble() / 10;
   double s = 2.0 + Random().nextDouble() / 10;
 
   @override
   void step(double time, Size size) {
     time /= 3;
-    if (y > size.height) {
+    if (y > 1) {
       // Init out of range
       y = 0;
-      ys = Random().nextDouble() * 50 + 10;
+
       t = 0;
     }
-    if (x > size.width) x -= size.width;
-    if (x < 0) x += size.width;
+    if (x > 1) x -= 1;
+    if (x < 0) x += 1;
 
     oldX = x;
     oldY = y;
-    x += (cos(r * t * 3) * sin(r2 * t * 10)) / 30 * t;
-    ys += t / 100 * (1 + r);
-    if (ys > 80 * (2 + r)) ys = 80 * (2 + r);
+
+    x += (cos(r * t * 3) * sin(r2 * t * 10)) / 3000;
 
     y += time * ys;
     t += time;
@@ -57,10 +56,27 @@ class SnowParticleLayer extends ParticleLayer<SnowParticle> {
   void before(Canvas canvas, Size size) {
     canvas.drawPoints(
         PointMode.points,
-        _particleList.map((e) => Offset(e.x, e.y)).toList(),
+        _particleList
+            .take(_particleList.length ~/ 2)
+            .map((e) => Offset(e.x * size.width, e.y * size.height))
+            .toList(),
         Paint()
-          ..color = Colors.white
-          ..strokeWidth = 1);
+          ..color = Colors.white54
+          ..strokeCap = StrokeCap.round
+          ..strokeJoin = StrokeJoin.round
+          ..strokeWidth = 3);
+
+    canvas.drawPoints(
+        PointMode.points,
+        _particleList
+            .skip(_particleList.length ~/ 2)
+            .map((e) => Offset(e.x * size.width, e.y * size.height))
+            .toList(),
+        Paint()
+          ..color = Colors.grey
+          ..strokeCap = StrokeCap.round
+          ..strokeJoin = StrokeJoin.round
+          ..strokeWidth = 2);
   }
 
   @override

@@ -1,7 +1,6 @@
 import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_template_bottomnav/state/bottom_nav_state.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'details_feature.dart';
 import 'repository_feature.dart';
@@ -69,12 +68,10 @@ class _ListingScreenState extends State<ListingScreen> {
                               Card(
                                   child: InkWell(
                                       onTap: () {
-                                        DartBoardCore.instance
-                                            .dispatchMethodCall(
-                                                context: context,
-                                                call: MethodCall(
-                                                    "addItemToCart",
-                                                    {"id": data[idx].id}));
+                                        context
+                                            .dispatchMethod("addItemToCart", {
+                                          "id": data[idx].id,
+                                        });
                                       },
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),

@@ -50,6 +50,7 @@ class _ChatWidgetState extends State<ChatWidget> {
   String? _id;
   @override
   Widget build(BuildContext context) => Scaffold(
+        backgroundColor: Colors.transparent,
         appBar: AppBar(
           actions: [LoginButton()],
           title: Text(
@@ -199,7 +200,7 @@ class MessageRow extends StatelessWidget {
       Expanded(
         child: Card(
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
+            padding: const EdgeInsets.fromLTRB(12, 12, 0, 0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [

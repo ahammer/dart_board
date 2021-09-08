@@ -1,0 +1,47 @@
+name: dart_board_space_scene
+description: The cool space scene from the space-clock, ported to dart-board
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  dart_board_core:
+  intl:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+flutter:
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+  assets:
+   - assets/stars.jpg
+   - assets/moon.png
+   - assets/sun_1.png
+   - assets/sun_2.png
+   - assets/sun_3.png
+   - assets/sun_4.png
+   - assets/earth.png
+   - assets/shadow.png
+   - weather_icons/cloud.png
+   - weather_icons/fog.png
+   - weather_icons/rain.png
+   - weather_icons/snow.png
+   - weather_icons/sun.png
+   - weather_icons/thunder.png
+   - weather_icons/wind.png
+
+  module:
+    androidX: true
+    androidPackage: com.example.dart_board_space_scene
+    iosBundleIdentifier: com.example.dartBoardSpaceClock
