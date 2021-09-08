@@ -1,3 +1,10 @@
+## 1.0.3
+
+ - **FIX**: website browser detection (mobile or not) for embedded demo.
+ - **DOCS**: lots of docs.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+
 ## 1.0.2
 
  - **FIX**: pinned dep.

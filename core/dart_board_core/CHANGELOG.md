@@ -1,3 +1,7 @@
+## 0.9.12
+
+ - **FEAT**: tracking + firebase analytics.
+
 ## 0.9.11
 
  - **FIX**: bugs.

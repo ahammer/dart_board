@@ -1,3 +1,8 @@
+## 1.2.3
+
+ - **FIX**: snow new rendering. 2 sizes/shades. Normalized to just 0-1, scale.
+ - **FIX**: mobile support for particle/cursor features. Filtering out big.
+
 ## 1.2.2
 
  - Update a dependency to the latest release.

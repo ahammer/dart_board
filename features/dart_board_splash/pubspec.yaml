@@ -1,7 +1,7 @@
 name: dart_board_splash
 description: Helps you easily provide a splash screen to your application.
 homepage: https://dart-board.io
-version: 1.0.1
+version: 1.0.2
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -9,9 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  dart_board_core: ^0.9.10
-  dart_board_locator: ^0.9.4+1
-
+  dart_board_core: ^0.9.12
+  dart_board_locator: ^0.9.4+3
 dev_dependencies:
   flutter_test:
     sdk: flutter

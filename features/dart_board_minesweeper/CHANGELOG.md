@@ -1,3 +1,8 @@
+## 0.9.5+3
+
+ - **FIX**: fixed up minesweeper text on small layout.
+ - **FIX**: minesweeper UI updates to blend in better with dart-board, e.g.
+
 ## 0.9.5+2
 
  - Update a dependency to the latest release.

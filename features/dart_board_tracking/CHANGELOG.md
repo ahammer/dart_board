@@ -1,3 +1,8 @@
+## 1.2.0
+
+ - **FEAT**: firebase analytics is working now.
+ - **FEAT**: tracking + firebase analytics.
+
 ## 1.1.2
 
  - **FIX**: cleanup and documentation.

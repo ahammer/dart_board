@@ -1,6 +1,7 @@
 name: dart_board_chat
 description: Realtime Chat based on Firebase Firestore.
-version: 1.0.0+1
+version: 1.1.0
+homepage: https://dart-board.io
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -8,10 +9,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  dart_board_firebase_database:   
-  dart_board_authentication:    
+  dart_board_core: ^0.9.12
+  cloud_firestore: ^2.5.1
+  dart_board_locator: ^0.9.4+3
+  dart_board_firebase_database: ^1.0.3
+  dart_board_authentication: ^1.1.3
   cupertino_icons: ^1.0.2
-  intl:
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
