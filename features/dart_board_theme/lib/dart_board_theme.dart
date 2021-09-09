@@ -3,6 +3,8 @@ import 'package:dart_board_core/impl/widgets/timer_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'theme_builder.dart';
+
 class ThemeFeature extends DartBoardFeature {
   @override
   String get implementationName => 'Theme';
@@ -25,7 +27,9 @@ class ThemeFeature extends DartBoardFeature {
   @override
   List<RouteDefinition> get routes => [
         NamedRouteDefinition(
-            route: '/theme', builder: (ctx, settings) => ThemePage())
+            route: '/theme', builder: (ctx, settings) => ThemePage()),
+        NamedRouteDefinition(
+            route: '/theme_editor', builder: (ctx, settings) => ThemeBuilder()),
       ];
 
   static void toggle(BuildContext context) =>
@@ -83,6 +87,7 @@ class ThemePage extends StatelessWidget {
 
 class ThemeState extends ChangeNotifier {
   bool isLight;
+  ThemeData? data;
 
   ThemeState({this.isLight = true});
 

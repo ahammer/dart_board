@@ -222,7 +222,7 @@ class MessageRow extends StatelessWidget {
                       ),
                     ),
                     Expanded(
-                      child: Container(),
+                      child: nil,
                     ),
                     if (!data.get("uid").isEmpty &&
                         data.get("uid") == locate<AuthenticationState>().userId)

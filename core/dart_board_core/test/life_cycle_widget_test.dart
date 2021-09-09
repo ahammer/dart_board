@@ -10,10 +10,10 @@ void main() {
         key: ValueKey('test'),
         preInit: () => started = true,
         dispose: (ctx) => started = false,
-        child: Container()));
+        child: nil));
     await tester.pumpAndSettle();
     expect(started, equals(true));
-    await tester.pumpWidget(Container());
+    await tester.pumpWidget(nil);
     await tester.pumpAndSettle();
     expect(started, equals(false));
   });

@@ -66,7 +66,7 @@ class SimpleRouteFeature extends DartBoardFeature {
                           ));
                         },
                         duration: Duration(milliseconds: 1),
-                        child: Container()),
+                        child: nil),
                   ),
                 )),
       ];

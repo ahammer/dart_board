@@ -94,7 +94,7 @@ class _AuthSignInDialogState extends State<AuthSignInDialog> {
                       : [
                           Text(_selected?.name ?? ""),
                           Divider(),
-                          _selected?.buildAuthWidget() ?? Container()
+                          _selected?.buildAuthWidget() ?? nil
                         ],
                 ),
               ))),

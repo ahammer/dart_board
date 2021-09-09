@@ -27,7 +27,6 @@ class SimpleRouteFeature extends DartBoardFeature {
 
   @override
   List<RouteDefinition> get routes => [
-        NamedRouteDefinition(
-            route: '/home', builder: (ctx, settings) => Container()),
+        NamedRouteDefinition(route: '/home', builder: (ctx, settings) => nil),
       ];
 }

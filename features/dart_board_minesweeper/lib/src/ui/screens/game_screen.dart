@@ -22,7 +22,7 @@ class GameScreen extends StatelessWidget {
                   onPressed: () => dispatch(NewGameAction(
                         difficulty: getState<MinesweeperState>().difficulty,
                       )))),
-          Expanded(child: Container()),
+          Expanded(child: nil),
           Center(child: Container(child: BombsRemaining())),
           Container(width: 20),
           Center(child: GameTimer()),

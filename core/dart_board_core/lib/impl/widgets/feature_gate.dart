@@ -76,7 +76,7 @@ class __FeatureEnablerState extends State<_FeatureEnabler> {
   }
 
   @override
-  Widget build(BuildContext context) => Container();
+  Widget build(BuildContext context) => nil;
 }
 
 /// Feature Gate Page Decoration

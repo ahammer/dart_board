@@ -14,7 +14,7 @@ class NamedRouteDefinition implements RouteDefinition {
   final String route;
 
   /// The builder for the screen, bringing in the settings from the route
-  /// e.g. (ctx, setting) => Container()
+  /// e.g. (ctx, setting) => nil
   @override
   final RouteWidgetBuilder builder;
 

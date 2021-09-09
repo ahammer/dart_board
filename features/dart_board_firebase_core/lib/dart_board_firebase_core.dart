@@ -41,5 +41,5 @@ class _FirebaseGatewayState extends State<FirebaseGateway> {
       builder: (ctx, snapshot) =>
           snapshot.connectionState == ConnectionState.done
               ? widget.child
-              : Container());
+              : nil);
 }
