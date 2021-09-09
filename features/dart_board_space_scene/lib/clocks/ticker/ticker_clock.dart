@@ -197,7 +197,7 @@ class TickerCharacterWidget extends StatelessWidget {
         glyph,
         style: Theme.of(context)
             .textTheme
-            .subhead!
+            .subtitle1!
             .withNovaMono()
             .copyWith(fontSize: fontSize),
       )));
