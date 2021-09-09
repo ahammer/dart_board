@@ -40,7 +40,10 @@ class _ThemeBuilderState extends State<ThemeBuilder> {
               flex: 5,
               child: Container(
                   child: Theme(
-                      data: Theme.of(context), child: RouteWidget('/main')))),
+                      data: ThemeData.light(),
+                      child: Builder(builder: (context) {
+                        return RouteWidget('/main');
+                      })))),
         ],
       ),
     );
