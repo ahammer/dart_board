@@ -22,6 +22,8 @@ class _MineBlockState extends State<MineBlock> {
   Widget build(BuildContext context) {
     final state = getState<MinesweeperState>();
     bool isGameOver = state.mineSweeper.isGameOver;
+    final theme = Theme.of(context);
+
     return LayoutId(
         id: "grid:${widget.x}:${widget.y}",
         child: FeatureStateBuilder<MinesweeperState>(
@@ -73,9 +75,9 @@ class _MineBlockState extends State<MineBlock> {
                               : (isGameOver && (vm.isBomb ?? false))
                                   ? "💣"
                                   : ""),
-                      style: Theme.of(context).textTheme.headline6!.copyWith(
+                      style: theme.textTheme.headline6!.copyWith(
                           fontWeight: FontWeight.bold,
-                          color: Theme.of(context).colorScheme.secondary,
+
                           shadows: [
                             Shadow(
                                 blurRadius: 2,

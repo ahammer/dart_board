@@ -75,7 +75,7 @@ class ClockScaffolding extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8),
-                    child: RaisedButton(
+                    child: MaterialButton(
                       onPressed: () => Navigator.of(context).push(
                           MaterialPageRoute<Widget>(
                               builder: (context) =>

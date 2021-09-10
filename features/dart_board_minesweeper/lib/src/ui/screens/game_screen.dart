@@ -10,6 +10,7 @@ import 'package:dart_board_minesweeper/src/ui/components/game_board.dart';
 class GameScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
+
       backgroundColor: Colors.transparent,
       appBar: AppBar(
         automaticallyImplyLeading: false,

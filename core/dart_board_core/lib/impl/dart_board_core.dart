@@ -152,8 +152,9 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
           key: dartBoardKey,
           navigatorKey: dartBoardNavKey,
           builder: (context, navigator) => appDecorations.reversed.fold(
-              navigator!,
-              (child, element) => element.decoration(context, child)),
+            navigator!,
+            (child, element) => element.decoration(context, child),
+          ),
           onGenerateRoute: onGenerateRoute,
         ),
       );

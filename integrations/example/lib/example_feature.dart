@@ -65,7 +65,7 @@ class ExampleFeature extends DartBoardFeature {
             contentBuilder: (context) => ExampleSplashWidget(),
           ),
         ),
-        ThemeFeature(isDarkByDefault: true),
+        ThemeFeature(data: ThemeData.light()),
         DebugFeature(),
         LogFeature(),
         MinesweeperFeature(),

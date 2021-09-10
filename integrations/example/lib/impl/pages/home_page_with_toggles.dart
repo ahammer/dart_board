@@ -4,6 +4,7 @@ import 'package:dart_board_particles/dart_board_particle_feature.dart';
 import 'package:dart_board_particles/presets/lighting_particle.dart';
 import 'package:dart_board_tracking/dart_board_tracking.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 enum TemplateOptions { plain, bottom_nav, side_nav }
 enum BackgroundOptions { white, image, animated, space, space_earth, space_all }
@@ -21,6 +22,7 @@ class HomePageWithToggles extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Card(
+                    color: Theme.of(context).colorScheme.surface,
                     child: Container(
                       width: 275,
                       child: Column(
@@ -167,11 +169,16 @@ class HomePageWithToggles extends StatelessWidget {
                                   }),
                           SwitchListTile.adaptive(
                               title: Text('Dark Theme'),
-                              value: DartBoardCore.instance
-                                  .isFeatureActive('theme'),
-                              onChanged: (result) => DartBoardCore.instance
-                                  .setFeatureImplementation(
-                                      'theme', result ? 'Theme' : null)),
+                              value: Theme.of(context).brightness ==
+                                  Brightness.dark,
+                              onChanged: (val) => DartBoardCore.instance
+                                  .dispatchMethodCall(
+                                      context: context,
+                                      call: MethodCall('setThemeData', {
+                                        'themeData': val
+                                            ? ThemeData.dark()
+                                            : ThemeData.light()
+                                      }))),
                           ListTile(
                             title: Text('See the Splash'),
                             onTap: () {

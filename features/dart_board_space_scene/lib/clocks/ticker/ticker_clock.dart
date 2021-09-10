@@ -52,7 +52,7 @@ String buildRightTickerText(ClockModel model) {
   } else if (phase == 2) {
     currentPart = "HIGH ${model.highString}";
   } else if (phase == 3 && model.location is String) {
-    currentPart = model.location as String;
+    currentPart = model.location;
   } else {
     currentPart = date;
   }
@@ -70,7 +70,7 @@ String buildRightTickerText(ClockModel model) {
 /// D = 2 Character padding on the right for Icon Space
 /// Icons were originally emoji, but imported assets for compat
 String buildTickerString(ClockModel clockModel) {
-  final is24Hours = clockModel.is24HourFormat as bool;
+  final is24Hours = clockModel.is24HourFormat;
 
   return (is24Hours ? time24 : time12).chain((timeString) => buildSpacedString(
       " $timeString ", "${buildRightTickerText(clockModel)}  ", 36));

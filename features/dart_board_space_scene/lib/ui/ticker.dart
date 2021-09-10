@@ -150,7 +150,7 @@ class _TickerCharacterTransition extends AnimatedWidget {
     required this.child,
     this.alignment = Alignment.center,
     Key? key,
-  })  : assert(scale != null),
+  })  :
         super(key: key, listenable: scale);
 
   final Animation<double> scale;

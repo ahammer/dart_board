@@ -205,7 +205,7 @@ class CollapsingList extends StatelessWidget {
                       Expanded(
                           child: e.decoration(
                         context,
-                        nil,
+                        Container(),
                       )),
                     ],
                   ),

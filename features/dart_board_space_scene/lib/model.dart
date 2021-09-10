@@ -126,7 +126,6 @@ class ClockModel extends ChangeNotifier {
       case TemperatureUnit.celsius:
       default:
         return degreesCelsius;
-        break;
     }
   }
 
@@ -137,7 +136,6 @@ class ClockModel extends ChangeNotifier {
       case TemperatureUnit.celsius:
       default:
         return degrees;
-        break;
     }
   }
 }
