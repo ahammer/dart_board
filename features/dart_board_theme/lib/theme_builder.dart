@@ -81,7 +81,7 @@ class _ThemeBuilderState extends State<ThemeBuilder> {
             )),
           ),
           Expanded(
-            flex: 4,
+            flex: 1,
             child: Center(
               child: Card(
                 child: Padding(
