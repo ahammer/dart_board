@@ -63,7 +63,7 @@ class _ThemeBuilderState extends State<ThemeBuilder> {
               ColorPicker(
                 color: data.colorScheme.secondary,
                 onColorChanged: (color) {
-                  colors['secondary'] = color;
+                  colors['surface'] = color;
                   DartBoardCore.instance.dispatchMethodCall(
                       context: context,
                       call: MethodCall('setThemeData', {'themeData': data}));

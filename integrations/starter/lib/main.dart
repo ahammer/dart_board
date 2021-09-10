@@ -25,7 +25,8 @@ void main() {
       ListingFeature(),
       CartFeature(itemPreviewRoute: "/details_by_id"),
       DebugFeature(),
-      BottomNavTemplateFeature(route: '/home', config: _templateConfig),
+      BottomNavTemplateFeature(
+          route: '/home', config: (ctx) => _templateConfig),
       MockCheckoutFeature()
     ],
     initialRoute: '/home',

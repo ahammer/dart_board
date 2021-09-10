@@ -12,20 +12,22 @@ import 'package:flutter/material.dart';
 void main() => runApp(DartBoard(
       initialRoute: '/home',
       features: [
-        BottomNavTemplateFeature(route: '/home', config: [
-          {
-            'route': '/first',
-            'label': 'First',
-            'color': Colors.blue,
-            'icon': Icons.car_rental
-          },
-          {
-            'route': '/second',
-            'label': 'Second',
-            'color': Colors.red,
-            'icon': Icons.ac_unit
-          }
-        ]),
+        BottomNavTemplateFeature(
+            route: '/home',
+            config: (ctx) => [
+                  {
+                    'route': '/first',
+                    'label': 'First',
+                    'color': Theme.of(ctx).colorScheme.primary,
+                    'icon': Icons.car_rental
+                  },
+                  {
+                    'route': '/second',
+                    'label': 'Second',
+                    'color': Theme.of(ctx).colorScheme.secondary,
+                    'icon': Icons.ac_unit
+                  }
+                ]),
         SimpleRouteFeature()
       ],
     ));
