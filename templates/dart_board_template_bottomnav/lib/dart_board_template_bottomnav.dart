@@ -21,7 +21,7 @@ final log = Logger('BottomNavTemplateFeature');
 ///
 class BottomNavTemplateFeature extends DartBoardFeature {
   final String route;
-  final List<Map<String, dynamic>> Function(BuildContext) config;
+  final List<Map<String, dynamic>> config;
   final bool decorateRoutes;
 
   ///Expose namespace/implementation name so we can AB test layouts easily
@@ -43,8 +43,8 @@ class BottomNavTemplateFeature extends DartBoardFeature {
                 ChangeNotifierProvider<BottomNavTemplateState>(
                     key: Key('bottom_nav_state'),
                     create: (ctx) {
-                      validateConfig(ctx);
-                      return BottomNavTemplateState(config(ctx));
+                      validateConfig();
+                      return BottomNavTemplateState(config);
                     },
                     child: child))
       ];
@@ -57,8 +57,7 @@ class BottomNavTemplateFeature extends DartBoardFeature {
 
   /// This is a runtime safety check to ensure that the config looks valid
   /// Additional checks can be added here (e.g. regex, length checks, etc)
-  void validateConfig(BuildContext context) =>
-      config(context).forEach((element) {
+  void validateConfig() => config.forEach((element) {
         if (!(element["route"] is String)) {
           throw Exception("route must be a String");
         }

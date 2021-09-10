@@ -22,29 +22,29 @@ const kCodeRoutes = <Map<String, String>>[
 /// This is the config for the bottom nav template
 /// It indicates the bottom buttons, labels icons and routes for the screen
 ///
-List<Map<String, dynamic>> kMainPageConfig(context) => [
-      {
-        'route': '/homepage',
-        'label': 'Main',
-        'color': Theme.of(context).colorScheme.primary,
-        'icon': Icons.home
-      },
-      {
-        'route': '/chat',
-        'label': 'Chat',
-        'color': Theme.of(context).colorScheme.secondary,
-        'icon': Icons.chat,
-      },
-      {
-        'route': '/debug',
-        'label': 'Debug',
-        'color': Theme.of(context).colorScheme.primaryVariant,
-        'icon': Icons.plumbing
-      },
-      {
-        'route': '/minesweep',
-        'label': 'Mine Sweeper',
-        'color': Theme.of(context).colorScheme.secondaryVariant,
-        'icon': Icons.games
-      }
-    ];
+const kMainPageConfig = [
+  {
+    'route': '/homepage',
+    'label': 'Main',
+    'color': Colors.blue,
+    'icon': Icons.home
+  },
+  {
+    'route': '/chat',
+    'label': 'Chat',
+    'color': Colors.blue,
+    'icon': Icons.chat,
+  },
+  {
+    'route': '/debug',
+    'label': 'Debug',
+    'color': Colors.purple,
+    'icon': Icons.plumbing
+  },
+  {
+    'route': '/minesweep',
+    'label': 'Mine Sweeper',
+    'color': Colors.cyan,
+    'icon': Icons.games
+  }
+];
