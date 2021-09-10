@@ -10,36 +10,38 @@ class ThemeBuilder extends StatefulWidget {
 
 class _ThemeBuilderState extends State<ThemeBuilder> {
   late final initialTheme = Theme.of(context);
-  late Color background = initialTheme.colorScheme.background,
-      error = initialTheme.colorScheme.error,
-      onBackground = initialTheme.colorScheme.onBackground,
-      onError = initialTheme.colorScheme.onError,
-      onPrimary = initialTheme.colorScheme.onPrimary,
-      onSecondary = initialTheme.colorScheme.onSecondary,
-      onSurface = initialTheme.colorScheme.onSurface,
-      primary = initialTheme.colorScheme.primary,
-      primaryVariant = initialTheme.colorScheme.primaryVariant,
-      secondary = initialTheme.colorScheme.secondary,
-      secondaryVariant = initialTheme.colorScheme.secondaryVariant,
-      surface = initialTheme.colorScheme.surface;
+  late Map<String, Color> colors = {
+    'background': initialTheme.colorScheme.background,
+    'error': initialTheme.colorScheme.error,
+    'onBackground': initialTheme.colorScheme.onBackground,
+    'onError': initialTheme.colorScheme.onError,
+    'onPrimary': initialTheme.colorScheme.onPrimary,
+    'onSecondary': initialTheme.colorScheme.onSecondary,
+    'onSurface': initialTheme.colorScheme.onSurface,
+    'primary': initialTheme.colorScheme.primary,
+    'primaryVariant': initialTheme.colorScheme.primaryVariant,
+    'secondary': initialTheme.colorScheme.secondary,
+    'secondaryVariant': initialTheme.colorScheme.secondaryVariant,
+    'surface': initialTheme.colorScheme.surface
+  };
 
   late final Brightness brightness = initialTheme.brightness;
 
   ThemeData get data => ThemeData.from(
           colorScheme: ColorScheme(
-        background: background,
+        background: colors['background']!,
         brightness: brightness,
-        error: error,
-        onBackground: onBackground,
-        onError: onError,
-        onPrimary: onPrimary,
-        onSecondary: onSecondary,
-        onSurface: onSurface,
-        primary: primary,
-        primaryVariant: primaryVariant,
-        secondary: secondary,
-        secondaryVariant: secondaryVariant,
-        surface: surface,
+        error: colors['error']!,
+        onBackground: colors['onBackground']!,
+        onError: colors['onError']!,
+        onPrimary: colors['onPrimary']!,
+        onSecondary: colors['onSecondary']!,
+        onSurface: colors['onSurface']!,
+        primary: colors['primary']!,
+        primaryVariant: colors['primaryVariant']!,
+        secondary: colors['secondary']!,
+        secondaryVariant: colors['secondaryVariant']!,
+        surface: colors['surface']!,
       ));
 
   @override
@@ -61,7 +63,7 @@ class _ThemeBuilderState extends State<ThemeBuilder> {
               ColorPicker(
                 color: data.colorScheme.secondary,
                 onColorChanged: (color) {
-                  secondary = color;
+                  colors['secondary'] = color;
                   DartBoardCore.instance.dispatchMethodCall(
                       context: context,
                       call: MethodCall('setThemeData', {'themeData': data}));
