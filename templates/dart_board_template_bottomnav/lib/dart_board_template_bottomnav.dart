@@ -64,7 +64,7 @@ class BottomNavTemplateFeature extends DartBoardFeature {
         if (!(element["label"] is String)) {
           throw Exception("label must be a String");
         }
-        if (!(element["color"] is Color)) {
+        if (element["color"] != null && !(element["color"] is Color)) {
           throw Exception("color must be a Color");
         }
         if (!(element["icon"] is IconData)) {
@@ -103,7 +103,8 @@ class BottomNavTemplate extends StatelessWidget {
                   .map((e) => BottomNavigationBarItem(
                       icon: Icon(e['icon']),
                       label: e['label'],
-                      backgroundColor: e['color']))
+                      backgroundColor:
+                          e['color'] ?? Theme.of(context).colorScheme.primary))
                   .toList(),
             ],
             currentIndex: navstate.selectedTab,

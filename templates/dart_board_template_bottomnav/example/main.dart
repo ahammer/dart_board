@@ -16,7 +16,7 @@ void main() => runApp(DartBoard(
           {
             'route': '/first',
             'label': 'First',
-            'color': Colors.blue,
+            'color': null,
             'icon': Icons.car_rental
           },
           {

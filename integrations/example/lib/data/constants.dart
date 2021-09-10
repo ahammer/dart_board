@@ -26,25 +26,31 @@ const kMainPageConfig = [
   {
     'route': '/homepage',
     'label': 'Main',
-    'color': Colors.blue,
-    'icon': Icons.home
+    'color': null,
+    'icon': Icons.home,
   },
   {
     'route': '/chat',
     'label': 'Chat',
-    'color': Colors.blue,
+    'color': null,
     'icon': Icons.chat,
+  },
+  {
+    'route': '/theme_editor',
+    'label': 'Theme',
+    'color': null,
+    'icon': Icons.palette,
   },
   {
     'route': '/debug',
     'label': 'Debug',
-    'color': Colors.purple,
-    'icon': Icons.plumbing
+    'color': null,
+    'icon': Icons.plumbing,
   },
   {
     'route': '/minesweep',
     'label': 'Mine Sweeper',
-    'color': Colors.cyan,
+    'color': null,
     'icon': Icons.games
   }
 ];

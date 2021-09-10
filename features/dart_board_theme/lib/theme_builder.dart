@@ -26,6 +26,7 @@ class _ThemeBuilderState extends State<ThemeBuilder> {
   };
 
   late final Brightness brightness = initialTheme.brightness;
+  String selection = 'surface';
 
   ThemeData get data => ThemeData.from(
           colorScheme: ColorScheme(
@@ -48,35 +49,64 @@ class _ThemeBuilderState extends State<ThemeBuilder> {
   Widget build(BuildContext context) => Row(
         children: [
           Expanded(
-              child: Card(
-                  child: Column(
-            children: [
-              FittedBox(
-                child: Text(
+            flex: 1,
+            child: Card(
+                child: Column(
+              children: [
+                Text(
                   'Theme Editor',
                   style: Theme.of(context).textTheme.headline5,
                 ),
-              ),
-              Container(
-                height: 24,
-              ),
-              ColorPicker(
-                color: data.colorScheme.secondary,
-                onColorChanged: (color) {
-                  colors['secondary'] = color;
-                  DartBoardCore.instance.dispatchMethodCall(
-                      context: context,
-                      call: MethodCall('setThemeData', {'themeData': data}));
-                },
-              ),
-            ],
-          ))),
+                DropdownButton<String>(
+                    value: selection,
+                    onChanged: (val) {
+                      setState(() {
+                        selection = val!;
+                      });
+                    },
+                    items: colors.keys
+                        .map((e) =>
+                            DropdownMenuItem<String>(value: e, child: Text(e)))
+                        .toList()),
+                ColorPicker(
+                  color: data.colorScheme.secondary,
+                  onColorChanged: (color) {
+                    colors[selection] = color;
+                    DartBoardCore.instance.dispatchMethodCall(
+                        context: context,
+                        call: MethodCall('setThemeData', {'themeData': data}));
+                  },
+                ),
+              ],
+            )),
+          ),
           Expanded(
-              flex: 5,
-              child: Container(
-                  child: RouteWidget(
-                '/main',
-              ))),
+            flex: 4,
+            child: Center(
+              child: Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        'Control Samples',
+                        style: Theme.of(context).textTheme.headline5,
+                      ),
+                      MaterialButton(onPressed: () {}, child: Text('Button')),
+                      ToggleButtons(
+                          isSelected: [true, false],
+                          children: const [Text('A'), Text('b')]),
+                      Switch.adaptive(value: true, onChanged: (a) {}),
+                      Switch.adaptive(value: false, onChanged: (a) {}),
+                      Radio(value: true, groupValue: true, onChanged: (a) {}),
+                      Radio(value: false, groupValue: true, onChanged: (a) {})
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          )
         ],
       );
 }
