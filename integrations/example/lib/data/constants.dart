@@ -42,6 +42,12 @@ const kMainPageConfig = [
     'icon': Icons.palette,
   },
   {
+    'route': '/dependency_tree',
+    'label': 'Features',
+    'color': null,
+    'icon': Icons.usb_sharp,
+  },
+  {
     'route': '/debug',
     'label': 'Debug',
     'color': null,

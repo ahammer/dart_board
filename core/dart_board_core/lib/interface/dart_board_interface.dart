@@ -56,6 +56,7 @@ abstract class DartBoardCore {
   Set<String> get whitelistedPageDecorations;
   List<DartBoardFeature> get allFeatures;
   List<RouteDefinition> get routes;
+  Set<DartBoardFeature> get loadedFeatures;
 
   /// This is all detected implementations for each feature namespace
   Map<String, List<String>> get detectedImplementations;

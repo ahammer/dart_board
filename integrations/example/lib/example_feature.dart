@@ -170,7 +170,7 @@ class ExampleFeature extends DartBoardFeature {
             implementationName: 'Mushroom Image'),
 
         /// Isolate the frame into a feature so it can be disabled
-        particleFeature,
+        //particleFeature,
         SnowFeature(),
       ];
 

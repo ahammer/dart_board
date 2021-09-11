@@ -121,6 +121,9 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
   @override
   final Map<String, String> activeImplementations = {};
 
+  @override
+  final Set<DartBoardFeature> loadedFeatures = <DartBoardFeature>{};
+
   late Map<String, String?> featureOverrides;
 
   bool _init = false;
@@ -186,7 +189,7 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
   /// If the features change, this can be rebuilt
   void buildFeatures() {
     setState(() {
-      var loadedFeatures = <String>{};
+      loadedFeatures.clear();
       detectedImplementations = {};
       final dependencies = buildDependencyList(widget.features);
 
@@ -206,22 +209,22 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
               ?.add(element.implementationName);
         }
 
-        if ((!loadedFeatures.contains(element.namespace) &&
+        if ((!loadedFeatures.contains(element) &&
                 !(featureOverrides.containsKey(element.namespace)) ||
             (featureOverrides.containsKey(element.namespace) &&
                 featureOverrides[element.namespace] ==
                     element.implementationName))) {
-          loadedFeatures.add(element.namespace);
+          loadedFeatures.add(element);
           allFeatures.add(element);
           log.info(
               'Loaded: ${element.implementationName} AKA "${element.namespace}"');
-        } else if (!loadedFeatures.contains(element.namespace) &&
+        } else if (!loadedFeatures.contains(element) &&
             featureOverrides[element.namespace] == null) {
           /// "Disabled" install stab instead
           log.info('Disabled: ${element.namespace} disabled, getting stubbed');
           final feat = StubFeature(element.namespace);
           allFeatures.add(feat);
-          loadedFeatures.add(element.namespace);
+          loadedFeatures.add(element);
         }
       });
 

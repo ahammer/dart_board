@@ -12,6 +12,7 @@ void main() {
     featureOverrides: {
       'Snow': null,
       'FireCursor': null,
+      'background': 'ClockEarth'
     },
     features: [ExampleFeature()],
     initialRoute: '/main',
