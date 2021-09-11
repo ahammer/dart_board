@@ -10,7 +10,9 @@ class DebugGraph extends StatelessWidget {
         final nodes = <String, Node>{};
 
         /// Pass 1, register all the nodes
-        DartBoardCore.instance.loadedFeatures.forEach((feature) {
+        DartBoardCore.instance.loadedFeatures
+            .where((element) => !element.isIntegrationFeature)
+            .forEach((feature) {
           nodes[feature.namespace] = Node(createNode(
               context,
               feature.namespace,

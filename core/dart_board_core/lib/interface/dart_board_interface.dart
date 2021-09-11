@@ -170,6 +170,13 @@ abstract class DartBoardFeature<T> {
   /// E.g. Based on platform
   bool get enabled => true;
 
+  /// This is a hint if a feature is "Integration" or not.
+  /// The only difference here is that "Integration" features
+  /// are not displayed in the dependency graph
+  /// (to many edges, looks ugly)
+
+  bool get isIntegrationFeature => false;
+
   /// This map of method handlers can be used to define callbacks
   ///
   /// context will be the BuildContext where this is invoked from

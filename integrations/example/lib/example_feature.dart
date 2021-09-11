@@ -39,6 +39,9 @@ class ExampleFeature extends DartBoardFeature {
   @override
   String get namespace => 'example';
 
+  @override
+  bool get isIntegrationFeature => true;
+
   /// These are the features the Example Uses
   ///
   /// If you remember, our main.dart only brought ExampleExtension

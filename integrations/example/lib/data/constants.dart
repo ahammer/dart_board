@@ -43,7 +43,7 @@ const kMainPageConfig = [
   },
   {
     'route': '/dependency_tree',
-    'label': 'Features',
+    'label': 'Dependencies',
     'color': null,
     'icon': Icons.usb_sharp,
   },
