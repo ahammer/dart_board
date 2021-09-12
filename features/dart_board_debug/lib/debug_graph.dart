@@ -2,7 +2,14 @@ import 'package:dart_board_core/dart_board.dart';
 import 'package:flutter/material.dart';
 import 'package:graphview/GraphView.dart';
 
-class DebugGraph extends StatelessWidget {
+class DebugGraph extends StatefulWidget {
+  @override
+  State<DebugGraph> createState() => _DebugGraphState();
+}
+
+class _DebugGraphState extends State<DebugGraph> {
+  bool includeIntegrationFeature = false;
+
   @override
   Widget build(BuildContext context) =>
       LayoutBuilder(builder: (ctx, constraints) {
@@ -11,7 +18,8 @@ class DebugGraph extends StatelessWidget {
 
         /// Pass 1, register all the nodes
         DartBoardCore.instance.loadedFeatures
-            .where((element) => !element.isIntegrationFeature)
+            .where((element) =>
+                !element.isIntegrationFeature || includeIntegrationFeature)
             .forEach((feature) {
           nodes[feature.namespace] = Node(createNode(
               context,
@@ -41,7 +49,7 @@ class DebugGraph extends StatelessWidget {
         });
 
         final builder1 = SugiyamaConfiguration()
-          ..levelSeparation = constraints.maxHeight ~/ 3
+          ..levelSeparation = constraints.maxHeight ~/ 4
           ..nodeSeparation = constraints.maxWidth ~/ 10
           ..orientation = (SugiyamaConfiguration.ORIENTATION_TOP_BOTTOM);
 
@@ -49,16 +57,41 @@ class DebugGraph extends StatelessWidget {
 
         return Material(
             color: Colors.transparent,
-            child: Center(
-                child: InteractiveViewer(
-                    constrained: false,
-                    boundaryMargin: EdgeInsets.all(500),
-                    minScale: 0.001,
-                    maxScale: 1.0,
-                    child: GraphView(
-                      graph: graph,
-                      algorithm: builder,
-                    ))));
+            child: Stack(
+              children: [
+                Center(
+                    child: InteractiveViewer(
+                        key: ValueKey(includeIntegrationFeature),
+                        constrained: false,
+                        boundaryMargin: EdgeInsets.all(500),
+                        minScale: 0.001,
+                        maxScale: 1.0,
+                        child: GraphView(
+                          graph: graph,
+                          algorithm: builder,
+                        ))),
+                Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Card(
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text('  Include Integration'),
+                        Switch(
+                          onChanged: (val) {
+                            setState(() {
+                              includeIntegrationFeature =
+                                  !includeIntegrationFeature;
+                            });
+                          },
+                          value: includeIntegrationFeature,
+                        ),
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ));
       });
 }
 
@@ -71,6 +104,6 @@ Widget createNode(BuildContext context, String nodeText, Color c) => Container(
       padding: const EdgeInsets.all(2.0),
       child: Text(
         nodeText,
-        style: Theme.of(context).textTheme.headline6,
+        style: Theme.of(context).textTheme.headline4,
       ),
     ));
