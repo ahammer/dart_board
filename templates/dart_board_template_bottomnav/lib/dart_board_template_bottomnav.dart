@@ -106,16 +106,19 @@ class BottomNavTemplate extends StatelessWidget {
           items: <BottomNavigationBarItem>[
             ...active
                 .map((e) => BottomNavigationBarItem(
-                    icon: Icon(e['icon']),
+                    icon: Icon(
+                      e['icon'],
+                      color: Theme.of(context).colorScheme.onPrimary,
+                    ),
                     label: e['label'],
                     backgroundColor:
-                        e['color'] ?? Theme.of(context).colorScheme.surface))
+                        e['color'] ?? Theme.of(context).colorScheme.primary))
                 .toList(),
           ],
           currentIndex: navstate.selectedTab,
-          selectedItemColor: Theme.of(context).colorScheme.onSurface,
+          selectedItemColor: Theme.of(context).colorScheme.onPrimary,
           unselectedItemColor:
-              Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
+              Theme.of(context).colorScheme.onPrimary.withOpacity(0.8),
           onTap: (value) {
             navstate.selectedTabIndex = value;
             navstate.selectedRoute = active.toList()[value]["route"];
