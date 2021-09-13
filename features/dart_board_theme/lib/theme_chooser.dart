@@ -29,7 +29,7 @@ class ThemeChooserDropdown extends StatefulWidget {
 
 class _ThemeChooserDropdownState extends State<ThemeChooserDropdown> {
   int selection = -1;
-  bool dark = false;
+  late bool dark = Theme.of(context).brightness == Brightness.dark;
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +72,13 @@ class _ThemeChooserDropdownState extends State<ThemeChooserDropdown> {
   }
 
   void applyTheme(BuildContext context) {
-    if (selection == -1) return;
+    if (selection == -1) {
+      DartBoardCore.instance.dispatchMethodCall(
+          context: context,
+          call: MethodCall('setThemeData',
+              {'themeData': dark ? ThemeData.dark() : ThemeData.light()}));
+      return;
+    }
     final theme = FlexScheme.values[selection];
     DartBoardCore.instance.dispatchMethodCall(
         context: context,
