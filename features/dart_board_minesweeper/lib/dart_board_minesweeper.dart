@@ -18,7 +18,7 @@ class MinesweeperFeature extends DartBoardFeature {
 
   @override
   List<DartBoardDecoration> get pageDecorations =>
-      [FeatureGatePageDecoration("redux")];
+      [FeatureGatePageDecoration('Redux')];
 
   @override
   List<String> get pageDecorationAllowList => ["/minesweep:FeatureGate+redux"];

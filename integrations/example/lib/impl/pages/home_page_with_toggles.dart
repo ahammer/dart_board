@@ -134,10 +134,10 @@ class HomePageWithToggles extends StatelessWidget {
                           SwitchListTile.adaptive(
                               title: Text('Logging'),
                               value: DartBoardCore.instance
-                                  .isFeatureActive('logging'),
+                                  .isFeatureActive('Logging'),
                               onChanged: (result) => {
                                     DartBoardCore.instance
-                                        .setFeatureImplementation('logging',
+                                        .setFeatureImplementation('Logging',
                                             result ? 'default' : null)
                                   }),
                           SwitchListTile.adaptive(

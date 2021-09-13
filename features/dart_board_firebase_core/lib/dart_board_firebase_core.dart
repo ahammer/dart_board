@@ -16,7 +16,7 @@ class DartBoardFirebaseCoreFeature extends DartBoardFeature {
       ];
 
   @override
-  String get namespace => "DartBoardFirebaseCore";
+  String get namespace => "FirebaseCore";
 
   @override
   bool get enabled =>

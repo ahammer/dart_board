@@ -54,7 +54,7 @@ class ExampleFeature extends DartBoardFeature {
   List<DartBoardFeature> get dependencies => [
         DartBoardCanvasFeature(
             stateBuilder: () => SplashAnimation(),
-            namespace: 'splash_background',
+            namespace: 'SplashBackground',
             implementationName: 'static',
             route: '/splash_bg',
             showFpsOverlay: false),
@@ -193,7 +193,7 @@ class ExampleFeature extends DartBoardFeature {
                     if (_init) return;
 
                     <String>[
-                      'theme',
+                      'Theme',
                       'FireCursor',
                       'Snow',
                       //'Snow'

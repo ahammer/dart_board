@@ -59,7 +59,7 @@ class DartBoardRedux extends DartBoardFeature {
       this.includeThunk = true});
 
   @override
-  String get namespace => "redux";
+  String get namespace => 'Redux';
 
   final bool includeThunk;
 

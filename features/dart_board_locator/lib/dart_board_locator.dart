@@ -25,12 +25,12 @@ import 'package:flutter/material.dart';
 ///
 class DartBoardLocatorFeature extends DartBoardFeature {
   @override
-  String get namespace => "locator";
+  String get namespace => "Locator";
 
   @override
   List<DartBoardDecoration> get appDecorations => [
         DartBoardDecoration(
-            name: "locator",
+            name: "Locator",
             decoration: (BuildContext context, Widget child) => _Locator(
                   child: child,
                   key: _locatorKey,

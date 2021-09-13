@@ -19,7 +19,7 @@ class DartBoardAuthenticationFeature extends DartBoardFeature {
   List<DartBoardFeature> get dependencies => [DartBoardLocatorFeature()];
 
   @override
-  String get namespace => "DartBoardAuthenticationFeature";
+  String get namespace => "AuthenticationFeature";
 }
 
 /// Provide this App Decoration in your Features to register a Delegate

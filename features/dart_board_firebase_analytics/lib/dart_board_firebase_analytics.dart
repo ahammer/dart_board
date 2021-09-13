@@ -11,7 +11,7 @@ class DartBoardFirebaseAnalytics extends DartBoardFeature {
       [DartBoardFirebaseCoreFeature(), DartBoardTrackingFeature()];
 
   @override
-  String get namespace => "DartBoardFirebaseAnalytics";
+  String get namespace => "FirebaseAnalytics";
 
   @override
   List<DartBoardDecoration> get appDecorations => [

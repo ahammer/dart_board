@@ -63,7 +63,7 @@ class LogFeature extends DartBoardFeature {
   List<String> get pageDecorationDenyList => ['/log:log_frame'];
 
   @override
-  String get namespace => 'logging';
+  String get namespace => 'Logging';
 
   @override
   Map<String, MethodCallHandler> get methodHandlers =>

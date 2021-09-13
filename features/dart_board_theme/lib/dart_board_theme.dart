@@ -52,5 +52,5 @@ class ThemeFeature extends DartBoardFeature with ChangeNotifier {
       ];
 
   @override
-  String get namespace => 'theme';
+  String get namespace => 'Theme';
 }

@@ -4,16 +4,7 @@ import 'package:flutter/material.dart';
 
 class DebugList extends StatelessWidget {
   @override
-  Widget build(BuildContext context) => Stack(
-        children: [
-          Container(
-            width: double.infinity,
-            height: double.infinity,
-            color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.8),
-          ),
-          CollapsingList(),
-        ],
-      );
+  Widget build(BuildContext context) => CollapsingList();
 }
 
 class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
@@ -43,7 +34,14 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   }
 }
 
-class CollapsingList extends StatelessWidget {
+class CollapsingList extends StatefulWidget {
+  @override
+  State<CollapsingList> createState() => _CollapsingListState();
+}
+
+class _CollapsingListState extends State<CollapsingList> {
+  final _controller = ScrollController();
+
   SliverPersistentHeader makeHeader(BuildContext context, String headerText) {
     return SliverPersistentHeader(
       pinned: true,
@@ -63,186 +61,191 @@ class CollapsingList extends StatelessWidget {
     final routes = DartBoardCore.instance.allFeatures.namedRoutes
       ..sort((a, b) => a.route.compareTo(b.route));
 
-    return CustomScrollView(
-      slivers: <Widget>[
-        ///-------------------------------------------------------------------
-        makeHeader(context, 'Features'),
-        SliverGrid.extent(
-          childAspectRatio: 2,
-          maxCrossAxisExtent: 300,
-          children: [
-            ...DartBoardCore.instance.detectedImplementations.keys.map((e) {
-              final implementations =
-                  DartBoardCore.instance.detectedImplementations[e]!;
-              final feature = DartBoardCore.instance.findByName(e);
+    return Scrollbar(
+      controller: _controller,
+      isAlwaysShown: true,
+      child: CustomScrollView(
+        controller: _controller,
+        slivers: <Widget>[
+          ///-------------------------------------------------------------------
+          makeHeader(context, 'Features'),
+          SliverGrid.extent(
+            childAspectRatio: 1,
+            maxCrossAxisExtent: 300,
+            children: [
+              ...DartBoardCore.instance.detectedImplementations.keys.map((e) {
+                final implementations =
+                    DartBoardCore.instance.detectedImplementations[e]!;
+                final feature = DartBoardCore.instance.findByName(e);
 
-              return ListTile(
-                title: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Column(
-                        children: [
-                          Text(
-                            e,
-                            style: Theme.of(context).textTheme.headline4,
-                          ),
-                          Text('Active: ${implementations[0]}'),
-                          DropdownButton<String>(
-                              onChanged: (value) {
-                                if (value == null) {
-                                  showDialog(
-                                      builder: (ctx) => AlertDialog(
-                                            title:
-                                                Text('Warning: Are you sure?'),
-                                            content: Text(
-                                                'Disabling a feature that is currently active can result in breakage. E.g. if your Route becomes unavailable. Please confirm before continuing'),
-                                            actions: [
-                                              MaterialButton(
-                                                onPressed: () {
-                                                  Navigator.of(context).pop();
-                                                },
-                                                child: Text('Cancel'),
-                                              ),
-                                              MaterialButton(
-                                                onPressed: () {
-                                                  DartBoardCore.instance
-                                                      .setFeatureImplementation(
-                                                          e, value);
-                                                  Navigator.of(context).pop();
-                                                },
-                                                child: Text('OK'),
-                                              )
-                                            ],
-                                          ),
-                                      context: context);
-                                } else {
-                                  DartBoardCore.instance
-                                      .setFeatureImplementation(e, value);
-                                }
-                              },
-                              value: DartBoardCore
-                                  .instance.activeImplementations[e],
-                              items: [
-                                DropdownMenuItem(
-                                    value: null, child: Text('Disabled')),
-                                ...implementations
-                                    .map((e) => DropdownMenuItem(
-                                        value: e, child: Text('$e')))
-                                    .toList()
-                              ]),
-                          if (feature.methodHandlers.isNotEmpty) ...[
-                            Text('Active Method Handlers'),
+                return ListTile(
+                  title: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Column(
+                          children: [
+                            Text(
+                              e,
+                              style: Theme.of(context).textTheme.headline4,
+                            ),
+                            Text('Active: ${implementations[0]}'),
                             DropdownButton<String>(
                                 onChanged: (value) {
-                                  if (value == null) return;
-
-                                  /// Lets dispatch this with no-args to test remote
-                                  /// call
-                                  context.dispatchMethod(value);
+                                  if (value == null) {
+                                    showDialog(
+                                        builder: (ctx) => AlertDialog(
+                                              title: Text(
+                                                  'Warning: Are you sure?'),
+                                              content: Text(
+                                                  'Disabling a feature that is currently active can result in breakage. E.g. if your Route becomes unavailable. Please confirm before continuing'),
+                                              actions: [
+                                                MaterialButton(
+                                                  onPressed: () {
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                  child: Text('Cancel'),
+                                                ),
+                                                MaterialButton(
+                                                  onPressed: () {
+                                                    DartBoardCore.instance
+                                                        .setFeatureImplementation(
+                                                            e, value);
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                  child: Text('OK'),
+                                                )
+                                              ],
+                                            ),
+                                        context: context);
+                                  } else {
+                                    DartBoardCore.instance
+                                        .setFeatureImplementation(e, value);
+                                  }
                                 },
-                                value: null,
+                                value: DartBoardCore
+                                    .instance.activeImplementations[e],
                                 items: [
                                   DropdownMenuItem(
-                                      value: null,
-                                      child: Text('Select to Trigger')),
-                                  ...feature.methodHandlers.keys
+                                      value: null, child: Text('Disabled')),
+                                  ...implementations
                                       .map((e) => DropdownMenuItem(
                                           value: e, child: Text('$e')))
                                       .toList()
                                 ]),
+                            if (feature.methodHandlers.isNotEmpty) ...[
+                              Text('Active Method Handlers'),
+                              DropdownButton<String>(
+                                  onChanged: (value) {
+                                    if (value == null) return;
+
+                                    /// Lets dispatch this with no-args to test remote
+                                    /// call
+                                    context.dispatchMethod(value);
+                                  },
+                                  value: null,
+                                  items: [
+                                    DropdownMenuItem(
+                                        value: null,
+                                        child: Text('Select to Trigger')),
+                                    ...feature.methodHandlers.keys
+                                        .map((e) => DropdownMenuItem(
+                                            value: e, child: Text('$e')))
+                                        .toList()
+                                  ]),
+                            ],
                           ],
-                        ],
-                      )),
-                ),
-              );
-            })
-          ],
-        ),
-
-        ///-------------------------------------------------------------------
-        makeHeader(context, 'Routes'),
-        SliverGrid.extent(
-          childAspectRatio: 3,
-          maxCrossAxisExtent: 150,
-          children: [
-            ...routes.map((e) => Card(
-                  child: InkWell(
-                      onTap: () => showDialog(
-                          context: context,
-                          builder: (ctx) => Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Material(
-                                child: RouteWidget(e.route),
-                              ))),
-                      child: FittedBox(
-                          fit: BoxFit.scaleDown, child: Text(e.route))),
-                ))
-          ],
-        ),
-
-        ///-------------------------------------------------------------------
-        makeHeader(context, 'App Decorations'),
-        SliverGrid.extent(
-          childAspectRatio: 4,
-          maxCrossAxisExtent: 300,
-          children: [
-            ...DartBoardCore.instance.appDecorations
-                .map((e) => DebugLabelText(e.name))
-          ],
-        ),
-
-        ///-------------------------------------------------------------------
-        makeHeader(context, 'Page Decorations'),
-        SliverGrid.extent(
-          childAspectRatio: 2,
-          maxCrossAxisExtent: 300,
-          children: [
-            ...DartBoardCore.instance.pageDecorations.map((e) => Card(
-                  child: Column(
-                    children: [
-                      Text(e.name),
-                      Expanded(
-                          child: e.decoration(
-                        context,
-                        Container(),
-                      )),
-                    ],
+                        )),
                   ),
-                )),
-          ],
-        ),
+                );
+              })
+            ],
+          ),
 
-        ///-------------------------------------------------------------------
-        makeHeader(context, 'Page Decorations - Allow List'),
-        SliverGrid.extent(
+          ///-------------------------------------------------------------------
+          makeHeader(context, 'Routes'),
+          SliverGrid.extent(
+            childAspectRatio: 3,
+            maxCrossAxisExtent: 150,
+            children: [
+              ...routes.map((e) => Card(
+                    child: InkWell(
+                        onTap: () => showDialog(
+                            context: context,
+                            builder: (ctx) => Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Material(
+                                  child: RouteWidget(e.route),
+                                ))),
+                        child: FittedBox(
+                            fit: BoxFit.scaleDown, child: Text(e.route))),
+                  ))
+            ],
+          ),
+
+          ///-------------------------------------------------------------------
+          makeHeader(context, 'App Decorations'),
+          SliverGrid.extent(
             childAspectRatio: 4,
             maxCrossAxisExtent: 300,
             children: [
-              ...DartBoardCore.instance.pageDecorationAllowList
-                  .map((e) => DebugLabelText(e))
-            ]),
+              ...DartBoardCore.instance.appDecorations
+                  .map((e) => DebugLabelText(e.name))
+            ],
+          ),
 
-        ///-------------------------------------------------------------------
-        makeHeader(context, 'Page Decorations - Deny List'),
-        SliverGrid.extent(
-            childAspectRatio: 4,
+          ///-------------------------------------------------------------------
+          makeHeader(context, 'Page Decorations'),
+          SliverGrid.extent(
+            childAspectRatio: 2,
             maxCrossAxisExtent: 300,
             children: [
-              ...DartBoardCore.instance.pageDecorationDenyList
-                  .map((e) => DebugLabelText(e))
-            ]),
+              ...DartBoardCore.instance.pageDecorations.map((e) => Card(
+                    child: Column(
+                      children: [
+                        Text(e.name),
+                        Expanded(
+                            child: e.decoration(
+                          context,
+                          Container(),
+                        )),
+                      ],
+                    ),
+                  )),
+            ],
+          ),
 
-        ///-------------------------------------------------------------------
-        makeHeader(context, 'Page Decorations - Allow List Activated'),
-        SliverGrid.extent(
-            childAspectRatio: 4,
-            maxCrossAxisExtent: 300,
-            children: [
-              ...DartBoardCore.instance.whitelistedPageDecorations
-                  .map((e) => DebugLabelText(e))
-            ])
-      ],
+          ///-------------------------------------------------------------------
+          makeHeader(context, 'Page Decorations - Allow List'),
+          SliverGrid.extent(
+              childAspectRatio: 4,
+              maxCrossAxisExtent: 300,
+              children: [
+                ...DartBoardCore.instance.pageDecorationAllowList
+                    .map((e) => DebugLabelText(e))
+              ]),
+
+          ///-------------------------------------------------------------------
+          makeHeader(context, 'Page Decorations - Deny List'),
+          SliverGrid.extent(
+              childAspectRatio: 4,
+              maxCrossAxisExtent: 300,
+              children: [
+                ...DartBoardCore.instance.pageDecorationDenyList
+                    .map((e) => DebugLabelText(e))
+              ]),
+
+          ///-------------------------------------------------------------------
+          makeHeader(context, 'Page Decorations - Allow List Activated'),
+          SliverGrid.extent(
+              childAspectRatio: 4,
+              maxCrossAxisExtent: 300,
+              children: [
+                ...DartBoardCore.instance.whitelistedPageDecorations
+                    .map((e) => DebugLabelText(e))
+              ])
+        ],
+      ),
     );
   }
 }

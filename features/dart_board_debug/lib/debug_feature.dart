@@ -18,5 +18,5 @@ class DebugFeature extends DartBoardFeature {
       ];
 
   @override
-  String get namespace => 'debug';
+  String get namespace => 'Debug';
 }

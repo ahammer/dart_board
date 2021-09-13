@@ -22,6 +22,7 @@ abstract class CursorFeature extends DartBoardFeature {
             Platform.isMacOS)
           DartBoardDecoration(
               decoration: (BuildContext context, Widget child) => MouseRegion(
+                    opaque: false,
                     key: ValueKey('${namespace}_mouse_region'),
                     onHover: (hover) {
                       if (hover.position.dx != 0 && hover.position.dy != 0)

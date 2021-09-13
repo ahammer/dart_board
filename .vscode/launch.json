@@ -27,7 +27,49 @@
             "request": "launch",          
             "flutterMode": "release",
             "type": "dart"
-        }
+        },
+        {
+            "name": "'Debug' example",
+            "program": "lib/examples/debug_example.dart",
+            "cwd": "integrations/example",
+            "request": "launch",          
+            "flutterMode": "release",
+            "type": "dart"
+        },
+        {
+            "name": "'Chat' (mobile+web) example",
+            "program": "lib/examples/chat_example.dart",
+            "cwd": "integrations/example",
+            "request": "launch",          
+            "flutterMode": "release",
+            "type": "dart"
+        },
+        {
+            "name": "'Locator' example",
+            "program": "lib/examples/locator_example.dart",
+            "cwd": "integrations/example",
+            "request": "launch",          
+            "flutterMode": "release",
+            "type": "dart"
+        },
+        {
+            "name": "'Particles' example",
+            "program": "lib/examples/particles_example.dart",
+            "cwd": "integrations/example",
+            "request": "launch",          
+            "flutterMode": "release",
+            "type": "dart"
+        },
+        {
+            "name": "'Authentication' example",
+            "program": "lib/examples/authentication_example.dart",
+            "cwd": "integrations/example",
+            "request": "launch",          
+            "flutterMode": "release",
+            "type": "dart"
+        },
+
+        
 
     ]
 }

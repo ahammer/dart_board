@@ -8,7 +8,7 @@ class DartBoardFirebaseDatabaseFeature extends DartBoardFeature {
   List<DartBoardFeature> get dependencies => [DartBoardFirebaseCoreFeature()];
 
   @override
-  String get namespace => "DartBoardFirebaseDatabaseFeature";
+  String get namespace => "FirebaseDatabaseFeature";
 }
 
 /// Able to take a Collection Ref and pass it into builder's with a snapshot
