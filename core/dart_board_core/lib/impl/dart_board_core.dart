@@ -189,6 +189,8 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
   /// If the features change, this can be rebuilt
   void buildFeatures() {
     setState(() {
+      /// Grab from a cache
+      final cachedFeatures = [...loadedFeatures];
       loadedFeatures.clear();
       detectedImplementations = {};
       final dependencies = buildDependencyList(widget.features);
@@ -199,6 +201,17 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
       allFeatures = <DartBoardFeature>[];
 
       dependencies.forEach((element) {
+        /// Pull from cache if possible
+        final fromCache = cachedFeatures
+            .where((cached) =>
+                element.namespace == cached.namespace &&
+                element.implementationName == cached.implementationName)
+            .toList();
+
+        if (fromCache.length == 1) {
+          element = fromCache[0];
+        }
+
         if (!detectedImplementations.containsKey(element.namespace)) {
           detectedImplementations[element.namespace] = [
             element.implementationName
