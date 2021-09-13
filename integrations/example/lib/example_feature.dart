@@ -104,7 +104,7 @@ class ExampleFeature extends DartBoardFeature {
         /// Another approach is to have the image background -> route, and then select the space variant
         /// But I did it this way because I want them all on the "background" feature
         SpaceSceneFeature(
-          namespace: 'clock',
+          namespace: 'SpaceStars',
           implementationName: 'Space Clock - Stars',
           route: '/space',
           showEarth: false,
@@ -113,7 +113,7 @@ class ExampleFeature extends DartBoardFeature {
         ),
 
         SpaceSceneFeature(
-          namespace: 'clock2',
+          namespace: 'SpaceStarsEarth',
           route: '/space_earth',
           implementationName: 'Space Clock - Earth',
           showEarth: true,
@@ -122,7 +122,7 @@ class ExampleFeature extends DartBoardFeature {
         ),
 
         SpaceSceneFeature(
-          namespace: 'clock3',
+          namespace: 'SpaceAll',
           route: '/space_all',
           implementationName: 'Space Clock - All',
           showEarth: true,

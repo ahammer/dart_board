@@ -1,7 +1,10 @@
 import 'package:dart_board_core/dart_board.dart';
-import 'package:dart_board_debug/debug_feature.dart';
 import 'package:flutter/material.dart';
 
+import '../example_feature.dart';
+
+/// Entry Point for the Example
+///
 /// Entry Point for the Example
 ///
 /// All the registration and details are in ExampleFeature.
@@ -12,8 +15,9 @@ void main() {
     featureOverrides: {
       'Snow': null,
       'FireCursor': null,
+      'SplashScreen': null,
     },
-    features: [DebugFeature()],
+    features: [ExampleFeature()],
     initialRoute: '/debug',
   ));
 }
