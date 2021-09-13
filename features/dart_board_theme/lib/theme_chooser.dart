@@ -73,6 +73,10 @@ class _ThemeChooserDropdownState extends State<ThemeChooserDropdown> {
 
   void applyTheme(BuildContext context) {
     if (selection == -1) {
+      final themeData = dark
+          ? FlexColorScheme.dark().toTheme
+          : FlexColorScheme.light().toTheme;
+
       DartBoardCore.instance.dispatchMethodCall(
           context: context,
           call: MethodCall('setThemeData',
@@ -80,12 +84,14 @@ class _ThemeChooserDropdownState extends State<ThemeChooserDropdown> {
       return;
     }
     final theme = FlexScheme.values[selection];
+    final themeData = dark
+        ? FlexColorScheme.dark(scheme: theme).toTheme
+        : FlexColorScheme.light(scheme: theme).toTheme;
+
     DartBoardCore.instance.dispatchMethodCall(
         context: context,
         call: MethodCall('setThemeData', {
-          'themeData': dark
-              ? FlexColorScheme.dark(scheme: theme).toTheme
-              : FlexColorScheme.light(scheme: theme).toTheme,
+          'themeData': themeData,
         }));
   }
 }
