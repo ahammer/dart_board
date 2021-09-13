@@ -1,4 +1,5 @@
 import 'package:dart_board_core/dart_board.dart';
+import 'package:dart_board_locator/dart_board_locator.dart';
 import 'state/bottom_nav_state.dart';
 import 'package:logging/logging.dart';
 import 'package:flutter/material.dart';
@@ -37,22 +38,25 @@ class BottomNavTemplateFeature extends DartBoardFeature {
 
   @override
   List<DartBoardDecoration> get appDecorations => [
-        DartBoardDecoration(
-            name: 'bottom_nav_state',
-            decoration: (ctx, child) =>
-                ChangeNotifierProvider<BottomNavTemplateState>(
-                    key: Key('bottom_nav_state'),
-                    create: (ctx) {
-                      validateConfig();
-                      return BottomNavTemplateState(config);
-                    },
-                    child: child))
+        // DartBoardDecoration(
+        //     name: 'bottom_nav_state',
+        //     decoration: (ctx, child) =>
+        //         ChangeNotifierProvider<BottomNavTemplateState>(
+        //             key: Key('bottom_nav_state'),
+        //             create: (ctx) {
+        //               validateConfig();
+        //               return ;
+        //             },
+        //             child: child)),
+        LocatorDecoration(() => BottomNavTemplateState(config))
       ];
 
   @override
   List<RouteDefinition> get routes => [
         NamedRouteDefinition(
-            route: route, builder: (ctx, settings) => BottomNavTemplate())
+          route: route,
+          builder: (ctx, settings) => BottomNavTemplate(this),
+        )
       ];
 
   /// This is a runtime safety check to ensure that the config looks valid
@@ -77,47 +81,49 @@ class BottomNavTemplateFeature extends DartBoardFeature {
 }
 
 class BottomNavTemplate extends StatelessWidget {
-  const BottomNavTemplate();
+  final BottomNavTemplateFeature feature;
+
+  const BottomNavTemplate(this.feature);
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<BottomNavTemplateState>(
-      builder: (ctx, navstate, child) {
-        final active = navstate.config.where(
-            (e) => DartBoardCore.instance.confirmRouteExists(e["route"]));
+    return locateAndBuild<BottomNavTemplateState>((ctx, navstate) {
+      final active = navstate.config
+          .where((e) => DartBoardCore.instance.confirmRouteExists(e["route"]));
 
-        return Scaffold(
-          body: AnimatedSwitcher(
-            duration: Duration(milliseconds: 200),
-            child: RouteWidget(
-              navstate.selectedRoute,
-              decorate: navstate.selectedConfig["decorate"] ?? true,
-              key: Key(navstate.selectedRoute),
-            ),
+      return Scaffold(
+        body: AnimatedSwitcher(
+          duration: Duration(milliseconds: 200),
+          child: RouteWidget(
+            navstate.selectedRoute,
+            decorate: navstate.selectedConfig["decorate"] ?? true,
+            key: Key(navstate.selectedRoute),
           ),
-          bottomNavigationBar: BottomNavigationBar(
-            elevation: 1,
-            type: BottomNavigationBarType.shifting,
-            items: <BottomNavigationBarItem>[
-              ...active
-                  .map((e) => BottomNavigationBarItem(
-                      icon: Icon(e['icon']),
-                      label: e['label'],
-                      backgroundColor:
-                          e['color'] ?? Theme.of(context).colorScheme.surface))
-                  .toList(),
-            ],
-            currentIndex: navstate.selectedTab,
-            selectedItemColor: Theme.of(context).colorScheme.onSurface,
-            unselectedItemColor:
-                Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
-            onTap: (value) {
-              navstate.selectedTabIndex = value;
-              navstate.selectedRoute = active.toList()[value]["route"];
-            },
-          ),
-        );
-      },
-    );
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          elevation: 1,
+          type: BottomNavigationBarType.shifting,
+          items: <BottomNavigationBarItem>[
+            ...active
+                .map((e) => BottomNavigationBarItem(
+                    icon: Icon(e['icon']),
+                    label: e['label'],
+                    backgroundColor:
+                        e['color'] ?? Theme.of(context).colorScheme.surface))
+                .toList(),
+          ],
+          currentIndex: navstate.selectedTab,
+          selectedItemColor: Theme.of(context).colorScheme.onSurface,
+          unselectedItemColor:
+              Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
+          onTap: (value) {
+            navstate.selectedTabIndex = value;
+            navstate.selectedRoute = active.toList()[value]["route"];
+          },
+        ),
+      );
+
+      /// Use the route as the instance_id for the type, in case we re-use this template
+    }, instanceId: feature.route);
   }
 }

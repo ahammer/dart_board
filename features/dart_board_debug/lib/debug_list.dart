@@ -195,50 +195,33 @@ class _FeatureControlsState extends State<FeatureControls> {
             widget.feature.namespace,
             style: Theme.of(context).textTheme.headline4,
           ),
-          Text(
-              'Active: ${DartBoardCore.instance.activeImplementations[widget.feature.namespace]}'),
-          DropdownButton<String>(
-              onChanged: (value) async {
-                if (value == null) {
-                  await showDialog(
-                      builder: (ctx) => AlertDialog(
-                            title: Text('Warning: Are you sure?'),
-                            content: Text(
-                                'Disabling a feature that is currently active can result in breakage. E.g. if your Route becomes unavailable. Please confirm before continuing'),
-                            actions: [
-                              MaterialButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                                child: Text('Cancel'),
-                              ),
-                              MaterialButton(
-                                onPressed: () {
-                                  DartBoardCore.instance
-                                      .setFeatureImplementation(
-                                          widget.feature.namespace, value);
-                                  Navigator.of(context).pop();
-                                },
-                                child: Text('OK'),
-                              )
-                            ],
-                          ),
-                      context: context);
-                } else {
-                  DartBoardCore.instance.setFeatureImplementation(
-                      widget.feature.namespace, value);
-                }
-                setState(() {});
-              },
-              value: DartBoardCore
-                  .instance.activeImplementations[widget.feature.namespace],
-              items: [
-                DropdownMenuItem(value: null, child: Text('Disabled')),
-                ...DartBoardCore
-                    .instance.detectedImplementations[widget.feature.namespace]!
-                    .map((e) => DropdownMenuItem(value: e, child: Text('$e')))
-                    .toList()
-              ]),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text('Implementation  '),
+              DropdownButton<String>(
+                  onChanged: (value) async {
+                    if (value == null) {
+                      /// Lets warn before disabling
+                      await disableWarningPrompt(context, value);
+                    } else {
+                      DartBoardCore.instance.setFeatureImplementation(
+                          widget.feature.namespace, value);
+                    }
+                    setState(() {});
+                  },
+                  value: DartBoardCore
+                      .instance.activeImplementations[widget.feature.namespace],
+                  items: [
+                    DropdownMenuItem(value: null, child: Text('Disabled')),
+                    ...DartBoardCore.instance
+                        .detectedImplementations[widget.feature.namespace]!
+                        .map((e) =>
+                            DropdownMenuItem(value: e, child: Text('$e')))
+                        .toList()
+                  ]),
+            ],
+          ),
           if (widget.feature.methodHandlers.isNotEmpty) ...[
             Text('Active Method Handlers'),
             DropdownButton<String>(
@@ -261,6 +244,32 @@ class _FeatureControlsState extends State<FeatureControls> {
         ],
       ),
     );
+  }
+
+  Future<dynamic> disableWarningPrompt(BuildContext context, String? value) {
+    return showDialog(
+        builder: (ctx) => AlertDialog(
+              title: Text('Warning: Are you sure?'),
+              content: Text(
+                  'Disabling a feature that is currently active can result in breakage. E.g. if your Route becomes unavailable. Please confirm before continuing'),
+              actions: [
+                MaterialButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('Cancel'),
+                ),
+                MaterialButton(
+                  onPressed: () {
+                    DartBoardCore.instance.setFeatureImplementation(
+                        widget.feature.namespace, value);
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('OK'),
+                )
+              ],
+            ),
+        context: context);
   }
 }
 

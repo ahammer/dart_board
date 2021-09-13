@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_firebase_core/dart_board_firebase_core.dart';
 import 'package:dart_board_tracking/dart_board_tracking.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 /// Firebase analytics feature and a simple delegate
@@ -18,6 +21,9 @@ class DartBoardFirebaseAnalytics extends DartBoardFeature {
         TrackingDelegateAppDecoration(
             name: "firebase_analytics", delegate: FirebaseAnalyticsDelegate()),
       ];
+
+  @override
+  bool get enabled => kIsWeb || Platform.isAndroid || Platform.isIOS;
 }
 
 class FirebaseAnalyticsDelegate extends TrackingDelegate {
