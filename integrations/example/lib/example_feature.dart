@@ -21,6 +21,7 @@ import 'impl/decorations/wavy_lines_background.dart';
 import 'package:dart_board_template_bottomnav/dart_board_template_bottomnav.dart';
 import 'package:dart_board_image_background/dart_board_image_background.dart';
 import 'package:flutter/material.dart';
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 
 /// The Example Feature
 ///
@@ -68,7 +69,8 @@ class ExampleFeature extends DartBoardFeature {
             contentBuilder: (context) => ExampleSplashWidget(),
           ),
         ),
-        ThemeFeature(data: ThemeData.light()),
+        ThemeFeature(
+            data: FlexColorScheme.dark(scheme: FlexScheme.outerSpace).toTheme),
         DebugFeature(),
         LogFeature(),
         MinesweeperFeature(),

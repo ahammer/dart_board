@@ -2,6 +2,7 @@ import 'package:dart_board_authentication/dart_board_authentication.dart';
 import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_particles/dart_board_particle_feature.dart';
 import 'package:dart_board_particles/presets/lighting_particle.dart';
+import 'package:dart_board_theme/theme_chooser.dart';
 import 'package:dart_board_tracking/dart_board_tracking.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -167,23 +168,14 @@ class HomePageWithToggles extends StatelessWidget {
                                         .setFeatureImplementation(
                                             'Snow', result ? 'default' : null)
                                   }),
-                          SwitchListTile.adaptive(
-                              title: Text('Dark Theme'),
-                              value: Theme.of(context).brightness ==
-                                  Brightness.dark,
-                              onChanged: (val) => DartBoardCore.instance
-                                  .dispatchMethodCall(
-                                      context: context,
-                                      call: MethodCall('setThemeData', {
-                                        'themeData': val
-                                            ? ThemeData.dark()
-                                            : ThemeData.light()
-                                      }))),
                           ListTile(
                             title: Text('See the Splash'),
                             onTap: () {
                               context.dispatchMethod('showSplashScreen');
                             },
+                          ),
+                          ListTile(
+                            title: ThemeChooserDropdown(),
                           ),
                         ],
                       ),

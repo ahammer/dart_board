@@ -36,12 +36,6 @@ const kMainPageConfig = [
     'icon': Icons.chat,
   },
   {
-    'route': '/theme_editor',
-    'label': 'Theme',
-    'color': null,
-    'icon': Icons.palette,
-  },
-  {
     'route': '/dependency_tree',
     'label': 'Dependencies',
     'color': null,

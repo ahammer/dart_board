@@ -1,4 +1,5 @@
 import 'package:dart_board_core/dart_board.dart';
+import 'package:dart_board_theme/theme_chooser.dart';
 import 'package:flutter/material.dart';
 
 import 'theme_builder.dart';
@@ -35,6 +36,12 @@ class ThemeFeature extends DartBoardFeature with ChangeNotifier {
             return true;
           }
           return false;
+        },
+        'showThemeChooser': (ctx, call) async {
+          return await showDialog(
+              context: ctx,
+              builder: (ctx) => ThemeChooser(),
+              useSafeArea: true);
         }
       };
 
