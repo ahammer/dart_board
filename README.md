@@ -52,9 +52,7 @@ What is a feature? Many are offered out of the box, including Debugging, Full Fe
 
 | Chat             |  Minesweeper | Logging |
 :-------------------------:|:-------------------------:|:-------------------------:
-![Chat](https://www.dart-board.io/assets/img/screenshots/dart_board_3.jpg) | 
-![MineSweeper](https://www.dart-board.io/assets/img/screenshots/dart_board_4.jpg) | 
-![Logging](https://www.dart-board.io/assets/img/screenshots/dart_board_7.jpg)
+![Chat](https://www.dart-board.io/assets/img/screenshots/dart_board_3.jpg) | ![MineSweeper](https://www.dart-board.io/assets/img/screenshots/dart_board_4.jpg) | ![Logging](https://www.dart-board.io/assets/img/screenshots/dart_board_7.jpg)
 
 
 # Repo Setup:
