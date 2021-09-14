@@ -7,6 +7,9 @@ Starter Demo: https://dartboard-blank.firebaseapp.com/#/
 
 Flutter Architecture/Framework for Feature based development
 
+![MainDemo](https://www.dart-board.io/assets/img/screenshots/dart_board_1.jpg)
+
+
 
 - [Dart Board](#dart-board)
 - [Introduction](#introduction)
