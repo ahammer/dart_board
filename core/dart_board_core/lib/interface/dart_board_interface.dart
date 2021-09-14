@@ -1,6 +1,6 @@
+import 'package:dart_board_core/dart_board.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 
 /// Interfaces for Dart Board
 ///
@@ -41,9 +41,12 @@ typedef MethodCallHandler = Future Function(
 /// When working with DartBoard, use these interfaces to access it.
 ///
 abstract class DartBoardCore {
-  static DartBoardCore get instance =>
-      Provider.of<DartBoardCore>(dartBoardNavKey.currentContext!,
-          listen: false);
+  /// Call this in your constructor to set the instance.
+  void initCore() {
+    instance = this;
+  }
+
+  static late final DartBoardCore instance;
 
   /// These are the Features that have been loaded
   ///

@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/services/message_codec.dart';
-import 'package:provider/provider.dart';
 import 'package:logging/logging.dart';
 
 import '../dart_board.dart';
@@ -131,6 +130,7 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
   @override
   void initState() {
     super.initState();
+    initCore();
     featureOverrides = widget.featureOverrides ?? {};
     buildFeatures();
     WidgetsBinding.instance
@@ -143,23 +143,20 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
   /// 2) Then provide a MaterialApp + Customizations
   ///
   @override
-  Widget build(BuildContext context) => Provider<DartBoardCore>(
-        create: (ctx) => this,
-        child: MaterialApp(
-          home: _init
-              ? RouteWidget(
-                  widget.initialRoute,
-                  decorate: true,
-                )
-              : CircularProgressIndicator(),
-          key: dartBoardKey,
-          navigatorKey: dartBoardNavKey,
-          builder: (context, navigator) => appDecorations.reversed.fold(
-            navigator!,
-            (child, element) => element.decoration(context, child),
-          ),
-          onGenerateRoute: onGenerateRoute,
+  Widget build(BuildContext context) => MaterialApp(
+        home: _init
+            ? RouteWidget(
+                widget.initialRoute,
+                decorate: true,
+              )
+            : CircularProgressIndicator(),
+        key: dartBoardKey,
+        navigatorKey: dartBoardNavKey,
+        builder: (context, navigator) => appDecorations.reversed.fold(
+          navigator!,
+          (child, element) => element.decoration(context, child),
         ),
+        onGenerateRoute: onGenerateRoute,
       );
 
   /// Dart Board Core Overrides

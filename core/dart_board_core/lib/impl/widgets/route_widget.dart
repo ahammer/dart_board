@@ -1,7 +1,6 @@
 import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_core/impl/widgets/route_not_found.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 /// Route Widget
 ///
@@ -24,14 +23,12 @@ class RouteWidget extends StatelessWidget {
           key: key);
 
   @override
-  Widget build(BuildContext context) =>
-      context.read<DartBoardCore>().buildPageRoute(
-          context,
-          settings,
-          context.read<DartBoardCore>().routes.firstWhere(
-              (it) => it.matches(settings),
-              orElse: () => NamedRouteDefinition(
-                  builder: (ctx, _) => RouteNotFound(settings.name!),
-                  route: '/404')),
-          decorate: decorate);
+  Widget build(BuildContext context) => DartBoardCore.instance.buildPageRoute(
+      context,
+      settings,
+      DartBoardCore.instance.routes.firstWhere((it) => it.matches(settings),
+          orElse: () => NamedRouteDefinition(
+              builder: (ctx, _) => RouteNotFound(settings.name!),
+              route: '/404')),
+      decorate: decorate);
 }

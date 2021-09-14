@@ -23,6 +23,7 @@ Flutter Architecture/Framework for Feature based development
     - [templates](#templates)
     - [integrations](#integrations)
     - [homepage](#homepage)
+- [Special Thanks](#special-thanks)
 
 
 # Introduction
@@ -217,3 +218,11 @@ This is the "dart-board.io" website.
 The template is SplashKit (Bootstrap) and is not licensed for re-use.
 
 For all intents and purposes, this is outside the open source components due to license restrictions.
+
+# Special Thanks
+
+Many packages are consumed in the  creation of dart-board, however I try and limit them to features so they are optional.
+
+Theme support is largely thanks to FlexColorScheme and FlexColorPicker, amazing packages that really bring that feature to life.
+
+The NIL packages is imported as well, to use in place of empty containers for some render optimization.
