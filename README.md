@@ -101,13 +101,14 @@ void main() => runApp(DartBoard(
 
 ![Features](https://www.dart-board.io/assets/img/screenshots/dart_board_6.jpg)
 
-In Dart Board, everything is a Feature. It can be an Atomic feature with no dependencies, or can be an integration of multiple other features.
+In Dart Board everything the user does is conveyed through features. Core's existence is only to load them.
 
-Features will expose screens and API's that you can use within other features.
+Features expose screens and API's that you can export, or use indirectly for loose coupling between components.
 
 For example, a feature can do the following.
 - Decorate the App or Page
 - Provide Named Routes
+- Dispatch MethodCalls between 
 
 Decorations are widgets injected at the App or Page level. They can be UI or non  UI components.   
 
