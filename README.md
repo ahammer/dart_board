@@ -5,10 +5,10 @@ Playground: https://dartboard-playground.firebaseapp.com/#/
 
 Starter Demo: https://dartboard-blank.firebaseapp.com/#/
 
+
+![Dependency Graph](https://www.dart-board.io/assets/img/screenshots/dart_board_2.jpg)
+
 Flutter Architecture/Framework for Feature based development
-
-![MainDemo](https://www.dart-board.io/assets/img/screenshots/dart_board_1.jpg)
-
 
 
 - [Dart Board](#dart-board)
@@ -43,13 +43,17 @@ The advantages of adopting a pattern like this are the following
 - Feature Developer autonomy 
 - Easy to port existing flutter code
 
+
 This lets you structure you code as fundamental building blocks of "features", and then integrate them into a consistent application with config only. At compile and runtime you can mix/match and switch feature implementations. 
 
 It's designed for squad-based development where multiple teams may work on the same app or code, however any developer can use it to generate a library of features they can re-use across multiple apps with minimal integration.
 
 What is a feature? Many are offered out of the box, including Debugging, Full Features like Chat and MineSweeper, and tons of supporting features like Analytics, Realtime Database, State Management options, Canvas and Particle effects and more. There is no pre-set definition of what a feature can be.
 
-Built for the future, Dart Board treats Web and Native platforms as a first class citizen.  
+![Chat](https://www.dart-board.io/assets/img/screenshots/dart_board_3.jpg)
+![MineSweeper](https://www.dart-board.io/assets/img/screenshots/dart_board_5.jpg)
+![Logging](https://www.dart-board.io/assets/img/screenshots/dart_board_7.jpg)
+
 
 # Repo Setup:
 
@@ -95,6 +99,8 @@ void main() => runApp(DartBoard(
 
 ## What is a Feature?
 
+![Features](https://www.dart-board.io/assets/img/screenshots/dart_board_6.jpg)
+
 In Dart Board, everything is a Feature. It can be an Atomic feature with no dependencies, or can be an integration of multiple other features.
 
 Features will expose screens and API's that you can use within other features.
@@ -105,6 +111,7 @@ For example, a feature can do the following.
 
 Decorations are widgets injected at the App or Page level. They can be UI or non  UI components.   
 
+![Decorations](https://www.dart-board.io/assets/img/screenshots/dart_board_3.jpg)
 
 
 ## What is Dart Board Core 
