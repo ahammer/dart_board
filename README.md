@@ -6,7 +6,6 @@ Playground: https://dartboard-playground.firebaseapp.com/#/
 Starter Demo: https://dartboard-blank.firebaseapp.com/#/
 
 
-![Dependency Graph](https://www.dart-board.io/assets/img/screenshots/dart_board_2.jpg)
 
 Flutter Architecture/Framework for Feature based development
 
@@ -27,6 +26,8 @@ Flutter Architecture/Framework for Feature based development
     - [integrations](#integrations)
     - [homepage](#homepage)
 
+
+![Dependency Graph](https://www.dart-board.io/assets/img/screenshots/dart_board_2.jpg)
 
 # Introduction
 
