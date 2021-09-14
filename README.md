@@ -7,6 +7,24 @@ Starter Demo: https://dartboard-blank.firebaseapp.com/#/
 
 Flutter Architecture/Framework for Feature based development
 
+
+- [Dart Board](#dart-board)
+- [Introduction](#introduction)
+- [Repo Setup:](#repo-setup)
+- [What is it?](#what-is-it)
+  - [How it works?](#how-it-works)
+  - [What is a Feature?](#what-is-a-feature)
+  - [What is Dart Board Core](#what-is-dart-board-core)
+  - [How is an App Built?](#how-is-an-app-built)
+  - [What features are included?](#what-features-are-included)
+  - [Repo Structure](#repo-structure)
+    - [core](#core)
+    - [features](#features)
+    - [templates](#templates)
+    - [integrations](#integrations)
+    - [homepage](#homepage)
+
+
 # Introduction
 
 Dart Board is a Framework/Architecture pattern for Flutter applications.
