@@ -13,7 +13,6 @@ dependencies:
   flutter:
     sdk: flutter
   dart_board_core: ^0.9.12
-  provider: ^6.0.0
 
   # These are really nice packages for theme management
   # Lets not re-invent the wheel

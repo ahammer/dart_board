@@ -1,4 +1,3 @@
-import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_redux/dart_board_redux.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +22,7 @@ class GameScreen extends StatelessWidget {
                   onPressed: () => dispatch(NewGameAction(
                         difficulty: getState<MinesweeperState>().difficulty,
                       )))),
-          Expanded(child: nil),
+          Expanded(child: Container()),
           Center(child: Container(child: BombsRemaining())),
           Container(width: 20),
           Center(child: GameTimer()),

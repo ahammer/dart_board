@@ -1,10 +1,10 @@
 import 'dart:ui';
 
 import 'package:dart_board_core/dart_board.dart';
+import 'package:dart_board_locator/dart_board_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:logging/logging.dart';
-import 'package:provider/provider.dart';
 
 const kLogRoute = '/log';
 
@@ -50,13 +50,7 @@ class LogFeature extends DartBoardFeature {
   /// Here we inject a Log-State into the App Scope
   @override
   List<DartBoardDecoration> get appDecorations => [
-        DartBoardDecoration(
-            name: 'log_state_provider',
-            decoration: (context, child) =>
-                ChangeNotifierProvider<LogState>.value(
-                    key: Key('log_state_provider'),
-                    value: _logState,
-                    child: child))
+        LocatorDecoration(() => _logState),
       ];
 
   @override
@@ -116,8 +110,8 @@ class LogWrapper extends StatelessWidget {
                     ));
                   },
                   child: Container(
-                    child: Consumer<LogState>(
-                        builder: (context, value, child) => AnimatedSwitcher(
+                    child: locateAndBuild<LogState>((context, value) =>
+                        AnimatedSwitcher(
                             duration: Duration(milliseconds: 300),
                             switchInCurve: Curves.ease,
                             transitionBuilder:
@@ -151,8 +145,8 @@ class FullScreenLog extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Consumer<LogState>(
-        builder: (context, logState, child) => ClipRect(
+  Widget build(BuildContext context) => locateAndBuild<LogState>(
+        (context, logState) => ClipRect(
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 4.0, sigmaY: 4.0),
             child: Material(
