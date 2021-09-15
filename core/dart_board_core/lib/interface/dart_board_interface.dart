@@ -42,10 +42,11 @@ typedef MethodCallHandler = Future Function(
 abstract class DartBoardCore {
   /// Call this in your constructor to set the instance.
   void initCore() {
-    instance = this;
+    _instance = this;
   }
 
-  static late final DartBoardCore instance;
+  static late DartBoardCore _instance;
+  static DartBoardCore get instance => _instance;
 
   /// These are the Features that have been loaded
   ///

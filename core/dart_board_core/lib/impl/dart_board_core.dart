@@ -341,11 +341,14 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
   }
 
   @override
-  void setFeatureImplementation(String namespace, String? value) =>
+  void setFeatureImplementation(String namespace, String? value) {
+    if (mounted) {
       setState(() {
         featureOverrides[namespace] = value;
         buildFeatures();
       });
+    }
+  }
 
   @override
   bool confirmRouteExists(String route) => routes.fold(

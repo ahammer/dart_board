@@ -48,11 +48,11 @@ void main() {
 
   testWidgets('Check the Feature-Gate: Blocking mode', (tester) async {
     await tester.pumpWidget(DartBoard(
+      featureOverrides: {'FeatureA': null},
       features: [FeatureB(blocking: true)],
       initialRoute: '/main',
     ));
-    DartBoardCore.instance.setFeatureImplementation('FeatureA', null);
-    await tester.pumpAndSettle();
+    await tester.pumpAndSettle(Duration(seconds: 1));
 
     expect(find.byKey(ValueKey('RequiredFeatureText')), findsOneWidget);
     await tester.tap(find.byKey(ValueKey('EnableFeatureButton')));
