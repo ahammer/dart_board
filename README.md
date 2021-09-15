@@ -1,5 +1,5 @@
-TRY NOW @
 # Dart Board
+TRY NOW @
 https://dart-board.io
 
 Playground: https://dartboard-playground.firebaseapp.com/#/
@@ -45,6 +45,9 @@ Flutter Architecture/Framework for Feature based development
   - [integrations](#integrations)
   - [homepage](#homepage)
 - [Special Thanks](#special-thanks)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 
 
 ![Dependency Graph](https://www.dart-board.io/assets/img/screenshots/dart_board_2.jpg)
