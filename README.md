@@ -9,19 +9,41 @@ Flutter Architecture/Framework for Feature based development
 
 - [Dart Board](#dart-board)
 - [Introduction](#introduction)
-- [Repo Setup:](#repo-setup)
-- [What is it?](#what-is-it)
-  - [How it works?](#how-it-works)
-  - [What is a Feature?](#what-is-a-feature)
-  - [What is Dart Board Core](#what-is-dart-board-core)
-  - [How is an App Built?](#how-is-an-app-built)
-  - [What features are included?](#what-features-are-included)
-  - [Repo Structure](#repo-structure)
-    - [core](#core)
-    - [features](#features)
-    - [templates](#templates)
-    - [integrations](#integrations)
-    - [homepage](#homepage)
+- [Repo Setup](#repo-setup)
+- [What is included](#what-is-included)
+  - [How it works](#how-it-works)
+- [Features](#features)
+  - [Decorations](#decorations)
+    - [Page Decorations](#page-decorations)
+    - [App Decorations](#app-decorations)
+- [Dart Board Core](#dart-board-core)
+  - [Feature Loading](#feature-loading)
+  - [AB Testing](#ab-testing)
+  - [Feature Flags/Disabling](#feature-flagsdisabling)
+  - [Named Navigation](#named-navigation)
+- [Helpful Widgets (General Utilities)](#helpful-widgets-general-utilities)
+  - [RouteWidget (embedded routes)](#routewidget-embedded-routes)
+  - [Convertor<In, Out>](#convertorin-out)
+  - [LifecycleWidget](#lifecyclewidget)
+- [How is an App Built?](#how-is-an-app-built)
+- [Feature List?](#feature-list)
+  - [Debug](#debug)
+  - [Image Background Decoration](#image-background-decoration)
+  - [Logging](#logging)
+  - [Redux](#redux)
+  - [Locator](#locator)
+  - [Authentication](#authentication)
+  - [Firebase Authentication](#firebase-authentication)
+  - [Firebase Core](#firebase-core)
+  - [Theme](#theme)
+  - [Minesweeper](#minesweeper)
+  - [Dart Board Core](#dart-board-core-1)
+- [Repo Structure](#repo-structure)
+  - [core](#core)
+  - [features](#features-1)
+  - [templates](#templates)
+  - [integrations](#integrations)
+  - [homepage](#homepage)
 - [Special Thanks](#special-thanks)
 
 
@@ -54,7 +76,7 @@ What is a feature? Many are offered out of the box, including Debugging, Full Fe
 ![Chat](https://www.dart-board.io/assets/img/screenshots/dart_board_3.jpg) | ![MineSweeper](https://www.dart-board.io/assets/img/screenshots/dart_board_4.jpg) | ![Logging](https://www.dart-board.io/assets/img/screenshots/dart_board_7.jpg)
 
 
-# Repo Setup:
+# Repo Setup
 
 1) Clone the repo
 2) Flutter pub global activate melos
@@ -67,7 +89,7 @@ Most features contain a main.dart that can be run on an Android or iOS device/si
 
 Integrations folder contains "starter" and "example". They both have main.dart and are primarily developed on desktop and web to maximize compat across all platforms.
 
-# What is it? 
+# What is included
 
 - A Core Framework + Utilities
 
@@ -79,7 +101,7 @@ Integrations folder contains "starter" and "example". They both have main.dart a
 It's a ready to use Framework for building a flutter app today.
 
 
-## How it works?
+## How it works
 
 Dart Board provides an entry point to your Flutter Application.
 
@@ -96,11 +118,15 @@ void main() => runApp(DartBoard(
 ```
 
 
-## What is a Feature?
+# Features
+
+Features are the meat of your application. By building and composing features you build a larger application.
+
+The built in debugging tools and integration make it very easy to see how your app is built, what features are used and what implementation is currently running.
 
 ![Features](https://www.dart-board.io/assets/img/screenshots/dart_board_6.jpg)
 
-In Dart Board everything the user does is conveyed through features. Core's existence is only to load them.
+In *Dart Board* everything if handled through features. Core services as a foundational framework and feature loader.
 
 Features expose screens and API's that you can export, or use indirectly for loose coupling between components.
 
@@ -111,95 +137,292 @@ For example, a feature can do the following.
 
 Decorations are widgets injected at the App or Page level. They can be UI or non  UI components.   
 
+## Decorations
+
+Decoration's are Dart Boards way of injecting state and UI into your application. 
+
+These come in two scopes. App and Page. They inject their widgets right above and below the navigator respectively.
+
 ![Decorations](https://www.dart-board.io/assets/img/screenshots/dart_board_3.jpg)
 
+### Page Decorations
 
-## What is Dart Board Core 
+Common use cases for a Page Decoration might be something like
+ - Page tracking, UI frames and overlays that aren't global 
+ - Page scoped state management solutions
+ - Templating/Scaffolding
+ - Can be managed with allow/deny list exposed to the features
+
+### App Decorations
+
+Common use cases are things like 
+ - Global overlays (particles/background).
+ - Global state solutions (Locator/Redux)
+ - Hooks for other extensions (e.g. `LocatorDecoration(()=>SomeType())`)
+
+
+# Dart Board Core
 
 Core provide integration and manages features. It is able to facilitate features like AB testing. The `DartBoard` widget will serve the trunk when working with Dart Board.
 
-- Feature Loading
-- AB Testing
-- Feature Flags/Disabling
-- Entry Point setup
-- Named Navigation
-- Helpful Widgets (General Utilities)
-  - RouteWidget
-  - Convertor<In, Out>
-  - LifecycleWidget
+## Feature Loading
+
+Features have a `namespace` and a `implementationName`
+
+The `namespace` is what uniquely identifies the feature. You can load one `implementationName` per namespace.
+
+`implementationName` (default: "default") is the name of the implementation, e.g. `namespace = feature` and `implementationName in [feature_impl_a, feature_impl_b]`
 
 
-## How is an App Built?
 
-In Dart Board the app is run by launching an integration Feature with a named entry point.
+Features are loaded via a tree-walk, on order, depth first search. There is potentially multiple root nodes (e.g. say you define 3 Features in your main()), They will be walked in order.
 
-The integration feature specifies the other Features you use, Configure's them and allows you to run it.
+E.g. 
+`[FeatureA, FeatureB, FeatureC, FeatureA_IMPL2]`
+
+In this case, FeatureA will be loaded, then B and C. A_IMPL2 will be shuffled away, because A already has an implementation
+
+For each feature root a depth first in-order walk of the dependencies are registered. Everytime there is a namespace conflict, it's pushed to the side as a registered implementation.
+
+In simpler terms, the first feature to a namespace wins. Whether it's walking the tree or going over the list, left to right. This means things registered first take the namespace slot.
+
+Only 1 implementation can be active in a namespace at time.
+
+## AB Testing
+
+Setting a feature at runtime is easy, just `DartBoardCore.instance.setFeatureImplementation('FeatureNamespace', 'FeatureImplementationName');`
+
+Just give it your Namespace, and the implementationName and DartBoard will reboot with the new features/tree, salvaging what it can on the way.
+
+## Feature Flags/Disabling
+
+Again, super easy
+DartBoardCore.instance.setFeatureImplementation('FeatureNamespace', null);
+
+Note: Disabling features incorrectly can lead to breakage. E.g. disabling the template or /route you are on will leave you stranded.
+
+## Named Navigation
+
+Navigation is still V1, but with sanity and order added to the router.
+
+Out of the box you have 
+` get routes = [NamedRouteDefinition("/route", (ctx, settings)=> Widget())]`
+
+You can have as many routes as you want.
+
+Named route also take priority. First to resolve gets delivered. So in the case of conflicts whatever route from whatever feature is hit first will fill the route.
+
+`NamedRouteDefinition` extends `RouteDefinition` which you can use for more advanced deeplinking.
+
+```
+abstract class RouteDefinition {
+  /// If this route definition matches a RouteSettings object
+  bool matches(RouteSettings settings);
+
+  /// This is the builder for the content
+  RouteWidgetBuilder get builder;
+
+  ///This is an optional RouteBuilder
+  RouteBuilder? routeBuilder;
+}
+```
+
+In this case. `matches` is to verify if this RouteDefinition can build the route. You can look at the `RouteSettings.name` object to know the route name.
+
+`RouteWidgetBuilder` is what builds the page itself (sans page decorations).
+
+`RouteBuilder` is an optional value to create a specific Route for navigation transition. E.g. `MaterialPageRoute` or `CupertinoPageRoute`. This will go platform-default normally. Over-ride for specific behaviors. When used, first the Page will be built, and then passed to RouteBuilder to wrap with the Route.
+
+# Helpful Widgets (General Utilities)
+
+## RouteWidget (embedded routes)
+
+Want to use your named routes anywhere? E.g. in a Dialog, or as a small portion of a screen?
+
+```
+    showDialog(
+        useSafeArea: true,
+        context: navigatorContext,
+        barrierDismissible: true,
+        builder: (ctx) => RouteWidget("/request_login"));
+```
+and pass arguments `RouteWidget(itemPreviewRoute, args: {"id": id})`
+
+RouteWidget can handle that for you, enabling you to break screens up into multiple decoupled features that share a common core and state.
+
+## Convertor<In, Out>
+
+Conversion in the widget tree
+
+```
+              Convertor<MinesweeperState, MineFieldViewModel>(
+                  convertor: (input) => buildVm(input),
+                  builder: (ctx, out) => MineField(vm: out),
+                  input: state)))
+```                  
+
+Will only trigger an update if the VM changes/doesn't hit equality. 
+
+Ideal for ViewModel generation from a DataSource, to help reduce the number of builds to relevant changes.
+
+## LifecycleWidget
+
+```
+LifeCycleWidget(
+                key: ValueKey("LocatorDecoration_${T.toString()}"),
+                preInit: () => doSomethingBeforeCtx,
+                
+                    
+                child: Builder(builder: (ctx) => child))
+```
+
+This widget can tap into life cycle
+
+3 hooks
+```
+  /// Called in initState() before super.initState()
+  final Function() preInit;
+
+  /// Called after initState()  (with context)
+  final Function(BuildContext context) init;
+
+  /// Called in onDispose
+  final Function(BuildContext context) dispose;
+```
+
+You can use this with something like a PageDecoration to start a screen time counter, or to periodically set a reminder/start/stop a service etc.
+
+It's very useful within the context of features and setting up integrations.
 
 
-## What features are included?
+# How is an App Built?
+
+```
+/// App Entry Point.
+///
+/// Features are defined here, along with config.
+void main() {
+  runApp(DartBoard(
+    features: [
+      DetailsFeature(),
+      ListingFeature(),
+      CartFeature(itemPreviewRoute: "/details_by_id"),
+      DebugFeature(),
+      BottomNavTemplateFeature(route: '/home', config: _templateConfig),
+      MockCheckoutFeature()
+    ],
+    initialRoute: '/home',
+  ));
+}
+
+/// Template Config for the BottomNav template
+const _templateConfig = [
+  {
+    'route': '/listings',
+    'label': 'Search',
+    'color': Colors.blue,
+    'icon': Icons.search
+  },
+  {
+    'route': '/details',
+    'label': 'Details',
+    'color': Colors.red,
+    'icon': Icons.file_present
+  }
+];
+```
+
+This is a Dart Board App. It has a Details, Listing, Cart, Debug, a Template and a Mock checkout feature.
+
+Alternatively, and encouraged for larger projects is to build an `integration` feature, as how the main example is done.
+
+```
+/// Entry Point for the Example
+///
+/// All the registration and details are in ExampleFeature.
+///
+/// the FeatureOverrides are to disable certain features by default
+void main() {
+  runApp(DartBoard(
+    featureOverrides: {
+      'Snow': null,
+      'FireCursor': null,
+      'background': 'ClockEarth'
+    },
+    features: [ExampleFeature()],
+    initialRoute: '/main',
+  ));
+}
+```
+
+In this example, I am delegating to ExampleFeature which has Feature's listed in it's "dependencies".
+
+I'd recommend to generally to an Integration, as it'll make it easier to experiment with various integrations and configs. However for starter work, don't worry, you can skip the Integration Feature, and introduce it later easily if necessary.
+
+# Feature List?
 
 https://pub.dev/publishers/dart-board.io/packages
 
 As of now, some basic features are implemented with more to come.
 
-- [Debug](features/dart_board_debug/README.md)
+## [Debug](features/dart_board_debug/README.md)
 
 Provides a /debug route to play with the internals/registry.
 
-- [Image Background Decoration](features/dart_board_image_background/README.md)
+## [Image Background Decoration](features/dart_board_image_background/README.md)
 
 A simple example to provide a global image background that spans all pages.
 
-- [Logging](features/dart_board_log/README.md)
+## [Logging](features/dart_board_log/README.md)
 
 Basic logging features, including a Log Footer and `/log` route + overlay.
 
-- [Redux](features/dart_board_redux/README.md)
+## [Redux](features/dart_board_redux/README.md)
 
 Flutter Redux Bindings. Provides features a consistent way to use a shared Redux store in a feature agnostic way.
 
 Provides a AppDecoration API + Function API to Create and Dispatch states.
 
-- [Locator](features/dart_board_locator/README.md)
+## [Locator](features/dart_board_locator/README.md)
 
 Object/Service Locator Framework. Lazy loading + Caching. App Decoration based API to register types and services to the App.
 
-- [Authentication](features/dart_board_authentication/README.md)
+## [Authentication](features/dart_board_authentication/README.md)
 
 Auth Facade that allows registration/interfacing with Auth Providers (e.g. Firebase, or your own).
 
-- [Firebase Authentication](features/dart_board_firebase_authentication)
+## [Firebase Authentication](features/dart_board_firebase_authentication)
 
 Firebase plugin for auth-layer (initialize Firebase with standard FlutterFire docs, e.g. include Firebase JS in your html, or set up your Mobile Runners) Web + Mobile + MacOS is suppoerted by flutter fire.
 
-- [Firebase Core](features/dart_board_firebase_core)
+## [Firebase Core](features/dart_board_firebase_core)
 
 Marker/init package for Firebase Core. Dependency for all Firebase/FlutterFire projects.
 
 
-- [Theme](features/dart_board_theme/README.md)
+## [Theme](features/dart_board_theme/README.md)
 
 Light/Dark Theming, very basic at the moment.
 
-- [Minesweeper](features/dart_board_minesweeper/README.md)
+## [Minesweeper](features/dart_board_minesweeper/README.md)
 
 You probably don't need it. But provides a `/minesweep` route. Deeper example of `dart_board_redux` use case in action.
 
-- [Dart Board Core](core/dart_board_core/README.md) 
+## [Dart Board Core](core/dart_board_core/README.md) 
 
 The Core Framework. Everything brings this in. It provides basic general flutter utilities and the `DartBoard` widget. 
 
-## Repo Structure
+# Repo Structure
 
-### core
+## core
 
 Contain's core framework features. Currently 1 library. dart_board_core
 
-### features
+## features
 
 Contain's reusable features that can be included in your integrations (or other features)
 
-### templates
+## templates
 
 Contain's features that are designed to be UI templates
 
@@ -213,14 +436,14 @@ The idea being that you should be able to register a Temlate multiple times, for
 
 You access the template by navigating to the route you select.
 
-### integrations
+## integrations
 
 This is a place to see Integrations of multiple features into a larger app.
 
 - Example/Playground: Integrates everything, demonstrates it all at once.
 - Blank: A minimal template with no major features. This can be adapted as a starting template.
 
-### homepage
+## homepage
 
 This is the "dart-board.io" website.
 

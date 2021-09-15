@@ -7,7 +7,6 @@ import '../../dart_board.dart';
 /// Can be used for simple named routing
 ///
 /// E.g. NamedRouteDefinition(route: "/main", builder: (ctx, settings)=>Container(...))
-
 class NamedRouteDefinition implements RouteDefinition {
   /// The Route this NamedRoute maps to
   /// E.g. /main
@@ -54,8 +53,3 @@ class MapRouteDefinition implements RouteDefinition {
   RouteWidgetBuilder get builder =>
       (ctx, settings) => routeMap[settings.name]!(ctx, settings);
 }
-
-/// This one should take map of name->builder
-/// Want a NamedRouteDefinition for maps
-///
-//class MappedRoutesDefinition implements RouteDefinition {}
