@@ -9,7 +9,10 @@ Flutter Architecture/Framework for Feature based development
 
 - [Dart Board](#dart-board)
 - [Introduction](#introduction)
-- [Repo Setup](#repo-setup)
+- [Feature List](#feature-list)
+- [Getting Started](#getting-started)
+  - [Your own App (Hello World)](#your-own-app-hello-world)
+  - [Work on the Framework](#work-on-the-framework)
 - [What is included](#what-is-included)
   - [How it works](#how-it-works)
 - [Features](#features)
@@ -25,19 +28,7 @@ Flutter Architecture/Framework for Feature based development
   - [RouteWidget (embedded routes)](#routewidget-embedded-routes)
   - [Convertor<In, Out>](#convertorin-out)
   - [LifecycleWidget](#lifecyclewidget)
-- [How is an App Built?](#how-is-an-app-built)
-- [Feature List?](#feature-list)
-  - [Debug](#debug)
-  - [Image Background Decoration](#image-background-decoration)
-  - [Logging](#logging)
-  - [Redux](#redux)
-  - [Locator](#locator)
-  - [Authentication](#authentication)
-  - [Firebase Authentication](#firebase-authentication)
-  - [Firebase Core](#firebase-core)
-  - [Theme](#theme)
-  - [Minesweeper](#minesweeper)
-  - [Dart Board Core](#dart-board-core-1)
+- [How App is run](#how-app-is-run)
 - [Repo Structure](#repo-structure)
   - [core](#core)
   - [features](#features-1)
@@ -79,7 +70,46 @@ What is a feature? Many are offered out of the box, including Debugging, Full Fe
 ![Chat](https://www.dart-board.io/assets/img/screenshots/dart_board_3.jpg) | ![MineSweeper](https://www.dart-board.io/assets/img/screenshots/dart_board_4.jpg) | ![Logging](https://www.dart-board.io/assets/img/screenshots/dart_board_7.jpg)
 
 
-# Repo Setup
+
+# Feature List
+
+| Feature             |  Description |
+:-------------------------:|:-------------------------:|
+| [Authentication](features/dart_board_authentication/README.md) | Auth Facade that allows registration/interfacing with Auth Providers (e.g. Firebase, or your own). |
+| [Debug](features/dart_board_debug/README.md) | Provides a /debug and /dependency_graph route's to play with the internals/registry. |
+| [Firebase Authentication](features/dart_board_firebase_authentication) | Firebase plugin for auth-layer (initialize Firebase with standard FlutterFire docs, e.g. include Firebase JS in your html, or set up your Mobile Runners) Web + Mobile + MacOS is suppoerted by flutter fire. |
+| [Firebase Core](features/dart_board_firebase_core) | Marker/init package for Firebase Core. Dependency for all Firebase/FlutterFire projects. |
+| [Image Background Decoration](features/dart_board_image_background/README.md) | Allows you to Apply images or widgets as backgrounds (page decoration) |
+| [Locator](features/dart_board_locator/README.md) | Object/Service Locator Framework. Lazy loading + Caching. App Decoration based API to register types and services to the App. |
+| [Logging](features/dart_board_log/README.md) | Basic logging features, including a Log Footer and `/log` route + overlay. |
+| [Minesweeper](features/dart_board_minesweeper/README.md) | You probably don't need it. But provides a `/minesweep` route. Deeper example of `dart_board_redux` use case in action. |
+| [Redux](features/dart_board_redux/README.md) | Flutter Redux Bindings. Provides features a consistent way to use a shared Redux store in a feature agnostic way. Provides a AppDecoration API + Function API to Create and Dispatch states. |
+| [Theme](features/dart_board_theme/README.md) | Theme support with FlexColorScheme package |
+
+
+# Getting Started
+
+## Your own App (Hello World)
+
+1) in `pubspec.yaml` add `dart_board_core:` to your dependencies
+2) Create `YourFeature extends DartBoardFeature` class.
+3) add a desired Route, e.g. 
+```
+routes => [
+ NamedRouteDefinition("/hello_world", 
+   (context, settings) => Material(child: Center(child: Text("Hello World)))]
+```
+
+4. Implement your `main.dart` and set your starter route
+```
+void main() => runApp(DartBoard(
+  features:[HelloWorldFeature()], 
+  initialRoute: '/Hello_World']))
+```
+
+5. Add features with `pub.dev` register them in your Features and Apps to gain access. Many require zero config and expose routes and method calls to use.
+
+## Work on the Framework
 
 1) Clone the repo
 2) Flutter pub global activate melos
@@ -146,7 +176,7 @@ Decoration's are Dart Boards way of injecting state and UI into your application
 
 These come in two scopes. App and Page. They inject their widgets right above and below the navigator respectively.
 
-![Decorations](https://www.dart-board.io/assets/img/screenshots/dart_board_3.jpg)
+![Decorations](https://www.dart-board.io/assets/img/screenshots/dart_board_5.jpg)
 
 ### Page Decorations
 
@@ -178,7 +208,7 @@ The `namespace` is what uniquely identifies the feature. You can load one `imple
 
 
 
-Features are loaded via a tree-walk, on order, depth first search. There is potentially multiple root nodes (e.g. say you define 3 Features in your main()), They will be walked in order.
+Features are loaded via a graph-walk, in order, depth first. There is potentially multiple root nodes (e.g. say you define 3 Features in your main()), They will be walked in order.
 
 E.g. 
 `[FeatureA, FeatureB, FeatureC, FeatureA_IMPL2]`
@@ -298,7 +328,7 @@ You can use this with something like a PageDecoration to start a screen time cou
 It's very useful within the context of features and setting up integrations.
 
 
-# How is an App Built?
+# How App is run
 
 ```
 /// App Entry Point.
@@ -335,7 +365,7 @@ const _templateConfig = [
 ];
 ```
 
-This is a Dart Board App. It has a Details, Listing, Cart, Debug, a Template and a Mock checkout feature.
+This is a Dart Board App. It has a Details, Listing, Cart, Debug, a Template and a Mock checkout feature. It loads `/home` initially. Home is resolved by the Template feature, and has tabs for listing and details roughts from their features.
 
 Alternatively, and encouraged for larger projects is to build an `integration` feature, as how the main example is done.
 
@@ -362,58 +392,8 @@ In this example, I am delegating to ExampleFeature which has Feature's listed in
 
 I'd recommend to generally to an Integration, as it'll make it easier to experiment with various integrations and configs. However for starter work, don't worry, you can skip the Integration Feature, and introduce it later easily if necessary.
 
-# Feature List?
-
 https://pub.dev/publishers/dart-board.io/packages
 
-As of now, some basic features are implemented with more to come.
-
-## [Debug](features/dart_board_debug/README.md)
-
-Provides a /debug route to play with the internals/registry.
-
-## [Image Background Decoration](features/dart_board_image_background/README.md)
-
-A simple example to provide a global image background that spans all pages.
-
-## [Logging](features/dart_board_log/README.md)
-
-Basic logging features, including a Log Footer and `/log` route + overlay.
-
-## [Redux](features/dart_board_redux/README.md)
-
-Flutter Redux Bindings. Provides features a consistent way to use a shared Redux store in a feature agnostic way.
-
-Provides a AppDecoration API + Function API to Create and Dispatch states.
-
-## [Locator](features/dart_board_locator/README.md)
-
-Object/Service Locator Framework. Lazy loading + Caching. App Decoration based API to register types and services to the App.
-
-## [Authentication](features/dart_board_authentication/README.md)
-
-Auth Facade that allows registration/interfacing with Auth Providers (e.g. Firebase, or your own).
-
-## [Firebase Authentication](features/dart_board_firebase_authentication)
-
-Firebase plugin for auth-layer (initialize Firebase with standard FlutterFire docs, e.g. include Firebase JS in your html, or set up your Mobile Runners) Web + Mobile + MacOS is suppoerted by flutter fire.
-
-## [Firebase Core](features/dart_board_firebase_core)
-
-Marker/init package for Firebase Core. Dependency for all Firebase/FlutterFire projects.
-
-
-## [Theme](features/dart_board_theme/README.md)
-
-Light/Dark Theming, very basic at the moment.
-
-## [Minesweeper](features/dart_board_minesweeper/README.md)
-
-You probably don't need it. But provides a `/minesweep` route. Deeper example of `dart_board_redux` use case in action.
-
-## [Dart Board Core](core/dart_board_core/README.md) 
-
-The Core Framework. Everything brings this in. It provides basic general flutter utilities and the `DartBoard` widget. 
 
 # Repo Structure
 
