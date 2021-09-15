@@ -1,6 +1,6 @@
 import 'package:dart_board_core/dart_board.dart';
+import 'package:dart_board_locator/dart_board_locator.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 import 'repository_feature.dart';
@@ -21,13 +21,8 @@ class DetailsFeature extends DartBoardFeature {
       ];
 
   @override
-  List<DartBoardDecoration> get appDecorations => [
-        DartBoardDecoration(
-            decoration: (BuildContext context, Widget child) =>
-                ChangeNotifierProvider.value(
-                    value: MainDetailsState(), child: child),
-            name: 'MainDetailsState'),
-      ];
+  List<DartBoardDecoration> get appDecorations =>
+      [LocatorDecoration(() => MainDetailsState())];
 
   @override
   String get namespace => "DetailsFeature";
@@ -52,7 +47,7 @@ class MainDetailsState extends ChangeNotifier {
 // Messenger class to send messages to the State class
 class MainDetailsMessenger {
   static void setId(BuildContext context, int id) =>
-      Provider.of<MainDetailsState>(context, listen: false).id = id;
+      locate<MainDetailsState>().id = id;
 }
 
 class MainDetailsScreen extends StatefulWidget {
@@ -62,8 +57,8 @@ class MainDetailsScreen extends StatefulWidget {
 
 class _MainDetailsScreenState extends State<MainDetailsScreen> {
   @override
-  Widget build(BuildContext context) => Consumer<MainDetailsState>(
-      builder: (ctx, state, child) => DetailsScreen(id: state.id));
+  Widget build(BuildContext context) => locateAndBuild<MainDetailsState>(
+      (ctx, state) => DetailsScreen(id: state.id));
 }
 
 /// Details for a particular ID

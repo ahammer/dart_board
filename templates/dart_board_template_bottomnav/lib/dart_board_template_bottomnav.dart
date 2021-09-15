@@ -3,7 +3,6 @@ import 'package:dart_board_locator/dart_board_locator.dart';
 import 'state/bottom_nav_state.dart';
 import 'package:logging/logging.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 final log = Logger('BottomNavTemplateFeature');
 

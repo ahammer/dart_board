@@ -1,8 +1,8 @@
 import 'package:dart_board_core/dart_board.dart';
+import 'package:dart_board_locator/dart_board_locator.dart';
 import 'state/appbar_nav_state.dart';
 import 'package:logging/logging.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 final log = Logger('BottomNavTemplateFeature');
 
@@ -37,16 +37,10 @@ class AppBarSideNavTemplateFeature extends DartBoardFeature {
 
   @override
   List<DartBoardDecoration> get appDecorations => [
-        DartBoardDecoration(
-            name: 'bottom_nav_state',
-            decoration: (ctx, child) =>
-                ChangeNotifierProvider<AppBarNavTemplateState>(
-                    key: Key('bottom_nav_state'),
-                    create: (ctx) {
-                      validateConfig();
-                      return AppBarNavTemplateState(config, config[0]['route']);
-                    },
-                    child: child))
+        LocatorDecoration(() {
+          validateConfig();
+          return AppBarNavTemplateState(config, config[0]['route']);
+        }),
       ];
 
   @override
@@ -78,8 +72,8 @@ class AppBarSideNavTemplate extends StatelessWidget {
       : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Consumer<AppBarNavTemplateState>(
-        builder: (ctx, navstate, child) => Scaffold(
+  Widget build(BuildContext context) => locateAndBuild<AppBarNavTemplateState>(
+        (ctx, navstate) => Scaffold(
           appBar: AppBar(title: Text(title)),
           body: AnimatedSwitcher(
             duration: Duration(milliseconds: 200),

@@ -1,7 +1,7 @@
 import 'package:dart_board_core/dart_board.dart';
+import 'package:dart_board_locator/dart_board_locator.dart';
 import 'package:faker_dart/faker_dart.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 /// This is a repository Feature, it provides access to a Repository
 class RepositoryFeature extends DartBoardFeature {
@@ -21,10 +21,7 @@ class RepositoryFeature extends DartBoardFeature {
   @override
   List<DartBoardDecoration> get appDecorations => [
         /// This decoration injects the Repository into the Widget tree
-        DartBoardDecoration(
-            name: "RepositoryDecoration",
-            decoration: (ctx, child) =>
-                Provider.value(value: repository, child: child))
+        LocatorDecoration(() => repository),
       ];
 }
 
@@ -77,11 +74,11 @@ abstract class Repository {
 class RepositoryMessenger {
   /// Perform a "search"
   static Future<List<ShortRecord>> performSearch(BuildContext context) =>
-      context.read<Repository>().performSearch();
+      locate<Repository>().performSearch();
 
   /// Fetch the "details"
   static Future<LongRecord> fetchDetails(BuildContext context, int id) =>
-      context.read<Repository>().fetchDetails(id);
+      locate<Repository>().fetchDetails(id);
 }
 
 /// This is a mock repository
