@@ -1,9 +1,8 @@
+TRY NOW @
 # Dart Board
 https://dart-board.io
 
 Playground: https://dartboard-playground.firebaseapp.com/#/
-
-Starter Demo: https://dartboard-blank.firebaseapp.com/#/
 
 Flutter Architecture/Framework for Feature based development
 
@@ -26,6 +25,8 @@ Flutter Architecture/Framework for Feature based development
 - [Special Thanks](#special-thanks)
 
 
+![Dependency Graph](https://www.dart-board.io/assets/img/screenshots/dart_board_2.jpg)
+
 # Introduction
 
 Dart Board is a Framework/Architecture pattern for Flutter applications.
@@ -41,13 +42,17 @@ The advantages of adopting a pattern like this are the following
 - Feature Developer autonomy 
 - Easy to port existing flutter code
 
+
 This lets you structure you code as fundamental building blocks of "features", and then integrate them into a consistent application with config only. At compile and runtime you can mix/match and switch feature implementations. 
 
 It's designed for squad-based development where multiple teams may work on the same app or code, however any developer can use it to generate a library of features they can re-use across multiple apps with minimal integration.
 
 What is a feature? Many are offered out of the box, including Debugging, Full Features like Chat and MineSweeper, and tons of supporting features like Analytics, Realtime Database, State Management options, Canvas and Particle effects and more. There is no pre-set definition of what a feature can be.
 
-Built for the future, Dart Board treats Web and Native platforms as a first class citizen.  
+| Chat             |  Minesweeper | Logging |
+:-------------------------:|:-------------------------:|:-------------------------:
+![Chat](https://www.dart-board.io/assets/img/screenshots/dart_board_3.jpg) | ![MineSweeper](https://www.dart-board.io/assets/img/screenshots/dart_board_4.jpg) | ![Logging](https://www.dart-board.io/assets/img/screenshots/dart_board_7.jpg)
+
 
 # Repo Setup:
 
@@ -93,16 +98,20 @@ void main() => runApp(DartBoard(
 
 ## What is a Feature?
 
-In Dart Board, everything is a Feature. It can be an Atomic feature with no dependencies, or can be an integration of multiple other features.
+![Features](https://www.dart-board.io/assets/img/screenshots/dart_board_6.jpg)
 
-Features will expose screens and API's that you can use within other features.
+In Dart Board everything the user does is conveyed through features. Core's existence is only to load them.
+
+Features expose screens and API's that you can export, or use indirectly for loose coupling between components.
 
 For example, a feature can do the following.
 - Decorate the App or Page
 - Provide Named Routes
+- Dispatch MethodCalls between 
 
 Decorations are widgets injected at the App or Page level. They can be UI or non  UI components.   
 
+![Decorations](https://www.dart-board.io/assets/img/screenshots/dart_board_3.jpg)
 
 
 ## What is Dart Board Core 
