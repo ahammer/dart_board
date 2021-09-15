@@ -73,10 +73,6 @@ class _ThemeChooserDropdownState extends State<ThemeChooserDropdown> {
 
   void applyTheme(BuildContext context) {
     if (selection == -1) {
-      final themeData = dark
-          ? FlexColorScheme.dark().toTheme
-          : FlexColorScheme.light().toTheme;
-
       DartBoardCore.instance.dispatchMethodCall(
           context: context,
           call: MethodCall('setThemeData',

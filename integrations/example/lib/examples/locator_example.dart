@@ -1,3 +1,3 @@
-import 'package:dart_board_locator/main.dart' as locatorMain;
+import 'package:dart_board_locator/main.dart' as locator_main;
 
-void main() => locatorMain.main();
+void main() => locator_main.main();

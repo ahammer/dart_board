@@ -1,11 +1,8 @@
 import 'package:dart_board_authentication/dart_board_authentication.dart';
 import 'package:dart_board_core/dart_board.dart';
-import 'package:dart_board_particles/dart_board_particle_feature.dart';
-import 'package:dart_board_particles/presets/lighting_particle.dart';
 import 'package:dart_board_theme/theme_chooser.dart';
 import 'package:dart_board_tracking/dart_board_tracking.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 enum TemplateOptions { plain, bottom_nav, side_nav }
 enum BackgroundOptions { white, image, animated, space, space_earth, space_all }
