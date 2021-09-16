@@ -40,7 +40,7 @@ class _CollapsingDebugListState extends State<CollapsingDebugList> {
     final routes = DartBoardCore.instance.allFeatures.namedRoutes
       ..sort((a, b) => a.route.compareTo(b.route));
     final impls = DartBoardCore.instance.detectedImplementations.keys.toList()
-      ..sort();
+      ..sort((a, b) => a.toLowerCase().compareTo(b.toLowerCase()));
 
     return Scrollbar(
       controller: _controller,
@@ -64,9 +64,15 @@ class _CollapsingDebugListState extends State<CollapsingDebugList> {
                       showDetails(feature);
                     },
                     child: Center(
-                        child: Text(
-                      feature.namespace,
-                      style: Theme.of(context).textTheme.subtitle1,
+                        child: Column(
+                      children: [
+                        Text(
+                          feature.namespace,
+                          style: Theme.of(context).textTheme.subtitle1,
+                        ),
+                        Text(
+                            'I${DartBoardCore.instance.detectedImplementations[feature.namespace]?.length ?? 0}/${feature.routes.length}/M${feature.methodHandlers.length}/A${feature.appDecorations.length}/P${feature.pageDecorations.length}')
+                      ],
                     )),
                   ),
                 );
