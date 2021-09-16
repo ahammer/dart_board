@@ -71,7 +71,7 @@ class _CollapsingDebugListState extends State<CollapsingDebugList> {
                           style: Theme.of(context).textTheme.subtitle1,
                         ),
                         Text(
-                            'I${DartBoardCore.instance.detectedImplementations[feature.namespace]?.length ?? 0}/${feature.routes.length}/M${feature.methodHandlers.length}/A${feature.appDecorations.length}/P${feature.pageDecorations.length}')
+                            'I${DartBoardCore.instance.detectedImplementations[feature.namespace]?.length ?? 0}/R${feature.routes.length}/M${feature.methodHandlers.length}/A${feature.appDecorations.length}/P${feature.pageDecorations.length}')
                       ],
                     )),
                   ),
