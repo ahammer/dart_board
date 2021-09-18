@@ -67,10 +67,14 @@ class _CollapsingDebugListState extends State<CollapsingDebugList> {
                         child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(
-                          feature.namespace,
-                          style: Theme.of(context).textTheme.subtitle1,
-                        ),
+                        Text(feature.namespace,
+                            style: Theme.of(context)
+                                .textTheme
+                                .subtitle1
+                                ?.copyWith(
+                                    fontWeight: FontWeight.w800,
+                                    color: Theme.of(context)
+                                        .secondaryHeaderColor)),
                         Builder(builder: (context) {
                           /// B
                           final i =
@@ -103,18 +107,8 @@ class _CollapsingDebugListState extends State<CollapsingDebugList> {
             childAspectRatio: 4,
             maxCrossAxisExtent: 300,
             children: [
-              ...routes.map((e) => Card(
-                    elevation: 10,
-                    child: InkWell(
-                        onTap: () => showDialog(
-                            context: context,
-                            builder: (ctx) => Padding(
-                                padding: const EdgeInsets.all(16.0),
-                                child: Material(
-                                  child: RouteWidget(e.route),
-                                ))),
-                        child: FittedBox(
-                            fit: BoxFit.scaleDown, child: Text(e.route))),
+              ...routes.map((e) => RouteLauncher(
+                    routeDefinition: e,
                   ))
             ],
           ),
@@ -194,6 +188,36 @@ class _CollapsingDebugListState extends State<CollapsingDebugList> {
   }
 }
 
+class RouteLauncher extends StatelessWidget {
+  final RouteDefinition routeDefinition;
+
+  const RouteLauncher({Key? key, required this.routeDefinition})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    if (routeDefinition is NamedRouteDefinition) {
+      final def = routeDefinition as NamedRouteDefinition;
+      return Card(
+        elevation: 10,
+        child: InkWell(
+            onTap: () => showDialog(
+                context: context,
+                builder: (ctx) => Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Material(
+                      child: RouteWidget(def.route),
+                    ))),
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(def.route),
+            )),
+      );
+    }
+    return Text('unsupported route');
+  }
+}
+
 class FeatureControls extends StatefulWidget {
   const FeatureControls({
     Key? key,
@@ -211,41 +235,68 @@ class _FeatureControlsState extends State<FeatureControls> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            widget.feature.namespace,
-            style: Theme.of(context).textTheme.headline4,
-          ),
-          SelectImplementationRow(feature: widget.feature),
-          if (widget.feature.methodHandlers.isNotEmpty) ...[
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text('Methods '),
-                DropdownButton<String>(
-                    onChanged: (value) {
-                      if (value == null) return;
-
-                      /// Lets dispatch this with no-args to test remote
-                      /// call
-                      context.dispatchMethod(value);
-                    },
-                    value: null,
-                    items: [
-                      DropdownMenuItem(
-                          value: null, child: Text('Select to Trigger')),
-                      ...widget.feature.methodHandlers.keys
-                          .map((e) =>
-                              DropdownMenuItem(value: e, child: Text('$e')))
-                          .toList()
-                    ]),
-              ],
+      child: Container(
+        width: 400,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              widget.feature.namespace,
+              style: Theme.of(context).textTheme.headline4,
             ),
+            SelectImplementationRow(feature: widget.feature),
+            if (widget.feature.methodHandlers.isNotEmpty)
+              SelectMethodCallRow(feature: widget.feature),
+            if (widget.feature.routes.isNotEmpty) ...[
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('Routes'),
+              ),
+              Wrap(
+                  children: widget.feature.routes
+                      .map((e) => RouteLauncher(routeDefinition: e))
+                      .toList())
+            ]
           ],
-        ],
+        ),
       ),
+    );
+  }
+}
+
+class SelectMethodCallRow extends StatelessWidget {
+  const SelectMethodCallRow({
+    Key? key,
+    required this.feature,
+  }) : super(key: key);
+
+  final DartBoardFeature feature;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Expanded(flex: 1, child: Text('Methods')),
+        Expanded(
+          flex: 2,
+          child: DropdownButton<String>(
+              onChanged: (value) {
+                if (value == null) return;
+
+                /// Lets dispatch this with no-args to test remote
+                /// call
+                context.dispatchMethod(value);
+              },
+              value: null,
+              items: [
+                DropdownMenuItem(value: null, child: Text('Select to Trigger')),
+                ...feature.methodHandlers.keys
+                    .map((e) => DropdownMenuItem(value: e, child: Text('$e')))
+                    .toList()
+              ]),
+        ),
+      ],
     );
   }
 }
@@ -263,8 +314,10 @@ class SelectImplementationRow extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text('Implementation  '),
-        SelectImplementationDropDownButton(feature: feature)
+        Expanded(flex: 1, child: Text('Implementation')),
+        Expanded(
+            flex: 2,
+            child: SelectImplementationDropDownButton(feature: feature))
       ],
     );
   }
