@@ -65,13 +65,30 @@ class _CollapsingDebugListState extends State<CollapsingDebugList> {
                     },
                     child: Center(
                         child: Column(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
                           feature.namespace,
                           style: Theme.of(context).textTheme.subtitle1,
                         ),
-                        Text(
-                            'I${DartBoardCore.instance.detectedImplementations[feature.namespace]?.length ?? 0}/R${feature.routes.length}/M${feature.methodHandlers.length}/A${feature.appDecorations.length}/P${feature.pageDecorations.length}')
+                        Builder(builder: (context) {
+                          /// B
+                          final i =
+                              ' Impls(${DartBoardCore.instance.detectedImplementations[feature.namespace]?.length ?? 0})';
+                          final r = ' Routes(${feature.routes.length})';
+                          final m =
+                              ' Methods(${feature.methodHandlers.length})';
+                          final a = ' App(${feature.appDecorations.length})';
+                          final p = ' Page(${feature.pageDecorations.length})';
+
+                          return FittedBox(
+                            child: Text(
+                              '${DartBoardCore.instance.detectedImplementations[feature.namespace] != null ? i : ""}${feature.routes.isEmpty ? "" : r}${feature.methodHandlers.isEmpty ? "" : m}${feature.appDecorations.isEmpty ? "" : a}${feature.pageDecorations.isEmpty ? "" : p}'
+                                  .trimLeft(),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          );
+                        })
                       ],
                     )),
                   ),
@@ -201,82 +218,110 @@ class _FeatureControlsState extends State<FeatureControls> {
             widget.feature.namespace,
             style: Theme.of(context).textTheme.headline4,
           ),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text('Implementation  '),
-              DropdownButton<String>(
-                  onChanged: (value) async {
-                    if (value == null) {
-                      /// Lets warn before disabling
-                      await disableWarningPrompt(context, value);
-                    } else {
-                      DartBoardCore.instance.setFeatureImplementation(
-                          widget.feature.namespace, value);
-                    }
-                    setState(() {});
-                  },
-                  value: DartBoardCore
-                      .instance.activeImplementations[widget.feature.namespace],
-                  items: [
-                    DropdownMenuItem(value: null, child: Text('Disabled')),
-                    ...DartBoardCore.instance
-                        .detectedImplementations[widget.feature.namespace]!
-                        .map((e) =>
-                            DropdownMenuItem(value: e, child: Text('$e')))
-                        .toList()
-                  ]),
-            ],
-          ),
+          SelectImplementationRow(feature: widget.feature),
           if (widget.feature.methodHandlers.isNotEmpty) ...[
-            Text('Active Method Handlers'),
-            DropdownButton<String>(
-                onChanged: (value) {
-                  if (value == null) return;
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text('Methods '),
+                DropdownButton<String>(
+                    onChanged: (value) {
+                      if (value == null) return;
 
-                  /// Lets dispatch this with no-args to test remote
-                  /// call
-                  context.dispatchMethod(value);
-                },
-                value: null,
-                items: [
-                  DropdownMenuItem(
-                      value: null, child: Text('Select to Trigger')),
-                  ...widget.feature.methodHandlers.keys
-                      .map((e) => DropdownMenuItem(value: e, child: Text('$e')))
-                      .toList()
-                ]),
+                      /// Lets dispatch this with no-args to test remote
+                      /// call
+                      context.dispatchMethod(value);
+                    },
+                    value: null,
+                    items: [
+                      DropdownMenuItem(
+                          value: null, child: Text('Select to Trigger')),
+                      ...widget.feature.methodHandlers.keys
+                          .map((e) =>
+                              DropdownMenuItem(value: e, child: Text('$e')))
+                          .toList()
+                    ]),
+              ],
+            ),
           ],
         ],
       ),
     );
   }
+}
 
-  Future<dynamic> disableWarningPrompt(BuildContext context, String? value) {
-    return showDialog(
-        builder: (ctx) => AlertDialog(
-              title: Text('Warning: Are you sure?'),
-              content: Text(
-                  'Disabling a feature that is currently active can result in breakage. E.g. if your Route becomes unavailable. Please confirm before continuing'),
-              actions: [
-                MaterialButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text('Cancel'),
-                ),
-                MaterialButton(
-                  onPressed: () {
-                    DartBoardCore.instance.setFeatureImplementation(
-                        widget.feature.namespace, value);
-                    Navigator.of(context).pop();
-                  },
-                  child: Text('OK'),
-                )
-              ],
-            ),
-        context: context);
+class SelectImplementationRow extends StatelessWidget {
+  const SelectImplementationRow({
+    Key? key,
+    required this.feature,
+  }) : super(key: key);
+
+  final DartBoardFeature feature;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text('Implementation  '),
+        SelectImplementationDropDownButton(feature: feature)
+      ],
+    );
   }
+}
+
+class SelectImplementationDropDownButton extends StatelessWidget {
+  final DartBoardFeature feature;
+
+  const SelectImplementationDropDownButton({Key? key, required this.feature})
+      : super(key: key);
+  @override
+  Widget build(BuildContext context) => DropdownButton<String>(
+          onChanged: (value) async {
+            if (value == null) {
+              /// Lets warn before disabling
+              await disableWarningPrompt(context, feature.namespace);
+            } else {
+              DartBoardCore.instance
+                  .setFeatureImplementation(feature.namespace, value);
+            }
+            //setState(() {});
+          },
+          value:
+              DartBoardCore.instance.activeImplementations[feature.namespace],
+          items: [
+            DropdownMenuItem(value: null, child: Text('Disabled')),
+            ...DartBoardCore
+                .instance.detectedImplementations[feature.namespace]!
+                .map((e) => DropdownMenuItem(value: e, child: Text('$e')))
+                .toList()
+          ]);
+}
+
+Future<dynamic> disableWarningPrompt(BuildContext context, String namespace) {
+  return showDialog(
+      builder: (ctx) => AlertDialog(
+            title: Text('Warning: Are you sure?'),
+            content: Text(
+                'Disabling a feature that is currently active can result in breakage. E.g. if your Route becomes unavailable. Please confirm before continuing'),
+            actions: [
+              MaterialButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('Cancel'),
+              ),
+              MaterialButton(
+                onPressed: () {
+                  DartBoardCore.instance
+                      .setFeatureImplementation(namespace, null);
+                  Navigator.of(context).pop();
+                },
+                child: Text('OK'),
+              )
+            ],
+          ),
+      context: context);
 }
 
 class DebugLabelText extends StatelessWidget {
