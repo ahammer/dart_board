@@ -31,24 +31,27 @@ class _DebugGraphState extends State<DebugGraph> {
       children: [
         _LineDrawer(state: this),
         SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: List.generate(maxLevel + 1, (index) => index)
-                .map((idx) => Padding(
-                      padding: const EdgeInsets.all(64.0),
-                      child: Wrap(
-                        children: result.entries
-                            .where((element) => element.value == idx)
-                            .map((e) => Container(
-                                  key: getKeyFor(e.key),
-                                  child: FeatureNode(
-                                    featureName: e.key,
-                                  ),
-                                ))
-                            .toList(),
-                      ),
-                    ))
-                .toList(),
+          child: SizedBox(
+            width: double.infinity,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: List.generate(maxLevel + 1, (index) => index)
+                  .map((idx) => Padding(
+                        padding: const EdgeInsets.all(32.0),
+                        child: Wrap(
+                          children: result.entries
+                              .where((element) => element.value == idx)
+                              .map((e) => Container(
+                                    key: getKeyFor(e.key),
+                                    child: FeatureNode(
+                                      featureName: e.key,
+                                    ),
+                                  ))
+                              .toList(),
+                        ),
+                      ))
+                  .toList(),
+            ),
           ),
         ),
       ],
@@ -90,6 +93,7 @@ class _LinePainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     var idx = 0;
     state.edges.entries.forEach((primary) {
+      idx = 0;
       primary.value.forEach((secondary) {
         final ro1 = state._globalKeys[primary.key]?.currentContext
             ?.findRenderObject() as RenderBox?;
@@ -111,7 +115,8 @@ class _LinePainter extends CustomPainter {
     final offset = Offset(idx.toDouble() * 1.5 - 16, idx.toDouble() * 1.5 - 16);
     final p1 = origin.localToGlobal(origin.paintBounds.center);
     final p2 = origin.localToGlobal(origin.paintBounds.centerRight);
-    final p5 = destination.localToGlobal(destination.paintBounds.topCenter);
+    final p5 = destination
+        .localToGlobal(destination.paintBounds.topCenter - Offset(0, 8));
     final p6 = destination.localToGlobal(destination.paintBounds.center);
     final p3 = Offset(p2.dx, p5.dy);
     final color =
