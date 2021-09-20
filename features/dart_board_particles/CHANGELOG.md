@@ -1,3 +1,7 @@
+## 1.2.4
+
+ - Update a dependency to the latest release.
+
 ## 1.2.3
 
  - **FIX**: snow new rendering. 2 sizes/shades. Normalized to just 0-1, scale.

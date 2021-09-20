@@ -1,3 +1,8 @@
+## 0.9.3+4
+
+ - **FIX**: fix up the Chart, now responsive and no longer using pre-release.
+ - **CHORE**: publish packages.
+
 ## 0.9.3+3
 
  - Update a dependency to the latest release.

@@ -1,3 +1,7 @@
+## 1.0.4
+
+ - Update a dependency to the latest release.
+
 ## 1.0.3
 
  - **FIX**: website browser detection (mobile or not) for embedded demo.

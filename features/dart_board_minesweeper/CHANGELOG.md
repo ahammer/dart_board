@@ -1,3 +1,7 @@
+## 0.9.5+4
+
+ - Update a dependency to the latest release.
+
 ## 0.9.5+3
 
  - **FIX**: fixed up minesweeper text on small layout.
