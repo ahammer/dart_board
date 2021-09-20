@@ -386,6 +386,9 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
     throw Exception(
         'You attempted to call ${call.method} but it is not registered to an active feature');
   }
+
+  @override
+  List<DartBoardFeature> get initialFeatures => widget.features;
 }
 
 /// This class can apply the page decorations.
