@@ -6,7 +6,7 @@ import '../../dart_board.dart';
 ///
 /// Can be used for simple named routing
 ///
-/// E.g. NamedRouteDefinition(route: "/main", builder: (ctx, settings)=>Container(...))
+/// E.g. NamedRouteDefinition(route: "main", builder: (ctx, settings)=>Container(...))
 class NamedRouteDefinition implements RouteDefinition {
   /// The Route this NamedRoute maps to
   /// E.g. /main
