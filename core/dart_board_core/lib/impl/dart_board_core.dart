@@ -127,7 +127,7 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
 
   late final dartBoardInformationParser = DartBoardInformationParser();
   late final dartBoardRouterDelegate =
-      DartBoardNavigationDelegate(navigatorKey: dartBoardNavKey, initialPage: widget.initialRoute);
+      DartBoardNavigationDelegate(navigatorKey: dartBoardNavKey, state: this);
 
   @override
   void initState() {
@@ -448,17 +448,25 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
   @override
   final GlobalKey<NavigatorState> navigatorKey;
   // Mounts to "/" but you redirects to a named route
-  final String initialPage;
+  final _DartBoardState state;
   DartBoardNavigationDelegate(
-      {required this.navigatorKey, required this.initialPage});
+      {required this.navigatorKey, required this.state});
 
   var currentRoute = '/';
 
+/*
+appDecorations.reversed.fold(
+          navigator!,
+          (child, element) => element.decoration(context, child),
+        )
+*/
   @override
-  Widget build(BuildContext context) => Navigator(
+  Widget build(BuildContext context) => state.appDecorations.fold(Navigator(
         key: navigatorKey,
         pages: [
-          MaterialPage(key: ValueKey('test'), child: RouteWidget(initialPage))
+          MaterialPage(
+              key: ValueKey('test'),
+              child: RouteWidget(state.widget.initialRoute))
         ],
         onPopPage: (route, result) {
           if (!route.didPop(result)) {
@@ -470,7 +478,7 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
           notifyListeners();
 
           return true;
-        },
+        },), (child, element) => element.decoration(context, child)
       );
 
   @override
