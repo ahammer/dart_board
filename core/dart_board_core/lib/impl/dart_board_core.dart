@@ -125,7 +125,9 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
 
   late Map<String, String?> featureOverrides;
 
-  bool _init = false;
+  late final dartBoardInformationParser = DartBoardInformationParser();
+  late final dartBoardRouterDelegate =
+      DartBoardNavigationDelegate(navigatorKey: dartBoardNavKey, initialPage: widget.initialRoute);
 
   @override
   void initState() {
@@ -133,8 +135,6 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
     initCore();
     featureOverrides = widget.featureOverrides ?? {};
     buildFeatures();
-    WidgetsBinding.instance
-        ?.scheduleFrameCallback((timeStamp) => setState(() => _init = true));
   }
 
   /// Build Dart-Board Core
@@ -143,7 +143,12 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
   /// 2) Then provide a MaterialApp + Customizations
   ///
   @override
-  Widget build(BuildContext context) => MaterialApp(
+  Widget build(BuildContext context) => MaterialApp.router(
+      routeInformationParser: dartBoardInformationParser,
+      routerDelegate: dartBoardRouterDelegate);
+
+  /*
+  MaterialApp(
         home: _init
             ? RouteWidget(
                 widget.initialRoute,
@@ -158,6 +163,7 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
         ),
         onGenerateRoute: onGenerateRoute,
       );
+      */
 
   /// Dart Board Core Overrides
   @override
@@ -428,3 +434,47 @@ class StubFeature extends DartBoardFeature {
 
   StubFeature(this.namespace);
 }
+
+class DartBoardInformationParser extends RouteInformationParser<DartBoardPath> {
+  @override
+  Future<DartBoardPath> parseRouteInformation(
+      RouteInformation routeInformation) {
+    return Future.sync(() => DartBoardPath());
+  }
+}
+
+class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
+    with ChangeNotifier, PopNavigatorRouterDelegateMixin<DartBoardPath> {
+  @override
+  final GlobalKey<NavigatorState> navigatorKey;
+  // Mounts to "/" but you redirects to a named route
+  final String initialPage;
+  DartBoardNavigationDelegate(
+      {required this.navigatorKey, required this.initialPage});
+
+  var currentRoute = '/';
+
+  @override
+  Widget build(BuildContext context) => Navigator(
+        key: navigatorKey,
+        pages: [
+          MaterialPage(key: ValueKey('test'), child: RouteWidget(initialPage))
+        ],
+        onPopPage: (route, result) {
+          if (!route.didPop(result)) {
+            return false;
+          }
+
+          // Update the list of pages by setting _selectedBook to null
+          //   _selectedBook = null;
+          notifyListeners();
+
+          return true;
+        },
+      );
+
+  @override
+  Future<void> setNewRoutePath(DartBoardPath configuration) async {}
+}
+
+class DartBoardPath {}

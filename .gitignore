@@ -8,7 +8,7 @@
 .firebase/
 .android
 .ios
-
+ephemeral/
 coverage/
 .packages
 .pub/
