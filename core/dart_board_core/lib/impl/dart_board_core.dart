@@ -461,7 +461,8 @@ appDecorations.reversed.fold(
         )
 */
   @override
-  Widget build(BuildContext context) => state.appDecorations.fold(Navigator(
+  Widget build(BuildContext context) => state.appDecorations.reversed.fold(
+      Navigator(
         key: navigatorKey,
         pages: [
           MaterialPage(
@@ -478,8 +479,9 @@ appDecorations.reversed.fold(
           notifyListeners();
 
           return true;
-        },), (child, element) => element.decoration(context, child)
-      );
+        },
+      ),
+      (child, element) => element.decoration(context, child));
 
   @override
   Future<void> setNewRoutePath(DartBoardPath configuration) async {}
