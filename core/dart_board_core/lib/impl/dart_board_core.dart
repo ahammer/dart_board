@@ -465,15 +465,13 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
               key: ValueKey(state.widget.initialRoute),
               child: RouteWidget(state.widget.initialRoute)),
           if (currentPath != null && currentPath!.path != '/')
-            MaterialPage(
-                key: ValueKey(currentPath),
-                child: RouteWidget(currentPath!.path)),
+            ...currentPath!.pages
         ],
         onPopPage: (route, result) {
           if (!route.didPop(result)) {
             return false;
           }
-          currentPath = null;
+          currentPath = currentPath?.up ?? DartBoardPath('/');
           // Update the list of pages by setting _selectedBook to null
           //   _selectedBook = null;
           notifyListeners();
@@ -494,7 +492,25 @@ class DartBoardPath {
 
   DartBoardPath(this.path);
 
+  DartBoardPath get up {
+    final uri = Uri.parse(path);
+    if (uri.pathSegments.length <= 1) {
+      return DartBoardPath('/');
+    }
+
+    return DartBoardPath(
+        '/' + uri.pathSegments.take(uri.pathSegments.length - 1).join('/'));
+  }
+
   List<MaterialPage> get pages {
-    return [];
+    final uri = Uri.parse(path);
+    final pages = <MaterialPage>[];
+
+    for (var i = 0; i < uri.pathSegments.length; i++) {
+      final currentPath = '/' + uri.pathSegments.take(i + 1).join('/');
+      pages.add(MaterialPage(
+          key: ValueKey(currentPath), child: RouteWidget(currentPath)));
+    }
+    return pages;
   }
 }
