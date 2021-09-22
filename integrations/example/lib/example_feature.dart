@@ -210,6 +210,9 @@ class ExampleFeature extends DartBoardFeature {
       ];
 
   @override
+  List<RouteDefinition> get routes => [PathedRouteDefinition()];
+
+  @override
   List<String> get pageDecorationDenyList => ['/main:animated_background'];
 
   @override

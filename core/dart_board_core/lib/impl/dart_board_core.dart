@@ -439,7 +439,8 @@ class DartBoardInformationParser extends RouteInformationParser<DartBoardPath> {
   @override
   Future<DartBoardPath> parseRouteInformation(
       RouteInformation routeInformation) {
-    return Future.sync(() => DartBoardPath());
+    print(routeInformation.location);
+    return Future.sync(() => DartBoardPath(routeInformation.location ?? '/'));
   }
 }
 
@@ -447,27 +448,26 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<DartBoardPath> {
   @override
   final GlobalKey<NavigatorState> navigatorKey;
-  // Mounts to "/" but you redirects to a named route
+
   final _DartBoardState state;
+
+  DartBoardPath? currentPath;
+
   DartBoardNavigationDelegate(
       {required this.navigatorKey, required this.state});
 
-  var currentRoute = '/';
-
-/*
-appDecorations.reversed.fold(
-          navigator!,
-          (child, element) => element.decoration(context, child),
-        )
-*/
   @override
   Widget build(BuildContext context) => state.appDecorations.reversed.fold(
       Navigator(
         key: navigatorKey,
         pages: [
           MaterialPage(
-              key: ValueKey('test'),
-              child: RouteWidget(state.widget.initialRoute))
+              key: ValueKey('root'),
+              child: RouteWidget(state.widget.initialRoute)),
+          if (currentPath != null)
+            MaterialPage(
+                key: ValueKey(currentPath),
+                child: RouteWidget(currentPath!.path)),
         ],
         onPopPage: (route, result) {
           if (!route.didPop(result)) {
@@ -484,7 +484,13 @@ appDecorations.reversed.fold(
       (child, element) => element.decoration(context, child));
 
   @override
-  Future<void> setNewRoutePath(DartBoardPath configuration) async {}
+  Future<void> setNewRoutePath(DartBoardPath path) async {
+    currentPath = path;
+  }
 }
 
-class DartBoardPath {}
+class DartBoardPath {
+  final String path;
+
+  DartBoardPath(this.path);
+}

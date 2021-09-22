@@ -15,28 +15,51 @@ class PathedRouteDefinition extends RouteDefinition {
     /// Level 0
     [
       NamedRouteDefinition(
-          route: 'root',
+          route: '/root',
+          builder: (ctx, settings) => Scaffold(body: Text('Root'))),
+      NamedRouteDefinition(
+          route: '/Root',
           builder: (ctx, settings) => Scaffold(body: Text('Root')))
     ],
 
     /// Level 1 (e.g. /root/cata)
     [
       NamedRouteDefinition(
-          route: 'cata', builder: (ctx, settings) => Scaffold(body: Text('A'))),
+          route: '/cata',
+          builder: (ctx, settings) => Scaffold(body: Text('A'))),
       NamedRouteDefinition(
-          route: 'catb', builder: (ctx, settings) => Scaffold(body: Text('B')))
+          route: '/catb', builder: (ctx, settings) => Scaffold(body: Text('B')))
     ],
 
     /// Level 2
     [
       NamedRouteDefinition(
-          route: 'details',
+          route: '/details',
           builder: (ctx, settings) => Scaffold(body: Text('Details')))
     ],
   ];
 
   @override
-  RouteWidgetBuilder get builder => routes[1][0].builder;
+  RouteWidgetBuilder get builder => (ctx, settings) {
+        final url = Uri.tryParse(settings.name!);
+        if (url == null) return Text('not found');
+
+        print(url.pathSegments.length);
+        RouteDefinition? lastMatching;
+
+        for (var i = 0; i < url.pathSegments.length; i++) {
+          var hasMatchAtLevel = false;
+          final part = url.pathSegments[i];
+          for (final matcher in routes[i]) {
+            if (matcher.matches(RouteSettings(name: '/$part'))) {
+              lastMatching = matcher;
+              hasMatchAtLevel = true;
+            }
+          }
+          if (!hasMatchAtLevel) return Text('No match at level');
+        }
+        return lastMatching?.builder(ctx, settings) ?? Text('No match found');
+      };
 
   @override
   bool matches(RouteSettings settings) {
@@ -44,8 +67,17 @@ class PathedRouteDefinition extends RouteDefinition {
     if (url == null) return false;
 
     print(url.pathSegments.length);
+    late RouteDefinition? lastMatching;
+
     for (var i = 0; i < url.pathSegments.length; i++) {
-      print(url.pathSegments[i]);
+      var hasMatchAtLevel = false;
+      final part = url.pathSegments[i];
+      for (final matcher in routes[i]) {
+        if (matcher.matches(RouteSettings(name: '/$part'))) {
+          hasMatchAtLevel = true;
+        }
+      }
+      if (!hasMatchAtLevel) return false;
     }
     return true;
   }

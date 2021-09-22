@@ -2,7 +2,7 @@ import 'package:dart_board_core/dart_board.dart';
 import 'package:flutter/cupertino.dart';
 
 void main() {
-  runApp(DartBoard(features: [Nav2Feature()], initialroute: 'root/cata'));
+  runApp(DartBoard(features: [Nav2Feature()], initialRoute: '/root'));
 }
 
 class Nav2Feature extends DartBoardFeature {

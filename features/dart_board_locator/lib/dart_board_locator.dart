@@ -24,53 +24,8 @@ import 'package:flutter/material.dart';
 /// locate<YourType>(instance_id: "unique state id")
 ///
 class DartBoardLocatorFeature extends DartBoardFeature {
-  @override
-  String get namespace => "Locator";
-
-  @override
-  List<DartBoardDecoration> get appDecorations => [
-        DartBoardDecoration(
-            name: "Locator",
-            decoration: (BuildContext context, Widget child) => _Locator(
-                  child: child,
-                  key: _locatorKey,
-                ))
-      ];
-}
-
-/// This decoration applies
-class LocatorDecoration<T> extends DartBoardDecoration {
-  final T Function() builder;
-
-  LocatorDecoration(this.builder)
-      : super(
-            name: "Loc${T.toString()}",
-            decoration: (BuildContext context, Widget child) => LifeCycleWidget(
-                key: ValueKey("LocatorDecoration_${T.toString()}"),
-                preInit: () =>
-                    _locatorKey.currentState!.registerBuilder<T>(builder),
-                child: Builder(builder: (ctx) => child)));
-}
-
-class _Locator extends StatefulWidget {
-  final Widget child;
-
-  const _Locator({Key? key, required this.child}) : super(key: key);
-
-  @override
-  _LocatorState createState() => _LocatorState();
-}
-
-class _LocatorState extends State<_Locator> {
   final Map<Type, Map<String, dynamic>> objectCache = {};
   final Map<Type, dynamic Function()> builders = {};
-
-  @override
-  Widget build(BuildContext context) => widget.child;
-  @override
-  void initState() {
-    super.initState();
-  }
 
   T _locate<T>(Type type, {String instanceId = ""}) {
     /// Return from cache
@@ -91,14 +46,30 @@ class _LocatorState extends State<_Locator> {
   registerBuilder<T>(T Function() builder) {
     builders[T] = builder;
   }
+
+  @override
+  String get namespace => "Locator";
 }
 
-/// Global Key we use to Track the store.
-final _locatorKey = GlobalKey<_LocatorState>();
+/// This decoration applies
+class LocatorDecoration<T> extends DartBoardDecoration {
+  final T Function() builder;
+
+  LocatorDecoration(this.builder)
+      : super(
+            name: "Loc${T.toString()}",
+            decoration: (BuildContext context, Widget child) => LifeCycleWidget(
+                key: ValueKey("LocatorDecoration_${T.toString()}"),
+                preInit: () => (DartBoardCore.instance.findByName("Locator")
+                        as DartBoardLocatorFeature)
+                    .registerBuilder<T>(builder),
+                child: Builder(builder: (ctx) => child)));
+}
 
 /// Globally Locate a type via the Locator
 T locate<T>({String instanceId = ""}) =>
-    _locatorKey.currentState!._locate(T, instanceId: instanceId);
+    (DartBoardCore.instance.findByName("Locator") as DartBoardLocatorFeature)
+        ._locate(T, instanceId: instanceId);
 
 /// Locate a ChangeNotifier and Build it.
 Widget locateAndBuild<T extends ChangeNotifier>(
