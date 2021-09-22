@@ -467,6 +467,9 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
       {required this.navigatorKey, required this.state});
 
   @override
+  DartBoardPath? get currentConfiguration => currentPath;
+
+  @override
   Widget build(BuildContext context) => state.appDecorations.reversed.fold(
       Navigator(
         key: navigatorKey,
