@@ -13,8 +13,14 @@ class Nav2Feature extends DartBoardFeature {
   List<RouteDefinition> get routes => [
         NamedRouteDefinition(
             route: '/home',
-            builder: (ctx, settings) =>
-                Material(child: Center(child: Text('Home')))),
+            builder: (ctx, settings) => Material(
+                child: Center(
+                    child: MaterialButton(
+                        onPressed: () {
+                          DartBoardCore.instance
+                              .pushRoute('/root/cata/details');
+                        },
+                        child: Text('Go To Details'))))),
         PathedRouteDefinition()
       ];
 }

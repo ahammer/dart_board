@@ -395,6 +395,11 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
 
   @override
   List<DartBoardFeature> get initialFeatures => widget.features;
+
+  @override
+  void pushRoute(String route) {
+    dartBoardRouterDelegate.pushRoute(route);
+  }
 }
 
 /// This class can apply the page decorations.
@@ -442,6 +447,11 @@ class DartBoardInformationParser extends RouteInformationParser<DartBoardPath> {
     print(routeInformation.location);
     return Future.sync(() => DartBoardPath(routeInformation.location ?? '/'));
   }
+
+  @override
+  RouteInformation restoreRouteInformation(DartBoardPath configuration) {
+    return RouteInformation(location: configuration.path);
+  }
 }
 
 class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
@@ -484,6 +494,11 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
   @override
   Future<void> setNewRoutePath(DartBoardPath path) async {
     currentPath = path;
+  }
+
+  void pushRoute(String route) {
+    currentPath = DartBoardPath(route);
+    notifyListeners();
   }
 }
 
