@@ -3,7 +3,7 @@ import 'package:dart_board_core/impl/route_types/pathed_route.dart';
 import 'package:flutter/cupertino.dart';
 
 void main() {
-  runApp(DartBoard(features: [Nav2Feature()], initialRoute: '/Root'));
+  runApp(DartBoard(features: [Nav2Feature()], initialRoute: '/root'));
 }
 
 class Nav2Feature extends DartBoardFeature {
