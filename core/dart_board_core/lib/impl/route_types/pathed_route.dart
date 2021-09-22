@@ -16,26 +16,28 @@ class PathedRouteDefinition extends RouteDefinition {
     [
       NamedRouteDefinition(
           route: '/root',
-          builder: (ctx, settings) => Scaffold(body: Text('Root'))),
-      NamedRouteDefinition(
-          route: '/Root',
-          builder: (ctx, settings) => Scaffold(body: Text('Root')))
+          builder: (ctx, settings) =>
+              Scaffold(appBar: AppBar(), body: Text('Root'))),
     ],
 
     /// Level 1 (e.g. /root/cata)
     [
       NamedRouteDefinition(
           route: '/cata',
-          builder: (ctx, settings) => Scaffold(body: Text('A'))),
+          builder: (ctx, settings) =>
+              Scaffold(appBar: AppBar(), body: Text('A'))),
       NamedRouteDefinition(
-          route: '/catb', builder: (ctx, settings) => Scaffold(body: Text('B')))
+          route: '/catb',
+          builder: (ctx, settings) =>
+              Scaffold(appBar: AppBar(), body: Text('B')))
     ],
 
     /// Level 2
     [
       NamedRouteDefinition(
           route: '/details',
-          builder: (ctx, settings) => Scaffold(body: Text('Details')))
+          builder: (ctx, settings) =>
+              Scaffold(appBar: AppBar(), body: Text('Details')))
     ],
   ];
 
