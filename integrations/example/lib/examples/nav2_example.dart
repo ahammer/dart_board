@@ -2,7 +2,7 @@ import 'package:dart_board_core/dart_board.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(DartBoard(features: [Nav2Feature()], initialRoute: '/root'));
+  runApp(DartBoard(features: [Nav2Feature()], initialRoute: '/home'));
 }
 
 class Nav2Feature extends DartBoardFeature {
@@ -10,5 +10,11 @@ class Nav2Feature extends DartBoardFeature {
   String get namespace => 'nav2';
 
   @override
-  List<RouteDefinition> get routes => [PathedRouteDefinition()];
+  List<RouteDefinition> get routes => [
+        NamedRouteDefinition(
+            route: '/home',
+            builder: (ctx, settings) =>
+                Material(child: Center(child: Text('Home')))),
+        PathedRouteDefinition()
+      ];
 }

@@ -67,9 +67,10 @@ class PathedRouteDefinition extends RouteDefinition {
   bool matches(RouteSettings settings) {
     final url = Uri.tryParse(settings.name!);
     if (url == null) return false;
-
+    if (url.pathSegments.isEmpty) {
+      return false;
+    }
     print(url.pathSegments.length);
-    late RouteDefinition? lastMatching;
 
     for (var i = 0; i < url.pathSegments.length; i++) {
       var hasMatchAtLevel = false;
@@ -79,7 +80,9 @@ class PathedRouteDefinition extends RouteDefinition {
           hasMatchAtLevel = true;
         }
       }
-      if (!hasMatchAtLevel) return false;
+      if (!hasMatchAtLevel) {
+        return false;
+      }
     }
     return true;
   }

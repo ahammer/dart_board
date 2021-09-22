@@ -462,9 +462,9 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
         key: navigatorKey,
         pages: [
           MaterialPage(
-              key: ValueKey('root'),
+              key: ValueKey(state.widget.initialRoute),
               child: RouteWidget(state.widget.initialRoute)),
-          if (currentPath != null)
+          if (currentPath != null && currentPath!.path != '/')
             MaterialPage(
                 key: ValueKey(currentPath),
                 child: RouteWidget(currentPath!.path)),
@@ -473,7 +473,7 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
           if (!route.didPop(result)) {
             return false;
           }
-
+          currentPath = null;
           // Update the list of pages by setting _selectedBook to null
           //   _selectedBook = null;
           notifyListeners();
@@ -493,4 +493,8 @@ class DartBoardPath {
   final String path;
 
   DartBoardPath(this.path);
+
+  List<MaterialPage> get pages {
+    return [];
+  }
 }
