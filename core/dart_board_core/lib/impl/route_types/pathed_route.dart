@@ -11,35 +11,9 @@ class PathedRouteDefinition extends RouteDefinition {
   /// level, namedroute
   ///
   /// Hard coding for development
-  final routes = <List<NamedRouteDefinition>>[
-    /// Level 0
-    [
-      NamedRouteDefinition(
-          route: '/root',
-          builder: (ctx, settings) =>
-              Scaffold(appBar: AppBar(), body: Text('Root'))),
-    ],
+  final List<List<NamedRouteDefinition>> routes;
 
-    /// Level 1 (e.g. /root/cata)
-    [
-      NamedRouteDefinition(
-          route: '/cata',
-          builder: (ctx, settings) =>
-              Scaffold(appBar: AppBar(), body: Text('A'))),
-      NamedRouteDefinition(
-          route: '/catb',
-          builder: (ctx, settings) =>
-              Scaffold(appBar: AppBar(), body: Text('B')))
-    ],
-
-    /// Level 2
-    [
-      NamedRouteDefinition(
-          route: '/details',
-          builder: (ctx, settings) =>
-              Scaffold(appBar: AppBar(), body: Text('Details')))
-    ],
-  ];
+  PathedRouteDefinition(this.routes);
 
   @override
   RouteWidgetBuilder get builder => (ctx, settings) {

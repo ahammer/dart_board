@@ -12,15 +12,52 @@ class Nav2Feature extends DartBoardFeature {
   @override
   List<RouteDefinition> get routes => [
         NamedRouteDefinition(
-            route: '/home',
-            builder: (ctx, settings) => Material(
-                child: Center(
-                    child: MaterialButton(
-                        onPressed: () {
-                          DartBoardCore.instance
-                              .pushRoute('/root/cata/details');
-                        },
-                        child: Text('Go To Details'))))),
-        PathedRouteDefinition()
+            route: '/home', builder: (ctx, settings) => HomePage()),
+        PathedRouteDefinition([
+          /// Level 0
+          [
+            NamedRouteDefinition(
+                route: '/root',
+                builder: (ctx, settings) =>
+                    Scaffold(appBar: AppBar(), body: Text('Root'))),
+          ],
+
+          /// Level 1 (e.g. /root/cata)
+          [
+            NamedRouteDefinition(
+                route: '/cata',
+                builder: (ctx, settings) =>
+                    Scaffold(appBar: AppBar(), body: Text('A'))),
+            NamedRouteDefinition(
+                route: '/catb',
+                builder: (ctx, settings) =>
+                    Scaffold(appBar: AppBar(), body: Text('B')))
+          ],
+
+          /// Level 2
+          [
+            NamedRouteDefinition(
+                route: '/details',
+                builder: (ctx, settings) =>
+                    Scaffold(appBar: AppBar(), body: Text('Details')))
+          ],
+        ])
       ];
+}
+
+class HomePage extends StatelessWidget {
+  const HomePage({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+        child: Center(
+            child: MaterialButton(
+                onPressed: () {
+                  DartBoardCore.instance.pushRoute('/root/cata/details');
+                },
+                child: Text('Go To Details'))));
+  }
 }

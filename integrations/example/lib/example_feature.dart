@@ -210,7 +210,45 @@ class ExampleFeature extends DartBoardFeature {
       ];
 
   @override
-  List<RouteDefinition> get routes => [PathedRouteDefinition()];
+  List<RouteDefinition> get routes => [
+        /// We are going to set up this PathedRouteDefinition to demonstrate deep linking
+        /// and browser history support
+        PathedRouteDefinition(
+          /// Array of path levels, e.g. [/0/1/2/3]
+          /// For this definition to take hold, it must have a valid route each way down. E.g.
+          /// /scenes/stars has a match on both levels
+          /// /scenes has a match on the first
+          ///
+          /// Doesn't work
+          /// /scanez/stars
+          ///
+          /// won't match first path, so it'll not resolve on this definition
+          ///
+          /// Protip: Exploit this scope things.
+          [
+            /// Level 0
+            [
+              NamedRouteDefinition(
+                  route: '/scenes',
+                  builder: (ctx, settings) => Scaffold(
+                      appBar: AppBar(),
+                      body: Center(child: Card(child: Text('Nothing Here'))))),
+            ],
+
+            /// Level 1
+            [
+              NamedRouteDefinition(
+                  route: '/stars',
+                  builder: (ctx, settings) =>
+                      Scaffold(appBar: AppBar(), body: RouteWidget('/space'))),
+              NamedRouteDefinition(
+                  route: '/sun',
+                  builder: (ctx, settings) => Scaffold(
+                      appBar: AppBar(), body: RouteWidget('/space_all'))),
+            ],
+          ],
+        ),
+      ];
 
   @override
   List<String> get pageDecorationDenyList => ['/main:animated_background'];
