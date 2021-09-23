@@ -4,7 +4,6 @@ import 'package:flutter/src/services/message_codec.dart';
 import 'package:logging/logging.dart';
 
 import '../dart_board.dart';
-import 'routing/routing.dart';
 import 'widgets/route_not_found.dart';
 
 /// Some helpers
@@ -127,8 +126,15 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
   late Map<String, String?> featureOverrides;
 
   late final dartBoardInformationParser = DartBoardInformationParser();
-  late final dartBoardRouterDelegate =
-      DartBoardNavigationDelegate(navigatorKey: dartBoardNavKey, appDecorations: appDecorations, initialRoute: widget.initialRoute);
+  late final dartBoardRouterDelegate = DartBoardNavigationDelegate(
+      navigatorKey: dartBoardNavKey,
+      appDecorations: appDecorations,
+      initialRoute: widget.initialRoute);
+
+  /// Expose the router Delegate for "nav" to work, or for your own nav if necessary
+  ///
+  @override
+  RouterDelegate get routerDelegate => dartBoardRouterDelegate;
 
   @override
   void initState() {
@@ -440,4 +446,3 @@ class StubFeature extends DartBoardFeature {
 
   StubFeature(this.namespace);
 }
-

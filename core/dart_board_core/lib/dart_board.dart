@@ -12,6 +12,7 @@ export 'impl/widgets/convertor_widget.dart';
 export 'impl/widgets/route_widget.dart';
 export 'impl/widgets/life_cycle_widget.dart';
 export 'impl/widgets/feature_gate.dart';
+export 'impl/routing/routing.dart';
 export 'impl/route_types/named_route.dart';
 export 'impl/route_types/pathed_route.dart';
 export 'impl/widgets/nil.dart';

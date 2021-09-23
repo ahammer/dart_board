@@ -56,7 +56,7 @@ class HomePage extends StatelessWidget {
         child: Center(
             child: MaterialButton(
                 onPressed: () {
-                  DartBoardCore.instance.pushRoute('/root/cata/details');
+                  Nav.pushRoute('/root/cata/details');
                 },
                 child: Text('Go To Details'))));
   }

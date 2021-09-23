@@ -1,4 +1,3 @@
-
 import 'package:dart_board_core/impl/widgets/route_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -25,12 +24,13 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
 
   final List<DartBoardDecoration> appDecorations;
   final String initialRoute;
-  
-  
+
   DartBoardPath? currentPath;
 
   DartBoardNavigationDelegate(
-      {required this.navigatorKey, required this.appDecorations, required this.initialRoute});
+      {required this.navigatorKey,
+      required this.appDecorations,
+      required this.initialRoute});
 
   @override
   DartBoardPath? get currentConfiguration => currentPath;
@@ -41,8 +41,7 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
         key: navigatorKey,
         pages: [
           MaterialPage(
-              key: ValueKey(initialRoute),
-              child: RouteWidget(initialRoute)),
+              key: ValueKey(initialRoute), child: RouteWidget(initialRoute)),
           if (currentPath != null && currentPath!.path != '/')
             ...currentPath!.pages
         ],
@@ -96,5 +95,14 @@ class DartBoardPath {
           key: ValueKey(currentPath), child: RouteWidget(currentPath)));
     }
     return pages;
+  }
+}
+
+class Nav {
+  static void pushRoute(String route) {
+    final currentDelegate = DartBoardCore.instance.routerDelegate;
+    if (currentDelegate is DartBoardNavigationDelegate) {
+      currentDelegate.pushRoute(route);
+    }
   }
 }

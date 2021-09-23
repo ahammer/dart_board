@@ -1,3 +1,4 @@
+import 'package:dart_board_core/dart_board.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -61,6 +62,8 @@ abstract class DartBoardCore {
   List<RouteDefinition> get routes;
   Set<DartBoardFeature> get loadedFeatures;
   List<DartBoardFeature> get initialFeatures;
+
+  RouterDelegate get routerDelegate;
 
   /// This is all detected implementations for each feature namespace
   Map<String, List<String>> get detectedImplementations;
