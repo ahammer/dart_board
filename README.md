@@ -43,6 +43,14 @@ Flutter Architecture/Framework for Feature based development
 
 ![Dependency Graph](https://www.dart-board.io/assets/img/screenshots/dart_board_2.jpg)
 
+# Release Plan
+
+- Navigator 2.0 support and examples (ongoing, ETA in the next week)
+- Advanced deep-linking (e.g. params)
+- Integrations/Hooks for other arch patterns (e.g. bloc/provider/etc decorations for features to use)
+- Refined Tutorials
+- Videos
+
 # Introduction
 
 Dart Board is a Framework/Architecture pattern for Flutter applications.
