@@ -72,15 +72,6 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
 
   @override
   Future<void> setNewRoutePath(DartBoardPath path) async {
-    if (navStack.isNotEmpty) {
-      if (navStack.last.path.contains(path.path) ||
-          path.path.contains(navStack.last.path)) {
-        /// If the path appears to be a "change in dir" we can just update
-        navStack.removeLast();
-        navStack.add(path);
-        return;
-      }
-    }
     navStack.add(path);
   }
 

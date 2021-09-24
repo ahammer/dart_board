@@ -18,28 +18,40 @@ class Nav2Feature extends DartBoardFeature {
           [
             NamedRouteDefinition(
                 route: '/root',
-                builder: (ctx, settings) =>
-                    Scaffold(appBar: AppBar(), body: Text('Root'))),
+                builder: (ctx, settings) => Scaffold(
+                    appBar: AppBar(),
+                    body: Column(
+                      children: [Text('Root'), RouteNavigatorWidget()],
+                    ))),
           ],
 
           /// Level 1 (e.g. /root/cata)
           [
             NamedRouteDefinition(
                 route: '/cata',
-                builder: (ctx, settings) =>
-                    Scaffold(appBar: AppBar(), body: Text('A'))),
+                builder: (ctx, settings) => Scaffold(
+                    appBar: AppBar(),
+                    body: Column(
+                      children: [Text('A'), RouteNavigatorWidget()],
+                    ))),
             NamedRouteDefinition(
                 route: '/catb',
-                builder: (ctx, settings) =>
-                    Scaffold(appBar: AppBar(), body: Text('B')))
+                builder: (ctx, settings) => Scaffold(
+                    appBar: AppBar(),
+                    body: Column(
+                      children: [Text('B'), RouteNavigatorWidget()],
+                    )))
           ],
 
           /// Level 2
           [
             NamedRouteDefinition(
                 route: '/details',
-                builder: (ctx, settings) =>
-                    Scaffold(appBar: AppBar(), body: Text('Details')))
+                builder: (ctx, settings) => Scaffold(
+                    appBar: AppBar(),
+                    body: Column(
+                      children: [Text('Details'), RouteNavigatorWidget()],
+                    )))
           ],
         ])
       ];
@@ -52,12 +64,47 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-        child: Center(
-            child: MaterialButton(
-                onPressed: () {
-                  Nav.pushRoute('/root/cata/details');
-                },
-                child: Text('Go To Details'))));
+    return Material(child: Center(child: RouteNavigatorWidget()));
+  }
+}
+
+class RouteNavigatorWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      height: 600,
+      child: Card(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Material(
+                elevation: 2,
+                child: SizedBox(
+                  width: double.infinity,
+                  child: Text('Path'),
+                )),
+            Row(
+              children: [
+                Column(
+                  children: [
+                    MaterialButton(
+                        onPressed: () {
+                          Nav.pushRoute('/root/cata/details');
+                        },
+                        child: Text('Go To Details')),
+                  ],
+                ),
+                Expanded(
+                  child: Column(
+                    children: [Text('r1')],
+                  ),
+                )
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
