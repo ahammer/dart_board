@@ -6,15 +6,12 @@ import '../../dart_board.dart';
 class DartBoardInformationParser extends RouteInformationParser<DartBoardPath> {
   @override
   Future<DartBoardPath> parseRouteInformation(
-      RouteInformation routeInformation) {
-    print(routeInformation.location);
-    return Future.sync(() => DartBoardPath(routeInformation.location ?? '/'));
-  }
+          RouteInformation routeInformation) =>
+      Future.sync(() => DartBoardPath(routeInformation.location ?? '/'));
 
   @override
-  RouteInformation restoreRouteInformation(DartBoardPath configuration) {
-    return RouteInformation(location: configuration.path);
-  }
+  RouteInformation restoreRouteInformation(DartBoardPath configuration) =>
+      RouteInformation(location: configuration.path);
 }
 
 class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
@@ -24,8 +21,7 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
 
   final List<DartBoardDecoration> appDecorations;
   final String initialRoute;
-
-  DartBoardPath? currentPath;
+  List<DartBoardPath> navStack = [];
 
   DartBoardNavigationDelegate(
       {required this.navigatorKey,
@@ -33,7 +29,8 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
       required this.initialRoute});
 
   @override
-  DartBoardPath? get currentConfiguration => currentPath;
+  DartBoardPath? get currentConfiguration =>
+      navStack.isNotEmpty ? navStack.last : null;
 
   @override
   Widget build(BuildContext context) => appDecorations.reversed.fold(
@@ -42,18 +39,32 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
         pages: [
           MaterialPage(
               key: ValueKey(initialRoute), child: RouteWidget(initialRoute)),
-          if (currentPath != null && currentPath!.path != '/')
-            ...currentPath!.pages
+          if (navStack.isNotEmpty)
+            ...navStack.fold<List<MaterialPage>>(
+                [],
+                (previousValue, element) =>
+                    [...previousValue, ...element.pages]),
         ],
         onPopPage: (route, result) {
           if (!route.didPop(result)) {
             return false;
           }
-          currentPath = currentPath?.up ?? DartBoardPath('/');
-          // Update the list of pages by setting _selectedBook to null
-          //   _selectedBook = null;
-          notifyListeners();
 
+          if (navStack.isEmpty) {
+            return false;
+          }
+          final currentPath = navStack.last;
+
+          final up = currentPath.up;
+          if (up.path == '/') {
+            navStack.removeLast();
+          } else {
+            navStack
+              ..removeLast()
+              ..add(up);
+          }
+
+          notifyListeners();
           return true;
         },
       ),
@@ -61,11 +72,20 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
 
   @override
   Future<void> setNewRoutePath(DartBoardPath path) async {
-    currentPath = path;
+    if (navStack.isNotEmpty) {
+      if (navStack.last.path.contains(path.path) ||
+          path.path.contains(navStack.last.path)) {
+        /// If the path appears to be a "change in dir" we can just update
+        navStack.removeLast();
+        navStack.add(path);
+        return;
+      }
+    }
+    navStack.add(path);
   }
 
   void pushRoute(String route) {
-    currentPath = DartBoardPath(route);
+    navStack.add(DartBoardPath(route));
     notifyListeners();
   }
 }
