@@ -19,7 +19,9 @@ class Nav2Feature extends DartBoardFeature {
             NamedRouteDefinition(
                 route: '/root',
                 builder: (ctx, settings) => Scaffold(
-                    appBar: AppBar(),
+                    appBar: AppBar(
+                      title: Text(Nav.currentRoute),
+                    ),
                     body: Column(
                       children: [Text('Root'), RouteNavigatorWidget()],
                     ))),
@@ -75,33 +77,22 @@ class RouteNavigatorWidget extends StatelessWidget {
       width: double.infinity,
       height: 600,
       child: Card(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
+        child: Row(
           children: [
-            Material(
-                elevation: 2,
-                child: SizedBox(
-                  width: double.infinity,
-                  child: Text('Path'),
-                )),
-            Row(
+            Column(
               children: [
-                Column(
-                  children: [
-                    MaterialButton(
-                        onPressed: () {
-                          Nav.pushRoute('/root/cata/details');
-                        },
-                        child: Text('Go To Details')),
-                  ],
-                ),
-                Expanded(
-                  child: Column(
-                    children: [Text('r1')],
-                  ),
-                )
+                MaterialButton(
+                    onPressed: () {
+                      Nav.pushRoute('/root/cata/details');
+                    },
+                    child: Text('Go To Details')),
               ],
             ),
+            Expanded(
+              child: Column(
+                children: [Text('r1')],
+              ),
+            )
           ],
         ),
       ),

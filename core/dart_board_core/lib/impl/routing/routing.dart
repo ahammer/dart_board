@@ -23,6 +23,14 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
   final String initialRoute;
   List<DartBoardPath> navStack = [];
 
+  String get activeRoute {
+    if (navStack.isEmpty) {
+      return '/';
+    } else {
+      return navStack.last.path;
+    }
+  }
+
   DartBoardNavigationDelegate(
       {required this.navigatorKey,
       required this.appDecorations,
@@ -72,12 +80,18 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
 
   @override
   Future<void> setNewRoutePath(DartBoardPath path) async {
+    addPath(path);
     navStack.add(path);
   }
 
   void pushRoute(String route) {
-    navStack.add(DartBoardPath(route));
+    addPath(DartBoardPath(route));
     notifyListeners();
+  }
+
+  void addPath(DartBoardPath dartBoardPath) {
+    navStack.removeWhere((element) => element.path == dartBoardPath.path);
+    navStack.add(dartBoardPath);
   }
 }
 
@@ -110,6 +124,15 @@ class DartBoardPath {
 }
 
 class Nav {
+  static String get currentRoute {
+    final currentDelegate = DartBoardCore.instance.routerDelegate;
+    if (currentDelegate is DartBoardNavigationDelegate) {
+      return currentDelegate.activeRoute;
+    }
+
+    return '/';
+  }
+
   static void pushRoute(String route) {
     final currentDelegate = DartBoardCore.instance.routerDelegate;
     if (currentDelegate is DartBoardNavigationDelegate) {
