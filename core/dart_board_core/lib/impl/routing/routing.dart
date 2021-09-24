@@ -81,17 +81,11 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
   @override
   Future<void> setNewRoutePath(DartBoardPath path) async {
     if (path.path == '/') return;
-    addPath(path);
+    _addPath(path);
     navStack.add(path);
   }
 
-  void pushRoute(String route) {
-    if (route == '/') return;
-    addPath(DartBoardPath(route));
-    notifyListeners();
-  }
-
-  void addPath(DartBoardPath dartBoardPath) {
+  void _addPath(DartBoardPath dartBoardPath) {
     navStack.removeWhere((element) => element.path == dartBoardPath.path);
     navStack.add(dartBoardPath);
   }
@@ -104,6 +98,27 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
       }
       return result;
     });
+    notifyListeners();
+  }
+
+  void popUntil(bool Function(DartBoardPath path) predicate) {
+    for (var i = navStack.length - 1; i >= 0; i--) {
+      if (predicate(navStack[i])) break;
+      navStack.removeAt(i);
+    }
+    notifyListeners();
+  }
+
+  void replaceTop(String route) {
+    if (navStack.isNotEmpty) {
+      navStack.removeLast();
+    }
+    pushRoute(route);
+  }
+
+  void pushRoute(String route) {
+    if (route == '/') return;
+    _addPath(DartBoardPath(route));
     notifyListeners();
   }
 }
@@ -137,6 +152,9 @@ class DartBoardPath {
   }
 }
 
+/// Global navigation hooks
+///
+/// For the main router and access
 class Nav {
   static ChangeNotifier get changeNotifier {
     final currentDelegate = DartBoardCore.instance.routerDelegate;
@@ -176,6 +194,27 @@ class Nav {
     final currentDelegate = DartBoardCore.instance.routerDelegate;
     if (currentDelegate is DartBoardNavigationDelegate) {
       currentDelegate.clearWhere(predicate);
+    }
+  }
+
+  static void replaceTop(String route) {
+    final currentDelegate = DartBoardCore.instance.routerDelegate;
+    if (currentDelegate is DartBoardNavigationDelegate) {
+      currentDelegate.replaceTop(route);
+    }
+  }
+
+  static void clear() {
+    final currentDelegate = DartBoardCore.instance.routerDelegate;
+    if (currentDelegate is DartBoardNavigationDelegate) {
+      currentDelegate.clearWhere((e) => true);
+    }
+  }
+
+  static void popUntil(bool Function(DartBoardPath) predicate) {
+    final currentDelegate = DartBoardCore.instance.routerDelegate;
+    if (currentDelegate is DartBoardNavigationDelegate) {
+      currentDelegate.popUntil(predicate);
     }
   }
 }

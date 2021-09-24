@@ -127,6 +127,21 @@ class RouteNavigatorWidget extends StatelessWidget {
                       });
                     },
                     child: Text('Clear test')),
+                MaterialButton(
+                    onPressed: () {
+                      Nav.replaceTop('/test2');
+                    },
+                    child: Text('Replace Top')),
+                MaterialButton(
+                    onPressed: () {
+                      Nav.clear();
+                    },
+                    child: Text('Clear')),
+                MaterialButton(
+                    onPressed: () {
+                      Nav.popUntil((e) => e.path == '/test2');
+                    },
+                    child: Text('Pop until /test2')),
               ],
             ),
             Expanded(
