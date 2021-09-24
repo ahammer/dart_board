@@ -35,6 +35,12 @@ class _ChangeNotifierBuilderState<T extends ChangeNotifier>
   void onUpdate() => Timer.run(() => setState(() {}));
 
   @override
+  void setState(VoidCallback fn) {
+    if (!mounted) return;
+    super.setState(fn);
+  }
+
+  @override
   void initState() {
     widget.notifier.addListener(onUpdate);
     super.initState();

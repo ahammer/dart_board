@@ -80,11 +80,13 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
 
   @override
   Future<void> setNewRoutePath(DartBoardPath path) async {
+    if (path.path == '/') return;
     addPath(path);
     navStack.add(path);
   }
 
   void pushRoute(String route) {
+    if (route == '/') return;
     addPath(DartBoardPath(route));
     notifyListeners();
   }
@@ -93,10 +95,22 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
     navStack.removeWhere((element) => element.path == dartBoardPath.path);
     navStack.add(dartBoardPath);
   }
+
+  void clearWhere(bool Function(DartBoardPath path) predicate) {
+    navStack.removeWhere((e) {
+      final result = predicate(e);
+      if (result) {
+        print('removing ${e.path}');
+      }
+      return result;
+    });
+    notifyListeners();
+  }
 }
 
 class DartBoardPath {
   final String path;
+  late final List<MaterialPage> pages = _pages;
 
   DartBoardPath(this.path);
 
@@ -110,7 +124,7 @@ class DartBoardPath {
         '/' + uri.pathSegments.take(uri.pathSegments.length - 1).join('/'));
   }
 
-  List<MaterialPage> get pages {
+  List<MaterialPage> get _pages {
     final uri = Uri.parse(path);
     final pages = <MaterialPage>[];
 
@@ -124,6 +138,24 @@ class DartBoardPath {
 }
 
 class Nav {
+  static ChangeNotifier get changeNotifier {
+    final currentDelegate = DartBoardCore.instance.routerDelegate;
+    if (currentDelegate is DartBoardNavigationDelegate) {
+      return currentDelegate;
+    }
+
+    throw Error();
+  }
+
+  static List<DartBoardPath> get stack {
+    final currentDelegate = DartBoardCore.instance.routerDelegate;
+    if (currentDelegate is DartBoardNavigationDelegate) {
+      return currentDelegate.navStack;
+    }
+
+    return [];
+  }
+
   static String get currentRoute {
     final currentDelegate = DartBoardCore.instance.routerDelegate;
     if (currentDelegate is DartBoardNavigationDelegate) {
@@ -137,6 +169,13 @@ class Nav {
     final currentDelegate = DartBoardCore.instance.routerDelegate;
     if (currentDelegate is DartBoardNavigationDelegate) {
       currentDelegate.pushRoute(route);
+    }
+  }
+
+  static void clearWhere(bool Function(DartBoardPath) predicate) {
+    final currentDelegate = DartBoardCore.instance.routerDelegate;
+    if (currentDelegate is DartBoardNavigationDelegate) {
+      currentDelegate.clearWhere(predicate);
     }
   }
 }

@@ -11,8 +11,6 @@ late final Logger log = Logger('DartBoard');
 late final NavigatorState navigator = dartBoardNavKey.currentState!;
 late final BuildContext navigatorContext = dartBoardNavKey.currentContext!;
 
-GlobalKey<_DartBoardState> dartBoardKey = GlobalKey();
-
 Widget _pageNoteFound(BuildContext context) =>
     RouteNotFound(ModalRoute.of(context)!.settings.name!);
 
