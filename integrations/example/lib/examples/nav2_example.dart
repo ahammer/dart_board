@@ -32,14 +32,18 @@ class Nav2Feature extends DartBoardFeature {
             NamedRouteDefinition(
                 route: '/cata',
                 builder: (ctx, settings) => Scaffold(
-                    appBar: AppBar(),
+                    appBar: AppBar(
+                      title: Text(Nav.currentRoute),
+                    ),
                     body: Column(
                       children: [Text('A'), RouteNavigatorWidget()],
                     ))),
             NamedRouteDefinition(
                 route: '/catb',
                 builder: (ctx, settings) => Scaffold(
-                    appBar: AppBar(),
+                    appBar: AppBar(
+                      title: Text(Nav.currentRoute),
+                    ),
                     body: Column(
                       children: [Text('B'), RouteNavigatorWidget()],
                     )))
@@ -50,7 +54,9 @@ class Nav2Feature extends DartBoardFeature {
             NamedRouteDefinition(
                 route: '/details',
                 builder: (ctx, settings) => Scaffold(
-                    appBar: AppBar(),
+                    appBar: AppBar(
+                      title: Text(Nav.currentRoute),
+                    ),
                     body: Column(
                       children: [Text('Details'), RouteNavigatorWidget()],
                     )))
