@@ -1,0 +1,23 @@
+query GetPastLaunches{
+  launchesPast(limit: 100) {
+    mission_name
+    launch_date_local
+    launch_site {
+      site_name
+    }
+    links {
+      article_link
+      video_link
+      flickr_images
+    }
+    rocket {
+      rocket_name
+    }
+    ships {
+      name
+      home_port
+      image
+    }
+    mission_id
+  }
+}
