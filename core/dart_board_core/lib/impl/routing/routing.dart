@@ -109,6 +109,13 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
     notifyListeners();
   }
 
+  void pop() {
+    if (navStack.isNotEmpty) {
+      navStack.removeLast();
+    }
+    notifyListeners();
+  }
+
   void replaceTop(String route) {
     if (navStack.isNotEmpty) {
       navStack.removeLast();
@@ -215,6 +222,13 @@ class Nav {
     final currentDelegate = DartBoardCore.instance.routerDelegate;
     if (currentDelegate is DartBoardNavigationDelegate) {
       currentDelegate.popUntil(predicate);
+    }
+  }
+
+  static void pop() {
+    final currentDelegate = DartBoardCore.instance.routerDelegate;
+    if (currentDelegate is DartBoardNavigationDelegate) {
+      currentDelegate.pop();
     }
   }
 }

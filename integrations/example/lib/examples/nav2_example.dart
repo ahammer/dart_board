@@ -142,6 +142,11 @@ class RouteNavigatorWidget extends StatelessWidget {
                       Nav.popUntil((e) => e.path == '/test2');
                     },
                     child: Text('Pop until /test2')),
+                MaterialButton(
+                    onPressed: () {
+                      Nav.pop();
+                    },
+                    child: Text('Pop')),
               ],
             ),
             Expanded(
