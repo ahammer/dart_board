@@ -61,6 +61,14 @@
             "type": "dart"
         },
         {
+            "name": "SpaceX Nav 2.0",
+            "program": "lib/main.dart",
+            "cwd": "example_features/spacex/spacex_app",
+            "request": "launch",          
+            "flutterMode": "release",
+            "type": "dart"
+        },
+        {
             "name": "'Authentication' example",
             "program": "lib/examples/authentication_example.dart",
             "cwd": "integrations/example",

@@ -54,11 +54,11 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
             (previousValue, element) => [...previousValue, ...element.pages]),
     ];
 
-    // print('----------------- PAGES ---------------');
-    // for (final page in pages) {
-    //   print('${(page.key as ValueKey).value}');
-    // }
-    // print('----------------- END PAGES ---------------');
+    print('----------------- PAGES ---------------');
+    for (final page in pages) {
+      print('${(page.key as ValueKey).value}');
+    }
+    print('----------------- END PAGES ---------------');
     return appDecorations.reversed.fold(
         Navigator(
           transitionDelegate: DefaultTransitionDelegate(),
@@ -119,7 +119,7 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
     }
 
     navStack
-        .removeWhere((element) => dartBoardPath.path.contains(element.path));
+        .removeWhere((element) => element.path.startsWith(dartBoardPath.path));
 
     navStack.add(dartBoardPath);
   }
