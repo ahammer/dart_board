@@ -11,8 +11,10 @@ class DartBoardInformationParser extends RouteInformationParser<DartBoardPath> {
       Future.sync(() => DartBoardPath(routeInformation.location ?? '/'));
 
   @override
-  RouteInformation restoreRouteInformation(DartBoardPath configuration) =>
-      RouteInformation(location: configuration.path);
+  RouteInformation restoreRouteInformation(DartBoardPath configuration) {
+    print('restoring route information ${configuration.path}');
+    return RouteInformation(location: configuration.path);
+  }
 }
 
 class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
@@ -42,8 +44,7 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
       navStack.isNotEmpty ? navStack.last : null;
 
   late List<Page> pages;
-  late final root = MaterialPage(
-      key: ValueKey(initialRoute), child: RouteWidget(initialRoute));
+  late final root = DartBoardPage(path: initialRoute);
 
   @override
   Widget build(BuildContext context) {
@@ -202,7 +203,7 @@ class DartBoardPath {
       if (inherittedPages != null) {
         return inherittedPages!;
       }
-      print('Generating pages for ${this.hashCode}');
+      print('Generating pages for $hashCode');
       final uri = Uri.parse(path);
       _pages = <DartBoardPage>[];
 
