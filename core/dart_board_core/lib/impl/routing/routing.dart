@@ -75,8 +75,9 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
 
   @override
   Future<void> setNewRoutePath(DartBoardPath path) async {
-    navStack.clear();
-    _addPath(path);
+    navStack = [DartBoardPath('/', initialRoute)];
+
+    pushPath(path.path);
   }
 
   void _addPath(DartBoardPath dartBoardPath) {
