@@ -140,7 +140,7 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
   void appendRoute(String route) {
     if (route == '/') return;
     if (navStack.isNotEmpty) {
-      final last = navStack.removeLast();
+      final last = navStack.last;
       _addPath(DartBoardPath(last.path + route, initialRoute));
     }
 

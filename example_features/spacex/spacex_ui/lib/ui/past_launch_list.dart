@@ -1,10 +1,7 @@
 import 'package:dart_board_core/dart_board.dart';
 import 'package:flutter/material.dart';
 import 'package:spacex_launch_repository/impl/spacex_repository.dart';
-import 'package:dart_board_locator/dart_board_locator.dart';
 import 'package:intl/intl.dart';
-
-import 'launch_screen.dart';
 
 final format = DateFormat.yMd().add_jm();
 
@@ -18,25 +15,18 @@ class LaunchListItem extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => ListTile(
-        title: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              launch.missionName,
-              style: Theme.of(context).textTheme.subtitle1,
-            ),
-            if (launch.launchDateLocal != null)
-              Text(
-                format.format(launch.launchDateLocal),
-                style: Theme.of(context).textTheme.subtitle2,
-              ),
-          ],
+  Widget build(BuildContext context) => Card(
+        child: ListTile(
+          subtitle: Text(
+            format.format(launch.launchDateLocal),
+          ),
+          title: Text(
+            launch.missionName,
+          ),
+          onTap: () {
+            Nav.appendRoute('/${launch.missionName}');
+          },
         ),
-        onTap: () {
-          Nav.appendRoute('/${launch.missionName}');
-        },
       );
 }
 
@@ -49,36 +39,11 @@ class PastLaunchesList extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Text(
-            "Past Launches",
-            style: Theme.of(context)
-                .textTheme
-                .headline3!
-                .copyWith(fontWeight: FontWeight.bold, shadows: [
-              /// Embossed text
-              Shadow(
-                  blurRadius: 2, offset: Offset(0.5, 0.5), color: Colors.white),
-              Shadow(
-                  blurRadius: 2,
-                  offset: Offset(-0.5, -0.5),
-                  color: Colors.black),
-            ]),
-          ),
-          Expanded(
-            child: Card(
-              color: Theme.of(context).colorScheme.surface.withOpacity(0.5),
-              child: ListView.builder(
-                itemBuilder: (ctx, idx) => LaunchListItem(launches[idx]),
-                itemCount: launches.length,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  Widget build(BuildContext context) => Card(
+        color: Theme.of(context).scaffoldBackgroundColor,
+        child: ListView.builder(
+          itemBuilder: (ctx, idx) => LaunchListItem(launches[idx]),
+          itemCount: launches.length,
+        ),
+      );
 }
