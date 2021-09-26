@@ -35,7 +35,8 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
       DartBoardPath('/', initialRoute);
   late List<DartBoardPath> navStack = [initialDartBoardPath];
 
-  String get activeRoute {
+  @override
+  String get currentRoute {
     return navStack.last.path;
   }
 
@@ -158,6 +159,12 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
 
     notifyListeners();
   }
+
+  @override
+  ChangeNotifier get changeNotifier => this;
+
+  @override
+  List<DartBoardPath> get stack => navStack;
 }
 
 class DartBoardPath {
@@ -167,87 +174,6 @@ class DartBoardPath {
   DartBoardPath(this.path, this.initialRoute);
 
   late Page page = DartBoardPage(path: path, rootTarget: initialRoute);
-}
-
-/// Global navigation hooks
-///
-/// For the main router and access
-class Nav {
-  static ChangeNotifier get changeNotifier {
-    final currentDelegate = DartBoardCore.instance.routerDelegate;
-    if (currentDelegate is DartBoardNavigationDelegate) {
-      return currentDelegate;
-    }
-
-    throw Error();
-  }
-
-  static List<DartBoardPath> get stack {
-    final currentDelegate = DartBoardCore.instance.routerDelegate;
-    if (currentDelegate is DartBoardNavigationDelegate) {
-      return currentDelegate.navStack;
-    }
-
-    return [];
-  }
-
-  static String get currentRoute {
-    final currentDelegate = DartBoardCore.instance.routerDelegate;
-    if (currentDelegate is DartBoardNavigationDelegate) {
-      return currentDelegate.activeRoute;
-    }
-
-    return '/';
-  }
-
-  static void pushRoute(String route, {bool expand = false}) {
-    final currentDelegate = DartBoardCore.instance.routerDelegate;
-    if (currentDelegate is DartBoardNavigationDelegate) {
-      currentDelegate.push(route, expanded: expand);
-    }
-  }
-
-  static void clearWhere(bool Function(DartBoardPath) predicate) {
-    final currentDelegate = DartBoardCore.instance.routerDelegate;
-    if (currentDelegate is DartBoardNavigationDelegate) {
-      currentDelegate.clearWhere(predicate);
-    }
-  }
-
-  static void replaceTop(String route) {
-    final currentDelegate = DartBoardCore.instance.routerDelegate;
-    if (currentDelegate is DartBoardNavigationDelegate) {
-      currentDelegate.replaceTop(route);
-    }
-  }
-
-  static void clear() {
-    final currentDelegate = DartBoardCore.instance.routerDelegate;
-    if (currentDelegate is DartBoardNavigationDelegate) {
-      currentDelegate.clearWhere((e) => true);
-    }
-  }
-
-  static void popUntil(bool Function(DartBoardPath) predicate) {
-    final currentDelegate = DartBoardCore.instance.routerDelegate;
-    if (currentDelegate is DartBoardNavigationDelegate) {
-      currentDelegate.popUntil(predicate);
-    }
-  }
-
-  static void pop() {
-    final currentDelegate = DartBoardCore.instance.routerDelegate;
-    if (currentDelegate is DartBoardNavigationDelegate) {
-      currentDelegate.pop();
-    }
-  }
-
-  static void appendRoute(String path) {
-    final currentDelegate = DartBoardCore.instance.routerDelegate;
-    if (currentDelegate is DartBoardNavigationDelegate) {
-      currentDelegate.appendRoute(path);
-    }
-  }
 }
 
 /// A page in our history

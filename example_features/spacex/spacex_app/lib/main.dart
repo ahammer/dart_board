@@ -27,7 +27,7 @@ class EntryPoint extends DartBoardFeature {
                   body: Center(
                       child: MaterialButton(
                           onPressed: () {
-                            Nav.pushRoute('/launches');
+                            DartBoardCore.nav.push('/launches');
                           },
                           child: Text('Go to launches'))),
                 ))

@@ -51,7 +51,7 @@ class Test1Widget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(Nav.currentRoute),
+          title: Text(DartBoardCore.nav.currentRoute),
         ),
         body: Column(
           children: [Text('Test'), RouteNavigatorWidget()],
@@ -68,7 +68,7 @@ class Test2Widget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(Nav.currentRoute),
+          title: Text(DartBoardCore.nav.currentRoute),
         ),
         body: Column(
           children: [Text('Test2'), RouteNavigatorWidget()],
@@ -85,7 +85,7 @@ class RootWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(Nav.currentRoute),
+          title: Text(DartBoardCore.nav.currentRoute),
         ),
         body: Column(
           children: [Text('Root'), RouteNavigatorWidget()],
@@ -102,7 +102,7 @@ class CatAWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(Nav.currentRoute),
+          title: Text(DartBoardCore.nav.currentRoute),
         ),
         body: Column(
           children: [Text('A'), RouteNavigatorWidget()],
@@ -118,7 +118,7 @@ class CatBWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(
-        title: Text(Nav.currentRoute),
+        title: Text(DartBoardCore.nav.currentRoute),
       ),
       body: Column(
         children: [Text('B'), RouteNavigatorWidget()],
@@ -134,7 +134,7 @@ class DetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(Nav.currentRoute),
+          title: Text(DartBoardCore.nav.currentRoute),
         ),
         body: Column(
           children: [Text('Details'), RouteNavigatorWidget()],
@@ -168,49 +168,50 @@ class RouteNavigatorWidget extends StatelessWidget {
               children: [
                 MaterialButton(
                     onPressed: () {
-                      Nav.pushRoute('/root/cata/details');
+                      DartBoardCore.nav.push('/root/cata/details');
                     },
                     child: Text('Go To Details -> Direct')),
                 MaterialButton(
                     onPressed: () {
-                      Nav.pushRoute('/root/cata/details', expand: true);
+                      DartBoardCore.nav
+                          .push('/root/cata/details', expanded: true);
                     },
                     child: Text('Go To Details -> Stack')),
                 MaterialButton(
                     onPressed: () {
-                      Nav.pushRoute('/test');
+                      DartBoardCore.nav.push('/test');
                     },
                     child: Text('Go To Test')),
                 MaterialButton(
                     onPressed: () {
-                      Nav.pushRoute('/test2');
+                      DartBoardCore.nav.push('/test2');
                     },
                     child: Text('Go To Test2')),
                 MaterialButton(
                     onPressed: () {
-                      Nav.clearWhere((e) {
+                      DartBoardCore.nav.clearWhere((e) {
                         return e.path.contains('test');
                       });
                     },
                     child: Text('Clear test')),
                 MaterialButton(
                     onPressed: () {
-                      Nav.replaceTop('/test2');
+                      DartBoardCore.nav.replaceTop('/test2');
                     },
                     child: Text('Replace Top')),
                 MaterialButton(
                     onPressed: () {
-                      Nav.clear();
+                      DartBoardCore.nav.clearWhere((path) => true);
                     },
                     child: Text('Clear')),
                 MaterialButton(
                     onPressed: () {
-                      Nav.popUntil((e) => e.path == '/test2');
+                      DartBoardCore.nav.popUntil((e) => e.path == '/test2');
                     },
                     child: Text('Pop until /test2')),
                 MaterialButton(
                     onPressed: () {
-                      Nav.pop();
+                      DartBoardCore.nav.pop();
                     },
                     child: Text('Pop')),
               ],
@@ -232,7 +233,8 @@ class CurrentNavStack extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) =>
-      Nav.changeNotifier.builder((context, value) => Column(
-          children:
-              Nav.stack.map((e) => Text('${e.path} ${e.hashCode}')).toList()));
+      DartBoardCore.nav.changeNotifier.builder((context, value) => Column(
+          children: DartBoardCore.nav.stack
+              .map((e) => Text('${e.path} ${e.hashCode}'))
+              .toList()));
 }

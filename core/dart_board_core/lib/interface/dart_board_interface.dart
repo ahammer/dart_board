@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'nav_interface.dart';
+
 /// Interfaces for Dart Board
 ///
 /// - Global Key used by navigator
@@ -47,6 +49,7 @@ abstract class DartBoardCore {
 
   static late DartBoardCore _instance;
   static DartBoardCore get instance => _instance;
+  static DartBoardNav get nav => _instance.routerDelegate as DartBoardNav;
 
   /// These are the Features that have been loaded
   ///
