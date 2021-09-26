@@ -12,75 +12,136 @@ class Nav2Feature extends DartBoardFeature {
   @override
   List<RouteDefinition> get routes => [
         NamedRouteDefinition(
-            route: '/test',
-            builder: (ctx, settings) => Scaffold(
-                appBar: AppBar(
-                  title: Text(Nav.currentRoute),
-                ),
-                body: Column(
-                  children: [Text('Test'), RouteNavigatorWidget()],
-                ))),
+            route: '/test', builder: (ctx, settings) => const Test1Widget()),
         NamedRouteDefinition(
-            route: '/test2',
-            builder: (ctx, settings) => Scaffold(
-                appBar: AppBar(
-                  title: Text(Nav.currentRoute),
-                ),
-                body: Column(
-                  children: [Text('Test2'), RouteNavigatorWidget()],
-                ))),
+            route: '/test2', builder: (ctx, settings) => const Test2Widget()),
         NamedRouteDefinition(
             route: '/home', builder: (ctx, settings) => HomePage()),
         PathedRouteDefinition([
           /// Level 0
           [
             NamedRouteDefinition(
-                route: '/root',
-                builder: (ctx, settings) => Scaffold(
-                    appBar: AppBar(
-                      title: Text(Nav.currentRoute),
-                    ),
-                    body: Column(
-                      children: [Text('Root'), RouteNavigatorWidget()],
-                    ))),
+                route: '/root', builder: (ctx, settings) => const RootWidget()),
           ],
 
           /// Level 1 (e.g. /root/cata)
           [
             NamedRouteDefinition(
-                route: '/cata',
-                builder: (ctx, settings) => Scaffold(
-                    appBar: AppBar(
-                      title: Text(Nav.currentRoute),
-                    ),
-                    body: Column(
-                      children: [Text('A'), RouteNavigatorWidget()],
-                    ))),
+                route: '/cata', builder: (ctx, settings) => const CatAWidget()),
             NamedRouteDefinition(
-                route: '/catb',
-                builder: (ctx, settings) => Scaffold(
-                    appBar: AppBar(
-                      title: Text(Nav.currentRoute),
-                    ),
-                    body: Column(
-                      children: [Text('B'), RouteNavigatorWidget()],
-                    )))
+                route: '/catb', builder: (ctx, settings) => const CatBWidget())
           ],
 
           /// Level 2
           [
             NamedRouteDefinition(
                 route: '/details',
-                builder: (ctx, settings) => Scaffold(
-                    appBar: AppBar(
-                      title: Text(Nav.currentRoute),
-                    ),
-                    body: Column(
-                      children: [Text('Details'), RouteNavigatorWidget()],
-                    )))
+                builder: (ctx, settings) => const DetailsScreen())
           ],
         ])
       ];
+}
+
+class Test1Widget extends StatelessWidget {
+  const Test1Widget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text(Nav.currentRoute),
+        ),
+        body: Column(
+          children: [Text('Test'), RouteNavigatorWidget()],
+        ));
+  }
+}
+
+class Test2Widget extends StatelessWidget {
+  const Test2Widget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text(Nav.currentRoute),
+        ),
+        body: Column(
+          children: [Text('Test2'), RouteNavigatorWidget()],
+        ));
+  }
+}
+
+class RootWidget extends StatelessWidget {
+  const RootWidget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text(Nav.currentRoute),
+        ),
+        body: Column(
+          children: [Text('Root'), RouteNavigatorWidget()],
+        ));
+  }
+}
+
+class CatAWidget extends StatelessWidget {
+  const CatAWidget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text(Nav.currentRoute),
+        ),
+        body: Column(
+          children: [Text('A'), RouteNavigatorWidget()],
+        ));
+  }
+}
+
+class CatBWidget extends StatelessWidget {
+  const CatBWidget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text(Nav.currentRoute),
+        ),
+        body: Column(
+          children: [Text('B'), RouteNavigatorWidget()],
+        ));
+  }
+}
+
+class DetailsScreen extends StatelessWidget {
+  const DetailsScreen({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text(Nav.currentRoute),
+        ),
+        body: Column(
+          children: [Text('Details'), RouteNavigatorWidget()],
+        ));
+  }
 }
 
 class HomePage extends StatelessWidget {
@@ -95,6 +156,8 @@ class HomePage extends StatelessWidget {
 }
 
 class RouteNavigatorWidget extends StatelessWidget {
+  const RouteNavigatorWidget();
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -165,8 +228,9 @@ class CurrentNavStack extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Nav.changeNotifier.builder((context, value) =>
-        Column(children: Nav.stack.map((e) => Text(e.path)).toList()));
-  }
+  Widget build(BuildContext context) =>
+      Nav.changeNotifier.builder((context, value) => Column(
+          children: Nav.pages
+              .map((e) => Text('${(e.key as ValueKey).value} ${e.hashCode}'))
+              .toList()));
 }

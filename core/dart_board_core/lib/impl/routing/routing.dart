@@ -40,23 +40,27 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
   DartBoardPath? get currentConfiguration =>
       navStack.isNotEmpty ? navStack.last : null;
 
+  late List<Page> pages;
+  late final root = MaterialPage(
+      key: ValueKey(initialRoute), child: RouteWidget(initialRoute));
+
   @override
   Widget build(BuildContext context) {
-    var pages = <MaterialPage>[
-      MaterialPage(
-          key: ValueKey(initialRoute), child: RouteWidget(initialRoute)),
+    pages = <MaterialPage>[
+      root,
       if (navStack.isNotEmpty)
         ...navStack.fold<List<MaterialPage>>([],
             (previousValue, element) => [...previousValue, ...element.pages]),
     ];
 
-    print('----------------- PAGES ---------------');
-    for (final page in pages) {
-      print('${(page.key as ValueKey).value}');
-    }
-    print('----------------- END PAGES ---------------');
+    // print('----------------- PAGES ---------------');
+    // for (final page in pages) {
+    //   print('${(page.key as ValueKey).value}');
+    // }
+    // print('----------------- END PAGES ---------------');
     return appDecorations.reversed.fold(
         Navigator(
+          transitionDelegate: DefaultTransitionDelegate(),
           key: navigatorKey,
           pages: pages,
           onPopPage: (route, result) {
@@ -172,9 +176,8 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
 
 class DartBoardPath {
   final String path;
-  late final List<MaterialPage> pages = _pages;
 
-  DartBoardPath(this.path);
+  DartBoardPath(this.path, {this.inherittedPages});
 
   DartBoardPath get up {
     final uri = Uri.parse(path);
@@ -183,19 +186,29 @@ class DartBoardPath {
     }
 
     return DartBoardPath(
-        '/' + uri.pathSegments.take(uri.pathSegments.length - 1).join('/'));
+        '/' + uri.pathSegments.take(uri.pathSegments.length - 1).join('/'),
+        inherittedPages: pages.take(pages.length - 1).toList());
   }
 
-  List<MaterialPage> get _pages {
-    final uri = Uri.parse(path);
-    final pages = <MaterialPage>[];
+  List<MaterialPage>? inherittedPages;
+  List<MaterialPage>? _pages;
 
-    for (var i = 0; i < uri.pathSegments.length; i++) {
-      final currentPath = '/' + uri.pathSegments.take(i + 1).join('/');
-      pages.add(MaterialPage(
-          key: ValueKey(currentPath), child: RouteWidget(currentPath)));
+  List<MaterialPage> get pages {
+    if (_pages == null) {
+      if (inherittedPages != null) {
+        return inherittedPages!;
+      }
+      print('Generating pages for ${this.hashCode}');
+      final uri = Uri.parse(path);
+      _pages = <MaterialPage>[];
+
+      for (var i = 0; i < uri.pathSegments.length; i++) {
+        final currentPath = '/' + uri.pathSegments.take(i + 1).join('/');
+        _pages!.add(MaterialPage(
+            key: ValueKey(currentPath), child: RouteWidget(currentPath)));
+      }
     }
-    return pages;
+    return _pages!;
   }
 }
 
@@ -216,6 +229,15 @@ class Nav {
     final currentDelegate = DartBoardCore.instance.routerDelegate;
     if (currentDelegate is DartBoardNavigationDelegate) {
       return currentDelegate.navStack;
+    }
+
+    return [];
+  }
+
+  static List<Page> get pages {
+    final currentDelegate = DartBoardCore.instance.routerDelegate;
+    if (currentDelegate is DartBoardNavigationDelegate) {
+      return currentDelegate.pages;
     }
 
     return [];
