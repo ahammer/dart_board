@@ -172,6 +172,12 @@ class HomePageWithToggles extends StatelessWidget {
                             },
                           ),
                           ListTile(
+                            title: Text('Nav 2 Space X Launches'),
+                            onTap: () {
+                              Nav.pushRoute('/launches');
+                            },
+                          ),
+                          ListTile(
                             title: ThemeChooserDropdown(),
                           ),
                         ],

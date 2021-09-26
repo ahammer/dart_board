@@ -16,6 +16,7 @@ import 'package:dart_board_debug/debug_feature.dart';
 import 'package:dart_board_log/dart_board_log.dart';
 import 'package:example/impl/pages/home_page_with_toggles.dart';
 import 'package:example/impl/splash/splash.dart';
+import 'package:spacex_ui/spacex_ui_feature.dart';
 import 'data/constants.dart';
 import 'impl/decorations/wavy_lines_background.dart';
 import 'package:dart_board_template_bottomnav/dart_board_template_bottomnav.dart';
@@ -52,6 +53,7 @@ class ExampleFeature extends DartBoardFeature {
   ///
   @override
   List<DartBoardFeature> get dependencies => [
+        SpaceXUIFeature(),
         DartBoardCanvasFeature(
             stateBuilder: () => SplashAnimation(),
             namespace: 'SplashBackground',
