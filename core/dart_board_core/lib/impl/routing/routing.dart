@@ -71,6 +71,7 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
             }
 
             if (navStack.isEmpty) {
+              notifyListeners();
               return false;
             }
             final currentPath = navStack.last;
@@ -93,11 +94,7 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
 
   @override
   Future<void> setNewRoutePath(DartBoardPath path) async {
-    if (path.path == '/') {
-      navStack.clear();
-      notifyListeners();
-      return;
-    }
+    navStack.clear();
     _addPath(path);
   }
 
