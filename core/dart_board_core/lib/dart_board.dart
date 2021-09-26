@@ -15,4 +15,6 @@ export 'impl/widgets/feature_gate.dart';
 export 'impl/routing/routing.dart';
 export 'impl/route_types/named_route.dart';
 export 'impl/route_types/pathed_route.dart';
+export 'impl/route_types/map_route.dart';
+export 'impl/route_types/uri_route.dart';
 export 'impl/widgets/nil.dart';
