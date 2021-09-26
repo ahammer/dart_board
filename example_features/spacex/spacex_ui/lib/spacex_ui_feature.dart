@@ -1,5 +1,6 @@
 import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_locator/dart_board_locator.dart';
+import 'package:flutter/material.dart';
 import 'package:spacex_launch_repository/impl/spacex_repository_graphql.dart';
 import 'package:spacex_launch_repository/spacex_data_layer_feature.dart';
 import 'ui/launch_screen.dart';
@@ -15,6 +16,12 @@ class SpaceXUIFeature extends DartBoardFeature {
           [
             NamedRouteDefinition(
                 route: '/launches', builder: (ctx, settings) => LaunchScreen())
+          ],
+          [
+            UriRoute((ctx, uri) => Scaffold(
+                backgroundColor: Colors.transparent,
+                appBar: AppBar(),
+                body: Text(uri.path)))
           ]
         ]),
       ];

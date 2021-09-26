@@ -11,7 +11,7 @@ class PathedRouteDefinition extends RouteDefinition {
   /// level, namedroute
   ///
   /// Hard coding for development
-  final List<List<NamedRouteDefinition>> routes;
+  final List<List<RouteDefinition>> routes;
 
   PathedRouteDefinition(this.routes);
 
@@ -44,7 +44,8 @@ class PathedRouteDefinition extends RouteDefinition {
     if (url.pathSegments.isEmpty) {
       return false;
     }
-    print(url.pathSegments.length);
+
+    if (url.pathSegments.length > routes.length) return false;
 
     for (var i = 0; i < url.pathSegments.length; i++) {
       var hasMatchAtLevel = false;

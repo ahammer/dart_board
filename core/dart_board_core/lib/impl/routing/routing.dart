@@ -49,6 +49,7 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
         ...navStack.fold<List<MaterialPage>>([],
             (previousValue, element) => [...previousValue, ...element.pages]),
     ];
+
     print('----------------- PAGES ---------------');
     for (final page in pages) {
       print('${(page.key as ValueKey).value}');
@@ -92,7 +93,29 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
   }
 
   void _addPath(DartBoardPath dartBoardPath) {
-    navStack.removeWhere((element) => element.path == dartBoardPath.path);
+    /// Clear duplicates
+    ///navStack.removeWhere((element) => element.path == dartBoardPath.path);
+
+    /// Clear parent paths on stack (e.g. move to front)
+    /// This is to prevent
+    /// /path/cat
+    /// /path/cat/b
+    ///
+    /// in the stack, which would go up through 5 pages instead of 3.
+    /// e.g. b->cat->path->cat->path->root
+    /// vs b->cat->path->root
+    ///
+    /// The same logic is in there for named routes, when pushed they are moved
+    /// to the top
+    var path = dartBoardPath.up;
+    while (path.path != '/') {
+      navStack.removeWhere((element) => element.path == dartBoardPath.path);
+      path = path.up;
+    }
+
+    navStack
+        .removeWhere((element) => dartBoardPath.path.contains(element.path));
+
     navStack.add(dartBoardPath);
   }
 
@@ -131,6 +154,7 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
 
   void pushRoute(String route) {
     if (route == '/') return;
+
     _addPath(DartBoardPath(route));
     notifyListeners();
   }
@@ -139,8 +163,9 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
     if (route == '/') return;
     if (navStack.isNotEmpty) {
       final last = navStack.last;
-      navStack.add(DartBoardPath(last.path + route));
+      _addPath(DartBoardPath(last.path + route));
     }
+
     notifyListeners();
   }
 }
