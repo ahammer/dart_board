@@ -123,7 +123,8 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
 
   late Map<String, String?> featureOverrides;
 
-  late final dartBoardInformationParser = DartBoardInformationParser();
+  late final dartBoardInformationParser =
+      DartBoardInformationParser(widget.initialRoute);
   late final dartBoardRouterDelegate = DartBoardNavigationDelegate(
       navigatorKey: dartBoardNavKey,
       appDecorations: appDecorations,

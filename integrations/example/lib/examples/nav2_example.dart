@@ -116,15 +116,13 @@ class CatBWidget extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text(Nav.currentRoute),
-        ),
-        body: Column(
-          children: [Text('B'), RouteNavigatorWidget()],
-        ));
-  }
+  Widget build(BuildContext context) => Scaffold(
+      appBar: AppBar(
+        title: Text(Nav.currentRoute),
+      ),
+      body: Column(
+        children: [Text('B'), RouteNavigatorWidget()],
+      ));
 }
 
 class DetailsScreen extends StatelessWidget {
@@ -172,7 +170,12 @@ class RouteNavigatorWidget extends StatelessWidget {
                     onPressed: () {
                       Nav.pushRoute('/root/cata/details');
                     },
-                    child: Text('Go To Details')),
+                    child: Text('Go To Details -> Direct')),
+                MaterialButton(
+                    onPressed: () {
+                      Nav.pushRoute('/root/cata/details', expand: true);
+                    },
+                    child: Text('Go To Details -> Stack')),
                 MaterialButton(
                     onPressed: () {
                       Nav.pushRoute('/test');
@@ -230,7 +233,6 @@ class CurrentNavStack extends StatelessWidget {
   @override
   Widget build(BuildContext context) =>
       Nav.changeNotifier.builder((context, value) => Column(
-          children: Nav.pages
-              .map((e) => Text('${(e.key as ValueKey).value} ${e.hashCode}'))
-              .toList()));
+          children:
+              Nav.stack.map((e) => Text('${e.path} ${e.hashCode}')).toList()));
 }
