@@ -1,22 +1,9 @@
 import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_locator/dart_board_locator.dart';
 import 'package:flutter/material.dart';
-import 'package:spacex_launch_repository/impl/spacex_repository.dart';
 import 'package:spacex_launch_repository/spacex_data_layer_feature.dart';
 
-import 'launch_details.dart';
 import 'past_launch_list.dart';
-
-class LaunchScreenState extends ChangeNotifier {
-  LaunchData? _selection;
-
-  LaunchData? get selection => _selection;
-
-  set selection(LaunchData? data) {
-    _selection = data;
-    notifyListeners();
-  }
-}
 
 class LaunchScreen extends StatelessWidget {
   @override
@@ -35,6 +22,8 @@ class LaunchScreen extends StatelessWidget {
               Container(
                 width: 16,
               ),
+
+              /*
               locateAndBuild<LaunchScreenState>(
                   (ctx, state) => state._selection == null
                       ? Expanded(child: Container())
@@ -44,7 +33,7 @@ class LaunchScreen extends StatelessWidget {
                               child: DetailsPanel(
                                 state._selection!,
                                 key: ValueKey(state._selection),
-                              ))))
+                              ))))*/
             ];
 
             return LayoutBuilder(builder: (ctx, constraints) {

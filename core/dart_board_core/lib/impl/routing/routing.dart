@@ -41,42 +41,48 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
       navStack.isNotEmpty ? navStack.last : null;
 
   @override
-  Widget build(BuildContext context) => appDecorations.reversed.fold(
-      Navigator(
-        key: navigatorKey,
-        pages: [
-          MaterialPage(
-              key: ValueKey(initialRoute), child: RouteWidget(initialRoute)),
-          if (navStack.isNotEmpty)
-            ...navStack.fold<List<MaterialPage>>(
-                [],
-                (previousValue, element) =>
-                    [...previousValue, ...element.pages]),
-        ],
-        onPopPage: (route, result) {
-          if (!route.didPop(result)) {
-            return false;
-          }
+  Widget build(BuildContext context) {
+    var pages = <MaterialPage>[
+      MaterialPage(
+          key: ValueKey(initialRoute), child: RouteWidget(initialRoute)),
+      if (navStack.isNotEmpty)
+        ...navStack.fold<List<MaterialPage>>([],
+            (previousValue, element) => [...previousValue, ...element.pages]),
+    ];
+    print('----------------- PAGES ---------------');
+    for (final page in pages) {
+      print('${(page.key as ValueKey).value}');
+    }
+    print('----------------- END PAGES ---------------');
+    return appDecorations.reversed.fold(
+        Navigator(
+          key: navigatorKey,
+          pages: pages,
+          onPopPage: (route, result) {
+            if (!route.didPop(result)) {
+              return false;
+            }
 
-          if (navStack.isEmpty) {
-            return false;
-          }
-          final currentPath = navStack.last;
+            if (navStack.isEmpty) {
+              return false;
+            }
+            final currentPath = navStack.last;
 
-          final up = currentPath.up;
-          if (up.path == '/') {
-            navStack.removeLast();
-          } else {
-            navStack
-              ..removeLast()
-              ..add(up);
-          }
+            final up = currentPath.up;
+            if (up.path == '/') {
+              navStack.removeLast();
+            } else {
+              navStack
+                ..removeLast()
+                ..add(up);
+            }
 
-          notifyListeners();
-          return true;
-        },
-      ),
-      (child, element) => element.decoration(context, child));
+            notifyListeners();
+            return true;
+          },
+        ),
+        (child, element) => element.decoration(context, child));
+  }
 
   @override
   Future<void> setNewRoutePath(DartBoardPath path) async {
@@ -126,6 +132,15 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
   void pushRoute(String route) {
     if (route == '/') return;
     _addPath(DartBoardPath(route));
+    notifyListeners();
+  }
+
+  void appendRoute(String route) {
+    if (route == '/') return;
+    if (navStack.isNotEmpty) {
+      final last = navStack.last;
+      navStack.add(DartBoardPath(last.path + route));
+    }
     notifyListeners();
   }
 }
@@ -229,6 +244,13 @@ class Nav {
     final currentDelegate = DartBoardCore.instance.routerDelegate;
     if (currentDelegate is DartBoardNavigationDelegate) {
       currentDelegate.pop();
+    }
+  }
+
+  static void appendRoute(String path) {
+    final currentDelegate = DartBoardCore.instance.routerDelegate;
+    if (currentDelegate is DartBoardNavigationDelegate) {
+      currentDelegate.appendRoute(path);
     }
   }
 }

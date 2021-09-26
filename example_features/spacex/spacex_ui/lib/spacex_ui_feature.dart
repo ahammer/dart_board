@@ -11,13 +11,13 @@ class SpaceXUIFeature extends DartBoardFeature {
 
   @override
   List<RouteDefinition> get routes => [
-        NamedRouteDefinition(
-            route: '/launches', builder: (ctx, settings) => LaunchScreen())
+        PathedRouteDefinition([
+          [
+            NamedRouteDefinition(
+                route: '/launches', builder: (ctx, settings) => LaunchScreen())
+          ]
+        ]),
       ];
-
-  @override
-  List<DartBoardDecoration> get appDecorations =>
-      [LocatorDecoration(() => LaunchScreenState())];
 
   @override
   List<DartBoardFeature> get dependencies => [
