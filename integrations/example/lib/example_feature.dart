@@ -72,7 +72,9 @@ class ExampleFeature extends DartBoardFeature {
           ),
         ),
         ThemeFeature(
-            data: FlexColorScheme.dark(scheme: FlexScheme.outerSpace).toTheme),
+            data: FlexColorScheme.dark(scheme: FlexScheme.outerSpace).toTheme,
+            middleware: (data) =>
+                data.copyWith(scaffoldBackgroundColor: Colors.transparent)),
         DebugFeature(),
         LogFeature(),
         MinesweeperFeature(),

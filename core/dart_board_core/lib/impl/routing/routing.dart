@@ -268,7 +268,10 @@ class DartBoardPage extends Page {
 
     return MaterialPageRoute(
       settings: this,
-      builder: (context) => RouteWidget(path == '/' ? rootTarget : path),
+      builder: (context) => RouteWidget(
+        path == '/' ? rootTarget : path,
+        decorate: true,
+      ),
     );
   }
 }

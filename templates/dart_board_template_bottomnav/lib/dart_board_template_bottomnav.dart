@@ -95,7 +95,7 @@ class BottomNavTemplate extends StatelessWidget {
           duration: Duration(milliseconds: 200),
           child: RouteWidget(
             navstate.selectedRoute,
-            decorate: navstate.selectedConfig["decorate"] ?? true,
+            //decorate: navstate.selectedConfig["decorate"] ?? true,
             key: Key(navstate.selectedRoute),
           ),
         ),
