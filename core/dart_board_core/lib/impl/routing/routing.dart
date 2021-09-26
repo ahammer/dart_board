@@ -1,4 +1,5 @@
 import 'package:dart_board_core/impl/widgets/route_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../dart_board.dart';
@@ -46,10 +47,10 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
 
   @override
   Widget build(BuildContext context) {
-    pages = <MaterialPage>[
+    pages = <Page>[
       root,
       if (navStack.isNotEmpty)
-        ...navStack.fold<List<MaterialPage>>([],
+        ...navStack.fold<List<Page>>([],
             (previousValue, element) => [...previousValue, ...element.pages]),
     ];
 
@@ -190,22 +191,21 @@ class DartBoardPath {
         inherittedPages: pages.take(pages.length - 1).toList());
   }
 
-  List<MaterialPage>? inherittedPages;
-  List<MaterialPage>? _pages;
+  List<Page>? inherittedPages;
+  List<Page>? _pages;
 
-  List<MaterialPage> get pages {
+  List<Page> get pages {
     if (_pages == null) {
       if (inherittedPages != null) {
         return inherittedPages!;
       }
       print('Generating pages for ${this.hashCode}');
       final uri = Uri.parse(path);
-      _pages = <MaterialPage>[];
+      _pages = <DartBoardPage>[];
 
       for (var i = 0; i < uri.pathSegments.length; i++) {
         final currentPath = '/' + uri.pathSegments.take(i + 1).join('/');
-        _pages!.add(MaterialPage(
-            key: ValueKey(currentPath), child: RouteWidget(currentPath)));
+        _pages!.add(DartBoardPage(path: currentPath));
       }
     }
     return _pages!;
@@ -299,5 +299,34 @@ class Nav {
     if (currentDelegate is DartBoardNavigationDelegate) {
       currentDelegate.appendRoute(path);
     }
+  }
+}
+
+/// A page in our history
+/// Every page needs a "path" that is unique in the history
+///
+class DartBoardPage extends Page {
+  final String path;
+
+  DartBoardPage({required this.path}) : super(key: ValueKey(path));
+
+  @override
+  Route createRoute(BuildContext context) {
+    final settings = RouteSettings(name: path);
+
+    final routeDef =
+        DartBoardCore.instance.routes.where((e) => e.matches(settings)).first;
+
+    if (routeDef.routeBuilder != null) {
+      return routeDef.routeBuilder!(
+        settings,
+        (context) => RouteWidget(path),
+      );
+    }
+
+    return MaterialPageRoute(
+      settings: this,
+      builder: (context) => RouteWidget(path),
+    );
   }
 }

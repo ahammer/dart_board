@@ -3,6 +3,9 @@ import 'package:spacex_launch_repository/generated/graphql_api.graphql.dart';
 ///
 abstract class SpaceXRepository {
   Future<List<LaunchData>> getPastLaunches();
+  Future<LaunchData> getLaunchByMissionName(String missionName) =>
+      getPastLaunches().then((value) =>
+          value.where((element) => element.missionName == missionName).first);
 }
 
 /// A friendly model to mock easily and abstract GraphQL from UI
