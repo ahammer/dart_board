@@ -52,8 +52,8 @@ I'll consolidate into the main documentation soon, but will like to outline the 
 
 ## Concept
 
-All routes should be URL renderable. 
-Anonymous routes should be possible too (but no link sharing), e.g. yourapplication.com/#/_A73FH8 (e.g. to push locally a route at runtime dynamically)
+All routes should be URL renderable. Anything on the 
+TODO: Anonymous routes should be possible too (but no link sharing), e.g. yourapplication.com/#/_UNIQUE_ROUTE_NAME (e.g. to push locally a route at runtime dynamically)
 Routes that start with _ will be "private".
 
 Concept of Routes

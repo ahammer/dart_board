@@ -404,7 +404,7 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
 
   @override
   void pushRoute(String route) {
-    dartBoardRouterDelegate.pushRoute(route);
+    dartBoardRouterDelegate.push(route);
   }
 }
 

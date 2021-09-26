@@ -1,4 +1,5 @@
 import 'package:dart_board_core/impl/widgets/route_widget.dart';
+import 'package:dart_board_core/interface/nav_interface.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +24,8 @@ class DartBoardInformationParser extends RouteInformationParser<DartBoardPath> {
 }
 
 class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
-    with ChangeNotifier, PopNavigatorRouterDelegateMixin<DartBoardPath> {
+    with ChangeNotifier, PopNavigatorRouterDelegateMixin<DartBoardPath>
+    implements DartBoardNav {
   @override
   final GlobalKey<NavigatorState> navigatorKey;
 
@@ -77,7 +79,7 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
   Future<void> setNewRoutePath(DartBoardPath path) async {
     navStack = [DartBoardPath('/', initialRoute)];
 
-    pushPath(path.path);
+    push(path.path, expanded: true);
   }
 
   void _addPath(DartBoardPath dartBoardPath) {
@@ -85,6 +87,7 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
     navStack.add(dartBoardPath);
   }
 
+  @override
   void clearWhere(bool Function(DartBoardPath path) predicate) {
     navStack.removeWhere((path) {
       final result = predicate(path) && path.path != '/';
@@ -96,6 +99,7 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
     notifyListeners();
   }
 
+  @override
   void popUntil(bool Function(DartBoardPath path) predicate) {
     for (var i = navStack.length - 1; i >= 0; i--) {
       if (predicate(navStack[i])) break;
@@ -104,6 +108,7 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
     notifyListeners();
   }
 
+  @override
   void pop() {
     if (navStack.isNotEmpty) {
       navStack.removeLast();
@@ -111,21 +116,27 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
     notifyListeners();
   }
 
+  @override
   void replaceTop(String route) {
     if (navStack.isNotEmpty) {
       navStack.removeLast();
     }
-    pushRoute(route);
+    push(route);
   }
 
-  void pushRoute(String route) {
-    _addPath(DartBoardPath(route, initialRoute));
+  @override
+  void push(String route, {bool expanded = false}) {
+    if (expanded) {
+      _pushExpandedPath(route);
+    } else {
+      _addPath(DartBoardPath(route, initialRoute));
+    }
     notifyListeners();
   }
 
   /// Push a path and it's parent routes
   /// e.g. /a/b/c -> [/a, /a/b, /a/b/c]
-  void pushPath(String path) {
+  void _pushExpandedPath(String path) {
     if (path == '/') return;
     if (path.isEmpty) return;
 
@@ -137,6 +148,7 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
     notifyListeners();
   }
 
+  @override
   void appendRoute(String route) {
     if (route == '/') return;
     if (navStack.isNotEmpty) {
@@ -191,11 +203,7 @@ class Nav {
   static void pushRoute(String route, {bool expand = false}) {
     final currentDelegate = DartBoardCore.instance.routerDelegate;
     if (currentDelegate is DartBoardNavigationDelegate) {
-      if (expand) {
-        currentDelegate.pushPath(route);
-      } else {
-        currentDelegate.pushRoute(route);
-      }
+      currentDelegate.push(route, expanded: expand);
     }
   }
 
