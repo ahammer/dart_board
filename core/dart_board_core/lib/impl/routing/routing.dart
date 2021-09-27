@@ -165,15 +165,35 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
 
   @override
   List<DartBoardPath> get stack => navStack;
+
+  @override
+  void pushDynamic(
+      {required String dynamicRouteName, required WidgetBuilder builder}) {
+    /// Trim the leading / if used here
+    /// We'll put it back when we put the
+    /// private prefix e.g. /_ back on
+    if (dynamicRouteName.startsWith('/')) {
+      dynamicRouteName = dynamicRouteName.substring(1);
+    }
+
+    _addPath(
+        DartBoardPath('/_$dynamicRouteName', initialRoute, builder: builder));
+    notifyListeners();
+  }
 }
 
 class DartBoardPath {
   final String path;
   final String initialRoute;
+  final WidgetBuilder? builder;
 
-  DartBoardPath(this.path, this.initialRoute);
+  DartBoardPath(this.path, this.initialRoute, {this.builder});
 
-  late Page page = DartBoardPage(path: path, rootTarget: initialRoute);
+  late final Page page = DartBoardPage(
+    path: path,
+    rootTarget: initialRoute,
+    builder: builder,
+  );
 }
 
 /// A page in our history
@@ -182,30 +202,39 @@ class DartBoardPath {
 class DartBoardPage extends Page {
   final String path;
   final String rootTarget;
+  final WidgetBuilder? builder;
 
-  DartBoardPage({required this.path, required this.rootTarget})
+  DartBoardPage({required this.path, required this.rootTarget, this.builder})
       : super(key: ValueKey(path));
 
   @override
   Route createRoute(BuildContext context) {
     final settings = RouteSettings(name: path == '/' ? rootTarget : path);
 
-    final routeDef =
-        DartBoardCore.instance.routes.where((e) => e.matches(settings)).first;
+    final routes =
+        DartBoardCore.instance.routes.where((e) => e.matches(settings));
 
-    if (routeDef.routeBuilder != null) {
-      return routeDef.routeBuilder!(
-        settings,
-        (context) => RouteWidget(path == '/' ? rootTarget : path),
-      );
+    if (routes.isNotEmpty) {
+      final routeDef = routes.first;
+
+      if (routeDef.routeBuilder != null) {
+        return routeDef.routeBuilder!(
+          settings,
+          (builder != null)
+              ? builder!
+              : (context) => RouteWidget(path == '/' ? rootTarget : path),
+        );
+      }
     }
 
     return MaterialPageRoute(
       settings: this,
-      builder: (context) => RouteWidget(
-        path == '/' ? rootTarget : path,
-        decorate: true,
-      ),
+      builder: (builder != null)
+          ? builder!
+          : (context) => RouteWidget(
+                path == '/' ? rootTarget : path,
+                decorate: true,
+              ),
     );
   }
 }

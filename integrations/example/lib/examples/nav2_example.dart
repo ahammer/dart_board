@@ -179,6 +179,15 @@ class RouteNavigatorWidget extends StatelessWidget {
                     child: Text('Go To Details -> Stack')),
                 MaterialButton(
                     onPressed: () {
+                      DartBoardCore.nav.pushDynamic(
+                          dynamicRouteName: 'test_route',
+                          builder: (ctx) => Material(
+                                child: Text('Dynamic Route'),
+                              ));
+                    },
+                    child: Text('Push Dynamic')),
+                MaterialButton(
+                    onPressed: () {
                       DartBoardCore.nav.push('/test');
                     },
                     child: Text('Go To Test')),
