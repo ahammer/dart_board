@@ -8,9 +8,6 @@ Flutter Architecture/Framework for Feature based development
 
 
 - [Dart Board](#dart-board)
-- [!BREAKING NOTE! Navigator 2.0](#breaking-note-navigator-20)
-  - [Concept](#concept)
-    - [Navigation with routes](#navigation-with-routes)
 - [Introduction](#introduction)
 - [Feature List](#feature-list)
 - [Getting Started](#getting-started)
@@ -18,6 +15,13 @@ Flutter Architecture/Framework for Feature based development
   - [Work on the Framework](#work-on-the-framework)
 - [What is included](#what-is-included)
   - [How it works](#how-it-works)
+- [Navigator 2.0](#navigator-20)
+  - [Router concept](#router-concept)
+  - [How to Use](#how-to-use)
+  - [Fulfilling Routes](#fulfilling-routes)
+  - [Anonymous Routes](#anonymous-routes)
+  - [Upgrading from Dart Board Navigator to 2.0 Router](#upgrading-from-dart-board-navigator-to-20-router)
+  - [Concept](#concept)
 - [Features](#features)
   - [Decorations](#decorations)
     - [Page Decorations](#page-decorations)
@@ -45,55 +49,6 @@ Flutter Architecture/Framework for Feature based development
 
 
 ![Dependency Graph](https://www.dart-board.io/assets/img/screenshots/dart_board_2.jpg)
-
-# !BREAKING NOTE! Navigator 2.0 #
-
-I'll consolidate into the main documentation soon, but will like to outline the changes here and API.
-
-## Concept
-
-All routes should be URL renderable. Anything on the 
-TODO: Anonymous routes should be possible too (but no link sharing), e.g. yourapplication.com/#/_UNIQUE_ROUTE_NAME (e.g. to push locally a route at runtime dynamically)
-Routes that start with _ will be "private".
-
-Concept of Routes
-`/some/path/toContent` - URI
-`/resource` - URI
-`/` - Root mirrors `initialRoute`
-
-Route Types in DartBoard
-`NamedRouteDefinition` -> Matches a portion of a path for a specific name, i.e. `/page` `/details`
-`MapRoute` -> Named Route that allows multiple pages (Syntactic sugar)
-`UriRoute` -> Matches everything that hits it. Can globally handle routing, or can be used with PathedRoute to provide detailed parsing of the resource.
-`PathedRoute` -> Use this for deep-linked trees. E.g. `/category/details/50` it takes a List of Lists of RouteDefinitions. Each level of depth represents the tree.
-
-E.g. In SpaceX feature it's used like this
-
-```
-  @override
-  List<RouteDefinition> get routes => [
-        PathedRouteDefinition([
-          [
-            NamedRouteDefinition(
-                route: '/launches', builder: (ctx, settings) => LaunchScreen())
-          ],
-          [UriRoute((ctx, uri) => LaunchDataUriShim(uri: uri))]
-        ]),
-      ];
-```
-
-This matches `/launches` and also `/launches/[ANY_ROUTE_NAME]`
-
-`/launches` appends the name of the mission to the URL, and you end up with something like `/launches/Starlink%207`
-
-UriRoute can then pull the data from the URI and pass it to the page to load what it needs to.
-
-
-### Navigation with routes
-
-Once complete there should be a DartBoardNavInterface object. This will be implemented by the `RouterDelegate`
-
-To access global Nav from anywhere `DartBoardCore.nav` should give access to the nav object.
 
 
 
@@ -204,6 +159,145 @@ void main() => runApp(DartBoard(
   features:[MainFeature(), SomeOtherFeature(), ....], 
   initialRoute: '/main']))
 ```
+
+
+# Navigator 2.0
+
+## Router concept
+
+The router has these rules. 
+
+1) You have a stack of "paths" (e.g. [/, /somepage, /store/details/32])
+2) No duplicate paths in the stack, pushing a duplicate will move it to the front
+3) All routes must be URL reproducable
+4) pushDynamic (builder) routes can not be shared, but are temporarily named.
+5)  `/` is a mirror of a `Route` from a feature. Configured with `/initialRoute` (no change)
+
+## How to Use
+
+You can access the nav globally with `DartBoardCore.nav` instance.
+
+```
+abstract class DartBoardNav {
+  /// The currently active (foreground) route
+  String get currentRoute;
+
+  /// Change Notifier to listen to changes in nav
+  ChangeNotifier get changeNotifier;
+
+  /// Get the current stack
+  List<DartBoardPath> get stack;
+
+  /// Push a route onto the stack
+  /// expanded will push sub-paths (e.g. /a/b/c will push [/a, /a/b, /a/b/c])
+  void push(String route, {bool expanded});
+
+  /// Pop the top most route
+  void pop();
+
+  /// Pop routers until the predicate clears
+  void popUntil(bool Function(DartBoardPath path) predicate);
+
+  /// Clear all routes in the stack that match the predicate
+  void clearWhere(bool Function(DartBoardPath path) predicate);
+
+  /// Pop & Push (replace top of stack)
+  /// Does not work on '/'
+  void replaceTop(String route);
+
+  /// Append to the current route (e.g. /b appended to /a = /a/b)
+  void appendRoute(String route);
+
+  /// Push a route with a dynamic route name
+  void pushDynamic(
+      {required String dynamicRouteName, required WidgetBuilder builder});
+}
+```
+
+## Fulfilling Routes
+
+How to fulfill complicated roots?
+`NamedRouteDefinition` works good for static, fixed targets. But what if you want something more advanced?
+
+E.g. you want /store/pots/2141 to resolve.
+
+`UriRoute` and `PathedRoute` solve those issues for you.
+
+`PathedRoute` will handle directory structures. You do this with a list of lists. Each level can hold any number of matchers. If a path matches up to that level, the lowest matcher will take it.
+
+```
+// PsuedoCode
+[
+  [
+    NamedRoute('/store', (ctx,settings)=>StorePage()),    
+  ],
+  [
+    NamedRoute('/pots', (ctx,settings)=>PotsPage()),
+    NamedRoute('/pans'  (ctx,settings)=>PotsPage()),
+  ],
+  [
+    UriRoute((context, uri)=>Parse and Display)
+  ]
+]
+```
+
+This PathedRoute config would respond to many routes: `[/store, /store/pots, /store/pans, /store/pots/*, /store/pans/*]`
+
+The * is the UriRoute. You can use this to manage all your Routing, or you can use it with a Pathed route to parse the information.
+
+UriRoute will parse the resource request and let you access query params, path segments and anything else encoded in the page request.
+
+
+## Anonymous Routes
+
+Sometimes you want to just push a screen right? Like you didn't register it in a feature, you want it to be dynamic for whatever reason.
+
+`void pushDynamic({required String dynamicRouteName, required WidgetBuilder builder});`
+
+is what you can use here. Give it a unique name which will be prefixed with _, e.g. `/_YourDynamicRoute3285` If you see the `_` that means you can not share this route. If you give it to someone else it's going to 404 for them. It's dynamically allocated for the users session.
+
+## Upgrading from Dart Board Navigator to 2.0 Router
+
+- Replace all `Navigator.of(context).pushNamed(route)` to `DartBoardCore.nav.push(route)` 
+
+## Concept
+
+All routes should be URL renderable. Anything on the 
+TODO: Anonymous routes should be possible too (but no link sharing), e.g. yourapplication.com/#/_UNIQUE_ROUTE_NAME (e.g. to push locally a route at runtime dynamically)
+Routes that start with _ will be "private".
+
+Concept of Routes
+`/some/path/toContent` - URI
+`/resource` - URI
+`/` - Root mirrors `initialRoute`
+
+Route Types in DartBoard
+`NamedRouteDefinition` -> Matches a portion of a path for a specific name, i.e. `/page` `/details`
+`MapRoute` -> Named Route that allows multiple pages (Syntactic sugar)
+`UriRoute` -> Matches everything that hits it. Can globally handle routing, or can be used with PathedRoute to provide detailed parsing of the resource.
+`PathedRoute` -> Use this for deep-linked trees. E.g. `/category/details/50` it takes a List of Lists of RouteDefinitions. Each level of depth represents the tree.
+
+E.g. In SpaceX feature it's used like this
+
+```
+  @override
+  List<RouteDefinition> get routes => [
+        PathedRouteDefinition([
+          [
+            NamedRouteDefinition(
+                route: '/launches', builder: (ctx, settings) => LaunchScreen())
+          ],
+          [UriRoute((ctx, uri) => LaunchDataUriShim(uri: uri))]
+        ]),
+      ];
+```
+
+This matches `/launches` and also `/launches/[ANY_ROUTE_NAME]`
+
+`/launches` appends the name of the mission to the URL, and you end up with something like `/launches/Starlink%207`
+
+UriRoute can then pull the data from the URI and pass it to the page to load what it needs to.
+
 
 
 # Features
