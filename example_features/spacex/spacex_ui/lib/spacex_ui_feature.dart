@@ -71,11 +71,13 @@ class _LaunchDataScreenState extends State<LaunchDataScreen> {
           if (snapshot.hasData) {
             return LaunchDetailsWidget(data: snapshot.data!);
           }
-          return Material(
-              child: Center(
-            child: SizedBox(
-                width: 32, height: 32, child: CircularProgressIndicator()),
-          ));
+          return Scaffold(
+            appBar: AppBar(title: Text(widget.missionName)),
+            body: Center(
+              child: SizedBox(
+                  width: 128, height: 128, child: CircularProgressIndicator()),
+            ),
+          );
         },
       );
 }
@@ -87,22 +89,11 @@ class LaunchDetailsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text(data.missionName),
+      ),
       body: CustomScrollView(
         slivers: [
-          SliverList(
-              delegate: SliverChildListDelegate.fixed(
-            [
-              Card(
-                  child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  data.missionName,
-                  style: Theme.of(context).textTheme.headline3,
-                ),
-              )),
-            ],
-          )),
           SliverGrid(
             gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
               maxCrossAxisExtent: 400.0,
