@@ -111,7 +111,7 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
 
   @override
   void pop() {
-    if (navStack.isNotEmpty) {
+    if (navStack.length > 1) {
       navStack.removeLast();
     }
     notifyListeners();
@@ -119,7 +119,7 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
 
   @override
   void replaceTop(String route) {
-    if (navStack.isNotEmpty) {
+    if (navStack.length > 1) {
       navStack.removeLast();
     }
     push(route);
