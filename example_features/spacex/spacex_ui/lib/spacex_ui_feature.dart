@@ -84,6 +84,17 @@ class LaunchDetailsWidget extends StatelessWidget {
   const LaunchDetailsWidget({Key? key, required this.data}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) =>
-      Scaffold(appBar: AppBar(), body: Text(data.missionName));
+  Widget build(BuildContext context) => Scaffold(
+      appBar: AppBar(),
+      body: CustomScrollView(
+        slivers: [
+          SliverList(
+            delegate: SliverChildListDelegate.fixed(
+              [
+                Text('hello'),
+              ],
+            ),
+          )
+        ],
+      ));
 }
