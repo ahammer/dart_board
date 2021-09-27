@@ -25,6 +25,7 @@ abstract class DartBoardNav {
   void clearWhere(bool Function(DartBoardPath path) predicate);
 
   /// Pop & Push (replace top of stack)
+  /// Does not work on '/'
   void replaceTop(String route);
 
   /// Append to the current route (e.g. /b appended to /a = /a/b)
