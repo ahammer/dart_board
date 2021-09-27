@@ -50,10 +50,10 @@ class TestFeature extends DartBoardFeature {
                       onPressed: () {
                         if (route2 != null) {
                           /// If we have a second route, this will push to it
-                          Navigator.of(ctx).pushNamed(route2!);
+                          DartBoardCore.nav.push(route2!);
                         } else {
                           // If not, lets 404
-                          Navigator.of(ctx).pushNamed('/expected404');
+                          DartBoardCore.nav.push('/expected_404');
                         }
                       },
                       child: Text('$namespace:$implementationName')),
@@ -62,7 +62,7 @@ class TestFeature extends DartBoardFeature {
         }),
         if (route2 != null)
           NamedRouteDefinition(
-              routeBuilder: kMaterialRouteResolver,
+              //routeBuilder: kMaterialRouteResolver,
               route: route2!,
               builder: (ctx, settings) => Material(
                   child: Text('$namespace:${implementationName}_secondary')))
@@ -102,7 +102,7 @@ void main() {
 
     // Nothing is registered, so this should be 404 message
     // Checking for default
-    expect(find.text('"/a" Not Found'), findsOneWidget);
+    expect(find.text('404\n"/a" Not Found'), findsOneWidget);
   });
 
   testWidgets('Check page navigation', (tester) async {
@@ -118,7 +118,7 @@ void main() {
     // Make sure DartBoard as started fully
     await tester.pumpAndSettle();
     await tester.tap(find.text('namespace:default'));
-    await tester.pumpAndSettle();
+    await tester.pumpAndSettle(Duration(seconds: 2));
     expect(find.text('namespace:default_secondary'), findsOneWidget);
   });
 
@@ -155,7 +155,7 @@ void main() {
     await tester.pumpAndSettle();
     await tester.tap(find.text('namespace:default'));
     await tester.pumpAndSettle();
-    expect(find.text('"/expected404" Not Found'), findsOneWidget);
+    expect(find.text('404\n"/expected_404" Not Found'), findsOneWidget);
   });
 
   testWidgets('Page and App Decoration Check', (tester) async {
