@@ -132,10 +132,14 @@ class LaunchDetailsWidget extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(32)),
                     clipBehavior: Clip.antiAlias,
-                    child: FadeInImage.memoryNetwork(
-                        fit: BoxFit.cover,
-                        placeholder: kTransparentImage,
-                        image: data.flickrImages[index]));
+                    child: InkWell(
+                      onTap: () => launch(data.flickrImages[index]),
+                      child: FadeInImage.memoryNetwork(
+                          fit: BoxFit.cover,
+                          placeholder: kTransparentImage,
+                          image:
+                              data.flickrImages[index].replaceAll('_o', '_m')),
+                    ));
               },
               childCount: data.flickrImages.length,
             ),
