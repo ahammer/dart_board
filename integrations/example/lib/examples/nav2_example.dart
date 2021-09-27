@@ -110,6 +110,14 @@ class NavTestPage extends StatelessWidget {
                 onPressed: () => DartBoardCore.nav.pop(),
                 label: 'Pop',
               ),
+              _NavButton(
+                onPressed: () => showDialog(
+                    context: context,
+                    builder: (ctx) => Dialog(
+                          child: Text('Hello'),
+                        )),
+                label: 'Show Dialog',
+              ),
             ],
           ),
           Expanded(
