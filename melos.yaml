@@ -3,7 +3,7 @@ packages:
   - core/**
   - templates/**
   - features/**
-
+  - example_features/**
 
 ide:
   intellij:

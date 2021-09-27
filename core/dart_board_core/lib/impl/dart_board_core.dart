@@ -11,8 +11,6 @@ late final Logger log = Logger('DartBoard');
 late final NavigatorState navigator = dartBoardNavKey.currentState!;
 late final BuildContext navigatorContext = dartBoardNavKey.currentContext!;
 
-GlobalKey<_DartBoardState> dartBoardKey = GlobalKey();
-
 Widget _pageNoteFound(BuildContext context) =>
     RouteNotFound(ModalRoute.of(context)!.settings.name!);
 
@@ -125,7 +123,17 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
 
   late Map<String, String?> featureOverrides;
 
-  bool _init = false;
+  late final dartBoardInformationParser =
+      DartBoardInformationParser(widget.initialRoute);
+  late final dartBoardRouterDelegate = DartBoardNavigationDelegate(
+      navigatorKey: dartBoardNavKey,
+      appDecorations: appDecorations,
+      initialRoute: widget.initialRoute);
+
+  /// Expose the router Delegate for "nav" to work, or for your own nav if necessary
+  ///
+  @override
+  RouterDelegate get routerDelegate => dartBoardRouterDelegate;
 
   @override
   void initState() {
@@ -133,8 +141,6 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
     initCore();
     featureOverrides = widget.featureOverrides ?? {};
     buildFeatures();
-    WidgetsBinding.instance
-        ?.scheduleFrameCallback((timeStamp) => setState(() => _init = true));
   }
 
   /// Build Dart-Board Core
@@ -143,7 +149,12 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
   /// 2) Then provide a MaterialApp + Customizations
   ///
   @override
-  Widget build(BuildContext context) => MaterialApp(
+  Widget build(BuildContext context) => MaterialApp.router(
+      routeInformationParser: dartBoardInformationParser,
+      routerDelegate: dartBoardRouterDelegate);
+
+  /*
+  MaterialApp(
         home: _init
             ? RouteWidget(
                 widget.initialRoute,
@@ -158,6 +169,7 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
         ),
         onGenerateRoute: onGenerateRoute,
       );
+      */
 
   /// Dart Board Core Overrides
   @override
@@ -389,6 +401,11 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
 
   @override
   List<DartBoardFeature> get initialFeatures => widget.features;
+
+  @override
+  void pushRoute(String route) {
+    dartBoardRouterDelegate.push(route);
+  }
 }
 
 /// This class can apply the page decorations.

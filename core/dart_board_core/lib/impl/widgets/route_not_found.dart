@@ -7,15 +7,8 @@ class RouteNotFound extends StatelessWidget {
   const RouteNotFound(this.route);
 
   @override
-  Widget build(BuildContext context) => Container(
-        width: double.infinity,
-        height: double.infinity,
-        child: FittedBox(
-          fit: BoxFit.contain,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text('"$route" Not Found'),
-          ),
-        ),
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(),
+        body: Center(child: Text('404\n"$route" Not Found')),
       );
 }

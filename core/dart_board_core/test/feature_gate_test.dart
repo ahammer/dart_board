@@ -37,10 +37,11 @@ class FeatureB extends DartBoardFeature {
 void main() {
   testWidgets('Check the Feature-Gate: Non-Blocking mode', (tester) async {
     await tester.pumpWidget(DartBoard(
+      featureOverrides: {'FeatureA': null},
       features: [FeatureB(blocking: false)],
       initialRoute: '/main',
     ));
-    DartBoardCore.instance.setFeatureImplementation('FeatureA', null);
+
     await tester.pumpAndSettle();
 
     expect(find.text('test passed'), findsOneWidget);

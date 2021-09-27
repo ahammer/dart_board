@@ -9,7 +9,10 @@ class ThemeFeature extends DartBoardFeature with ChangeNotifier {
   String get implementationName => 'Theme';
 
   ThemeData data;
-  ThemeFeature({required this.data});
+
+  ThemeData Function(ThemeData data)? middleware;
+
+  ThemeFeature({required this.data, this.middleware});
 
   @override
   List<DartBoardDecoration> get pageDecorations => [
@@ -18,7 +21,7 @@ class ThemeFeature extends DartBoardFeature with ChangeNotifier {
           decoration: (context, child) => ChangeNotifierBuilder<ThemeFeature>(
               notifier: this,
               builder: (ctx, feature) => Theme(
-                    data: data,
+                    data: middleware != null ? middleware!(data) : data,
                     child: child,
                   )),
         ),

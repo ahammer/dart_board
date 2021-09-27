@@ -6,7 +6,7 @@ import '../../dart_board.dart';
 ///
 /// Can be used for simple named routing
 ///
-/// E.g. NamedRouteDefinition(route: "/main", builder: (ctx, settings)=>Container(...))
+/// E.g. NamedRouteDefinition(route: "main", builder: (ctx, settings)=>Container(...))
 class NamedRouteDefinition implements RouteDefinition {
   /// The Route this NamedRoute maps to
   /// E.g. /main
@@ -35,21 +35,4 @@ class NamedRouteDefinition implements RouteDefinition {
 
   @override
   String toString() => route;
-}
-
-/// Defines routes in a map format
-class MapRouteDefinition implements RouteDefinition {
-  final Map<String, RouteWidgetBuilder> routeMap;
-
-  MapRouteDefinition({required this.routeMap, this.routeBuilder});
-
-  @override
-  bool matches(RouteSettings settings) => routeMap.containsKey(settings.name);
-
-  @override
-  RouteBuilder? routeBuilder;
-
-  @override
-  RouteWidgetBuilder get builder =>
-      (ctx, settings) => routeMap[settings.name]!(ctx, settings);
 }

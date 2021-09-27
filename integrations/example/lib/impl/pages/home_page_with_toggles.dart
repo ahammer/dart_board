@@ -172,6 +172,12 @@ class HomePageWithToggles extends StatelessWidget {
                             },
                           ),
                           ListTile(
+                            title: Text('Nav 2 Space X Launches'),
+                            onTap: () {
+                              DartBoardCore.nav.push('/launches');
+                            },
+                          ),
+                          ListTile(
                             title: ThemeChooserDropdown(),
                           ),
                         ],

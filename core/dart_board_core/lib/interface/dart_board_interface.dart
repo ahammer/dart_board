@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'nav_interface.dart';
+
 /// Interfaces for Dart Board
 ///
 /// - Global Key used by navigator
@@ -47,6 +49,7 @@ abstract class DartBoardCore {
 
   static late DartBoardCore _instance;
   static DartBoardCore get instance => _instance;
+  static DartBoardNav get nav => _instance.routerDelegate as DartBoardNav;
 
   /// These are the Features that have been loaded
   ///
@@ -61,6 +64,8 @@ abstract class DartBoardCore {
   List<RouteDefinition> get routes;
   Set<DartBoardFeature> get loadedFeatures;
   List<DartBoardFeature> get initialFeatures;
+
+  RouterDelegate get routerDelegate;
 
   /// This is all detected implementations for each feature namespace
   Map<String, List<String>> get detectedImplementations;
@@ -106,6 +111,8 @@ abstract class DartBoardCore {
   /// param: call - A MethodCall object (with name and settings) to call out to
   Future<dynamic> dispatchMethodCall(
       {required BuildContext context, required MethodCall call});
+
+  void pushRoute(String route);
 }
 
 ///

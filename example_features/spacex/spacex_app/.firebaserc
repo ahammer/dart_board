@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "dart-board-59f93"
+  },
+  "targets": {
+    "dart-board-59f93": {
+      "hosting": {
+        "spacexdemo-d312b": [
+          "spacexdemo-d312b"
+        ]
+      }
+    }
+  }
+}

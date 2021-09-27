@@ -16,6 +16,7 @@ import 'package:dart_board_debug/debug_feature.dart';
 import 'package:dart_board_log/dart_board_log.dart';
 import 'package:example/impl/pages/home_page_with_toggles.dart';
 import 'package:example/impl/splash/splash.dart';
+import 'package:spacex_ui/spacex_ui_feature.dart';
 import 'data/constants.dart';
 import 'impl/decorations/wavy_lines_background.dart';
 import 'package:dart_board_template_bottomnav/dart_board_template_bottomnav.dart';
@@ -52,6 +53,7 @@ class ExampleFeature extends DartBoardFeature {
   ///
   @override
   List<DartBoardFeature> get dependencies => [
+        SpaceXUIFeature(),
         DartBoardCanvasFeature(
             stateBuilder: () => SplashAnimation(),
             namespace: 'SplashBackground',
@@ -70,7 +72,9 @@ class ExampleFeature extends DartBoardFeature {
           ),
         ),
         ThemeFeature(
-            data: FlexColorScheme.dark(scheme: FlexScheme.outerSpace).toTheme),
+            data: FlexColorScheme.dark(scheme: FlexScheme.outerSpace).toTheme,
+            middleware: (data) =>
+                data.copyWith(scaffoldBackgroundColor: Colors.transparent)),
         DebugFeature(),
         LogFeature(),
         MinesweeperFeature(),
@@ -207,6 +211,47 @@ class ExampleFeature extends DartBoardFeature {
                   },
                   child: child,
                 ))
+      ];
+
+  @override
+  List<RouteDefinition> get routes => [
+        /// We are going to set up this PathedRouteDefinition to demonstrate deep linking
+        /// and browser history support
+        PathedRouteDefinition(
+          /// Array of path levels, e.g. [/0/1/2/3]
+          /// For this definition to take hold, it must have a valid route each way down. E.g.
+          /// /scenes/stars has a match on both levels
+          /// /scenes has a match on the first
+          ///
+          /// Doesn't work
+          /// /scanez/stars
+          ///
+          /// won't match first path, so it'll not resolve on this definition
+          ///
+          /// Protip: Exploit this scope things.
+          [
+            /// Level 0
+            [
+              NamedRouteDefinition(
+                  route: '/scenes',
+                  builder: (ctx, settings) => Scaffold(
+                      appBar: AppBar(),
+                      body: Center(child: Card(child: Text('Nothing Here'))))),
+            ],
+
+            /// Level 1
+            [
+              NamedRouteDefinition(
+                  route: '/stars',
+                  builder: (ctx, settings) =>
+                      Scaffold(appBar: AppBar(), body: RouteWidget('/space'))),
+              NamedRouteDefinition(
+                  route: '/sun',
+                  builder: (ctx, settings) => Scaffold(
+                      appBar: AppBar(), body: RouteWidget('/space_all'))),
+            ],
+          ],
+        ),
       ];
 
   @override

@@ -49,7 +49,7 @@
             "program": "lib/examples/locator_example.dart",
             "cwd": "integrations/example",
             "request": "launch",          
-            "flutterMode": "release",
+            "flutterMode": "debug",
             "type": "dart"
         },
         {
@@ -57,7 +57,23 @@
             "program": "lib/examples/particles_example.dart",
             "cwd": "integrations/example",
             "request": "launch",          
-            "flutterMode": "release",
+            "flutterMode": "debug",
+            "type": "dart"
+        },        
+        {
+            "name": "'Nav 2.0' basic example",
+            "program": "lib/examples/nav2_example.dart",
+            "cwd": "integrations/example",
+            "request": "launch",          
+            "flutterMode": "debug",
+            "type": "dart"
+        },
+        {
+            "name": "SpaceX Nav 2.0",
+            "program": "lib/main.dart",
+            "cwd": "example_features/spacex/spacex_app",
+            "request": "launch",          
+            "flutterMode": "debug",
             "type": "dart"
         },
         {

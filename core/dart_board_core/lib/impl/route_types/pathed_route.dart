@@ -11,35 +11,9 @@ class PathedRouteDefinition extends RouteDefinition {
   /// level, namedroute
   ///
   /// Hard coding for development
-  final routes = <List<NamedRouteDefinition>>[
-    /// Level 0
-    [
-      NamedRouteDefinition(
-          route: '/root',
-          builder: (ctx, settings) =>
-              Scaffold(appBar: AppBar(), body: Text('Root'))),
-    ],
+  final List<List<RouteDefinition>> routes;
 
-    /// Level 1 (e.g. /root/cata)
-    [
-      NamedRouteDefinition(
-          route: '/cata',
-          builder: (ctx, settings) =>
-              Scaffold(appBar: AppBar(), body: Text('A'))),
-      NamedRouteDefinition(
-          route: '/catb',
-          builder: (ctx, settings) =>
-              Scaffold(appBar: AppBar(), body: Text('B')))
-    ],
-
-    /// Level 2
-    [
-      NamedRouteDefinition(
-          route: '/details',
-          builder: (ctx, settings) =>
-              Scaffold(appBar: AppBar(), body: Text('Details')))
-    ],
-  ];
+  PathedRouteDefinition(this.routes);
 
   @override
   RouteWidgetBuilder get builder => (ctx, settings) {
@@ -67,9 +41,11 @@ class PathedRouteDefinition extends RouteDefinition {
   bool matches(RouteSettings settings) {
     final url = Uri.tryParse(settings.name!);
     if (url == null) return false;
+    if (url.pathSegments.isEmpty) {
+      return false;
+    }
 
-    print(url.pathSegments.length);
-    late RouteDefinition? lastMatching;
+    if (url.pathSegments.length > routes.length) return false;
 
     for (var i = 0; i < url.pathSegments.length; i++) {
       var hasMatchAtLevel = false;
@@ -79,7 +55,9 @@ class PathedRouteDefinition extends RouteDefinition {
           hasMatchAtLevel = true;
         }
       }
-      if (!hasMatchAtLevel) return false;
+      if (!hasMatchAtLevel) {
+        return false;
+      }
     }
     return true;
   }
