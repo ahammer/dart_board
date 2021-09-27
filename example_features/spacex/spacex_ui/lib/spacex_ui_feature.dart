@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:spacex_launch_repository/impl/spacex_repository.dart';
 import 'package:spacex_launch_repository/impl/spacex_repository_graphql.dart';
 import 'package:spacex_launch_repository/spacex_data_layer_feature.dart';
+import 'package:transparent_image/transparent_image.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'ui/launch_screen.dart';
 
 /// Feature with the UI registration
@@ -89,10 +91,62 @@ class LaunchDetailsWidget extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverList(
-            delegate: SliverChildListDelegate.fixed(
-              [
-                Text('hello'),
-              ],
+              delegate: SliverChildListDelegate.fixed(
+            [
+              Card(
+                  child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  data.missionName,
+                  style: Theme.of(context).textTheme.headline3,
+                ),
+              )),
+            ],
+          )),
+          SliverGrid(
+            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 400.0,
+              mainAxisSpacing: 0.0,
+              crossAxisSpacing: 0.0,
+              childAspectRatio: 5.0,
+            ),
+            delegate: SliverChildListDelegate.fixed([
+              Card(child: Center(child: Text(data.rocketName))),
+              Card(
+                  child: Center(
+                      child: Text(data.launchDateLocal.toIso8601String()))),
+              Card(child: Center(child: Text(data.siteName))),
+              if (data.videoLink.isNotEmpty)
+                Card(
+                    child: InkWell(
+                        onTap: () => launch(data.videoLink),
+                        child: Center(child: Text('Youtube')))),
+              if (data.articleLink.isNotEmpty)
+                Card(
+                    child: InkWell(
+                        onTap: () => launch(data.articleLink),
+                        child: Center(child: Text('Article')))),
+            ]),
+          ),
+          SliverGrid(
+            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 400.0,
+              mainAxisSpacing: 0.0,
+              crossAxisSpacing: 0.0,
+              childAspectRatio: 1.0,
+            ),
+            delegate: SliverChildBuilderDelegate(
+              (BuildContext context, int index) {
+                return Card(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(32)),
+                    clipBehavior: Clip.antiAlias,
+                    child: FadeInImage.memoryNetwork(
+                        fit: BoxFit.cover,
+                        placeholder: kTransparentImage,
+                        image: data.flickrImages[index]));
+              },
+              childCount: data.flickrImages.length,
             ),
           )
         ],
