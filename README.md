@@ -260,23 +260,16 @@ is what you can use here. Give it a unique name which will be prefixed with _, e
 
 - Replace all `Navigator.of(context).pushNamed(route)` to `DartBoardCore.nav.push(route)` 
 
-## Concept
+## Route Types in DartBoard
 
-All routes should be URL renderable. Anything on the 
-TODO: Anonymous routes should be possible too (but no link sharing), e.g. yourapplication.com/#/_UNIQUE_ROUTE_NAME (e.g. to push locally a route at runtime dynamically)
-Routes that start with _ will be "private".
+These route types should allow you to match a wide range of URI patterns for your features.
 
-Concept of Routes
-`/some/path/toContent` - URI
-`/resource` - URI
-`/` - Root mirrors `initialRoute`
-
-Route Types in DartBoard
 `NamedRouteDefinition` -> Matches a portion of a path for a specific name, i.e. `/page` `/details`
 `MapRoute` -> Named Route that allows multiple pages (Syntactic sugar)
 `UriRoute` -> Matches everything that hits it. Can globally handle routing, or can be used with PathedRoute to provide detailed parsing of the resource.
 `PathedRoute` -> Use this for deep-linked trees. E.g. `/category/details/50` it takes a List of Lists of RouteDefinitions. Each level of depth represents the tree.
 
+## SpaceX Example
 E.g. In SpaceX feature it's used like this
 
 ```

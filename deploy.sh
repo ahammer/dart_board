@@ -1,5 +1,5 @@
 #!/bin/bash
-
+flutter pub global run melos:melos bootstrap
 cd integrations/starter
 flutter build web --release
 firebase deploy
