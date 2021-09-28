@@ -2,60 +2,26 @@ import 'package:dart_board_core/dart_board.dart';
 
 /// Bloc Bindings for features
 ///
-/// 1) Bloc repository (a single multibloc provider for your app)
-/// 2) Decorations to add Blocs
-///
-/// Everything else will be standard
-///
-
-import 'package:dart_board_core/dart_board.dart';
+/// Bloc doesn't require a Feature, but it can use Decoration bindings
+/// This'll let you install blocs with other features that use it for state
+/// management
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-/// Simple Locator/DI/Service Injector for DartBoard
-///
-/// In your Features.
-///
-/// Register Factories in the AppDecorations
-///   [LocatorDecoration(()=>YourType())];
-///
-/// Use YourType Anywhere
-///
-/// YourType obj = locate();
-///
-/// or
-///
-/// locate<YourType>()
-///   ..width = 10
-///   ..doSomethingElse()
-///
-///
-/// Optionally, with instanceId
-///
-/// locate<YourType>(instance_id: "unique state id")
-///
-class DartBoardBlocFeature extends DartBoardFeature {
-  final List<Cubit> cubits = [];
-
-  registerCubit<T>(Cubit<T> cubit) {
-    cubits.add(cubit);
-  }
-
-  @override
-  String get namespace => "Bloc";
+/// This decoration adds a Cubit to the App
+class CubitDecoration<T extends Cubit<V>, V> extends DartBoardDecoration {
+  CubitDecoration(T Function(BuildContext) cubitBuilder)
+      : super(
+            name: "Cubit${T.toString()}",
+            decoration: (BuildContext context, Widget child) =>
+                BlocProvider<T>(create: cubitBuilder, child: child));
 }
 
-/// This decoration applies
-class BlocDecoration<T> extends DartBoardDecoration {
-  final Cubit<T> cubit;
-
-  BlocDecoration(this.cubit)
+/// This decoration applies a Bloc to the App
+class BlocDecoration<T extends Bloc, V> extends DartBoardDecoration {
+  BlocDecoration(T Function(BuildContext) blocBuilder)
       : super(
-            name: "Loc${T.toString()}",
-            decoration: (BuildContext context, Widget child) => LifeCycleWidget(
-                key: ValueKey("LocatorDecoration_${T.toString()}"),
-                preInit: () => (DartBoardCore.instance.findByName("Bloc")
-                        as DartBoardBlocFeature)
-                    .registerCubit<T>(cubit),
-                child: Builder(builder: (ctx) => child)));
+            name: "Bloc${T.toString()}",
+            decoration: (BuildContext context, Widget child) =>
+                BlocProvider<T>(create: blocBuilder, child: child));
 }
