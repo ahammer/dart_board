@@ -1,3 +1,14 @@
+## 0.9.4
+
+ - **FIX**: remove problems from repo (warnings).
+ - **FIX**: remove provider.
+ - **FIX**: cleaning up theme chooser.
+ - **FIX**: rejiggered layout so it'll fit better on the demo.
+ - **FIX**: theme editor now can be configured more easily.
+ - **FIX**: theme fixes for the space-clock/bg.
+ - **FEAT**: now with a theme editor.
+ - **CHORE**: publish packages.
+
 ## 0.9.3+4
 
  - Update a dependency to the latest release.

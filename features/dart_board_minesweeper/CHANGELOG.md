@@ -1,3 +1,10 @@
+## 0.9.6
+
+ - **FIX**: remove provider.
+ - **FIX**: theme fixes for the space-clock/bg.
+ - **FEAT**: now with a theme editor.
+ - **CHORE**: publish packages.
+
 ## 0.9.5+4
 
  - Update a dependency to the latest release.

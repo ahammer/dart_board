@@ -1,3 +1,14 @@
+## 0.9.4
+
+ - **FIX**: fix up the Chart, now responsive and no longer using pre-release.
+ - **FIX**: missing r.
+ - **FIX**: sorting of features + now show specs for reference.
+ - **FIX**: theme fixes for the space-clock/bg.
+ - **FEAT**: improvements to the debug list.
+ - **FEAT**: dep chart can include/exclude integration features now.
+ - **FEAT**: layered graph view of dependencies.
+ - **CHORE**: publish packages.
+
 ## 0.9.3+4
 
  - **FIX**: fix up the Chart, now responsive and no longer using pre-release.

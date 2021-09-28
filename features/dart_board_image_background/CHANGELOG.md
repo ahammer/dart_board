@@ -1,3 +1,8 @@
+## 0.9.2+5
+
+ - **FIX**: theme fixes for the space-clock/bg.
+ - **CHORE**: publish packages.
+
 ## 0.9.2+4
 
  - Update a dependency to the latest release.
