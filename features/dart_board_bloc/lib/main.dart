@@ -52,7 +52,7 @@ class CubitExampleFeature extends DartBoardFeature {
   List<RouteDefinition> get routes => [
         NamedRouteDefinition(
           route: '/main',
-          builder: (ctx, settings) => CubitPage(),
+          builder: (ctx, settings) => const CubitPage(),
         )
       ];
 
@@ -77,7 +77,6 @@ class CubitPage extends StatelessWidget {
                 builder: (ctx, state) => Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-
                     Text('Cubit:  $state'),
                     MaterialButton(
                         onPressed: () => ctx.read<CounterCubit>().increment(),
@@ -88,17 +87,18 @@ class CubitPage extends StatelessWidget {
                   ],
                 ),
               ),
-               BlocBuilder<CounterBloc, int>(
+              BlocBuilder<CounterBloc, int>(
                 builder: (ctx, state) => Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-
                     Text('Bloc:  $state'),
                     MaterialButton(
-                        onPressed: () => ctx.read<CounterBloc>().add(Increment(1)),
+                        onPressed: () =>
+                            ctx.read<CounterBloc>().add(Increment(1)),
                         child: const Text('Increment')),
                     MaterialButton(
-                        onPressed: () => ctx.read<CounterBloc>().add(Increment(-1)),
+                        onPressed: () =>
+                            ctx.read<CounterBloc>().add(Increment(-1)),
                         child: const Text('Decrement')),
                   ],
                 ),

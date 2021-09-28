@@ -28,12 +28,9 @@ dependencies:
   dart_board_space_scene:
   dart_board_theme:
   transparent_image:
-  url_launcher:
-    
-  dart_board_spacex_repository:
-    path: ../../features/dart_board_spacex_feature/dart_board_spacex_repository
+  url_launcher:    
+  dart_board_spacex_repository:  
   dart_board_spacex_ui:
-    path: ../../features/dart_board_spacex_feature/dart_board_spacex_ui
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
