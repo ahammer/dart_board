@@ -36,8 +36,8 @@ dependencies:
     path: ../../features/dart_board_canvas
   http: ^0.13.3
   url_launcher: ^6.0.4
-  spacex_ui:
-    path: ../../example_features/spacex/spacex_ui
+  dart_board_spacex_ui:
+    path: ../../features/dart_board_spacex_feature/dart_board_spacex_ui
 
 dev_dependencies:
   flutter_test:

@@ -1,4 +1,4 @@
-import 'package:spacex_launch_repository/generated/graphql_api.graphql.dart';
+import 'package:dart_board_spacex_repository/generated/graphql_api.graphql.dart';
 
 ///
 abstract class SpaceXRepository {

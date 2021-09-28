@@ -1,4 +1,4 @@
-name: spacex_launch_repository
+name: dart_board_spacex_ui
 description: A new flutter module project.
 
 # The following defines the version and build number for your application.
@@ -16,6 +16,7 @@ description: A new flutter module project.
 # a `flutter run` or a `flutter make-host-app-editable`. It has no impact
 # on any other native host app that you embed your Flutter project into.
 version: 1.0.0+1
+publish_to: none
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -24,27 +25,22 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # Core to be able to implement a feature
-  dart_board_core:
-
-  # Locator, to provide up the repository
-  dart_board_locator:    
-
-  artemis: '>=7.0.0 <8.0.0' # only if you're using ArtemisClient!
-  json_annotation: 
-  equatable: 
-  meta: 
-  gql: 
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  dart_board_core:
+  dart_board_space_scene:
+  dart_board_theme:
+  transparent_image:
+  url_launcher:
+    
+  dart_board_spacex_repository:
+    path: ../dart_board_spacex_repository
 
 dev_dependencies:
   flutter_test:
-    sdk: flutter  
-  build_runner:
-  json_serializable:
+    sdk: flutter
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -95,5 +91,5 @@ flutter:
   # identifiers, which may be completely independent or the same as these.
   module:
     androidX: true
-    androidPackage: com.example.spacex_launch_repository
-    iosBundleIdentifier: com.example.spacexLaunchRepository
+    androidPackage: com.example.spacex_ui
+    iosBundleIdentifier: com.example.spacexUi

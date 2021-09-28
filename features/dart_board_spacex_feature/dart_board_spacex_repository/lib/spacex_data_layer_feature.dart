@@ -1,7 +1,7 @@
 import 'package:dart_board_core/dart_board.dart';
 import 'package:dart_board_locator/dart_board_locator.dart';
 import 'package:flutter/material.dart';
-import 'package:spacex_launch_repository/impl/spacex_repository.dart';
+import 'package:dart_board_spacex_repository/impl/spacex_repository.dart';
 
 class SpaceXDataLayerFeature extends DartBoardFeature {
   final SpaceXRepository repository;

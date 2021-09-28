@@ -1,6 +1,6 @@
 import 'package:dart_board_core/dart_board.dart';
 import 'package:flutter/material.dart';
-import 'package:spacex_launch_repository/impl/spacex_repository.dart';
+import 'package:dart_board_spacex_repository/impl/spacex_repository.dart';
 import 'package:intl/intl.dart';
 
 final format = DateFormat.yMd().add_jm();
