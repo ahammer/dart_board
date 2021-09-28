@@ -1,3 +1,10 @@
+## 0.9.4+1
+
+ - **FIX**: fix up the Chart, now responsive and no longer using pre-release.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+
 ## 0.9.4
 
  - **FIX**: fix up the Chart, now responsive and no longer using pre-release.

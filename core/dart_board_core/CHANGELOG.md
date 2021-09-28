@@ -1,3 +1,8 @@
+## 0.9.12+2
+
+ - **FIX**: routes get brought to front if requested again.
+ - **FIX**: better 404 (that can return home!!, thanks nav 2.0).
+
 ## 0.9.12+1
 
  - **FIX**: fix up the Chart, now responsive and no longer using pre-release.

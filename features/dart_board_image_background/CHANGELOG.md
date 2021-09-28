@@ -1,3 +1,7 @@
+## 0.9.2+6
+
+ - Update a dependency to the latest release.
+
 ## 0.9.2+5
 
  - **FIX**: theme fixes for the space-clock/bg.
