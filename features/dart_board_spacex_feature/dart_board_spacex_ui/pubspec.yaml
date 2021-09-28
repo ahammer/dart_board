@@ -1,22 +1,8 @@
 name: dart_board_spacex_ui
-description: A new flutter module project.
-
-# The following defines the version and build number for your application.
-# A version number is three numbers separated by dots, like 1.2.43
-# followed by an optional build number separated by a +.
-# Both the version and the builder number may be overridden in flutter
-# build by specifying --build-name and --build-number, respectively.
-# In Android, build-name is used as versionName while build-number used as versionCode.
-# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
-# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
-# Read more about iOS versioning at
-# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-#
-# This version is used _only_ for the Runner app, which is used if you just do
-# a `flutter run` or a `flutter make-host-app-editable`. It has no impact
-# on any other native host app that you embed your Flutter project into.
+description: UI Layer for the Dart Board Space X demo
 version: 1.0.0+1
-publish_to: none
+homepage: https://dart-board.io
+repository: https://github.com/ahammer/dart_board
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -25,17 +11,12 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
-  dart_board_core:
-  dart_board_space_scene:
-  dart_board_theme:
-  transparent_image:
-  url_launcher:
-    
-  dart_board_spacex_repository:
-    path: ../dart_board_spacex_repository
+  dart_board_core: ^0.9.12+2
+  dart_board_space_scene: ^1.0.4
+  dart_board_theme: ^0.9.4+1
+  transparent_image: ^2.0.0
+  url_launcher:  ^6.0.12
+  dart_board_spacex_repository: ^1.0.0+1
 
 dev_dependencies:
   flutter_test:
