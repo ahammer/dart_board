@@ -49,3 +49,10 @@ I know it's strange to have 2 api's (e.g. time and t), but funvas is really nice
 in the spirit of this kind of graphics programming. So use the shorthand for fun, use the full names if your writing more readable code.
 
 Ultimately, up to you.
+
+
+### ROADMAP
+
+- More examples
+  - E.g. embedded funvas animations
+  - Interactive physics animation

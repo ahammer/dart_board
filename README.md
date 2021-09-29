@@ -21,7 +21,8 @@ Flutter Architecture/Framework for Feature based development
   - [Fulfilling Routes](#fulfilling-routes)
   - [Anonymous Routes](#anonymous-routes)
   - [Upgrading from Dart Board Navigator to 2.0 Router](#upgrading-from-dart-board-navigator-to-20-router)
-  - [Concept](#concept)
+  - [Route Types in DartBoard](#route-types-in-dartboard)
+  - [SpaceX Example](#spacex-example)
 - [Features](#features)
   - [Decorations](#decorations)
     - [Page Decorations](#page-decorations)
@@ -30,7 +31,18 @@ Flutter Architecture/Framework for Feature based development
   - [Feature Loading](#feature-loading)
   - [AB Testing](#ab-testing)
   - [Feature Flags/Disabling](#feature-flagsdisabling)
-  - [Named Navigation](#named-navigation)
+- [State Management](#state-management)
+  - [Locator](#locator)
+    - [Usage:](#usage)
+    - [Use Case](#use-case)
+  - [Redux](#redux)
+    - [Usage](#usage-1)
+    - [Use Case](#use-case-1)
+  - [Bloc/Cubit](#bloccubit)
+    - [Usage](#usage-2)
+    - [Use Case](#use-case-2)
+  - [Provider](#provider)
+    - [Usage](#usage-3)
 - [Helpful Widgets (General Utilities)](#helpful-widgets-general-utilities)
   - [RouteWidget (embedded routes)](#routewidget-embedded-routes)
   - [Convertor<In, Out>](#convertorin-out)
@@ -43,9 +55,6 @@ Flutter Architecture/Framework for Feature based development
   - [integrations](#integrations)
   - [homepage](#homepage)
 - [Special Thanks](#special-thanks)
-
-<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
-
 
 
 ![Dependency Graph](https://www.dart-board.io/assets/img/screenshots/dart_board_2.jpg)
@@ -67,6 +76,7 @@ The advantages of adopting a pattern like this are the following
 - Feature Isolation
 - Feature Developer autonomy 
 - Easy to port existing flutter code
+- Plugs gracefully into your Apps routing code.
 
 
 This lets you structure you code as fundamental building blocks of "features", and then integrate them into a consistent application with config only. At compile and runtime you can mix/match and switch feature implementations. 
@@ -375,38 +385,72 @@ Again, super easy
 DartBoardCore.instance.setFeatureImplementation('FeatureNamespace', null);
 
 Note: Disabling features incorrectly can lead to breakage. E.g. disabling the template or /route you are on will leave you stranded.
+# State Management
 
-## Named Navigation
+Dart Board is compatible with the full suite of State Management solutions. When convenient bindings are provided to ease state management. For the initial release the focus will be on 3 primary State Management Solutions, with some footnotes about the usage of other solutions.
 
-Navigation is still V1, but with sanity and order added to the router.
+## Locator
 
-Out of the box you have 
-` get routes = [NamedRouteDefinition("/route", (ctx, settings)=> Widget())]`
+Simple state management for basic applications and features. Provides a universal global store that is lazily initialized as required, and provides support for instancing.
 
-You can have as many routes as you want.
+### Usage:
 
-Named route also take priority. First to resolve gets delivered. So in the case of conflicts whatever route from whatever feature is hit first will fill the route.
+1) Import and register `DartBoardLocatorFeature` in your feature.
+2) Register states/services/repositories with `LocatorDecoration(()=>YourObject())`
+3) Find states/services/repositories with `locate<YourObject>()`
+4) If you are using a change notifier, you can use `locateAndBuild<YourObject>((context, yourObject)=>WidgetBuilder)`
 
-`NamedRouteDefinition` extends `RouteDefinition` which you can use for more advanced deeplinking.
+Since things are lazily initialized, you can use `locate<>` calls in your `LocatorDecoration` and values will be initialized in the correct order.
 
-```
-abstract class RouteDefinition {
-  /// If this route definition matches a RouteSettings object
-  bool matches(RouteSettings settings);
+You do not need to use `context` when using locator. The locatable objects are stored inside LocatorFeature which represents a source of truth near the root of your tree.
 
-  /// This is the builder for the content
-  RouteWidgetBuilder get builder;
+### Use Case
+Locator is ideal for simple states and things like ChangeNotifier's, to quickly put together features.
 
-  ///This is an optional RouteBuilder
-  RouteBuilder? routeBuilder;
-}
-```
 
-In this case. `matches` is to verify if this RouteDefinition can build the route. You can look at the `RouteSettings.name` object to know the route name.
+## Redux
 
-`RouteWidgetBuilder` is what builds the page itself (sans page decorations).
+Flutter Redux bindings for dart_board. Redux is abstracted to allow each feature to have it's own State objects. The SSOT store is located inside the Feature itself.
 
-`RouteBuilder` is an optional value to create a specific Route for navigation transition. E.g. `MaterialPageRoute` or `CupertinoPageRoute`. This will go platform-default normally. Over-ride for specific behaviors. When used, first the Page will be built, and then passed to RouteBuilder to wrap with the Route.
+The bindings help you dispatch and listen to the right objects. Like locator it's a universal store that can have sub-states installed in it by features.
+
+### Usage
+
+1) Import and register `DartBoardReduxFeature` into the features that use it
+2) Register initial states with `ReduxStateDecoration`
+3) Register middleware with `ReduxMiddlewareDecoration`
+4) Reducer's are Class and Function based. Implement `FeatureAction<T>` to create a reducer that you can dispatch and use to generate a new state.
+5) `FeatureStateBuilder<T>(builder:(ctx, state) => YourWidget(state))` Widget is provided to hook up to reactive state changes to your state.
+
+### Use Case
+
+Redux is ideal for observability and history management of state. It's a more advanced use case that can generate safer code with a very predictable state management. It's recommended for medium to advanced state management requirements.
+
+
+## Bloc/Cubit
+
+Bloc Cubit bindings don't require a feature, but an extension is available that provides 2 Decorations
+
+### Usage 
+
+1) Add BlocDecoration<T> or CubitDecoration<T> to your Features to expose Cubits/Blocs to your App or Pages.
+
+### Use Case
+
+Bloc is a robust state management similar to redux in that it allows actions and mutation of states. It's more heavily reliant on Streams internally and in some cases may feel foreign to developers from outside the dart ecosystem, but is fairly popular within it. Originally adopted from examples Google used in some open source projects.
+
+Cubits are `Bloc` light, and a good for small to medium state management, while `Bloc`'s themselves are more robust and while come with more overhead to implement, but are suitable for advanced use cases.
+
+## Provider
+
+Provider is syntatic sugar around `InherittedWidget`. It can be though of a tree-based DI injector.
+
+There is not much value in a DartBoardFeature or bindings for Provider, but if you like it you can easily import it, use it in your `DartBoardDecorations` or features using it's standard API.
+
+### Usage
+
+Use as normally, just refer to the Provider documentation.
+
 
 # Helpful Widgets (General Utilities)
 

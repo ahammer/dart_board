@@ -1,6 +1,6 @@
-# dart_board_authentication_google
+# dart_board_firebase_authentication
 
-Firebase authentication delegate/support for firebase.
+Firebase authentication delegate/support for dart-board.
 
 ## Getting Started
 
@@ -15,4 +15,5 @@ dart_board_firebase_core dependency will handle the firebase init for you.
 Just include it, and place a LoginButton();
 
 Otherwise, standard dart_board_authentication usage for auth updates and user info.
+
 
