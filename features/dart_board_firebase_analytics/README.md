@@ -1,12 +1,11 @@
-# dart_board_firebase_database
+# dart_board_firebase_analytics
 
-Firebase Database
+Firebase analytics bindings
 
-- Doesn't do much
-- Includes dependency + Helper's
-- Feature perform's init
+## Usage
 
-2 Widgets to easy integrations
+Add and register, use dart_board_tracking facade to manage.
 
-QueryListView - Shows a Query in a list view
-CollectionView - Shows a collection in a list view
+## Todo
+
+- Verify in detail the tracking

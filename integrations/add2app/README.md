@@ -21,8 +21,7 @@ The goal of this project is to add an Add2App native android->flutter example, i
 
 ## Todo
 
-- Build Android application in add2app
-- Create Launch/Breakout activities
+- Refactor Example into 2 parts.
 - Create SpaceX Data Bindings (headless flutter)
 - Create SpaceX Linking
 - Show additional toggle options (e.g. Go back to native)

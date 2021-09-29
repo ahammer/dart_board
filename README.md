@@ -55,6 +55,7 @@ Flutter Architecture/Framework for Feature based development
   - [integrations](#integrations)
   - [homepage](#homepage)
 - [Special Thanks](#special-thanks)
+- [TODO - Release Roadmap](#todo---release-roadmap)
 
 
 ![Dependency Graph](https://www.dart-board.io/assets/img/screenshots/dart_board_2.jpg)
@@ -627,3 +628,13 @@ Many packages are consumed in the  creation of dart-board, however I try and lim
 Theme support is largely thanks to FlexColorScheme and FlexColorPicker, amazing packages that really bring that feature to life.
 
 The NIL packages is imported as well, to use in place of empty containers for some render optimization.
+
+# TODO - Release Roadmap
+
+- Work through each modules README.MD TODO section
+- "Link" widget for valid Nav2.0 links we can share
+- Navigation/Routing options (expose what is in framework)
+- Navigation/Routing result codes (allow Future)
+- Fix navigation transitions/Route Builder (had a bug with page that used custom route transitions in test)
+- Publish to Android store
+- Add2App? Yeah, Add2App
