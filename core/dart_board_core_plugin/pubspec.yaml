@@ -1,7 +1,7 @@
 name: dart_board_core_plugin
-description: A new flutter plugin project.
+description: Plugin Bindings for Dart-Board
 version: 0.0.1
-homepage:
+
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -10,6 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  dart_board_core:
 
 dev_dependencies:
   flutter_test:
