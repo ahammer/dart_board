@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="io.dartboard.dart_board_core_plugin_example">
    <application
+       android:name=".MainApplication"
         android:label="dart_board_core_plugin_example"
         android:icon="@mipmap/ic_launcher">
         <activity
