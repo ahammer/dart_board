@@ -31,6 +31,9 @@ abstract class DartBoardNav {
   /// Append to the current route (e.g. /b appended to /a = /a/b)
   void appendRoute(String route);
 
+  // Replace the Root (Entry Point)
+  void replaceRoot(String route);
+
   /// Push a route with a dynamic route name
   void pushDynamic(
       {required String dynamicRouteName, required WidgetBuilder builder});

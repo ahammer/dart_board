@@ -1,15 +1,8 @@
 # dart_board_core_plugin
 
-A new flutter plugin project.
+Plugin Interface for Dart Board
 
-## Getting Started
+Just Dart Board + Custom Android code for Add2App integrations
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+If you are using Add2App you can include this along side Core to gain access to useful platform interfaces for navigation and screen launching.
 

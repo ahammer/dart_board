@@ -161,6 +161,19 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
   }
 
   @override
+  void replaceRoot(String? route) {
+    if (navStack.isNotEmpty) {
+      navStack.removeAt(0);
+      if (route == null) {
+        navStack.insert(0, initialDartBoardPath);
+      } else {
+        navStack.insert(0, DartBoardPath('/', route));
+      }
+    }
+    notifyListeners();
+  }
+
+  @override
   ChangeNotifier get changeNotifier => this;
 
   @override

@@ -20,6 +20,12 @@ class TestFeature extends DartBoardFeature {
             builder: (ctx, settings) => Scaffold(
                   appBar: AppBar(),
                   body: const Text('hello'),
+                )),
+        NamedRouteDefinition(
+            route: '/home',
+            builder: (ctx, settings) => Scaffold(
+                  appBar: AppBar(),
+                  body: const Text('hello2'),
                 ))
       ];
 }

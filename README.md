@@ -15,6 +15,9 @@ Flutter Architecture/Framework for Feature based development
   - [Work on the Framework](#work-on-the-framework)
 - [What is included](#what-is-included)
   - [How it works](#how-it-works)
+- [Add2App](#add2app)
+  - [Limitations](#limitations)
+  - [General Advice](#general-advice)
 - [Navigator 2.0](#navigator-20)
   - [Router concept](#router-concept)
   - [How to Use](#how-to-use)
@@ -170,6 +173,26 @@ void main() => runApp(DartBoard(
   features:[MainFeature(), SomeOtherFeature(), ....], 
   initialRoute: '/main']))
 ```
+
+# Add2App
+
+Want to add flutter to an existing App? Generally a daunting task fraught with limitations. However, with routing and native API's to abstract the difficulty it's completely feasible.
+
+## Limitations
+- One Active flutter activity in the stack.
+- Full Screen only
+
+The first is because Flutter on Native can be multi-engine or single-engine. By being multi-engine a lot of difficulties are lost. You can run multiple screens and navigate back and forth. However this approach uses more memory and the  isolates can not share data in a clean and easy way. By using a single engine we can pre-warm it, use it headless, preserve state etc. However, navigation stack is state, and having multiple screens native + flutter complicates this. Having flutter run as a "single top" with it's own stack simplifies this considerably. This means it's ill advise to navigate between platform->flutter->platform->flutter. If there is enough demand for this functionality the router can be modified to allow context switching (e.g. multiple nav stacks). It should be easy to avoid this scenario with careful planning and risk management.
+
+The second is more a suggestion. FlutterFragment and FlutterViewController can easily handle it. However, it does open the door to layout and transition issues. It's better to understand the difficulty and avoid it. However it's possible, just don't expect to know the size of your flutter content in the host, and don't expect to easily transition to full screen. As such Dart-Board will only support full-screen, single-top scenerios out of the box.
+
+## General Advice
+
+- Go leaves in, not trunk out (i.e. About Us, leaf. Landing Screen, trunk.) Start with small targets and build your confidence.
+- Use Pigeon to manage your MC bindings and calls for type safety across Android/iOS/Flutter)
+- Convert your Feature Modules to Plugins to bundle your own Java/Kotlin/Swift/ObjC code.
+- Bring in dart_board_core_plugin instead of dart_board_core to get the Android bindings (iOS in the future)
+
 
 
 # Navigator 2.0
