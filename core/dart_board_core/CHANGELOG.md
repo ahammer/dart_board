@@ -1,3 +1,8 @@
+## 0.9.13
+
+ - **FEAT**: plugin code is nearing completion.
+ - **FEAT**: adding more add2app (pigeons and some Android API).
+
 ## 0.9.12+2
 
  - **FIX**: routes get brought to front if requested again.

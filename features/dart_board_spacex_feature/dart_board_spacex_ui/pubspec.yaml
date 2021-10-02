@@ -1,6 +1,6 @@
 name: dart_board_spacex_ui
 description: UI Layer for the Dart Board Space X demo
-version: 1.0.0+1
+version: 1.0.1
 homepage: https://dart-board.io
 repository: https://github.com/ahammer/dart_board
 
@@ -11,15 +11,14 @@ dependencies:
   flutter:
     sdk: flutter
 
-  dart_board_core: ^0.9.12+2
-  dart_board_space_scene: ^1.0.4
-  dart_board_theme: ^0.9.4+1
+  dart_board_core: ^0.9.13
+  dart_board_space_scene: ^1.0.5
+  dart_board_theme: ^0.9.4+2
   transparent_image: ^2.0.0
   url_launcher:  ^6.0.12
-  dart_board_spacex_repository: ^1.0.0+1
+  dart_board_spacex_repository: ^1.0.2
   intl: ^0.17.0
-  dart_board_locator: ^0.9.4+5
-
+  dart_board_locator: ^0.9.4+6
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -1,3 +1,11 @@
+## 1.1.0
+
+ - **FEAT**: firebase analytics is working now.
+ - **FEAT**: tracking + firebase analytics.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+
 ## 1.0.2
 
  - **FIX**: pinned dep.
