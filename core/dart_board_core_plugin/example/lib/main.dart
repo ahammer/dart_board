@@ -1,52 +1,62 @@
-import 'package:dart_board_core_plugin/add_2_app_feature.dart';
 import 'package:flutter/material.dart';
+import 'dart:async';
 
-import 'package:dart_board_core/dart_board.dart';
 import 'package:flutter/services.dart';
+import 'package:dart_board_core_plugin/dart_board_core_plugin.dart';
 
 void main() {
-  runApp(DartBoard(
-    features: [TestFeature(), DartBoardAdd2AppFeature()],
-    initialRoute: '/home',
-  ));
+  runApp(const MyApp());
 }
 
-class TestFeature extends DartBoardFeature {
-  @override
-  String get namespace => 'test';
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
 
   @override
-  List<RouteDefinition> get routes => [
-        NamedRouteDefinition(
-            route: '/home',
-            builder: (ctx, settings) => Scaffold(
-                  appBar: AppBar(
-                    leading: BackButton(
-                      onPressed: () => SystemNavigator.pop(),
-                    ),
-                  ),
-                  body: const Text('hello'),
-                )),
-        NamedRouteDefinition(
-            route: '/home2',
-            builder: (ctx, settings) => Scaffold(
-                  appBar: AppBar(
-                    automaticallyImplyLeading: false,
-                    leading: BackButton(
-                      onPressed: () => SystemNavigator.pop(),
-                    ),
-                  ),
-                  body: const Text('hello2'),
-                )),
-        NamedRouteDefinition(
-            route: '/home3',
-            builder: (ctx, settings) => Scaffold(
-                  appBar: AppBar(
-                    leading: BackButton(
-                      onPressed: () => SystemNavigator.pop(),
-                    ),
-                  ),
-                  body: const Text('hello3'),
-                ))
-      ];
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  String _platformVersion = 'Unknown';
+
+  @override
+  void initState() {
+    super.initState();
+    initPlatformState();
+  }
+
+  // Platform messages are asynchronous, so we initialize in an async method.
+  Future<void> initPlatformState() async {
+    String platformVersion;
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    // We also handle the message potentially returning null.
+    try {
+      platformVersion =
+          await DartBoardCorePlugin.platformVersion ?? 'Unknown platform version';
+    } on PlatformException {
+      platformVersion = 'Failed to get platform version.';
+    }
+
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) return;
+
+    setState(() {
+      _platformVersion = platformVersion;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Plugin example app'),
+        ),
+        body: Center(
+          child: Text('Running on: $_platformVersion\n'),
+        ),
+      ),
+    );
+  }
 }
