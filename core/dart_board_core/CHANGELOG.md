@@ -1,3 +1,15 @@
+## 0.9.14
+
+ - **FIX**: routes get brought to front if requested again.
+ - **FIX**: better 404 (that can return home!!, thanks nav 2.0).
+ - **FIX**: fix up the Chart, now responsive and no longer using pre-release.
+ - **FEAT**: plugin code is nearing completion.
+ - **FEAT**: adding more add2app (pigeons and some Android API).
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+
 ## 0.9.13
 
  - **FEAT**: plugin code is nearing completion.
