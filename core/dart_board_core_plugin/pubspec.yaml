@@ -1,6 +1,6 @@
 name: dart_board_core_plugin
 description: Plugin Bindings for Dart-Board
-version: 0.0.1
+version: 1.0.0
 
 
 environment:
