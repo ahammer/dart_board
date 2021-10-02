@@ -6,11 +6,12 @@ import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngineCache
 
 class DartBoardFlutterActivity : FlutterActivity() {
-    override fun getCachedEngineId() = "default"
+    override fun getCachedEngineId(): String {
+        return "default"
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        /// Navigate on flutter (set the root)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         DartBoardNav.api.setNavRoot(intent.getStringExtra(kEntryPoint)){}
-        super.onCreate(savedInstanceState, persistentState)
     }
 }

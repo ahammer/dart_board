@@ -32,6 +32,7 @@ abstract class DartBoardNav {
   void appendRoute(String route);
 
   // Replace the Root (Entry Point)
+  // Generally for Add2App
   void replaceRoot(String route);
 
   /// Push a route with a dynamic route name

@@ -84,6 +84,14 @@
             "flutterMode": "release",
             "type": "dart"
         },
+        {
+            "name": "'Plugin' example",
+            "program": "lib/main.dart",
+            "cwd": "core/dart_board_core_plugin/example",
+            "request": "launch",          
+            "flutterMode": "debug",
+            "type": "dart"
+        },
 
         
 

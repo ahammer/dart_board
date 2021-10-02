@@ -162,14 +162,14 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
 
   @override
   void replaceRoot(String? route) {
-    if (navStack.isNotEmpty) {
-      navStack.removeAt(0);
-      if (route == null) {
-        navStack.insert(0, initialDartBoardPath);
-      } else {
-        navStack.insert(0, DartBoardPath('/', route));
-      }
+    navStack.clear();
+
+    if (route == null) {
+      navStack.insert(0, initialDartBoardPath);
+    } else {
+      navStack.insert(0, DartBoardPath('/', route));
     }
+
     notifyListeners();
   }
 
@@ -218,11 +218,12 @@ class DartBoardPage extends Page {
   final WidgetBuilder? builder;
 
   DartBoardPage({required this.path, required this.rootTarget, this.builder})
-      : super(key: ValueKey(path));
+      : super(key: ValueKey(path + rootTarget));
 
   @override
   Route createRoute(BuildContext context) {
-    final settings = RouteSettings(name: path == '/' ? rootTarget : path);
+    final settings =
+        RouteSettings(name: path == '/' ? rootTarget : path, arguments: this);
 
     final routes =
         DartBoardCore.instance.routes.where((e) => e.matches(settings));
@@ -239,13 +240,21 @@ class DartBoardPage extends Page {
         );
       }
     }
-
+    if (path == '/') {
+      return PageRouteBuilder(
+          settings: this,
+          pageBuilder: (context, animation1, animation2) => RouteWidget(
+                rootTarget,
+                decorate: true,
+              ),
+          transitionDuration: Duration.zero);
+    }
     return MaterialPageRoute(
       settings: this,
       builder: (builder != null)
           ? builder!
           : (context) => RouteWidget(
-                path == '/' ? rootTarget : path,
+                path,
                 decorate: true,
               ),
     );

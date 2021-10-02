@@ -9,4 +9,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Launch Flutter Screen" />
+
+    <Button
+        android:id="@+id/launch_flutter_screen_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Launch Flutter Screen 2" />
 </LinearLayout>

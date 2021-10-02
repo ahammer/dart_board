@@ -11,8 +11,11 @@ class MainActivity: Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.homepage)
-        findViewById<Button>(R.id.launch_flutter_screen).setOnClickListener() {
-            DartBoardNav.launchRoute(this,"asdsa");
+        findViewById<Button>(R.id.launch_flutter_screen).setOnClickListener {
+            DartBoardNav.launchRoute(this,"/home2");
+        }
+        findViewById<Button>(R.id.launch_flutter_screen_2).setOnClickListener {
+            DartBoardNav.launchRoute(this,"/home3");
         }
     }
 

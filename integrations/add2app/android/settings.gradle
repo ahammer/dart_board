@@ -1,9 +1,0 @@
-rootProject.name = "Add2App"
-include ':app'
-
-/// Import Flutter Module
-setBinding(new Binding([gradle: this]))
-evaluate(new File(
-        settingsDir,
-        'flutter_module/.android/include_flutter.groovy'
-))
