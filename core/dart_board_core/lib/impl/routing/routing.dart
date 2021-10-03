@@ -153,7 +153,7 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
     if (navStack.isNotEmpty) {
       final last = navStack.last;
       _addPath(DartBoardPath(
-          last.path == '/' ? last.rootPath : last.path + path, initialPath));
+          (last.path == '/' ? last.rootPath : last.path) + path, initialPath));
     }
 
     notifyListeners();
