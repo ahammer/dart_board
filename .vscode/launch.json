@@ -93,6 +93,15 @@
             "type": "dart"
         },
 
+        {
+            "name": "'Plugin' example - profile",
+            "program": "lib/main.dart",
+            "cwd": "core/dart_board_core_plugin/example",
+            "request": "launch",          
+            "flutterMode": "profile",
+            "type": "dart"
+        },
+
         
 
     ]
