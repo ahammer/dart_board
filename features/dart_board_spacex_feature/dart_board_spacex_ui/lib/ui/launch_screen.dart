@@ -22,7 +22,7 @@ class LaunchScreen extends StatelessWidget {
                 <String>[], (a, b) => [...a, ...b.flickrImages]);
             return Row(
               children: [
-                SizedBox(width: 400, child: PastLaunchesList(data.launches)),
+                SizedBox(width: 200, child: PastLaunchesList(data.launches)),
                 Expanded(
                     child: CustomScrollView(
                   slivers: [

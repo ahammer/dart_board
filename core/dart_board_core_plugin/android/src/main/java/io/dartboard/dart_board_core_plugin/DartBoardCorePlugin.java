@@ -31,6 +31,9 @@ public class DartBoardCorePlugin implements FlutterPlugin {
 
   public static void launchScreen(Context context, String route) {
     warmup(context.getApplicationContext());
+    /// We are going to navigate before launching the activity
+    DartBoardCorePlugin.getNav().setNavRoot(route, null);
+
     Intent intent = new Intent(context, DartBoardFlutterActivity.class);
     intent.putExtra(PARAMETER_ROUTE, route);
     context.startActivity(intent);

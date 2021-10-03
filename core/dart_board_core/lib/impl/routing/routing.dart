@@ -32,7 +32,7 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
   final List<DartBoardDecoration> appDecorations;
   final String initialRoute;
   late final DartBoardPath initialDartBoardPath =
-      DartBoardPath('/', initialRoute);
+      DartBoardPath('/', initialRoute, showAnimation: false);
   late List<DartBoardPath> navStack = [initialDartBoardPath];
 
   @override
@@ -165,9 +165,9 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
     navStack.clear();
 
     if (route == null) {
-      navStack.insert(0, initialDartBoardPath);
+      navStack.add(initialDartBoardPath);
     } else {
-      navStack.insert(0, DartBoardPath('/', route));
+      navStack.add(DartBoardPath(route, initialRoute, showAnimation: false));
     }
 
     notifyListeners();
@@ -199,14 +199,16 @@ class DartBoardPath {
   final String path;
   final String initialRoute;
   final WidgetBuilder? builder;
+  final bool showAnimation;
 
-  DartBoardPath(this.path, this.initialRoute, {this.builder});
+  DartBoardPath(this.path, this.initialRoute,
+      {this.builder, this.showAnimation = true});
 
   late final Page page = DartBoardPage(
-    path: path,
-    rootTarget: initialRoute,
-    builder: builder,
-  );
+      path: path,
+      rootTarget: initialRoute,
+      builder: builder,
+      showAnimation: showAnimation);
 }
 
 /// A page in our history
@@ -215,10 +217,15 @@ class DartBoardPath {
 class DartBoardPage extends Page {
   final String path;
   final String rootTarget;
+  final bool showAnimation;
   final WidgetBuilder? builder;
 
-  DartBoardPage({required this.path, required this.rootTarget, this.builder})
-      : super(key: ValueKey(path + rootTarget));
+  DartBoardPage(
+      {required this.path,
+      required this.rootTarget,
+      this.builder,
+      this.showAnimation = true})
+      : super(key: ValueKey(path));
 
   @override
   Route createRoute(BuildContext context) {
@@ -230,7 +237,6 @@ class DartBoardPage extends Page {
 
     if (routes.isNotEmpty) {
       final routeDef = routes.first;
-
       if (routeDef.routeBuilder != null) {
         return routeDef.routeBuilder!(
           settings,
@@ -240,15 +246,17 @@ class DartBoardPage extends Page {
         );
       }
     }
-    if (path == '/') {
+
+    if (!showAnimation) {
       return PageRouteBuilder(
           settings: this,
           pageBuilder: (context, animation1, animation2) => RouteWidget(
-                rootTarget,
+                path == '/' ? rootTarget : path,
                 decorate: true,
               ),
           transitionDuration: Duration.zero);
     }
+
     return MaterialPageRoute(
       settings: this,
       builder: (builder != null)
