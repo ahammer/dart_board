@@ -60,7 +60,7 @@ class DartBoard extends StatefulWidget {
 
   /// The initial route, where you want your app entry point to be
   /// doesn't have to be "/", can be any registered route.
-  final String initialRoute;
+  final String initialPath;
 
   final Map<String, String?>? featureOverrides;
 
@@ -68,7 +68,7 @@ class DartBoard extends StatefulWidget {
       {Key? key,
       required this.features,
       this.pageNotFoundWidgetBuilder = _pageNoteFound,
-      required this.initialRoute,
+      required this.initialPath,
       this.featureOverrides,
       this.pageDecorationDenyList = const {},
       this.routeBuilder = kCupertinoRouteResolver})
@@ -124,11 +124,11 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
   late Map<String, String?> featureOverrides;
 
   late final dartBoardInformationParser =
-      DartBoardInformationParser(widget.initialRoute);
+      DartBoardInformationParser(widget.initialPath);
   late final dartBoardRouterDelegate = DartBoardNavigationDelegate(
       navigatorKey: dartBoardNavKey,
       appDecorations: appDecorations,
-      initialRoute: widget.initialRoute);
+      initialPath: widget.initialPath);
 
   /// Expose the router Delegate for "nav" to work, or for your own nav if necessary
   ///

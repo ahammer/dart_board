@@ -10,4 +10,4 @@ import 'package:flutter/material.dart';
 /// However, in the future we can provide mocks/etc to show the AB/Disable
 /// features
 void main() => runApp(DartBoard(
-    initialRoute: '/theme', features: [ThemeFeature(data: ThemeData.light())]));
+    initialPath: '/theme', features: [ThemeFeature(data: ThemeData.light())]));

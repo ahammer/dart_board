@@ -20,7 +20,7 @@ import 'package:dart_board_locator/dart_board_locator.dart';
 
 /// Our entry point, Starts DartBoard at the /example route
 void main() =>
-    runApp(DartBoard(initialRoute: '/example', features: [ExampleLocator()]));
+    runApp(DartBoard(initialPath: '/example', features: [ExampleLocator()]));
 
 class ExampleLocator extends DartBoardFeature {
   /// All features have a namespace, it should be unique "per feature"

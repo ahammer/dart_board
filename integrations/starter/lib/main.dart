@@ -28,7 +28,7 @@ void main() {
       BottomNavTemplateFeature(route: '/home', config: _templateConfig),
       MockCheckoutFeature()
     ],
-    initialRoute: '/home',
+    initialPath: '/home',
   ));
 }
 

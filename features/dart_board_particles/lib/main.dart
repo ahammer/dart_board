@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 
 /// Dart Board Particles Example
 void main() => runApp(DartBoard(
-      initialRoute: '/home',
+      initialPath: '/home',
       features: [
         SimpleRouteFeature(),
 

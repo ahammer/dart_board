@@ -22,7 +22,7 @@ import 'package:rxdart/rxdart.dart';
 
 /// Our entry point, Starts DartBoard at the /example route
 void main() =>
-    runApp(DartBoard(initialRoute: '/example', features: [ExampleRedux()]));
+    runApp(DartBoard(initialPath: '/example', features: [ExampleRedux()]));
 
 /// Since this is a Redux Example, lets first share our state/actions and epics
 ///

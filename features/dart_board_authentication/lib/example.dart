@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'dart_board_authentication.dart';
 
 void main() => runApp(DartBoard(
-    features: [DartBoardAuthenticationExample()], initialRoute: '/main'));
+    features: [DartBoardAuthenticationExample()], initialPath: '/main'));
 
 /// Example Feature to demonstrate Authentication
 class DartBoardAuthenticationExample extends DartBoardFeature {

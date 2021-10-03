@@ -24,7 +24,7 @@ class LaunchListItem extends StatelessWidget {
             launch.missionName,
           ),
           onTap: () {
-            DartBoardCore.nav.appendRoute('/${launch.missionName}');
+            DartBoardCore.nav.appendPath('/${launch.missionName}');
           },
         ),
       );

@@ -7,6 +7,6 @@ import 'package:dart_board_core/dart_board.dart';
 void main() {
   runApp(DartBoard(
     features: [MinesweeperFeature(), SpaceXUIFeature(), Add2AppFeature()],
-    initialRoute: '/minesweep',
+    initialPath: '/minesweep',
   ));
 }

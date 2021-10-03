@@ -4,4 +4,4 @@ import 'package:flutter/cupertino.dart';
 
 /// Just loading the feature and showing the route
 void main() =>
-    runApp(DartBoard(initialRoute: '/debug', features: [DebugFeature()]));
+    runApp(DartBoard(initialPath: '/debug', features: [DebugFeature()]));

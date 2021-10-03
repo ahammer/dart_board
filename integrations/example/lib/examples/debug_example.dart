@@ -18,6 +18,6 @@ void main() {
       'SplashScreen': null,
     },
     features: [ExampleFeature()],
-    initialRoute: '/debug',
+    initialPath: '/debug',
   ));
 }

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 /// Minimal Dart Board example + Logging
 void main() => runApp(DartBoard(
-      initialRoute: '/home',
+      initialPath: '/home',
       features: [LogFeature(), ScaffoldFeature(), SimpleRouteFeature()],
     ));
 

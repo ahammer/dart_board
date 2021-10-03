@@ -15,6 +15,6 @@ void main() {
       'background': 'ClockEarth'
     },
     features: [ExampleFeature()],
-    initialRoute: '/main',
+    initialPath: '/main',
   ));
 }

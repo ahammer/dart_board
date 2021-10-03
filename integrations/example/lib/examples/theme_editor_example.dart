@@ -14,6 +14,6 @@ void main() {
       'FireCursor': null,
     },
     features: [ExampleFeature()],
-    initialRoute: '/theme_editor',
+    initialPath: '/theme_editor',
   ));
 }

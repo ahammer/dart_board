@@ -93,7 +93,7 @@ DartBoardDecoration getTestDecoration(String label) => DartBoardDecoration(
 void main() {
   testWidgets('404 With no Features', (tester) async {
     await tester.pumpWidget(DartBoard(
-      initialRoute: '/a',
+      initialPath: '/a',
       features: [],
     ));
 
@@ -107,7 +107,7 @@ void main() {
 
   testWidgets('Check page navigation', (tester) async {
     await tester.pumpWidget(DartBoard(
-      initialRoute: '/main',
+      initialPath: '/main',
       routeBuilder: kMaterialRouteResolver,
       features: [
         TestFeature(
@@ -124,7 +124,7 @@ void main() {
 
   testWidgets('Test Find Feature', (tester) async {
     await tester.pumpWidget(DartBoard(
-      initialRoute: '/main',
+      initialPath: '/main',
       routeBuilder: kMaterialRouteResolver,
       features: [
         TestFeature(
@@ -147,7 +147,7 @@ void main() {
 
   testWidgets('Check page navigation to a 404', (tester) async {
     await tester.pumpWidget(DartBoard(
-      initialRoute: '/main',
+      initialPath: '/main',
       features: [TestFeature(namespace: 'namespace', route1: '/main')],
     ));
 
@@ -160,7 +160,7 @@ void main() {
 
   testWidgets('Page and App Decoration Check', (tester) async {
     await tester.pumpWidget(DartBoard(
-      initialRoute: '/main',
+      initialPath: '/main',
       features: [TestFeature(namespace: 'default', route1: '/main')],
     ));
 
@@ -174,7 +174,7 @@ void main() {
   });
 
   testWidgets('Check Route Exists', (tester) async {
-    await tester.pumpWidget(DartBoard(initialRoute: '/main', features: [
+    await tester.pumpWidget(DartBoard(initialPath: '/main', features: [
       TestFeature(
         namespace: 'default',
         route1: '/main',
@@ -194,7 +194,7 @@ void main() {
 
   testWidgets('Page and App Decoration Check - AllowList:Pass', (tester) async {
     await tester.pumpWidget(DartBoard(
-      initialRoute: '/main',
+      initialPath: '/main',
       features: [
         TestFeature(
             namespace: 'default',
@@ -214,7 +214,7 @@ void main() {
 
   testWidgets('Page and App Decoration Check - AllowList:Fail', (tester) async {
     await tester.pumpWidget(DartBoard(
-      initialRoute: '/main',
+      initialPath: '/main',
       features: [
         TestFeature(
             namespace: 'default',
@@ -230,7 +230,7 @@ void main() {
   testWidgets('Page and App Decoration Check - DenyList:Match and Block',
       (tester) async {
     await tester.pumpWidget(DartBoard(
-      initialRoute: '/main',
+      initialPath: '/main',
       features: [
         TestFeature(
             namespace: 'default',
@@ -251,7 +251,7 @@ void main() {
   testWidgets('Page and App Decoration Check - DenyList:Does Not Match',
       (tester) async {
     await tester.pumpWidget(DartBoard(
-      initialRoute: '/main',
+      initialPath: '/main',
       features: [
         TestFeature(
             namespace: 'default',
@@ -268,7 +268,7 @@ void main() {
   /// updated correspondingly.
   testWidgets('Feature Toggle and Routing', (tester) async {
     await tester.pumpWidget(DartBoard(
-      initialRoute: '/main',
+      initialPath: '/main',
       features: [
         /// We register 3 test features
         TestFeature(

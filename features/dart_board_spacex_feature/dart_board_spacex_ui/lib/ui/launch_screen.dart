@@ -47,7 +47,7 @@ class LaunchScreen extends StatelessWidget {
                                           .contains(images[index]))
                                       .first
                                       .missionName;
-                                  DartBoardCore.nav.appendRoute('/$launchName');
+                                  DartBoardCore.nav.appendPath('/$launchName');
                                 },
                                 child: FadeInImage.memoryNetwork(
                                     fit: BoxFit.cover,

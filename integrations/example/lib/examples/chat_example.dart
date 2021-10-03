@@ -11,6 +11,6 @@ void main() {
       'SplashScreen': null,
     },
     features: [ExampleFeature()],
-    initialRoute: '/chat',
+    initialPath: '/chat',
   ));
 }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 abstract class DartBoardNav {
   /// The currently active (foreground) route
-  String get currentRoute;
+  String get currentPath;
 
   /// Change Notifier to listen to changes in nav
   ChangeNotifier get changeNotifier;
@@ -13,7 +13,7 @@ abstract class DartBoardNav {
 
   /// Push a route onto the stack
   /// expanded will push sub-paths (e.g. /a/b/c will push [/a, /a/b, /a/b/c])
-  void push(String route, {bool expanded});
+  void push(String path, {bool expanded});
 
   /// Pop the top most route
   void pop();
@@ -26,16 +26,16 @@ abstract class DartBoardNav {
 
   /// Pop & Push (replace top of stack)
   /// Does not work on '/'
-  void replaceTop(String route);
+  void replaceTop(String path);
 
   /// Append to the current route (e.g. /b appended to /a = /a/b)
-  void appendRoute(String route);
+  void appendPath(String path);
 
   // Replace the Root (Entry Point)
   // Generally for Add2App
-  void replaceRoot(String route);
+  void replaceRoot(String path);
 
   /// Push a route with a dynamic route name
   void pushDynamic(
-      {required String dynamicRouteName, required WidgetBuilder builder});
+      {required String dynamicPathName, required WidgetBuilder builder});
 }

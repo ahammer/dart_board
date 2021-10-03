@@ -11,7 +11,7 @@ void main() => runApp(DartBoard(
         ThemeFeature(data: ThemeData.dark()),
         EntryPoint()
       ],
-      initialRoute: '/entry_point',
+      initialPath: '/entry_point',
     ));
 
 class EntryPoint extends DartBoardFeature {

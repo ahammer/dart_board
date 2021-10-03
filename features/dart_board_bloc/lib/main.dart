@@ -10,7 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 /// Sets the inital route to '/main'
 void main() => runApp(DartBoard(
       features: [CubitExampleFeature()],
-      initialRoute: '/main',
+      initialPath: '/main',
     ));
 
 /// A simple example Cubit

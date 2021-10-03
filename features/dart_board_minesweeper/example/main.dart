@@ -4,4 +4,4 @@ import 'package:flutter/material.dart';
 
 /// Simple minesweep runner
 void main() => runApp(
-    DartBoard(initialRoute: '/minesweep', features: [MinesweeperFeature()]));
+    DartBoard(initialPath: '/minesweep', features: [MinesweeperFeature()]));

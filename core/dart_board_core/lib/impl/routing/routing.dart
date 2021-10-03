@@ -6,21 +6,19 @@ import 'package:flutter/material.dart';
 import '../../dart_board.dart';
 
 class DartBoardInformationParser extends RouteInformationParser<DartBoardPath> {
-  final String initialRoute;
+  final String initialPath;
 
-  DartBoardInformationParser(this.initialRoute);
+  DartBoardInformationParser(this.initialPath);
 
   @override
   Future<DartBoardPath> parseRouteInformation(
           RouteInformation routeInformation) =>
       Future.sync(
-          () => DartBoardPath(routeInformation.location ?? '/', initialRoute));
+          () => DartBoardPath(routeInformation.location ?? '/', initialPath));
 
   @override
-  RouteInformation restoreRouteInformation(DartBoardPath configuration) {
-    print('restoring route information ${configuration.path}');
-    return RouteInformation(location: configuration.path);
-  }
+  RouteInformation restoreRouteInformation(DartBoardPath configuration) =>
+      RouteInformation(location: configuration.path);
 }
 
 class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
@@ -30,20 +28,20 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
   final GlobalKey<NavigatorState> navigatorKey;
 
   final List<DartBoardDecoration> appDecorations;
-  final String initialRoute;
+  final String initialPath;
   late final DartBoardPath initialDartBoardPath =
-      DartBoardPath('/', initialRoute, showAnimation: false);
+      DartBoardPath('/', initialPath, showAnimation: false);
   late List<DartBoardPath> navStack = [initialDartBoardPath];
 
   @override
-  String get currentRoute {
+  String get currentPath {
     return navStack.last.path;
   }
 
   DartBoardNavigationDelegate(
       {required this.navigatorKey,
       required this.appDecorations,
-      required this.initialRoute});
+      required this.initialPath});
 
   @override
   DartBoardPath? get currentConfiguration =>
@@ -78,7 +76,7 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
 
   @override
   Future<void> setNewRoutePath(DartBoardPath path) async {
-    navStack = [DartBoardPath('/', initialRoute)];
+    navStack = [DartBoardPath('/', initialPath)];
 
     push(path.path, expanded: true);
   }
@@ -118,24 +116,24 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
   }
 
   @override
-  void replaceTop(String route) {
+  void replaceTop(String path) {
     if (navStack.length > 1) {
       navStack.removeLast();
     }
-    push(route);
+    push(path);
   }
 
   @override
-  void push(String route, {bool expanded = false}) {
+  void push(String path, {bool expanded = false}) {
     if (expanded) {
-      _pushExpandedPath(route);
+      _pushExpandedPath(path);
     } else {
-      _addPath(DartBoardPath(route, initialRoute));
+      _addPath(DartBoardPath(path, initialPath));
     }
     notifyListeners();
   }
 
-  /// Push a path and it's parent routes
+  /// Push a path and it's parent paths
   /// e.g. /a/b/c -> [/a, /a/b, /a/b/c]
   void _pushExpandedPath(String path) {
     if (path == '/') return;
@@ -143,31 +141,32 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
 
     final uri = Uri.parse(path);
     for (var i = 1; i <= uri.pathSegments.length; i++) {
-      _addPath(DartBoardPath(
-          '/' + uri.pathSegments.take(i).join('/'), initialRoute));
+      _addPath(
+          DartBoardPath('/' + uri.pathSegments.take(i).join('/'), initialPath));
     }
     notifyListeners();
   }
 
   @override
-  void appendRoute(String route) {
-    if (route == '/') return;
+  void appendPath(String path) {
+    if (path == '/') return;
     if (navStack.isNotEmpty) {
       final last = navStack.last;
-      _addPath(DartBoardPath(last.path + route, initialRoute));
+      _addPath(DartBoardPath(
+          last.path == '/' ? last.rootPath : last.path + path, initialPath));
     }
 
     notifyListeners();
   }
 
   @override
-  void replaceRoot(String? route) {
+  void replaceRoot(String? path) {
     navStack.clear();
 
-    if (route == null) {
+    if (path == null) {
       navStack.add(initialDartBoardPath);
     } else {
-      navStack.add(DartBoardPath(route, initialRoute, showAnimation: false));
+      navStack.add(DartBoardPath(path, initialPath, showAnimation: false));
     }
 
     notifyListeners();
@@ -181,32 +180,32 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
 
   @override
   void pushDynamic(
-      {required String dynamicRouteName, required WidgetBuilder builder}) {
+      {required String dynamicPathName, required WidgetBuilder builder}) {
     /// Trim the leading / if used here
     /// We'll put it back when we put the
     /// private prefix e.g. /_ back on
-    if (dynamicRouteName.startsWith('/')) {
-      dynamicRouteName = dynamicRouteName.substring(1);
+    if (dynamicPathName.startsWith('/')) {
+      dynamicPathName = dynamicPathName.substring(1);
     }
 
     _addPath(
-        DartBoardPath('/_$dynamicRouteName', initialRoute, builder: builder));
+        DartBoardPath('/_$dynamicPathName', initialPath, builder: builder));
     notifyListeners();
   }
 }
 
 class DartBoardPath {
   final String path;
-  final String initialRoute;
+  final String rootPath;
   final WidgetBuilder? builder;
   final bool showAnimation;
 
-  DartBoardPath(this.path, this.initialRoute,
+  DartBoardPath(this.path, this.rootPath,
       {this.builder, this.showAnimation = true});
 
   late final Page page = DartBoardPage(
       path: path,
-      rootTarget: initialRoute,
+      rootTarget: rootPath,
       builder: builder,
       showAnimation: showAnimation);
 }

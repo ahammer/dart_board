@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 /// For advanced usages, e.g. App Decorations, Multiple features, AB tests
 /// check the example project in the root or at https://dart-board.io
 void main() => runApp(DartBoard(
-      initialRoute: '/home',
+      initialPath: '/home',
       features: [
         SimpleRouteFeature(),
         ImageBackgroundFeature(

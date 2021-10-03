@@ -39,7 +39,7 @@ void main() {
     await tester.pumpWidget(DartBoard(
       featureOverrides: {'FeatureA': null},
       features: [FeatureB(blocking: false)],
-      initialRoute: '/main',
+      initialPath: '/main',
     ));
 
     await tester.pumpAndSettle();
@@ -51,7 +51,7 @@ void main() {
     await tester.pumpWidget(DartBoard(
       featureOverrides: {'FeatureA': null},
       features: [FeatureB(blocking: true)],
-      initialRoute: '/main',
+      initialPath: '/main',
     ));
     await tester.pumpAndSettle(Duration(seconds: 1));
 

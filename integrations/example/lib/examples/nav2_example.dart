@@ -2,7 +2,7 @@ import 'package:dart_board_core/dart_board.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(DartBoard(features: [Nav2Feature()], initialRoute: '/home'));
+  runApp(DartBoard(features: [Nav2Feature()], initialPath: '/home'));
 }
 
 class Nav2Feature extends DartBoardFeature {
@@ -50,7 +50,7 @@ class NavTestPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(
-        title: Text('${DartBoardCore.nav.currentRoute}'),
+        title: Text('${DartBoardCore.nav.currentPath}'),
       ),
       body: Column(
         children: [
@@ -70,7 +70,7 @@ class NavTestPage extends StatelessWidget {
               _NavButton(
                   onPressed: () {
                     DartBoardCore.nav.pushDynamic(
-                        dynamicRouteName: 'test_route',
+                        dynamicPathName: 'test_route',
                         builder: (ctx) => const NavTestPage());
                   },
                   label: 'Push Dynamic'),
