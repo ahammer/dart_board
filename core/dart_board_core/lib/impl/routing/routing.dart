@@ -262,7 +262,7 @@ class DartBoardPage extends Page {
       builder: (builder != null)
           ? builder!
           : (context) => RouteWidget(
-                path,
+                path == '/' ? rootTarget : path,
                 decorate: true,
               ),
     );
