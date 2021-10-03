@@ -17,7 +17,7 @@ dependencies:
   dart_board_core: ^0.9.14
   dart_board_firebase_core: ^1.1.6
   firebase_analytics: ^8.3.1
-  dart_board_tracking:  
+  dart_board_tracking: ^1.2.2
 
 dev_dependencies:
   flutter_test:
