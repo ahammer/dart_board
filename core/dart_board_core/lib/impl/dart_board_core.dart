@@ -401,11 +401,6 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
 
   @override
   List<DartBoardFeature> get initialFeatures => widget.features;
-
-  @override
-  void pushRoute(String route) {
-    dartBoardRouterDelegate.push(route);
-  }
 }
 
 /// This class can apply the page decorations.
