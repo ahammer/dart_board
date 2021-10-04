@@ -1,3 +1,10 @@
+## 0.9.14+1
+
+ - **REFACTOR**: remove unused.
+ - **FIX**: delete unused code.
+ - **FIX**: fix appendroute when from root path.
+ - **FIX**: root target wasn't inflating correctly.
+
 ## 0.9.14
 
  - **FIX**: routes get brought to front if requested again.

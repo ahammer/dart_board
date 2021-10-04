@@ -1,3 +1,7 @@
+## 1.1.2
+
+ - **FIX**: pin version.
+
 ## 1.1.1
 
  - Update a dependency to the latest release.
