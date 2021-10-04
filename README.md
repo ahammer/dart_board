@@ -10,6 +10,9 @@ Flutter Architecture/Framework for Feature based development
 - [Dart Board](#dart-board)
 - [Introduction](#introduction)
 - [Feature List](#feature-list)
+- [Contributing](#contributing)
+  - [Conventional Commits](#conventional-commits)
+  - [Melos](#melos)
 - [Getting Started](#getting-started)
   - [Your own App (Hello World)](#your-own-app-hello-world)
   - [Work on the Framework](#work-on-the-framework)
@@ -109,6 +112,22 @@ What is a feature? Many are offered out of the box, including Debugging, Full Fe
 | [Minesweeper](features/dart_board_minesweeper/README.md) | You probably don't need it. But provides a `/minesweep` route. Deeper example of `dart_board_redux` use case in action. |
 | [Redux](features/dart_board_redux/README.md) | Flutter Redux Bindings. Provides features a consistent way to use a shared Redux store in a feature agnostic way. Provides a AppDecoration API + Function API to Create and Dispatch states. |
 | [Theme](features/dart_board_theme/README.md) | Theme support with FlexColorScheme package |
+
+# Contributing
+
+
+## Conventional Commits
+
+Use CommitLint (and conventional commit format)
+https://github.com/conventional-changelog/commitlint
+
+## Melos
+
+Use Melos
+https://pub.dev/packages/melos
+
+
+Make a PR to the Repo & Get my Attention (Adam Hammer)
 
 
 # Getting Started
