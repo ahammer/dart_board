@@ -1,112 +1,245 @@
-# dart_board
+# dart_board_core
 
-A feature management framework for flutter
+The kernel module of dart board.
 
-### Feature management, what is that?
+This is the heart of dart board. It's not your features, it's just a widget. One main widget, some extra ones, and Navigation/Routing interfaces.
 
-It's a way of isolating features so that they can be managed. E.g. Mix and match/AB Test/Disable at run time or build time.
+If this was a home theater, This is your Receiver. You plug your features (Cable/VCR/DVD/Nintendo) into it, and it plugs into the TV and Speakers. It plugs everything into it and lets you switch the channel, or even do picture in picture.
 
-It provides architectural guidance and structure so that you can cleanly build an app.
+Although Dart Board is not a Stereo receiver, we'll keep this analogy going.
 
-While providing structure on how to integrate and isolate features, Dart Board is agnostic when it comes to actual 
-state management of architectural patterns of the features themselves.
+`DartBoardCore`
 
-Even existing projects can be easily ported to love within a Dart Board Feature.
+This interface gives you access to information about the system. What features are plugged in, what inputs are available, and what channels are ready to see.
 
-## Getting Started
+Generally speaking, if you aren't AB/Feature gating, the only thing you need it the `DartBoard` Widget.
 
-*NOTE: Still not released, these instructions are preliminary/TBD*
+```
+void main() => runApp(DartBoard(
+      features: [
+        SpaceXUIFeature(),
+        SpaceSceneFeature(),
+        ThemeFeature(data: ThemeData.dark()),
+        EntryPoint()
+      ],
+      initialPath: '/entry_point',
+    ));
+```
 
-### App Developer
-
-- Make a new flutter app project `flutter create -t app --platforms=android,ios,web,linux,macos,windows your_project`
-- Add dart_board to your `pubspect.yaml`
-- Extend `DartBoardFeature` to create an *integration feature*
-- Add a `/` or `/main` or any other appropriate entry point to your feature
-- `main() => runApp(DartBoard(features:[YourIntegrationFeature()], initialRoute:'/main'));`
-
-That's it, you should be ready to add more features to your app. 
-
-You can play around with the framework by adding `Page/App Decoration` and `Routes` to your integration extension. It's recommended though to try and isolate your features and keep them small. For example, if you have a Search feature and 2 UI's you might want a `SearchManager` feature, and then `SearchUI_VariantA` and `SearchUI_VariantB` that can bring `SearchManager` in as a dependency. This would let you trivially swap UI's on a shared backend.  Each feature holds 1 small part. The data/api for searching, and 1 UI each for the feature, bound to a route (e.g. */search*)
-
-
-### Feature Developer
-- Make a new flutter module or plugin project (e.g. `flutter create -t module my_feature)
-- Add *Dart Board* to your `pubspec.yaml`
-- Create your Feature
-- To test your feature, you can use the Module and it's own `main.dart`. 
-- Recommended to make an `example` for each feature, following the *App Developer* steps above.
+This launches DartBoard, loads your features, and goes to the `/entry_point` route. For standard usage, you are done.
 
 
-Setting up an Example will let you instrument your Feature and also enable Features you would not want to ship with your feature. (e.g. DebugFeature, LogFeature).
+## AB Testing & Feature Flags
 
-Generally it's a good idea to also set up routes dedicated to development tasks and portions of the app, since you can change the initialRoute in the main, it's easy to jump around parts of a feature while doing development.
+### AB (change implementation)
 
-### Porting/Adapting existing libraries
-- Extends DartBoardFeature
-- Provide routes (NamedRouteDefinition is the current only supported option)
-- Create an AppDecorator widget to define app level state.
-- Create any PageDecorators to decorate the named routes
+```
+DartBoardCore
+  .instance
+  .setFeatureImplementation(
+      'YourFeatureNamespace', 'YourImplementationName')
+```
 
-At this point a user of your Feature can navigate to your route with RouteWidget or pushNamed()
-If necessary, the Feature can provide additional API to interact with it's app state via the tree.
+If you have multiple features with the same `namespace` but different `ImplementationName` you can switch between them at runtime.
 
-Routes do not need to be used full-screen by integrators, they can also use RouteWidget anywhere in the UI tree
+### Feature Flag / Disabling
 
-## How it works
-You give it extensions, it unwraps, sorts and organizes them, then injects them back into your app.
+```
+DartBoardCore
+  .instance
+  .setFeatureImplementation(
+      'YourFeatureNamespace', null)
+```
 
-First it walks the dependency tree and collects an ordered list of what to init.
+Same as the AB switching, but just pass `null` as your ImplementationName and the feature will be disabled.
 
-It then collects all the routes and decorations. It creates the MaterialApp()
-for you, and sets up the routing and decoration features, as well as injecting all your App Decoration's near the trunk of the Tree.
+## Navigation
 
-From here, you can use named routing to access any registered feature route, or
-RouteView. Additionally features can provide API's to the app and page level components.
+Access with `DartBoardCore.nav` globally
 
-## Some things to try in this Example
-- Play with the Debug Screen (Caution, you can break the app if you disable something you need).
-- Play MineSweeper
-- Read the Documentation (This File + Example Readme + Selected Files)
+It maintains a `Stack` of Path's.
 
-## What is in the Repo
-### ./dart_board
+You can push new paths, and optionally expand them (e.g. `[/a/b/c] -> [/a, /a/b, /a/b/c]`)
 
-The core framework, brought in by all Features and Apps
+It gives you a couple of ways to edit the stack and modify as necessary. Generally paths
+should be generated by registered Route's in the features, but Dynamic (runtime) paths are possible.
+They however can not be shared between instances and will result in a 404.
 
-### ./example
+```
 
-The integration example, documentation of all features.
-visible at https://dart-board.io
+abstract class DartBoardNav {
+  /// The currently active (foreground) route
+  String get currentPath;
 
-### ./features/dart_board_debug
+  /// Change Notifier to listen to changes in nav
+  ChangeNotifier get changeNotifier;
 
-Debug feature. Includes the /debug route that gives you insight into DartBoard
-and it's current integration.
+  /// Get the current stack
+  List<DartBoardPath> get stack;
 
-It also allows you to toggle variants of features, and disable features at run time.
+  /// Push a route onto the stack
+  /// expanded will push sub-paths (e.g. /a/b/c will push [/a, /a/b, /a/b/c])
+  void push(String path, {bool expanded});
 
-### ./features/dart_board_log
+  /// Pop the top most route
+  void pop();
 
-Basic logging features. Includes a PageDecoration that will show the last log message
-as a toolbar.
+  /// Pop routers until the predicate clears
+  void popUntil(bool Function(DartBoardPath path) predicate);
 
-Tapping the toolbar will open the larger log.
+  /// Clear all routes in the stack that match the predicate
+  void clearWhere(bool Function(DartBoardPath path) predicate);
 
-### ./features/dart_board_minesweeper
+  /// Pop & Push (replace top of stack)
+  /// Does not work on '/'
+  void replaceTop(String path);
 
-A minesweeper implementation in Dart. This is a standalone redux application. It's been ported
-to a feature container so that you can play Minesweeper, and persist it's state through the app.
+  /// Append to the current route (e.g. /b appended to /a = /a/b)
+  void appendPath(String path);
 
-### ./features/dart_board_theme
+  // Replace the Root (Entry Point)
+  // Generally for Add2App
+  void replaceRoot(String path);
 
-Minimal theming feature, supports a boolean for light/dark
+  /// Push a route with a dynamic route name
+  void pushDynamic(
+      {required String dynamicPathName, required WidgetBuilder builder});
+}
+```
 
 
-## How to help.
+### Route Types in DartBoard
 
-1) Contribute via Patreon (https://www.patreon.com/AdamHammer), pledging support 
-2) Contribute Code
-  - New features (E.g. Auth would be a huge next target)
-  - Build out core features (Log, Debug, Theme) could all use significant work.
-  - Tests (I'll get to them eventually, but if you want to help, please do)
+These route types should allow you to match a wide range of URI patterns for your features.
+
+`NamedRouteDefinition` -> Matches a portion of a path for a specific name, i.e. `/page` `/details`
+`MapRoute` -> Named Route that allows multiple pages (Syntactic sugar)
+`UriRoute` -> Matches everything that hits it. Can globally handle routing, or can be used with PathedRoute to provide detailed parsing of the resource.
+`PathedRoute` -> Use this for deep-linked trees. E.g. `/category/details/50` it takes a List of Lists of RouteDefinitions. Each level of depth represents the tree.
+
+How to fulfill complicated roots?
+`NamedRouteDefinition` works good for static, fixed targets. But what if you want something more advanced?
+
+E.g. you want /store/pots/2141 to resolve.
+
+`UriRoute` and `PathedRoute` solve those issues for you.
+
+`PathedRoute` will handle directory structures. You do this with a list of lists. Each level can hold any number of matchers. If a path matches up to that level, the lowest matcher will take it.
+
+```
+// PsuedoCode
+[
+  [
+    NamedRoute('/store', (ctx,settings)=>StorePage()),    
+  ],
+  [
+    NamedRoute('/pots', (ctx,settings)=>PotsPage()),
+    NamedRoute('/pans'  (ctx,settings)=>PotsPage()),
+  ],
+  [
+    UriRoute((context, uri)=>Parse and Display)
+  ]
+]
+```
+
+This PathedRoute config would respond to many routes: `[/store, /store/pots, /store/pans, /store/pots/*, /store/pans/*]`
+
+The * is the UriRoute. You can use this to manage all your Routing, or you can use it with a Pathed route to parse the information.
+
+UriRoute will parse the resource request and let you access query params, path segments and anything else encoded in the page request.
+
+
+### Anonymous Routes
+
+Sometimes you want to just push a screen right? Like you didn't register it in a feature, you want it to be dynamic for whatever reason.
+
+`void pushDynamic({required String dynamicRouteName, required WidgetBuilder builder});`
+
+is what you can use here. Give it a unique name which will be prefixed with _, e.g. `/_YourDynamicRoute3285` If you see the `_` that means you can not share this route. If you give it to someone else it's going to 404 for them. It's dynamically allocated for the users session.
+
+
+
+## R#outing Demonstration in the SpaceX Example
+
+The SpaceX features are designed as demonstrations of Add2App and Navigator 2.0 usage.
+
+```
+  @override
+  List<RouteDefinition> get routes => [
+        PathedRouteDefinition([
+          [
+            NamedRouteDefinition(
+                route: '/launches', builder: (ctx, settings) => LaunchScreen())
+          ],
+          [UriRoute((ctx, uri) => LaunchDataUriShim(uri: uri))]
+        ]),
+      ];
+```
+
+This matches `/launches` and also `/launches/[ANY_ROUTE_NAME]`
+
+`/launches` appends the name of the mission to the URL, and you end up with something like `/launches/Starlink%207`
+
+UriRoute can then pull the data from the URI and pass it to the page to load what it needs to.
+
+
+# Helpful Widgets (General Utilities)
+
+## RouteWidget (embedded routes)
+
+Want to use your named routes anywhere? E.g. in a Dialog, or as a small portion of a screen?
+
+```
+    showDialog(
+        useSafeArea: true,
+        context: navigatorContext,
+        barrierDismissible: true,
+        builder: (ctx) => RouteWidget("/request_login"));
+```
+and pass arguments `RouteWidget(itemPreviewRoute, args: {"id": id})`
+
+RouteWidget can handle that for you, enabling you to break screens up into multiple decoupled features that share a common core and state.
+
+## Convertor<In, Out>
+
+Conversion in the widget tree
+
+```
+              Convertor<MinesweeperState, MineFieldViewModel>(
+                  convertor: (input) => buildVm(input),
+                  builder: (ctx, out) => MineField(vm: out),
+                  input: state)))
+```                  
+
+Will only trigger an update if the VM changes/doesn't hit equality. 
+
+Ideal for ViewModel generation from a DataSource, to help reduce the number of builds to relevant changes.
+
+## LifecycleWidget
+
+```
+LifeCycleWidget(
+                key: ValueKey("LocatorDecoration_${T.toString()}"),
+                preInit: () => doSomethingBeforeCtx,
+                
+                    
+                child: Builder(builder: (ctx) => child))
+```
+
+This widget can tap into life cycle
+
+3 hooks
+```
+  /// Called in initState() before super.initState()
+  final Function() preInit;
+
+  /// Called after initState()  (with context)
+  final Function(BuildContext context) init;
+
+  /// Called in onDispose
+  final Function(BuildContext context) dispose;
+```
+
+You can use this with something like a PageDecoration to start a screen time counter, or to periodically set a reminder/start/stop a service etc.
+
+It's very useful within the context of features and setting up integrations.

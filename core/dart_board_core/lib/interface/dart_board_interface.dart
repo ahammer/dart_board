@@ -48,23 +48,39 @@ abstract class DartBoardCore {
   }
 
   static late DartBoardCore _instance;
+
+  /// Quick and dirty getters
   static DartBoardCore get instance => _instance;
   static DartBoardNav get nav => _instance.routerDelegate as DartBoardNav;
 
-  /// These are the Features that have been loaded
-  ///
-  /// Essentially, this is your "app" and how to build everything
+  /// Page Decorations and allow/deny list
   List<DartBoardDecoration> get pageDecorations;
-  List<DartBoardDecoration> get appDecorations;
-  Map<String, MethodCallHandler> get methodHandlers;
   List<String> get pageDecorationDenyList;
   List<String> get pageDecorationAllowList;
+
+  /// We track specifically "white listed" page decorations
+  /// Since they prefer whitelist to deny list.
   Set<String> get whitelistedPageDecorations;
+
+  /// Loaded App Decortations
+  List<DartBoardDecoration> get appDecorations;
+
+  /// Loaded Method Handlers
+  Map<String, MethodCallHandler> get methodHandlers;
+
+  /// All Features registered
   List<DartBoardFeature> get allFeatures;
-  List<RouteDefinition> get routes;
+
+  /// All features loaded (active)
   Set<DartBoardFeature> get loadedFeatures;
+
+  /// All features specified in the Widget (no dependencies)
   List<DartBoardFeature> get initialFeatures;
 
+  /// All Available Route Definitions
+  List<RouteDefinition> get routes;
+
+  /// The Router Delegate (I may let you swap this for custom nav 2.0 implementations)
   RouterDelegate get routerDelegate;
 
   /// This is all detected implementations for each feature namespace
@@ -73,18 +89,13 @@ abstract class DartBoardCore {
   /// These are the currently active implementations for each feature
   Map<String, String> get activeImplementations;
 
-  /// These are the RouteDefinitions
+  /// Builds a Page based on settings/definition/context
+  /// Optionally decorates that page.
   ///
-  /// They are exposed for debug/info purposes primarily
-
-  /// Builds a page route
-  ///
+  /// Generally use (RouteWidget()) to access this.
   Widget buildPageRoute(
       BuildContext context, RouteSettings settings, RouteDefinition definition,
       {bool decorate = true});
-
-  ///------------------------------------------------------------------------------------------------------------
-  /// STATIC HELPERS
 
   /// Finds a Feature by it's name
   DartBoardFeature findByName(String name) =>
@@ -97,7 +108,7 @@ abstract class DartBoardCore {
   /// Set value == null to disable
   void setFeatureImplementation(String namespace, String? value);
 
-  /// Feature gating
+  /// Check if a feature is loaded/active (i.e running right now)
   bool isFeatureActive(String namespace);
 
   /// Check if this route can be resolved
