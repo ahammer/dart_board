@@ -9,34 +9,37 @@ Flutter Architecture/Framework for Feature based development
 
 - [Dart Board](#dart-board)
 - [Introduction](#introduction)
-- [Feature List](#feature-list)
+- [Repo Structure](#repo-structure)
+  - [core](#core)
+  - [features](#features)
+  - [templates](#templates)
+  - [integrations](#integrations)
+  - [homepage](#homepage)
 - [Contributing](#contributing)
+  - [Steps](#steps)
   - [Conventional Commits](#conventional-commits)
   - [Melos](#melos)
-- [Getting Started](#getting-started)
-  - [Your own App (Hello World)](#your-own-app-hello-world)
-  - [Work on the Framework](#work-on-the-framework)
-- [What is included](#what-is-included)
-  - [How it works](#how-it-works)
-- [Add2App](#add2app)
-  - [Limitations](#limitations)
-  - [General Advice](#general-advice)
-- [Navigator 2.0](#navigator-20)
-  - [Router concept](#router-concept)
-  - [How to Use](#how-to-use)
-  - [Fulfilling Routes](#fulfilling-routes)
-  - [Anonymous Routes](#anonymous-routes)
-  - [Upgrading from Dart Board Navigator to 2.0 Router](#upgrading-from-dart-board-navigator-to-20-router)
-  - [Route Types in DartBoard](#route-types-in-dartboard)
-  - [SpaceX Example](#spacex-example)
-- [Features](#features)
-  - [Decorations](#decorations)
-    - [Page Decorations](#page-decorations)
-    - [App Decorations](#app-decorations)
+- [Getting Started (Hello World)](#getting-started-hello-world)
 - [Dart Board Core](#dart-board-core)
   - [Feature Loading](#feature-loading)
   - [AB Testing](#ab-testing)
   - [Feature Flags/Disabling](#feature-flagsdisabling)
+- [Features](#features-1)
+  - [Decorations](#decorations)
+    - [Page Decorations](#page-decorations)
+    - [App Decorations](#app-decorations)
+  - [Routes](#routes)
+  - [Method Calls](#method-calls)
+  - [Feature List](#feature-list)
+- [Add2App](#add2app)
+  - [Limitations](#limitations)
+  - [General Advice](#general-advice)
+- [Navigation](#navigation)
+  - [Router concept](#router-concept)
+  - [How to Use](#how-to-use)
+  - [Route Types in DartBoard](#route-types-in-dartboard)
+  - [Anonymous Routes](#anonymous-routes)
+  - [Routing Demonstration in the SpaceX Example](#routing-demonstration-in-the-spacex-example)
 - [State Management](#state-management)
   - [Locator](#locator)
     - [Usage:](#usage)
@@ -47,26 +50,24 @@ Flutter Architecture/Framework for Feature based development
   - [Bloc/Cubit](#bloccubit)
     - [Usage](#usage-2)
     - [Use Case](#use-case-2)
-  - [Provider](#provider)
+  - [Provider / RiverPod](#provider--riverpod)
     - [Usage](#usage-3)
 - [Helpful Widgets (General Utilities)](#helpful-widgets-general-utilities)
   - [RouteWidget (embedded routes)](#routewidget-embedded-routes)
   - [Convertor<In, Out>](#convertorin-out)
   - [LifecycleWidget](#lifecyclewidget)
 - [How App is run](#how-app-is-run)
-- [Repo Structure](#repo-structure)
-  - [core](#core)
-  - [features](#features-1)
-  - [templates](#templates)
-  - [integrations](#integrations)
-  - [homepage](#homepage)
+- [General App Guidance](#general-app-guidance)
+  - [Keep Features Small](#keep-features-small)
+  - [Coupling is OK, Sometimes](#coupling-is-ok-sometimes)
+  - [Develop in Isolation](#develop-in-isolation)
+  - [Integrate Last](#integrate-last)
+  - [Configuration Tips](#configuration-tips)
 - [Special Thanks](#special-thanks)
 - [TODO - Release Roadmap](#todo---release-roadmap)
 
 
 ![Dependency Graph](https://www.dart-board.io/assets/img/screenshots/dart_board_2.jpg)
-
-
 
 
 # Introduction
@@ -84,7 +85,7 @@ The advantages of adopting a pattern like this are the following
 - Feature Developer autonomy 
 - Easy to port existing flutter code
 - Plugs gracefully into your Apps routing code.
-
+- Eases Add2App integrations
 
 This lets you structure you code as fundamental building blocks of "features", and then integrate them into a consistent application with config only. At compile and runtime you can mix/match and switch feature implementations. 
 
@@ -98,23 +99,61 @@ What is a feature? Many are offered out of the box, including Debugging, Full Fe
 
 
 
-# Feature List
+# Repo Structure
 
-| Feature             |  Description |
-:-------------------------:|:-------------------------:|
-| [Authentication](features/dart_board_authentication/README.md) | Auth Facade that allows registration/interfacing with Auth Providers (e.g. Firebase, or your own). |
-| [Debug](features/dart_board_debug/README.md) | Provides a /debug and /dependency_graph route's to play with the internals/registry. |
-| [Firebase Authentication](features/dart_board_firebase_authentication) | Firebase plugin for auth-layer (initialize Firebase with standard FlutterFire docs, e.g. include Firebase JS in your html, or set up your Mobile Runners) Web + Mobile + MacOS is suppoerted by flutter fire. |
-| [Firebase Core](features/dart_board_firebase_core) | Marker/init package for Firebase Core. Dependency for all Firebase/FlutterFire projects. |
-| [Image Background Decoration](features/dart_board_image_background/README.md) | Allows you to Apply images or widgets as backgrounds (page decoration) |
-| [Locator](features/dart_board_locator/README.md) | Object/Service Locator Framework. Lazy loading + Caching. App Decoration based API to register types and services to the App. |
-| [Logging](features/dart_board_log/README.md) | Basic logging features, including a Log Footer and `/log` route + overlay. |
-| [Minesweeper](features/dart_board_minesweeper/README.md) | You probably don't need it. But provides a `/minesweep` route. Deeper example of `dart_board_redux` use case in action. |
-| [Redux](features/dart_board_redux/README.md) | Flutter Redux Bindings. Provides features a consistent way to use a shared Redux store in a feature agnostic way. Provides a AppDecoration API + Function API to Create and Dispatch states. |
-| [Theme](features/dart_board_theme/README.md) | Theme support with FlexColorScheme package |
+## core
+
+Contain's core framework features. Currently 1 library. dart_board_core
+
+## features
+
+Contain's reusable features that can be included in your integrations (or other features)
+
+## templates
+
+Contain's features that are designed to be UI templates
+
+They are pre-made templates that get filled in via config.
+
+- Configurable Route
+- Configurable Feature Name
+- UI Config (e.g. Embedded Route Names, or Widgets, etc).
+
+The idea being that you should be able to register a Temlate multiple times, for multiple screens with varying configs.
+
+You access the template by navigating to the route you select.
+
+## integrations
+
+This is a place to see Integrations of multiple features into a larger app.
+
+- Example/Playground: Integrates everything, demonstrates it all at once.
+- Blank: A minimal template with no major features. This can be adapted as a starting template.
+
+## homepage
+
+This is the "dart-board.io" website.
+
+The template is SplashKit (Bootstrap) and is not licensed for re-use.
+
+For all intents and purposes, this is outside the open source components due to license restrictions.
+
 
 # Contributing
 
+To contribute or develop on the repo you'll need to use `melos` and `conventional commits`. Melos is a tool to link the mono-repo and allow for local development. Conventional commits are a commit format that help facilitate versioning and releases.
+
+## Steps 
+
+1) Clone the repo
+2) Flutter pub global activate melos
+3) melos bootstrap
+
+Most features contain a main.dart that can be run on an Android or iOS device/simulator.
+
+Integrations folder contains "starter" and "example". They both have main.dart and are primarily developed on desktop and web to maximize compat across all platforms.
+
+The repo is setup to to integrate into VsCode and allow running of many examples from the IDE directly.
 
 ## Conventional Commits
 
@@ -130,9 +169,7 @@ https://pub.dev/packages/melos
 Make a PR to the Repo & Get my Attention (Adam Hammer)
 
 
-# Getting Started
-
-## Your own App (Hello World)
+# Getting Started (Hello World)
 
 1) in `pubspec.yaml` add `dart_board_core:` to your dependencies
 2) Create `YourFeature extends DartBoardFeature` class.
@@ -147,204 +184,50 @@ routes => [
 ```
 void main() => runApp(DartBoard(
   features:[HelloWorldFeature()], 
-  initialRoute: '/Hello_World']))
+  initialRoute: '/hello_world']))
 ```
 
 5. Add features with `pub.dev` register them in your Features and Apps to gain access. Many require zero config and expose routes and method calls to use.
 
-## Work on the Framework
+# Dart Board Core
 
-1) Clone the repo
-2) Flutter pub global activate melos
-3) melos bootstrap
+Core provide integration and manages features. It is able to facilitate features like AB testing. The `DartBoard` widget will serve the trunk when working with Dart Board.
 
-Melos is mandatory for local dev, if you use pub dependencies for dev, they won't link changes correctly locally. Melos handles it so I don't need to install overrides.
-More info @ https://pub.dev/packages/melos
+## Feature Loading
 
-Most features contain a main.dart that can be run on an Android or iOS device/simulator.
+Features have a `namespace` and a `implementationName`
 
-Integrations folder contains "starter" and "example". They both have main.dart and are primarily developed on desktop and web to maximize compat across all platforms.
+The `namespace` is what uniquely identifies the feature. You can load one `implementationName` per namespace.
 
-# What is included
+`implementationName` (default: "default") is the name of the implementation, e.g. `namespace = feature` and `implementationName in [feature_impl_a, feature_impl_b]`
 
-- A Core Framework + Utilities
 
-- Optional features that can be enabled.
 
-- Starter templates and Examples.
+Features are loaded via a graph-walk, in order, depth first. There is potentially multiple root nodes (e.g. say you define 3 Features in your main()), They will be walked in order.
 
+E.g. 
+`[FeatureA, FeatureB, FeatureC, FeatureA_IMPL2]`
 
-It's a ready to use Framework for building a flutter app today.
+In this case, FeatureA will be loaded, then B and C. A_IMPL2 will be shuffled away, because A already has an implementation
 
+For each feature root a depth first in-order walk of the dependencies are registered. Everytime there is a namespace conflict, it's pushed to the side as a registered implementation.
 
-## How it works
+In simpler terms, the first feature to a namespace wins. Whether it's walking the tree or going over the list, left to right. This means things registered first take the namespace slot.
 
-Dart Board provides an entry point to your Flutter Application.
+Only 1 implementation can be active in a namespace at time.
 
-You are able to register your features into it's registry and they become available to your application. 
+## AB Testing
 
-Features have the ability to hook into your app in a variety of ways, such as: Router support, app and page decorations, remote method call handlers and more.
+Setting a feature at runtime is easy, just `DartBoardCore.instance.setFeatureImplementation('FeatureNamespace', 'FeatureImplementationName');`
 
-You start it by giving your features and initialRoute and it's good to go.
+Just give it your Namespace, and the implementationName and DartBoard will reboot with the new features/tree, salvaging what it can on the way.
 
-```
-void main() => runApp(DartBoard(
-  features:[MainFeature(), SomeOtherFeature(), ....], 
-  initialRoute: '/main']))
-```
+## Feature Flags/Disabling
 
-# Add2App
+Again, super easy
+DartBoardCore.instance.setFeatureImplementation('FeatureNamespace', null);
 
-Want to add flutter to an existing App? Generally a daunting task fraught with limitations. However, with routing and native API's to abstract the difficulty it's completely feasible.
-
-## Limitations
-- One Active flutter activity in the stack.
-- Full Screen only
-
-The first is because Flutter on Native can be multi-engine or single-engine. By being multi-engine a lot of difficulties are lost. You can run multiple screens and navigate back and forth. However this approach uses more memory and the  isolates can not share data in a clean and easy way. By using a single engine we can pre-warm it, use it headless, preserve state etc. However, navigation stack is state, and having multiple screens native + flutter complicates this. Having flutter run as a "single top" with it's own stack simplifies this considerably. This means it's ill advise to navigate between platform->flutter->platform->flutter. If there is enough demand for this functionality the router can be modified to allow context switching (e.g. multiple nav stacks). It should be easy to avoid this scenario with careful planning and risk management.
-
-The second is more a suggestion. FlutterFragment and FlutterViewController can easily handle it. However, it does open the door to layout and transition issues. It's better to understand the difficulty and avoid it. However it's possible, just don't expect to know the size of your flutter content in the host, and don't expect to easily transition to full screen. As such Dart-Board will only support full-screen, single-top scenerios out of the box.
-
-## General Advice
-
-- Go leaves in, not trunk out (i.e. About Us, leaf. Landing Screen, trunk.) Start with small targets and build your confidence.
-- Use Pigeon to manage your MC bindings and calls for type safety across Android/iOS/Flutter)
-- Convert your Feature Modules to Plugins to bundle your own Java/Kotlin/Swift/ObjC code.
-- Bring in dart_board_core_plugin instead of dart_board_core to get the Android bindings (iOS in the future)
-
-
-
-# Navigator 2.0
-
-## Router concept
-
-The router has these rules. 
-
-1) You have a stack of "paths" (e.g. [/, /somepage, /store/details/32])
-2) No duplicate paths in the stack, pushing a duplicate will move it to the front
-3) All routes must be URL reproducable
-4) pushDynamic (builder) routes can not be shared, but are temporarily named.
-5)  `/` is a mirror of a `Route` from a feature. Configured with `/initialRoute` (no change)
-
-## How to Use
-
-You can access the nav globally with `DartBoardCore.nav` instance.
-
-```
-abstract class DartBoardNav {
-  /// The currently active (foreground) route
-  String get currentRoute;
-
-  /// Change Notifier to listen to changes in nav
-  ChangeNotifier get changeNotifier;
-
-  /// Get the current stack
-  List<DartBoardPath> get stack;
-
-  /// Push a route onto the stack
-  /// expanded will push sub-paths (e.g. /a/b/c will push [/a, /a/b, /a/b/c])
-  void push(String route, {bool expanded});
-
-  /// Pop the top most route
-  void pop();
-
-  /// Pop routers until the predicate clears
-  void popUntil(bool Function(DartBoardPath path) predicate);
-
-  /// Clear all routes in the stack that match the predicate
-  void clearWhere(bool Function(DartBoardPath path) predicate);
-
-  /// Pop & Push (replace top of stack)
-  /// Does not work on '/'
-  void replaceTop(String route);
-
-  /// Append to the current route (e.g. /b appended to /a = /a/b)
-  void appendRoute(String route);
-
-  /// Push a route with a dynamic route name
-  void pushDynamic(
-      {required String dynamicRouteName, required WidgetBuilder builder});
-}
-```
-
-## Fulfilling Routes
-
-How to fulfill complicated roots?
-`NamedRouteDefinition` works good for static, fixed targets. But what if you want something more advanced?
-
-E.g. you want /store/pots/2141 to resolve.
-
-`UriRoute` and `PathedRoute` solve those issues for you.
-
-`PathedRoute` will handle directory structures. You do this with a list of lists. Each level can hold any number of matchers. If a path matches up to that level, the lowest matcher will take it.
-
-```
-// PsuedoCode
-[
-  [
-    NamedRoute('/store', (ctx,settings)=>StorePage()),    
-  ],
-  [
-    NamedRoute('/pots', (ctx,settings)=>PotsPage()),
-    NamedRoute('/pans'  (ctx,settings)=>PotsPage()),
-  ],
-  [
-    UriRoute((context, uri)=>Parse and Display)
-  ]
-]
-```
-
-This PathedRoute config would respond to many routes: `[/store, /store/pots, /store/pans, /store/pots/*, /store/pans/*]`
-
-The * is the UriRoute. You can use this to manage all your Routing, or you can use it with a Pathed route to parse the information.
-
-UriRoute will parse the resource request and let you access query params, path segments and anything else encoded in the page request.
-
-
-## Anonymous Routes
-
-Sometimes you want to just push a screen right? Like you didn't register it in a feature, you want it to be dynamic for whatever reason.
-
-`void pushDynamic({required String dynamicRouteName, required WidgetBuilder builder});`
-
-is what you can use here. Give it a unique name which will be prefixed with _, e.g. `/_YourDynamicRoute3285` If you see the `_` that means you can not share this route. If you give it to someone else it's going to 404 for them. It's dynamically allocated for the users session.
-
-## Upgrading from Dart Board Navigator to 2.0 Router
-
-- Replace all `Navigator.of(context).pushNamed(route)` to `DartBoardCore.nav.push(route)` 
-
-## Route Types in DartBoard
-
-These route types should allow you to match a wide range of URI patterns for your features.
-
-`NamedRouteDefinition` -> Matches a portion of a path for a specific name, i.e. `/page` `/details`
-`MapRoute` -> Named Route that allows multiple pages (Syntactic sugar)
-`UriRoute` -> Matches everything that hits it. Can globally handle routing, or can be used with PathedRoute to provide detailed parsing of the resource.
-`PathedRoute` -> Use this for deep-linked trees. E.g. `/category/details/50` it takes a List of Lists of RouteDefinitions. Each level of depth represents the tree.
-
-## SpaceX Example
-E.g. In SpaceX feature it's used like this
-
-```
-  @override
-  List<RouteDefinition> get routes => [
-        PathedRouteDefinition([
-          [
-            NamedRouteDefinition(
-                route: '/launches', builder: (ctx, settings) => LaunchScreen())
-          ],
-          [UriRoute((ctx, uri) => LaunchDataUriShim(uri: uri))]
-        ]),
-      ];
-```
-
-This matches `/launches` and also `/launches/[ANY_ROUTE_NAME]`
-
-`/launches` appends the name of the mission to the URL, and you end up with something like `/launches/Starlink%207`
-
-UriRoute can then pull the data from the URI and pass it to the page to load what it needs to.
-
-
+Note: Disabling features incorrectly can lead to breakage. E.g. disabling the template or /route you are on will leave you stranded.
 
 # Features
 
@@ -389,45 +272,202 @@ Common use cases are things like
  - Hooks for other extensions (e.g. `LocatorDecoration(()=>SomeType())`)
 
 
-# Dart Board Core
+## Routes
 
-Core provide integration and manages features. It is able to facilitate features like AB testing. The `DartBoard` widget will serve the trunk when working with Dart Board.
+Features can include "Routes/Paths" these are essentially screens or UI blocks that can be added by path to your application. You can add routes by overrides the `routes` getter in a feature.
 
-## Feature Loading
+## Method Calls
 
-Features have a `namespace` and a `implementationName`
+Method Calls are the mechanism to decouple features, but still allow interaction. By using Flutter's `MethodCall` class typically reserved for Add2App/Host/Flutter communication, we can also decouple features using named methods at a distance.
 
-The `namespace` is what uniquely identifies the feature. You can load one `implementationName` per namespace.
+These can be used to loosely connect features without a direct dependency.
 
-`implementationName` (default: "default") is the name of the implementation, e.g. `namespace = feature` and `implementationName in [feature_impl_a, feature_impl_b]`
+## Feature List
+
+| Feature             |  Description |
+:-------------------------:|:-------------------------:|
+| [Authentication](features/dart_board_authentication/README.md) | Auth Facade that allows registration/interfacing with Auth Providers (e.g. Firebase, or your own). |
+| [Block](features/dart_board_bloc/README.md) | Bloc/Cubit bindings for features |
+| [Canvas](features/dart_board_canvas/README.md) | Easy to integrate animated canvas features |
+| [Chat](features/dart_board_chat/README.md) | Example Chat feature built on top of Firebase |
+| [Debug](features/dart_board_debug/README.md) | Provides a /debug and /dependency_graph route's to play with the internals/registry. |
+| [Firebase Analytics](features/dart_board_firebase_analytics/README.md) | Firebase analytics options for Dart Board |
+| [Firebase Authentication](features/dart_board_firebase_authentication) | Firebase plugin for auth-layer (initialize Firebase with standard FlutterFire docs, e.g. include Firebase JS in your html, or set up your Mobile Runners) Web + Mobile + MacOS is suppoerted by flutter fire. |
+| [Firebase Core](features/dart_board_firebase_core) | Marker/init package for Firebase Core. Dependency for all Firebase/FlutterFire projects. |
+| [Firebase Database](features/dart_board_firebase_database/README.md) | Firebase Database features/helpers |
+| [Image Background](features/dart_board_image_background/README.md) | Allows you to Apply images or widgets as backgrounds (page decoration) |
+| [Locator](features/dart_board_locator/README.md) | Object/Service Locator Framework. Lazy loading + Caching. App Decoration based API to register types and services to the App. |
+| [Log](features/dart_board_log/README.md) | Basic logging features, including a Log Footer and `/log` route + overlay. |
+| [Minesweeper](features/dart_board_minesweeper/README.md) | You probably don't need it. But provides a `/minesweep` route. Deeper example of `dart_board_redux` use case in action. |
+| [Particles](features/dart_board_particles/README.md) | Particle Overlay/Features |
+| [Redux](features/dart_board_redux/README.md) | Flutter Redux Bindings. Provides features a consistent way to use a shared Redux store in a feature agnostic way. Provides a AppDecoration API + Function API to Create and Dispatch states. |
+| [space_scene](features/dart_board_space_scene/README.md) | Originally my Flutter Clock Challenge entry, now exposed as a feature |
+| [SpaceX Plugin](features/dart_board_spacex_feature/dart_board_spacex_plugin/README.md) | Space X Add2App plugin (headless flutter example) |
+| [SpaceX Repository](features/dart_board_spacex_feature/dart_board_spacex_repository/README.md) | Space X GraphQL bindings and repository |
+| [SpaceX UI](features/dart_board_spacex_feature/dart_board_spacex_ui/README.md) | Space X UI bindings (list/details) Nav2.0 example |
+| [Splash](features/dart_board_splash/README.md) | Splash Screen Support |
+| [Theme](features/dart_board_theme/README.md) | Theme support with FlexColorScheme package |
+| [Tracking](features/dart_board_tracking/README.md) | Generic Tracking Interfaces (requires delegate to actually track) |
+
+# Add2App
+
+Want to add flutter to an existing App? Generally a daunting task fraught with limitations. However, with routing and native API's to abstract the difficulty it's completely feasible.
+
+For example check the [Add2App Example](https://github.com/ahammer/dart_board_add2app)
+
+Or checkout the [Add2App feature](https://github.com/ahammer/dart_board/core/dart_board_core_plugin/readme.md)
+
+## Limitations
+- One Active flutter activity in the stack.
+- Full Screen only
+
+The first is because Flutter on Native can be multi-engine or single-engine. By being multi-engine a lot of difficulties are lost. You can run multiple screens and navigate back and forth. However this approach uses more memory and the  isolates can not share data in a clean and easy way. By using a single engine we can pre-warm it, use it headless, preserve state etc. However, navigation stack is state, and having multiple screens native + flutter complicates this. Having flutter run as a "single top" with it's own stack simplifies this considerably. This means it's ill advise to navigate between platform->flutter->platform->flutter. If there is enough demand for this functionality the router can be modified to allow context switching (e.g. multiple nav stacks). It should be easy to avoid this scenario with careful planning and risk management.
+
+The second is more a suggestion. FlutterFragment and FlutterViewController can easily handle it. However, it does open the door to layout and transition issues. It's better to understand the difficulty and avoid it. However it's possible, just don't expect to know the size of your flutter content in the host, and don't expect to easily transition to full screen. As such Dart-Board will only support full-screen, single-top scenerios out of the box.
+
+## General Advice
+
+- Go leaves in, not trunk out (i.e. About Us, leaf. Landing Screen, trunk.) Start with small targets and build your confidence.
+- Use Pigeon to manage your MC bindings and calls for type safety across Android/iOS/Flutter)
+- Convert your Feature Modules to Plugins to bundle your own Java/Kotlin/Swift/ObjC code.
+- Bring in dart_board_core_plugin instead of dart_board_core to get the Android bindings (iOS in the future)
+
+
+# Navigation
+
+Navigation with DartBoard is handled via a Custom Navigator 2.0 Router. This allows Dart Board applications to support deep linking and Add2App integrations.
+
+## Router concept
+
+The router has these rules. 
+
+1) You have a stack of "paths" (e.g. [/, /somepage, /store/details/32])
+2) No duplicate paths in the stack, pushing a duplicate will move it to the front
+3) All routes must be URL reproducable
+4) pushDynamic (builder) routes can not be shared, but are temporarily named.
+5)  `/` is a mirror of a `Route` from a feature. Configured with `/initialRoute` (no change)
+
+## How to Use
+
+You can access the nav globally with `DartBoardCore.nav` instance.
+
+```
+
+abstract class DartBoardNav {
+  /// The currently active (foreground) route
+  String get currentPath;
+
+  /// Change Notifier to listen to changes in nav
+  ChangeNotifier get changeNotifier;
+
+  /// Get the current stack
+  List<DartBoardPath> get stack;
+
+  /// Push a route onto the stack
+  /// expanded will push sub-paths (e.g. /a/b/c will push [/a, /a/b, /a/b/c])
+  void push(String path, {bool expanded});
+
+  /// Pop the top most route
+  void pop();
+
+  /// Pop routers until the predicate clears
+  void popUntil(bool Function(DartBoardPath path) predicate);
+
+  /// Clear all routes in the stack that match the predicate
+  void clearWhere(bool Function(DartBoardPath path) predicate);
+
+  /// Pop & Push (replace top of stack)
+  /// Does not work on '/'
+  void replaceTop(String path);
+
+  /// Append to the current route (e.g. /b appended to /a = /a/b)
+  void appendPath(String path);
+
+  // Replace the Root (Entry Point)
+  // Generally for Add2App
+  void replaceRoot(String path);
+
+  /// Push a route with a dynamic route name
+  void pushDynamic(
+      {required String dynamicPathName, required WidgetBuilder builder});
+}
+```
+
+## Route Types in DartBoard
+
+These route types should allow you to match a wide range of URI patterns for your features.
+
+`NamedRouteDefinition` -> Matches a portion of a path for a specific name, i.e. `/page` `/details`
+`MapRoute` -> Named Route that allows multiple pages (Syntactic sugar)
+`UriRoute` -> Matches everything that hits it. Can globally handle routing, or can be used with PathedRoute to provide detailed parsing of the resource.
+`PathedRoute` -> Use this for deep-linked trees. E.g. `/category/details/50` it takes a List of Lists of RouteDefinitions. Each level of depth represents the tree.
+
+How to fulfill complicated roots?
+`NamedRouteDefinition` works good for static, fixed targets. But what if you want something more advanced?
+
+E.g. you want /store/pots/2141 to resolve.
+
+`UriRoute` and `PathedRoute` solve those issues for you.
+
+`PathedRoute` will handle directory structures. You do this with a list of lists. Each level can hold any number of matchers. If a path matches up to that level, the lowest matcher will take it.
+
+```
+// PsuedoCode
+[
+  [
+    NamedRoute('/store', (ctx,settings)=>StorePage()),    
+  ],
+  [
+    NamedRoute('/pots', (ctx,settings)=>PotsPage()),
+    NamedRoute('/pans'  (ctx,settings)=>PotsPage()),
+  ],
+  [
+    UriRoute((context, uri)=>Parse and Display)
+  ]
+]
+```
+
+This PathedRoute config would respond to many routes: `[/store, /store/pots, /store/pans, /store/pots/*, /store/pans/*]`
+
+The * is the UriRoute. You can use this to manage all your Routing, or you can use it with a Pathed route to parse the information.
+
+UriRoute will parse the resource request and let you access query params, path segments and anything else encoded in the page request.
+
+
+## Anonymous Routes
+
+Sometimes you want to just push a screen right? Like you didn't register it in a feature, you want it to be dynamic for whatever reason.
+
+`void pushDynamic({required String dynamicRouteName, required WidgetBuilder builder});`
+
+is what you can use here. Give it a unique name which will be prefixed with _, e.g. `/_YourDynamicRoute3285` If you see the `_` that means you can not share this route. If you give it to someone else it's going to 404 for them. It's dynamically allocated for the users session.
 
 
 
-Features are loaded via a graph-walk, in order, depth first. There is potentially multiple root nodes (e.g. say you define 3 Features in your main()), They will be walked in order.
+## Routing Demonstration in the SpaceX Example
 
-E.g. 
-`[FeatureA, FeatureB, FeatureC, FeatureA_IMPL2]`
+The SpaceX features are designed as demonstrations of Add2App and Navigator 2.0 usage.
 
-In this case, FeatureA will be loaded, then B and C. A_IMPL2 will be shuffled away, because A already has an implementation
+```
+  @override
+  List<RouteDefinition> get routes => [
+        PathedRouteDefinition([
+          [
+            NamedRouteDefinition(
+                route: '/launches', builder: (ctx, settings) => LaunchScreen())
+          ],
+          [UriRoute((ctx, uri) => LaunchDataUriShim(uri: uri))]
+        ]),
+      ];
+```
 
-For each feature root a depth first in-order walk of the dependencies are registered. Everytime there is a namespace conflict, it's pushed to the side as a registered implementation.
+This matches `/launches` and also `/launches/[ANY_ROUTE_NAME]`
 
-In simpler terms, the first feature to a namespace wins. Whether it's walking the tree or going over the list, left to right. This means things registered first take the namespace slot.
+`/launches` appends the name of the mission to the URL, and you end up with something like `/launches/Starlink%207`
 
-Only 1 implementation can be active in a namespace at time.
+UriRoute can then pull the data from the URI and pass it to the page to load what it needs to.
 
-## AB Testing
 
-Setting a feature at runtime is easy, just `DartBoardCore.instance.setFeatureImplementation('FeatureNamespace', 'FeatureImplementationName');`
-
-Just give it your Namespace, and the implementationName and DartBoard will reboot with the new features/tree, salvaging what it can on the way.
-
-## Feature Flags/Disabling
-
-Again, super easy
-DartBoardCore.instance.setFeatureImplementation('FeatureNamespace', null);
-
-Note: Disabling features incorrectly can lead to breakage. E.g. disabling the template or /route you are on will leave you stranded.
 # State Management
 
 Dart Board is compatible with the full suite of State Management solutions. When convenient bindings are provided to ease state management. For the initial release the focus will be on 3 primary State Management Solutions, with some footnotes about the usage of other solutions.
@@ -484,7 +524,7 @@ Bloc is a robust state management similar to redux in that it allows actions and
 
 Cubits are `Bloc` light, and a good for small to medium state management, while `Bloc`'s themselves are more robust and while come with more overhead to implement, but are suitable for advanced use cases.
 
-## Provider
+## Provider / RiverPod
 
 Provider is syntatic sugar around `InherittedWidget`. It can be though of a tree-based DI injector.
 
@@ -493,7 +533,6 @@ There is not much value in a DartBoardFeature or bindings for Provider, but if y
 ### Usage
 
 Use as normally, just refer to the Provider documentation.
-
 
 # Helpful Widgets (General Utilities)
 
@@ -623,45 +662,35 @@ I'd recommend to generally to an Integration, as it'll make it easier to experim
 
 https://pub.dev/publishers/dart-board.io/packages
 
+# General App Guidance
 
-# Repo Structure
+## Keep Features Small
 
-## core
+The smaller and more focussed a feature, the easier it is to develop, test and debug. If you feel that a feature is doing too many things, consider breaking it down into seperate flutter modules/plugins and retain the single-responsibility principle. 
 
-Contain's core framework features. Currently 1 library. dart_board_core
+## Coupling is OK, Sometimes
 
-## features
+If you need to have a feature that has a directly accessible API, that's ok. Just remember the single responsibility principle when doing so. When you directly couple a feature, it can become challenging to decouple it later, so make sure that your coupling's are necessary.
 
-Contain's reusable features that can be included in your integrations (or other features)
+There is a complexity/safety trade off between tight coupling and lose coupling. I can't make that decision for you, but it is something you should think about when cutting up your features and how you'd like to put them back together.
 
-## templates
+## Develop in Isolation
 
-Contain's features that are designed to be UI templates
+When building a feature, build it in isolation. Test it in isolation. Set up runners/demo's to show what the feature is supposed to do and how it works in isolation. Code that runs in multiple places is portable, code that runs in one place is not.
 
-They are pre-made templates that get filled in via config.
+This will make it easier to verify things, create smaller test cases to reproduce bugs and increase the turn around time for new features and fixes.
 
-- Configurable Route
-- Configurable Feature Name
-- UI Config (e.g. Embedded Route Names, or Widgets, etc).
+## Integrate Last
 
-The idea being that you should be able to register a Temlate multiple times, for multiple screens with varying configs.
+Adding features to your app should happen after you've built the feature in isolation. Building things in an already integrated fashion increases your risk of coupling and reduces your code portability. By integrating last you naturally keep portability high.
 
-You access the template by navigating to the route you select.
+## Configuration Tips
 
-## integrations
+Dart Board handles configuration eagerly. This means that Features that are registered before others take precedence. You can exploit this to force a config. E.g. If you want a mock repository with `SpaceX` you can simply register the `spacex_data_layer` with a mock repository before it's bicked up by `spacex_ui`.
 
-This is a place to see Integrations of multiple features into a larger app.
+Generally your configuration can belong in your `main.dart` where you initialize `DartBoard` and your features.
 
-- Example/Playground: Integrates everything, demonstrates it all at once.
-- Blank: A minimal template with no major features. This can be adapted as a starting template.
-
-## homepage
-
-This is the "dart-board.io" website.
-
-The template is SplashKit (Bootstrap) and is not licensed for re-use.
-
-For all intents and purposes, this is outside the open source components due to license restrictions.
+Features themselves should have safe default configs to use, so that they work out of the box whenever possible.
 
 # Special Thanks
 
@@ -674,9 +703,5 @@ The NIL packages is imported as well, to use in place of empty containers for so
 # TODO - Release Roadmap
 
 - Work through each modules README.MD TODO section
-- "Link" widget for valid Nav2.0 links we can share
-- Navigation/Routing options (expose what is in framework)
 - Navigation/Routing result codes (allow Future)
-- Fix navigation transitions/Route Builder (had a bug with page that used custom route transitions in test)
 - Publish to Android store
-- Add2App? Yeah, Add2App
