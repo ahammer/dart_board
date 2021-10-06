@@ -1,4 +1,12 @@
 # Dart Board
+
+Flutter Architecture/Scaffolding for App Development.
+
+This is project organization/feature management. Ever wonder how you can build your app and keep it clean? Separate code into smaller modules and have 
+the modules install themselves into your app? This is the architecture for you.
+
+Dart Board cuts the complexity by allowing you to slice features how you want, and install them into a larger more cohesive app. Keeping your app organized and nimble and ready to adapt as necessary.
+
 TRY NOW @
 https://dart-board.io
 
