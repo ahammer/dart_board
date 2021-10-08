@@ -163,36 +163,37 @@ class CartItem extends StatelessWidget {
   final int id;
 
   @override
-  Widget build(BuildContext context) => Container(
-        height: 300,
-        child: Stack(
-          children: [
-            Container(
-              height: double.infinity,
-              width: double.infinity,
-              child: RouteWidget(
-                itemPreviewRoute,
-                args: {"id": id},
-              ),
+  Widget build(BuildContext context) =>
+      locateAndBuild<CartState>((ctx, state) => Container(
+            height: 300,
+            child: Stack(
+              children: [
+                Container(
+                  height: double.infinity,
+                  width: double.infinity,
+                  child: RouteWidget(
+                    itemPreviewRoute,
+                    args: {"id": id},
+                  ),
+                ),
+                Align(
+                    alignment: Alignment.topRight,
+                    child: Card(
+                        child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          " x ${state.getQuantity(id)} ",
+                          style: Theme.of(context).textTheme.headline5,
+                        ),
+                        MaterialButton(
+                            onPressed: () => state.removeItem(id),
+                            child: Text("remove"))
+                      ],
+                    ))),
+              ],
             ),
-            Align(
-                alignment: Alignment.topRight,
-                child: Card(
-                    child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      " x ${locate<CartState>().getQuantity(id)} ",
-                      style: Theme.of(context).textTheme.headline5,
-                    ),
-                    MaterialButton(
-                        onPressed: () => locate<CartState>().removeItem(id),
-                        child: Text("remove"))
-                  ],
-                ))),
-          ],
-        ),
-      );
+          ));
 }
 
 class CartState extends ChangeNotifier {
