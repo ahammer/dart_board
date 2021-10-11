@@ -17,6 +17,7 @@ dependencies:
   redux: ^5.0.0
   flutter_redux: ^0.8.2 
   dart_board_core: ^0.9.15
+  dart_board_widgets: ^1.0.0+1
   redux_thunk: ^0.4.0
 
 dev_dependencies:

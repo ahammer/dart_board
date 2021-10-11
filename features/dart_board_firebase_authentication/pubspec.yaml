@@ -16,6 +16,7 @@ dependencies:
   flutter:
     sdk: flutter
   dart_board_core: ^0.9.15
+  dart_board_widgets: ^1.0.0+1
   dart_board_locator: ^0.9.4+9
   dart_board_authentication: ^1.1.9
   dart_board_firebase_core: ^1.1.8
