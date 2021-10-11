@@ -218,6 +218,7 @@ class _HeaderWidget extends StatelessWidget {
           convertor: (launchData) => SingleLaunchViewModel.fromPastLaunch(
               launchData,
               clickable: false,
+              showImage: true,
               showTitle: false),
           builder: SingleLaunch.builder,
           input: summary!),

@@ -32,7 +32,7 @@ class LaunchList extends StatelessWidget {
   @override
   Widget build(BuildContext context) => GridView.builder(
       gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-          childAspectRatio: 3.0, maxCrossAxisExtent: 1000),
+          childAspectRatio: 8.0, maxCrossAxisExtent: 1000),
       itemBuilder: (ctx, idx) => Convertor(
           convertor: SingleLaunchViewModel.fromPastLaunch,
           builder: SingleLaunch.builder,

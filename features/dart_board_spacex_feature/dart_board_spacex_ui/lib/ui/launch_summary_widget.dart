@@ -16,7 +16,7 @@ class SingleLaunch extends StatelessWidget {
         clipBehavior: Clip.antiAlias,
         child: Stack(
           children: [
-            _Image(viewModel: viewModel),
+            if (viewModel.showImage) _Image(viewModel: viewModel),
             if (viewModel.showTitle) _Header(viewModel: viewModel),
             _Footer(viewModel: viewModel),
             if (viewModel.clickable) _ClickableOverlay(viewModel: viewModel)
@@ -123,20 +123,23 @@ class _Header extends StatelessWidget {
   final SingleLaunchViewModel viewModel;
 
   @override
-  Widget build(BuildContext context) => Align(
-        alignment: Alignment.topLeft,
-        child: Hero(
-          tag: viewModel.missionName,
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(16, 0, 16, 4),
-            child: Text(
-              viewModel.missionName,
-              style: Theme.of(context)
-                  .textTheme
-                  .subtitle1
-                  ?.copyWith(fontWeight: FontWeight.bold, shadows: [
-                Shadow(blurRadius: 2, offset: const Offset(2, 2)),
-              ]),
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.fromLTRB(0, 0, 0, 16),
+        child: Align(
+          alignment: Alignment.center,
+          child: Hero(
+            tag: viewModel.missionName,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 4),
+              child: Text(
+                viewModel.missionName,
+                style: Theme.of(context)
+                    .textTheme
+                    .headline5
+                    ?.copyWith(fontWeight: FontWeight.bold, shadows: [
+                  Shadow(blurRadius: 2, offset: const Offset(2, 2)),
+                ]),
+              ),
             ),
           ),
         ),
@@ -147,6 +150,7 @@ class _Header extends StatelessWidget {
 class SingleLaunchViewModel {
   final bool clickable;
   final bool showTitle;
+  final bool showImage;
 
   final String id;
   final String missionName;
@@ -165,13 +169,15 @@ class SingleLaunchViewModel {
     required this.launchDate,
     required this.clickable,
     required this.showTitle,
+    required this.showImage,
   });
 
   /// Static helper to build a ViewModel from a graphql response
   static SingleLaunchViewModel fromPastLaunch(
           GetPastLaunches$Query$Launch gqlLaunch,
           {bool clickable = true,
-          bool showTitle = true}) =>
+          bool showTitle = true,
+          bool showImage = false}) =>
       SingleLaunchViewModel(
           id: gqlLaunch.id ?? "-1",
           rocketName: gqlLaunch.rocket?.rocketName ?? "",
@@ -179,6 +185,7 @@ class SingleLaunchViewModel {
           missionName: gqlLaunch.missionName ?? "Unknown",
           clickable: clickable,
           showTitle: showTitle,
+          showImage: showImage,
           photos: gqlLaunch.links?.flickrImages?.whereType<String>().toList() ??
               <String>[]);
 }
