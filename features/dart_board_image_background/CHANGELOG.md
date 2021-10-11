@@ -1,3 +1,7 @@
+## 0.9.2+10
+
+ - **REFACTOR**: moved widgets to dart_board_widgets.
+
 ## 0.9.2+9
 
  - Update a dependency to the latest release.

@@ -1,3 +1,11 @@
+## 1.1.0
+
+ - **REFACTOR**: moved widgets to dart_board_widgets.
+ - **FIX**: lint issues.
+ - **FIX**: improve performance/cache spacex launches/low res images.
+ - **FIX**: made more performance friendly for web (no images in the past.
+ - **FEAT**: new and improved spacex example.
+
 ## 1.0.3
 
  - Update a dependency to the latest release.

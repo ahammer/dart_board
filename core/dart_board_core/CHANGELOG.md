@@ -1,3 +1,10 @@
+## 0.9.15
+
+ - **REFACTOR**: moved widgets to dart_board_widgets.
+ - **FEAT**: breaking dart board supporting widgets into new project.
+ - **FEAT**: new and improved spacex example.
+ - **DOCS**: improved.
+
 ## 0.9.14+1
 
  - **REFACTOR**: remove unused.

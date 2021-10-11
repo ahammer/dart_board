@@ -1,3 +1,7 @@
+## 1.1.3
+
+ - **REFACTOR**: moved widgets to dart_board_widgets.
+
 ## 1.1.2
 
  - **FIX**: pin version.
