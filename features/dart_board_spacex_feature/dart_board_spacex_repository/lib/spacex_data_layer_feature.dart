@@ -15,6 +15,14 @@ class SpaceXDataLayerFeature extends DartBoardFeature {
   @override
   List<DartBoardDecoration> get appDecorations => [
         LocatorDecoration(() => repository),
+        DartBoardDecoration(
+          name: "LaunchDataFetcher",
+          decoration: (ctx, child) => LifeCycleWidget(
+            key: ValueKey("LaunchDataFetcher"),
+            init: (ctx) => repository.getPastLaunches(),
+            child: child,
+          ),
+        )
       ];
 
   @override

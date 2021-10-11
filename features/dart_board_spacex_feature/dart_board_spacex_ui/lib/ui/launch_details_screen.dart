@@ -43,9 +43,21 @@ class _LaunchDataScreenState extends State<LaunchDataScreen> {
     final headerWidget = _HeaderWidget(summary: summary);
     final List<Widget> imageWidgets =
         (summary?.links?.flickrImages ?? <String>[])
-            .map((e) => CachedNetworkImage(
-                  imageUrl: e!,
-                  fit: BoxFit.cover,
+            .map((e) => Stack(
+                  children: [
+                    CachedNetworkImage(
+                      imageUrl: e!.replaceAll('_o.', '_q.'),
+                      fit: BoxFit.cover,
+                    ),
+                    Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        onTap: () {
+                          launch(e);
+                        },
+                      ),
+                    ),
+                  ],
                 ))
             .toList();
 
@@ -167,7 +179,7 @@ class DetailsSliverList extends StatelessWidget {
             ]),
           ),
           SliverGrid.extent(
-            maxCrossAxisExtent: 500,
+            maxCrossAxisExtent: 150,
             children: images,
           )
         ],
