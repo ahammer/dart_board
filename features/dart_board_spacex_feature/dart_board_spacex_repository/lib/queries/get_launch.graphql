@@ -1,0 +1,41 @@
+query GetLaunch($id:ID!) {
+  launch(id: $id) {
+    details
+    id
+    is_tentative
+    launch_date_local
+    launch_site {
+      site_id
+      site_name
+      site_name_long
+    }
+    launch_success
+    launch_year
+    links {
+      article_link
+      flickr_images
+      mission_patch
+      mission_patch_small
+      presskit
+      reddit_campaign
+      reddit_launch
+      reddit_media
+      reddit_recovery
+      video_link
+      wikipedia
+    }
+    mission_id
+    mission_name
+    rocket {
+      rocket_name
+    }
+    ships {
+      name
+    }
+    telemetry {
+      flight_club
+    }
+    tentative_max_precision
+    upcoming
+  }
+}

@@ -1,23 +1,13 @@
-query GetPastLaunches{
-  launchesPast(limit: 100) {
+query GetPastLaunches {
+  launchesPast(limit: 1000) {
     mission_name
     launch_date_local
-    launch_site {
-      site_name
-    }
-    links {
-      article_link
-      video_link
-      flickr_images
-    }
+    id
     rocket {
       rocket_name
     }
-    ships {
-      name
-      home_port
-      image
+    links {
+      flickr_images
     }
-    mission_id
   }
 }

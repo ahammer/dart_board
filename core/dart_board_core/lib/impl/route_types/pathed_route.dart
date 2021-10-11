@@ -19,8 +19,6 @@ class PathedRouteDefinition extends RouteDefinition {
   RouteWidgetBuilder get builder => (ctx, settings) {
         final url = Uri.tryParse(settings.name!);
         if (url == null) return Text('not found');
-
-        print(url.pathSegments.length);
         RouteDefinition? lastMatching;
 
         for (var i = 0; i < url.pathSegments.length; i++) {

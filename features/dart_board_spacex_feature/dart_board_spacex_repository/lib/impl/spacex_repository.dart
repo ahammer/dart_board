@@ -1,43 +1,21 @@
 import 'package:dart_board_spacex_repository/generated/graphql_api.graphql.dart';
 
-///
+/// Interface to get at the GraphQL data
 abstract class SpaceXRepository {
-  Future<List<LaunchData>> getPastLaunches();
-  Future<LaunchData> getLaunchByMissionName(String missionName) =>
-      getPastLaunches().then((value) =>
-          value.where((element) => element.missionName == missionName).first);
-}
+  Future<List<GetPastLaunches$Query$Launch?>> getPastLaunches();
+  Future<GetLaunch$Query$Launch?> getLaunchByMissionId(String missionId);
+  Future<List<GetRockets$Query$Rocket?>> getRockets();
 
-/// A friendly model to mock easily and abstract GraphQL from UI
-class LaunchData {
-  final String siteName;
-  final String missionName;
-  final DateTime launchDateLocal;
-  final String rocketName;
-  final String articleLink;
-  final String videoLink;
-  final List<String> flickrImages;
+  Future<GetLaunch$Query$Launch?> getLaunchByMissionName(
+          String missionName) async =>
+      getLaunchByMissionId((await getPastLaunches())
+          .where((element) => element?.missionName == missionName)
+          .first!
+          .id!);
 
-  LaunchData({
-    required this.siteName,
-    required this.missionName,
-    required this.rocketName,
-    required this.articleLink,
-    required this.videoLink,
-    required this.flickrImages,
-    required this.launchDateLocal,
-  });
-
-  factory LaunchData.fromGql(GetPastLaunches$Query$Launch? e) => LaunchData(
-        siteName: e?.launchSite?.siteName ?? "Unknown",
-        rocketName: e?.rocket?.rocketName ?? "Rocket Unknown",
-        missionName: e?.missionName ?? "Mission Unknown",
-        articleLink: e?.links?.articleLink ?? "",
-        videoLink: e?.links?.videoLink ?? "",
-        launchDateLocal: e?.launchDateLocal ?? DateTime.now(),
-
-        /// Whatever, if this is null I'll use Now() to make it null safe, this won't hit, it's not null in data but I don't want !
-        flickrImages:
-            e?.links?.flickrImages?.map((e) => e as String).toList() ?? [],
-      );
+  Future<GetPastLaunches$Query$Launch?> getLaunchSummaryByMissionName(
+          String missionName) async =>
+      (await getPastLaunches())
+          .where((element) => element?.missionName == missionName)
+          .first;
 }

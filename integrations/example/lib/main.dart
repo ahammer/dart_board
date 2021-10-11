@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dart_board_core/dart_board.dart';
 import 'package:flutter/material.dart';
 import 'example_feature.dart';
@@ -8,6 +10,7 @@ import 'example_feature.dart';
 ///
 /// the FeatureOverrides are to disable certain features by default
 void main() {
+  HttpOverrides.global = MyHttpOverrides();
   runApp(DartBoard(
     featureOverrides: {
       'Snow': null,
@@ -17,4 +20,13 @@ void main() {
     features: [ExampleFeature()],
     initialPath: '/main',
   ));
+}
+
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
 }

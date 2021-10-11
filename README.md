@@ -72,6 +72,11 @@ Flutter Architecture/Framework for Feature based development
   - [Integrate Last](#integrate-last)
   - [Configuration Tips](#configuration-tips)
 - [Special Thanks](#special-thanks)
+- [Architectural Recipe](#architectural-recipe)
+  - [Locator](#locator-1)
+  - [Redux/Bloc](#reduxbloc)
+  - [Convertor](#convertor)
+  - [Widget Stream](#widget-stream)
 - [TODO - Release Roadmap](#todo---release-roadmap)
 
 
@@ -707,6 +712,48 @@ Many packages are consumed in the  creation of dart-board, however I try and lim
 Theme support is largely thanks to FlexColorScheme and FlexColorPicker, amazing packages that really bring that feature to life.
 
 The NIL packages is imported as well, to use in place of empty containers for some render optimization.
+
+# Architectural Recipe
+
+- Locator = Service Locator (Repositories, API's)
+- Redux/Bloc = State Management (Local state and maintaining it)
+- Convertor = View Model Generation
+- WidgetStream = Asyncronous widget building
+
+## Locator
+
+Locator is a service locator pattern. It's most useful for global black boxes. E.g. API's and Services such as repositories.
+
+It's easy to add services to a Locator from within a feature (`LocatorDecoration(()=>YourService())`)
+
+It's also easy to consume services with `locate<t>()` or `locateAndBuild<t extends ChangeNotifier>()`
+
+## Redux/Bloc
+
+If you have complicated state that you worry about modifying. You can have more safety by using Redux or Bloc.
+
+## Convertor
+
+Widget that maps between types, and optimizes builds. Use this to convert from a data-model to a view-model.
+
+## Widget Stream
+
+For asynchronous blocks of the widget tree. Use `async *` method to yield widgets, allowing for pretty clean loading flows.
+
+E.g.
+
+```
+WidgetStream(
+        (BuildContext context) async* {
+          yield CircularProgressIndicator();
+          yield LaunchList(await locate<SpaceXRepository>().getPastLaunches());
+        },
+      );
+```
+
+Nice right? No need for a StatefulWidget, Future, FutureBuilder, Snapshots or any of that. Just a circular progress indicator, and the LaunchList when it's done.
+      
+
 
 # TODO - Release Roadmap
 

@@ -27,12 +27,8 @@ class SpaceXPluginFeature extends DartBoardFeature {
 
 class SpaceXBinding extends SpaceX {
   @override
-  Future<List<LaunchDataNative>> getLaunches() async {
-    var list = (await locate<SpaceXRepository>().getPastLaunches())
-        .map((e) => LaunchDataNative()
-          ..missionName = e.missionName
-          ..siteName = e.siteName)
-        .toList();
-    return list;
-  }
+  Future<List<LaunchDataNative>> getLaunches() async =>
+      (await locate<SpaceXRepository>().getPastLaunches())!
+          .map((e) => LaunchDataNative()..missionName = e?.missionName)
+          .toList();
 }

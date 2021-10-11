@@ -88,13 +88,7 @@ class DartBoardNavigationDelegate extends RouterDelegate<DartBoardPath>
 
   @override
   void clearWhere(bool Function(DartBoardPath path) predicate) {
-    navStack.removeWhere((path) {
-      final result = predicate(path) && path.path != '/';
-      if (result) {
-        print('removing ${path.path}');
-      }
-      return result;
-    });
+    navStack.removeWhere((path) => predicate(path) && path.path != '/');
     notifyListeners();
   }
 

@@ -15,43 +15,8 @@ class SpaceXDataLayerFeature extends DartBoardFeature {
   @override
   List<DartBoardDecoration> get appDecorations => [
         LocatorDecoration(() => repository),
-        LocatorDecoration<PastLaunches>(() => PastLaunches()),
-        DartBoardDecoration(
-          name: "LaunchDataFetcher",
-          decoration: (ctx, child) => LifeCycleWidget(
-            key: ValueKey("LaunchDataFetcher"),
-            init: (ctx) async => locate<PastLaunches>().launches =
-                await repository.getPastLaunches(),
-            child: child,
-          ),
-        )
       ];
 
   @override
   List<DartBoardFeature> get dependencies => [DartBoardLocatorFeature()];
-}
-
-/// A container for the Past Launches, will update as data updates
-class PastLaunches extends ChangeNotifier {
-  Exception? _error;
-  bool _hasLoaded = false;
-
-  List<LaunchData> _data = [];
-
-  /// Getters
-  List<LaunchData> get launches => _data;
-  Exception? get error => _error;
-  bool get hasError => _error != null;
-  bool get hasLoaded => _hasLoaded;
-
-  set exception(Exception e) {
-    _error = e;
-    notifyListeners();
-  }
-
-  set launches(List<LaunchData> data) {
-    _hasLoaded = true;
-    _data = data;
-    notifyListeners();
-  }
 }
