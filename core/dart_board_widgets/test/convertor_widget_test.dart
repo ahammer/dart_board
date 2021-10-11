@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   testWidgets('test Convertor widget', (tester) async {
-    final key = ValueKey('key');
+    const key = ValueKey('key');
     await tester.pumpWidget(Convertor<int, String>(
         key: key,
         convertor: intToString,

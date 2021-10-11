@@ -34,7 +34,7 @@ class _PeriodicState extends State<PeriodicWidget> {
     timer = Timer.periodic(widget.duration, (_) {
       if (widget.builder != null) setState(() {});
       interval++;
-      return widget.callback(interval);
+      widget.callback(interval);
     });
   }
 
@@ -44,7 +44,7 @@ class _PeriodicState extends State<PeriodicWidget> {
     timer = Timer.periodic(widget.duration, (_) {
       if (widget.builder != null) setState(() {});
       interval++;
-      return widget.callback(interval);
+      widget.callback(interval);
     });
   }
 
