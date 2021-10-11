@@ -1,5 +1,5 @@
 import 'package:dart_board_authentication/dart_board_authentication.dart';
-import 'package:dart_board_core/dart_board.dart';
+import 'package:dart_board_core/dart_board_core.dart';
 import 'package:dart_board_theme/theme_chooser.dart';
 import 'package:dart_board_tracking/dart_board_tracking.dart';
 import 'package:flutter/material.dart';

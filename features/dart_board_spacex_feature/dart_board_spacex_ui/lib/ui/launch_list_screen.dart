@@ -1,5 +1,4 @@
-import 'package:dart_board_core/dart_board.dart';
-import 'package:dart_board_core/impl/widgets/widget_stream.dart';
+import 'package:dart_board_widgets/dart_board_widgets.dart';
 import 'package:dart_board_locator/dart_board_locator.dart';
 import 'package:dart_board_spacex_repository/generated/graphql_api.dart';
 import 'package:dart_board_spacex_repository/impl/spacex_repository.dart';

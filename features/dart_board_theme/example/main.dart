@@ -1,4 +1,4 @@
-import 'package:dart_board_core/dart_board.dart';
+import 'package:dart_board_core/dart_board_core.dart';
 import 'package:dart_board_theme/dart_board_theme.dart';
 import 'package:flutter/material.dart';
 

@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import '../../dart_board.dart';
+import '../../dart_board_core.dart';
 
 /// FeatureGate Widget
 ///

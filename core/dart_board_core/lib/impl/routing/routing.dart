@@ -3,7 +3,7 @@ import 'package:dart_board_core/interface/nav_interface.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../dart_board.dart';
+import '../../dart_board_core.dart';
 
 class DartBoardInformationParser extends RouteInformationParser<DartBoardPath> {
   final String initialPath;

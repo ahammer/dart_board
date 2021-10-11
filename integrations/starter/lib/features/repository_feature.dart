@@ -1,4 +1,4 @@
-import 'package:dart_board_core/dart_board.dart';
+import 'package:dart_board_core/dart_board_core.dart';
 import 'package:dart_board_locator/dart_board_locator.dart';
 import 'package:faker_dart/faker_dart.dart';
 import 'package:flutter/material.dart';

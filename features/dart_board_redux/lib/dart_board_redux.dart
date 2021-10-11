@@ -1,8 +1,9 @@
-import 'package:dart_board_core/dart_board.dart';
+import 'package:dart_board_core/dart_board_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux_thunk/redux_thunk.dart';
 import 'package:redux/redux.dart';
+import 'package:dart_board_widgets/dart_board_widgets.dart';
 
 ///-----------------------------------------------------------------------------
 ///                  DART BOARD REDUX

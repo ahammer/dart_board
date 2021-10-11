@@ -1,4 +1,4 @@
-library dart_board;
+library dart_board_core;
 
 /// The interface for Dart Board
 export 'interface/dart_board_interface.dart';
@@ -7,12 +7,7 @@ export 'interface/dart_board_interface.dart';
 export 'impl/dart_board_core.dart';
 
 /// The Route Widget
-export 'impl/widgets/change_notifier_builder.dart';
-export 'impl/widgets/convertor_widget.dart';
 export 'impl/widgets/route_widget.dart';
-export 'impl/widgets/life_cycle_widget.dart';
-export 'impl/widgets/widget_stream.dart';
-export 'impl/widgets/boolean_builder.dart';
 export 'impl/widgets/feature_gate.dart';
 export 'impl/routing/routing.dart';
 export 'impl/route_types/named_route.dart';

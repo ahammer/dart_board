@@ -167,7 +167,7 @@ the existing pages, and exclude it from other's later (like our login flow)
 1. Create the file and class
 
 ```
-import 'package:dart_board_core/dart_board.dart';
+import 'package:dart_board_core/dart_board_core.dart';
 
 class CartFeature extends DartBoardFeature {
   @override

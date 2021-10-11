@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:dart_board_core/dart_board.dart';
+import 'package:dart_board_core/dart_board_core.dart';
 import 'package:dart_board_locator/dart_board_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

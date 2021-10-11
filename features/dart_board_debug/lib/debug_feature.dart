@@ -1,4 +1,4 @@
-import 'package:dart_board_core/dart_board.dart';
+import 'package:dart_board_core/dart_board_core.dart';
 import 'package:dart_board_debug/debug_graph.dart';
 
 import 'debug_list.dart';

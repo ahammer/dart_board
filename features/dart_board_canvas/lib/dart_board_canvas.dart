@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:dart_board_core/dart_board.dart';
+import 'package:dart_board_core/dart_board_core.dart';
 import 'package:flutter/material.dart';
 
 class DartBoardCanvasFeature<T extends AnimatedCanvasState>

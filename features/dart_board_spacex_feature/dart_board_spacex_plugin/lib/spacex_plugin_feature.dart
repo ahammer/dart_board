@@ -1,10 +1,11 @@
-import 'package:dart_board_core/dart_board.dart';
+import 'package:dart_board_core/dart_board_core.dart';
 import 'package:dart_board_spacex_plugin/spacex_api.dart';
 import 'package:dart_board_spacex_repository/impl/spacex_repository.dart';
 import 'package:dart_board_spacex_repository/impl/spacex_repository_graphql.dart';
 import 'package:flutter/material.dart';
 import 'package:dart_board_locator/dart_board_locator.dart';
 import 'package:dart_board_spacex_repository/spacex_data_layer_feature.dart';
+import 'package:dart_board_widgets/dart_board_widgets.dart';
 
 class SpaceXPluginFeature extends DartBoardFeature {
   @override

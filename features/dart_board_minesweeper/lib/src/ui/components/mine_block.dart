@@ -1,4 +1,4 @@
-import 'package:dart_board_core/impl/widgets/convertor_widget.dart';
+import 'package:dart_board_widgets/dart_board_widgets.dart';
 import 'package:dart_board_minesweeper/src/state/actions/minesweeper_actions.dart';
 import 'package:dart_board_minesweeper/src/state/app_state.dart';
 import 'package:dart_board_minesweeper/src/state/mine_sweeper_node.dart';
@@ -75,19 +75,17 @@ class _MineBlockState extends State<MineBlock> {
                               : (isGameOver && (vm.isBomb ?? false))
                                   ? "💣"
                                   : ""),
-                      style: theme.textTheme.headline6!.copyWith(
-                          fontWeight: FontWeight.bold,
-
-                          shadows: [
-                            Shadow(
-                                blurRadius: 2,
-                                color: Colors.black,
-                                offset: Offset(2, 1)),
-                            Shadow(
-                                blurRadius: 2,
-                                color: Colors.white,
-                                offset: Offset(-2, -1)),
-                          ]),
+                      style: theme.textTheme.headline6!
+                          .copyWith(fontWeight: FontWeight.bold, shadows: [
+                        Shadow(
+                            blurRadius: 2,
+                            color: Colors.black,
+                            offset: Offset(2, 1)),
+                        Shadow(
+                            blurRadius: 2,
+                            color: Colors.white,
+                            offset: Offset(-2, -1)),
+                      ]),
                     )),
                   ),
                 ),

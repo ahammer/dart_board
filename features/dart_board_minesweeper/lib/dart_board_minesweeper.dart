@@ -1,4 +1,4 @@
-import 'package:dart_board_core/dart_board.dart';
+import 'package:dart_board_core/dart_board_core.dart';
 import 'package:dart_board_minesweeper/src/state/app_state.dart';
 import 'package:dart_board_redux/dart_board_redux.dart';
 import 'src/ui/screens/game_screen.dart';

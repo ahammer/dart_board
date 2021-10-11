@@ -1,12 +1,12 @@
 import 'dart:io';
 
 import 'package:dart_board_authentication/dart_board_authentication.dart';
-import 'package:dart_board_core/dart_board.dart';
+import 'package:dart_board_core/dart_board_core.dart';
 import 'package:dart_board_firebase_core/dart_board_firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:dart_board_core/impl/widgets/life_cycle_widget.dart';
+import 'package:dart_board_widgets/dart_board_widgets.dart';
 import 'package:dart_board_locator/dart_board_locator.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 

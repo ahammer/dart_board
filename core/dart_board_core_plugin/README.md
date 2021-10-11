@@ -47,7 +47,7 @@ import 'package:dart_board_minesweeper/dart_board_minesweeper.dart';
 import 'package:dart_board_spacex_plugin/spacex_plugin_feature.dart';
 import 'package:dart_board_spacex_ui/spacex_ui_feature.dart';
 import 'package:flutter/material.dart';
-import 'package:dart_board_core/dart_board.dart';
+import 'package:dart_board_core/dart_board_core.dart';
 
 void main() {
   runApp(DartBoard(

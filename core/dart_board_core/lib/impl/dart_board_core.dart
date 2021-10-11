@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/services/message_codec.dart';
 import 'package:logging/logging.dart';
 
-import '../dart_board.dart';
+import '../dart_board_core.dart';
 import 'widgets/route_not_found.dart';
 
 /// Some helpers

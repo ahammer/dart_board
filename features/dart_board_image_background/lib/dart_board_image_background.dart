@@ -1,4 +1,4 @@
-import 'package:dart_board_core/dart_board.dart';
+import 'package:dart_board_core/dart_board_core.dart';
 import 'package:flutter/material.dart';
 
 /// Give this filename or widget, and it'll apply a background as a page decoration

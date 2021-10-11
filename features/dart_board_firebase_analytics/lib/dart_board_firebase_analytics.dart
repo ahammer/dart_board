@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:dart_board_core/dart_board.dart';
+import 'package:dart_board_core/dart_board_core.dart';
 import 'package:dart_board_firebase_core/dart_board_firebase_core.dart';
 import 'package:dart_board_tracking/dart_board_tracking.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';

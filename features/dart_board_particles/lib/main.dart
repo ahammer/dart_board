@@ -1,7 +1,8 @@
 import 'dart:math';
 
-import 'package:dart_board_core/dart_board.dart';
-import 'package:dart_board_core/impl/widgets/timer_widgets.dart';
+import 'package:dart_board_core/dart_board_core.dart';
+import 'package:dart_board_widgets/dart_board_widgets.dart';
+
 import 'package:dart_board_particles/dart_board_particle_feature.dart';
 import 'package:dart_board_particles/features/cursor_particle_features.dart';
 import 'package:dart_board_particles/presets/fire_particle.dart';

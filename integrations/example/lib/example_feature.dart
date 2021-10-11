@@ -1,8 +1,9 @@
 import 'package:dart_board_canvas/dart_board_canvas.dart';
 import 'package:dart_board_firebase_analytics/dart_board_firebase_analytics.dart';
 import 'package:dart_board_firebase_authentication/dart_board_firebase_authentication.dart';
-import 'package:dart_board_core/dart_board.dart';
+import 'package:dart_board_core/dart_board_core.dart';
 import 'package:dart_board_core/impl/features/generic_features.dart';
+import 'package:dart_board_widgets/dart_board_widgets.dart';
 import 'package:dart_board_chat/dart_board_chat.dart';
 import 'package:dart_board_minesweeper/dart_board_minesweeper.dart';
 import 'package:dart_board_particles/dart_board_particle_feature.dart';

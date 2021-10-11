@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dart_board_authentication/dart_board_authentication.dart';
-import 'package:dart_board_core/dart_board.dart';
+import 'package:dart_board_core/dart_board_core.dart';
 import 'package:dart_board_core/interface/dart_board_interface.dart';
 import 'package:dart_board_firebase_database/dart_board_firebase_database.dart';
 import 'package:dart_board_locator/dart_board_locator.dart';

@@ -1,6 +1,6 @@
 import 'dart:async';
-
-import 'package:dart_board_core/dart_board.dart';
+import 'package:dart_board_widgets/dart_board_widgets.dart';
+import 'package:dart_board_core/dart_board_core.dart';
 import 'package:dart_board_core/interface/dart_board_interface.dart';
 import 'package:dart_board_locator/dart_board_locator.dart';
 import 'package:flutter/cupertino.dart';

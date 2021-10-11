@@ -1,4 +1,4 @@
-import 'package:dart_board_core/dart_board.dart';
+import 'package:dart_board_core/dart_board_core.dart';
 import 'package:flutter/material.dart';
 
 /// This is here to close the loop on cart. It's not implemented, but it's a
