@@ -1,4 +1,4 @@
-import 'package:dart_board_core/impl/widgets/convertor_widget.dart';
+import 'package:dart_board_widgets/widgets/convertor_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
