@@ -1,3 +1,7 @@
+## 1.1.2
+
+ - **FIX**: clean up yamls and working towards improved chat.
+
 ## 1.1.1
 
  - **FIX**: register dart_board_widgets for the packages that use it.

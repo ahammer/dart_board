@@ -1,3 +1,8 @@
+## 1.1.4
+
+ - **FIX**: update flutter version for CI.
+ - **FIX**: remove unused dep.
+
 ## 1.1.3
 
  - Update a dependency to the latest release.

@@ -1,3 +1,7 @@
+## 0.9.15+2
+
+ - **FIX**: clean up yamls and working towards improved chat.
+
 ## 0.9.15+1
 
  - Update a dependency to the latest release.

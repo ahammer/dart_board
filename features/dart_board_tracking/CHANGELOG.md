@@ -1,3 +1,7 @@
+## 1.2.8
+
+ - Update a dependency to the latest release.
+
 ## 1.2.7
 
  - **FIX**: register dart_board_widgets for the packages that use it.

@@ -1,3 +1,7 @@
+## 1.1.2
+
+ - **FIX**: add suggestion from CI about pubspec.yaml meta package.
+
 ## 1.1.1
 
  - **FIX**: register dart_board_widgets for the packages that use it.

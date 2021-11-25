@@ -1,3 +1,8 @@
+## 0.9.4+6
+
+ - **FIX**: clean up yamls and working towards improved chat.
+ - **CHORE**: publish packages.
+
 ## 0.9.4+5
 
  - **REFACTOR**: moved widgets to dart_board_widgets.

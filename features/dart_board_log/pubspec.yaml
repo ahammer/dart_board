@@ -4,7 +4,7 @@ homepage: https://dart-board.io
 issue_tracker: https://github.com/ahammer/dart_board/issues
 repository: https://github.com/ahammer/dart_board
 
-version: 0.9.4
+version: 0.9.4+1
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
@@ -13,8 +13,8 @@ dependencies:
   flutter:
     sdk: flutter
   
-  dart_board_core: ^0.9.15+1
-  dart_board_locator: ^0.9.4+10
+  dart_board_core: ^0.9.15+2
+  dart_board_locator: ^0.9.4+11
   logging: ^1.0.1
   
 

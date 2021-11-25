@@ -1,3 +1,7 @@
+## 0.9.4+11
+
+ - Update a dependency to the latest release.
+
 ## 0.9.4+10
 
  - **FIX**: register dart_board_widgets for the packages that use it.
