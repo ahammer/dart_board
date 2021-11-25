@@ -1,3 +1,8 @@
+## 1.2.0
+
+ - **FIX**: register dart_board_widgets for the packages that use it.
+ - **FEAT**: dart_board_ui builder, widget stream.
+
 ## 1.1.8
 
  - **REFACTOR**: moved widgets to dart_board_widgets.

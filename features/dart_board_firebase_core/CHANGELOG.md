@@ -1,3 +1,7 @@
+## 1.2.0
+
+ - **FEAT**: dart_board_ui builder, widget stream.
+
 ## 1.1.8
 
  - **REFACTOR**: moved widgets to dart_board_widgets.

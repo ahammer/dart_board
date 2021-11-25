@@ -1,3 +1,7 @@
+## 1.2.0
+
+ - **FEAT**: added nav 2.0 deeplinking support.
+
 ## 1.1.6
 
  - **REFACTOR**: moved widgets to dart_board_widgets.

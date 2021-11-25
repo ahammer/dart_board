@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  dart_board_core: ^0.9.15
+  dart_board_core: ^0.9.15+1
   flutter_bloc: ^7.3.0
 
 dev_dependencies:
