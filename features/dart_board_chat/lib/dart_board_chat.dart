@@ -16,7 +16,9 @@ import 'chat_config.dart';
 /// Chat functionality for Dart Board.
 ///
 class DartBoardChatFeature extends DartBoardFeature {
-  final ChatConfig chatConfig = ChatConfig();
+  final ChatConfig chatConfig;
+
+  DartBoardChatFeature({this.chatConfig = const ChatConfig()});
 
   @override
   get namespace => "chat";
@@ -163,34 +165,25 @@ class _MessageWidgetState extends State<MessageWidget> {
       reversed: true,
       autoScroll: true,
       headerBuilder: showFooter
-          ? (ctx) => buildFooter(widget.channelId)
+          ? (ctx) => locate<ChatConfig>()
+              .buildNewMessageRow(channelId: widget.channelId)
           : (ctx) => Center(child: Text("Sign in to post")),
-      builder: (idx, ctx, snapshot) => MessageRow(
-            channelId: widget.channelId,
-            data: snapshot.docs[idx],
-          ),
+      builder: (idx, ctx, snapshot) {
+        return MessageRowShim(
+          channelId: widget.channelId,
+          data: snapshot.docs[idx],
+        );
+      },
       ref: FirebaseFirestore.instance
           .collection("channels/${widget.channelId}/messages")
           .orderBy('date', descending: true));
 }
 
-Widget buildFooter(String channelID) {
-  return Padding(
-    padding: const EdgeInsets.fromLTRB(12, 0, 0, 0),
-    child: Column(
-      children: [
-        Divider(),
-        NewMessageRow(channelId: channelID),
-      ],
-    ),
-  );
-}
-
-class MessageRow extends StatelessWidget {
+class MessageRowShim extends StatelessWidget {
   final QueryDocumentSnapshot<Object?> data;
   final String channelId;
 
-  const MessageRow({
+  const MessageRowShim({
     Key? key,
     required this.data,
     required this.channelId,
@@ -206,7 +199,7 @@ class MessageRow extends StatelessWidget {
 
     return DartBoardChatFeature.getChatConfig().buildMessageRow(
         channelId: channelId,
-        id: data.get("id") ?? "",
+        id: data.id,
         uid: data.get("uid") ?? "",
         photo: photoUrl,
         author: author,
@@ -215,19 +208,19 @@ class MessageRow extends StatelessWidget {
   }
 }
 
-class NewMessageRow extends StatefulWidget {
+class DefaultNewMessageRow extends StatefulWidget {
   final String channelId;
 
-  const NewMessageRow({
+  const DefaultNewMessageRow({
     Key? key,
     required this.channelId,
   }) : super(key: key);
 
   @override
-  _NewMessageRowState createState() => _NewMessageRowState();
+  _DefaultNewMessageRowState createState() => _DefaultNewMessageRowState();
 }
 
-class _NewMessageRowState extends State<NewMessageRow> {
+class _DefaultNewMessageRowState extends State<DefaultNewMessageRow> {
   final _controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
