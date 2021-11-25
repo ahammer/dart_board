@@ -165,7 +165,7 @@ class _MessageWidgetState extends State<MessageWidget> {
       reversed: true,
       autoScroll: true,
       headerBuilder: showFooter
-          ? (ctx) => locate<ChatConfig>()
+          ? (ctx) => DartBoardChatFeature.getChatConfig()
               .buildNewMessageRow(channelId: widget.channelId)
           : (ctx) => Center(child: Text("Sign in to post")),
       builder: (idx, ctx, snapshot) {
