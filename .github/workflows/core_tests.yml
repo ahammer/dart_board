@@ -16,7 +16,7 @@ jobs:
       - name: Install and set Flutter version
         uses: subosito/flutter-action@v1.5.3
         with:
-          flutter-version: '2.2.0'
+          flutter-version: '2.5.3'
       - name: Install MELOS
         run: flutter pub global activate melos
       - name: Bootstrap
