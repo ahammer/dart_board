@@ -1,3 +1,16 @@
+## 1.3.0
+
+ - **REFACTOR**: moved widgets to dart_board_widgets.
+ - **FEAT**: added nav 2.0 deeplinking support.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+
 ## 1.2.0
 
  - **FEAT**: added nav 2.0 deeplinking support.
