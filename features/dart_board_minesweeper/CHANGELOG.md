@@ -1,3 +1,7 @@
+## 0.9.6+6
+
+ - **FIX**: register dart_board_widgets for the packages that use it.
+
 ## 0.9.6+5
 
  - **REFACTOR**: moved widgets to dart_board_widgets.

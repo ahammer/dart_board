@@ -11,9 +11,15 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import 'chat_config.dart';
+
 /// Chat functionality for Dart Board.
 ///
 class DartBoardChatFeature extends DartBoardFeature {
+  final ChatConfig chatConfig;
+
+  DartBoardChatFeature({this.chatConfig = const ChatConfig()});
+
   @override
   get namespace => "chat";
 
@@ -23,9 +29,24 @@ class DartBoardChatFeature extends DartBoardFeature {
 
   @override
   get routes => [
-        NamedRouteDefinition(
-            route: "/chat", builder: (ctx, settings) => ChatWidget())
+        PathedRouteDefinition([
+          [
+            NamedRouteDefinition(
+                route: "/chat", builder: (ctx, settings) => ChatWidget())
+          ],
+          [
+            UriRoute((context, route) {
+              return Material(
+                  color: Colors.transparent,
+                  child: MessageWidget(channelId: route.pathSegments.last));
+            }),
+          ]
+        ]),
       ];
+
+  static ChatConfig getChatConfig() =>
+      (DartBoardCore.instance.findByName("chat") as DartBoardChatFeature)
+          .chatConfig;
 
   /// Enabled for Web, Android and iOS
   @override
@@ -144,33 +165,25 @@ class _MessageWidgetState extends State<MessageWidget> {
       reversed: true,
       autoScroll: true,
       headerBuilder: showFooter
-          ? (ctx) => Padding(
-                padding: const EdgeInsets.fromLTRB(12, 0, 0, 0),
-                child: Column(
-                  children: [
-                    Divider(),
-                    NewMessageRow(channelId: widget.channelId),
-                  ],
-                ),
-              )
+          ? (ctx) => locate<ChatConfig>()
+              .buildNewMessageRow(channelId: widget.channelId)
           : (ctx) => Center(child: Text("Sign in to post")),
-      builder: (idx, ctx, snapshot) => Padding(
-            padding: const EdgeInsets.fromLTRB(12, 0, 0, 0),
-            child: MessageRow(
-              channelId: widget.channelId,
-              data: snapshot.docs[idx],
-            ),
-          ),
+      builder: (idx, ctx, snapshot) {
+        return MessageRowShim(
+          channelId: widget.channelId,
+          data: snapshot.docs[idx],
+        );
+      },
       ref: FirebaseFirestore.instance
           .collection("channels/${widget.channelId}/messages")
           .orderBy('date', descending: true));
 }
 
-class MessageRow extends StatelessWidget {
+class MessageRowShim extends StatelessWidget {
   final QueryDocumentSnapshot<Object?> data;
   final String channelId;
 
-  const MessageRow({
+  const MessageRowShim({
     Key? key,
     required this.data,
     required this.channelId,
@@ -179,95 +192,35 @@ class MessageRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final String photoUrl = data.get("profilePhoto");
+    final String author = data.get("author") ?? "Unknown";
+    final String body = data.get("message");
+    final String date = DateFormat.Hm()
+        .format(DateTime.fromMillisecondsSinceEpoch(data.get("date")));
 
-    return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      /// Profile Image
-      Container(
-        width: 64,
-        height: 64,
-        decoration: BoxDecoration(
-            color: photoUrl.isEmpty ? Colors.blue : null,
-            borderRadius: BorderRadius.circular(8),
-            boxShadow: [
-              BoxShadow(
-                  blurRadius: 6, offset: Offset(3, 3), color: Colors.black26)
-            ],
-            image: photoUrl.isEmpty
-                ? null
-                : DecorationImage(image: NetworkImage(photoUrl))),
-      ),
-      Container(width: 8),
-      Expanded(
-        child: Card(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(12, 12, 0, 0),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Row(
-                  children: [
-                    Text(
-                      "${data.get("author") ?? "Unknown"}",
-                      style: Theme.of(context)
-                          .textTheme
-                          .subtitle2!
-                          .copyWith(fontWeight: FontWeight.bold, fontSize: 18),
-                    ),
-                    Container(width: 16),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
-                      child: Text(
-                        "${DateFormat.Hm().format(DateTime.fromMillisecondsSinceEpoch(data.get("date")))}",
-                        style: Theme.of(context).textTheme.caption,
-                      ),
-                    ),
-                    Expanded(
-                      child: nil,
-                    ),
-                    if (!data.get("uid").isEmpty &&
-                        data.get("uid") == locate<AuthenticationState>().userId)
-                      IconButton(
-                        iconSize: 16,
-                        splashRadius: 16,
-                        icon: Icon(Icons.delete),
-                        onPressed: () async {
-                          //await FirebaseFirestore.instance.
-                          FirebaseFirestore.instance
-                              .collection('channels/$channelId/messages')
-                              .doc(data.id)
-                              .delete();
-                        },
-                      )
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 16, 0, 15),
-                  child: Align(
-                      alignment: Alignment.topLeft,
-                      child: Text("${data.get("message")}")),
-                )
-              ],
-            ),
-          ),
-        ),
-      )
-    ]);
+    return DartBoardChatFeature.getChatConfig().buildMessageRow(
+        channelId: channelId,
+        id: data.id,
+        uid: data.get("uid") ?? "",
+        photo: photoUrl,
+        author: author,
+        body: body,
+        date: date);
   }
 }
 
-class NewMessageRow extends StatefulWidget {
+class DefaultNewMessageRow extends StatefulWidget {
   final String channelId;
 
-  const NewMessageRow({
+  const DefaultNewMessageRow({
     Key? key,
     required this.channelId,
   }) : super(key: key);
 
   @override
-  _NewMessageRowState createState() => _NewMessageRowState();
+  _DefaultNewMessageRowState createState() => _DefaultNewMessageRowState();
 }
 
-class _NewMessageRowState extends State<NewMessageRow> {
+class _DefaultNewMessageRowState extends State<DefaultNewMessageRow> {
   final _controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -323,12 +276,14 @@ class _NewMessageRowState extends State<NewMessageRow> {
                       Align(
                         alignment: Alignment.bottomRight,
                         child: MaterialButton(
-                          child: Container(
-                            width: 100,
-                            child: Center(child: Text("Post")),
-                          ),
-                          onPressed: submitMessage,
-                        ),
+                            child: Container(
+                              width: 100,
+                              child: Center(child: Text("Post")),
+                            ),
+                            onPressed: () => submitMessage(
+                                    text: _controller.text,
+                                    channelId: widget.channelId)
+                                .then((value) => _controller.text = "")),
                       ),
                     ],
                   ),
@@ -340,17 +295,22 @@ class _NewMessageRowState extends State<NewMessageRow> {
       )
     ]);
   }
+}
 
-  Future<void> submitMessage() async {
+Future<void> submitMessage(
+        {required String channelId, required String text}) async =>
     await FirebaseFirestore.instance
-        .collection("channels/${widget.channelId}/messages")
+        .collection("channels/${channelId}/messages")
         .add({
-      "message": _controller.text,
+      "message": text,
       "date": DateTime.now().millisecondsSinceEpoch,
       "author": locate<AuthenticationState>().username,
       "profilePhoto": locate<AuthenticationState>().photoUrl,
       "uid": locate<AuthenticationState>().userId
     });
-    _controller.text = "";
-  }
-}
+
+Future<void> deleteMessage(String channelId, String id) async =>
+    await FirebaseFirestore.instance
+        .collection('channels/$channelId/messages')
+        .doc(id)
+        .delete();

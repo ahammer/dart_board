@@ -1,3 +1,20 @@
+## 1.3.0
+
+ - **REFACTOR**: moved widgets to dart_board_widgets.
+ - **FEAT**: dart_board_ui builder, widget stream.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+
+## 1.2.0
+
+ - **FEAT**: dart_board_ui builder, widget stream.
+
 ## 1.1.8
 
  - **REFACTOR**: moved widgets to dart_board_widgets.

@@ -34,12 +34,23 @@ class FirebaseGateway extends StatefulWidget {
 }
 
 class _FirebaseGatewayState extends State<FirebaseGateway> {
-  final initFuture = Firebase.initializeApp();
+  late final initFuture;
+
+  @override
+  void initState() {
+    initFuture = Firebase.initializeApp();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) => FutureBuilder(
       future: initFuture,
-      builder: (ctx, snapshot) =>
-          snapshot.connectionState == ConnectionState.done
-              ? widget.child
-              : nil);
+      builder: (ctx, snapshot) {
+        if (snapshot.hasError) {
+          return Container(child: Text('${snapshot.error}'));
+        }
+        return snapshot.connectionState == ConnectionState.done
+            ? widget.child
+            : Container();
+      });
 }

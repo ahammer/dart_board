@@ -1,3 +1,7 @@
+## 1.2.7
+
+ - **FIX**: register dart_board_widgets for the packages that use it.
+
 ## 1.2.6
 
  - **REFACTOR**: moved widgets to dart_board_widgets.
