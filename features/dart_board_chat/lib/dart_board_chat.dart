@@ -23,8 +23,19 @@ class DartBoardChatFeature extends DartBoardFeature {
 
   @override
   get routes => [
-        NamedRouteDefinition(
-            route: "/chat", builder: (ctx, settings) => ChatWidget())
+        PathedRouteDefinition([
+          [
+            NamedRouteDefinition(
+                route: "/chat", builder: (ctx, settings) => ChatWidget())
+          ],
+          [
+            UriRoute((context, route) {
+              return Material(
+                  color: Colors.transparent,
+                  child: MessageWidget(channelId: route.pathSegments.last));
+            }),
+          ]
+        ]),
       ];
 
   /// Enabled for Web, Android and iOS
