@@ -17,13 +17,12 @@ dependencies:
   # These are really nice packages for theme management
   # Lets not re-invent the wheel
   flex_color_picker: ^2.1.2
-  flex_color_scheme: ^3.0.1
+  flex_color_scheme: ^4.1.1
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  pedantic: ^1.11.0
   
 flutter:
   uses-material-design: true

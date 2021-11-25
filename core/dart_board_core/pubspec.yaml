@@ -17,8 +17,7 @@ dependencies:
   dart_board_widgets: ^1.2.0
 dev_dependencies:
   flutter_test:
-    sdk: flutter
-  pedantic: ^1.11.0
+    sdk: flutter  
 
 flutter:
   uses-material-design: true
