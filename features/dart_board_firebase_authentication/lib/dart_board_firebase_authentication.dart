@@ -58,7 +58,7 @@ class FlutterFireAuthenticationDelegate extends AuthenticationDelegate {
   @override
   Widget buildAuthWidget() => LifeCycleWidget(
         key: ValueKey("GoogleAuthLifeCycle"),
-        child: nil,
+        child: Container(),
         init: (ctx) async {
           navigator.pop();
 

@@ -51,6 +51,8 @@ class EntryPoint extends DartBoardFeature {
       ];
 }
 
+/// Windows doesn't see to like the Certs so this says to just work anyways
+/// I'm not doing anything security critical here
 class MyHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) {

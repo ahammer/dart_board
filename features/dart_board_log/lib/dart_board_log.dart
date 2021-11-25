@@ -54,6 +54,9 @@ class LogFeature extends DartBoardFeature {
       ];
 
   @override
+  List<DartBoardFeature> get dependencies => [DartBoardLocatorFeature()];
+
+  @override
   List<String> get pageDecorationDenyList => ['/log:log_frame'];
 
   @override

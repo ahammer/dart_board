@@ -3,13 +3,11 @@ import 'package:flutter/cupertino.dart';
 /// The idea here is that this widget gets an async *, and can yield portions of the tree as it goes
 ///
 /// e.g.
-///
-///
+/// ```
 /// yield ProgressBar()
 /// await someThingToHappen
 /// yield Error or Results
-///
-
+/// ```
 class WidgetStream extends StatefulWidget {
   final Stream<Widget> Function(BuildContext context) widgetProducer;
 
@@ -21,6 +19,13 @@ class WidgetStream extends StatefulWidget {
 
 class _WidgetStreamState extends State<WidgetStream> {
   Widget _streamedWidget = Container();
+
+  @override
+  void setState(VoidCallback fn) {
+    /// Lets not do this if we aren't mounted
+    if (!mounted) return;
+    super.setState(fn);
+  }
 
   @override
   void initState() {
