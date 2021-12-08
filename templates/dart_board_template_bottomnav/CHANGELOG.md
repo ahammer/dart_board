@@ -1,3 +1,34 @@
+## 0.9.5
+
+ - **REFACTOR**: moved widgets to dart_board_widgets.
+ - **FIX**: remove provider.
+ - **FIX**: updated blank template with more mock data and a more refined.
+ - **FIX**: make sure to load initial route correctly in the template.
+ - **FIX**: cleaned up yaml.
+ - **FIX**: fixed dependency_overrides back in place.
+ - **FEAT**: now with a theme editor.
+ - **FEAT**: adding authentication feature and registering in the example.
+ - **FEAT**: example for particles.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+
 ## 0.9.4+7
 
  - Update a dependency to the latest release.

@@ -1,3 +1,28 @@
+## 1.5.0
+
+ - **REFACTOR**: moved widgets to dart_board_widgets.
+ - **FIX**: remove useless "sign in text" from chat defaults, better to implement in front-end.
+ - **FIX**: update how ChatConfig is retrieved (from registered feature, not.
+ - **FIX**: clean up yamls and working towards improved chat.
+ - **FIX**: cleanup and documentation.
+ - **FIX**: clean up and fix analysis issues.
+ - **FIX**: firebase auth flow pops immediately now, lifecycle updated.
+ - **FEAT**: allows config for chat.
+ - **FEAT**: added nav 2.0 deeplinking support.
+ - **FEAT**: tracking + firebase analytics.
+ - **FEAT**: chat network images for profile.
+ - **DOCS**: lots of docs.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+
 ## 1.4.0
 
  - **FIX**: clean up yamls and working towards improved chat.

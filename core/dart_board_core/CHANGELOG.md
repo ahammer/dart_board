@@ -1,3 +1,57 @@
+## 0.9.16
+
+ - **TEST**: verify findFeature code works.
+ - **REFACTOR**: moved widgets to dart_board_widgets.
+ - **REFACTOR**: remove unused.
+ - **FIX**: another test.
+ - **FIX**: clean up yamls and working towards improved chat.
+ - **FIX**: fixed dependency loading case where duplicates might have been.
+ - **FIX**: delete unused code.
+ - **FIX**: fix appendroute when from root path.
+ - **FIX**: root target wasn't inflating correctly.
+ - **FIX**: routes get brought to front if requested again.
+ - **FIX**: better 404 (that can return home!!, thanks nav 2.0).
+ - **FIX**: fix up the Chart, now responsive and no longer using pre-release.
+ - **FIX**: remove problems from repo (warnings).
+ - **FIX**: features come from last install if changing (e.g. implementation.
+ - **FIX**: theme fixes for the space-clock/bg.
+ - **FIX**: bugs.
+ - **FIX**: adding tests.
+ - **FIX**: made `features` a required parameter, non-nullable.
+ - **FIX**: fixed dependency_overrides back in place.
+ - **FIX**: adding tests and coverage.
+ - **FIX**: improvements to example.
+ - **FEAT**: adding more add2app (pigeons and some Android API).
+ - **FEAT**: new and improved spacex example.
+ - **FEAT**: Feature Gate widget and Page Decoration.
+ - **FEAT**: breaking dart board supporting widgets into new project.
+ - **FEAT**: dep chart can include/exclude integration features now.
+ - **FEAT**: layered graph view of dependencies.
+ - **FEAT**: updated entry point.
+ - **FEAT**: tracking + firebase analytics.
+ - **FEAT**: plugin code is nearing completion.
+ - **FEAT**: support for featureOverrides in the DartBoard widget.
+ - **FEAT**: example for particles.
+ - **FEAT**: change notifier builder.
+ - **FEAT**: adding firebase remote config.
+ - **DOCS**: improved.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+
 ## 0.9.15+2
 
  - **FIX**: clean up yamls and working towards improved chat.

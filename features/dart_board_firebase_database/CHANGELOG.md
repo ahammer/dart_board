@@ -1,3 +1,24 @@
+## 1.0.13
+
+ - **REFACTOR**: moved widgets to dart_board_widgets.
+ - **FIX**: website browser detection (mobile or not) for embedded demo.
+ - **FIX**: pinned dep.
+ - **FIX**: fixed dependency loading case where duplicates might have been.
+ - **FIX**: bug in particle "after" callback not triggering properly, throwing.
+ - **DOCS**: lots of docs.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+
 ## 1.0.12
 
  - Update a dependency to the latest release.

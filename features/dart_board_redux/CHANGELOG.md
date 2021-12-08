@@ -1,3 +1,33 @@
+## 0.9.3
+
+ - **REFACTOR**: moved widgets to dart_board_widgets.
+ - **FIX**: register dart_board_widgets for the packages that use it.
+ - **FIX**: cursor mode for rainbows now draws solid lines.
+ - **FIX**: fixed dependency_overrides back in place.
+ - **FIX**: added licenses.
+ - **FIX**: set version's in yaml for publishing.
+ - **FEAT**: adding authentication feature and registering in the example.
+ - **FEAT**: example for particles.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+
 ## 0.9.2+11
 
  - Update a dependency to the latest release.

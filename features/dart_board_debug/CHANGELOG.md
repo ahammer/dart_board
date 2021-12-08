@@ -1,3 +1,38 @@
+## 0.9.5
+
+ - **REFACTOR**: moved widgets to dart_board_widgets.
+ - **FIX**: clean up yamls and working towards improved chat.
+ - **FIX**: fix up the Chart, now responsive and no longer using pre-release.
+ - **FIX**: missing r.
+ - **FIX**: sorting of features + now show specs for reference.
+ - **FIX**: theme fixes for the space-clock/bg.
+ - **FIX**: for debug to prompt before disabling a feature (to warn of potential.
+ - **FIX**: fixed dependency_overrides back in place.
+ - **FEAT**: improvements to the debug list.
+ - **FEAT**: dep chart can include/exclude integration features now.
+ - **FEAT**: layered graph view of dependencies.
+ - **FEAT**: adding authentication feature and registering in the example.
+ - **FEAT**: example for particles.
+ - **DOCS**: lots of docs.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+
 ## 0.9.4+6
 
  - **FIX**: clean up yamls and working towards improved chat.

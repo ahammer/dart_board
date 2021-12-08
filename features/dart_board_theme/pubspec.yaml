@@ -4,7 +4,7 @@ homepage: https://dart-board.io
 issue_tracker: https://github.com/ahammer/dart_board/issues
 repository: https://github.com/ahammer/dart_board
 
-version: 0.9.4+7
+version: 0.9.5
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
@@ -12,8 +12,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  dart_board_core: ^0.9.15+2
-  dart_board_widgets: ^1.2.0
+  dart_board_core: ^0.9.16
+  dart_board_widgets: ^1.3.0
   # These are really nice packages for theme management
   # Lets not re-invent the wheel
   flex_color_picker: ^2.1.2

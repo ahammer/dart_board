@@ -1,3 +1,20 @@
+## 1.2.0
+
+ - **REFACTOR**: moved widgets to dart_board_widgets.
+ - **FIX**: add suggestion from CI about pubspec.yaml meta package.
+ - **FIX**: register dart_board_widgets for the packages that use it.
+ - **FIX**: lint issues.
+ - **FIX**: improve performance/cache spacex launches/low res images.
+ - **FIX**: made more performance friendly for web (no images in the past.
+ - **FIX**: clean up repo.
+ - **FEAT**: new and improved spacex example.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+
 ## 1.1.2
 
  - **FIX**: add suggestion from CI about pubspec.yaml meta package.

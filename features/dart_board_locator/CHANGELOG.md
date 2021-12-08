@@ -1,3 +1,34 @@
+## 0.9.5
+
+ - **REFACTOR**: moved widgets to dart_board_widgets.
+ - **FIX**: register dart_board_widgets for the packages that use it.
+ - **FIX**: cleanup and documentation.
+ - **FIX**: fixed dependency_overrides back in place.
+ - **FIX**: added licenses.
+ - **FIX**: Fix dependency for publishing.
+ - **FEAT**: adding authentication feature and registering in the example.
+ - **FEAT**: example for particles.
+ - **FEAT**: change notifier builder.
+ - **DOCS**: lots of docs.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+
 ## 0.9.4+11
 
  - Update a dependency to the latest release.

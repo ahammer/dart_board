@@ -1,3 +1,19 @@
+## 1.3.0
+
+ - **REFACTOR**: moved widgets to dart_board_widgets.
+ - **FIX**: register dart_board_widgets for the packages that use it.
+ - **FEAT**: firebase analytics is working now.
+ - **FEAT**: tracking + firebase analytics.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+
 ## 1.2.8
 
  - Update a dependency to the latest release.

@@ -1,3 +1,28 @@
+## 1.3.0
+
+ - **REFACTOR**: moved widgets to dart_board_widgets.
+ - **FIX**: register dart_board_widgets for the packages that use it.
+ - **FIX**: snow new rendering. 2 sizes/shades. Normalized to just 0-1, scale.
+ - **FIX**: mobile support for particle/cursor features. Filtering out big.
+ - **FIX**: bug in particle "after" callback not triggering properly, throwing.
+ - **FIX**: cursor mode for rainbows now draws solid lines.
+ - **FEAT**: adding authentication feature and registering in the example.
+ - **FEAT**: example for particles.
+ - **FEAT**: adding particle features to example.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+
 ## 1.2.11
 
  - Update a dependency to the latest release.

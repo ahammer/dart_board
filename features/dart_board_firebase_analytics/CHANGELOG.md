@@ -1,3 +1,20 @@
+## 1.2.0
+
+ - **REFACTOR**: moved widgets to dart_board_widgets.
+ - **FIX**: pin version.
+ - **FEAT**: firebase analytics is working now.
+ - **FEAT**: tracking + firebase analytics.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+
 ## 1.1.6
 
  - Update a dependency to the latest release.

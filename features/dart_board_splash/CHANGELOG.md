@@ -1,3 +1,19 @@
+## 1.0.11
+
+ - **REFACTOR**: moved widgets to dart_board_widgets.
+ - **FIX**: register dart_board_widgets for the packages that use it.
+ - **DOCS**: lots of docs.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+
 ## 1.0.10
 
  - Update a dependency to the latest release.

@@ -1,3 +1,14 @@
+## 1.0.7
+
+ - **REFACTOR**: moved widgets to dart_board_widgets.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+
 ## 1.0.6
 
  - Update a dependency to the latest release.

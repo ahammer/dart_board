@@ -1,3 +1,38 @@
+## 0.9.7
+
+ - **REFACTOR**: moved widgets to dart_board_widgets.
+ - **FIX**: clean up yamls and working towards improved chat.
+ - **FIX**: register dart_board_widgets for the packages that use it.
+ - **FIX**: remove provider.
+ - **FIX**: theme fixes for the space-clock/bg.
+ - **FIX**: fixed up minesweeper text on small layout.
+ - **FIX**: minesweeper UI updates to blend in better with dart-board, e.g.
+ - **FIX**: fixed dependency_overrides back in place.
+ - **FEAT**: now with a theme editor.
+ - **FEAT**: adding authentication feature and registering in the example.
+ - **FEAT**: example for particles.
+ - **FEAT**: Feature Gate widget and Page Decoration.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+
 ## 0.9.6+7
 
  - **FIX**: clean up yamls and working towards improved chat.

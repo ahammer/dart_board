@@ -1,3 +1,24 @@
+## 1.3.0
+
+ - **REFACTOR**: moved widgets to dart_board_widgets.
+ - **FIX**: cleanup code in starter and updated documentation.
+ - **FIX**: cleanup and documentation.
+ - **FIX**: bugs.
+ - **FIX**: animation unbounded added to AnimatedCanvas.
+ - **FEAT**: tracking + firebase analytics.
+ - **FEAT**: support for featureOverrides in the DartBoard widget.
+ - **DOCS**: lots of docs.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+
 ## 1.2.7
 
  - Update a dependency to the latest release.

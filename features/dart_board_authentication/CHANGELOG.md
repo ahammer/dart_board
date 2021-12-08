@@ -1,3 +1,22 @@
+## 1.2.0
+
+ - **REFACTOR**: moved widgets to dart_board_widgets.
+ - **FIX**: cleanup and documentation.
+ - **FEAT**: adding authentication feature and registering in the example.
+ - **DOCS**: lots of docs.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+
 ## 1.1.11
 
  - Update a dependency to the latest release.

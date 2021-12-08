@@ -1,3 +1,31 @@
+## 0.9.3
+
+ - **REFACTOR**: moved widgets to dart_board_widgets.
+ - **FIX**: clean up yamls and working towards improved chat.
+ - **FIX**: theme fixes for the space-clock/bg.
+ - **FIX**: fixed dependency_overrides back in place.
+ - **FEAT**: adding authentication feature and registering in the example.
+ - **FEAT**: example for particles.
+ - **DOCS**: lots of docs.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+
 ## 0.9.2+11
 
  - **FIX**: clean up yamls and working towards improved chat.

@@ -1,3 +1,26 @@
+## 1.4.0
+
+ - **REFACTOR**: moved widgets to dart_board_widgets.
+ - **FIX**: register dart_board_widgets for the packages that use it.
+ - **FIX**: fixed dependency loading case where duplicates might have been.
+ - **FIX**: bug in particle "after" callback not triggering properly, throwing.
+ - **FIX**: firebase auth flow pops immediately now, lifecycle updated.
+ - **FEAT**: dart_board_ui builder, widget stream.
+ - **FEAT**: chat network images for profile.
+ - **DOCS**: lots of docs.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+
 ## 1.3.1
 
  - Update a dependency to the latest release.

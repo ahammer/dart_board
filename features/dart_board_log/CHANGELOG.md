@@ -1,3 +1,33 @@
+## 0.9.5
+
+ - **REFACTOR**: moved widgets to dart_board_widgets.
+ - **FIX**: clean up yamls and working towards improved chat.
+ - **FIX**: remove provider.
+ - **FIX**: fixed dependency_overrides back in place.
+ - **FEAT**: dart_board_ui builder, widget stream.
+ - **FEAT**: adding authentication feature and registering in the example.
+ - **FEAT**: example for particles.
+ - **DOCS**: lots of docs.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+
 ## 0.9.4+1
 
  - **FIX**: clean up yamls and working towards improved chat.
