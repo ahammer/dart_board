@@ -167,7 +167,7 @@ class _MessageWidgetState extends State<MessageWidget> {
       headerBuilder: showFooter
           ? (ctx) => DartBoardChatFeature.getChatConfig()
               .buildNewMessageRow(channelId: widget.channelId)
-          : (ctx) => Center(child: Text("Sign in to post")),
+          : null,
       builder: (idx, ctx, snapshot) {
         return MessageRowShim(
           channelId: widget.channelId,
