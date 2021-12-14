@@ -54,7 +54,10 @@ class _EmitterSampleWidgetState extends State<EmitterSampleWidget> {
               ),
             if (_showReceiver)
               ReceiverWidget<DateTime>(
-                  builder: (ctx, val) => Text("Data ($val)"))
+                  builder: (ctx, val) => Text("Data ($val)")),
+            if (_showReceiver)
+              ReceiverWidget<DateTime>(
+                  builder: (ctx, val) => Text("Data ($val)"), useCache: true)
           ],
         ),
       );

@@ -3,18 +3,24 @@ import 'package:flutter/material.dart';
 
 class DartBoardEmitter extends DartBoardFeature {
   final Map<Type, Set<Receiver>> _receivers = {};
+  final Map<Type, dynamic> _values = {};
 
   @override
   String get namespace => "Emitter";
 
   void emit<T>(T data) {
+    _values[T] = data;
+
     _receivers[data.runtimeType]?.forEach((element) {
       element.receiver(data);
     });
   }
 
-  void register<T>(Receiver<T> receiver) {
+  void register<T>(Receiver<T> receiver, {bool useCache = false}) {
     _receivers.putIfAbsent(T, () => {}).add(receiver);
+    if (useCache && _values.containsKey(T)) {
+      receiver.receiver(_values[T]!);
+    }
   }
 
   void unregister<T>(Receiver<T> receiver) => _receivers[T]?.remove(receiver);
@@ -22,23 +28,30 @@ class DartBoardEmitter extends DartBoardFeature {
 
 class ReceiverWidget<T> extends StatefulWidget {
   final Widget Function(BuildContext context, T? data) builder;
+  final bool useCache;
+
   const ReceiverWidget({
     Key? key,
     required this.builder,
+    this.useCache = false,
   }) : super(key: key);
 
   @override
   State<ReceiverWidget<T>> createState() => _ReceiverWidgetState<T>();
 }
 
-class _ReceiverWidgetState<T> extends State<ReceiverWidget<T>>
+/// Mix this into your State objects
+/// T = type you are listening to
+/// V = the Widget type
+///
+/// Implement Receive in your State
+mixin ReceiverMixin<T, V extends StatefulWidget> on State<V>
     implements Receiver<T> {
-  T? data;
-
+  bool get useCache => false;
   @override
   void initState() {
     super.initState();
-    registerReceiver<T>(this);
+    registerReceiver<T>(this, useCache: useCache);
   }
 
   @override
@@ -46,6 +59,18 @@ class _ReceiverWidgetState<T> extends State<ReceiverWidget<T>>
     super.dispose();
     unregisterReceiver<T>(this);
   }
+
+  @override
+  Type get type => T;
+}
+//mixin SingleTickerProviderStateMixin<T extends StatefulWidget> on State<T> implements TickerProvider {
+
+class _ReceiverWidgetState<T> extends State<ReceiverWidget<T>>
+    with ReceiverMixin<T, ReceiverWidget<T>> {
+  T? data;
+
+  @override
+  bool get useCache => widget.useCache;
 
   @override
   Widget build(BuildContext context) => widget.builder(
@@ -59,9 +84,6 @@ class _ReceiverWidgetState<T> extends State<ReceiverWidget<T>>
       this.data = data;
     });
   }
-
-  @override
-  Type get type => T;
 }
 
 abstract class Receiver<T> {
@@ -78,11 +100,11 @@ void emit<T>(T data) {
   }
 }
 
-void registerReceiver<T>(Receiver<T> receiver) {
+void registerReceiver<T>(Receiver<T> receiver, {bool useCache = false}) {
   final DartBoardEmitter? emitter =
       DartBoardCore.instance.findByName("Emitter") as DartBoardEmitter;
   if (emitter != null) {
-    emitter.register<T>(receiver);
+    emitter.register<T>(receiver, useCache: useCache);
   }
 }
 
