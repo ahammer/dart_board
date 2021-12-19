@@ -1,3 +1,7 @@
+## 1.6.0
+
+ - **FEAT**: emitter module for messaging across components.
+
 ## 1.5.0
 
  - **REFACTOR**: moved widgets to dart_board_widgets.
