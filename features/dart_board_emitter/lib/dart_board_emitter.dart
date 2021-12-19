@@ -112,6 +112,6 @@ void unregisterReceiver<T>(Receiver<T> receiver) {
   final DartBoardEmitter? emitter =
       DartBoardCore.instance.findByName("Emitter") as DartBoardEmitter;
   if (emitter != null) {
-    emitter.register<T>(receiver);
+    emitter.unregister<T>(receiver);
   }
 }
