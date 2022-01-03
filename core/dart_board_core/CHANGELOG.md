@@ -1,3 +1,7 @@
+## 0.9.16+1
+
+ - Update a dependency to the latest release.
+
 ## 0.9.16
 
  - **TEST**: verify findFeature code works.

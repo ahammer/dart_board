@@ -1,3 +1,7 @@
+## 0.9.6
+
+ - **FEAT**: aggregate change notifier builders.
+
 ## 0.9.5
 
  - **REFACTOR**: moved widgets to dart_board_widgets.

@@ -1,3 +1,8 @@
+## 1.4.0
+
+ - **FEAT**: aggregate change notifier builders.
+ - **DOCS**: updated readme on ChangeNotifierBuilder.
+
 ## 1.3.0
 
  - **REFACTOR**: moved widgets to dart_board_widgets.
