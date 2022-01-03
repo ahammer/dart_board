@@ -312,3 +312,32 @@ Future<void> deleteMessage(String channelId, String id) async =>
         .collection('channels/$channelId/messages')
         .doc(id)
         .delete();
+
+getMessages(String channelId) => FirebaseFirestore.instance
+    .collection('channels/$channelId/messages')
+    .snapshots()
+    .map((event) => event.docs
+        .map((e) => ChatMessage(
+              message: e.data()["message"] as String,
+              date: e.data()["date"] as int,
+              author: e.data()["author"] as String,
+              profilePhoto: e.data()["profilePhoto"] as String,
+              uid: e.data()["uid"] as String,
+            ))
+        .toList());
+
+class ChatMessage {
+  final String message;
+  final int date;
+  final String author;
+  final String profilePhoto;
+  final String uid;
+
+  ChatMessage({
+    required this.message,
+    required this.date,
+    required this.author,
+    required this.profilePhoto,
+    required this.uid,
+  });
+}
