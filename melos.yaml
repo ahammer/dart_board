@@ -1,3 +1,6 @@
+name: Dart_Board
+repository: https://github.com/ahammer/dart_board 
+
 packages:
   - integrations/**
   - core/**
