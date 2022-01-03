@@ -1,3 +1,8 @@
+## 1.6.0
+
+ - **FEAT**: aggregate change notifier builders.
+ - **DOCS**: updated readme on ChangeNotifierBuilder.
+
 ## 1.5.0
 
  - **FEAT**: aggregate change notifier builders.

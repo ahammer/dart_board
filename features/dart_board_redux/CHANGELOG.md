@@ -1,3 +1,7 @@
+## 0.9.3+3
+
+ - **FIX**: delete non-necessary files.
+
 ## 0.9.3+2
 
  - **FIX**: delete non-necessary files.

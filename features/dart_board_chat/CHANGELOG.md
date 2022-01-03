@@ -1,3 +1,9 @@
+## 1.8.0
+
+ - **FIX**: delete all .iml files.
+ - **FEAT**: getMessages for chat.
+ - **FEAT**: adding a getMessages method.
+
 ## 1.7.0
 
  - **FIX**: delete all .iml files.
