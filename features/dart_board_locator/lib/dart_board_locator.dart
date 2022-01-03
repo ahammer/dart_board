@@ -77,3 +77,10 @@ Widget locateAndBuild<T extends ChangeNotifier>(
         Widget Function(BuildContext, T) builder,
         {String instanceId = ""}) =>
     locate<T>(instanceId: instanceId).builder<T>(builder);
+
+Widget locateAndBuild2<T extends ChangeNotifier, V extends ChangeNotifier>(
+    Widget Function(BuildContext, T, V) builder,
+    {String instanceId1 = "",
+    String instanceId2 = ""}) {
+  return Container();
+}
