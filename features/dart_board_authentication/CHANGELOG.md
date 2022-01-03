@@ -1,3 +1,7 @@
+## 1.2.2
+
+ - **FIX**: delete all .iml files.
+
 ## 1.2.1
 
  - Update a dependency to the latest release.

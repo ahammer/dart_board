@@ -1,3 +1,8 @@
+## 1.7.0
+
+ - **FIX**: delete all .iml files.
+ - **FEAT**: adding a getMessages method.
+
 ## 1.6.1
 
  - Update a dependency to the latest release.

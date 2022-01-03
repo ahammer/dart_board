@@ -1,3 +1,7 @@
+## 0.9.4+2
+
+ - **FIX**: delete all .iml files.
+
 ## 0.9.4+1
 
  - Update a dependency to the latest release.
