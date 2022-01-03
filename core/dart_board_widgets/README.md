@@ -14,6 +14,10 @@ Useful for breaking out logic into the widget tree.
 
 Builder's for change notifiers
 
+Can use extension syntax on ChangeNotifier (e.g.) yourChangeNOtifier.builder((ctx, val) => )
+
+Can also use ChangeNotifierBuilder2 & 3 variants to watch more notifiers. I include up to 3 for now which should cover most use cases.
+
 ## ConvertorWidget
 
 A widget designed for ViewModel generation. Can optimize builds if you implement equals
