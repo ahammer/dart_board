@@ -12,12 +12,12 @@ dependencies:
     sdk: flutter
 
   dart_board_core: ^0.9.16+4
-  flutter_bloc: ^7.3.0
+  flutter_bloc: ^8.0.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^1.0.0
+  flutter_lints: ^2.0.1
 
 flutter:
   uses-material-design: true

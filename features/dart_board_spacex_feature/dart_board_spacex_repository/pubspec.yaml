@@ -22,7 +22,7 @@ dependencies:
   equatable: ^2.0.3
   meta: ^1.7.0
   gql: ^0.13.0
-  gql_exec: ^0.3.0
+  gql_exec: ^0.4.1-alpha+1645425888344
   
 
 dev_dependencies:

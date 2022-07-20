@@ -17,7 +17,7 @@ dependencies:
   # These are really nice packages for theme management
   # Lets not re-invent the wheel
   flex_color_picker: ^2.1.2
-  flex_color_scheme: ^4.1.1
+  flex_color_scheme: ^5.1.0
 
 
 dev_dependencies:

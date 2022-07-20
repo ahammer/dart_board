@@ -15,7 +15,7 @@ dependencies:
   
     #Redux for general global state
   redux: ^5.0.0
-  flutter_redux: ^0.8.2 
+  flutter_redux: ^0.10.0 
   dart_board_core: ^0.9.16+4
   dart_board_widgets: ^1.7.0
   redux_thunk: ^0.4.0
