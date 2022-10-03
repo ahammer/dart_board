@@ -13,6 +13,7 @@ dependencies:
   dart_board_locator: ^0.9.10
   dart_board_firebase_database: ^1.0.18
   dart_board_authentication: ^1.2.5
+  cloud_firestore: ^3.5.0
   intl: ^0.17.0
 
 dev_dependencies:
