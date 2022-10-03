@@ -23,5 +23,5 @@ flutter:
   uses-material-design: true
   module:
     androidX: true
-    androidPackage: io.dart-board.core
-    iosBundleIdentifier: io.dart-board.core
+    androidPackage: io.dartboard.core
+    iosBundleIdentifier: io.dartboard.core

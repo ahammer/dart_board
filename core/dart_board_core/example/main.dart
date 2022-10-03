@@ -1,4 +1,5 @@
 import 'package:dart_board_core/dart_board_core.dart';
+import 'package:dart_board_core/interface/nav_interface.dart';
 import 'package:flutter/material.dart';
 
 /// Minimal Dart Board example.
@@ -44,7 +45,7 @@ class SimpleRouteFeature extends DartBoardFeature {
                 children: [
                   Text('Home Page'),
                   MaterialButton(
-                    onPressed: () => Navigator.of(ctx).pushNamed('/second'),
+                    onPressed: () => DartBoardCore.nav.push("/second"),
                     child: Text('push another route'),
                   ),
                 ],
@@ -57,7 +58,7 @@ class SimpleRouteFeature extends DartBoardFeature {
                   children: [
                     Text('Second Page'),
                     MaterialButton(
-                      onPressed: Navigator.of(ctx).pop,
+                      onPressed: DartBoardCore.nav.pop,
                       child: Text('pop'),
                     ),
                   ],

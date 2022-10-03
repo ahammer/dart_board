@@ -20,7 +20,7 @@ dependencies:
   dart_board_locator: ^0.9.9
   dart_board_authentication: ^1.2.4
   dart_board_firebase_core: ^1.4.4
-  firebase_auth: ^3.0.1
+  firebase_auth: ^3.4.2
   google_sign_in: ^5.0.7
 
 dev_dependencies:
