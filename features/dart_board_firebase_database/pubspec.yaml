@@ -7,7 +7,7 @@ repository: https://github.com/ahammer/dart_board
 # Configure firebase as per firebase documents
 # E.g. configure the runner's with your keys for this to work
 
-version: 1.0.17
+version: 1.0.18
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -15,8 +15,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  dart_board_core: ^0.9.16+4
-  dart_board_firebase_core: ^1.4.4
+  dart_board_core: ^0.9.16+5
+  dart_board_firebase_core: ^1.4.5
   cloud_firestore: ^3.5.0
   
 
