@@ -33,7 +33,6 @@ class FeatureGate extends StatelessWidget {
         return _FeatureEnabler(
           gatedFeature,
           key: UniqueKey(),
-          messenger: ScaffoldMessenger.of(context),
         );
       }
       return Card(
@@ -53,10 +52,8 @@ class FeatureGate extends StatelessWidget {
 
 class _FeatureEnabler extends StatefulWidget {
   final String feature;
-  final ScaffoldMessengerState messenger;
 
-  const _FeatureEnabler(this.feature, {Key? key, required this.messenger})
-      : super(key: key);
+  const _FeatureEnabler(this.feature, {Key? key}) : super(key: key);
 
   @override
   __FeatureEnablerState createState() => __FeatureEnablerState();
@@ -70,8 +67,6 @@ class __FeatureEnablerState extends State<_FeatureEnabler> {
     Timer.run(() {
       DartBoardCore.instance
           .setFeatureImplementation(widget.feature, 'default');
-      widget.messenger.showSnackBar(
-          SnackBar(content: Text('Enabled feature ${widget.feature}')));
     });
   }
 
