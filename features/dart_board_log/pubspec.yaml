@@ -15,7 +15,7 @@ dependencies:
   
   dart_board_core: ^0.9.16+4
   dart_board_locator: ^0.9.9
-  logging: ^1.0.1
+  logging: ^1.0.2
   
 
 dev_dependencies:

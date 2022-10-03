@@ -13,7 +13,6 @@ dependencies:
   dart_board_locator: ^0.9.9
   dart_board_firebase_database: ^1.0.17
   dart_board_authentication: ^1.2.4
-  cupertino_icons: ^1.0.2
   intl: ^0.17.0
 
 dev_dependencies:

@@ -21,7 +21,7 @@ dependencies:
   redux_thunk: ^0.4.0
 
 dev_dependencies:
-  redux_epics: ^0.15.0
+  redux_epics: ^0.15.1
   rxdart:
   
   flutter_test:

@@ -11,9 +11,8 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.2
   dart_board_core: ^0.9.16+4
-  vector_math: ^2.1.0
+  vector_math: ^2.1.2
   intl: ^0.17.0
 
 dev_dependencies:
