@@ -27,7 +27,7 @@ class DartBoardFirebaseAnalytics extends DartBoardFeature {
 }
 
 class FirebaseAnalyticsDelegate extends TrackingDelegate {
-  FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+  late FirebaseAnalytics analytics = FirebaseAnalytics.instance;
 
   @override
   void trackAction(

@@ -23,6 +23,7 @@ class DartBoardFirebaseCoreFeature extends DartBoardFeature {
       kIsWeb || Platform.isAndroid || Platform.isIOS || Platform.isMacOS;
 }
 
+// Blocks the app from starting before firebase init'd
 class FirebaseGateway extends StatefulWidget {
   final Widget child;
 

@@ -32,12 +32,9 @@ dependencies:
   dart_board_chat:
   dart_board_splash:
   dart_board_canvas:    
-  http: ^0.13.3
-  url_launcher: ^6.0.4
   dart_board_spacex_ui:
 
-dependency_overrides:
-  gql_exec: 0.3.0
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
