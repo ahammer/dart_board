@@ -2,7 +2,7 @@ name: dart_board_space_scene
 description: The cool space scene from the space-clock, ported to dart-board
 homepage: https://dart-board.io
 
-version: 1.0.14
+version: 1.0.15
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -11,9 +11,8 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.2
-  dart_board_core: ^0.9.16+4
-  vector_math: ^2.1.0
+  dart_board_core: ^0.9.16+5
+  vector_math: ^2.1.2
   intl: ^0.17.0
 
 dev_dependencies:

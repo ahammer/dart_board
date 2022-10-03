@@ -3,7 +3,6 @@
 Designed for messaging across modules
 
 
-
 emit(value) when you want to push on the message bus
 
 ReceiverWidget<T> to hook up a builder that can take a default

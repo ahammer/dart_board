@@ -3,7 +3,7 @@ description: Plugin Bindings for Dart-Board
 homepage: https://dart-board.io
 issue_tracker: https://github.com/ahammer/dart_board/issues
 repository: https://github.com/ahammer/dart_board
-version: 1.2.4
+version: 1.2.5
 
 
 environment:
@@ -13,12 +13,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  dart_board_core: ^0.9.16+4
-  dart_board_widgets: ^1.7.0
+  dart_board_core: ^0.9.16+5
+  dart_board_widgets: ^1.8.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^1.0.0
+  flutter_lints: ^2.0.1
   pigeon:
 
 flutter:
