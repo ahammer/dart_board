@@ -1,3 +1,8 @@
+## 0.9.10
+
+ - **FIX**: delete non-necessary files.
+ - **FEAT**: aggregate change notifier builders.
+
 ## 0.9.9
 
  - **FIX**: delete non-necessary files.
