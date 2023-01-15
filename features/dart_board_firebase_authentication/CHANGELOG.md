@@ -1,3 +1,7 @@
+## 1.4.6
+
+ - **FIX**: delete all .iml files.
+
 ## 1.4.5
 
  - **FIX**: delete all .iml files.
