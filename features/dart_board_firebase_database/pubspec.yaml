@@ -16,7 +16,7 @@ dependencies:
   flutter:
     sdk: flutter
   dart_board_core: ^0.9.16+5
-  dart_board_firebase_core: ^1.4.5
+  dart_board_firebase_core: ^1.4.4
   cloud_firestore: ^3.5.0
   
 

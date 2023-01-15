@@ -15,7 +15,7 @@ dependencies:
   # Core to be able to implement a feature
   dart_board_core: ^0.9.16+5
   # Locator, to provide up the repository
-  dart_board_locator: ^0.9.10
+  dart_board_locator: ^0.9.9
   dart_board_widgets: ^1.8.0
   artemis: '^7.9.0-beta' # only if you're using ArtemisClient!
   json_annotation: ^4.1.0
