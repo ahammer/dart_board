@@ -1,6 +1,5 @@
 import 'package:dart_board_widgets/dart_board_widgets.dart';
 import 'package:dart_board_locator/dart_board_locator.dart';
-import 'package:dart_board_spacex_repository/generated/graphql_api.dart';
 import 'package:dart_board_spacex_repository/impl/spacex_repository.dart';
 import 'package:dart_board_spacex_ui/ui/launch_summary_widget.dart';
 import 'package:flutter/material.dart';

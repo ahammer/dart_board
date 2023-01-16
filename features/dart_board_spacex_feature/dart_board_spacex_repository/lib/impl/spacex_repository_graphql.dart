@@ -1,7 +1,5 @@
 import 'package:graphql/client.dart';
-
 import 'spacex_repository.dart';
-import '../generated/graphql_api.dart';
 
 const _ENDPOINT = "https://api.spacex.land/graphql";
 

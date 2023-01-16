@@ -1,5 +1,3 @@
-import 'package:dart_board_spacex_repository/generated/graphql_api.graphql.dart';
-
 /// Interface to get at the GraphQL data
 abstract class SpaceXRepository {
   Future<List<GetPastLaunches$Query$Launch?>> getPastLaunches();
@@ -18,4 +16,14 @@ abstract class SpaceXRepository {
       (await getPastLaunches())
           .where((element) => element?.missionName == missionName)
           .first;
+}
+
+class GetRockets$Query$Rocket {}
+
+class GetLaunch$Query$Launch {}
+
+class GetPastLaunches$Query$Launch {
+  var missionName;
+
+  var id;
 }
