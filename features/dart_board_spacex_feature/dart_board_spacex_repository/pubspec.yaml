@@ -17,11 +17,12 @@ dependencies:
   # Locator, to provide up the repository
   dart_board_locator: ^0.9.11
   dart_board_widgets: ^1.9.0
-  artemis: '^7.9.0-beta' # only if you're using ArtemisClient!
   json_annotation: ^4.1.0
   equatable: ^2.0.3
   meta: ^1.7.0
-  gql: ^0.13.2-alpha+1659715356091
+  graphql: ^5.1.3
+
+
 
 dev_dependencies:
   flutter_test:
