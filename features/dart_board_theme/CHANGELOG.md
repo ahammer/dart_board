@@ -1,3 +1,7 @@
+## 0.9.5+6
+
+ - **FIX**: delete all .iml files.
+
 ## 0.9.5+5
 
  - **FIX**: delete all .iml files.

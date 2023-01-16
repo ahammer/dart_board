@@ -116,7 +116,11 @@ What is a feature? Many are offered out of the box, including Debugging, Full Fe
 
 ## core
 
-Contain's core framework features. Currently 1 library. dart_board_core
+Contain's core framework features. Currently 3 libraries: 
+- dart_board_core = Kernel
+- dart_board_widgets = Simple Widgets
+- dart_board_core_plugin = Add2App usages
+
 
 ## features
 
