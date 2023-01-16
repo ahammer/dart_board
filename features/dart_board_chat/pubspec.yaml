@@ -14,7 +14,7 @@ dependencies:
   dart_board_firebase_database: ^1.0.19
   dart_board_authentication: ^1.2.6  
   intl: ^0.17.0
-  # cloud_firestore: ^3.5.0
+  cloud_firestore: ^3.5.0
 
 dev_dependencies:
   flutter_test:
