@@ -20,10 +20,20 @@ abstract class SpaceXRepository {
 
 class GetRockets$Query$Rocket {}
 
-class GetLaunch$Query$Launch {}
+class GetLaunch$Query$Launch {
+  var details;
+
+  var links;
+}
 
 class GetPastLaunches$Query$Launch {
   var missionName;
 
   var id;
+
+  var links;
+
+  var rocket;
+
+  var launchDateLocal;
 }
