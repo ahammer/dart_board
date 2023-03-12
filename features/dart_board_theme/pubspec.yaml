@@ -16,8 +16,8 @@ dependencies:
   dart_board_widgets: ^1.9.0
   # These are really nice packages for theme management
   # Lets not re-invent the wheel
-  flex_color_picker: ^2.1.2
-  flex_color_scheme: ^5.1.0
+  flex_color_picker: ^3.1.0
+  flex_color_scheme: ^6.1.2
 
 
 dev_dependencies:
