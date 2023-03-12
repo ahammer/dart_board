@@ -13,13 +13,9 @@ dependencies:
   flutter:
     sdk: flutter
 
-  dart_board_core: ^0.9.16+5
-  dart_board_locator: ^0.9.10
-  logging: ^1.0.1
   dart_board_core: ^0.9.16+6
   dart_board_locator: ^0.9.11
   logging: ^1.0.2
->>>>>>> 2c1b4c61e1d4e541f99192e8915f34a246e669bc
   
 
 dev_dependencies:
