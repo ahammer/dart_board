@@ -3,7 +3,7 @@ description: SpaceX GraphQL Access and Repository
 homepage: https://dart-board.io
 repository: https://github.com/ahammer/dart_board
 
-version: 1.2.5
+version: 1.2.6
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -13,17 +13,16 @@ dependencies:
     sdk: flutter
 
   # Core to be able to implement a feature
-  dart_board_core: ^0.9.16+5
+  dart_board_core: ^0.9.16+6
   # Locator, to provide up the repository
-  dart_board_locator: ^0.9.10
-  dart_board_widgets: ^1.8.0
-  artemis: '>=7.0.0 <8.0.0' # only if you're using ArtemisClient!
+  dart_board_locator: ^0.9.11
+  dart_board_widgets: ^1.9.0
   json_annotation: ^4.1.0
   equatable: ^2.0.3
   meta: ^1.7.0
-  gql: ^0.13.0
-  gql_exec: ^0.3.0
-  
+  graphql: ^5.1.3
+
+
 
 dev_dependencies:
   flutter_test:

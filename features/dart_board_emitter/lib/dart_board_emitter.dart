@@ -92,26 +92,14 @@ abstract class Receiver<T> {
   void receiver(T data);
 }
 
-void emit<T>(T data) {
-  final DartBoardEmitter? emitter =
-      DartBoardCore.instance.findByName("Emitter") as DartBoardEmitter;
-  if (emitter != null) {
-    emitter.emit(data);
-  }
-}
+void emit<T>(T data) =>
+    (DartBoardCore.instance.findByName("Emitter") as DartBoardEmitter)
+        .emit(data);
 
-void registerReceiver<T>(Receiver<T> receiver, {bool useCache = false}) {
-  final DartBoardEmitter? emitter =
-      DartBoardCore.instance.findByName("Emitter") as DartBoardEmitter;
-  if (emitter != null) {
-    emitter.register<T>(receiver, useCache: useCache);
-  }
-}
+void registerReceiver<T>(Receiver<T> receiver, {bool useCache = false}) =>
+    (DartBoardCore.instance.findByName("Emitter") as DartBoardEmitter)
+        .register(receiver, useCache: useCache);
 
-void unregisterReceiver<T>(Receiver<T> receiver) {
-  final DartBoardEmitter? emitter =
-      DartBoardCore.instance.findByName("Emitter") as DartBoardEmitter;
-  if (emitter != null) {
-    emitter.unregister<T>(receiver);
-  }
-}
+void unregisterReceiver<T>(Receiver<T> receiver) =>
+    (DartBoardCore.instance.findByName("Emitter") as DartBoardEmitter)
+        .unregister<T>(receiver);

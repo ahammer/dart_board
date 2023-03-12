@@ -3,10 +3,9 @@ https://spacexdemo-d312b.web.app
 
 SpaceX past launches API + GraphQL + Dart Board example
 
-
-Some compromises were made for the sake of time. Project management pyramid is (features/speed/quality). 
-In the case of this project, I don't get to compromise speed, I'm leaning towards features. 
-Some notes on quality improvements at the end.
+NOTE: This version is not complete, mid-migration from artemis to graphql libraries.
+Artemis is pre-release and messes up melos release. It'll probably end up being released in partially working form
+as it's not important to anyone.
 
 
 Features
