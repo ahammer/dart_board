@@ -32,8 +32,6 @@ dependencies:
   dart_board_chat:
   dart_board_splash:
   dart_board_canvas:    
-  dart_board_spacex_ui:
-
   
 dev_dependencies:
   flutter_test:
