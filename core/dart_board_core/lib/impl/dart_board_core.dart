@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/services/message_codec.dart';
@@ -48,7 +50,7 @@ class DartBoard extends StatefulWidget {
   ///  - `kMaterialPageRouteResolver`
   ///  - `kCupertinoPageRouteResolver`
   ///  are available as platform defaults.
-  final Route Function(RouteSettings settings, WidgetBuilder builder)
+  final Route Function(RouteSettings settings, WidgetBuilder builder)?
       routeBuilder;
 
   /// pageNotFound widget builder is essentially the `404` builder
@@ -64,6 +66,20 @@ class DartBoard extends StatefulWidget {
 
   final Map<String, String?>? featureOverrides;
 
+  final bool debugShowCheckedModeBanner;
+
+  final bool debugShowMaterialGrid;
+
+  final bool showSemanticDebugger;
+
+  final bool checkberboardOffscreenLayers;
+
+  final ThemeData? theme;
+
+  final ThemeData? darkTheme;
+
+  final ThemeMode? themeMode;
+
   DartBoard(
       {Key? key,
       required this.features,
@@ -71,7 +87,14 @@ class DartBoard extends StatefulWidget {
       required this.initialPath,
       this.featureOverrides,
       this.pageDecorationDenyList = const {},
-      this.routeBuilder = kCupertinoRouteResolver})
+      this.routeBuilder = null,
+      required this.debugShowCheckedModeBanner,
+      required this.debugShowMaterialGrid,
+      required this.showSemanticDebugger,
+      required this.checkberboardOffscreenLayers,
+      this.theme,
+      this.darkTheme,
+      this.themeMode})
       : super(key: key);
 
   @override
@@ -150,6 +173,13 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
   ///
   @override
   Widget build(BuildContext context) => MaterialApp.router(
+      debugShowCheckedModeBanner: widget.debugShowCheckedModeBanner,
+      debugShowMaterialGrid: widget.debugShowMaterialGrid,
+      showSemanticsDebugger: widget.showSemanticDebugger,
+      checkerboardOffscreenLayers: widget.checkberboardOffscreenLayers,
+      theme: widget.theme,
+      darkTheme: widget.darkTheme,
+      themeMode: widget.themeMode,
       routeInformationParser: dartBoardInformationParser,
       routerDelegate: dartBoardRouterDelegate);
 
@@ -322,7 +352,10 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
       return definition.routeBuilder!(
           settings, (ctx) => buildPageRoute(ctx, settings, definition));
     }
-    return widget.routeBuilder(
+    return (widget.routeBuilder ??
+            (Platform.isIOS
+                ? kMaterialRouteResolver
+                : kCupertinoRouteResolver))(
         settings, (ctx) => buildPageRoute(ctx, settings, definition));
   }
 

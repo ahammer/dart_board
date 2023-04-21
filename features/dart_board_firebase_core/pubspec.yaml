@@ -14,7 +14,7 @@ dependencies:
   flutter:
     sdk: flutter
   dart_board_core: ^0.9.16+6
-  firebase_core: ^2.4.1
+  firebase_core: ^2.7.1
 
 dev_dependencies:
   flutter_test:
