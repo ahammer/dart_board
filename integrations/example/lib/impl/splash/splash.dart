@@ -28,7 +28,7 @@ class ExampleSplashWidget extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(32, 0, 0, 0),
               child: Text(
                 'Dart Board',
-                style: Theme.of(context).textTheme.headline1!.copyWith(
+                style: Theme.of(context).textTheme.displayLarge!.copyWith(
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                     shadows: [

@@ -75,7 +75,7 @@ class _GameTimerState extends State<GameTimer> {
     //value =
 //        "⏲️${(state.mineSweeper.gameOverTime ?? DateTime.now()).difference(state.mineSweeper.startTime).inSeconds}";
 
-    return Text(value, style: Theme.of(context).textTheme.headline5);
+    return Text(value, style: Theme.of(context).textTheme.headlineSmall);
   }
 }
 
@@ -86,7 +86,7 @@ class BombsRemaining extends StatelessWidget {
   Widget build(BuildContext context) =>
       FeatureStateBuilder<MinesweeperState>((ctx, state) => Text(
           "💣${state.mineSweeper.bombs - state.mineSweeper.flagCount}",
-          style: Theme.of(context).textTheme.headline5));
+          style: Theme.of(context).textTheme.headlineSmall));
 }
 
 class MineField extends StatelessWidget {
@@ -149,7 +149,7 @@ class GameInfoOverlay extends StatelessWidget {
                                     : "💩Game Over💩"
                                 : ""
                             : "Flutter Minesweeper",
-                        style: Theme.of(context).textTheme.headline3,
+                        style: Theme.of(context).textTheme.displaySmall,
                       ),
                     ),
                   ),
