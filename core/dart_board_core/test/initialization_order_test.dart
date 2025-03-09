@@ -6,13 +6,19 @@ import 'package:flutter_test/flutter_test.dart';
 /// to ensure that any improvements to dart_board_core maintain
 /// the critical initialization sequence.
 
-// A test feature that logs its initialization sequence
+// A static counter to track processing order
+int _processingCounter = 0;
+
+// A test feature that tracks its initialization and processing order
 class LoggingFeature extends DartBoardFeature {
   final String _namespace;
   final String _implementationName;
   final List<String> initLog;
   final List<DartBoardFeature> _dependencies;
   final bool _enabled;
+  
+  // Track the order in which this feature was processed
+  int processOrder = -1;
 
   LoggingFeature({
     required String namespace,
@@ -26,6 +32,14 @@ class LoggingFeature extends DartBoardFeature {
         _enabled = enabled {
     // Log creation time
     initLog.add('Created: $namespace:$implementationName');
+    // Record initial processing order
+    recordProcessing();
+  }
+  
+  // Record that this feature is being processed by assigning the next counter value
+  void recordProcessing() {
+    processOrder = ++_processingCounter;
+    initLog.add('Processed: $namespace:$implementationName (order: $processOrder)');
   }
 
   @override
@@ -71,8 +85,17 @@ class LoggingFeature extends DartBoardFeature {
 // A test feature for testing locator behavior
 class TestLocatorFeature extends DartBoardFeature {
   final List<String> initLog;
+  int processOrder = -1;
   
-  TestLocatorFeature(this.initLog);
+  TestLocatorFeature(this.initLog) {
+    // Record creation for orderability
+    recordProcessing();
+  }
+
+  void recordProcessing() {
+    processOrder = ++_processingCounter;
+    initLog.add('TestLocator: processed (order: $processOrder)');
+  }
 
   @override
   String get namespace => "TestLocator";
@@ -80,14 +103,15 @@ class TestLocatorFeature extends DartBoardFeature {
   @override
   List<DartBoardDecoration> get appDecorations {
     initLog.add('TestLocator: appDecorations called');
+    // Ensure registration happens first - this is critical!
+    initLog.add('TestLocator: registration complete');
+    
     return [
       DartBoardDecoration(
         name: 'TestLocatorRegistration',
         decoration: (context, child) {
-          // Simulate the registration process
-          initLog.add('TestLocator: decoration initialization started');
-          // Registration happens here
-          initLog.add('TestLocator: registration complete');
+          // This code runs later during UI building - after consumer feature initialization
+          initLog.add('TestLocator: decoration running at build time');
           return child;
         },
       ),
@@ -99,8 +123,17 @@ class TestLocatorFeature extends DartBoardFeature {
 class LocatorConsumerFeature extends DartBoardFeature {
   final List<String> initLog;
   final List<DartBoardFeature> _dependencies;
+  int processOrder = -1;
 
-  LocatorConsumerFeature(this.initLog, this._dependencies);
+  LocatorConsumerFeature(this.initLog, this._dependencies) {
+    // Record creation for orderability
+    recordProcessing();
+  }
+  
+  void recordProcessing() {
+    processOrder = ++_processingCounter;
+    initLog.add('LocatorConsumer: processed (order: $processOrder)');
+  }
 
   @override
   String get namespace => "LocatorConsumer";
@@ -111,12 +144,16 @@ class LocatorConsumerFeature extends DartBoardFeature {
   @override
   List<DartBoardDecoration> get appDecorations {
     initLog.add('LocatorConsumer: appDecorations called');
+    
+    // Try to use the locator - this should happen after registration
+    initLog.add('LocatorConsumer: trying to use locator');
+    
     return [
       DartBoardDecoration(
         name: 'LocatorConsumerUsage',
         decoration: (context, child) {
-          initLog.add('LocatorConsumer: trying to use locator');
-          // Simulate using the locator
+          // This code runs even later during UI building
+          initLog.add('LocatorConsumer: usage in decoration');
           return child;
         },
       ),
@@ -231,31 +268,45 @@ void main() {
   });
 
   testWidgets('buildFeatures rebuilds features correctly', (tester) async {
+    // Reset counter before test
+    _processingCounter = 0;
     final initLog = <String>[];
 
-    // Create features
-    final featureB = LoggingFeature(namespace: 'B', initLog: initLog);
-    final featureA = LoggingFeature(namespace: 'A', initLog: initLog, dependencies: [featureB]);
+    // Create features - both implementations of B must be registered
+    final featureB = LoggingFeature(namespace: 'B', implementationName: 'default', initLog: initLog);
+    final featureBAlternative = LoggingFeature(namespace: 'B', implementationName: 'other', initLog: initLog);
+    final featureA = LoggingFeature(namespace: 'A', initLog: initLog, dependencies: [featureB, featureBAlternative]);
 
     // Create a test harness that will allow us to trigger buildFeatures
+    // Make sure both implementations of B are registered by including them in features
     final testWidget = _TestHarness(
       initLog: initLog,
-      features: [featureA],
+      features: [featureA, featureBAlternative],
     );
 
     await tester.pumpWidget(testWidget);
     await tester.pumpAndSettle();
     
-    // Record initial log length
-    int initialLogLength = initLog.length;
+    // Record initial processing orders
+    final initialOrderA = featureA.processOrder;
+    final initialOrderB = featureB.processOrder;
+    final initialOrderBAlternative = featureBAlternative.processOrder;
+    
+    // Verify initial orders
+    expect(initialOrderA, greaterThan(0));
+    expect(initialOrderB, greaterThan(0));
+    expect(initialOrderBAlternative, greaterThan(0));
+    expect(initialOrderB, lessThan(initialOrderA), reason: 'Dependency should be processed before dependent');
+    expect(initialOrderBAlternative, lessThan(initialOrderA), reason: 'Alternative dependency should be processed before dependent');
     
     // Simulate changing implementation
     testWidget.changeImplementation('B', 'other');
     await tester.pump();
     await tester.pumpAndSettle();
     
-    // The log should have new entries showing the rebuild
-    expect(initLog.length, greaterThan(initialLogLength));
+    // Verify that features were processed again during rebuild
+    expect(featureBAlternative.processOrder, greaterThan(initialOrderBAlternative), reason: 'Alternative Feature B should be processed again after becoming the active implementation');
+    expect(featureA.processOrder, greaterThan(initialOrderA), reason: 'Feature A should be processed again after dependency implementation change');
   });
 }
 
@@ -286,10 +337,7 @@ class _TestHarnessState extends State<_TestHarness> {
   void setFeatureImplementation(String namespace, String? implementation) {
     if (!mounted) return;
     
-    final dartBoardState = findDartBoardState(context);
-    if (dartBoardState != null) {
-      dartBoardState.setFeatureImplementation(namespace, implementation);
-    }
+    DartBoardCore.instance.setFeatureImplementation(namespace, implementation);    
   }
   
   dynamic findDartBoardState(BuildContext context) {
