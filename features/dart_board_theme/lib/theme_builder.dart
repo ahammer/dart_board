@@ -19,9 +19,9 @@ class _ThemeBuilderState extends State<ThemeBuilder> {
     'onSecondary': initialTheme.colorScheme.onSecondary,
     'onSurface': initialTheme.colorScheme.onSurface,
     'primary': initialTheme.colorScheme.primary,
-    'primaryVariant': initialTheme.colorScheme.primaryVariant,
+    'primaryContainer': initialTheme.colorScheme.primaryContainer,
     'secondary': initialTheme.colorScheme.secondary,
-    'secondaryVariant': initialTheme.colorScheme.secondaryVariant,
+    'secondaryContainer': initialTheme.colorScheme.secondaryContainer,
     'surface': initialTheme.colorScheme.surface
   };
 
@@ -39,9 +39,9 @@ class _ThemeBuilderState extends State<ThemeBuilder> {
         onSecondary: colors['onSecondary']!,
         onSurface: colors['onSurface']!,
         primary: colors['primary']!,
-        primaryVariant: colors['primaryVariant']!,
+        primaryContainer: colors['primaryContainer']!,
         secondary: colors['secondary']!,
-        secondaryVariant: colors['secondaryVariant']!,
+        secondaryContainer: colors['secondaryContainer']!,
         surface: colors['surface']!,
       ));
 
@@ -55,7 +55,7 @@ class _ThemeBuilderState extends State<ThemeBuilder> {
               children: [
                 Text(
                   'Theme Editor',
-                  style: Theme.of(context).textTheme.headline5,
+                  style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 DropdownButton<String>(
                     value: selection,
@@ -91,7 +91,7 @@ class _ThemeBuilderState extends State<ThemeBuilder> {
                     children: [
                       Text(
                         'Control Samples',
-                        style: Theme.of(context).textTheme.headline5,
+                        style: Theme.of(context).textTheme.headlineSmall,
                       ),
                       MaterialButton(onPressed: () {}, child: Text('Button')),
                       ToggleButtons(

@@ -12,7 +12,8 @@ dependencies:
   dart_board_core_plugin:
     path: ../
   dart_board_minesweeper:
-  dart_board_spacex_ui:
+    path: ../../../features/dart_board_minesweeper
+  # Removed dart_board_spacex_ui as it's causing conflicts with intl versions
 
 
 dev_dependencies:

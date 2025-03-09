@@ -56,7 +56,7 @@ class MessageRow extends StatelessWidget {
                     children: [
                       Text(
                         "$author",
-                        style: Theme.of(context).textTheme.subtitle2!.copyWith(
+                        style: Theme.of(context).textTheme.titleSmall!.copyWith(
                             fontWeight: FontWeight.bold, fontSize: 18),
                       ),
                       Container(width: 16),
@@ -64,7 +64,7 @@ class MessageRow extends StatelessWidget {
                         padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
                         child: Text(
                           "$date",
-                          style: Theme.of(context).textTheme.caption,
+                          style: Theme.of(context).textTheme.bodySmall,
                         ),
                       ),
                       Expanded(

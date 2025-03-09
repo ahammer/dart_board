@@ -9,7 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  dart_board_core: ^0.9.16+6
+  dart_board_core:
+    path: ../../core/dart_board_core
 dev_dependencies:
   flutter_test:
     sdk: flutter
