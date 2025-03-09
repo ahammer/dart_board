@@ -22,7 +22,7 @@ dependencies:
   built_value_generator: ^8.4.1
 
   #For Date formatting
-  intl: ^0.18.1 
+  intl: ^0.20.2 
   dart_board_core: ^0.9.16+6
   dart_board_widgets: ^1.9.0
   dart_board_redux: ^0.9.3+6
