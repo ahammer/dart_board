@@ -15,3 +15,7 @@ export 'impl/route_types/pathed_route.dart';
 export 'impl/route_types/map_route.dart';
 export 'impl/route_types/uri_route.dart';
 export 'impl/widgets/nil.dart';
+
+/// Diagnostics and debugging tools
+export 'impl/debug/initialization_diagnostics.dart';
+export 'impl/features/diagnostic_feature.dart';

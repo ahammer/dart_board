@@ -3,7 +3,7 @@ description: Feature Framework for Flutter. Provides a kernel that allows featur
 homepage: https://dart-board.io
 issue_tracker: https://github.com/ahammer/dart_board/issues
 repository: https://github.com/ahammer/dart_board
-version: 0.9.17
+version: 0.9.18
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
