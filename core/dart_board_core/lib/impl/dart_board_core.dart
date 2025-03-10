@@ -367,9 +367,27 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
       /// register the selected implementation for each
       _initLog.info('Registering active implementations');
       activeImplementations.clear();
+      
+      // First collect all namespaces that have overrides with non-null values
+      final namespacesWithOverrides = featureOverrides.entries
+          .where((entry) => entry.value != null)
+          .map((entry) => entry.key)
+          .toSet();
+      
+      // For namespaces with overrides, use the override value directly
+      // We know these values are non-null based on our filter above
+      for (final namespace in namespacesWithOverrides) {
+        // The value is guaranteed to be non-null based on our filter above
+        activeImplementations[namespace] = featureOverrides[namespace]!;
+      }
+      
+      // For namespaces without overrides, use the first implementation that was loaded
       allFeatures.forEach((element) {
-        if (!(element is StubFeature)) {
-          activeImplementations[element.namespace] = element.implementationName;
+        if (!(element is StubFeature) && !namespacesWithOverrides.contains(element.namespace)) {
+          // Only set if not already set by an override
+          if (!activeImplementations.containsKey(element.namespace)) {
+            activeImplementations[element.namespace] = element.implementationName;
+          }
         }
       });
       
