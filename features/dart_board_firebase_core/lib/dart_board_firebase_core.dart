@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:js' as js;
 
 import 'package:dart_board_core/dart_board_core.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -39,8 +40,30 @@ class _FirebaseGatewayState extends State<FirebaseGateway> {
 
   @override
   void initState() {
-    initFuture = Firebase.initializeApp();
+    initFuture = _initializeFirebase();
     super.initState();
+  }
+
+  Future<FirebaseApp> _initializeFirebase() async {
+    FirebaseOptions? options;
+    
+    if (kIsWeb) {
+      // Check if firebaseConfig is available in the window object
+      if (js.context.hasProperty('firebaseConfig')) {
+        final config = js.JsObject.fromBrowserObject(js.context['firebaseConfig']);
+        options = FirebaseOptions(
+          apiKey: config['apiKey'],
+          appId: config['appId'],
+          messagingSenderId: config['messagingSenderId'],
+          projectId: config['projectId'],
+          authDomain: config['authDomain'],
+          storageBucket: config['storageBucket'],
+          measurementId: config['measurementId'],
+        );
+      }
+    }
+    
+    return await Firebase.initializeApp(options: options);
   }
 
   @override
