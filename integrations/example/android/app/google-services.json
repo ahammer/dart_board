@@ -2,7 +2,7 @@
   "project_info": {
     "project_number": "911356575335",
     "project_id": "dart-board-59f93",
-    "storage_bucket": "dart-board-59f93.appspot.com"
+    "storage_bucket": "dart-board-59f93.firebasestorage.app"
   },
   "client": [
     {
@@ -37,6 +37,13 @@
             {
               "client_id": "911356575335-9dbb0pmfi168t5bb36h5sug7iabgskkj.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "911356575335-ff6m41ka3o612cb7ua9mks3nusvlb232.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "io.dartboard.example"
+              }
             }
           ]
         }

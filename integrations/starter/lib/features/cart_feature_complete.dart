@@ -116,7 +116,7 @@ class CartActionButtons extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           MaterialButton(
-            color: theme.colorScheme.primaryVariant,
+            color: theme.colorScheme.primary,
             onPressed: () {
               /// Close the dialog
               Navigator.of(context).pop();
