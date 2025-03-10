@@ -3,20 +3,10 @@ import 'package:dart_board_core/dart_board_core.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'dart:js_interop';
 
-@JS('firebaseConfig')
-external JSObject? get firebaseConfig;
-
-extension FirebaseConfigExtension on JSObject {
-  external String get apiKey;
-  external String get appId;
-  external String get messagingSenderId;
-  external String get projectId;
-  external String? get authDomain;
-  external String? get storageBucket;
-  external String? get measurementId;
-}
+// Use conditional imports to handle web vs non-web platforms
+import 'src/firebase_config_stub.dart' 
+    if (dart.library.js_interop) 'src/firebase_config_web.dart';
 
 class DartBoardFirebaseCoreFeature extends DartBoardFeature {
   @override
@@ -55,21 +45,9 @@ class _FirebaseGatewayState extends State<FirebaseGateway> {
   }
 
   Future<FirebaseApp> _initializeFirebase() async {
-    FirebaseOptions? options;
-
-    if (kIsWeb && firebaseConfig != null) {
-      final config = firebaseConfig!;
-      options = FirebaseOptions(
-        apiKey: config.apiKey,
-        appId: config.appId,
-        messagingSenderId: config.messagingSenderId,
-        projectId: config.projectId,
-        authDomain: config.authDomain,
-        storageBucket: config.storageBucket,
-        measurementId: config.measurementId,
-      );
-    }
-
+    // Get Firebase options using the conditionally imported function
+    FirebaseOptions? options = getFirebaseOptions();
+    
     return await Firebase.initializeApp(options: options);
   }
 
