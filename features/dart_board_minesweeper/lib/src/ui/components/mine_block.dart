@@ -75,7 +75,7 @@ class _MineBlockState extends State<MineBlock> {
                               : (isGameOver && (vm.isBomb ?? false))
                                   ? "💣"
                                   : ""),
-                      style: theme.textTheme.headline6!
+                      style: theme.textTheme.titleLarge!
                           .copyWith(fontWeight: FontWeight.bold, shadows: [
                         Shadow(
                             blurRadius: 2,
@@ -102,13 +102,13 @@ bombBox(BuildContext context) => BoxDecoration(
     );
 
 flagBox(BuildContext context) => BoxDecoration(
-      color: Theme.of(context).colorScheme.secondaryVariant,
+      color: Theme.of(context).colorScheme.secondary,
       border:
           Border.all(color: Theme.of(context).colorScheme.secondary, width: 2),
     );
 
 hoverBox(BuildContext context) => BoxDecoration(
-      color: Theme.of(context).colorScheme.primaryVariant,
+      color: Theme.of(context).colorScheme.primary,
       border: Border.all(color: Colors.white, width: 2),
     );
 

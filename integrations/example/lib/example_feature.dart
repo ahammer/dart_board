@@ -53,17 +53,18 @@ class ExampleFeature extends DartBoardFeature {
   ///
   @override
   List<DartBoardFeature> get dependencies => [
+        // Register the particle-based logo animation
         DartBoardCanvasFeature(
             stateBuilder: () => SplashAnimation(),
-            namespace: 'SplashBackground',
-            implementationName: 'static',
-            route: '/splash_bg',
+            namespace: 'SplashAnimation',
+            implementationName: 'particles',
+            route: '/splash_animation',
             showFpsOverlay: false),
 
         /// Splash Screen, we'll for now, just use some Text
         DartBoardSplashFeature(
           FadeOutSplashScreen(
-            delay: Duration(milliseconds: 1500),
+            delay: Duration(milliseconds: 3000),
 
             /// We will use our own fade (I want to tween out the image filter)
             fadeDuration: Duration(milliseconds: 2500),

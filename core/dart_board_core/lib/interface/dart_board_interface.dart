@@ -41,7 +41,7 @@ typedef MethodCallHandler = Future Function(
 ///
 /// When working with DartBoard, use these interfaces to access it.
 ///
-abstract class DartBoardCore {
+mixin DartBoardCore {
   /// Call this in your constructor to set the instance.
   void initCore() {
     _instance = this;

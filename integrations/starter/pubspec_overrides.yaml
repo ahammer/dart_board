@@ -1,0 +1,18 @@
+# melos_managed_dependency_overrides: dart_board_authentication,dart_board_core,dart_board_debug,dart_board_firebase_authentication,dart_board_firebase_core,dart_board_locator,dart_board_template_bottomnav,dart_board_widgets
+dependency_overrides:
+  dart_board_authentication:
+    path: ..\\..\\features\\dart_board_authentication
+  dart_board_core:
+    path: ..\\..\\core\\dart_board_core
+  dart_board_debug:
+    path: ..\\..\\features\\dart_board_debug
+  dart_board_firebase_authentication:
+    path: ..\\..\\features\\dart_board_firebase_authentication
+  dart_board_firebase_core:
+    path: ..\\..\\features\\dart_board_firebase_core
+  dart_board_locator:
+    path: ..\\..\\features\\dart_board_locator
+  dart_board_template_bottomnav:
+    path: ..\\..\\templates\\dart_board_template_bottomnav
+  dart_board_widgets:
+    path: ..\\..\\core\\dart_board_widgets

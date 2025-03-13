@@ -1,3 +1,11 @@
+## 0.9.18
+
+ - **FEAT**: Added initialization diagnostics and debugging tools
+ - **FEAT**: Improved logging during feature initialization
+ - **FEAT**: Added circular dependency detection
+ - **FEAT**: Added DiagnosticFeature for debugging initialization issues
+ - **DOCS**: Added comprehensive initialization documentation
+
 ## 0.9.16+6
 
  - Update a dependency to the latest release.

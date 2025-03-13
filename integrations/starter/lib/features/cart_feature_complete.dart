@@ -116,7 +116,7 @@ class CartActionButtons extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           MaterialButton(
-            color: theme.colorScheme.primaryVariant,
+            color: theme.colorScheme.primary,
             onPressed: () {
               /// Close the dialog
               Navigator.of(context).pop();
@@ -126,7 +126,7 @@ class CartActionButtons extends StatelessWidget {
             },
             child: Text(
               "Clear Cart",
-              style: theme.textTheme.headline4!
+              style: theme.textTheme.headlineMedium!
                   .copyWith(color: theme.colorScheme.onPrimary),
             ),
           ),
@@ -140,7 +140,7 @@ class CartActionButtons extends StatelessWidget {
               },
               child: Text(
                 "Start Checkout",
-                style: theme.textTheme.headline4!
+                style: theme.textTheme.headlineMedium!
                     .copyWith(color: theme.colorScheme.onPrimary),
               ),
             ),
@@ -185,7 +185,7 @@ class CartItem extends StatelessWidget {
                       children: [
                         Text(
                           " x ${state.getQuantity(id)} ",
-                          style: Theme.of(context).textTheme.headline5,
+                          style: Theme.of(context).textTheme.headlineSmall,
                         ),
                         MaterialButton(
                             onPressed: () => state.removeItem(id),

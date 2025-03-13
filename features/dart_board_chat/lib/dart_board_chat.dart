@@ -86,7 +86,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                   child: FittedBox(
                     child: Text(
                       "Channels",
-                      style: Theme.of(context).textTheme.headline5,
+                      style: Theme.of(context).textTheme.headlineSmall,
                     ),
                   ),
                 ),
@@ -254,7 +254,7 @@ class _DefaultNewMessageRowState extends State<DefaultNewMessageRow> {
                       locate<AuthenticationState>().username,
                       style: Theme.of(context)
                           .textTheme
-                          .subtitle2!
+                          .titleSmall!
                           .copyWith(fontWeight: FontWeight.bold, fontSize: 18),
                     ),
                   ],

@@ -1,0 +1,6 @@
+# melos_managed_dependency_overrides: dart_board_core,dart_board_widgets
+dependency_overrides:
+  dart_board_core:
+    path: ..\\dart_board_core
+  dart_board_widgets:
+    path: ..\\dart_board_widgets

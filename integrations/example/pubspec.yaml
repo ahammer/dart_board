@@ -2,36 +2,55 @@ name: example
 description: A new Flutter project.
 publish_to: none
 
-version: 1.0.0+1
+version: 1.0.0+2
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: '>=3.0.0 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
 
   dart_board_core:
+    path: ../../core/dart_board_core
   dart_board_theme:
+    path: ../../features/dart_board_theme
   dart_board_debug:
+    path: ../../features/dart_board_debug
   dart_board_redux:
+    path: ../../features/dart_board_redux
   dart_board_log:
+    path: ../../features/dart_board_log
   dart_board_minesweeper:
+    path: ../../features/dart_board_minesweeper
   dart_board_template_bottomnav:
+    path: ../../templates/dart_board_template_bottomnav
   dart_board_template_app_bar_sidenav:
+    path: ../../templates/dart_board_template_app_bar_sidenav
   dart_board_image_background:
+    path: ../../features/dart_board_image_background
   dart_board_particles:
-  dart_board_authentication: 
+    path: ../../features/dart_board_particles
+  dart_board_authentication:
+    path: ../../features/dart_board_authentication
   dart_board_firebase_authentication:
+    path: ../../features/dart_board_firebase_authentication
+  dart_board_firebase_core:
+    path: ../../features/dart_board_firebase_core
   dart_board_firebase_database:
+    path: ../../features/dart_board_firebase_database
   dart_board_firebase_analytics:
     path: ../../features/dart_board_firebase_analytics
   dart_board_emitter:
     path: ../../features/dart_board_emitter
-  dart_board_space_scene:    
+  dart_board_space_scene:
+    path: ../../features/dart_board_space_scene
   dart_board_chat:
+    path: ../../features/dart_board_chat
   dart_board_splash:
-  dart_board_canvas:    
+    path: ../../features/dart_board_splash
+  dart_board_canvas:
+    path: ../../features/dart_board_canvas
   
 dev_dependencies:
   flutter_test:
@@ -40,5 +59,4 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/
-  
+    - assets/db_64.png

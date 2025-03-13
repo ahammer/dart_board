@@ -10,6 +10,7 @@ import 'widgets/route_not_found.dart';
 
 /// Some helpers
 late final Logger log = Logger('DartBoard');
+final Logger _initLog = Logger('DartBoard.Initialization');
 late final NavigatorState navigator = dartBoardNavKey.currentState!;
 late final BuildContext navigatorContext = dartBoardNavKey.currentContext!;
 
@@ -88,10 +89,10 @@ class DartBoard extends StatefulWidget {
       this.featureOverrides,
       this.pageDecorationDenyList = const {},
       this.routeBuilder = null,
-      required this.debugShowCheckedModeBanner,
-      required this.debugShowMaterialGrid,
-      required this.showSemanticDebugger,
-      required this.checkberboardOffscreenLayers,
+      this.debugShowCheckedModeBanner = false,
+      this.debugShowMaterialGrid = false,
+      this.showSemanticDebugger = false,
+      this.checkberboardOffscreenLayers = false,
       this.theme,
       this.darkTheme,
       this.themeMode})
@@ -227,19 +228,25 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
   /// Usually run at init()
   /// If the features change, this can be rebuilt
   void buildFeatures() {
+    _initLog.info('Starting feature build process');
     setState(() {
       /// Grab from a cache
       final cachedFeatures = [...loadedFeatures];
       loadedFeatures.clear();
       detectedImplementations = {};
+      
+      _initLog.info('Resolving dependency graph');
       final dependencies = buildDependencyList(widget.features);
-
-      log.info('Bulding features');
+      _initLog.info('Resolved ${dependencies.length} features in dependency order');
 
       /// Lets keep the old features and check if we can restore instead of rebuild
       allFeatures = <DartBoardFeature>[];
 
-      dependencies.forEach((element) {
+      _initLog.info('Processing features in dependency order');
+      for (var i = 0; i < dependencies.length; i++) {
+        var element = dependencies[i];
+        _initLog.fine('Processing feature ${i+1}/${dependencies.length}: ${element.namespace}:${element.implementationName}');
+        
         /// Pull from cache if possible
         final fromCache = cachedFeatures
             .where((cached) =>
@@ -248,6 +255,7 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
             .toList();
 
         if (fromCache.length == 1) {
+          _initLog.fine('Restoring ${element.namespace}:${element.implementationName} from cache');
           element = fromCache[0];
         }
 
@@ -256,86 +264,134 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
             element.implementationName
           ];
         } else {
-          //log.info('Detected duplicated extension ${element.namespace}');
+          _initLog.info('Detected multiple implementations for ${element.namespace}: adding ${element.implementationName}');
           detectedImplementations[element.namespace]
               ?.add(element.implementationName);
         }
 
-        if ((!loadedFeatures.contains(element) &&
-                !(featureOverrides.containsKey(element.namespace)) ||
-            (featureOverrides.containsKey(element.namespace) &&
-                featureOverrides[element.namespace] ==
-                    element.implementationName))) {
+        bool shouldLoadFeature = false;
+        
+        // Determine if we should load this feature implementation
+        if (!loadedFeatures.contains(element)) {
+          if (!featureOverrides.containsKey(element.namespace)) {
+            // No override, load the first implementation encountered
+            shouldLoadFeature = true;
+            _initLog.info('Loading ${element.namespace}:${element.implementationName} (no override)');
+          } else if (featureOverrides[element.namespace] == element.implementationName) {
+            // Explicit override matches this implementation
+            shouldLoadFeature = true;
+            _initLog.info('Loading ${element.namespace}:${element.implementationName} (explicit override)');
+          } else if (featureOverrides[element.namespace] == null) {
+            // Feature explicitly disabled
+            _initLog.info('Feature ${element.namespace} explicitly disabled, stubbing');
+            final feat = StubFeature(element.namespace);
+            allFeatures.add(feat);
+            loadedFeatures.add(element);
+          } else {
+            // Override exists but doesn't match this implementation
+            _initLog.fine('Skipping ${element.namespace}:${element.implementationName} ' +
+                'due to override for ${featureOverrides[element.namespace]}');
+          }
+        } else {
+          _initLog.fine('Feature ${element.namespace}:${element.implementationName} already loaded');
+        }
+        
+        if (shouldLoadFeature) {
           loadedFeatures.add(element);
           allFeatures.add(element);
-          log.info(
-              'Loaded: ${element.implementationName} AKA "${element.namespace}"');
-        } else if (!loadedFeatures.contains(element) &&
-            featureOverrides[element.namespace] == null) {
-          /// "Disabled" install stab instead
-          log.info('Disabled: ${element.namespace} disabled, getting stubbed');
-          final feat = StubFeature(element.namespace);
-          allFeatures.add(feat);
-          loadedFeatures.add(element);
         }
-      });
-
-      /// We pull out Routes and PageDecorations from the route
+      }
+      
+      _initLog.info('Collecting routes from ${allFeatures.length} features');
       routes = allFeatures.fold(
           <RouteDefinition>[],
-          (previousValue, element) =>
-              <RouteDefinition>[...previousValue, ...element.routes]);
+          (previousValue, element) {
+            final featureRoutes = element.routes;
+            _initLog.fine('Feature ${element.namespace}:${element.implementationName} provides ${featureRoutes.length} routes');
+            return <RouteDefinition>[...previousValue, ...featureRoutes];
+          });
 
-      log.info('Available Routes: $routes');
+      _initLog.info('Collected ${routes.length} total routes');
 
+      _initLog.info('Collecting page decorations');
       pageDecorations = allFeatures.fold<List<DartBoardDecoration>>(
           <DartBoardDecoration>[],
-          ((previousValue, element) => <DartBoardDecoration>[
-                ...previousValue,
-                ...element.pageDecorations
-                    .where((decoration) => decoration.enabled)
-              ]));
+          ((previousValue, element) {
+            final decorations = element.pageDecorations.where((decoration) => decoration.enabled).toList();
+            _initLog.fine('Feature ${element.namespace}:${element.implementationName} provides ${decorations.length} page decorations');
+            return <DartBoardDecoration>[...previousValue, ...decorations];
+          }));
 
-      log.info('Available Page Decorations: $pageDecorations');
+      _initLog.info('Collected ${pageDecorations.length} total page decorations');
 
       /// Build up app decoration list
+      _initLog.info('Collecting app decorations');
       appDecorations = allFeatures.fold<List<DartBoardDecoration>>(
           <DartBoardDecoration>[],
-          (previousValue, element) => <DartBoardDecoration>[
-                ...previousValue,
-                ...element.appDecorations
-                    .where((decoration) => decoration.enabled)
-              ]);
+          (previousValue, element) {
+            final decorations = element.appDecorations.where((decoration) => decoration.enabled).toList();
+            _initLog.fine('Feature ${element.namespace}:${element.implementationName} provides ${decorations.length} app decorations');
+            return <DartBoardDecoration>[...previousValue, ...decorations];
+          });
+
+      _initLog.info('Collected ${appDecorations.length} total app decorations');
 
       /// Build up the MethodHandler list. First takes priority.
+      _initLog.info('Collecting method handlers');
       methodHandlers = allFeatures.fold<Map<String, MethodCallHandler>>(
           <String, MethodCallHandler>{},
-          (previousValue, element) => <String, MethodCallHandler>{}
-            ..addAll(element.methodHandlers)
-            ..addAll(previousValue));
+          (previousValue, element) {
+            final handlerCount = element.methodHandlers.length;
+            if (handlerCount > 0) {
+              _initLog.fine('Feature ${element.namespace}:${element.implementationName} provides ${handlerCount} method handlers');
+            }
+            return <String, MethodCallHandler>{}
+              ..addAll(element.methodHandlers)
+              ..addAll(previousValue);
+          });
 
-      log.info('Available App Decorations: $appDecorations');
-
+      _initLog.info('Collecting decoration allow/deny lists');
       pageDecorationDenyList = allFeatures.fold<List<String>>(
           <String>[],
           ((previousValue, element) =>
               <String>[...previousValue, ...element.pageDecorationDenyList]));
-      log.info('Deny List: $pageDecorationDenyList');
+      
       pageDecorationAllowList = allFeatures.fold<List<String>>(
           <String>[],
           ((previousValue, element) =>
               <String>[...previousValue, ...element.pageDecorationAllowList]));
-      log.info('Allow List: $pageDecorationAllowList');
+      
       whitelistedPageDecorations =
           pageDecorationAllowList.map((e) => e.split(':')[1]).toSet();
 
       /// register the selected implementation for each
+      _initLog.info('Registering active implementations');
       activeImplementations.clear();
+      
+      // First collect all namespaces that have overrides with non-null values
+      final namespacesWithOverrides = featureOverrides.entries
+          .where((entry) => entry.value != null)
+          .map((entry) => entry.key)
+          .toSet();
+      
+      // For namespaces with overrides, use the override value directly
+      // We know these values are non-null based on our filter above
+      for (final namespace in namespacesWithOverrides) {
+        // The value is guaranteed to be non-null based on our filter above
+        activeImplementations[namespace] = featureOverrides[namespace]!;
+      }
+      
+      // For namespaces without overrides, use the first implementation that was loaded
       allFeatures.forEach((element) {
-        if (!(element is StubFeature)) {
-          activeImplementations[element.namespace] = element.implementationName;
+        if (!(element is StubFeature) && !namespacesWithOverrides.contains(element.namespace)) {
+          // Only set if not already set by an override
+          if (!activeImplementations.containsKey(element.namespace)) {
+            activeImplementations[element.namespace] = element.implementationName;
+          }
         }
       });
+      
+      _initLog.info('Feature build process complete');
     });
   }
 
@@ -359,29 +415,52 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
         settings, (ctx) => buildPageRoute(ctx, settings, definition));
   }
 
-  /// Walks the feature tree and registers
+  /// Walks the feature tree and registers features in dependency order.
+  /// Dependencies are processed before the features that depend on them.
   List<DartBoardFeature> buildDependencyList(List<DartBoardFeature> features,
-      {List<DartBoardFeature> result = const <DartBoardFeature>[]}) {
-    features.forEach((feature) {
-      result = buildDependencyList(feature.dependencies, result: result);
-      if (!result.contains(feature)) {
-        result = [
-          ...result,
-
-          /// If the feature is enabled
-          /// And we don't already see it in the list for the same namespace
-          /// Since a dep can come from multiple sources, we just want the first
-          ///
-          if (feature.enabled &&
-              result
-                  .where((element) =>
-                      element.namespace == feature.namespace &&
-                      element.implementationName == feature.implementationName)
-                  .isEmpty)
-            feature
-        ];
+      {List<DartBoardFeature> result = const <DartBoardFeature>[], 
+      int depth = 0,
+      Set<String> processingPath = const {}}) {
+    
+    for (final feature in features) {
+      // Create a unique identifier for this feature to detect circular dependencies
+      final featureId = '${feature.namespace}:${feature.implementationName}';
+      
+      // Check for circular dependencies
+      if (processingPath.contains(featureId)) {
+        _initLog.warning('Circular dependency detected while processing $featureId');
+        _initLog.warning('Current dependency path: ${processingPath.join(' -> ')} -> $featureId');
+        // We continue anyway to maintain compatibility
       }
-    });
+      
+      // Process dependencies with the current feature added to the path
+      final updatedPath = {...processingPath, featureId};
+      result = buildDependencyList(
+        feature.dependencies, 
+        result: result, 
+        depth: depth + 1,
+        processingPath: updatedPath
+      );
+      
+      // Only add this feature if it's not already in the result list
+      if (!result.contains(feature)) {
+        // Check if this feature is enabled and not already in the result list with the same namespace/implementation
+        if (feature.enabled &&
+            result
+                .where((element) =>
+                    element.namespace == feature.namespace &&
+                    element.implementationName == feature.implementationName)
+                .isEmpty) {
+          result = [...result, feature];
+          
+          if (depth == 0) {
+            _initLog.fine('Added root feature: $featureId');
+          } else {
+            _initLog.fine('Added dependency: $featureId (depth: $depth)');
+          }
+        }
+      }
+    }
     return result;
   }
 
