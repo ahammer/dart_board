@@ -47,6 +47,15 @@ class _ChangeNotifierBuilderState<T extends ChangeNotifier>
   }
 
   @override
+  void didUpdateWidget(covariant ChangeNotifierBuilder<T> oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (!identical(oldWidget.notifier, widget.notifier)) {
+      oldWidget.notifier.removeListener(onUpdate);
+      widget.notifier.addListener(onUpdate);
+    }
+  }
+
+  @override
   void dispose() {
     widget.notifier.removeListener(onUpdate);
     super.dispose();
@@ -92,6 +101,19 @@ class _ChangeNotifierBuilderState2<T extends ChangeNotifier,
     widget.notifier1.addListener(onUpdate);
     widget.notifier2.addListener(onUpdate);
     super.initState();
+  }
+
+  @override
+  void didUpdateWidget(covariant ChangeNotifierBuilder2<T, V> oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (!identical(oldWidget.notifier1, widget.notifier1)) {
+      oldWidget.notifier1.removeListener(onUpdate);
+      widget.notifier1.addListener(onUpdate);
+    }
+    if (!identical(oldWidget.notifier2, widget.notifier2)) {
+      oldWidget.notifier2.removeListener(onUpdate);
+      widget.notifier2.addListener(onUpdate);
+    }
   }
 
   @override
@@ -148,6 +170,23 @@ class _ChangeNotifierBuilderState3<
     widget.notifier2.addListener(onUpdate);
     widget.notifier3.addListener(onUpdate);
     super.initState();
+  }
+
+  @override
+  void didUpdateWidget(covariant ChangeNotifierBuilder3<T, V, Z> oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (!identical(oldWidget.notifier1, widget.notifier1)) {
+      oldWidget.notifier1.removeListener(onUpdate);
+      widget.notifier1.addListener(onUpdate);
+    }
+    if (!identical(oldWidget.notifier2, widget.notifier2)) {
+      oldWidget.notifier2.removeListener(onUpdate);
+      widget.notifier2.addListener(onUpdate);
+    }
+    if (!identical(oldWidget.notifier3, widget.notifier3)) {
+      oldWidget.notifier3.removeListener(onUpdate);
+      widget.notifier3.addListener(onUpdate);
+    }
   }
 
   @override
