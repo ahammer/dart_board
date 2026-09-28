@@ -32,10 +32,28 @@ class FirebaseAnalyticsDelegate extends TrackingDelegate {
   @override
   void trackAction(
           BuildContext context, String name, Map<String, dynamic> extras) =>
-      analytics.logEvent(name: "action_$name", parameters: extras);
+      analytics.logEvent(
+          name: "action_$name",
+          parameters: _convertMap(extras));
 
   @override
   void trackPage(
           BuildContext context, String name, Map<String, dynamic> extras) =>
-      analytics.logEvent(name: "page_$name", parameters: extras);
+      analytics.logEvent(
+          name: "page_$name",
+          parameters: _convertMap(extras));
+          
+  // Convert Map<String, dynamic> to Map<String, Object>
+  Map<String, Object>? _convertMap(Map<String, dynamic> map) {
+    if (map.isEmpty) return null;
+    
+    final result = <String, Object>{};
+    map.forEach((key, value) {
+      if (value != null) {
+        result[key] = value;
+      }
+    });
+    
+    return result.isNotEmpty ? result : null;
+  }
 }

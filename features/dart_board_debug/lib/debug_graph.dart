@@ -177,7 +177,7 @@ class FeatureNode extends StatelessWidget {
                 fit: BoxFit.scaleDown,
                 child: Text(
                   featureName,
-                  style: Theme.of(context).textTheme.bodyText1,
+                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
               ),
             ),

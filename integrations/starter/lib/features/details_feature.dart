@@ -122,18 +122,18 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         children: [
                           Text(
                             data.title,
-                            style: textTheme.headline3,
+                            style: textTheme.displaySmall,
                           ),
                           Text(
                             data.price,
-                            style: textTheme.headline4,
+                            style: textTheme.headlineMedium,
                           ),
                           Container(
                             height: 48,
                           ),
                           Text(
                             data.description,
-                            style: textTheme.bodyText1,
+                            style: textTheme.bodyLarge,
                           ),
                         ],
                       ),

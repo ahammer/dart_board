@@ -89,7 +89,7 @@ class MockRepository extends Repository {
     return LongRecord(
         id: index,
         imageUrl:
-            Faker.instance.image.unsplash.nature(w: 200, h: 200, keyword: city),
+            "https://source.unsplash.com/200x200/?${city.replaceAll(' ', '')}",
         title: city,
         price: Faker.instance.commerce.price(),
         description: Faker.instance.commerce.productDescription(),

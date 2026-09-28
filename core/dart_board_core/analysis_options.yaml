@@ -1,0 +1,19 @@
+include: package:flutter_lints/flutter.yaml
+
+# Additional information about this file can be found at
+# https://dart.dev/guides/language/analysis-options
+
+linter:
+  rules:
+    # Recommended for Flutter 3.x
+    avoid_print: true
+    prefer_single_quotes: true
+    directives_ordering: true
+    unawaited_futures: true
+    prefer_const_constructors: true
+    prefer_const_declarations: true
+    
+analyzer:
+  errors:
+    # Treat warnings as errors in release builds
+    unnecessary_nullable_for_final_variable_declarations: warning

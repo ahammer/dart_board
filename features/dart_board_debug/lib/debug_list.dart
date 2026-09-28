@@ -29,7 +29,7 @@ class _CollapsingDebugListState extends State<CollapsingDebugList> {
                 fit: BoxFit.contain,
                 child: Text(
                   headerText,
-                  style: Theme.of(context).textTheme.headline5,
+                  style: Theme.of(context).textTheme.headlineSmall,
                 ))),
       ),
     );
@@ -43,8 +43,7 @@ class _CollapsingDebugListState extends State<CollapsingDebugList> {
       ..sort((a, b) => a.toLowerCase().compareTo(b.toLowerCase()));
 
     return Scrollbar(
-      controller: _controller,
-      isAlwaysShown: true,
+      controller: _controller,      
       child: CustomScrollView(
         controller: _controller,
         slivers: <Widget>[
@@ -70,7 +69,7 @@ class _CollapsingDebugListState extends State<CollapsingDebugList> {
                         Text(feature.namespace,
                             style: Theme.of(context)
                                 .textTheme
-                                .subtitle1
+                                .titleMedium
                                 ?.copyWith(
                                     fontWeight: FontWeight.w800,
                                     color: Theme.of(context)
@@ -242,7 +241,7 @@ class _FeatureControlsState extends State<FeatureControls> {
           children: [
             Text(
               widget.feature.namespace,
-              style: Theme.of(context).textTheme.headline4,
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
             SelectImplementationRow(feature: widget.feature),
             if (widget.feature.methodHandlers.isNotEmpty)
@@ -388,7 +387,7 @@ class DebugLabelText extends StatelessWidget {
         child: Center(
           child: Text(
             text,
-            style: Theme.of(context).textTheme.subtitle1,
+            style: Theme.of(context).textTheme.titleMedium,
           ),
         ),
       );

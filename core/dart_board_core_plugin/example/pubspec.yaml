@@ -3,7 +3,7 @@ description: Demonstrates how to use the dart_board_core_plugin plugin.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
   flutter:
@@ -12,7 +12,8 @@ dependencies:
   dart_board_core_plugin:
     path: ../
   dart_board_minesweeper:
-  dart_board_spacex_ui:
+    path: ../../../features/dart_board_minesweeper
+  # Removed dart_board_spacex_ui as it's causing conflicts with intl versions
 
 
 dev_dependencies:

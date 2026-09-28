@@ -7,7 +7,7 @@ repository: https://github.com/ahammer/dart_board
 version: 0.9.5+6
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: '>=3.0.0 <4.0.0'
 
 dependencies:
   flutter:
@@ -17,7 +17,7 @@ dependencies:
   # These are really nice packages for theme management
   # Lets not re-invent the wheel
   flex_color_picker: ^3.1.0
-  flex_color_scheme: ^6.1.2
+  flex_color_scheme: ^8.1.1
 
 
 dev_dependencies:

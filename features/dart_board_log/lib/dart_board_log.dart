@@ -196,21 +196,21 @@ class LogMessageWidget extends StatelessWidget {
       children: [
         Text(
           '${record!.time.hour}:${record!.time.minute}:${record!.time.second}',
-          style: textTheme.bodyText1!.copyWith(
+          style: textTheme.bodyLarge!.copyWith(
             fontSize: fontSize,
           ),
         ),
         Container(width: 20),
         Text(
           record!.loggerName,
-          style: textTheme.bodyText1!
+          style: textTheme.bodyLarge!
               .copyWith(fontWeight: FontWeight.bold, fontSize: fontSize),
         ),
         Container(width: 20),
         Expanded(
             child: Text(
           record!.message,
-          style: textTheme.bodyText1!.copyWith(
+          style: textTheme.bodyLarge!.copyWith(
             fontSize: fontSize,
           ),
         )),

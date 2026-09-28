@@ -41,15 +41,18 @@ class LifeCycleWidget extends StatefulWidget {
 }
 
 class _LifeCycleWidgetState extends State<LifeCycleWidget> {
+  late final Timer _initTimer;
+
   @override
   void initState() {
     widget.preInit();
-    Timer.run(() => widget.init.call(context));
+    _initTimer = Timer(Duration.zero, () => widget.init.call(context));
     super.initState();
   }
 
   @override
   void dispose() {
+    _initTimer.cancel();
     widget.dispose.call(context);
     super.dispose();
   }

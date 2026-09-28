@@ -48,7 +48,7 @@ class _ListingScreenState extends State<ListingScreen> {
                           Expanded(
                               child: Text(
                             data[idx].title,
-                            style: Theme.of(context).textTheme.headline3,
+                            style: Theme.of(context).textTheme.displaySmall,
                           )),
                           Stack(
                             children: [
