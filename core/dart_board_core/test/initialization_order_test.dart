@@ -162,6 +162,28 @@ class LocatorConsumerFeature extends DartBoardFeature {
 }
 
 void main() {
+  testWidgets('Circular dependencies terminate and register each feature once', (tester) async {
+    final dependencies = <DartBoardFeature>[];
+    final initLog = <String>[];
+    final a = LoggingFeature(namespace: 'A', initLog: initLog, dependencies: dependencies);
+    final b = LoggingFeature(namespace: 'B', initLog: initLog, dependencies: [a]);
+    dependencies.add(b);
+    await tester.pumpWidget(DartBoard(initialPath: '/A', features: [a]));
+    await tester.pumpAndSettle();
+    expect(DartBoardCore.instance.allFeatures, [b, a]);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('Unknown overrides are not reported as active', (tester) async {
+    await tester.pumpWidget(DartBoard(
+      initialPath: '/main',
+      features: [LoggingFeature(namespace: 'A', initLog: [])],
+      featureOverrides: {'A': 'missing', 'unknown': 'default'},
+    ));
+    await tester.pumpAndSettle();
+    expect(DartBoardCore.instance.activeImplementations, isEmpty);
+  });
+
   testWidgets('Feature initialization order follows dependency graph', (tester) async {
     final initLog = <String>[];
 
@@ -177,25 +199,12 @@ void main() {
     ));
     await tester.pumpAndSettle();
 
-    // Verify initialization order: Dependencies should be processed before dependents
-    int idxC = initLog.indexWhere((log) => log.contains('Created: C:default'));
-    int idxB = initLog.indexWhere((log) => log.contains('Created: B:default'));
-    int idxA = initLog.indexWhere((log) => log.contains('Created: A:default'));
-
-    // The log should contain creation events for all features
-    expect(idxC, isNot(-1));
-    expect(idxB, isNot(-1));
-    expect(idxA, isNot(-1));
-
-    // Extract the route request entries for verification
-    final routeRequestsC = initLog.where((log) => log.contains('Routes requested: C:default')).toList();
-    final routeRequestsB = initLog.where((log) => log.contains('Routes requested: B:default')).toList();
-    final routeRequestsA = initLog.where((log) => log.contains('Routes requested: A:default')).toList();
-
-    // Verify that routes were requested for each feature
-    expect(routeRequestsC.length, greaterThan(0));
-    expect(routeRequestsB.length, greaterThan(0));
-    expect(routeRequestsA.length, greaterThan(0));
+    final requests = initLog.where((entry) => entry.startsWith('Routes requested:')).toList();
+    expect(requests, [
+      'Routes requested: C:default',
+      'Routes requested: B:default',
+      'Routes requested: A:default',
+    ]);
   });
 
   testWidgets('Disabled features are handled correctly', (tester) async {
@@ -287,26 +296,19 @@ void main() {
     await tester.pumpWidget(testWidget);
     await tester.pumpAndSettle();
     
-    // Record initial processing orders
-    final initialOrderA = featureA.processOrder;
-    final initialOrderB = featureB.processOrder;
-    final initialOrderBAlternative = featureBAlternative.processOrder;
-    
-    // Verify initial orders
-    expect(initialOrderA, greaterThan(0));
-    expect(initialOrderB, greaterThan(0));
-    expect(initialOrderBAlternative, greaterThan(0));
-    expect(initialOrderB, lessThan(initialOrderA), reason: 'Dependency should be processed before dependent');
-    expect(initialOrderBAlternative, lessThan(initialOrderA), reason: 'Alternative dependency should be processed before dependent');
-    
-    // Simulate changing implementation
+    expect(DartBoardCore.instance.loadedFeatures, contains(featureB));
+    expect(DartBoardCore.instance.loadedFeatures, isNot(contains(featureBAlternative)));
+    initLog.clear();
+
     testWidget.changeImplementation('B', 'other');
-    await tester.pump();
     await tester.pumpAndSettle();
-    
-    // Verify that features were processed again during rebuild
-    expect(featureBAlternative.processOrder, greaterThan(initialOrderBAlternative), reason: 'Alternative Feature B should be processed again after becoming the active implementation');
-    expect(featureA.processOrder, greaterThan(initialOrderA), reason: 'Feature A should be processed again after dependency implementation change');
+
+    expect(DartBoardCore.instance.loadedFeatures, contains(featureBAlternative));
+    expect(DartBoardCore.instance.loadedFeatures, isNot(contains(featureB)));
+    expect(initLog, contains('Routes requested: B:other'));
+    expect(initLog, isNot(contains('Routes requested: B:default')));
+    expect(initLog.indexOf('Routes requested: B:other'),
+        lessThan(initLog.indexOf('Routes requested: A:default')));
   });
 }
 

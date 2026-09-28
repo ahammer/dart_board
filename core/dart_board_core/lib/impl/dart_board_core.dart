@@ -272,7 +272,7 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
         bool shouldLoadFeature = false;
         
         // Determine if we should load this feature implementation
-        if (!loadedFeatures.contains(element)) {
+        if (!loadedFeatures.any((feature) => feature.namespace == element.namespace)) {
           if (!featureOverrides.containsKey(element.namespace)) {
             // No override, load the first implementation encountered
             shouldLoadFeature = true;
@@ -368,29 +368,12 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
       _initLog.info('Registering active implementations');
       activeImplementations.clear();
       
-      // First collect all namespaces that have overrides with non-null values
-      final namespacesWithOverrides = featureOverrides.entries
-          .where((entry) => entry.value != null)
-          .map((entry) => entry.key)
-          .toSet();
-      
-      // For namespaces with overrides, use the override value directly
-      // We know these values are non-null based on our filter above
-      for (final namespace in namespacesWithOverrides) {
-        // The value is guaranteed to be non-null based on our filter above
-        activeImplementations[namespace] = featureOverrides[namespace]!;
-      }
-      
-      // For namespaces without overrides, use the first implementation that was loaded
-      allFeatures.forEach((element) {
-        if (!(element is StubFeature) && !namespacesWithOverrides.contains(element.namespace)) {
-          // Only set if not already set by an override
-          if (!activeImplementations.containsKey(element.namespace)) {
-            activeImplementations[element.namespace] = element.implementationName;
-          }
+      for (final feature in allFeatures) {
+        if (feature is! StubFeature) {
+          activeImplementations[feature.namespace] = feature.implementationName;
         }
-      });
-      
+      }
+
       _initLog.info('Feature build process complete');
     });
   }
@@ -430,7 +413,7 @@ class _DartBoardState extends State<DartBoard> with DartBoardCore {
       if (processingPath.contains(featureId)) {
         _initLog.warning('Circular dependency detected while processing $featureId');
         _initLog.warning('Current dependency path: ${processingPath.join(' -> ')} -> $featureId');
-        // We continue anyway to maintain compatibility
+        continue;
       }
       
       // Process dependencies with the current feature added to the path
