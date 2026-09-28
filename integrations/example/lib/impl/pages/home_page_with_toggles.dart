@@ -15,7 +15,7 @@ class HomePageWithToggles extends StatelessWidget {
         child: Material(
             color: Colors.transparent,
             child: Center(
-                child: Container(
+                child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [

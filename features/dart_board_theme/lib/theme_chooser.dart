@@ -53,6 +53,7 @@ class _ThemeChooserDropdownState extends State<ThemeChooserDropdown> {
         ),
         Expanded(
           child: DropdownButton<int>(
+            isExpanded: true,
             items: [
               DropdownMenuItem<int>(value: -1, child: Text('Select a Theme')),
               ...items

@@ -18,7 +18,16 @@ void main() {
       initialPath: '/main',
     ));
 
-    // This is a minimal test just to make sure it builds
+    // Advance the splash timers; particle animations intentionally never settle.
+    await tester.pump(const Duration(seconds: 3));
+    await tester.pump(const Duration(seconds: 3));
+
+    await tester.pump(const Duration(milliseconds: 1));
+
+    // Verify the app builds after startup completes.
     expect(find.byType(DartBoard), findsOneWidget);
+    expect(find.text('Template'), findsOneWidget);
+    await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pump(const Duration(milliseconds: 1));
   });
 }
