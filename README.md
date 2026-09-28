@@ -42,8 +42,8 @@ Dart Board is a framework that helps you build modular, maintainable Flutter app
      
      @override
      List<RouteDefinition> get routes => [
-       NamedRouteDefinition("/hello_world", 
-         (context, settings) => Material(child: Center(child: Text("Hello World"))))
+       NamedRouteDefinition(route: "/hello_world",
+         builder: (context, settings) => Material(child: Center(child: Text("Hello World"))))
      ];
    }
    ```
@@ -52,7 +52,7 @@ Dart Board is a framework that helps you build modular, maintainable Flutter app
    ```dart
    void main() => runApp(DartBoard(
      features:[HelloWorldFeature()], 
-     initialRoute: '/hello_world'
+     initialPath: '/hello_world'
    ));
    ```
 
@@ -90,7 +90,7 @@ Dart Board is a framework that helps you build modular, maintainable Flutter app
 | **[Authentication](features/dart_board_authentication/)** | Auth framework with provider support |
 | **[State Management](features/dart_board_locator/)** | Multiple state management options |
 
-See the [complete feature list](#features-1) below for more.
+See the [complete feature list](#feature-list) below for more.
 
 | Chat | Minesweeper | Debug Panel |
 |:----:|:-----------:|:-----------:|
@@ -128,7 +128,7 @@ Features can communicate without direct dependencies using the `MethodCall` mech
 To contribute to Dart Board:
 
 1. Clone the repo
-2. Install Melos: `flutter pub global activate melos`
+2. Install Melos: `flutter pub global activate melos 6.3.2`
 3. Bootstrap: `melos bootstrap`
 
 See [contribute.MD](contribute.MD) for more details.
@@ -210,7 +210,7 @@ Feature-aware Redux implementation:
 
 ```dart
 // Register state
-ReduxStateDecoration<YourState>(initialState)
+ReduxStateDecoration<YourState>(name: 'state', factory: () => initialState)
 
 // Build with state
 FeatureStateBuilder<YourState>((ctx, state) => YourWidget(state))
@@ -222,7 +222,7 @@ Support for Bloc/Cubit:
 
 ```dart
 // Register bloc
-BlocDecoration<YourBloc>(() => YourBloc())
+BlocDecoration<YourBloc, YourState>((context) => YourBloc())
 ```
 
 ## Add2App Support

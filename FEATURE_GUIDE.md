@@ -1,476 +1,61 @@
 # Dart Board Feature Guide
 
-This guide provides an overview of available features in the Dart Board ecosystem, organized by category. Each feature serves a specific purpose and can be composed with others to build comprehensive applications.
+Add features to `DartBoard.features` or to another feature's `dependencies`.
+Add decorations to that feature's `appDecorations` or `pageDecorations`.
+The links below point to the implementations and their constructor arguments.
 
-## State Management
+## State management
 
-Dart Board provides multiple state management solutions to fit different project needs and team preferences.
+| Package | API | Usage |
+| --- | --- | --- |
+| [Locator](features/dart_board_locator/lib/dart_board_locator.dart) | `DartBoardLocatorFeature`, `LocatorDecoration<T>` | Register a factory with `LocatorDecoration(() => YourService())`, then access it with `locate<YourService>()`. |
+| [Redux](features/dart_board_redux/lib/dart_board_redux.dart) | `DartBoardRedux`, `ReduxStateDecoration<T>` | Register state with `ReduxStateDecoration<YourState>(name: 'state', factory: () => YourState())`. Dispatch with `dispatch(action)` or `dispatchFunc<YourState>(reducer)`. |
+| [Bloc/Cubit](features/dart_board_bloc/lib/dart_board_bloc.dart) | `BlocDecoration<T, V>`, `CubitDecoration<T, V>` | These decorations install `flutter_bloc` providers; no separate feature is required. Factories receive a `BuildContext`. Use `BlocProvider.of<T>(context)` and `BlocBuilder` from `flutter_bloc`. |
 
-### Locator
+For Redux actions, extend `FeatureAction<T>` and implement `T featureReduce(T state)`.
+`FeatureStateBuilder<T>((context, state) => YourWidget())` takes a positional builder.
+See [Minesweeper](features/dart_board_minesweeper/lib/dart_board_minesweeper.dart) for a complete Redux integration.
+The [starter cart](integrations/starter/lib/features/cart_feature_complete.dart) uses Locator and `ChangeNotifier`.
 
-**Purpose**: Simple service location and dependency injection.
+## Development tools
 
-**When to use**: For small to medium apps where simplicity is preferred over strict architecture.
+| Feature | Routes and behavior |
+| --- | --- |
+| [DebugFeature](features/dart_board_debug/lib/debug_feature.dart) | `/debug` lists features and lets you change implementations; `/dependency_tree` shows dependencies. |
+| [LogFeature](features/dart_board_log/lib/dart_board_log.dart) | `/log` displays records from `package:logging`. Write records with `Logger('YourFeature').info('message')`. |
+| [DiagnosticFeature](core/dart_board_core/lib/impl/features/diagnostic_feature.dart) | `/diagnostics` displays an initialization report. Exported by `dart_board_core`. |
 
-**Setup**:
-```dart
-// Add the dependency
-import 'package:dart_board_locator/dart_board_locator.dart';
+## UI features
 
-// Include the feature
-@override
-List<DartBoardFeature> get dependencies => [DartBoardLocatorFeature()];
+| Feature | Configuration |
+| --- | --- |
+| [DartBoardCanvasFeature](features/dart_board_canvas/lib/dart_board_canvas.dart) | Supply `namespace`, `implementationName`, `route`, and `stateBuilder`. The state extends `AnimatedCanvasState` and implements `paint(Canvas canvas, Size size)`; elapsed seconds are available as `time`. |
+| [ImageBackgroundFeature](features/dart_board_image_background/lib/dart_board_image_background.dart) | Supply `namespace`, `implementationName`, and either `filename` (a declared asset) or `widget`. Applies a page decoration. |
+| [DartBoardSplashFeature](features/dart_board_splash/lib/dart_board_splash.dart) | Takes a splash widget as a positional argument. `FadeOutSplashScreen` supplies timed dismissal. |
+| [ThemeFeature](features/dart_board_theme/lib/dart_board_theme.dart) | Takes `data: ThemeData(...)` and optional `middleware`. Provides `/theme_editor` and the `setThemeData` method handler. |
 
-// Register a service
-@override
-List<DartBoardDecoration> get appDecorations => 
-    [LocatorDecoration(() => YourService())];
-```
+The [example integration](integrations/example/lib/example_feature.dart) configures each of these features,
+including multiple background implementations and an [animated splash](integrations/example/lib/impl/splash/splash.dart).
 
-**Usage**:
-```dart
-// Access a service
-final service = locate<YourService>();
+## Firebase
 
-// With ChangeNotifier, automatically rebuild on changes
-locate<YourModel>().builder<YourModel>(
-  (context, model) => Text(model.value)
-);
-```
+Configure Firebase for your app before enabling these features. The example's Apple targets require
+iOS 13 or macOS 10.15. Native initialization uses the platform configuration; web initialization
+reads `window.firebaseConfig`, as shown in [index.html](integrations/example/web/index.html).
 
-### Redux
+| Feature | Purpose |
+| --- | --- |
+| [DartBoardFirebaseCoreFeature](features/dart_board_firebase_core/lib/dart_board_firebase_core.dart) | Initializes Firebase before building dependent app content on supported platforms. |
+| [DartBoardAuthenticationFlutterFireFeature](features/dart_board_firebase_authentication/lib/dart_board_firebase_authentication.dart) | Connects Firebase Authentication to the Dart Board authentication facade. |
+| [DartBoardFirebaseDatabaseFeature](features/dart_board_firebase_database/lib/dart_board_firebase_database.dart) | Cloud Firestore helpers: `CollectionView` and `QueryListView` render query snapshots. This package does not wrap Realtime Database. |
+| [DartBoardFirebaseAnalytics](features/dart_board_firebase_analytics/lib/dart_board_firebase_analytics.dart) | Connects Firebase Analytics to Dart Board tracking. |
 
-**Purpose**: Predictable state container with unidirectional data flow.
+The authentication, database, and analytics features declare Firebase Core as a dependency.
 
-**When to use**: For larger applications with complex state requirements where debugging and traceability are important.
+## Complete examples
 
-**Setup**:
-```dart
-// Add the dependency
-import 'package:dart_board_redux/dart_board_redux.dart';
+- [DartBoardChatFeature](features/dart_board_chat/lib/dart_board_chat.dart) provides `/chat` and requires Firebase configuration and authentication.
+- [MinesweeperFeature](features/dart_board_minesweeper/lib/dart_board_minesweeper.dart) provides `/minesweep` and demonstrates Redux state management.
+- The [starter app](integrations/starter/lib/main.dart) combines repository, listing, details, cart, and checkout features.
 
-// Include the feature
-@override
-List<DartBoardFeature> get dependencies => [DartBoardReduxFeature()];
-
-// Register initial state
-@override
-List<DartBoardDecoration> get appDecorations => [
-  ReduxStateDecoration<YourState>(YourState.initial())
-];
-
-// Add middleware (optional)
-@override
-List<DartBoardDecoration> get appDecorations => [
-  ReduxMiddlewareDecoration<YourState>((store, action, next) {
-    // Your middleware logic
-    return next(action);
-  })
-];
-```
-
-**Usage**:
-```dart
-// Create actions
-class IncrementAction extends FeatureAction<CounterState> {
-  @override
-  CounterState reduce(CounterState state) => 
-      CounterState(count: state.count + 1);
-}
-
-// Dispatch actions
-DartBoardCore.instance.dispatchAction(IncrementAction());
-
-// Connect to the UI
-FeatureStateBuilder<CounterState>(
-  builder: (context, state) => Text('Count: ${state.count}')
-);
-```
-
-### Bloc/Cubit
-
-**Purpose**: Stream-based state management with reactive approach.
-
-**When to use**: For reactive applications with asynchronous operations.
-
-**Setup**:
-```dart
-// Add the dependency
-import 'package:dart_board_bloc/dart_board_bloc.dart';
-
-// Include the feature
-@override
-List<DartBoardFeature> get dependencies => [DartBoardBlocFeature()];
-
-// Register a bloc
-@override
-List<DartBoardDecoration> get appDecorations => [
-  BlocDecoration<YourBloc>(() => YourBloc())
-];
-```
-
-**Usage**:
-```dart
-// Access a bloc
-final bloc = locateBloc<YourBloc>();
-
-// With BlocBuilder
-BlocBuilder<YourBloc, YourState>(
-  bloc: locateBloc<YourBloc>(),
-  builder: (context, state) => Text(state.value)
-);
-```
-
-## Development Tools
-
-Dart Board includes several features to aid in development and debugging.
-
-### Debug
-
-**Purpose**: Runtime inspection of Dart Board features and states.
-
-**When to use**: During development to help understand feature loading, dependencies, and current state.
-
-**Setup**:
-```dart
-// Add the dependency
-import 'package:dart_board_debug/debug_feature.dart';
-
-// Include the feature
-DebugFeature()
-```
-
-**Usage**:
-- Navigate to `/debug` to see loaded features
-- Navigate to `/dependency_graph` to visualize feature dependencies
-- Use the debug panel to enable/disable features at runtime
-
-### Log
-
-**Purpose**: In-app logging viewer with configurable log levels.
-
-**When to use**: For tracking app behavior and debugging issues, especially on devices where console logs are hard to access.
-
-**Setup**:
-```dart
-// Add the dependency
-import 'package:dart_board_log/dart_board_log.dart';
-
-// Include the feature
-DartBoardLogFeature()
-```
-
-**Usage**:
-```dart
-// Log messages
-DartBoardLog.info('User logged in');
-DartBoardLog.error('Login failed', exception);
-
-// View logs
-// Navigate to `/log` or enable the log overlay
-```
-
-## UI Components
-
-Dart Board provides various UI features to enhance your application's visual experience.
-
-### Canvas
-
-**Purpose**: Custom rendering with efficient animated canvas elements.
-
-**When to use**: For custom animations, visualizations, or interactive graphics.
-
-**Setup**:
-```dart
-// Add the dependency
-import 'package:dart_board_canvas/dart_board_canvas.dart';
-
-// Include the feature
-DartBoardCanvasFeature()
-```
-
-**Usage**:
-```dart
-// Create a canvas painter
-class YourPainter extends DartBoardCanvasPainter {
-  @override
-  void paint(Canvas canvas, Size size, double time) {
-    // Your custom painting logic
-  }
-}
-
-// Use in your routes
-@override
-List<RouteDefinition> get routes => [
-  NamedRouteDefinition(
-    '/your_animation',
-    (context, settings) => DartBoardCanvas(
-      builder: () => YourPainter(),
-    )
-  )
-];
-```
-
-### Image Background
-
-**Purpose**: Apply background images or widgets to any page.
-
-**When to use**: For consistent background styling across multiple screens.
-
-**Setup**:
-```dart
-// Add the dependency
-import 'package:dart_board_image_background/dart_board_image_background.dart';
-
-// Include the feature with configuration
-ImageBackgroundFeature(
-  backgroundImage: 'assets/background.jpg'
-)
-```
-
-**Usage**:
-- The background is automatically applied to all pages
-- Can be configured to apply only to specific routes
-
-### Splash
-
-**Purpose**: Show a splash screen on app startup.
-
-**When to use**: To provide a branded launch experience while the app initializes.
-
-**Setup**:
-```dart
-// Add the dependency
-import 'package:dart_board_splash/dart_board_splash.dart';
-
-// Include the feature
-SplashFeature(
-  splashWidget: YourSplashWidget(),
-  duration: Duration(seconds: 2)
-)
-```
-
-**Usage**:
-- The splash screen is automatically shown on app start
-- Can be combined with Canvas for animated splash screens
-
-### Theme
-
-**Purpose**: Configurable app themes with light/dark mode support.
-
-**When to use**: To provide consistent styling and support for theme switching.
-
-**Setup**:
-```dart
-// Add the dependency
-import 'package:dart_board_theme/dart_board_theme.dart';
-
-// Include the feature
-ThemeFeature(
-  lightTheme: FlexColorScheme.light(...).toTheme,
-  darkTheme: FlexColorScheme.dark(...).toTheme
-)
-```
-
-**Usage**:
-```dart
-// Switch theme
-DartBoardTheme.of(context).setDarkMode(true);
-
-// Access theme
-final isDark = DartBoardTheme.of(context).isDarkMode;
-```
-
-## Firebase Integration
-
-Dart Board offers several features for Firebase integration.
-
-### Firebase Core
-
-**Purpose**: Initializes Firebase for your application.
-
-**When to use**: As a prerequisite for any Firebase-based features.
-
-**Setup**:
-```dart
-// Add the dependency
-import 'package:dart_board_firebase_core/dart_board_firebase_core.dart';
-
-// Include the feature
-FirebaseCoreFeature()
-```
-
-### Firebase Authentication
-
-**Purpose**: Implements authentication using Firebase Auth.
-
-**When to use**: When you need user authentication with Firebase.
-
-**Setup**:
-```dart
-// Add the dependency
-import 'package:dart_board_firebase_authentication/dart_board_firebase_authentication.dart';
-
-// Include the feature
-FirebaseAuthenticationFeature()
-```
-
-**Usage**:
-```dart
-// Check auth state
-final user = FirebaseAuth.instance.currentUser;
-
-// Login with email/password
-await FirebaseAuth.instance.signInWithEmailAndPassword(
-  email: 'user@example.com',
-  password: 'password'
-);
-```
-
-### Firebase Database
-
-**Purpose**: Provides helpers for Firebase Realtime Database.
-
-**When to use**: When you need real-time data synchronization.
-
-**Setup**:
-```dart
-// Add the dependency
-import 'package:dart_board_firebase_database/dart_board_firebase_database.dart';
-
-// Include the feature
-FirebaseDatabaseFeature()
-```
-
-**Usage**:
-```dart
-// Get a database reference
-final ref = FirebaseDatabase.instance.ref('path/to/data');
-
-// Read data
-final snapshot = await ref.get();
-final value = snapshot.value;
-
-// Write data
-await ref.set({'key': 'value'});
-
-// Listen to changes
-ref.onValue.listen((event) {
-  final data = event.snapshot.value;
-});
-```
-
-### Firebase Analytics
-
-**Purpose**: Track user events and app usage with Firebase Analytics.
-
-**When to use**: When you need insights into user behavior.
-
-**Setup**:
-```dart
-// Add the dependency
-import 'package:dart_board_firebase_analytics/dart_board_firebase_analytics.dart';
-
-// Include the feature
-FirebaseAnalyticsFeature()
-```
-
-**Usage**:
-```dart
-// Log an event
-FirebaseAnalytics.instance.logEvent(
-  name: 'button_clicked',
-  parameters: {'button_id': 'login'}
-);
-```
-
-## Complete Features
-
-Dart Board includes some fully-featured modules that demonstrate more complex implementations.
-
-### Chat
-
-**Purpose**: Provides a real-time chat interface using Firebase.
-
-**When to use**: When you need a messaging component in your app.
-
-**Setup**:
-```dart
-// Add the dependency
-import 'package:dart_board_chat/dart_board_chat.dart';
-
-// Include the feature
-ChatFeature()
-```
-
-**Usage**:
-- Navigate to `/chat` to access the chat interface
-- Requires Firebase setup and authentication
-
-### Minesweeper
-
-**Purpose**: A complete Minesweeper game implementation using Redux.
-
-**When to use**: As a reference for building feature-complete applications with state management.
-
-**Setup**:
-```dart
-// Add the dependency
-import 'package:dart_board_minesweeper/dart_board_minesweeper.dart';
-
-// Include the feature
-MinesweeperFeature()
-```
-
-**Usage**:
-- Navigate to `/minesweep` to play the game
-- Demonstrates Redux state management in action
-
-## Building Your Own Features
-
-Creating custom features is at the heart of Dart Board development. A well-designed feature:
-
-1. Has a clear, single responsibility
-2. Exposes functionality through routes, method calls, or decorations
-3. Minimizes direct dependencies on other features
-4. Is configurable through its constructor
-
-Basic feature template:
-
-```dart
-class YourFeature extends DartBoardFeature {
-  final String configOption;
-  
-  YourFeature({this.configOption = 'default'});
-  
-  @override
-  String get namespace => "YourFeature";
-  
-  @override
-  List<DartBoardFeature> get dependencies => [
-    // Include features this depends on
-  ];
-  
-  @override
-  List<RouteDefinition> get routes => [
-    // Define routes this feature provides
-  ];
-  
-  @override
-  Map<String, MethodCallHandler> get methodHandlers => {
-    // Define method calls this feature handles
-  };
-  
-  @override
-  List<DartBoardDecoration> get appDecorations => [
-    // Define app-level decorations
-  ];
-  
-  @override
-  List<DartBoardDecoration> get pageDecorations => [
-    // Define page-level decorations
-  ];
-}
-```
-
-For more details on building features, see the [GETTING_STARTED.md](GETTING_STARTED.md) guide.
+See [Getting Started](GETTING_STARTED.md) to run the workspace and create a feature.
