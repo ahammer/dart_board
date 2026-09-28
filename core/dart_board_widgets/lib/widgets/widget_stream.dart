@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 
 /// The idea here is that this widget gets an async *, and can yield portions of the tree as it goes
@@ -19,6 +21,7 @@ class WidgetStream extends StatefulWidget {
 
 class _WidgetStreamState extends State<WidgetStream> {
   Widget _streamedWidget = Container();
+  late StreamSubscription<Widget> _subscription;
 
   @override
   void setState(VoidCallback fn) {
@@ -30,9 +33,17 @@ class _WidgetStreamState extends State<WidgetStream> {
   @override
   void initState() {
     super.initState();
-    widget.widgetProducer(context).forEach((element) => setState(() {
-          _streamedWidget = element;
-        }));
+    _subscription = widget.widgetProducer(context).listen(
+        (element) => setState(() {
+              _streamedWidget = element;
+            }),
+        cancelOnError: true);
+  }
+
+  @override
+  void dispose() {
+    _subscription.cancel();
+    super.dispose();
   }
 
   @override
