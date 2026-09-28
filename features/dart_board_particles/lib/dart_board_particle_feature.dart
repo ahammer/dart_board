@@ -166,7 +166,7 @@ abstract class ParticleLayer<T extends Particle> {
 /// The interface and code for the Particles layer itself
 /// we apply this to the Extension for easy access. It's also a singleton
 /// by design.
-abstract class Particles {
+abstract mixin class Particles {
   final _layers = <ParticleLayer>[];
 
   /// We are going to get the interface for the particles data here.

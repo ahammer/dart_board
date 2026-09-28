@@ -52,7 +52,6 @@ build/
 .project
 .classpath
 .settings
-/pubspec.yaml
 .last_build_id
 
 # Docs
