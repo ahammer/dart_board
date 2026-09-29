@@ -2,18 +2,14 @@
 
 `dart_board_emitter` sends typed values between Dart Board features.
 
-Add `DartBoardEmitter()` to `DartBoard.features` before using the top-level
-helpers:
+Add `DartBoardEmitter()` to your existing `DartBoard.features` list before
+using the top-level helpers. Keep the feature that provides your initial route:
 
 ```dart
-import 'package:dart_board_core/dart_board_core.dart';
 import 'package:dart_board_emitter/dart_board_emitter.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
-void main() => runApp(DartBoard(
-      features: [DartBoardEmitter()],
-      initialPath: '/',
-    ));
+features: [DartBoardEmitter(), ...otherFeatures],
 ```
 
 Register a receiver before emitting, then unregister it when it no longer needs
@@ -33,3 +29,6 @@ void sendExample() {
   unregisterReceiver<int>(receiver);
 }
 ```
+
+For widgets, `ReceiverWidget<T>` rebuilds when a message arrives, and
+`ReceiverMixin<T, V>` subscribes a `State<V>` for its lifetime.
