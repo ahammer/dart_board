@@ -74,7 +74,7 @@ You'd generally use Page Decorations to "Decorate" an app visually. E.g. you cou
 ### Navigation
 To handle Navigation you register routes. You do this within a feature by providing a list of RouteDefinition. NamedRouteDefinition is provided to do simple "name" to "page" mappings, but other implementations of the RouteDefinition interface are possible (e.g. for URL processing).
 
-You can also use RouteWidget(RouteSettings(name: '/my_route')) to inject 'routes" anywhere in the widget tree. Unlocking the ability to use your Routes as fragments.
+You can also use `RouteWidget('/my_route')` to inject 'routes" anywhere in the widget tree. Unlocking the ability to use your Routes as fragments.
 
 ### Templates
 
