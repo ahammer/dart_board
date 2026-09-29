@@ -153,7 +153,7 @@ UriRoute will parse the resource request and let you access query params, path s
 
 Sometimes you want to just push a screen right? Like you didn't register it in a feature, you want it to be dynamic for whatever reason.
 
-`void pushDynamic({required String dynamicRouteName, required WidgetBuilder builder});`
+`void pushDynamic({required String dynamicPathName, required WidgetBuilder builder});`
 
 is what you can use here. Give it a unique name which will be prefixed with _, e.g. `/_YourDynamicRoute3285` If you see the `_` that means you can not share this route. If you give it to someone else it's going to 404 for them. It's dynamically allocated for the users session.
 
