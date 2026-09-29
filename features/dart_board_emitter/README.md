@@ -1,11 +1,35 @@
 # dart_board_emitter
 
-Designed for messaging across modules
+`dart_board_emitter` sends typed values between Dart Board features.
 
+Add `DartBoardEmitter()` to `DartBoard.features` before using the top-level
+helpers:
 
-emit(value) when you want to push on the message bus
+```dart
+import 'package:dart_board_core/dart_board_core.dart';
+import 'package:dart_board_emitter/dart_board_emitter.dart';
+import 'package:flutter/material.dart';
 
-ReceiverWidget<T> to hook up a builder that can take a default
-ReceiverMixin on State to hook into your StatefulWidgets
+void main() => runApp(DartBoard(
+      features: [DartBoardEmitter()],
+      initialPath: '/',
+    ));
+```
 
-RegisterReceiver<T> and UnregisterReceiver<T> elswhere and implement Receiver<T>
+Register a receiver before emitting, then unregister it when it no longer needs
+messages. Call these helpers after `DartBoard` has mounted, such as from a
+widget callback:
+
+```dart
+class IntReceiver extends Receiver<int> {
+  @override
+  void receiver(int value) => debugPrint('Received $value');
+}
+
+void sendExample() {
+  final receiver = IntReceiver();
+  registerReceiver<int>(receiver);
+  emit<int>(42); // IntReceiver receives 42.
+  unregisterReceiver<int>(receiver);
+}
+```
