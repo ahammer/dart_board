@@ -1,0 +1,7 @@
+# Crescendo autopilot for this repository: tasks/*.md are the scheduled autopilot tasks,
+# guidelines.md is added to every agent prompt (issues, reviews and tasks).
+# Validate changes with: crescendo autopilot check .crescendo/autopilot
+# Reference: https://github.com/ahammer/crescendo/blob/main/docs/crescendo.md#per-repo-autopilot-crescendoautopilot
+defaults:
+  when: idle
+guidelines: guidelines.md
