@@ -11,7 +11,7 @@ class DartBoardEmitter extends DartBoardFeature {
   void emit<T>(T data) {
     _values[T] = data;
 
-    _receivers[data.runtimeType]?.forEach((element) {
+    _receivers[T]?.forEach((element) {
       element.receiver(data);
     });
   }
@@ -94,7 +94,7 @@ abstract class Receiver<T> {
 
 void emit<T>(T data) =>
     (DartBoardCore.instance.findByName("Emitter") as DartBoardEmitter)
-        .emit(data);
+        .emit<T>(data);
 
 void registerReceiver<T>(Receiver<T> receiver, {bool useCache = false}) =>
     (DartBoardCore.instance.findByName("Emitter") as DartBoardEmitter)
