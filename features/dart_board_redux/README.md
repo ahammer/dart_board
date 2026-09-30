@@ -23,7 +23,7 @@ Dispatch as necessary. Use FeatureStateBuilder<T> to hook into UI.
  ReduxMiddlewareDecoration
 
  # Widget
- FeatureStateBuilder<T>(builder:(ctx, t) => YourBuilder)
+ FeatureStateBuilder<T>((context, state) => Text(state.toString()))
 
 ## Usage
 
